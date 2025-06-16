@@ -17,9 +17,9 @@ class OrdersRepoImpl implements OrdersRepo {
     required this.postsApi,
   });
   @override
-  Future<ApiResult<OrdersResModel?>> getOrders() async {
+  Future<ApiResult<OrdersResModel?>> getOrders({required int page}) async {
     try {
-      final res = await postsApi.getOrders();
+      final res = await postsApi.getOrders(page:page);
       return ApiResult.success(
         data: res,
       );

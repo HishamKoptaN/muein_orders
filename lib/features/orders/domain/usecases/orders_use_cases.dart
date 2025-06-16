@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../data/models/add_order_req_model.dart';
 import '../../data/models/orders_res_model.dart';
 import '../entities/add_order_req.dart';
 import '../repo/orders_repo.dart';
@@ -12,10 +11,11 @@ class OrdersUseCase {
   OrdersUseCase({
     required this.ordersRepo,
   });
-  Future<ApiResult<OrdersResModel?>> getOrders() async {
-    return await ordersRepo.getOrders();
+  Future<ApiResult<OrdersResModel?>> getOrders({required int page}) async {
+    return await ordersRepo.getOrders(
+      page: page,
+    );
   }
-
   Future<ApiResult<Order?>> createOrder({
     required AddOrderReq addOrderReq,
     required ProgressCallback? onSendProgress,

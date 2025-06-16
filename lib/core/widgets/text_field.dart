@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     this.controller,
+    this.initialValue,
     this.onChanged,
     this.labelText,
     this.enabled,
@@ -21,6 +22,7 @@ class CustomTextField extends StatelessWidget {
     this.maxLines = 1,
   });
   final TextEditingController? controller;
+  final String? initialValue;
   final Function()? onTap;
   final String? labelText;
   final bool? enabled;
@@ -41,6 +43,7 @@ class CustomTextField extends StatelessWidget {
       height: 75.h,
       width: 300.w,
       child: TextFormField(
+        initialValue: initialValue,
         controller: controller,
         onChanged: onChanged,
         enabled: enabled ?? true,

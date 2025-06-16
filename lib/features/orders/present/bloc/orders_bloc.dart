@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../../../../core/all_imports.dart';
 import '../../../../core/errors/api_error_model.dart';
 import '../../data/models/orders_res_model.dart';
@@ -11,9 +10,10 @@ import 'package:injectable/injectable.dart' show Injectable;
 @Injectable()
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   OrdersUseCase ordersUseCase;
-  List<Order>? allOrders;
-  Meta? meta;
-  AddOrderReq addOrderReq = AddOrderReq();
+  List<Order>? _allOrders;
+  Meta? _meta;
+  AddOrderReq _addOrderReq = AddOrderReq();
+  String? _uploadingProgress;
   OrdersBloc({
     required this.ordersUseCase,
   }) : super(
@@ -23,18 +23,20 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       (event, emit) async {
         await event.when(
           getOrders: () async {
-            emit(
-              const OrdersState.loading(),
-            );
             try {
-              final res = await ordersUseCase.getOrders();
+              final page = (_meta?.currentPage ?? 0) + 1;
+              final lastPage = _meta?.lastPage;
+              if (lastPage != null && page > lastPage) return;
+              if (page == 1) {
+                emit(const OrdersState.loading());
+              }
+              final res = await ordersUseCase.getOrders(page: page);
               await res.when(
                 success: (
                   res,
                 ) async {
-                  allOrders = res?.orders ?? [];
-                  meta = res?.meta ?? Meta();
-
+                  _allOrders = [..._allOrders ?? [], ...res?.orders ?? []];
+                  _meta = res?.meta ?? Meta();
                   emitCustomLoaded(
                     emit: emit,
                   );
@@ -69,7 +71,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             addOrderReq,
           ) async {
             try {
-              this.addOrderReq = addOrderReq;
+              _addOrderReq = addOrderReq;
               emitCustomLoaded(
                 emit: emit,
               );
@@ -87,32 +89,18 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             }
           },
           createOrder: () async {
-            if (addOrderReq.isComplete) {
+            if (_addOrderReq.isComplete) {
               try {
-                emit(
-                  OrdersState.loaded(
-                    orders: allOrders ?? [],
-                    hasMore: false,
-                    addOrderReq: addOrderReq,
-                    uploadingProgress: "1",
-                  ),
-                );
+                emitCustomLoaded(emit: emit);
                 final result = await ordersUseCase.createOrder(
-                  addOrderReq: addOrderReq,
+                  addOrderReq: _addOrderReq,
                   onSendProgress: (
                     sent,
                     total,
                   ) {
-                    String? uploadProgress =
-                        "${((sent / total) * 100).toInt()}%";
-                    log(uploadProgress);
-                    emit(
-                      OrdersState.loaded(
-                        orders: allOrders ?? [],
-                        hasMore: false,
-                        addOrderReq: addOrderReq,
-                        uploadingProgress: uploadProgress,
-                      ),
+                    _uploadingProgress = "${((sent / total) * 100).toInt()}%";
+                    emitCustomLoaded(
+                      emit: emit,
                     );
                   },
                 );
@@ -120,10 +108,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   success: (
                     order,
                   ) async {
-                    addOrderReq = AddOrderReq.empty();
-                    allOrders = [
+                    _addOrderReq = AddOrderReq.empty();
+                    _allOrders = [
                       order!,
-                      ...?allOrders,
+                      ...?_allOrders,
                     ];
                     emit(
                       const OrdersState.success(),
@@ -183,10 +171,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   }) {
     emit(
       OrdersState.loaded(
-        orders: allOrders ?? [],
-        hasMore: meta?.hasNextPage ?? false,
-        addOrderReq: addOrderReq,
-        uploadingProgress: null,
+        orders: _allOrders ?? [],
+        hasMore: _meta?.hasNextPage ?? false,
+        addOrderReq: _addOrderReq,
+        uploadingProgress: _uploadingProgress,
       ),
     );
   }

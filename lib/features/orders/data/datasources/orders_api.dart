@@ -18,7 +18,9 @@ abstract class OrdersApi {
   @GET(
     ApiConstants.orders,
   )
-  Future<OrdersResModel?> getOrders();
+  Future<OrdersResModel?> getOrders({
+    @Query("page") required int? page,
+  });
   //! createOrder
   @POST(
     ApiConstants.orders,

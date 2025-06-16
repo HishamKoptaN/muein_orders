@@ -11,7 +11,7 @@ class OrderWidget extends StatelessWidget {
     super.key,
     required this.order,
   });
-  final Order order;
+  final Order? order;
   static const String routeName = "OrderWidget";
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,8 @@ class OrderWidget extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: MyText(
-                    fieldName: '${t.order_number}: ${order.orderNumber.toString()}',
+                    fieldName:
+                        '${t.order_number}: ${order?.orderNumber.toString()}',
                     color: Colors.blue,
                     fontSize: 15.sp,
                   ),
@@ -36,7 +37,7 @@ class OrderWidget extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: MyText(
-                    fieldName: '${t.order_place}: ${order.place}',
+                    fieldName: '${t.order_place}: ${order?.place}',
                     color: Colors.black,
                     fontSize: 15.sp,
                   ),
@@ -52,8 +53,8 @@ class OrderWidget extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: VideoWidget(
-                    videoUrl: order.video ?? '',
-                    thumbnailUrl: order.thumbnailUrl ?? '',
+                    videoUrl: order?.video ?? '',
+                    thumbnailUrl: order?.thumbnailUrl ?? '',
                   ),
                 ),
                 Expanded(
@@ -64,12 +65,12 @@ class OrderWidget extends StatelessWidget {
                         context,
                         ImagePreview.routeName,
                         arguments: {
-                          'image_url': order.imageOne ?? '',
+                          'image_url': order?.imageOne ?? '',
                         },
                       );
                     },
                     child: Image.network(
-                      order.imageOne ?? '',
+                      order?.imageOne ?? '',
                       fit: BoxFit.cover,
                       loadingBuilder: (context, child, loadingProgress) {
                         if (loadingProgress == null) return child;
@@ -101,14 +102,14 @@ class OrderWidget extends StatelessWidget {
                         context,
                         ImagePreview.routeName,
                         arguments: {
-                          'image_url': order.imageTwo ?? '',
+                          'image_url': order?.imageTwo ?? '',
                         },
                       );
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12.0),
                       child: Image.network(
-                        order.imageTwo ?? '',
+                        order?.imageTwo ?? '',
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,

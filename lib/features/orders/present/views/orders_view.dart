@@ -1,4 +1,3 @@
-import 'package:shimmer_effect/shimmer_effect.dart';
 import '../../../../core/all_imports.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../data/models/orders_res_model.dart';
@@ -19,19 +18,26 @@ class OrdersView extends StatefulWidget {
 
 class _OrdersViewState extends State<OrdersView> {
   final ScrollController _scrollController = ScrollController();
+  late OrdersBloc _ordersBloc;
+
   @override
   void initState() {
     super.initState();
-    context.read<OrdersBloc>().add(
-          OrdersEvent.getOrders(),
-        );
+    _ordersBloc = context.read<OrdersBloc>();
+    _ordersBloc.add(
+      OrdersEvent.getOrders(),
+    );
     _scrollController.addListener(
       _onScroll,
     );
   }
+
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent) {
+      _ordersBloc.add(
+        OrdersEvent.getOrders(),
+      );
     }
   }
 
@@ -108,54 +114,15 @@ class _OrdersViewState extends State<OrdersView> {
                 },
               );
             },
-            orElse: () {
-              return Center(
-                child: ShimmerEffect(
-                  baseColor: Colors.white,
-                  highlightColor: Colors.green,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Divider(
-                        thickness: 6,
-                        color: Colors.red,
-                      ),
-                      Text(
-                        'Loading...',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 40,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
             loading: () {
-              return Center(
-                child: ShimmerEffect(
-                  baseColor: Colors.white,
-                  highlightColor: Colors.green,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Divider(
-                        thickness: 6,
-                        color: Colors.red,
-                      ),
-                      Text(
-                        'Loading...',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 40,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              return ListView.builder(
+                itemCount: 10,
+                itemBuilder: (
+                  context,
+                  i,
+                ) {
+                  return OrderShimmerWidget();
+                },
               );
             },
             getOrdersfailure: (e) {
@@ -168,6 +135,9 @@ class _OrdersViewState extends State<OrdersView> {
                   ),
                 ),
               );
+            },
+            orElse: () {
+              return SizedBox();
             },
           );
         },
