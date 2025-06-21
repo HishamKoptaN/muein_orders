@@ -16,6 +16,11 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart'
     as _i161;
 
+import '../../features/docs/data/datasources/docs_api.dart' as _i715;
+import '../../features/docs/data/repo_impl/docs_repo_impl.dart' as _i430;
+import '../../features/docs/domain/repo/docs_repo.dart' as _i672;
+import '../../features/docs/domain/usecases/docs_use_cases.dart' as _i689;
+import '../../features/docs/present/bloc/docs_bloc.dart' as _i243;
 import '../../features/login/data/data_sources/login_api.dart' as _i59;
 import '../../features/login/data/repo_imp/login_repo_impl.dart' as _i0;
 import '../../features/login/domain/repo/login_repo.dart' as _i0;
@@ -49,10 +54,10 @@ _i174.GetIt init(
   final injectionModule = _$InjectionModule();
   final apiModule = _$ApiModule();
   gh.singleton<_i804.LoggingInterceptor>(() => _i804.LoggingInterceptor());
-  gh.lazySingleton<_i804.TokenStorage>(() => _i804.TokenStorage());
   gh.lazySingleton<_i161.InternetConnection>(
       () => injectionModule.connectionChecker);
   gh.lazySingleton<_i59.FirebaseAuth>(() => injectionModule.firebaseAuth);
+  gh.lazySingleton<_i804.TokenStorage>(() => _i804.TokenStorage());
   gh.singleton<_i804.AuthInterceptor>(
       () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()));
   gh.lazySingleton<_i59.LoginRemDataSrc>(
@@ -71,6 +76,8 @@ _i174.GetIt init(
       () => injectionModule.loginApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i165.OrdersApi>(
       () => injectionModule.ordersApi(gh<_i361.Dio>()));
+  gh.lazySingleton<_i715.DocsApi>(
+      () => injectionModule.docsApi(gh<_i361.Dio>()));
   gh.factory<_i587.MainRepo>(
       () => _i880.MainRepoImpl(mainApi: gh<_i942.MainApi>()));
   gh.lazySingleton<_i0.LoginRepo>(() => _i0.LoginRepoImpl(
@@ -80,23 +87,29 @@ _i174.GetIt init(
         firebaseAuth: gh<_i59.FirebaseAuth>(),
       ));
   gh.factory<_i808.OrdersRepo>(
-      () => _i450.OrdersRepoImpl(postsApi: gh<_i165.OrdersApi>()));
+      () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()));
+  gh.factory<_i672.DocsRepo>(
+      () => _i430.DocsRepoImpl(postsApi: gh<_i715.DocsApi>()));
+  gh.factory<_i802.OrdersUseCases>(
+      () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()));
   gh.lazySingleton<_i278.MainUseCasess>(
       () => _i278.MainUseCasess(mainRepo: gh<_i587.MainRepo>()));
   gh.lazySingleton<_i856.LoginUseCases>(
       () => _i856.LoginUseCases(loginRepo: gh<_i0.LoginRepo>()));
-  gh.lazySingleton<_i802.OrdersUseCase>(
-      () => _i802.OrdersUseCase(ordersRepo: gh<_i808.OrdersRepo>()));
-  gh.factory<_i189.OrdersBloc>(
-      () => _i189.OrdersBloc(ordersUseCase: gh<_i802.OrdersUseCase>()));
   gh.factory<_i924.MainBloc>(() => _i924.MainBloc(
         auth: gh<_i59.FirebaseAuth>(),
         mainUseCasess: gh<_i278.MainUseCasess>(),
       ));
+  gh.lazySingleton<_i689.DocsUseCase>(
+      () => _i689.DocsUseCase(ordersRepo: gh<_i672.DocsRepo>()));
   gh.lazySingleton<_i34.LoginBloc>(() => _i34.LoginBloc(
         loginUseCases: gh<_i856.LoginUseCases>(),
         firebaseAuth: gh<_i59.FirebaseAuth>(),
       ));
+  gh.factory<_i189.OrdersBloc>(
+      () => _i189.OrdersBloc(gh<_i802.OrdersUseCases>()));
+  gh.factory<_i243.DocsBloc>(
+      () => _i243.DocsBloc(docsUseCase: gh<_i689.DocsUseCase>()));
   return getIt;
 }
 

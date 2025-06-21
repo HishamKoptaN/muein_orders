@@ -6,6 +6,7 @@ import 'core/database/cache/shared_pref_keys.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/login/present/bloc/login_bloc.dart';
 import 'features/main/present/view/main_view.dart';
+import 'features/docs/present/bloc/docs_bloc.dart';
 import 'features/orders/present/bloc/orders_bloc.dart';
 import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
@@ -29,6 +30,9 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (context) => getIt<OrdersBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<DocsBloc>(),
         )
       ],
       child: MyApp(

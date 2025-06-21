@@ -1,16 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
-class ImagePreview extends StatelessWidget {
+class ImageScreen extends StatelessWidget {
   final String imageUrl;
 
-  const ImagePreview({
-    super.key,
-    required this.imageUrl,
-  });
-
-  static const String routeName = "ImagePreview";
+  const ImageScreen({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -18,27 +12,14 @@ class ImagePreview extends StatelessWidget {
     double width = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
-      appBar: AppBar(),
       body: Center(
-        child: InteractiveViewer(
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            fit: BoxFit.contain,
-            placeholder: (context, url) => Shimmer.fromColors(
-              baseColor: Colors.grey.shade300,
-              highlightColor: Colors.grey.shade100,
-              child: Container(
-                width: width,
-                height: height,
-                color: Colors.white,
-              ),
-            ),
-            errorWidget: (context, url, error) => const Icon(
-              Icons.error,
-            ),
-            width: width,
-            height: height,
-          ),
+        child: CachedNetworkImage(
+          height: height,
+          width: width,
+          fit: BoxFit.cover,
+          imageUrl: "https://api.live90.fr/api/images/invoices/$imageUrl",
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ),
     );

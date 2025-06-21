@@ -9,6 +9,57 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get the_name_printed_on_the_quran => 'The name printed on the Qur’an';
+
+  @override
+  String get printed_name => 'Printed name';
+
+  @override
+  String get email => 'email';
+
+  @override
+  String get upload_videos => 'Upload videos';
+
+  @override
+  String get phone => 'Phone number';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get orders_view =>
+      '========================================  orders_view            ===========================================';
+
+  @override
+  String get orders => 'Orders';
+
+  @override
+  String get package => 'Package';
+
+  @override
+  String get documentations_view =>
+      '================================  documentations_view    ===========================================';
+
+  @override
+  String get documentations => 'Documentations';
+
+  @override
+  String get show_documentations => 'Show documentations';
+
+  @override
+  String get add_documentations_view =>
+      '===================================      add_documentations_view    ===========================================';
+
+  @override
+  String get execution_number => 'Execution number';
+
+  @override
+  String get add_documentation => 'Add documentation';
+
+  @override
+  String get count => 'Count';
+
+  @override
   String get kinia_name => 'Kenya';
 
   @override

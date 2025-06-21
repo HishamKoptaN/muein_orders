@@ -1,28 +1,27 @@
-import 'package:dio/dio.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../data/models/orders_res_model.dart';
-import '../entities/add_order_req.dart';
+import '../entities/orders_res_entity.dart';
 import '../repo/orders_repo.dart';
-import 'package:injectable/injectable.dart' show LazySingleton;
+import 'package:injectable/injectable.dart';
 
-@LazySingleton()
-class OrdersUseCase {
+@injectable
+class OrdersUseCases {
   final OrdersRepo ordersRepo;
-  OrdersUseCase({
-    required this.ordersRepo,
-  });
-  Future<ApiResult<OrdersResModel?>> getOrders({required int page}) async {
-    return await ordersRepo.getOrders(
-      page: page,
-    );
+  OrdersUseCases(
+    this.ordersRepo,
+  );
+  Future<ApiResult<List<OrdersResEntity>?>> getOrders(
+      {String? query, int? page}) async {
+    return await ordersRepo.getOrders(query: query, page: page);
   }
-  Future<ApiResult<Order?>> createOrder({
-    required AddOrderReq addOrderReq,
-    required ProgressCallback? onSendProgress,
+
+  Future<ApiResult<OrderEntity?>> updateClientField({
+    required int clientId,
+    required bool isQuranPhotographed,
   }) async {
-    return await ordersRepo.createOrder(
-      addOrderReq: addOrderReq,
-      onSendProgress: onSendProgress,
+    return await ordersRepo.updateClientField(
+      clientId: clientId,
+      isQuranPhotographed: isQuranPhotographed,
     );
   }
 }

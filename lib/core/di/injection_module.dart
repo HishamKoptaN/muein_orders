@@ -5,9 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
+import '../../features/docs/data/datasources/docs_api.dart';
+import '../../features/orders/data/datasources/orders_api.dart';
 import '../../features/login/data/data_sources/login_api.dart';
 import '../../features/main/data/datasources/main_api.dart';
-import '../../features/orders/data/datasources/orders_api.dart';
 import '../networking/network_info.dart';
 
 @module
@@ -40,6 +41,11 @@ abstract class InjectionModule {
   //! OrdersApi
   @lazySingleton
   OrdersApi ordersApi(Dio dio) => OrdersApi(
+        dio,
+      );
+  //! OrdersApi
+  @lazySingleton
+  DocsApi docsApi(Dio dio) => DocsApi(
         dio,
       );
 }

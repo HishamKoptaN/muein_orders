@@ -21,10 +21,10 @@ mixin _$OrdersState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)
+    required TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
+    required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,10 +33,10 @@ mixin _$OrdersState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult? Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -45,10 +45,10 @@ mixin _$OrdersState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) =>
@@ -56,30 +56,30 @@ mixin _$OrdersState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_GetOrdersFailure value) getOrdersfailure,
+    required TResult Function(_ClientShare value) clientShare,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult? Function(_ClientShare value)? clientShare,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult Function(_ClientShare value)? clientShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -151,10 +151,10 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)
+    required TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
+    required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return initial();
@@ -166,10 +166,10 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult? Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return initial?.call();
@@ -181,10 +181,10 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -198,10 +198,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_GetOrdersFailure value) getOrdersfailure,
+    required TResult Function(_ClientShare value) clientShare,
     required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
@@ -211,10 +211,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult? Function(_ClientShare value)? clientShare,
     TResult? Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
@@ -224,10 +224,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult Function(_ClientShare value)? clientShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -243,18 +243,18 @@ abstract class _Initial implements OrdersState {
 }
 
 /// @nodoc
-abstract class _$$LoadInProgressImplCopyWith<$Res> {
-  factory _$$LoadInProgressImplCopyWith(_$LoadInProgressImpl value,
-          $Res Function(_$LoadInProgressImpl) then) =
-      __$$LoadInProgressImplCopyWithImpl<$Res>;
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadInProgressImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$LoadInProgressImpl>
-    implements _$$LoadInProgressImplCopyWith<$Res> {
-  __$$LoadInProgressImplCopyWithImpl(
-      _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of OrdersState
@@ -263,8 +263,8 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadInProgressImpl implements _LoadInProgress {
-  const _$LoadInProgressImpl();
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl();
 
   @override
   String toString() {
@@ -274,7 +274,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadInProgressImpl);
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
   }
 
   @override
@@ -286,10 +286,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)
+    required TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
+    required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return loading();
@@ -301,10 +301,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult? Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return loading?.call();
@@ -316,10 +316,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -333,10 +333,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_GetOrdersFailure value) getOrdersfailure,
+    required TResult Function(_ClientShare value) clientShare,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -346,10 +346,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult? Function(_ClientShare value)? clientShare,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -359,10 +359,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult Function(_ClientShare value)? clientShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -373,8 +373,8 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   }
 }
 
-abstract class _LoadInProgress implements OrdersState {
-  const factory _LoadInProgress() = _$LoadInProgressImpl;
+abstract class _Loading implements OrdersState {
+  const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
@@ -421,10 +421,10 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)
+    required TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
+    required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return success();
@@ -436,10 +436,10 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult? Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return success?.call();
@@ -451,10 +451,10 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -468,10 +468,10 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_GetOrdersFailure value) getOrdersfailure,
+    required TResult Function(_ClientShare value) clientShare,
     required TResult Function(_Failure value) failure,
   }) {
     return success(this);
@@ -481,10 +481,10 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult? Function(_ClientShare value)? clientShare,
     TResult? Function(_Failure value)? failure,
   }) {
     return success?.call(this);
@@ -494,10 +494,10 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult Function(_ClientShare value)? clientShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -518,13 +518,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {List<Order>? orders,
-      bool? hasMore,
-      AddOrderReq? addOrderReq,
-      String? uploadingProgress});
-
-  $AddOrderReqCopyWith<$Res>? get addOrderReq;
+  $Res call({List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching});
 }
 
 /// @nodoc
@@ -542,41 +536,22 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? orders = freezed,
     Object? hasMore = freezed,
-    Object? addOrderReq = freezed,
-    Object? uploadingProgress = freezed,
+    Object? isSearching = freezed,
   }) {
     return _then(_$LoadedImpl(
       orders: freezed == orders
           ? _value._orders
           : orders // ignore: cast_nullable_to_non_nullable
-              as List<Order>?,
+              as List<OrdersResEntity>?,
       hasMore: freezed == hasMore
           ? _value.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
               as bool?,
-      addOrderReq: freezed == addOrderReq
-          ? _value.addOrderReq
-          : addOrderReq // ignore: cast_nullable_to_non_nullable
-              as AddOrderReq?,
-      uploadingProgress: freezed == uploadingProgress
-          ? _value.uploadingProgress
-          : uploadingProgress // ignore: cast_nullable_to_non_nullable
-              as String?,
+      isSearching: freezed == isSearching
+          ? _value.isSearching
+          : isSearching // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
-  }
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AddOrderReqCopyWith<$Res>? get addOrderReq {
-    if (_value.addOrderReq == null) {
-      return null;
-    }
-
-    return $AddOrderReqCopyWith<$Res>(_value.addOrderReq!, (value) {
-      return _then(_value.copyWith(addOrderReq: value));
-    });
   }
 }
 
@@ -584,15 +559,14 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
-      {required final List<Order>? orders,
+      {required final List<OrdersResEntity>? orders,
       required this.hasMore,
-      required this.addOrderReq,
-      required this.uploadingProgress})
+      required this.isSearching})
       : _orders = orders;
 
-  final List<Order>? _orders;
+  final List<OrdersResEntity>? _orders;
   @override
-  List<Order>? get orders {
+  List<OrdersResEntity>? get orders {
     final value = _orders;
     if (value == null) return null;
     if (_orders is EqualUnmodifiableListView) return _orders;
@@ -603,13 +577,11 @@ class _$LoadedImpl implements _Loaded {
   @override
   final bool? hasMore;
   @override
-  final AddOrderReq? addOrderReq;
-  @override
-  final String? uploadingProgress;
+  final bool? isSearching;
 
   @override
   String toString() {
-    return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore, addOrderReq: $addOrderReq, uploadingProgress: $uploadingProgress)';
+    return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore, isSearching: $isSearching)';
   }
 
   @override
@@ -619,19 +591,13 @@ class _$LoadedImpl implements _Loaded {
             other is _$LoadedImpl &&
             const DeepCollectionEquality().equals(other._orders, _orders) &&
             (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
-            (identical(other.addOrderReq, addOrderReq) ||
-                other.addOrderReq == addOrderReq) &&
-            (identical(other.uploadingProgress, uploadingProgress) ||
-                other.uploadingProgress == uploadingProgress));
+            (identical(other.isSearching, isSearching) ||
+                other.isSearching == isSearching));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_orders),
-      hasMore,
-      addOrderReq,
-      uploadingProgress);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_orders), hasMore, isSearching);
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -647,13 +613,13 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)
+    required TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
+    required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return loaded(orders, hasMore, addOrderReq, uploadingProgress);
+    return loaded(orders, hasMore, isSearching);
   }
 
   @override
@@ -662,13 +628,13 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult? Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return loaded?.call(orders, hasMore, addOrderReq, uploadingProgress);
+    return loaded?.call(orders, hasMore, isSearching);
   }
 
   @override
@@ -677,15 +643,15 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(orders, hasMore, addOrderReq, uploadingProgress);
+      return loaded(orders, hasMore, isSearching);
     }
     return orElse();
   }
@@ -694,10 +660,10 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_GetOrdersFailure value) getOrdersfailure,
+    required TResult Function(_ClientShare value) clientShare,
     required TResult Function(_Failure value) failure,
   }) {
     return loaded(this);
@@ -707,10 +673,10 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult? Function(_ClientShare value)? clientShare,
     TResult? Function(_Failure value)? failure,
   }) {
     return loaded?.call(this);
@@ -720,10 +686,10 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult Function(_ClientShare value)? clientShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -736,15 +702,13 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements OrdersState {
   const factory _Loaded(
-      {required final List<Order>? orders,
+      {required final List<OrdersResEntity>? orders,
       required final bool? hasMore,
-      required final AddOrderReq? addOrderReq,
-      required final String? uploadingProgress}) = _$LoadedImpl;
+      required final bool? isSearching}) = _$LoadedImpl;
 
-  List<Order>? get orders;
+  List<OrdersResEntity>? get orders;
   bool? get hasMore;
-  AddOrderReq? get addOrderReq;
-  String? get uploadingProgress;
+  bool? get isSearching;
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -754,71 +718,42 @@ abstract class _Loaded implements OrdersState {
 }
 
 /// @nodoc
-abstract class _$$GetOrdersFailureImplCopyWith<$Res> {
-  factory _$$GetOrdersFailureImplCopyWith(_$GetOrdersFailureImpl value,
-          $Res Function(_$GetOrdersFailureImpl) then) =
-      __$$GetOrdersFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ApiErrorModel apiErrorModel});
+abstract class _$$ClientShareImplCopyWith<$Res> {
+  factory _$$ClientShareImplCopyWith(
+          _$ClientShareImpl value, $Res Function(_$ClientShareImpl) then) =
+      __$$ClientShareImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GetOrdersFailureImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$GetOrdersFailureImpl>
-    implements _$$GetOrdersFailureImplCopyWith<$Res> {
-  __$$GetOrdersFailureImplCopyWithImpl(_$GetOrdersFailureImpl _value,
-      $Res Function(_$GetOrdersFailureImpl) _then)
+class __$$ClientShareImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$ClientShareImpl>
+    implements _$$ClientShareImplCopyWith<$Res> {
+  __$$ClientShareImplCopyWithImpl(
+      _$ClientShareImpl _value, $Res Function(_$ClientShareImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? apiErrorModel = null,
-  }) {
-    return _then(_$GetOrdersFailureImpl(
-      apiErrorModel: null == apiErrorModel
-          ? _value.apiErrorModel
-          : apiErrorModel // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$GetOrdersFailureImpl implements _GetOrdersFailure {
-  const _$GetOrdersFailureImpl({required this.apiErrorModel});
-
-  @override
-  final ApiErrorModel apiErrorModel;
+class _$ClientShareImpl implements _ClientShare {
+  const _$ClientShareImpl();
 
   @override
   String toString() {
-    return 'OrdersState.getOrdersfailure(apiErrorModel: $apiErrorModel)';
+    return 'OrdersState.clientShare()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetOrdersFailureImpl &&
-            (identical(other.apiErrorModel, apiErrorModel) ||
-                other.apiErrorModel == apiErrorModel));
+        (other.runtimeType == runtimeType && other is _$ClientShareImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, apiErrorModel);
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetOrdersFailureImplCopyWith<_$GetOrdersFailureImpl> get copyWith =>
-      __$$GetOrdersFailureImplCopyWithImpl<_$GetOrdersFailureImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -826,13 +761,13 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)
+    required TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
+    required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return getOrdersfailure(apiErrorModel);
+    return clientShare();
   }
 
   @override
@@ -841,13 +776,13 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult? Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return getOrdersfailure?.call(apiErrorModel);
+    return clientShare?.call();
   }
 
   @override
@@ -856,15 +791,15 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
-    if (getOrdersfailure != null) {
-      return getOrdersfailure(apiErrorModel);
+    if (clientShare != null) {
+      return clientShare();
     }
     return orElse();
   }
@@ -873,57 +808,48 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_GetOrdersFailure value) getOrdersfailure,
+    required TResult Function(_ClientShare value) clientShare,
     required TResult Function(_Failure value) failure,
   }) {
-    return getOrdersfailure(this);
+    return clientShare(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult? Function(_ClientShare value)? clientShare,
     TResult? Function(_Failure value)? failure,
   }) {
-    return getOrdersfailure?.call(this);
+    return clientShare?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult Function(_ClientShare value)? clientShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (getOrdersfailure != null) {
-      return getOrdersfailure(this);
+    if (clientShare != null) {
+      return clientShare(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetOrdersFailure implements OrdersState {
-  const factory _GetOrdersFailure(
-      {required final ApiErrorModel apiErrorModel}) = _$GetOrdersFailureImpl;
-
-  ApiErrorModel get apiErrorModel;
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetOrdersFailureImplCopyWith<_$GetOrdersFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _ClientShare implements OrdersState {
+  const factory _ClientShare() = _$ClientShareImpl;
 }
 
 /// @nodoc
@@ -998,10 +924,10 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)
+    required TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
+    required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return failure(apiErrorModel);
@@ -1013,10 +939,10 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult? Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return failure?.call(apiErrorModel);
@@ -1028,10 +954,10 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReq? addOrderReq, String? uploadingProgress)?
+    TResult Function(
+            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
+    TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -1045,10 +971,10 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Loaded value) loaded,
-    required TResult Function(_GetOrdersFailure value) getOrdersfailure,
+    required TResult Function(_ClientShare value) clientShare,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -1058,10 +984,10 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult? Function(_ClientShare value)? clientShare,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -1071,10 +997,10 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Loaded value)? loaded,
-    TResult Function(_GetOrdersFailure value)? getOrdersfailure,
+    TResult Function(_ClientShare value)? clientShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {

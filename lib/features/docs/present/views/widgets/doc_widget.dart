@@ -1,18 +1,17 @@
 import 'package:mubin_orders/core/all_imports.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../../../../core/gloabal_widgets/gloabal_widgets.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../../data/models/orders_res_model.dart';
+import '../../../domain/entities/docs_res_entity.dart';
 import 'image_preview.dart';
 import 'video_widget.dart';
 
-class OrderWidget extends StatelessWidget {
-  const OrderWidget({
+class DocWidget extends StatelessWidget {
+  const DocWidget({
     super.key,
-    required this.order,
+    required this.orderEntity,
   });
-  final Order? order;
-  static const String routeName = "OrderWidget";
+  final DocEntity? orderEntity;
+  static const String routeName = "DocWidget";
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
@@ -22,30 +21,6 @@ class OrderWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: MyText(
-                    fieldName:
-                        '${t.order_number}: ${order?.orderNumber.toString()}',
-                    color: Colors.blue,
-                    fontSize: 15.sp,
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: MyText(
-                    fieldName: '${t.order_place}: ${order?.place}',
-                    color: Colors.black,
-                    fontSize: 15.sp,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
             flex: 2,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -53,8 +28,8 @@ class OrderWidget extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: VideoWidget(
-                    videoUrl: order?.video ?? '',
-                    thumbnailUrl: order?.thumbnailUrl ?? '',
+                    videoUrl: orderEntity?.video ?? '',
+                    thumbnailUrl: orderEntity?.thumbnailUrl ?? '',
                   ),
                 ),
                 Expanded(
@@ -65,12 +40,12 @@ class OrderWidget extends StatelessWidget {
                         context,
                         ImagePreview.routeName,
                         arguments: {
-                          'image_url': order?.imageOne ?? '',
+                          'image_url': orderEntity?.imageOne ?? '',
                         },
                       );
                     },
                     child: Image.network(
-                      order?.imageOne ?? '',
+                      orderEntity?.imageOne ?? '',
                       fit: BoxFit.cover,
                       loadingBuilder: (context, child, loadingProgress) {
                         if (loadingProgress == null) return child;
@@ -102,14 +77,14 @@ class OrderWidget extends StatelessWidget {
                         context,
                         ImagePreview.routeName,
                         arguments: {
-                          'image_url': order?.imageTwo ?? '',
+                          'image_url': orderEntity?.imageTwo ?? '',
                         },
                       );
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12.0),
                       child: Image.network(
-                        order?.imageTwo ?? '',
+                        orderEntity?.imageTwo ?? '',
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,

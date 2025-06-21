@@ -1,27 +1,27 @@
-import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import 'package:mubin_orders/features/orders/data/mappers/orders_res_mapper.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/errors/api_error_handler.dart';
-import '../../domain/entities/add_order_req.dart';
+import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/repo/orders_repo.dart';
-import 'dart:async';
 import '../datasources/orders_api.dart';
-import '../models/orders_res_model.dart';
-import 'package:injectable/injectable.dart' show Injectable;
 
 @Injectable(
   as: OrdersRepo,
 )
 class OrdersRepoImpl implements OrdersRepo {
-  final OrdersApi postsApi;
-  OrdersRepoImpl({
-    required this.postsApi,
-  });
+  final OrdersApi ordersApi;
+  OrdersRepoImpl(
+    this.ordersApi,
+  );
   @override
-  Future<ApiResult<OrdersResModel?>> getOrders({required int page}) async {
+  Future<ApiResult<List<OrdersResEntity>?>> getOrders(
+      {String? query, int? page}) async {
     try {
-      final res = await postsApi.getOrders(page:page);
+      final res = await ordersApi.getOrders(page: page, query: query);
+      final result = res.map((e) => e.toEntity()).toList();
       return ApiResult.success(
-        data: res,
+        data: result,
       );
     } catch (error) {
       return ApiResult.failure(
@@ -33,23 +33,18 @@ class OrdersRepoImpl implements OrdersRepo {
   }
 
   @override
-  Future<ApiResult<Order?>> createOrder({
-    required AddOrderReq addOrderReq,
-    required ProgressCallback? onSendProgress,
+  Future<ApiResult<OrderEntity?>> updateClientField({
+    required int clientId,
+    required bool isQuranPhotographed,
   }) async {
     try {
-      final res = await postsApi.createOrder(
-        clientId: addOrderReq.clientNumber ?? '0',
-        placeName: addOrderReq.placeName ?? '',
-        video: addOrderReq.video!,
-        imageOne: addOrderReq.imageOne!,
-        imageTwo: addOrderReq.imageTwo!,
-        latitude: addOrderReq.latitude ?? '0.0',
-        longitude: addOrderReq.longitude ?? '0.0',
-        onSendProgress: onSendProgress,
+      final res = await ordersApi.updateClientField(
+        clientId: clientId,
+        isQuranPhotographed: isQuranPhotographed,
       );
+      final result = res?.toEntity();
       return ApiResult.success(
-        data: res,
+        data: result,
       );
     } catch (error) {
       return ApiResult.failure(

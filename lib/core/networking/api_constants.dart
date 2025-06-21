@@ -3,6 +3,7 @@ class ApiConstants {
   static const String apiAuthBaseUrl = "https://mapi.live90.fr/auth/";
   static const String check = "check";
   static const String orders = "orders";
+  static const String docs = "docs";
   static const String authToken = "auth-token";
   static const String login = "login";
   static const String notifications = "notifications";

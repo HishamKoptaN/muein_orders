@@ -18,45 +18,54 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$OrdersEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getOrders,
-    required TResult Function(AddOrderReq addOrderReq) updateData,
-    required TResult Function() createOrder,
+    required TResult Function(bool getMore) getOrders,
+    required TResult Function(int orderId) updateIsDistributionPhotographed,
+    required TResult Function(String query, bool getMore) searchOrders,
+    required TResult Function() disposeSearch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getOrders,
-    TResult? Function(AddOrderReq addOrderReq)? updateData,
-    TResult? Function()? createOrder,
+    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int orderId)? updateIsDistributionPhotographed,
+    TResult? Function(String query, bool getMore)? searchOrders,
+    TResult? Function()? disposeSearch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getOrders,
-    TResult Function(AddOrderReq addOrderReq)? updateData,
-    TResult Function()? createOrder,
+    TResult Function(bool getMore)? getOrders,
+    TResult Function(int orderId)? updateIsDistributionPhotographed,
+    TResult Function(String query, bool getMore)? searchOrders,
+    TResult Function()? disposeSearch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_UpdateData value) updateData,
-    required TResult Function(_CreateOrder value) createOrder,
+    required TResult Function(_UpdateIsDistributionPhotographed value)
+        updateIsDistributionPhotographed,
+    required TResult Function(_SearchOrders value) searchOrders,
+    required TResult Function(_DisposeSearch value) disposeSearch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_UpdateData value)? updateData,
-    TResult? Function(_CreateOrder value)? createOrder,
+    TResult? Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult? Function(_SearchOrders value)? searchOrders,
+    TResult? Function(_DisposeSearch value)? disposeSearch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_UpdateData value)? updateData,
-    TResult Function(_CreateOrder value)? createOrder,
+    TResult Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult Function(_SearchOrders value)? searchOrders,
+    TResult Function(_DisposeSearch value)? disposeSearch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -88,6 +97,8 @@ abstract class _$$GetOrdersImplCopyWith<$Res> {
   factory _$$GetOrdersImplCopyWith(
           _$GetOrdersImpl value, $Res Function(_$GetOrdersImpl) then) =
       __$$GetOrdersImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool getMore});
 }
 
 /// @nodoc
@@ -100,57 +111,86 @@ class __$$GetOrdersImplCopyWithImpl<$Res>
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? getMore = null,
+  }) {
+    return _then(_$GetOrdersImpl(
+      getMore: null == getMore
+          ? _value.getMore
+          : getMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetOrdersImpl implements _GetOrders {
-  const _$GetOrdersImpl();
+  const _$GetOrdersImpl({this.getMore = false});
+
+  @override
+  @JsonKey()
+  final bool getMore;
 
   @override
   String toString() {
-    return 'OrdersEvent.getOrders()';
+    return 'OrdersEvent.getOrders(getMore: $getMore)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetOrdersImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$GetOrdersImpl &&
+            (identical(other.getMore, getMore) || other.getMore == getMore));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, getMore);
+
+  /// Create a copy of OrdersEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetOrdersImplCopyWith<_$GetOrdersImpl> get copyWith =>
+      __$$GetOrdersImplCopyWithImpl<_$GetOrdersImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getOrders,
-    required TResult Function(AddOrderReq addOrderReq) updateData,
-    required TResult Function() createOrder,
+    required TResult Function(bool getMore) getOrders,
+    required TResult Function(int orderId) updateIsDistributionPhotographed,
+    required TResult Function(String query, bool getMore) searchOrders,
+    required TResult Function() disposeSearch,
   }) {
-    return getOrders();
+    return getOrders(getMore);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getOrders,
-    TResult? Function(AddOrderReq addOrderReq)? updateData,
-    TResult? Function()? createOrder,
+    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int orderId)? updateIsDistributionPhotographed,
+    TResult? Function(String query, bool getMore)? searchOrders,
+    TResult? Function()? disposeSearch,
   }) {
-    return getOrders?.call();
+    return getOrders?.call(getMore);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getOrders,
-    TResult Function(AddOrderReq addOrderReq)? updateData,
-    TResult Function()? createOrder,
+    TResult Function(bool getMore)? getOrders,
+    TResult Function(int orderId)? updateIsDistributionPhotographed,
+    TResult Function(String query, bool getMore)? searchOrders,
+    TResult Function()? disposeSearch,
     required TResult orElse(),
   }) {
     if (getOrders != null) {
-      return getOrders();
+      return getOrders(getMore);
     }
     return orElse();
   }
@@ -159,8 +199,10 @@ class _$GetOrdersImpl implements _GetOrders {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_UpdateData value) updateData,
-    required TResult Function(_CreateOrder value) createOrder,
+    required TResult Function(_UpdateIsDistributionPhotographed value)
+        updateIsDistributionPhotographed,
+    required TResult Function(_SearchOrders value) searchOrders,
+    required TResult Function(_DisposeSearch value) disposeSearch,
   }) {
     return getOrders(this);
   }
@@ -169,8 +211,10 @@ class _$GetOrdersImpl implements _GetOrders {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_UpdateData value)? updateData,
-    TResult? Function(_CreateOrder value)? createOrder,
+    TResult? Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult? Function(_SearchOrders value)? searchOrders,
+    TResult? Function(_DisposeSearch value)? disposeSearch,
   }) {
     return getOrders?.call(this);
   }
@@ -179,8 +223,10 @@ class _$GetOrdersImpl implements _GetOrders {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_UpdateData value)? updateData,
-    TResult Function(_CreateOrder value)? createOrder,
+    TResult Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult Function(_SearchOrders value)? searchOrders,
+    TResult Function(_DisposeSearch value)? disposeSearch,
     required TResult orElse(),
   }) {
     if (getOrders != null) {
@@ -191,26 +237,35 @@ class _$GetOrdersImpl implements _GetOrders {
 }
 
 abstract class _GetOrders implements OrdersEvent {
-  const factory _GetOrders() = _$GetOrdersImpl;
+  const factory _GetOrders({final bool getMore}) = _$GetOrdersImpl;
+
+  bool get getMore;
+
+  /// Create a copy of OrdersEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetOrdersImplCopyWith<_$GetOrdersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdateDataImplCopyWith<$Res> {
-  factory _$$UpdateDataImplCopyWith(
-          _$UpdateDataImpl value, $Res Function(_$UpdateDataImpl) then) =
-      __$$UpdateDataImplCopyWithImpl<$Res>;
+abstract class _$$UpdateIsDistributionPhotographedImplCopyWith<$Res> {
+  factory _$$UpdateIsDistributionPhotographedImplCopyWith(
+          _$UpdateIsDistributionPhotographedImpl value,
+          $Res Function(_$UpdateIsDistributionPhotographedImpl) then) =
+      __$$UpdateIsDistributionPhotographedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AddOrderReq addOrderReq});
-
-  $AddOrderReqCopyWith<$Res> get addOrderReq;
+  $Res call({int orderId});
 }
 
 /// @nodoc
-class __$$UpdateDataImplCopyWithImpl<$Res>
-    extends _$OrdersEventCopyWithImpl<$Res, _$UpdateDataImpl>
-    implements _$$UpdateDataImplCopyWith<$Res> {
-  __$$UpdateDataImplCopyWithImpl(
-      _$UpdateDataImpl _value, $Res Function(_$UpdateDataImpl) _then)
+class __$$UpdateIsDistributionPhotographedImplCopyWithImpl<$Res>
+    extends _$OrdersEventCopyWithImpl<$Res,
+        _$UpdateIsDistributionPhotographedImpl>
+    implements _$$UpdateIsDistributionPhotographedImplCopyWith<$Res> {
+  __$$UpdateIsDistributionPhotographedImplCopyWithImpl(
+      _$UpdateIsDistributionPhotographedImpl _value,
+      $Res Function(_$UpdateIsDistributionPhotographedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of OrdersEvent
@@ -218,90 +273,85 @@ class __$$UpdateDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? addOrderReq = null,
+    Object? orderId = null,
   }) {
-    return _then(_$UpdateDataImpl(
-      addOrderReq: null == addOrderReq
-          ? _value.addOrderReq
-          : addOrderReq // ignore: cast_nullable_to_non_nullable
-              as AddOrderReq,
+    return _then(_$UpdateIsDistributionPhotographedImpl(
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
-  }
-
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AddOrderReqCopyWith<$Res> get addOrderReq {
-    return $AddOrderReqCopyWith<$Res>(_value.addOrderReq, (value) {
-      return _then(_value.copyWith(addOrderReq: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$UpdateDataImpl implements _UpdateData {
-  const _$UpdateDataImpl({required this.addOrderReq});
+class _$UpdateIsDistributionPhotographedImpl
+    implements _UpdateIsDistributionPhotographed {
+  const _$UpdateIsDistributionPhotographedImpl({required this.orderId});
 
   @override
-  final AddOrderReq addOrderReq;
+  final int orderId;
 
   @override
   String toString() {
-    return 'OrdersEvent.updateData(addOrderReq: $addOrderReq)';
+    return 'OrdersEvent.updateIsDistributionPhotographed(orderId: $orderId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateDataImpl &&
-            (identical(other.addOrderReq, addOrderReq) ||
-                other.addOrderReq == addOrderReq));
+            other is _$UpdateIsDistributionPhotographedImpl &&
+            (identical(other.orderId, orderId) || other.orderId == orderId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, addOrderReq);
+  int get hashCode => Object.hash(runtimeType, orderId);
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateDataImplCopyWith<_$UpdateDataImpl> get copyWith =>
-      __$$UpdateDataImplCopyWithImpl<_$UpdateDataImpl>(this, _$identity);
+  _$$UpdateIsDistributionPhotographedImplCopyWith<
+          _$UpdateIsDistributionPhotographedImpl>
+      get copyWith => __$$UpdateIsDistributionPhotographedImplCopyWithImpl<
+          _$UpdateIsDistributionPhotographedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getOrders,
-    required TResult Function(AddOrderReq addOrderReq) updateData,
-    required TResult Function() createOrder,
+    required TResult Function(bool getMore) getOrders,
+    required TResult Function(int orderId) updateIsDistributionPhotographed,
+    required TResult Function(String query, bool getMore) searchOrders,
+    required TResult Function() disposeSearch,
   }) {
-    return updateData(addOrderReq);
+    return updateIsDistributionPhotographed(orderId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getOrders,
-    TResult? Function(AddOrderReq addOrderReq)? updateData,
-    TResult? Function()? createOrder,
+    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int orderId)? updateIsDistributionPhotographed,
+    TResult? Function(String query, bool getMore)? searchOrders,
+    TResult? Function()? disposeSearch,
   }) {
-    return updateData?.call(addOrderReq);
+    return updateIsDistributionPhotographed?.call(orderId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getOrders,
-    TResult Function(AddOrderReq addOrderReq)? updateData,
-    TResult Function()? createOrder,
+    TResult Function(bool getMore)? getOrders,
+    TResult Function(int orderId)? updateIsDistributionPhotographed,
+    TResult Function(String query, bool getMore)? searchOrders,
+    TResult Function()? disposeSearch,
     required TResult orElse(),
   }) {
-    if (updateData != null) {
-      return updateData(addOrderReq);
+    if (updateIsDistributionPhotographed != null) {
+      return updateIsDistributionPhotographed(orderId);
     }
     return orElse();
   }
@@ -310,63 +360,236 @@ class _$UpdateDataImpl implements _UpdateData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_UpdateData value) updateData,
-    required TResult Function(_CreateOrder value) createOrder,
+    required TResult Function(_UpdateIsDistributionPhotographed value)
+        updateIsDistributionPhotographed,
+    required TResult Function(_SearchOrders value) searchOrders,
+    required TResult Function(_DisposeSearch value) disposeSearch,
   }) {
-    return updateData(this);
+    return updateIsDistributionPhotographed(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_UpdateData value)? updateData,
-    TResult? Function(_CreateOrder value)? createOrder,
+    TResult? Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult? Function(_SearchOrders value)? searchOrders,
+    TResult? Function(_DisposeSearch value)? disposeSearch,
   }) {
-    return updateData?.call(this);
+    return updateIsDistributionPhotographed?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_UpdateData value)? updateData,
-    TResult Function(_CreateOrder value)? createOrder,
+    TResult Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult Function(_SearchOrders value)? searchOrders,
+    TResult Function(_DisposeSearch value)? disposeSearch,
     required TResult orElse(),
   }) {
-    if (updateData != null) {
-      return updateData(this);
+    if (updateIsDistributionPhotographed != null) {
+      return updateIsDistributionPhotographed(this);
     }
     return orElse();
   }
 }
 
-abstract class _UpdateData implements OrdersEvent {
-  const factory _UpdateData({required final AddOrderReq addOrderReq}) =
-      _$UpdateDataImpl;
+abstract class _UpdateIsDistributionPhotographed implements OrdersEvent {
+  const factory _UpdateIsDistributionPhotographed(
+      {required final int orderId}) = _$UpdateIsDistributionPhotographedImpl;
 
-  AddOrderReq get addOrderReq;
+  int get orderId;
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateDataImplCopyWith<_$UpdateDataImpl> get copyWith =>
+  _$$UpdateIsDistributionPhotographedImplCopyWith<
+          _$UpdateIsDistributionPhotographedImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchOrdersImplCopyWith<$Res> {
+  factory _$$SearchOrdersImplCopyWith(
+          _$SearchOrdersImpl value, $Res Function(_$SearchOrdersImpl) then) =
+      __$$SearchOrdersImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query, bool getMore});
+}
+
+/// @nodoc
+class __$$SearchOrdersImplCopyWithImpl<$Res>
+    extends _$OrdersEventCopyWithImpl<$Res, _$SearchOrdersImpl>
+    implements _$$SearchOrdersImplCopyWith<$Res> {
+  __$$SearchOrdersImplCopyWithImpl(
+      _$SearchOrdersImpl _value, $Res Function(_$SearchOrdersImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrdersEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? query = null,
+    Object? getMore = null,
+  }) {
+    return _then(_$SearchOrdersImpl(
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+      getMore: null == getMore
+          ? _value.getMore
+          : getMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchOrdersImpl implements _SearchOrders {
+  const _$SearchOrdersImpl({required this.query, this.getMore = false});
+
+  @override
+  final String query;
+  @override
+  @JsonKey()
+  final bool getMore;
+
+  @override
+  String toString() {
+    return 'OrdersEvent.searchOrders(query: $query, getMore: $getMore)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchOrdersImpl &&
+            (identical(other.query, query) || other.query == query) &&
+            (identical(other.getMore, getMore) || other.getMore == getMore));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query, getMore);
+
+  /// Create a copy of OrdersEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchOrdersImplCopyWith<_$SearchOrdersImpl> get copyWith =>
+      __$$SearchOrdersImplCopyWithImpl<_$SearchOrdersImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool getMore) getOrders,
+    required TResult Function(int orderId) updateIsDistributionPhotographed,
+    required TResult Function(String query, bool getMore) searchOrders,
+    required TResult Function() disposeSearch,
+  }) {
+    return searchOrders(query, getMore);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int orderId)? updateIsDistributionPhotographed,
+    TResult? Function(String query, bool getMore)? searchOrders,
+    TResult? Function()? disposeSearch,
+  }) {
+    return searchOrders?.call(query, getMore);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool getMore)? getOrders,
+    TResult Function(int orderId)? updateIsDistributionPhotographed,
+    TResult Function(String query, bool getMore)? searchOrders,
+    TResult Function()? disposeSearch,
+    required TResult orElse(),
+  }) {
+    if (searchOrders != null) {
+      return searchOrders(query, getMore);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetOrders value) getOrders,
+    required TResult Function(_UpdateIsDistributionPhotographed value)
+        updateIsDistributionPhotographed,
+    required TResult Function(_SearchOrders value) searchOrders,
+    required TResult Function(_DisposeSearch value) disposeSearch,
+  }) {
+    return searchOrders(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetOrders value)? getOrders,
+    TResult? Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult? Function(_SearchOrders value)? searchOrders,
+    TResult? Function(_DisposeSearch value)? disposeSearch,
+  }) {
+    return searchOrders?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetOrders value)? getOrders,
+    TResult Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult Function(_SearchOrders value)? searchOrders,
+    TResult Function(_DisposeSearch value)? disposeSearch,
+    required TResult orElse(),
+  }) {
+    if (searchOrders != null) {
+      return searchOrders(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchOrders implements OrdersEvent {
+  const factory _SearchOrders(
+      {required final String query, final bool getMore}) = _$SearchOrdersImpl;
+
+  String get query;
+  bool get getMore;
+
+  /// Create a copy of OrdersEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchOrdersImplCopyWith<_$SearchOrdersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreateOrderImplCopyWith<$Res> {
-  factory _$$CreateOrderImplCopyWith(
-          _$CreateOrderImpl value, $Res Function(_$CreateOrderImpl) then) =
-      __$$CreateOrderImplCopyWithImpl<$Res>;
+abstract class _$$DisposeSearchImplCopyWith<$Res> {
+  factory _$$DisposeSearchImplCopyWith(
+          _$DisposeSearchImpl value, $Res Function(_$DisposeSearchImpl) then) =
+      __$$DisposeSearchImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreateOrderImplCopyWithImpl<$Res>
-    extends _$OrdersEventCopyWithImpl<$Res, _$CreateOrderImpl>
-    implements _$$CreateOrderImplCopyWith<$Res> {
-  __$$CreateOrderImplCopyWithImpl(
-      _$CreateOrderImpl _value, $Res Function(_$CreateOrderImpl) _then)
+class __$$DisposeSearchImplCopyWithImpl<$Res>
+    extends _$OrdersEventCopyWithImpl<$Res, _$DisposeSearchImpl>
+    implements _$$DisposeSearchImplCopyWith<$Res> {
+  __$$DisposeSearchImplCopyWithImpl(
+      _$DisposeSearchImpl _value, $Res Function(_$DisposeSearchImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of OrdersEvent
@@ -375,18 +598,18 @@ class __$$CreateOrderImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreateOrderImpl implements _CreateOrder {
-  const _$CreateOrderImpl();
+class _$DisposeSearchImpl implements _DisposeSearch {
+  const _$DisposeSearchImpl();
 
   @override
   String toString() {
-    return 'OrdersEvent.createOrder()';
+    return 'OrdersEvent.disposeSearch()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CreateOrderImpl);
+        (other.runtimeType == runtimeType && other is _$DisposeSearchImpl);
   }
 
   @override
@@ -395,33 +618,36 @@ class _$CreateOrderImpl implements _CreateOrder {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getOrders,
-    required TResult Function(AddOrderReq addOrderReq) updateData,
-    required TResult Function() createOrder,
+    required TResult Function(bool getMore) getOrders,
+    required TResult Function(int orderId) updateIsDistributionPhotographed,
+    required TResult Function(String query, bool getMore) searchOrders,
+    required TResult Function() disposeSearch,
   }) {
-    return createOrder();
+    return disposeSearch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getOrders,
-    TResult? Function(AddOrderReq addOrderReq)? updateData,
-    TResult? Function()? createOrder,
+    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int orderId)? updateIsDistributionPhotographed,
+    TResult? Function(String query, bool getMore)? searchOrders,
+    TResult? Function()? disposeSearch,
   }) {
-    return createOrder?.call();
+    return disposeSearch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getOrders,
-    TResult Function(AddOrderReq addOrderReq)? updateData,
-    TResult Function()? createOrder,
+    TResult Function(bool getMore)? getOrders,
+    TResult Function(int orderId)? updateIsDistributionPhotographed,
+    TResult Function(String query, bool getMore)? searchOrders,
+    TResult Function()? disposeSearch,
     required TResult orElse(),
   }) {
-    if (createOrder != null) {
-      return createOrder();
+    if (disposeSearch != null) {
+      return disposeSearch();
     }
     return orElse();
   }
@@ -430,37 +656,43 @@ class _$CreateOrderImpl implements _CreateOrder {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_UpdateData value) updateData,
-    required TResult Function(_CreateOrder value) createOrder,
+    required TResult Function(_UpdateIsDistributionPhotographed value)
+        updateIsDistributionPhotographed,
+    required TResult Function(_SearchOrders value) searchOrders,
+    required TResult Function(_DisposeSearch value) disposeSearch,
   }) {
-    return createOrder(this);
+    return disposeSearch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_UpdateData value)? updateData,
-    TResult? Function(_CreateOrder value)? createOrder,
+    TResult? Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult? Function(_SearchOrders value)? searchOrders,
+    TResult? Function(_DisposeSearch value)? disposeSearch,
   }) {
-    return createOrder?.call(this);
+    return disposeSearch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_UpdateData value)? updateData,
-    TResult Function(_CreateOrder value)? createOrder,
+    TResult Function(_UpdateIsDistributionPhotographed value)?
+        updateIsDistributionPhotographed,
+    TResult Function(_SearchOrders value)? searchOrders,
+    TResult Function(_DisposeSearch value)? disposeSearch,
     required TResult orElse(),
   }) {
-    if (createOrder != null) {
-      return createOrder(this);
+    if (disposeSearch != null) {
+      return disposeSearch(this);
     }
     return orElse();
   }
 }
 
-abstract class _CreateOrder implements OrdersEvent {
-  const factory _CreateOrder() = _$CreateOrderImpl;
+abstract class _DisposeSearch implements OrdersEvent {
+  const factory _DisposeSearch() = _$DisposeSearchImpl;
 }

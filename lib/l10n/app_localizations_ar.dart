@@ -9,6 +9,57 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get the_name_printed_on_the_quran => 'الاسم الذي يطبع علي المصحف';
+
+  @override
+  String get printed_name => 'الاسم المطبوع';
+
+  @override
+  String get email => 'الايميل';
+
+  @override
+  String get upload_videos => 'رفع الفيديوهات';
+
+  @override
+  String get phone => 'رقم الهاتف';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get orders_view =>
+      '===========================================      orders_view            ===========================================';
+
+  @override
+  String get orders => 'الطلبات';
+
+  @override
+  String get package => 'حزمة';
+
+  @override
+  String get documentations_view =>
+      '===================================      documentations_view    ===========================================';
+
+  @override
+  String get documentations => 'التوثيقات';
+
+  @override
+  String get show_documentations => 'عرض التوثيقات';
+
+  @override
+  String get add_documentations_view =>
+      '===================================      add_documentations_view    ===========================================';
+
+  @override
+  String get execution_number => 'رقم التنفيذ';
+
+  @override
+  String get add_documentation => 'اضافة توثيق';
+
+  @override
+  String get count => 'عدد';
+
+  @override
   String get kinia_name => 'كينيا';
 
   @override

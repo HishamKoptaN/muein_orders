@@ -1,180 +1,134 @@
-import '../../../../core/all_imports.dart';
+import '../../../../core/entities/meta_entity.dart';
 import '../../../../core/errors/api_error_model.dart';
-import '../../data/models/orders_res_model.dart';
-import '../../domain/entities/add_order_req.dart';
+import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/usecases/orders_use_cases.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'orders_event.dart';
 import 'orders_state.dart';
-import 'package:injectable/injectable.dart' show Injectable;
 
-@Injectable()
+@injectable
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
-  OrdersUseCase ordersUseCase;
-  List<Order>? _allOrders;
-  Meta? _meta;
-  AddOrderReq _addOrderReq = AddOrderReq();
-  String? _uploadingProgress;
-  OrdersBloc({
-    required this.ordersUseCase,
-  }) : super(
+  final OrdersUseCases ordersUseCases;
+  List<OrdersResEntity>? _allOrders;
+  List<OrdersResEntity>? _searchOrders;
+  MetaEntity? _meta;
+  MetaEntity? _searchMeta;
+  bool? _isSearching;
+  OrdersBloc(
+    this.ordersUseCases,
+  ) : super(
           const OrdersState.initial(),
         ) {
     on<OrdersEvent>(
       (event, emit) async {
         await event.when(
-          getOrders: () async {
+          getOrders: (getMore) async {
             try {
-              final page = (_meta?.currentPage ?? 0) + 1;
-              final lastPage = _meta?.lastPage;
-              if (lastPage != null && page > lastPage) return;
-              if (page == 1) {
-                emit(const OrdersState.loading());
+              if (!getMore) {
+                emit(OrdersState.loading());
               }
-              final res = await ordersUseCase.getOrders(page: page);
+              final res = await ordersUseCases.getOrders(
+                page: (_meta?.currentPage ?? 0) + 1,
+              );
               await res.when(
-                success: (
-                  res,
-                ) async {
-                  _allOrders = [..._allOrders ?? [], ...res?.orders ?? []];
-                  _meta = res?.meta ?? Meta();
-                  emitCustomLoaded(
-                    emit: emit,
-                  );
-                },
-                failure: (
-                  apiErrorModel,
-                ) async {
-                  emit(
-                    OrdersState.getOrdersfailure(
-                      apiErrorModel: apiErrorModel,
-                    ),
-                  );
-                  emitCustomLoaded(
-                    emit: emit,
-                  );
-                },
-              );
-            } catch (e) {
-              emit(
-                OrdersState.getOrdersfailure(
-                  apiErrorModel: ApiErrorModel(
-                    error: e.toString(),
-                  ),
-                ),
-              );
-              emitCustomLoaded(
-                emit: emit,
-              );
-            }
-          },
-          updateData: (
-            addOrderReq,
-          ) async {
-            try {
-              _addOrderReq = addOrderReq;
-              emitCustomLoaded(
-                emit: emit,
-              );
-            } catch (e) {
-              emit(
-                OrdersState.failure(
-                  apiErrorModel: ApiErrorModel(
-                    error: e.toString(),
-                  ),
-                ),
-              );
-              emitCustomLoaded(
-                emit: emit,
-              );
-            }
-          },
-          createOrder: () async {
-            if (_addOrderReq.isComplete) {
-              try {
-                emitCustomLoaded(emit: emit);
-                final result = await ordersUseCase.createOrder(
-                  addOrderReq: _addOrderReq,
-                  onSendProgress: (
-                    sent,
-                    total,
-                  ) {
-                    _uploadingProgress = "${((sent / total) * 100).toInt()}%";
-                    emitCustomLoaded(
-                      emit: emit,
-                    );
-                  },
-                );
-                await result.when(
-                  success: (
-                    order,
-                  ) async {
-                    _addOrderReq = AddOrderReq.empty();
+                success: (res) async {
+                  if (getMore) {
                     _allOrders = [
-                      order!,
                       ...?_allOrders,
+                      ...?res,
                     ];
-                    emit(
-                      const OrdersState.success(),
-                    );
-                    emitCustomLoaded(
-                      emit: emit,
-                    );
-                  },
-                  failure: (
-                    apiErrorModel,
-                  ) async {
-                    emit(
-                      OrdersState.failure(
-                        apiErrorModel: apiErrorModel,
-                      ),
-                    );
-                    emitCustomLoaded(
-                      emit: emit,
-                    );
-                  },
-                );
-              } catch (e, s) {
-                debugPrint(
-                  "❌ Exception in createOrder: $e\n$s",
-                );
-                emit(
-                  OrdersState.failure(
-                    apiErrorModel: ApiErrorModel(
-                      error: e.toString(),
-                    ),
-                  ),
-                );
-                emitCustomLoaded(
-                  emit: emit,
-                );
-              }
-            } else {
-              emit(
-                OrdersState.failure(
+                  } else if (!getMore) {
+                    _allOrders = res;
+                  }
+                  emitLoaded(emit: emit);
+                },
+                failure: (apiErrorModel) async {
+                  emitFaliure(apiErrorModel: apiErrorModel, emit: emit);
+                },
+              );
+            } catch (e) {
+              emitFaliure(
                   apiErrorModel: ApiErrorModel(
-                    error: "قم بملئ جميع الحقول",
+                    error: e.toString(),
                   ),
-                ),
-              );
-              emitCustomLoaded(
-                emit: emit,
-              );
+                  emit: emit);
             }
+          },
+          searchOrders: (query, getMore) async {
+            _isSearching = true;
+            final res = await ordersUseCases.getOrders(
+              query: query,
+              page: getMore ? (_meta?.currentPage ?? 0) + 1 : 1,
+            );
+            await res.when(
+              success: (res) async {
+                if (!getMore) {
+                  _searchOrders = res;
+                } else if (getMore) {
+                  _searchOrders = [
+                    ...?_searchOrders,
+                    ...res ?? [],
+                  ];
+                }
+                emitLoaded(emit: emit);
+              },
+              failure: (apiErrorModel) async {
+                emitFaliure(apiErrorModel: apiErrorModel, emit: emit);
+              },
+            );
+          },
+          disposeSearch: () {
+            _isSearching = false;
+            emit(
+              OrdersState.loaded(
+                orders: _allOrders ?? [],
+                hasMore: _meta?.hasNextPage ?? false,
+                isSearching: _isSearching,
+              ),
+            );
+          },
+          updateIsDistributionPhotographed: (orderId) async {
+            final listToUpdate =
+                (_isSearching ?? false) ? _searchOrders : _allOrders;
+            final updatedList = listToUpdate?.map((group) {
+              final updatedOrders = group.orders?.map((order) {
+                if (order.id == orderId) {
+                  return order.copyWith(isDistributionPhotographed: true);
+                }
+                return order;
+              }).toList();
+              return group.copyWith(orders: updatedOrders);
+            }).toList();
+            if (_isSearching ?? false) {
+              _searchOrders = updatedList;
+            } else {
+              _allOrders = updatedList;
+            }
+            emitLoaded(emit: emit);
           },
         );
       },
     );
   }
+  void emitFaliure(
+      {required Emitter<OrdersState> emit,
+      required ApiErrorModel apiErrorModel}) {
+    return emit(
+      OrdersState.failure(
+        apiErrorModel: apiErrorModel,
+      ),
+    );
+  }
 
-  void emitCustomLoaded({
-    required Emitter<OrdersState> emit,
-  }) {
-    emit(
+  void emitLoaded({required Emitter<OrdersState> emit}) {
+    return emit(
       OrdersState.loaded(
-        orders: _allOrders ?? [],
-        hasMore: _meta?.hasNextPage ?? false,
-        addOrderReq: _addOrderReq,
-        uploadingProgress: _uploadingProgress,
+        orders: _isSearching ?? false ? _searchOrders : (_allOrders ?? []),
+        hasMore: _isSearching ?? false
+            ? (_searchMeta?.hasNextPage ?? false)
+            : (_meta?.hasNextPage ?? false),
+        isSearching: _isSearching,
       ),
     );
   }

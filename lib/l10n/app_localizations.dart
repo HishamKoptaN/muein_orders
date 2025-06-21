@@ -98,6 +98,102 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @the_name_printed_on_the_quran.
+  ///
+  /// In en, this message translates to:
+  /// **'The name printed on the Qur’an'**
+  String get the_name_printed_on_the_quran;
+
+  /// No description provided for @printed_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Printed name'**
+  String get printed_name;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'email'**
+  String get email;
+
+  /// No description provided for @upload_videos.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload videos'**
+  String get upload_videos;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phone;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @orders_view.
+  ///
+  /// In en, this message translates to:
+  /// **'========================================  orders_view            ==========================================='**
+  String get orders_view;
+
+  /// No description provided for @orders.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get orders;
+
+  /// No description provided for @package.
+  ///
+  /// In en, this message translates to:
+  /// **'Package'**
+  String get package;
+
+  /// No description provided for @documentations_view.
+  ///
+  /// In en, this message translates to:
+  /// **'================================  documentations_view    ==========================================='**
+  String get documentations_view;
+
+  /// No description provided for @documentations.
+  ///
+  /// In en, this message translates to:
+  /// **'Documentations'**
+  String get documentations;
+
+  /// No description provided for @show_documentations.
+  ///
+  /// In en, this message translates to:
+  /// **'Show documentations'**
+  String get show_documentations;
+
+  /// No description provided for @add_documentations_view.
+  ///
+  /// In en, this message translates to:
+  /// **'===================================      add_documentations_view    ==========================================='**
+  String get add_documentations_view;
+
+  /// No description provided for @execution_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Execution number'**
+  String get execution_number;
+
+  /// No description provided for @add_documentation.
+  ///
+  /// In en, this message translates to:
+  /// **'Add documentation'**
+  String get add_documentation;
+
+  /// No description provided for @count.
+  ///
+  /// In en, this message translates to:
+  /// **'Count'**
+  String get count;
+
   /// No description provided for @kinia_name.
   ///
   /// In en, this message translates to:
