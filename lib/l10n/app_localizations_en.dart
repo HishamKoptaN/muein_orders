@@ -37,6 +37,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get package => 'Package';
 
   @override
+  String get there_are_no_results_for_this_search =>
+      'There are no results for this search.';
+
+  @override
   String get documentations_view =>
       '================================  documentations_view    ===========================================';
 

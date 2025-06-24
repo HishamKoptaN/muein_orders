@@ -1,37 +1,38 @@
 import '../../../../core/entities/meta_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'docs_res_entity.freezed.dart';
+part 'docs_res_entity.g.dart';
 
-class DocsResEntity {
-  final List<DocEntity>? docs;
-  final MetaEntity? meta;
+@freezed
+class DocsResEntity with _$DocsResEntity {
+  const factory DocsResEntity({
+    List<DocEntity>? docs,
+    MetaEntity? meta,
+  }) = _DocsResEntity;
 
-  DocsResEntity({this.docs, this.meta});
+  factory DocsResEntity.fromJson(Map<String, dynamic> json) =>
+      _$DocsResEntityFromJson(json);
 }
-class DocEntity {
-  final int? id;
-  final String? orderNumber;
-  final String? place;
-  final String? video;
-  final String? thumbnailUrl;
-  final String? imageOne;
-  final String? imageTwo;
-  final String? updatedAt;
-  final String? latitude;
-  final String? longitude;
-  final int? branchId;
-  final String? createdAt;
 
-  DocEntity({
-    this.id,
-    this.orderNumber,
-    this.place,
-    this.video,
-    this.thumbnailUrl,
-    this.imageOne,
-    this.imageTwo,
-    this.updatedAt,
-    this.latitude,
-    this.longitude,
-    this.branchId,
-    this.createdAt,
-  });
+@freezed
+class DocEntity with _$DocEntity {
+  const factory DocEntity({
+    int? id,
+    String? orderNumber,
+    String? place,
+    String? videoOne,
+    String? videoTwo,
+    String? thumbnailUrlOne,
+    String? thumbnailUrlTwo,
+    String? imageOne,
+    String? imageTwo,
+    String? updatedAt,
+    String? latitude,
+    String? longitude,
+    int? branchId,
+    String? createdAt,
+  }) = _DocEntity;
+
+  factory DocEntity.fromJson(Map<String, dynamic> json) =>
+      _$DocEntityFromJson(json);
 }

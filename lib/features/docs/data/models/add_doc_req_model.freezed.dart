@@ -19,7 +19,9 @@ mixin _$AddDocReqModel {
   @JsonKey(name: "order_id")
   int? get orderId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  File? get video => throw _privateConstructorUsedError;
+  File? get videoOne => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  File? get videoTwo => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   File? get imageOne => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +46,8 @@ abstract class $AddDocReqModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "order_id") int? orderId,
-      @JsonKey(ignore: true) File? video,
+      @JsonKey(ignore: true) File? videoOne,
+      @JsonKey(ignore: true) File? videoTwo,
       @JsonKey(ignore: true) File? imageOne,
       @JsonKey(ignore: true) File? imageTwo,
       @JsonKey(name: "latitude") String? latitude,
@@ -67,7 +70,8 @@ class _$AddDocReqModelCopyWithImpl<$Res, $Val extends AddDocReqModel>
   @override
   $Res call({
     Object? orderId = freezed,
-    Object? video = freezed,
+    Object? videoOne = freezed,
+    Object? videoTwo = freezed,
     Object? imageOne = freezed,
     Object? imageTwo = freezed,
     Object? latitude = freezed,
@@ -78,9 +82,13 @@ class _$AddDocReqModelCopyWithImpl<$Res, $Val extends AddDocReqModel>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as int?,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
+      videoOne: freezed == videoOne
+          ? _value.videoOne
+          : videoOne // ignore: cast_nullable_to_non_nullable
+              as File?,
+      videoTwo: freezed == videoTwo
+          ? _value.videoTwo
+          : videoTwo // ignore: cast_nullable_to_non_nullable
               as File?,
       imageOne: freezed == imageOne
           ? _value.imageOne
@@ -112,7 +120,8 @@ abstract class _$$AddDocReqModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "order_id") int? orderId,
-      @JsonKey(ignore: true) File? video,
+      @JsonKey(ignore: true) File? videoOne,
+      @JsonKey(ignore: true) File? videoTwo,
       @JsonKey(ignore: true) File? imageOne,
       @JsonKey(ignore: true) File? imageTwo,
       @JsonKey(name: "latitude") String? latitude,
@@ -133,7 +142,8 @@ class __$$AddDocReqModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? orderId = freezed,
-    Object? video = freezed,
+    Object? videoOne = freezed,
+    Object? videoTwo = freezed,
     Object? imageOne = freezed,
     Object? imageTwo = freezed,
     Object? latitude = freezed,
@@ -144,9 +154,13 @@ class __$$AddDocReqModelImplCopyWithImpl<$Res>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as int?,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
+      videoOne: freezed == videoOne
+          ? _value.videoOne
+          : videoOne // ignore: cast_nullable_to_non_nullable
+              as File?,
+      videoTwo: freezed == videoTwo
+          ? _value.videoTwo
+          : videoTwo // ignore: cast_nullable_to_non_nullable
               as File?,
       imageOne: freezed == imageOne
           ? _value.imageOne
@@ -173,7 +187,8 @@ class __$$AddDocReqModelImplCopyWithImpl<$Res>
 class _$AddDocReqModelImpl extends _AddDocReqModel {
   const _$AddDocReqModelImpl(
       {@JsonKey(name: "order_id") this.orderId,
-      @JsonKey(ignore: true) this.video,
+      @JsonKey(ignore: true) this.videoOne,
+      @JsonKey(ignore: true) this.videoTwo,
       @JsonKey(ignore: true) this.imageOne,
       @JsonKey(ignore: true) this.imageTwo,
       @JsonKey(name: "latitude") this.latitude,
@@ -185,7 +200,10 @@ class _$AddDocReqModelImpl extends _AddDocReqModel {
   final int? orderId;
   @override
   @JsonKey(ignore: true)
-  final File? video;
+  final File? videoOne;
+  @override
+  @JsonKey(ignore: true)
+  final File? videoTwo;
   @override
   @JsonKey(ignore: true)
   final File? imageOne;
@@ -201,7 +219,7 @@ class _$AddDocReqModelImpl extends _AddDocReqModel {
 
   @override
   String toString() {
-    return 'AddDocReqModel(orderId: $orderId, video: $video, imageOne: $imageOne, imageTwo: $imageTwo, latitude: $latitude, longitude: $longitude)';
+    return 'AddDocReqModel(orderId: $orderId, videoOne: $videoOne, videoTwo: $videoTwo, imageOne: $imageOne, imageTwo: $imageTwo, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -210,7 +228,10 @@ class _$AddDocReqModelImpl extends _AddDocReqModel {
         (other.runtimeType == runtimeType &&
             other is _$AddDocReqModelImpl &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
-            (identical(other.video, video) || other.video == video) &&
+            (identical(other.videoOne, videoOne) ||
+                other.videoOne == videoOne) &&
+            (identical(other.videoTwo, videoTwo) ||
+                other.videoTwo == videoTwo) &&
             (identical(other.imageOne, imageOne) ||
                 other.imageOne == imageOne) &&
             (identical(other.imageTwo, imageTwo) ||
@@ -222,8 +243,8 @@ class _$AddDocReqModelImpl extends _AddDocReqModel {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, orderId, video, imageOne, imageTwo, latitude, longitude);
+  int get hashCode => Object.hash(runtimeType, orderId, videoOne, videoTwo,
+      imageOne, imageTwo, latitude, longitude);
 
   /// Create a copy of AddDocReqModel
   /// with the given fields replaced by the non-null parameter values.
@@ -238,7 +259,8 @@ class _$AddDocReqModelImpl extends _AddDocReqModel {
 abstract class _AddDocReqModel extends AddDocReqModel {
   const factory _AddDocReqModel(
           {@JsonKey(name: "order_id") final int? orderId,
-          @JsonKey(ignore: true) final File? video,
+          @JsonKey(ignore: true) final File? videoOne,
+          @JsonKey(ignore: true) final File? videoTwo,
           @JsonKey(ignore: true) final File? imageOne,
           @JsonKey(ignore: true) final File? imageTwo,
           @JsonKey(name: "latitude") final String? latitude,
@@ -251,7 +273,10 @@ abstract class _AddDocReqModel extends AddDocReqModel {
   int? get orderId;
   @override
   @JsonKey(ignore: true)
-  File? get video;
+  File? get videoOne;
+  @override
+  @JsonKey(ignore: true)
+  File? get videoTwo;
   @override
   @JsonKey(ignore: true)
   File? get imageOne;

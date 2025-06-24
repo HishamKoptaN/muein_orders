@@ -1,7 +1,9 @@
 import 'package:mubin_orders/core/all_imports.dart';
+import '../../core/widgets/custom_app_bar.dart';
 import '../../l10n/app_localizations.dart';
 import '../orders/present/views/orders_view.dart';
 import '../drawer/my_drawer.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({
     super.key,
@@ -10,23 +12,27 @@ class HomeView extends StatefulWidget {
   @override
   State<HomeView> createState() => _HomeViewState();
 }
+
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            t.orders,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 25.sp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+        appBar: CustomAppBar(
+          title: t.orders,
         ),
+        //  AppBar(
+        //   centerTitle: true,
+        //   title: Text(
+        //     t.orders,
+        //     style: TextStyle(
+        //       color: Colors.black,
+        //       fontSize: 25.sp,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        // ),
         drawer: const MyDrawer(),
         body: OrdersView(),
         // bottomNavigationBar: Padding(

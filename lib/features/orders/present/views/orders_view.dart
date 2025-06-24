@@ -73,7 +73,7 @@ class _OrdersViewState extends State<OrdersView> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               isSearching ?? false
-                                  ? 'لا توجد نتائج لهذا البحث.'
+                                  ? t.there_are_no_results_for_this_search
                                   : 'لا يوجد طلبات.',
                               style: TextStyles.bold16,
                             ),
@@ -99,11 +99,11 @@ class _OrdersViewState extends State<OrdersView> {
                                   ),
                                   buildColumnHeader(
                                     label: t.execution_number,
-                                    flex: 2,
+                                    flex: 4,
                                   ),
                                   buildColumnHeader(
                                     label: '',
-                                    //  t.done,
+                                    //
                                     flex: 2,
                                   ),
                                 ],

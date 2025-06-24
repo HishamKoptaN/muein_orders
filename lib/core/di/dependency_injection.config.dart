@@ -9,6 +9,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:ui' as _i264;
+
 import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
@@ -21,6 +23,7 @@ import '../../features/docs/data/repo_impl/docs_repo_impl.dart' as _i430;
 import '../../features/docs/domain/repo/docs_repo.dart' as _i672;
 import '../../features/docs/domain/usecases/docs_use_cases.dart' as _i689;
 import '../../features/docs/present/bloc/docs_bloc.dart' as _i243;
+import '../../features/language/bloc/language_cubit.dart' as _i766;
 import '../../features/login/data/data_sources/login_api.dart' as _i59;
 import '../../features/login/data/repo_imp/login_repo_impl.dart' as _i0;
 import '../../features/login/domain/repo/login_repo.dart' as _i0;
@@ -36,6 +39,7 @@ import '../../features/orders/data/repo_impl/orders_repo_impl.dart' as _i450;
 import '../../features/orders/domain/repo/orders_repo.dart' as _i808;
 import '../../features/orders/domain/usecases/orders_use_cases.dart' as _i802;
 import '../../features/orders/present/bloc/orders_bloc.dart' as _i189;
+import '../../features/theme_cubit/ThemeCubit.dart' as _i634;
 import '../networking/network_info.dart' as _i303;
 import 'api_module.dart' as _i804;
 import 'injection_module.dart' as _i212;
@@ -53,6 +57,7 @@ _i174.GetIt init(
   );
   final injectionModule = _$InjectionModule();
   final apiModule = _$ApiModule();
+  gh.factory<_i634.ThemeCubit>(() => _i634.ThemeCubit());
   gh.singleton<_i804.LoggingInterceptor>(() => _i804.LoggingInterceptor());
   gh.lazySingleton<_i161.InternetConnection>(
       () => injectionModule.connectionChecker);
@@ -62,6 +67,8 @@ _i174.GetIt init(
       () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()));
   gh.lazySingleton<_i59.LoginRemDataSrc>(
       () => injectionModule.loginRemDataSrc(gh<_i59.FirebaseAuth>()));
+  gh.factory<_i766.LanguageCubit>(
+      () => _i766.LanguageCubit(gh<_i264.Locale>()));
   gh.singleton<_i361.Dio>(() => apiModule.dio(
         gh<_i804.AuthInterceptor>(),
         gh<_i804.LoggingInterceptor>(),

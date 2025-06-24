@@ -152,6 +152,12 @@ abstract class AppLocalizations {
   /// **'Package'**
   String get package;
 
+  /// No description provided for @there_are_no_results_for_this_search.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no results for this search.'**
+  String get there_are_no_results_for_this_search;
+
   /// No description provided for @documentations_view.
   ///
   /// In en, this message translates to:

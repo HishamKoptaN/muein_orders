@@ -28,8 +28,15 @@ class DocWidget extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: VideoWidget(
-                    videoUrl: orderEntity?.video ?? '',
-                    thumbnailUrl: orderEntity?.thumbnailUrl ?? '',
+                    videoUrl: orderEntity?.videoOne ?? '',
+                    thumbnailUrl: orderEntity?.thumbnailUrlOne ?? '',
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: VideoWidget(
+                    videoUrl: orderEntity?.videoTwo ?? '',
+                    thumbnailUrl: orderEntity?.thumbnailUrlTwo ?? '',
                   ),
                 ),
                 Expanded(

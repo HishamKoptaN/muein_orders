@@ -9,7 +9,8 @@ class AddDocReqModel with _$AddDocReqModel {
   const AddDocReqModel._();
   const factory AddDocReqModel({
     @JsonKey(name: "order_id") int? orderId,
-    @JsonKey(ignore: true) File? video,
+    @JsonKey(ignore: true) File? videoOne,
+    @JsonKey(ignore: true) File? videoTwo,
     @JsonKey(ignore: true) File? imageOne,
     @JsonKey(ignore: true) File? imageTwo,
     @JsonKey(name: "latitude") String? latitude,
@@ -17,7 +18,8 @@ class AddDocReqModel with _$AddDocReqModel {
   }) = _AddDocReqModel;
   factory AddDocReqModel.fromEntity(AddDocReqEntity entity) => AddDocReqModel(
         orderId: entity.orderId,
-        video: entity.video,
+        videoOne: entity.videoOne,
+        videoTwo: entity.videoOne,
         imageOne: entity.imageOne,
         imageTwo: entity.imageTwo,
         latitude: entity.latitude,
@@ -28,7 +30,10 @@ class AddDocReqModel with _$AddDocReqModel {
       'orderـid': orderId ?? '0',
       'latitude': latitude ?? '0.0',
       'longitude': longitude ?? '0.0',
-      'video': video != null ? MultipartFile.fromFileSync(video!.path) : null,
+      'video_one':
+          videoOne != null ? MultipartFile.fromFileSync(videoOne!.path) : null,
+      'video_two':
+          videoTwo != null ? MultipartFile.fromFileSync(videoTwo!.path) : null,
       'imageOne':
           imageOne != null ? MultipartFile.fromFileSync(imageOne!.path) : null,
       'imageTwo':

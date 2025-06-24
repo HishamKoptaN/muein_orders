@@ -6,7 +6,8 @@ part 'add_doc_req_entity.freezed.dart';
 class AddDocReqEntity with _$AddDocReqEntity {
   const factory AddDocReqEntity({
     int? orderId,
-    File? video,
+    File? videoOne,
+    File? videoTwo,
     File? imageOne,
     File? imageTwo,
     String? latitude,
@@ -18,7 +19,8 @@ class AddDocReqEntity with _$AddDocReqEntity {
 extension AddOrderReqValidation on AddDocReqEntity {
   bool get isComplete {
     return orderId != null &&
-        video != null &&
+        videoOne != null &&
+        videoTwo != null &&
         imageOne != null &&
         imageTwo != null;
   }

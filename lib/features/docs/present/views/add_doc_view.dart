@@ -23,10 +23,12 @@ class AddDocView extends StatefulWidget {
 
 class _AddDocViewState extends State<AddDocView> {
   final ImagePicker imagePicker = ImagePicker();
-  XFile? video;
+  XFile? videoOne;
+  XFile? videoTwo;
   XFile? imageOne;
   XFile? imageTwo;
-  final TextEditingController videoController = TextEditingController();
+  final TextEditingController videOneController = TextEditingController();
+  final TextEditingController videoTwoController = TextEditingController();
   final TextEditingController imageOneController = TextEditingController();
   final TextEditingController imageTwoController = TextEditingController();
   Future<File?> selectFilesPath({
@@ -218,7 +220,8 @@ class _AddDocViewState extends State<AddDocView> {
               double? parsedProgress = double.tryParse(
                 uploadingProgress ?? '',
               );
-              videoController.text = addDocReqEntity?.video?.path ?? '';
+              videOneController.text = addDocReqEntity?.videoOne?.path ?? '';
+              videoTwoController.text = addDocReqEntity?.videoTwo?.path ?? '';
               imageOneController.text = addDocReqEntity?.imageOne?.path ?? '';
               imageTwoController.text = addDocReqEntity?.imageTwo?.path ?? '';
               return Center(
@@ -226,13 +229,42 @@ class _AddDocViewState extends State<AddDocView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CustomTextField(
-                      controller: videoController,
+                      controller: videOneController,
                       maxLines: 2,
                       onTap: () async {
                         context.read<DocsBloc>().add(
                               DocsEvent.updateData(
                                 addDocReqEntity: addDocReqEntity!.copyWith(
-                                  video: await selectFilesPath(
+                                  videoOne: await selectFilesPath(
+                                    context: context,
+                                    fileType: FileType.video,
+                                  ),
+                                ),
+                              ),
+                            );
+                      },
+                      readOnly: true,
+                      labelText: t.add_video,
+                      hint: t.add_video,
+                      suffixIcon: Icons.cloud_upload,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (
+                        v,
+                      ) {
+                        if (v == null || v.trim().isEmpty) {
+                          return 'مطلوب';
+                        }
+                        return null;
+                      },
+                    ),
+                    CustomTextField(
+                      controller: videoTwoController,
+                      maxLines: 2,
+                      onTap: () async {
+                        context.read<DocsBloc>().add(
+                              DocsEvent.updateData(
+                                addDocReqEntity: addDocReqEntity!.copyWith(
+                                  videoTwo: await selectFilesPath(
                                     context: context,
                                     fileType: FileType.video,
                                   ),

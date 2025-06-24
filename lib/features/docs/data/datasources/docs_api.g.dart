@@ -50,7 +50,8 @@ class _DocsApi implements DocsApi {
   @override
   Future<Doc> createDoc({
     required int orderId,
-    required File video,
+    required File videoOne,
+    required File videoTwo,
     required File imageOne,
     required File imageTwo,
     required String longitude,
@@ -65,10 +66,19 @@ class _DocsApi implements DocsApi {
     _data.fields.add(MapEntry('order_id', orderId.toString()));
     _data.files.add(
       MapEntry(
-        'video',
+        'video_one',
         MultipartFile.fromFileSync(
-          video.path,
-          filename: video.path.split(Platform.pathSeparator).last,
+          videoOne.path,
+          filename: videoOne.path.split(Platform.pathSeparator).last,
+        ),
+      ),
+    );
+    _data.files.add(
+      MapEntry(
+        'video_two',
+        MultipartFile.fromFileSync(
+          videoTwo.path,
+          filename: videoTwo.path.split(Platform.pathSeparator).last,
         ),
       ),
     );

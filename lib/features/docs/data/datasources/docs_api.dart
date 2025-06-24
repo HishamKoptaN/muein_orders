@@ -26,7 +26,8 @@ abstract class DocsApi {
   @MultiPart()
   Future<Doc> createDoc({
     @Part(name: 'order_id') required int orderId,
-    @Part(name: 'video') required File video,
+    @Part(name: 'video_one') required File videoOne,
+    @Part(name: 'video_two') required File videoTwo,
     @Part(name: 'image_one') required File imageOne,
     @Part(name: 'image_two') required File imageTwo,
     @Part(name: 'longitude') required String longitude,

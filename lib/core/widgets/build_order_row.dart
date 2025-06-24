@@ -1,6 +1,9 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../../core/all_imports.dart';
 import '../../../../core/widgets/widget_column_header.dart';
 import '../../features/orders/domain/entities/orders_res_entity.dart';
+import '../../features/orders/present/views/pdf/sitcker_pdf_preview_view.dart';
 
 Widget buildOrderRow({
   required OrderEntity order,
@@ -34,26 +37,36 @@ Widget buildOrderRow({
           fit: FlexFit.tight,
           child: buildTransactionDetail(text: order.executionNum ?? ''),
         ),
-        order.isDistributionPhotographed == true
-            ? Flexible(
-                flex: 2,
-                fit: FlexFit.tight,
-                child: Center(
-                  child: Icon(
-                    Icons.check_circle
-                    // order.isQuranPhotographed == true
-                    //     ? Icons.check_circle
-                    //     : Icons.cancel
-                    ,
-                    color: Colors.green,
-                    // order.isQuranPhotographed == true
-                    //     ? Colors.green
-                    //     : Colors.red,
-                    size: 24.sp,
-                  ),
-                ),
-              )
-            : SizedBox(),
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => PdfPreviewView(
+                executionNum: order.executionNum ?? '',
+                printedName: order.printedName ?? '',
+              ),
+            ));
+          },
+          child: Flexible(
+              flex: 2,
+              child: Icon(FontAwesomeIcons.filePdf, color: Colors.red)),
+        ),
+        Flexible(
+          flex: 2,
+          fit: FlexFit.tight,
+          child: Visibility(
+            visible: order.isDistributionPhotographed == true,
+            maintainSize: false,
+            maintainAnimation: false,
+            maintainState: false,
+            child: Center(
+              child: Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 24.sp,
+              ),
+            ),
+          ),
+        )
       ],
     ),
   );

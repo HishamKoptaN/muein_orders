@@ -8,6 +8,7 @@
   "orders_view": "========================================  orders_view            ===========================================",
   "orders": "Orders",
   "package": "Package",
+  "there_are_no_results_for_this_search": "There are no results for this search.",
   "documentations_view": "================================  documentations_view    ===========================================",
   "documentations": "Documentations",
   "show_documentations": "Show documentations",

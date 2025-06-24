@@ -10,6 +10,7 @@ import 'features/docs/present/bloc/docs_bloc.dart';
 import 'features/orders/present/bloc/orders_bloc.dart';
 import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -22,6 +23,10 @@ Future<void> main() async {
       ) ??
       'ar';
   Bloc.observer = AppBlocObserver();
+  // await SharedPrefHelper.setSecuredString(
+  //   key: SharedPrefKeys.userToken,
+  //   value: '40|UHCDN6hT9NKtdnENDfkRjJoQmi7knElpEKqK1i3z9f76bce5',
+  // );
   runApp(
     MultiBlocProvider(
       providers: [

@@ -42,7 +42,8 @@ class DocsRepoImpl implements DocsRepo {
     try {
       final res = await postsApi.createDoc(
         orderId: addDocReqEntity?.orderId ?? 0,
-        video: addDocReqEntity.video!,
+        videoOne: addDocReqEntity.videoOne!,
+        videoTwo: addDocReqEntity.videoTwo!,
         imageOne: addDocReqEntity.imageOne!,
         imageTwo: addDocReqEntity.imageTwo!,
         latitude: addDocReqEntity.latitude ?? '0.0',

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'docs_res_model.dart';
+part of 'docs_res_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,51 +14,47 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-DocsResModel _$DocsResModelFromJson(Map<String, dynamic> json) {
-  return _DocsResModel.fromJson(json);
+DocsResEntity _$DocsResEntityFromJson(Map<String, dynamic> json) {
+  return _DocsResEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DocsResModel {
-  @JsonKey(name: "docs")
-  List<Doc>? get docs => throw _privateConstructorUsedError;
-  @JsonKey(name: "meta")
-  Meta? get meta => throw _privateConstructorUsedError;
+mixin _$DocsResEntity {
+  List<DocEntity>? get docs => throw _privateConstructorUsedError;
+  MetaEntity? get meta => throw _privateConstructorUsedError;
 
-  /// Serializes this DocsResModel to a JSON map.
+  /// Serializes this DocsResEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of DocsResModel
+  /// Create a copy of DocsResEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DocsResModelCopyWith<DocsResModel> get copyWith =>
+  $DocsResEntityCopyWith<DocsResEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DocsResModelCopyWith<$Res> {
-  factory $DocsResModelCopyWith(
-          DocsResModel value, $Res Function(DocsResModel) then) =
-      _$DocsResModelCopyWithImpl<$Res, DocsResModel>;
+abstract class $DocsResEntityCopyWith<$Res> {
+  factory $DocsResEntityCopyWith(
+          DocsResEntity value, $Res Function(DocsResEntity) then) =
+      _$DocsResEntityCopyWithImpl<$Res, DocsResEntity>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "docs") List<Doc>? docs,
-      @JsonKey(name: "meta") Meta? meta});
+  $Res call({List<DocEntity>? docs, MetaEntity? meta});
 
-  $MetaCopyWith<$Res>? get meta;
+  $MetaEntityCopyWith<$Res>? get meta;
 }
 
 /// @nodoc
-class _$DocsResModelCopyWithImpl<$Res, $Val extends DocsResModel>
-    implements $DocsResModelCopyWith<$Res> {
-  _$DocsResModelCopyWithImpl(this._value, this._then);
+class _$DocsResEntityCopyWithImpl<$Res, $Val extends DocsResEntity>
+    implements $DocsResEntityCopyWith<$Res> {
+  _$DocsResEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DocsResModel
+  /// Create a copy of DocsResEntity
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -70,54 +66,52 @@ class _$DocsResModelCopyWithImpl<$Res, $Val extends DocsResModel>
       docs: freezed == docs
           ? _value.docs
           : docs // ignore: cast_nullable_to_non_nullable
-              as List<Doc>?,
+              as List<DocEntity>?,
       meta: freezed == meta
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
-              as Meta?,
+              as MetaEntity?,
     ) as $Val);
   }
 
-  /// Create a copy of DocsResModel
+  /// Create a copy of DocsResEntity
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MetaCopyWith<$Res>? get meta {
+  $MetaEntityCopyWith<$Res>? get meta {
     if (_value.meta == null) {
       return null;
     }
 
-    return $MetaCopyWith<$Res>(_value.meta!, (value) {
+    return $MetaEntityCopyWith<$Res>(_value.meta!, (value) {
       return _then(_value.copyWith(meta: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$DocsResModelImplCopyWith<$Res>
-    implements $DocsResModelCopyWith<$Res> {
-  factory _$$DocsResModelImplCopyWith(
-          _$DocsResModelImpl value, $Res Function(_$DocsResModelImpl) then) =
-      __$$DocsResModelImplCopyWithImpl<$Res>;
+abstract class _$$DocsResEntityImplCopyWith<$Res>
+    implements $DocsResEntityCopyWith<$Res> {
+  factory _$$DocsResEntityImplCopyWith(
+          _$DocsResEntityImpl value, $Res Function(_$DocsResEntityImpl) then) =
+      __$$DocsResEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "docs") List<Doc>? docs,
-      @JsonKey(name: "meta") Meta? meta});
+  $Res call({List<DocEntity>? docs, MetaEntity? meta});
 
   @override
-  $MetaCopyWith<$Res>? get meta;
+  $MetaEntityCopyWith<$Res>? get meta;
 }
 
 /// @nodoc
-class __$$DocsResModelImplCopyWithImpl<$Res>
-    extends _$DocsResModelCopyWithImpl<$Res, _$DocsResModelImpl>
-    implements _$$DocsResModelImplCopyWith<$Res> {
-  __$$DocsResModelImplCopyWithImpl(
-      _$DocsResModelImpl _value, $Res Function(_$DocsResModelImpl) _then)
+class __$$DocsResEntityImplCopyWithImpl<$Res>
+    extends _$DocsResEntityCopyWithImpl<$Res, _$DocsResEntityImpl>
+    implements _$$DocsResEntityImplCopyWith<$Res> {
+  __$$DocsResEntityImplCopyWithImpl(
+      _$DocsResEntityImpl _value, $Res Function(_$DocsResEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DocsResModel
+  /// Create a copy of DocsResEntity
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -125,34 +119,31 @@ class __$$DocsResModelImplCopyWithImpl<$Res>
     Object? docs = freezed,
     Object? meta = freezed,
   }) {
-    return _then(_$DocsResModelImpl(
+    return _then(_$DocsResEntityImpl(
       docs: freezed == docs
           ? _value._docs
           : docs // ignore: cast_nullable_to_non_nullable
-              as List<Doc>?,
+              as List<DocEntity>?,
       meta: freezed == meta
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
-              as Meta?,
+              as MetaEntity?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$DocsResModelImpl implements _DocsResModel {
-  const _$DocsResModelImpl(
-      {@JsonKey(name: "docs") final List<Doc>? docs,
-      @JsonKey(name: "meta") this.meta})
+class _$DocsResEntityImpl implements _DocsResEntity {
+  const _$DocsResEntityImpl({final List<DocEntity>? docs, this.meta})
       : _docs = docs;
 
-  factory _$DocsResModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DocsResModelImplFromJson(json);
+  factory _$DocsResEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DocsResEntityImplFromJson(json);
 
-  final List<Doc>? _docs;
+  final List<DocEntity>? _docs;
   @override
-  @JsonKey(name: "docs")
-  List<Doc>? get docs {
+  List<DocEntity>? get docs {
     final value = _docs;
     if (value == null) return null;
     if (_docs is EqualUnmodifiableListView) return _docs;
@@ -161,19 +152,18 @@ class _$DocsResModelImpl implements _DocsResModel {
   }
 
   @override
-  @JsonKey(name: "meta")
-  final Meta? meta;
+  final MetaEntity? meta;
 
   @override
   String toString() {
-    return 'DocsResModel(docs: $docs, meta: $meta)';
+    return 'DocsResEntity(docs: $docs, meta: $meta)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DocsResModelImpl &&
+            other is _$DocsResEntityImpl &&
             const DeepCollectionEquality().equals(other._docs, _docs) &&
             (identical(other.meta, meta) || other.meta == meta));
   }
@@ -183,121 +173,107 @@ class _$DocsResModelImpl implements _DocsResModel {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_docs), meta);
 
-  /// Create a copy of DocsResModel
+  /// Create a copy of DocsResEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DocsResModelImplCopyWith<_$DocsResModelImpl> get copyWith =>
-      __$$DocsResModelImplCopyWithImpl<_$DocsResModelImpl>(this, _$identity);
+  _$$DocsResEntityImplCopyWith<_$DocsResEntityImpl> get copyWith =>
+      __$$DocsResEntityImplCopyWithImpl<_$DocsResEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DocsResModelImplToJson(
+    return _$$DocsResEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _DocsResModel implements DocsResModel {
-  const factory _DocsResModel(
-      {@JsonKey(name: "docs") final List<Doc>? docs,
-      @JsonKey(name: "meta") final Meta? meta}) = _$DocsResModelImpl;
+abstract class _DocsResEntity implements DocsResEntity {
+  const factory _DocsResEntity(
+      {final List<DocEntity>? docs,
+      final MetaEntity? meta}) = _$DocsResEntityImpl;
 
-  factory _DocsResModel.fromJson(Map<String, dynamic> json) =
-      _$DocsResModelImpl.fromJson;
+  factory _DocsResEntity.fromJson(Map<String, dynamic> json) =
+      _$DocsResEntityImpl.fromJson;
 
   @override
-  @JsonKey(name: "docs")
-  List<Doc>? get docs;
+  List<DocEntity>? get docs;
   @override
-  @JsonKey(name: "meta")
-  Meta? get meta;
+  MetaEntity? get meta;
 
-  /// Create a copy of DocsResModel
+  /// Create a copy of DocsResEntity
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DocsResModelImplCopyWith<_$DocsResModelImpl> get copyWith =>
+  _$$DocsResEntityImplCopyWith<_$DocsResEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Doc _$DocFromJson(Map<String, dynamic> json) {
-  return _Doc.fromJson(json);
+DocEntity _$DocEntityFromJson(Map<String, dynamic> json) {
+  return _DocEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Doc {
-  @JsonKey(name: "id")
+mixin _$DocEntity {
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "order_number")
   String? get orderNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: "place")
   String? get place => throw _privateConstructorUsedError;
-  @JsonKey(name: "video_one")
   String? get videoOne => throw _privateConstructorUsedError;
-  @JsonKey(name: "video_two")
   String? get videoTwo => throw _privateConstructorUsedError;
-  @JsonKey(name: "thumbnail_url_one")
   String? get thumbnailUrlOne => throw _privateConstructorUsedError;
-  @JsonKey(name: "thumbnail_url_two")
   String? get thumbnailUrlTwo => throw _privateConstructorUsedError;
-  @JsonKey(name: "image_one")
   String? get imageOne => throw _privateConstructorUsedError;
-  @JsonKey(name: "image_two")
   String? get imageTwo => throw _privateConstructorUsedError;
-  @JsonKey(name: "updated_at")
   String? get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: "latitude")
   String? get latitude => throw _privateConstructorUsedError;
-  @JsonKey(name: "longitude")
   String? get longitude => throw _privateConstructorUsedError;
-  @JsonKey(name: "branch_id")
   int? get branchId => throw _privateConstructorUsedError;
-  @JsonKey(name: "created_at")
   String? get createdAt => throw _privateConstructorUsedError;
 
-  /// Serializes this Doc to a JSON map.
+  /// Serializes this DocEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Doc
+  /// Create a copy of DocEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DocCopyWith<Doc> get copyWith => throw _privateConstructorUsedError;
+  $DocEntityCopyWith<DocEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DocCopyWith<$Res> {
-  factory $DocCopyWith(Doc value, $Res Function(Doc) then) =
-      _$DocCopyWithImpl<$Res, Doc>;
+abstract class $DocEntityCopyWith<$Res> {
+  factory $DocEntityCopyWith(DocEntity value, $Res Function(DocEntity) then) =
+      _$DocEntityCopyWithImpl<$Res, DocEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "order_number") String? orderNumber,
-      @JsonKey(name: "place") String? place,
-      @JsonKey(name: "video_one") String? videoOne,
-      @JsonKey(name: "video_two") String? videoTwo,
-      @JsonKey(name: "thumbnail_url_one") String? thumbnailUrlOne,
-      @JsonKey(name: "thumbnail_url_two") String? thumbnailUrlTwo,
-      @JsonKey(name: "image_one") String? imageOne,
-      @JsonKey(name: "image_two") String? imageTwo,
-      @JsonKey(name: "updated_at") String? updatedAt,
-      @JsonKey(name: "latitude") String? latitude,
-      @JsonKey(name: "longitude") String? longitude,
-      @JsonKey(name: "branch_id") int? branchId,
-      @JsonKey(name: "created_at") String? createdAt});
+      {int? id,
+      String? orderNumber,
+      String? place,
+      String? videoOne,
+      String? videoTwo,
+      String? thumbnailUrlOne,
+      String? thumbnailUrlTwo,
+      String? imageOne,
+      String? imageTwo,
+      String? updatedAt,
+      String? latitude,
+      String? longitude,
+      int? branchId,
+      String? createdAt});
 }
 
 /// @nodoc
-class _$DocCopyWithImpl<$Res, $Val extends Doc> implements $DocCopyWith<$Res> {
-  _$DocCopyWithImpl(this._value, this._then);
+class _$DocEntityCopyWithImpl<$Res, $Val extends DocEntity>
+    implements $DocEntityCopyWith<$Res> {
+  _$DocEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Doc
+  /// Create a copy of DocEntity
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -379,35 +355,39 @@ class _$DocCopyWithImpl<$Res, $Val extends Doc> implements $DocCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$DocImplCopyWith<$Res> implements $DocCopyWith<$Res> {
-  factory _$$DocImplCopyWith(_$DocImpl value, $Res Function(_$DocImpl) then) =
-      __$$DocImplCopyWithImpl<$Res>;
+abstract class _$$DocEntityImplCopyWith<$Res>
+    implements $DocEntityCopyWith<$Res> {
+  factory _$$DocEntityImplCopyWith(
+          _$DocEntityImpl value, $Res Function(_$DocEntityImpl) then) =
+      __$$DocEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "order_number") String? orderNumber,
-      @JsonKey(name: "place") String? place,
-      @JsonKey(name: "video_one") String? videoOne,
-      @JsonKey(name: "video_two") String? videoTwo,
-      @JsonKey(name: "thumbnail_url_one") String? thumbnailUrlOne,
-      @JsonKey(name: "thumbnail_url_two") String? thumbnailUrlTwo,
-      @JsonKey(name: "image_one") String? imageOne,
-      @JsonKey(name: "image_two") String? imageTwo,
-      @JsonKey(name: "updated_at") String? updatedAt,
-      @JsonKey(name: "latitude") String? latitude,
-      @JsonKey(name: "longitude") String? longitude,
-      @JsonKey(name: "branch_id") int? branchId,
-      @JsonKey(name: "created_at") String? createdAt});
+      {int? id,
+      String? orderNumber,
+      String? place,
+      String? videoOne,
+      String? videoTwo,
+      String? thumbnailUrlOne,
+      String? thumbnailUrlTwo,
+      String? imageOne,
+      String? imageTwo,
+      String? updatedAt,
+      String? latitude,
+      String? longitude,
+      int? branchId,
+      String? createdAt});
 }
 
 /// @nodoc
-class __$$DocImplCopyWithImpl<$Res> extends _$DocCopyWithImpl<$Res, _$DocImpl>
-    implements _$$DocImplCopyWith<$Res> {
-  __$$DocImplCopyWithImpl(_$DocImpl _value, $Res Function(_$DocImpl) _then)
+class __$$DocEntityImplCopyWithImpl<$Res>
+    extends _$DocEntityCopyWithImpl<$Res, _$DocEntityImpl>
+    implements _$$DocEntityImplCopyWith<$Res> {
+  __$$DocEntityImplCopyWithImpl(
+      _$DocEntityImpl _value, $Res Function(_$DocEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Doc
+  /// Create a copy of DocEntity
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -427,7 +407,7 @@ class __$$DocImplCopyWithImpl<$Res> extends _$DocCopyWithImpl<$Res, _$DocImpl>
     Object? branchId = freezed,
     Object? createdAt = freezed,
   }) {
-    return _then(_$DocImpl(
+    return _then(_$DocEntityImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -490,79 +470,65 @@ class __$$DocImplCopyWithImpl<$Res> extends _$DocCopyWithImpl<$Res, _$DocImpl>
 
 /// @nodoc
 @JsonSerializable()
-class _$DocImpl implements _Doc {
-  const _$DocImpl(
-      {@JsonKey(name: "id") this.id,
-      @JsonKey(name: "order_number") this.orderNumber,
-      @JsonKey(name: "place") this.place,
-      @JsonKey(name: "video_one") this.videoOne,
-      @JsonKey(name: "video_two") this.videoTwo,
-      @JsonKey(name: "thumbnail_url_one") this.thumbnailUrlOne,
-      @JsonKey(name: "thumbnail_url_two") this.thumbnailUrlTwo,
-      @JsonKey(name: "image_one") this.imageOne,
-      @JsonKey(name: "image_two") this.imageTwo,
-      @JsonKey(name: "updated_at") this.updatedAt,
-      @JsonKey(name: "latitude") this.latitude,
-      @JsonKey(name: "longitude") this.longitude,
-      @JsonKey(name: "branch_id") this.branchId,
-      @JsonKey(name: "created_at") this.createdAt});
+class _$DocEntityImpl implements _DocEntity {
+  const _$DocEntityImpl(
+      {this.id,
+      this.orderNumber,
+      this.place,
+      this.videoOne,
+      this.videoTwo,
+      this.thumbnailUrlOne,
+      this.thumbnailUrlTwo,
+      this.imageOne,
+      this.imageTwo,
+      this.updatedAt,
+      this.latitude,
+      this.longitude,
+      this.branchId,
+      this.createdAt});
 
-  factory _$DocImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DocImplFromJson(json);
+  factory _$DocEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DocEntityImplFromJson(json);
 
   @override
-  @JsonKey(name: "id")
   final int? id;
   @override
-  @JsonKey(name: "order_number")
   final String? orderNumber;
   @override
-  @JsonKey(name: "place")
   final String? place;
   @override
-  @JsonKey(name: "video_one")
   final String? videoOne;
   @override
-  @JsonKey(name: "video_two")
   final String? videoTwo;
   @override
-  @JsonKey(name: "thumbnail_url_one")
   final String? thumbnailUrlOne;
   @override
-  @JsonKey(name: "thumbnail_url_two")
   final String? thumbnailUrlTwo;
   @override
-  @JsonKey(name: "image_one")
   final String? imageOne;
   @override
-  @JsonKey(name: "image_two")
   final String? imageTwo;
   @override
-  @JsonKey(name: "updated_at")
   final String? updatedAt;
   @override
-  @JsonKey(name: "latitude")
   final String? latitude;
   @override
-  @JsonKey(name: "longitude")
   final String? longitude;
   @override
-  @JsonKey(name: "branch_id")
   final int? branchId;
   @override
-  @JsonKey(name: "created_at")
   final String? createdAt;
 
   @override
   String toString() {
-    return 'Doc(id: $id, orderNumber: $orderNumber, place: $place, videoOne: $videoOne, videoTwo: $videoTwo, thumbnailUrlOne: $thumbnailUrlOne, thumbnailUrlTwo: $thumbnailUrlTwo, imageOne: $imageOne, imageTwo: $imageTwo, updatedAt: $updatedAt, latitude: $latitude, longitude: $longitude, branchId: $branchId, createdAt: $createdAt)';
+    return 'DocEntity(id: $id, orderNumber: $orderNumber, place: $place, videoOne: $videoOne, videoTwo: $videoTwo, thumbnailUrlOne: $thumbnailUrlOne, thumbnailUrlTwo: $thumbnailUrlTwo, imageOne: $imageOne, imageTwo: $imageTwo, updatedAt: $updatedAt, latitude: $latitude, longitude: $longitude, branchId: $branchId, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DocImpl &&
+            other is _$DocEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.orderNumber, orderNumber) ||
                 other.orderNumber == orderNumber) &&
@@ -610,88 +576,75 @@ class _$DocImpl implements _Doc {
       branchId,
       createdAt);
 
-  /// Create a copy of Doc
+  /// Create a copy of DocEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DocImplCopyWith<_$DocImpl> get copyWith =>
-      __$$DocImplCopyWithImpl<_$DocImpl>(this, _$identity);
+  _$$DocEntityImplCopyWith<_$DocEntityImpl> get copyWith =>
+      __$$DocEntityImplCopyWithImpl<_$DocEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DocImplToJson(
+    return _$$DocEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _Doc implements Doc {
-  const factory _Doc(
-      {@JsonKey(name: "id") final int? id,
-      @JsonKey(name: "order_number") final String? orderNumber,
-      @JsonKey(name: "place") final String? place,
-      @JsonKey(name: "video_one") final String? videoOne,
-      @JsonKey(name: "video_two") final String? videoTwo,
-      @JsonKey(name: "thumbnail_url_one") final String? thumbnailUrlOne,
-      @JsonKey(name: "thumbnail_url_two") final String? thumbnailUrlTwo,
-      @JsonKey(name: "image_one") final String? imageOne,
-      @JsonKey(name: "image_two") final String? imageTwo,
-      @JsonKey(name: "updated_at") final String? updatedAt,
-      @JsonKey(name: "latitude") final String? latitude,
-      @JsonKey(name: "longitude") final String? longitude,
-      @JsonKey(name: "branch_id") final int? branchId,
-      @JsonKey(name: "created_at") final String? createdAt}) = _$DocImpl;
+abstract class _DocEntity implements DocEntity {
+  const factory _DocEntity(
+      {final int? id,
+      final String? orderNumber,
+      final String? place,
+      final String? videoOne,
+      final String? videoTwo,
+      final String? thumbnailUrlOne,
+      final String? thumbnailUrlTwo,
+      final String? imageOne,
+      final String? imageTwo,
+      final String? updatedAt,
+      final String? latitude,
+      final String? longitude,
+      final int? branchId,
+      final String? createdAt}) = _$DocEntityImpl;
 
-  factory _Doc.fromJson(Map<String, dynamic> json) = _$DocImpl.fromJson;
+  factory _DocEntity.fromJson(Map<String, dynamic> json) =
+      _$DocEntityImpl.fromJson;
 
   @override
-  @JsonKey(name: "id")
   int? get id;
   @override
-  @JsonKey(name: "order_number")
   String? get orderNumber;
   @override
-  @JsonKey(name: "place")
   String? get place;
   @override
-  @JsonKey(name: "video_one")
   String? get videoOne;
   @override
-  @JsonKey(name: "video_two")
   String? get videoTwo;
   @override
-  @JsonKey(name: "thumbnail_url_one")
   String? get thumbnailUrlOne;
   @override
-  @JsonKey(name: "thumbnail_url_two")
   String? get thumbnailUrlTwo;
   @override
-  @JsonKey(name: "image_one")
   String? get imageOne;
   @override
-  @JsonKey(name: "image_two")
   String? get imageTwo;
   @override
-  @JsonKey(name: "updated_at")
   String? get updatedAt;
   @override
-  @JsonKey(name: "latitude")
   String? get latitude;
   @override
-  @JsonKey(name: "longitude")
   String? get longitude;
   @override
-  @JsonKey(name: "branch_id")
   int? get branchId;
   @override
-  @JsonKey(name: "created_at")
   String? get createdAt;
 
-  /// Create a copy of Doc
+  /// Create a copy of DocEntity
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DocImplCopyWith<_$DocImpl> get copyWith =>
+  _$$DocEntityImplCopyWith<_$DocEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

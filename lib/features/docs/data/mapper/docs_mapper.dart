@@ -9,6 +9,7 @@ extension DocsResModelMapper on DocsResModel {
         meta: meta?.toEntity(),
       );
 }
+
 extension MetaModelMapper on Meta {
   MetaEntity toEntity() => MetaEntity(
         perPage: perPage,
@@ -24,8 +25,10 @@ extension DocModelMapper on Doc {
         id: id,
         orderNumber: orderNumber,
         place: place,
-        video: video,
-        thumbnailUrl: thumbnailUrl,
+        videoOne: videoOne,
+        videoTwo: videoTwo,
+        thumbnailUrlOne: thumbnailUrlOne,
+        thumbnailUrlTwo: thumbnailUrlTwo,
         imageOne: imageOne,
         imageTwo: imageTwo,
         updatedAt: updatedAt,

@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AddDocReqEntity {
   int? get orderId => throw _privateConstructorUsedError;
-  File? get video => throw _privateConstructorUsedError;
+  File? get videoOne => throw _privateConstructorUsedError;
+  File? get videoTwo => throw _privateConstructorUsedError;
   File? get imageOne => throw _privateConstructorUsedError;
   File? get imageTwo => throw _privateConstructorUsedError;
   String? get latitude => throw _privateConstructorUsedError;
@@ -38,7 +39,8 @@ abstract class $AddDocReqEntityCopyWith<$Res> {
   @useResult
   $Res call(
       {int? orderId,
-      File? video,
+      File? videoOne,
+      File? videoTwo,
       File? imageOne,
       File? imageTwo,
       String? latitude,
@@ -61,7 +63,8 @@ class _$AddDocReqEntityCopyWithImpl<$Res, $Val extends AddDocReqEntity>
   @override
   $Res call({
     Object? orderId = freezed,
-    Object? video = freezed,
+    Object? videoOne = freezed,
+    Object? videoTwo = freezed,
     Object? imageOne = freezed,
     Object? imageTwo = freezed,
     Object? latitude = freezed,
@@ -72,9 +75,13 @@ class _$AddDocReqEntityCopyWithImpl<$Res, $Val extends AddDocReqEntity>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as int?,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
+      videoOne: freezed == videoOne
+          ? _value.videoOne
+          : videoOne // ignore: cast_nullable_to_non_nullable
+              as File?,
+      videoTwo: freezed == videoTwo
+          ? _value.videoTwo
+          : videoTwo // ignore: cast_nullable_to_non_nullable
               as File?,
       imageOne: freezed == imageOne
           ? _value.imageOne
@@ -106,7 +113,8 @@ abstract class _$$AddDocReqEntityImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? orderId,
-      File? video,
+      File? videoOne,
+      File? videoTwo,
       File? imageOne,
       File? imageTwo,
       String? latitude,
@@ -127,7 +135,8 @@ class __$$AddDocReqEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? orderId = freezed,
-    Object? video = freezed,
+    Object? videoOne = freezed,
+    Object? videoTwo = freezed,
     Object? imageOne = freezed,
     Object? imageTwo = freezed,
     Object? latitude = freezed,
@@ -138,9 +147,13 @@ class __$$AddDocReqEntityImplCopyWithImpl<$Res>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as int?,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
+      videoOne: freezed == videoOne
+          ? _value.videoOne
+          : videoOne // ignore: cast_nullable_to_non_nullable
+              as File?,
+      videoTwo: freezed == videoTwo
+          ? _value.videoTwo
+          : videoTwo // ignore: cast_nullable_to_non_nullable
               as File?,
       imageOne: freezed == imageOne
           ? _value.imageOne
@@ -167,7 +180,8 @@ class __$$AddDocReqEntityImplCopyWithImpl<$Res>
 class _$AddDocReqEntityImpl implements _AddDocReqEntity {
   const _$AddDocReqEntityImpl(
       {this.orderId,
-      this.video,
+      this.videoOne,
+      this.videoTwo,
       this.imageOne,
       this.imageTwo,
       this.latitude,
@@ -176,7 +190,9 @@ class _$AddDocReqEntityImpl implements _AddDocReqEntity {
   @override
   final int? orderId;
   @override
-  final File? video;
+  final File? videoOne;
+  @override
+  final File? videoTwo;
   @override
   final File? imageOne;
   @override
@@ -188,7 +204,7 @@ class _$AddDocReqEntityImpl implements _AddDocReqEntity {
 
   @override
   String toString() {
-    return 'AddDocReqEntity(orderId: $orderId, video: $video, imageOne: $imageOne, imageTwo: $imageTwo, latitude: $latitude, longitude: $longitude)';
+    return 'AddDocReqEntity(orderId: $orderId, videoOne: $videoOne, videoTwo: $videoTwo, imageOne: $imageOne, imageTwo: $imageTwo, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -197,7 +213,10 @@ class _$AddDocReqEntityImpl implements _AddDocReqEntity {
         (other.runtimeType == runtimeType &&
             other is _$AddDocReqEntityImpl &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
-            (identical(other.video, video) || other.video == video) &&
+            (identical(other.videoOne, videoOne) ||
+                other.videoOne == videoOne) &&
+            (identical(other.videoTwo, videoTwo) ||
+                other.videoTwo == videoTwo) &&
             (identical(other.imageOne, imageOne) ||
                 other.imageOne == imageOne) &&
             (identical(other.imageTwo, imageTwo) ||
@@ -209,8 +228,8 @@ class _$AddDocReqEntityImpl implements _AddDocReqEntity {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, orderId, video, imageOne, imageTwo, latitude, longitude);
+  int get hashCode => Object.hash(runtimeType, orderId, videoOne, videoTwo,
+      imageOne, imageTwo, latitude, longitude);
 
   /// Create a copy of AddDocReqEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -225,7 +244,8 @@ class _$AddDocReqEntityImpl implements _AddDocReqEntity {
 abstract class _AddDocReqEntity implements AddDocReqEntity {
   const factory _AddDocReqEntity(
       {final int? orderId,
-      final File? video,
+      final File? videoOne,
+      final File? videoTwo,
       final File? imageOne,
       final File? imageTwo,
       final String? latitude,
@@ -234,7 +254,9 @@ abstract class _AddDocReqEntity implements AddDocReqEntity {
   @override
   int? get orderId;
   @override
-  File? get video;
+  File? get videoOne;
+  @override
+  File? get videoTwo;
   @override
   File? get imageOne;
   @override

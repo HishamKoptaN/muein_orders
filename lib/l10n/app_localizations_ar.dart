@@ -37,6 +37,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get package => 'حزمة';
 
   @override
+  String get there_are_no_results_for_this_search => 'لا توجد نتائج لهذا البحث';
+
+  @override
   String get documentations_view =>
       '===================================      documentations_view    ===========================================';
 
