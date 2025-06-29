@@ -87,6 +87,28 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
           },
           createDoc: () async {
             if (_addDocReqEntity.isComplete) {
+              if (_addDocReqEntity.latitude == null ||
+                  _addDocReqEntity.longitude == null) {
+                try {
+                  final result =
+                      await docsUseCase();
+                  _addDocReqEntity = _addDocReqEntity.copyWith(
+                    latitude: result.lat.toString(),
+                    longitude: result.lng.toString(),
+                  );
+                } catch (e) {
+                  emit(
+                    DocsState.failure(
+                      apiErrorModel: ApiErrorModel(
+                        error:
+                            'تعذر جلب الموقع الحالي تلقائيًا. الرجاء المحاولة مرة أخرى.',
+                      ),
+                    ),
+                  );
+                  emitCustomLoaded(emit: emit);
+                  return;
+                }
+              }
               try {
                 emitCustomLoaded(emit: emit);
                 final result = await docsUseCase.createDoc(

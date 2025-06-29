@@ -58,7 +58,7 @@ class _OrdersViewState extends State<OrdersView> {
           children: [
             // SearchTextWidget(controller: _controller, t: t),
             // Gap(10.h),
-            Flexible(
+            Expanded(
               child: BlocBuilder<OrdersBloc, OrdersState>(
                 builder: (context, state) {
                   return state.maybeWhen(

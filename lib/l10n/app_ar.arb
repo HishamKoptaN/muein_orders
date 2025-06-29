@@ -17,6 +17,7 @@
   "show_documentations": "عرض التوثيقات",
   "add_documentations_view": "===================================      add_documentations_view    ===========================================",
       "execution_number": "رقم التنفيذ",
+      "location": "الموقع",
 
   "add_documentation": "اضافة توثيق",
   "add_order": "اضافة طلب",

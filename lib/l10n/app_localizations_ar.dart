@@ -60,6 +60,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get add_documentation => 'اضافة توثيق';
 
   @override
+  String get location => 'الموقع';
+
+  @override
   String get count => 'عدد';
 
   @override

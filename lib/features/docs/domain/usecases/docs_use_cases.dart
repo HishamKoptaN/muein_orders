@@ -14,6 +14,11 @@ class DocsUseCase {
   Future<ApiResult<DocsResEntity?>> getDocs({required int orderId}) async {
     return await ordersRepo.getDocs(clientId: orderId);
   }
+
+  Future<({double lat, double lng})> call() {
+    return ordersRepo.getCurrentLocation();
+  }
+
   Future<ApiResult<DocEntity?>> createDoc({
     required AddDocReqEntity addDocReqEntity,
     required ProgressCallback? onSendProgress,

@@ -61,6 +61,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get add_documentation => 'Add documentation';
 
   @override
+  String get location => 'Location';
+
+  @override
   String get count => 'Count';
 
   @override

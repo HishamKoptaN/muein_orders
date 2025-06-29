@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import '../../../../core/all_imports.dart';
@@ -31,6 +32,8 @@ class _AddDocViewState extends State<AddDocView> {
   final TextEditingController videoTwoController = TextEditingController();
   final TextEditingController imageOneController = TextEditingController();
   final TextEditingController imageTwoController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+
   Future<File?> selectFilesPath({
     required BuildContext context,
     required FileType fileType,
@@ -106,38 +109,6 @@ class _AddDocViewState extends State<AddDocView> {
       );
     }
     return null;
-  }
-
-  Future<void> getAndDispatchLocation({
-    required BuildContext context,
-    required AddDocReqEntity addDocReqEntity,
-  }) async {
-    try {
-      final Location location = Location();
-      //! تحقق من تفعيل خدمة الموقع
-      bool serviceEnabled = await location.serviceEnabled();
-      if (!serviceEnabled) {
-        serviceEnabled = await location.requestService();
-        if (!serviceEnabled) return;
-      }
-      //! تحقق من الصلاحيات
-      PermissionStatus permissionGranted = await location.hasPermission();
-      if (permissionGranted == PermissionStatus.denied) {
-        permissionGranted = await location.requestPermission();
-        if (permissionGranted != PermissionStatus.granted) return;
-      }
-      final locationData = await location.getLocation();
-      context.read<DocsBloc>().add(
-            DocsEvent.updateData(
-              addDocReqEntity: addDocReqEntity.copyWith(
-                latitude: locationData.latitude?.toString(),
-                longitude: locationData.longitude?.toString(),
-              ),
-            ),
-          );
-    } catch (e) {
-      debugPrint("❌ فشل في جلب الإحداثيات: $e");
-    }
   }
 
   @override
@@ -344,23 +315,39 @@ class _AddDocViewState extends State<AddDocView> {
                       labelText: t.add_picure,
                       hint: t.add_picure,
                     ),
+                    CustomTextField(
+                      controller: locationController,
+                      onTap: () async {
+                        final LatLng? result = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const PickLocationView()),
+                        );
+                        if (result != null) {
+                          final lat = result.latitude.toString();
+                          final lng = result.longitude.toString();
+                          locationController.text = "$lat, $lng";
+                          context.read<DocsBloc>().add(
+                                DocsEvent.updateData(
+                                  addDocReqEntity: addDocReqEntity!.copyWith(
+                                    latitude: lat,
+                                    longitude: lng,
+                                  ),
+                                ),
+                              );
+                        }
+                      },
+                      maxLines: 2,
+                      readOnly: true,
+                      suffixIcon: Icons.gps_fixed,
+                      labelText: t.place_hint,
+                      hint: t.place_hint,
+                    ),
                     GestureDetector(
                       onTap: () async {
                         context.read<DocsBloc>().add(
                               DocsEvent.createDoc(),
                             );
-                        // await getAndDispatchLocation(
-                        //   context: context,
-                        //   addDocReqEntity: addDocReqEntity!,
-                        // );
-                        // context.read<DocsBloc>().add(DocsEvent.updateData(
-                        //       addDocReqEntity: addDocReqEntity.copyWith(
-                        //         orderId: widget.orderId,
-                        //       ),
-                        //     ));
-                        // context.read<DocsBloc>().add(
-                        //       DocsEvent.createDoc(),
-                        //     );
                       },
                       child: Container(
                         height: 50.h,
@@ -409,6 +396,51 @@ class _AddDocViewState extends State<AddDocView> {
             },
           );
         },
+      ),
+    );
+  }
+}
+
+class PickLocationView extends StatefulWidget {
+  const PickLocationView({super.key});
+
+  @override
+  State<PickLocationView> createState() => _PickLocationViewState();
+}
+
+class _PickLocationViewState extends State<PickLocationView> {
+  LatLng? selectedLatLng;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("اختر الموقع")),
+      body: GoogleMap(
+        initialCameraPosition: const CameraPosition(
+          target: LatLng(24.7136, 46.6753), // الرياض كمثال
+          zoom: 10,
+        ),
+        onTap: (LatLng latLng) {
+          setState(() {
+            selectedLatLng = latLng;
+          });
+        },
+        markers: selectedLatLng != null
+            ? {
+                Marker(
+                  markerId: const MarkerId("selected"),
+                  position: selectedLatLng!,
+                ),
+              }
+            : {},
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (selectedLatLng != null) {
+            Navigator.pop(context, selectedLatLng);
+          }
+        },
+        child: const Icon(Icons.check),
       ),
     );
   }

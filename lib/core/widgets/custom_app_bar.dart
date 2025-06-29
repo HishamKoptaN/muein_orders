@@ -26,23 +26,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       //     icon: const Icon(Icons.notifications_none),
       //     onPressed: () {},
       //   ),
-      actions: [
-       
-        BlocBuilder<ThemeCubit, ThemeMode>(
-          builder: (context, themeMode) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Switch(
-                value: themeMode == ThemeMode.dark,
-                onChanged: (val) {
-                  context.read<ThemeCubit>().toggleTheme(val);
-                },
-              ),
-            );
-          },
-        ),
-        LanguageSwitchButton(),
-      ],
+      // actions: [
+      //   BlocBuilder<ThemeCubit, ThemeMode>(
+      //     builder: (context, themeMode) {
+      //       return Padding(
+      //         padding: const EdgeInsets.symmetric(horizontal: 8),
+      //         child: Switch(
+      //           value: themeMode == ThemeMode.dark,
+      //           onChanged: (val) {
+      //             context.read<ThemeCubit>().toggleTheme(val);
+      //           },
+      //         ),
+      //       );
+      //     },
+      //   ),
+      //   LanguageSwitchButton(),
+      // ],
     );
   }
 

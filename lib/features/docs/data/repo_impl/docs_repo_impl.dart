@@ -6,6 +6,8 @@ import '../../../../core/errors/api_error_handler.dart';
 import '../../domain/entities/add_doc_req_entity.dart';
 import '../../domain/repo/docs_repo.dart';
 import 'dart:async';
+import 'package:location/location.dart';
+
 import '../datasources/docs_api.dart';
 import 'package:injectable/injectable.dart' show Injectable;
 
@@ -14,6 +16,7 @@ import 'package:injectable/injectable.dart' show Injectable;
 )
 class DocsRepoImpl implements DocsRepo {
   final DocsApi postsApi;
+  final Location location = Location();
   DocsRepoImpl({
     required this.postsApi,
   });
@@ -35,13 +38,36 @@ class DocsRepoImpl implements DocsRepo {
   }
 
   @override
+  Future<({double lat, double lng})> getCurrentLocation() async {
+    bool serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) throw Exception('Location service disabled');
+    }
+
+    PermissionStatus permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        throw Exception('Location permission not granted');
+      }
+    }
+
+    final locationData = await location.getLocation();
+    return (
+      lat: locationData.latitude!,
+      lng: locationData.longitude!,
+    );
+  }
+
+  @override
   Future<ApiResult<DocEntity?>> createDoc({
     required AddDocReqEntity addDocReqEntity,
     required ProgressCallback? onSendProgress,
   }) async {
     try {
       final res = await postsApi.createDoc(
-        orderId: addDocReqEntity?.orderId ?? 0,
+        orderId: addDocReqEntity.orderId ?? 0,
         videoOne: addDocReqEntity.videoOne!,
         videoTwo: addDocReqEntity.videoTwo!,
         imageOne: addDocReqEntity.imageOne!,

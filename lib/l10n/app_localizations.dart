@@ -194,6 +194,12 @@ abstract class AppLocalizations {
   /// **'Add documentation'**
   String get add_documentation;
 
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
   /// No description provided for @count.
   ///
   /// In en, this message translates to:

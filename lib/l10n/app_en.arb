@@ -15,6 +15,7 @@
   "add_documentations_view": "===================================      add_documentations_view    ===========================================",
   "execution_number": "Execution number",
   "add_documentation": "Add documentation",
+  "location": "Location",
   "count": "Count",
   "@@locale": "en",
   "kinia_name": "Kenya",

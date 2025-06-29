@@ -5,6 +5,7 @@ import '../entities/add_doc_req_entity.dart';
 
 abstract class DocsRepo {
   Future<ApiResult<DocsResEntity?>> getDocs({required int clientId});
+  Future<({double lat, double lng})> getCurrentLocation();
   Future<ApiResult<DocEntity?>> createDoc({
     required AddDocReqEntity addDocReqEntity,
     required ProgressCallback? onSendProgress,
