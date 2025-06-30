@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../../../../core/widgets/custom_circular_progress.dart';
 import '../../../login/present/views/login_view.dart';
 import '../../../home/home_view.dart';
@@ -27,8 +29,20 @@ class MainView extends StatelessWidget {
           child: BlocBuilder<MainBloc, MainState>(
             builder: (context, state) {
               return state.maybeWhen(
-                logedIn: () => HomeView(),
-                logedOut: () => const LoginView(),
+                logedIn: () {
+                  if (kReleaseMode) {
+                    return HomeView();
+                  } else {
+                    return HomeView();
+                  }
+                },
+                logedOut: () {
+                  if (kReleaseMode) {
+                    return LoginView();
+                  } else {
+                    return HomeView();
+                  }
+                },
                 orElse: () => const CustomCircularProgress(),
               );
             },

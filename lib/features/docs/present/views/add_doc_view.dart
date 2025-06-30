@@ -195,6 +195,7 @@ class _AddDocViewState extends State<AddDocView> {
               videoTwoController.text = addDocReqEntity?.videoTwo?.path ?? '';
               imageOneController.text = addDocReqEntity?.imageOne?.path ?? '';
               imageTwoController.text = addDocReqEntity?.imageTwo?.path ?? '';
+              locationController.text = addDocReqEntity?.imageTwo?.path ?? '';
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -317,6 +318,11 @@ class _AddDocViewState extends State<AddDocView> {
                     ),
                     CustomTextField(
                       controller: locationController,
+                      maxLines: 2,
+                      readOnly: true,
+                      suffixIcon: Icons.gps_fixed,
+                      labelText: t.location,
+                      hint: t.location,
                       onTap: () async {
                         final LatLng? result = await Navigator.push(
                           context,
@@ -337,11 +343,6 @@ class _AddDocViewState extends State<AddDocView> {
                               );
                         }
                       },
-                      maxLines: 2,
-                      readOnly: true,
-                      suffixIcon: Icons.gps_fixed,
-                      labelText: t.place_hint,
-                      hint: t.place_hint,
                     ),
                     GestureDetector(
                       onTap: () async {
