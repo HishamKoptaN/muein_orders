@@ -2,13 +2,13 @@ name: Cleanup Old Releases
 on:
   push:
     branches:
-      - main  # يتم التشغيل عند الدفع على main
+      - main
+
 jobs:
   delete_old_releases:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup gcloud auth
         uses: google-github-actions/auth@v2
@@ -16,26 +16,19 @@ jobs:
           credentials_json: '${{ secrets.GCP_CREDENTIALS_JSON }}'
 
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: npm install -g firebase-tools@latest
 
       - name: Get app releases
         id: fetch
         run: |
-          firebase appdistribution:releases:list \
-            --app ${{ secrets.FIREBASE_APP_ID }} \
-            --limit 100 \
-            --sort "createTime" \
-            --json > all_releases.json
+          firebase appdistribution:releases:list ${{ secrets.FIREBASE_APP_ID }} \
+            --limit 100 --sort "createTime" --json > all_releases.json
 
-          # احتفظ بأحدث 5، وأزل البقية
           jq -r '.[].releaseId' all_releases.json | tail -n +6 > to_delete.txt
 
       - name: Delete old releases
         run: |
           while read release_id; do
             echo "Deleting release $release_id"
-            firebase appdistribution:releases:delete \
-              --app ${{ secrets.FIREBASE_APP_ID }} \
-              --release-id "$release_id" \
-              --yes
+            firebase appdistribution:releases:delete ${{ secrets.FIREBASE_APP_ID }} "$release_id" --yes
           done < to_delete.txt
