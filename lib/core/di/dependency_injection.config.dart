@@ -22,7 +22,7 @@ import '../../features/docs/data/datasources/docs_api.dart' as _i715;
 import '../../features/docs/data/repo_impl/docs_repo_impl.dart' as _i430;
 import '../../features/docs/domain/repo/docs_repo.dart' as _i672;
 import '../../features/docs/domain/usecases/docs_use_cases.dart' as _i689;
-import '../../features/docs/present/bloc/docs_bloc.dart' as _i243;
+import '../../features/docs/present/blocs/bloc/docs_bloc.dart' as _i395;
 import '../../features/language/bloc/language_cubit.dart' as _i766;
 import '../../features/login/data/data_sources/login_api.dart' as _i59;
 import '../../features/login/data/repo_imp/login_repo_impl.dart' as _i0;
@@ -115,8 +115,8 @@ _i174.GetIt init(
       ));
   gh.factory<_i189.OrdersBloc>(
       () => _i189.OrdersBloc(gh<_i802.OrdersUseCases>()));
-  gh.factory<_i243.DocsBloc>(
-      () => _i243.DocsBloc(docsUseCase: gh<_i689.DocsUseCase>()));
+  gh.factory<_i395.DocsBloc>(
+      () => _i395.DocsBloc(docsUseCase: gh<_i689.DocsUseCase>()));
   return getIt;
 }
 

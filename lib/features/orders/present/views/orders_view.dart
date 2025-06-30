@@ -175,7 +175,67 @@ class _OrdersViewState extends State<OrdersView> {
                                                                             0),
                                                           ),
                                                         );
-                                                        //  await showDialog(
+                                                      
+                                                      },
+                                                      child: buildOrderRow(
+                                                        order: order,
+                                                        t: t,
+                                                        context: context,
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ))
+                        ],
+                      );
+                    },
+                    orElse: () {
+                      return const SizedBox();
+                    },
+                    loading: () {
+                      return ListView.builder(
+                        padding: const EdgeInsets.only(top: 10),
+                        itemCount: 10,
+                        itemBuilder: (context, index) => ShimmerClientRow(
+                          height: 100.h,
+                        ),
+                      );
+                    },
+                    failure: (e) {
+                      return Center(
+                        child: Text(
+                          e.error ?? '',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+}
+
+
+
+
+  //  await showDialog(
                                                         //     context: context,
                                                         //     builder:
                                                         //         (BuildContext
@@ -250,59 +310,3 @@ class _OrdersViewState extends State<OrdersView> {
                                                         //       );
                                                         //     },
                                                         //   );
-                                                      },
-                                                      child: buildOrderRow(
-                                                        order: order,
-                                                        t: t,
-                                                        context: context,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ))
-                        ],
-                      );
-                    },
-                    orElse: () {
-                      return const SizedBox();
-                    },
-                    loading: () {
-                      return ListView.builder(
-                        padding: const EdgeInsets.only(top: 10),
-                        itemCount: 10,
-                        itemBuilder: (context, index) => ShimmerClientRow(
-                          height: 100.h,
-                        ),
-                      );
-                    },
-                    failure: (e) {
-                      return Center(
-                        child: Text(
-                          e.error ?? '',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 24),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_onScroll);
-    _scrollController.dispose();
-    super.dispose();
-  }
-}

@@ -1,9 +1,9 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:mubin_orders/features/docs/data/mapper/docs_mapper.dart';
 import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/errors/api_error_handler.dart';
-import '../../domain/entities/add_doc_req_entity.dart';
 import '../../domain/repo/docs_repo.dart';
 import 'dart:async';
 import 'package:location/location.dart';
@@ -62,18 +62,24 @@ class DocsRepoImpl implements DocsRepo {
 
   @override
   Future<ApiResult<DocEntity?>> createDoc({
-    required AddDocReqEntity addDocReqEntity,
+    required int orderId,
+    required File videoOne,
+    required File videoTwo,
+    required File imageOne,
+    required File imageTwo,
+    required String longitude,
+    required String latitude,
     required ProgressCallback? onSendProgress,
   }) async {
     try {
       final res = await postsApi.createDoc(
-        orderId: addDocReqEntity.orderId ?? 0,
-        videoOne: addDocReqEntity.videoOne!,
-        videoTwo: addDocReqEntity.videoTwo!,
-        imageOne: addDocReqEntity.imageOne!,
-        imageTwo: addDocReqEntity.imageTwo!,
-        latitude: addDocReqEntity.latitude ?? '0.0',
-        longitude: addDocReqEntity.longitude ?? '0.0',
+        orderId: orderId,
+        videoOne: videoOne,
+        videoTwo: videoTwo,
+        imageOne: imageOne,
+        imageTwo: imageTwo,
+        longitude: longitude,
+        latitude: latitude,
         onSendProgress: onSendProgress,
       );
       final result = res.toEntity();

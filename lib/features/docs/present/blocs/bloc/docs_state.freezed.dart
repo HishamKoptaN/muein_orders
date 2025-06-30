@@ -21,8 +21,18 @@ mixin _$DocsState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)
+    required TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getDocsfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -33,8 +43,18 @@ mixin _$DocsState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult? Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -45,8 +65,18 @@ mixin _$DocsState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -150,8 +180,18 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)
+    required TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getDocsfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -165,8 +205,18 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult? Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -180,8 +230,18 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -285,8 +345,18 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)
+    required TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getDocsfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -300,8 +370,18 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult? Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -315,8 +395,18 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -420,8 +510,18 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)
+    required TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getDocsfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -435,8 +535,18 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult? Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -450,8 +560,18 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -520,10 +640,15 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   $Res call(
       {List<DocEntity>? docs,
       bool? hasMore,
-      AddDocReqEntity? addDocReqEntity,
+      GenericFormzInput<dynamic>? orderId,
+      FileFormzInput videoOne,
+      FileFormzInput videoTwo,
+      FileFormzInput imageOne,
+      FileFormzInput imageTwo,
+      GenericFormzInput<dynamic> latitude,
+      GenericFormzInput<dynamic> longitude,
+      FormzSubmissionStatus formzSubmissionStatus,
       String? uploadingProgress});
-
-  $AddDocReqEntityCopyWith<$Res>? get addDocReqEntity;
 }
 
 /// @nodoc
@@ -541,7 +666,14 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? docs = freezed,
     Object? hasMore = freezed,
-    Object? addDocReqEntity = freezed,
+    Object? orderId = freezed,
+    Object? videoOne = null,
+    Object? videoTwo = null,
+    Object? imageOne = null,
+    Object? imageTwo = null,
+    Object? latitude = null,
+    Object? longitude = null,
+    Object? formzSubmissionStatus = null,
     Object? uploadingProgress = freezed,
   }) {
     return _then(_$LoadedImpl(
@@ -553,29 +685,43 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
               as bool?,
-      addDocReqEntity: freezed == addDocReqEntity
-          ? _value.addDocReqEntity
-          : addDocReqEntity // ignore: cast_nullable_to_non_nullable
-              as AddDocReqEntity?,
+      orderId: freezed == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as GenericFormzInput<dynamic>?,
+      videoOne: null == videoOne
+          ? _value.videoOne
+          : videoOne // ignore: cast_nullable_to_non_nullable
+              as FileFormzInput,
+      videoTwo: null == videoTwo
+          ? _value.videoTwo
+          : videoTwo // ignore: cast_nullable_to_non_nullable
+              as FileFormzInput,
+      imageOne: null == imageOne
+          ? _value.imageOne
+          : imageOne // ignore: cast_nullable_to_non_nullable
+              as FileFormzInput,
+      imageTwo: null == imageTwo
+          ? _value.imageTwo
+          : imageTwo // ignore: cast_nullable_to_non_nullable
+              as FileFormzInput,
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as GenericFormzInput<dynamic>,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as GenericFormzInput<dynamic>,
+      formzSubmissionStatus: null == formzSubmissionStatus
+          ? _value.formzSubmissionStatus
+          : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+              as FormzSubmissionStatus,
       uploadingProgress: freezed == uploadingProgress
           ? _value.uploadingProgress
           : uploadingProgress // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
-  }
-
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AddDocReqEntityCopyWith<$Res>? get addDocReqEntity {
-    if (_value.addDocReqEntity == null) {
-      return null;
-    }
-
-    return $AddDocReqEntityCopyWith<$Res>(_value.addDocReqEntity!, (value) {
-      return _then(_value.copyWith(addDocReqEntity: value));
-    });
   }
 }
 
@@ -583,14 +729,22 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
-      {required final List<DocEntity>? docs,
-      required this.hasMore,
-      required this.addDocReqEntity,
+      {final List<DocEntity>? docs = const [],
+      this.hasMore = false,
+      required this.orderId,
+      required this.videoOne,
+      required this.videoTwo,
+      required this.imageOne,
+      required this.imageTwo,
+      required this.latitude,
+      required this.longitude,
+      required this.formzSubmissionStatus,
       required this.uploadingProgress})
       : _docs = docs;
 
   final List<DocEntity>? _docs;
   @override
+  @JsonKey()
   List<DocEntity>? get docs {
     final value = _docs;
     if (value == null) return null;
@@ -600,15 +754,30 @@ class _$LoadedImpl implements _Loaded {
   }
 
   @override
+  @JsonKey()
   final bool? hasMore;
   @override
-  final AddDocReqEntity? addDocReqEntity;
+  final GenericFormzInput<dynamic>? orderId;
+  @override
+  final FileFormzInput videoOne;
+  @override
+  final FileFormzInput videoTwo;
+  @override
+  final FileFormzInput imageOne;
+  @override
+  final FileFormzInput imageTwo;
+  @override
+  final GenericFormzInput<dynamic> latitude;
+  @override
+  final GenericFormzInput<dynamic> longitude;
+  @override
+  final FormzSubmissionStatus formzSubmissionStatus;
   @override
   final String? uploadingProgress;
 
   @override
   String toString() {
-    return 'DocsState.loaded(docs: $docs, hasMore: $hasMore, addDocReqEntity: $addDocReqEntity, uploadingProgress: $uploadingProgress)';
+    return 'DocsState.loaded(docs: $docs, hasMore: $hasMore, orderId: $orderId, videoOne: $videoOne, videoTwo: $videoTwo, imageOne: $imageOne, imageTwo: $imageTwo, latitude: $latitude, longitude: $longitude, formzSubmissionStatus: $formzSubmissionStatus, uploadingProgress: $uploadingProgress)';
   }
 
   @override
@@ -618,8 +787,21 @@ class _$LoadedImpl implements _Loaded {
             other is _$LoadedImpl &&
             const DeepCollectionEquality().equals(other._docs, _docs) &&
             (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
-            (identical(other.addDocReqEntity, addDocReqEntity) ||
-                other.addDocReqEntity == addDocReqEntity) &&
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.videoOne, videoOne) ||
+                other.videoOne == videoOne) &&
+            (identical(other.videoTwo, videoTwo) ||
+                other.videoTwo == videoTwo) &&
+            (identical(other.imageOne, imageOne) ||
+                other.imageOne == imageOne) &&
+            (identical(other.imageTwo, imageTwo) ||
+                other.imageTwo == imageTwo) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.formzSubmissionStatus, formzSubmissionStatus) ||
+                other.formzSubmissionStatus == formzSubmissionStatus) &&
             (identical(other.uploadingProgress, uploadingProgress) ||
                 other.uploadingProgress == uploadingProgress));
   }
@@ -629,7 +811,14 @@ class _$LoadedImpl implements _Loaded {
       runtimeType,
       const DeepCollectionEquality().hash(_docs),
       hasMore,
-      addDocReqEntity,
+      orderId,
+      videoOne,
+      videoTwo,
+      imageOne,
+      imageTwo,
+      latitude,
+      longitude,
+      formzSubmissionStatus,
       uploadingProgress);
 
   /// Create a copy of DocsState
@@ -646,13 +835,34 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)
+    required TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getDocsfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return loaded(docs, hasMore, addDocReqEntity, uploadingProgress);
+    return loaded(
+        docs,
+        hasMore,
+        orderId,
+        videoOne,
+        videoTwo,
+        imageOne,
+        imageTwo,
+        latitude,
+        longitude,
+        formzSubmissionStatus,
+        uploadingProgress);
   }
 
   @override
@@ -661,13 +871,34 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult? Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return loaded?.call(docs, hasMore, addDocReqEntity, uploadingProgress);
+    return loaded?.call(
+        docs,
+        hasMore,
+        orderId,
+        videoOne,
+        videoTwo,
+        imageOne,
+        imageTwo,
+        latitude,
+        longitude,
+        formzSubmissionStatus,
+        uploadingProgress);
   }
 
   @override
@@ -676,15 +907,36 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(docs, hasMore, addDocReqEntity, uploadingProgress);
+      return loaded(
+          docs,
+          hasMore,
+          orderId,
+          videoOne,
+          videoTwo,
+          imageOne,
+          imageTwo,
+          latitude,
+          longitude,
+          formzSubmissionStatus,
+          uploadingProgress);
     }
     return orElse();
   }
@@ -735,14 +987,28 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements DocsState {
   const factory _Loaded(
-      {required final List<DocEntity>? docs,
-      required final bool? hasMore,
-      required final AddDocReqEntity? addDocReqEntity,
+      {final List<DocEntity>? docs,
+      final bool? hasMore,
+      required final GenericFormzInput<dynamic>? orderId,
+      required final FileFormzInput videoOne,
+      required final FileFormzInput videoTwo,
+      required final FileFormzInput imageOne,
+      required final FileFormzInput imageTwo,
+      required final GenericFormzInput<dynamic> latitude,
+      required final GenericFormzInput<dynamic> longitude,
+      required final FormzSubmissionStatus formzSubmissionStatus,
       required final String? uploadingProgress}) = _$LoadedImpl;
 
   List<DocEntity>? get docs;
   bool? get hasMore;
-  AddDocReqEntity? get addDocReqEntity;
+  GenericFormzInput<dynamic>? get orderId;
+  FileFormzInput get videoOne;
+  FileFormzInput get videoTwo;
+  FileFormzInput get imageOne;
+  FileFormzInput get imageTwo;
+  GenericFormzInput<dynamic> get latitude;
+  GenericFormzInput<dynamic> get longitude;
+  FormzSubmissionStatus get formzSubmissionStatus;
   String? get uploadingProgress;
 
   /// Create a copy of DocsState
@@ -825,8 +1091,18 @@ class _$GetDocsFailureImpl implements _GetDocsFailure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)
+    required TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getDocsfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -840,8 +1116,18 @@ class _$GetDocsFailureImpl implements _GetDocsFailure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult? Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -855,8 +1141,18 @@ class _$GetDocsFailureImpl implements _GetDocsFailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -997,8 +1293,18 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)
+    required TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getDocsfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -1012,8 +1318,18 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult? Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -1027,8 +1343,18 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore,
-            AddDocReqEntity? addDocReqEntity, String? uploadingProgress)?
+    TResult Function(
+            List<DocEntity>? docs,
+            bool? hasMore,
+            GenericFormzInput<dynamic>? orderId,
+            FileFormzInput videoOne,
+            FileFormzInput videoTwo,
+            FileFormzInput imageOne,
+            FileFormzInput imageTwo,
+            GenericFormzInput<dynamic> latitude,
+            GenericFormzInput<dynamic> longitude,
+            FormzSubmissionStatus formzSubmissionStatus,
+            String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getDocsfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,

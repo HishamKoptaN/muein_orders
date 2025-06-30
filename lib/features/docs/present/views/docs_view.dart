@@ -2,9 +2,9 @@ import '../../../../core/all_imports.dart';
 import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../bloc/docs_bloc.dart';
-import '../bloc/docs_event.dart';
-import '../bloc/docs_state.dart';
+import '../blocs/bloc/docs_bloc.dart';
+import '../blocs/bloc/docs_event.dart';
+import '../blocs/bloc/docs_state.dart';
 import 'build_shimmer_order_placeholder.dart';
 import 'widgets/doc_widget.dart';
 
@@ -18,14 +18,12 @@ class DocsView extends StatefulWidget {
 
 class _DocsViewState extends State<DocsView> {
   final ScrollController _scrollController = ScrollController();
-  late DocsBloc _docsBloc;
   @override
   void initState() {
     super.initState();
-    _docsBloc = context.read<DocsBloc>();
-    _docsBloc.add(
-      DocsEvent.getDocs(orderId: widget.orderId),
-    );
+    context.read<DocsBloc>().add(
+          DocsEvent.getDocs(orderId: widget.orderId),
+        );
     _scrollController.addListener(
       _onScroll,
     );
@@ -34,9 +32,9 @@ class _DocsViewState extends State<DocsView> {
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent) {
-      _docsBloc.add(
-        DocsEvent.getDocs(orderId: widget.orderId),
-      );
+      context.read<DocsBloc>().add(
+            DocsEvent.getDocs(orderId: widget.orderId),
+          );
     }
   }
 
@@ -62,7 +60,14 @@ class _DocsViewState extends State<DocsView> {
             loaded: (
               docs,
               hasMore,
-              addOrderReqModel,
+              orderId,
+              videoOne,
+              videoTwo,
+              imageOne,
+              imageTwo,
+              latitude,
+              longitude,
+              formzSubmissionStatus,
               uploadingProgress,
             ) {
               return ListView.builder(

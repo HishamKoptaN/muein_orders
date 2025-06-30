@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:formz/formz.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
@@ -8,12 +9,10 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../orders/present/bloc/orders_bloc.dart';
 import '../../../orders/present/bloc/orders_event.dart';
-import '../../domain/entities/add_doc_req_entity.dart';
-import '../bloc/docs_bloc.dart';
-import '../bloc/docs_event.dart';
-import '../bloc/docs_state.dart';
+import '../blocs/bloc/docs_bloc.dart';
+import '../blocs/bloc/docs_event.dart';
+import '../blocs/bloc/docs_state.dart';
 import '../../../../core/widgets/text_field.dart';
-import 'package:location/location.dart';
 
 class AddDocView extends StatefulWidget {
   const AddDocView({super.key, required this.orderId});
@@ -24,16 +23,6 @@ class AddDocView extends StatefulWidget {
 
 class _AddDocViewState extends State<AddDocView> {
   final ImagePicker imagePicker = ImagePicker();
-  XFile? videoOne;
-  XFile? videoTwo;
-  XFile? imageOne;
-  XFile? imageTwo;
-  final TextEditingController videOneController = TextEditingController();
-  final TextEditingController videoTwoController = TextEditingController();
-  final TextEditingController imageOneController = TextEditingController();
-  final TextEditingController imageTwoController = TextEditingController();
-  final TextEditingController locationController = TextEditingController();
-
   Future<File?> selectFilesPath({
     required BuildContext context,
     required FileType fileType,
@@ -115,8 +104,9 @@ class _AddDocViewState extends State<AddDocView> {
   void initState() {
     super.initState();
     context.read<DocsBloc>().add(
-          DocsEvent.updateData(
-              addDocReqEntity: AddDocReqEntity(orderId: widget.orderId)),
+          DocsEvent.orderIdChanged(
+            orderId: widget.orderId,
+          ),
         );
   }
 
@@ -183,34 +173,34 @@ class _AddDocViewState extends State<AddDocView> {
         ) {
           return state.maybeWhen(
             loaded: (
-              orders,
+              docs,
               hasMore,
-              addDocReqEntity,
+              orderId,
+              videoOne,
+              videoTwo,
+              imageOne,
+              imageTwo,
+              latitude,
+              longitude,
+              formzSubmissionStatus,
               uploadingProgress,
             ) {
               double? parsedProgress = double.tryParse(
                 uploadingProgress ?? '',
               );
-              videOneController.text = addDocReqEntity?.videoOne?.path ?? '';
-              videoTwoController.text = addDocReqEntity?.videoTwo?.path ?? '';
-              imageOneController.text = addDocReqEntity?.imageOne?.path ?? '';
-              imageTwoController.text = addDocReqEntity?.imageTwo?.path ?? '';
-              locationController.text = addDocReqEntity?.imageTwo?.path ?? '';
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CustomTextField(
-                      controller: videOneController,
+                      initialValue: videoOne.value?.path ?? 'not found',
                       maxLines: 2,
                       onTap: () async {
                         context.read<DocsBloc>().add(
-                              DocsEvent.updateData(
-                                addDocReqEntity: addDocReqEntity!.copyWith(
-                                  videoOne: await selectFilesPath(
-                                    context: context,
-                                    fileType: FileType.video,
-                                  ),
+                              DocsEvent.videoOneChanged(
+                                file: await selectFilesPath(
+                                  context: context,
+                                  fileType: FileType.video,
                                 ),
                               ),
                             );
@@ -220,26 +210,18 @@ class _AddDocViewState extends State<AddDocView> {
                       hint: t.add_video,
                       suffixIcon: Icons.cloud_upload,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (
-                        v,
-                      ) {
-                        if (v == null || v.trim().isEmpty) {
-                          return 'مطلوب';
-                        }
-                        return null;
-                      },
+                      validator: (_) =>
+                          videoOne.isNotValid ? videoOne.errorMessage : null,
                     ),
                     CustomTextField(
-                      controller: videoTwoController,
+                      initialValue: videoTwo.value?.path,
                       maxLines: 2,
                       onTap: () async {
                         context.read<DocsBloc>().add(
-                              DocsEvent.updateData(
-                                addDocReqEntity: addDocReqEntity!.copyWith(
-                                  videoTwo: await selectFilesPath(
-                                    context: context,
-                                    fileType: FileType.video,
-                                  ),
+                              DocsEvent.videoTwoChanged(
+                                file: await selectFilesPath(
+                                  context: context,
+                                  fileType: FileType.video,
                                 ),
                               ),
                             );
@@ -249,28 +231,30 @@ class _AddDocViewState extends State<AddDocView> {
                       hint: t.add_video,
                       suffixIcon: Icons.cloud_upload,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (
-                        v,
-                      ) {
-                        if (v == null || v.trim().isEmpty) {
-                          return 'مطلوب';
-                        }
-                        return null;
-                      },
+                      validator: (_) =>
+                          videoTwo.isNotValid ? videoTwo.errorMessage : null,
                     ),
+                    // Image.file(imageOne.value!),
                     CustomTextField(
-                      controller: imageOneController,
+                      initialValue: imageOne.value?.path,
                       onTap: () async {
-                        context.read<DocsBloc>().add(
-                              DocsEvent.updateData(
-                                addDocReqEntity: addDocReqEntity!.copyWith(
-                                  imageOne: await selectFilesPath(
-                                    context: context,
-                                    fileType: FileType.image,
-                                  ),
-                                ),
-                              ),
-                            );
+                        final file = await selectFilesPath(
+                          context: context,
+                          fileType: FileType.image,
+                        );
+                        if (file != null) {
+                          context
+                              .read<DocsBloc>()
+                              .add(DocsEvent.imageOneChanged(file: file));
+                        }
+                        // context.read<DocsBloc>().add(
+                        //       DocsEvent.imageOneChanged(
+                        //         file: await selectFilesPath(
+                        //           context: context,
+                        //           fileType: FileType.image,
+                        //         ),
+                        //       ),
+                        //     );
                       },
                       maxLines: 2,
                       readOnly: true,
@@ -278,46 +262,34 @@ class _AddDocViewState extends State<AddDocView> {
                       labelText: t.add_picure,
                       hint: t.add_picure,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (
-                        v,
-                      ) {
-                        if (v == null || v.trim().isEmpty) {
-                          return 'مطلوب';
-                        }
-                        return null;
-                      },
+                      validator: (_) =>
+                          imageOne.isNotValid ? imageOne.errorMessage : null,
                     ),
                     CustomTextField(
-                      controller: imageTwoController,
+                      initialValue: imageTwo.value?.path,
                       onTap: () async {
                         context.read<DocsBloc>().add(
-                              DocsEvent.updateData(
-                                addDocReqEntity: addDocReqEntity!.copyWith(
-                                  imageTwo: await selectFilesPath(
-                                    context: context,
-                                    fileType: FileType.image,
-                                  ),
+                              DocsEvent.imageTwoChanged(
+                                file: await selectFilesPath(
+                                  context: context,
+                                  fileType: FileType.image,
                                 ),
                               ),
                             );
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (
-                        v,
-                      ) {
-                        if (v == null || v.trim().isEmpty) {
-                          return 'مطلوب';
-                        }
-                        return null;
-                      },
                       maxLines: 2,
                       readOnly: true,
                       suffixIcon: Icons.cloud_upload,
                       labelText: t.add_picure,
                       hint: t.add_picure,
+                      validator: (_) =>
+                          imageTwo.isNotValid ? imageTwo.errorMessage : null,
                     ),
                     CustomTextField(
-                      controller: locationController,
+                      initialValue: latitude.isValid
+                          ? '${latitude.value ?? ''} , ${longitude.value ?? ''}'
+                          : '',
                       maxLines: 2,
                       readOnly: true,
                       suffixIcon: Icons.gps_fixed,
@@ -332,13 +304,10 @@ class _AddDocViewState extends State<AddDocView> {
                         if (result != null) {
                           final lat = result.latitude.toString();
                           final lng = result.longitude.toString();
-                          locationController.text = "$lat, $lng";
                           context.read<DocsBloc>().add(
-                                DocsEvent.updateData(
-                                  addDocReqEntity: addDocReqEntity!.copyWith(
-                                    latitude: lat,
-                                    longitude: lng,
-                                  ),
+                                DocsEvent.updateLocation(
+                                  latitude: lat,
+                                  longitude: lng,
                                 ),
                               );
                         }
@@ -353,8 +322,10 @@ class _AddDocViewState extends State<AddDocView> {
                       child: Container(
                         height: 50.h,
                         width: 200.w,
-                        decoration: const BoxDecoration(
-                          color: Colors.green,
+                        decoration: BoxDecoration(
+                          color: formzSubmissionStatus.isSuccess
+                              ? AppColors.primaryColor
+                              : AppColors.veryMoreDarkGreyColor,
                         ),
                         child: Center(
                           child: uploadingProgress == null

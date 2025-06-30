@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/app_colors.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   const CustomTextField({
     super.key,
     this.controller,
@@ -35,6 +35,51 @@ class CustomTextField extends StatelessWidget {
   final IconData? suffixIcon;
   final bool obscureText;
   final int maxLines;
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  late final TextEditingController _internalController;
+  bool _isExternalController = false;
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  final FocusNode _focusNode = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      if (!_focusNode.hasFocus) {
+        setState(() {
+          _autovalidateMode = AutovalidateMode.onUserInteraction;
+        });
+      }
+    });
+    _isExternalController = widget.controller != null;
+    _internalController = widget.controller ?? TextEditingController();
+    if (widget.initialValue != null) {
+      _internalController.text = widget.initialValue!;
+    }
+  }
+
+  @override
+  void didUpdateWidget(CustomTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!_isExternalController &&
+        widget.initialValue != oldWidget.initialValue) {
+      _internalController.text = widget.initialValue ?? '';
+    }
+  }
+
+  @override
+  void dispose() {
+    if (!_isExternalController) {
+      _internalController.dispose();
+    }
+    _focusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(
     BuildContext contex,
@@ -43,32 +88,33 @@ class CustomTextField extends StatelessWidget {
       height: 75.h,
       width: 300.w,
       child: TextFormField(
-        initialValue: initialValue,
-        controller: controller,
-        onChanged: onChanged,
-        enabled: enabled ?? true,
-        obscureText: obscureText,
-        validator: validator,
-        maxLines: maxLines,
-        onTap: onTap,
-        readOnly: readOnly ?? false,
-        autovalidateMode: autovalidateMode,
+        controller: _internalController,
+        autovalidateMode: _autovalidateMode,
+        focusNode: _focusNode,
+        // initialValue: widget.initialValue,
+        onChanged: widget.onChanged,
+        enabled: widget.enabled ?? true,
+        obscureText: widget.obscureText,
+        validator: widget.validator,
+        maxLines: widget.maxLines,
+        onTap: widget.onTap,
+        readOnly: widget.readOnly ?? false,
         decoration: InputDecoration(
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          suffixIcon: Icon(suffixIcon, color: Colors.grey),
+          suffixIcon: Icon(widget.suffixIcon, color: Colors.grey),
           floatingLabelStyle: const TextStyle(
             color: AppColors.customRed,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
-          labelText: labelText,
+          labelText: widget.labelText,
           labelStyle: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
-          hintText: hint,
+          hintText: widget.hint,
           hintStyle: const TextStyle(
             color: Colors.grey,
           ),

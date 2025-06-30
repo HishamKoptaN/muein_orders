@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'core/all_imports.dart';
 import 'core/app_observer.dart';
 import 'core/database/cache/shared_pref_helper.dart';
@@ -7,15 +9,19 @@ import 'core/database/cache/shared_pref_keys.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/login/present/bloc/login_bloc.dart';
 import 'features/main/present/view/main_view.dart';
-import 'features/docs/present/bloc/docs_bloc.dart';
+import 'features/docs/present/blocs/bloc/docs_bloc.dart';
 import 'features/orders/present/bloc/orders_bloc.dart';
 import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
-// AIzaSyA-3UUexiq7B_ImGOh_DqFwkocU5Mn84OY
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory:
+        HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
   configureDependencies();
   await ScreenUtil.ensureScreenSize();

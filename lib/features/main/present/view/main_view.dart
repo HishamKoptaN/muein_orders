@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../../../../core/widgets/custom_circular_progress.dart';
+import '../../../docs/present/views/add_doc_view.dart';
 import '../../../login/present/views/login_view.dart';
 import '../../../home/home_view.dart';
 import '../bloc/main_bloc.dart';
@@ -33,14 +34,18 @@ class MainView extends StatelessWidget {
                   if (kReleaseMode) {
                     return HomeView();
                   } else {
-                    return HomeView();
+                    return AddDocView(
+                      orderId: 1,
+                    );
                   }
                 },
                 logedOut: () {
                   if (kReleaseMode) {
                     return LoginView();
                   } else {
-                    return HomeView();
+                    return AddDocView(
+                      orderId: 1,
+                    );
                   }
                 },
                 orElse: () => const CustomCircularProgress(),
