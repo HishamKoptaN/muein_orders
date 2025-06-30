@@ -1,6 +1,8 @@
 name: Cleanup Old Releases
 on:
-  workflow_dispatch: # تشغيل يدوي
+  push:
+    branches:
+      - main
 
 jobs:
   delete_old_releases:
