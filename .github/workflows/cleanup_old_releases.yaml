@@ -19,9 +19,6 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      - name: Authenticate Firebase
-        run: firebase login:ci --no-localhost
-
       - name: Get app releases
         id: fetch
         run: |
