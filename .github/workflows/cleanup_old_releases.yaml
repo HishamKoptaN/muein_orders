@@ -1,4 +1,4 @@
-name: Cleanup Old Releases
+name: Cleanup Old Firebase Releases
 on:
   push:
     branches:
@@ -7,27 +7,27 @@ on:
 jobs:
   delete_old_releases:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Setup gcloud auth
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v2
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS_JSON }}'
 
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools@latest
+        run: npm install -g firebase-tools
 
-      - name: Get app releases
-        id: fetch
+      - name: Get Firebase releases and prepare deletion list
         run: |
-          firebase appdistribution:releases:list --app "${{ secrets.FIREBASE_APP_ID }}" \
-            --limit 100 --sort "createTime" --json > all_releases.json
+          firebase appdistribution:releases:list --app "${{ secrets.FIREBASE_APP_ID }}" --json > all_releases.json
           jq -r '.[].releaseId' all_releases.json | tail -n +6 > to_delete.txt
 
       - name: Delete old releases
         run: |
-          while read release_id; do
-            echo "Deleting release $release_id"
-            firebase appdistribution:releases:delete --app "${{ secrets.FIREBASE_APP_ID }}" "$release_id" --yes
+          while IFS= read -r release_id; do
+            echo "🗑️ Deleting release $release_id"
+            firebase appdistribution:releases:delete --app "${{ secrets.FIREBASE_APP_ID }}" "$release_id"
           done < to_delete.txt
