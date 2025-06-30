@@ -21,14 +21,13 @@ jobs:
       - name: Get app releases
         id: fetch
         run: |
-          firebase appdistribution:releases:list ${{ secrets.FIREBASE_APP_ID }} \
+          firebase appdistribution:releases:list --app "${{ secrets.FIREBASE_APP_ID }}" \
             --limit 100 --sort "createTime" --json > all_releases.json
-
           jq -r '.[].releaseId' all_releases.json | tail -n +6 > to_delete.txt
 
       - name: Delete old releases
         run: |
           while read release_id; do
             echo "Deleting release $release_id"
-            firebase appdistribution:releases:delete ${{ secrets.FIREBASE_APP_ID }} "$release_id" --yes
+            firebase appdistribution:releases:delete --app "${{ secrets.FIREBASE_APP_ID }}" "$release_id" --yes
           done < to_delete.txt
