@@ -12,7 +12,6 @@ class OrdersResEntity with _$OrdersResEntity {
   factory OrdersResEntity.fromJson(Map<String, dynamic> json) =>
       _$OrdersResEntityFromJson(json);
 }
-
 @freezed
 class OrderEntity with _$OrderEntity {
   const factory OrderEntity({
@@ -69,4 +68,11 @@ class PackageEntity with _$PackageEntity {
 
   factory PackageEntity.fromJson(Map<String, dynamic> json) =>
       _$PackageEntityFromJson(json);
+}
+
+enum DocUploadStatus {
+  notStarted,
+  uploading,
+  success,
+  failed,
 }

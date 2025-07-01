@@ -4,8 +4,10 @@ import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/build_order_row.dart';
 import '../../../../core/widgets/widget_column_header.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../docs/present/blocs/bloc/docs_bloc.dart';
 import '../../../docs/present/views/add_doc_view.dart';
 import '../../../docs/present/views/docs_view.dart';
+import '../../domain/entities/orders_res_entity.dart';
 import '../bloc/orders_bloc.dart';
 import '../bloc/orders_event.dart';
 import '../bloc/orders_state.dart';
@@ -175,7 +177,6 @@ class _OrdersViewState extends State<OrdersView> {
                                                                             0),
                                                           ),
                                                         );
-                                                      
                                                       },
                                                       child: buildOrderRow(
                                                         order: order,
@@ -224,11 +225,46 @@ class _OrdersViewState extends State<OrdersView> {
       ),
     );
   }
+
   @override
   void dispose() {
     _scrollController.removeListener(_onScroll);
     _scrollController.dispose();
     super.dispose();
+  }
+
+  Widget buildUploadStatus({required int orderId}) {
+    final statusData =
+        context.read<DocsBloc>().getUploadStatusForOrder(orderId);
+    Widget buildStatusText() {
+      if (statusData == null) return Text("لم يبدأ");
+      switch (statusData.status) {
+        case DocUploadStatus.uploading:
+          return Text("جاري الرفع ${statusData.progress ?? ''}",
+              style: TextStyle(color: Colors.orange));
+        case DocUploadStatus.success:
+          return Text("تم الرفع", style: TextStyle(color: Colors.green));
+        case DocUploadStatus.failed:
+          return Text("فشل الرفع", style: TextStyle(color: Colors.red));
+        case DocUploadStatus.notStarted:
+        default:
+          return Text("لم يبدأ");
+      }
+    }
+    if (statusData == null) {
+      return Text('لم يبدأ', style: TextStyle(color: Colors.grey));
+    }
+    switch (statusData.status) {
+      case DocUploadStatus.uploading:
+        return Text('جاري الرفع ${statusData.progress ?? ""}',
+            style: TextStyle(color: Colors.orange));
+      case DocUploadStatus.success:
+        return Text('تم الرفع', style: TextStyle(color: Colors.green));
+      case DocUploadStatus.failed:
+        return Text('فشل الرفع', style: TextStyle(color: Colors.red));
+      default:
+        return Text('لم يبدأ', style: TextStyle(color: Colors.grey));
+    }
   }
 }
 

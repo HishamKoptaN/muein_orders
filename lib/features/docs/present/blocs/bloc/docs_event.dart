@@ -19,8 +19,9 @@ class DocsEvent with _$DocsEvent {
     required String latitude,
     required String longitude,
   }) = _UpdateLocation;
-
   const factory DocsEvent.createDoc() = _CreateDoc;
+  const factory DocsEvent.resumePendingUploads() = _ResumePendingUploads;
+  const factory DocsEvent.getUploadStatusForOrder() = _GetUploadStatusForOrder;
 }
 
 enum FileType {

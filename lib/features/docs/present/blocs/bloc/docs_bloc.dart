@@ -8,6 +8,7 @@ import '../../../../../core/all_imports.dart';
 import '../../../../../core/errors/api_error_model.dart';
 import '../../../../../core/form_inputs/file_formz_input.dart';
 import '../../../../../core/form_inputs/generic_gormz_input.dart';
+import '../../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
 import 'docs_event.dart';
 import 'docs_state.dart';
@@ -26,6 +27,17 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
   GenericFormzInput? _latitude;
   GenericFormzInput? _longitude;
   FormzSubmissionStatus? _formzSubmissionStatus;
+  final Map<int, ({DocUploadStatus status, String? progress})> _orderDocStatus =
+      {};
+
+  final List<
+      ({
+        int orderId,
+        File imageOne,
+        File imageTwo,
+        File videoOne,
+        File videoTwo,
+      })> _pendingUploads = [];
 
   String? _uploadingProgress;
   DocsBloc({
@@ -102,6 +114,12 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
               }
               print(
                   'https://www.google.com/maps/search/?api=1&query=${_latitude},${_longitude}');
+              final id = _orderId?.value;
+              _orderDocStatus[id] =
+                  (status: DocUploadStatus.uploading, progress: "0%");
+
+              emitCustomLoaded(emit: emit);
+
               try {
                 emitCustomLoaded(emit: emit);
                 final result = await docsUseCase.createDoc(
@@ -126,6 +144,10 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
                   success: (
                     order,
                   ) async {
+                    _orderDocStatus[id!] = (
+                      status: DocUploadStatus.uploading,
+                      progress: _uploadingProgress,
+                    );
                     resetFormInputs();
                     _allDocs = [
                       order!,
@@ -142,6 +164,10 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
                   failure: (
                     apiErrorModel,
                   ) async {
+                    _orderDocStatus[id!] = (
+                      status: DocUploadStatus.uploading,
+                      progress: _uploadingProgress,
+                    );
                     emit(
                       DocsState.failure(
                         apiErrorModel: apiErrorModel,
@@ -153,6 +179,10 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
                   },
                 );
               } catch (e) {
+                _orderDocStatus[id!] = (
+                  status: DocUploadStatus.uploading,
+                  progress: _uploadingProgress,
+                );
                 emit(
                   DocsState.failure(
                     apiErrorModel: ApiErrorModel(
@@ -202,6 +232,17 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
             _longitude = GenericFormzInput<String>.dirty(longitude);
             emitCustomLoaded(emit: emit);
           },
+          resumePendingUploads: () async {
+            for (final pending in _pendingUploads) {
+              // await add(DocsEvent.orderIdChanged(orderId: pending.orderId));
+              // await add(DocsEvent.imageOneChanged(file: pending.imageOne));
+              // await add(DocsEvent.imageTwoChanged(file: pending.imageTwo));
+              // await add(DocsEvent.videoOneChanged(file: pending.videoOne));
+              // await add(DocsEvent.videoTwoChanged(file: pending.videoTwo));
+              // await add(const DocsEvent.createDoc());
+            }
+          },
+          getUploadStatusForOrder: () {},
         );
       },
     );
@@ -238,6 +279,19 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
 
   @override
   DocsState? fromJson(Map<String, dynamic> json) {
+    final raw = json['orderDocStatuses'] as Map<String, dynamic>? ?? {};
+    _orderDocStatus.clear();
+    for (final entry in raw.entries) {
+      final orderId = int.tryParse(entry.key);
+      if (orderId == null) continue;
+      final data = entry.value as Map<String, dynamic>;
+      final status = DocUploadStatus.values.byName(data['status'] as String);
+      final progress = data['progress'] as String?;
+      _orderDocStatus[orderId] = (
+        status: status,
+        progress: progress,
+      );
+    }
     return DocsState.loaded(
       docs: _allDocs ?? [],
       hasMore: _meta?.hasNextPage ?? false,
@@ -282,6 +336,15 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
         'latitude': latitude.value,
         'longitude': longitude.value,
         'uploadingProgress': uploadingProgress,
+        'orderDocStatuses': _orderDocStatus.map(
+          (key, value) => MapEntry(
+            key.toString(),
+            {
+              'status': value.status.name,
+              'progress': value.progress,
+            },
+          ),
+        ),
       },
     );
   }
@@ -295,5 +358,11 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
     _latitude = const GenericFormzInput<String>.pure();
     _longitude = const GenericFormzInput<String>.pure();
     _formzSubmissionStatus = FormzSubmissionStatus.initial;
+    _uploadingProgress = null;
+  }
+
+  ({DocUploadStatus status, String? progress})? getUploadStatusForOrder(
+      int orderId) {
+    return _orderDocStatus[orderId];
   }
 }

@@ -26,6 +26,8 @@ mixin _$DocsEvent {
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
     required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,8 @@ mixin _$DocsEvent {
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
     TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,8 @@ mixin _$DocsEvent {
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
     TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +69,9 @@ mixin _$DocsEvent {
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
     required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +84,8 @@ mixin _$DocsEvent {
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
     TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +98,8 @@ mixin _$DocsEvent {
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
     TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -188,6 +201,8 @@ class _$GetDocsImpl implements _GetDocs {
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
     required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
   }) {
     return getDocs(orderId);
   }
@@ -203,6 +218,8 @@ class _$GetDocsImpl implements _GetDocs {
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
     TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
   }) {
     return getDocs?.call(orderId);
   }
@@ -218,6 +235,8 @@ class _$GetDocsImpl implements _GetDocs {
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
     TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (getDocs != null) {
@@ -237,6 +256,9 @@ class _$GetDocsImpl implements _GetDocs {
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
     required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
   }) {
     return getDocs(this);
   }
@@ -252,6 +274,8 @@ class _$GetDocsImpl implements _GetDocs {
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
     TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
   }) {
     return getDocs?.call(this);
   }
@@ -267,6 +291,8 @@ class _$GetDocsImpl implements _GetDocs {
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
     TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (getDocs != null) {
@@ -365,6 +391,8 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
     required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
   }) {
     return orderIdChanged(orderId);
   }
@@ -380,6 +408,8 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
     TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
   }) {
     return orderIdChanged?.call(orderId);
   }
@@ -395,6 +425,8 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
     TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (orderIdChanged != null) {
@@ -414,6 +446,9 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
     required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
   }) {
     return orderIdChanged(this);
   }
@@ -429,6 +464,8 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
     TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
   }) {
     return orderIdChanged?.call(this);
   }
@@ -444,6 +481,8 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
     TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (orderIdChanged != null) {
@@ -543,6 +582,8 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
     required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
   }) {
     return videoOneChanged(file);
   }
@@ -558,6 +599,8 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
     TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
   }) {
     return videoOneChanged?.call(file);
   }
@@ -573,6 +616,8 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
     TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (videoOneChanged != null) {
@@ -592,6 +637,9 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
     required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
   }) {
     return videoOneChanged(this);
   }
@@ -607,6 +655,8 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
     TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
   }) {
     return videoOneChanged?.call(this);
   }
@@ -622,6 +672,8 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
     TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (videoOneChanged != null) {
@@ -721,6 +773,8 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
     required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
   }) {
     return videoTwoChanged(file);
   }
@@ -736,6 +790,8 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
     TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
   }) {
     return videoTwoChanged?.call(file);
   }
@@ -751,6 +807,8 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
     TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (videoTwoChanged != null) {
@@ -770,6 +828,9 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
     required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
   }) {
     return videoTwoChanged(this);
   }
@@ -785,6 +846,8 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
     TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
   }) {
     return videoTwoChanged?.call(this);
   }
@@ -800,6 +863,8 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
     TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (videoTwoChanged != null) {
@@ -899,6 +964,8 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
     required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
   }) {
     return imageOneChanged(file);
   }
@@ -914,6 +981,8 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
     TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
   }) {
     return imageOneChanged?.call(file);
   }
@@ -929,6 +998,8 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
     TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (imageOneChanged != null) {
@@ -948,6 +1019,9 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
     required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
   }) {
     return imageOneChanged(this);
   }
@@ -963,6 +1037,8 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
     TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
   }) {
     return imageOneChanged?.call(this);
   }
@@ -978,6 +1054,8 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
     TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (imageOneChanged != null) {
@@ -1077,6 +1155,8 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
     required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
   }) {
     return imageTwoChanged(file);
   }
@@ -1092,6 +1172,8 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
     TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
   }) {
     return imageTwoChanged?.call(file);
   }
@@ -1107,6 +1189,8 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
     TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (imageTwoChanged != null) {
@@ -1126,6 +1210,9 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
     required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
   }) {
     return imageTwoChanged(this);
   }
@@ -1141,6 +1228,8 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
     TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
   }) {
     return imageTwoChanged?.call(this);
   }
@@ -1156,6 +1245,8 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
     TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (imageTwoChanged != null) {
@@ -1265,6 +1356,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
     required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
   }) {
     return updateLocation(latitude, longitude);
   }
@@ -1280,6 +1373,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
     TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
   }) {
     return updateLocation?.call(latitude, longitude);
   }
@@ -1295,6 +1390,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
     TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (updateLocation != null) {
@@ -1314,6 +1411,9 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
     required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
   }) {
     return updateLocation(this);
   }
@@ -1329,6 +1429,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
     TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
   }) {
     return updateLocation?.call(this);
   }
@@ -1344,6 +1446,8 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
     TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (updateLocation != null) {
@@ -1417,6 +1521,8 @@ class _$CreateDocImpl implements _CreateDoc {
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
     required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
   }) {
     return createDoc();
   }
@@ -1432,6 +1538,8 @@ class _$CreateDocImpl implements _CreateDoc {
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
     TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
   }) {
     return createDoc?.call();
   }
@@ -1447,6 +1555,8 @@ class _$CreateDocImpl implements _CreateDoc {
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
     TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (createDoc != null) {
@@ -1466,6 +1576,9 @@ class _$CreateDocImpl implements _CreateDoc {
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
     required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
   }) {
     return createDoc(this);
   }
@@ -1481,6 +1594,8 @@ class _$CreateDocImpl implements _CreateDoc {
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
     TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
   }) {
     return createDoc?.call(this);
   }
@@ -1496,6 +1611,8 @@ class _$CreateDocImpl implements _CreateDoc {
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
     TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
     required TResult orElse(),
   }) {
     if (createDoc != null) {
@@ -1507,4 +1624,316 @@ class _$CreateDocImpl implements _CreateDoc {
 
 abstract class _CreateDoc implements DocsEvent {
   const factory _CreateDoc() = _$CreateDocImpl;
+}
+
+/// @nodoc
+abstract class _$$ResumePendingUploadsImplCopyWith<$Res> {
+  factory _$$ResumePendingUploadsImplCopyWith(_$ResumePendingUploadsImpl value,
+          $Res Function(_$ResumePendingUploadsImpl) then) =
+      __$$ResumePendingUploadsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResumePendingUploadsImplCopyWithImpl<$Res>
+    extends _$DocsEventCopyWithImpl<$Res, _$ResumePendingUploadsImpl>
+    implements _$$ResumePendingUploadsImplCopyWith<$Res> {
+  __$$ResumePendingUploadsImplCopyWithImpl(_$ResumePendingUploadsImpl _value,
+      $Res Function(_$ResumePendingUploadsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DocsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ResumePendingUploadsImpl implements _ResumePendingUploads {
+  const _$ResumePendingUploadsImpl();
+
+  @override
+  String toString() {
+    return 'DocsEvent.resumePendingUploads()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResumePendingUploadsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int orderId) getDocs,
+    required TResult Function(int orderId) orderIdChanged,
+    required TResult Function(File? file) videoOneChanged,
+    required TResult Function(File? file) videoTwoChanged,
+    required TResult Function(File? file) imageOneChanged,
+    required TResult Function(File? file) imageTwoChanged,
+    required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
+  }) {
+    return resumePendingUploads();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int orderId)? getDocs,
+    TResult? Function(int orderId)? orderIdChanged,
+    TResult? Function(File? file)? videoOneChanged,
+    TResult? Function(File? file)? videoTwoChanged,
+    TResult? Function(File? file)? imageOneChanged,
+    TResult? Function(File? file)? imageTwoChanged,
+    TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
+  }) {
+    return resumePendingUploads?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int orderId)? getDocs,
+    TResult Function(int orderId)? orderIdChanged,
+    TResult Function(File? file)? videoOneChanged,
+    TResult Function(File? file)? videoTwoChanged,
+    TResult Function(File? file)? imageOneChanged,
+    TResult Function(File? file)? imageTwoChanged,
+    TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
+    required TResult orElse(),
+  }) {
+    if (resumePendingUploads != null) {
+      return resumePendingUploads();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetDocs value) getDocs,
+    required TResult Function(_OrderIdChanged value) orderIdChanged,
+    required TResult Function(_VideoOneChanged value) videoOneChanged,
+    required TResult Function(_VideoTwoChanged value) videoTwoChanged,
+    required TResult Function(_ImageOneChanged value) imageOneChanged,
+    required TResult Function(_ImageTwoChanged value) imageTwoChanged,
+    required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
+  }) {
+    return resumePendingUploads(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetDocs value)? getDocs,
+    TResult? Function(_OrderIdChanged value)? orderIdChanged,
+    TResult? Function(_VideoOneChanged value)? videoOneChanged,
+    TResult? Function(_VideoTwoChanged value)? videoTwoChanged,
+    TResult? Function(_ImageOneChanged value)? imageOneChanged,
+    TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
+    TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
+  }) {
+    return resumePendingUploads?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetDocs value)? getDocs,
+    TResult Function(_OrderIdChanged value)? orderIdChanged,
+    TResult Function(_VideoOneChanged value)? videoOneChanged,
+    TResult Function(_VideoTwoChanged value)? videoTwoChanged,
+    TResult Function(_ImageOneChanged value)? imageOneChanged,
+    TResult Function(_ImageTwoChanged value)? imageTwoChanged,
+    TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
+    required TResult orElse(),
+  }) {
+    if (resumePendingUploads != null) {
+      return resumePendingUploads(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResumePendingUploads implements DocsEvent {
+  const factory _ResumePendingUploads() = _$ResumePendingUploadsImpl;
+}
+
+/// @nodoc
+abstract class _$$GetUploadStatusForOrderImplCopyWith<$Res> {
+  factory _$$GetUploadStatusForOrderImplCopyWith(
+          _$GetUploadStatusForOrderImpl value,
+          $Res Function(_$GetUploadStatusForOrderImpl) then) =
+      __$$GetUploadStatusForOrderImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetUploadStatusForOrderImplCopyWithImpl<$Res>
+    extends _$DocsEventCopyWithImpl<$Res, _$GetUploadStatusForOrderImpl>
+    implements _$$GetUploadStatusForOrderImplCopyWith<$Res> {
+  __$$GetUploadStatusForOrderImplCopyWithImpl(
+      _$GetUploadStatusForOrderImpl _value,
+      $Res Function(_$GetUploadStatusForOrderImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DocsEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetUploadStatusForOrderImpl implements _GetUploadStatusForOrder {
+  const _$GetUploadStatusForOrderImpl();
+
+  @override
+  String toString() {
+    return 'DocsEvent.getUploadStatusForOrder()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetUploadStatusForOrderImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int orderId) getDocs,
+    required TResult Function(int orderId) orderIdChanged,
+    required TResult Function(File? file) videoOneChanged,
+    required TResult Function(File? file) videoTwoChanged,
+    required TResult Function(File? file) imageOneChanged,
+    required TResult Function(File? file) imageTwoChanged,
+    required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
+  }) {
+    return getUploadStatusForOrder();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int orderId)? getDocs,
+    TResult? Function(int orderId)? orderIdChanged,
+    TResult? Function(File? file)? videoOneChanged,
+    TResult? Function(File? file)? videoTwoChanged,
+    TResult? Function(File? file)? imageOneChanged,
+    TResult? Function(File? file)? imageTwoChanged,
+    TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
+  }) {
+    return getUploadStatusForOrder?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int orderId)? getDocs,
+    TResult Function(int orderId)? orderIdChanged,
+    TResult Function(File? file)? videoOneChanged,
+    TResult Function(File? file)? videoTwoChanged,
+    TResult Function(File? file)? imageOneChanged,
+    TResult Function(File? file)? imageTwoChanged,
+    TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
+    required TResult orElse(),
+  }) {
+    if (getUploadStatusForOrder != null) {
+      return getUploadStatusForOrder();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetDocs value) getDocs,
+    required TResult Function(_OrderIdChanged value) orderIdChanged,
+    required TResult Function(_VideoOneChanged value) videoOneChanged,
+    required TResult Function(_VideoTwoChanged value) videoTwoChanged,
+    required TResult Function(_ImageOneChanged value) imageOneChanged,
+    required TResult Function(_ImageTwoChanged value) imageTwoChanged,
+    required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
+  }) {
+    return getUploadStatusForOrder(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetDocs value)? getDocs,
+    TResult? Function(_OrderIdChanged value)? orderIdChanged,
+    TResult? Function(_VideoOneChanged value)? videoOneChanged,
+    TResult? Function(_VideoTwoChanged value)? videoTwoChanged,
+    TResult? Function(_ImageOneChanged value)? imageOneChanged,
+    TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
+    TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
+  }) {
+    return getUploadStatusForOrder?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetDocs value)? getDocs,
+    TResult Function(_OrderIdChanged value)? orderIdChanged,
+    TResult Function(_VideoOneChanged value)? videoOneChanged,
+    TResult Function(_VideoTwoChanged value)? videoTwoChanged,
+    TResult Function(_ImageOneChanged value)? imageOneChanged,
+    TResult Function(_ImageTwoChanged value)? imageTwoChanged,
+    TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
+    required TResult orElse(),
+  }) {
+    if (getUploadStatusForOrder != null) {
+      return getUploadStatusForOrder(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUploadStatusForOrder implements DocsEvent {
+  const factory _GetUploadStatusForOrder() = _$GetUploadStatusForOrderImpl;
 }
