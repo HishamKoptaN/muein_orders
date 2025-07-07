@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:formz/formz.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mubin_orders/core/entities/meta_entity.dart';
@@ -15,7 +14,7 @@ import 'docs_state.dart';
 import 'package:injectable/injectable.dart' show Injectable;
 
 @Injectable()
-class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
+class DocsBloc extends Bloc<DocsEvent, DocsState> {
   DocsUseCase docsUseCase;
   List<DocEntity>? _allDocs;
   MetaEntity? _meta;
@@ -233,14 +232,14 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
             emitCustomLoaded(emit: emit);
           },
           resumePendingUploads: () async {
-            for (final pending in _pendingUploads) {
-              // await add(DocsEvent.orderIdChanged(orderId: pending.orderId));
-              // await add(DocsEvent.imageOneChanged(file: pending.imageOne));
-              // await add(DocsEvent.imageTwoChanged(file: pending.imageTwo));
-              // await add(DocsEvent.videoOneChanged(file: pending.videoOne));
-              // await add(DocsEvent.videoTwoChanged(file: pending.videoTwo));
-              // await add(const DocsEvent.createDoc());
-            }
+            // for (final pending in _pendingUploads) {
+            // await add(DocsEvent.orderIdChanged(orderId: pending.orderId));
+            // await add(DocsEvent.imageOneChanged(file: pending.imageOne));
+            // await add(DocsEvent.imageTwoChanged(file: pending.imageTwo));
+            // await add(DocsEvent.videoOneChanged(file: pending.videoOne));
+            // await add(DocsEvent.videoTwoChanged(file: pending.videoTwo));
+            // await add(const DocsEvent.createDoc());
+            // }
           },
           getUploadStatusForOrder: () {},
         );
@@ -277,78 +276,77 @@ class DocsBloc extends HydratedBloc<DocsEvent, DocsState> {
     );
   }
 
-  @override
-  DocsState? fromJson(Map<String, dynamic> json) {
-    final raw = json['orderDocStatuses'] as Map<String, dynamic>? ?? {};
-    _orderDocStatus.clear();
-    for (final entry in raw.entries) {
-      final orderId = int.tryParse(entry.key);
-      if (orderId == null) continue;
-      final data = entry.value as Map<String, dynamic>;
-      final status = DocUploadStatus.values.byName(data['status'] as String);
-      final progress = data['progress'] as String?;
-      _orderDocStatus[orderId] = (
-        status: status,
-        progress: progress,
-      );
-    }
-    return DocsState.loaded(
-      docs: _allDocs ?? [],
-      hasMore: _meta?.hasNextPage ?? false,
-      orderId: GenericFormzInput<int>.dirty(json['orderId'] as int?),
-      videoOne: FileFormzInput.dirty(
-          json['videoOnePath'] != null ? File(json['videoOnePath']) : null),
-      videoTwo: FileFormzInput.dirty(
-          json['videoTwoPath'] != null ? File(json['videoTwoPath']) : null),
-      imageOne: FileFormzInput.dirty(
-          json['imageOnePath'] != null ? File(json['imageOnePath']) : null),
-      imageTwo: FileFormzInput.dirty(
-          json['imageTwoPath'] != null ? File(json['imageTwoPath']) : null),
-      latitude: GenericFormzInput<String>.dirty(json['latitude'] as String?),
-      longitude: GenericFormzInput<String>.dirty(json['longitude'] as String?),
-      formzSubmissionStatus: FormzSubmissionStatus.initial,
-      uploadingProgress: json['uploadingProgress'] as String?,
-    );
-  }
+  // @override
+  // DocsState? fromJson(Map<String, dynamic> json) {
+  //   final raw = json['orderDocStatuses'] as Map<String, dynamic>? ?? {};
+  //   _orderDocStatus.clear();
+  //   for (final entry in raw.entries) {
+  //     final orderId = int.tryParse(entry.key);
+  //     if (orderId == null) continue;
+  //     final data = entry.value as Map<String, dynamic>;
+  //     final status = DocUploadStatus.values.byName(data['status'] as String);
+  //     final progress = data['progress'] as String?;
+  //     _orderDocStatus[orderId] = (
+  //       status: status,
+  //       progress: progress,
+  //     );
+  //   }
+  //   return DocsState.loaded(
+  //     docs: _allDocs ?? [],
+  //     hasMore: _meta?.hasNextPage ?? false,
+  //     orderId: GenericFormzInput<int>.dirty(json['orderId'] as int?),
+  //     videoOne: FileFormzInput.dirty(
+  //         json['videoOnePath'] != null ? File(json['videoOnePath']) : null),
+  //     videoTwo: FileFormzInput.dirty(
+  //         json['videoTwoPath'] != null ? File(json['videoTwoPath']) : null),
+  //     imageOne: FileFormzInput.dirty(
+  //         json['imageOnePath'] != null ? File(json['imageOnePath']) : null),
+  //     imageTwo: FileFormzInput.dirty(
+  //         json['imageTwoPath'] != null ? File(json['imageTwoPath']) : null),
+  //     latitude: GenericFormzInput<String>.dirty(json['latitude'] as String?),
+  //     longitude: GenericFormzInput<String>.dirty(json['longitude'] as String?),
+  //     formzSubmissionStatus: FormzSubmissionStatus.initial,
+  //     uploadingProgress: json['uploadingProgress'] as String?,
+  //   );
+  // }
 
-  @override
-  Map<String, dynamic>? toJson(DocsState state) {
-    return state.whenOrNull(
-      loaded: (
-        docs,
-        hasMore,
-        orderId,
-        videoOne,
-        videoTwo,
-        imageOne,
-        imageTwo,
-        latitude,
-        longitude,
-        status,
-        uploadingProgress,
-      ) =>
-          {
-        'orderId': orderId?.value ?? 0,
-        'videoOnePath': videoOne.value?.path,
-        'videoTwoPath': videoTwo.value?.path,
-        'imageOnePath': imageOne.value?.path,
-        'imageTwoPath': imageTwo.value?.path,
-        'latitude': latitude.value,
-        'longitude': longitude.value,
-        'uploadingProgress': uploadingProgress,
-        'orderDocStatuses': _orderDocStatus.map(
-          (key, value) => MapEntry(
-            key.toString(),
-            {
-              'status': value.status.name,
-              'progress': value.progress,
-            },
-          ),
-        ),
-      },
-    );
-  }
-
+  // @override
+  // Map<String, dynamic>? toJson(DocsState state) {
+  //   return state.whenOrNull(
+  //     loaded: (
+  //       docs,
+  //       hasMore,
+  //       orderId,
+  //       videoOne,
+  //       videoTwo,
+  //       imageOne,
+  //       imageTwo,
+  //       latitude,
+  //       longitude,
+  //       status,
+  //       uploadingProgress,
+  //     ) =>
+  //         {
+  //       'orderId': orderId?.value ?? 0,
+  //       'videoOnePath': videoOne.value?.path,
+  //       'videoTwoPath': videoTwo.value?.path,
+  //       'imageOnePath': imageOne.value?.path,
+  //       'imageTwoPath': imageTwo.value?.path,
+  //       'latitude': latitude.value,
+  //       'longitude': longitude.value,
+  //       'uploadingProgress': uploadingProgress,
+  //       'orderDocStatuses': _orderDocStatus.map(
+  //         (key, value) => MapEntry(
+  //           key.toString(),
+  //           {
+  //             'status': value.status.name,
+  //             'progress': value.progress,
+  //           },
+  //         ),
+  //       ),
+  //     },
+  //   );
+  // }
   void resetFormInputs() {
     _orderId = const GenericFormzInput<int>.pure();
     _imageOne = const FileFormzInput.pure();

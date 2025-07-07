@@ -19,10 +19,10 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory:
-        HydratedStorageDirectory((await getTemporaryDirectory()).path),
-  );
+  // HydratedBloc.storage = await HydratedStorage.build(
+  //   storageDirectory:
+  //       HydratedStorageDirectory((await getTemporaryDirectory()).path),
+  // );
   configureDependencies();
   await ScreenUtil.ensureScreenSize();
   String locale = await SharedPrefHelper.getString(
@@ -33,7 +33,7 @@ Future<void> main() async {
     Bloc.observer = AppBlocObserver();
     await SharedPrefHelper.setSecuredString(
       key: SharedPrefKeys.userToken,
-      value: '52|tshshgCS8EdvLMgTTTWlYBsG1qMbC3vMS75JrM0Vebaddb01',
+      value: '57|lSThz8Dult8KneqY7coVeWVrBKqsl66GFUCBt1175e62a16c',
     );
   }
   runApp(

@@ -193,7 +193,7 @@ class _AddDocViewState extends State<AddDocView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CustomTextField(
-                      initialValue: videoOne.value?.path ?? 'not found',
+                      initialValue: videoOne.value?.path ?? '',
                       maxLines: 2,
                       onTap: () async {
                         context.read<DocsBloc>().add(

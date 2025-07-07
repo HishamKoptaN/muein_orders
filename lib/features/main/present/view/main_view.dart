@@ -34,18 +34,14 @@ class MainView extends StatelessWidget {
                   if (kReleaseMode) {
                     return HomeView();
                   } else {
-                    return AddDocView(
-                      orderId: 1,
-                    );
+                    return HomeView();
                   }
                 },
                 logedOut: () {
                   if (kReleaseMode) {
                     return LoginView();
                   } else {
-                    return AddDocView(
-                      orderId: 1,
-                    );
+                    return HomeView();
                   }
                 },
                 orElse: () => const CustomCircularProgress(),
