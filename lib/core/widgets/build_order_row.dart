@@ -12,10 +12,10 @@ Widget buildOrderRow({
 }) {
   return Container(
     height: 75.h,
-    padding: EdgeInsets.all(10),
+    padding: const EdgeInsets.all(10),
     margin: const EdgeInsets.symmetric(vertical: 5),
     decoration: BoxDecoration(
-      color: Colors.grey.shade300,
+      color: Colors.white, 
       borderRadius: BorderRadius.circular(10),
       boxShadow: const [
         BoxShadow(
@@ -27,37 +27,32 @@ Widget buildOrderRow({
     ),
     child: Row(
       children: [
-        Flexible(
+        Expanded(
           flex: 4,
-          fit: FlexFit.tight,
           child: buildTransactionDetail(text: order.printedName ?? ''),
         ),
-        Flexible(
+        Expanded(
           flex: 2,
-          fit: FlexFit.tight,
           child: buildTransactionDetail(text: order.executionNum ?? ''),
         ),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) => PdfPreviewView(
-                executionNum: order.executionNum ?? '',
-                printedName: order.printedName ?? '',
-              ),
-            ));
-          },
-          child: Flexible(
-              flex: 2,
-              child: Icon(FontAwesomeIcons.filePdf, color: Colors.red)),
-        ),
-        Flexible(
+        Expanded(
           flex: 2,
-          fit: FlexFit.tight,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => PdfPreviewView(
+                  executionNum: order.executionNum ?? '',
+                  printedName: order.printedName ?? '',
+                ),
+              ));
+            },
+            child: Icon(FontAwesomeIcons.filePdf, color: Colors.red),
+          ),
+        ),
+        Expanded(
+          flex: 2,
           child: Visibility(
             visible: order.isDistributionPhotographed == true,
-            maintainSize: false,
-            maintainAnimation: false,
-            maintainState: false,
             child: Center(
               child: Icon(
                 Icons.check_circle,
