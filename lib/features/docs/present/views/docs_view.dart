@@ -110,7 +110,7 @@ class _DocsViewState extends State<DocsView> {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'لا يوجد توثيقات أخرى.',
-                            style: TextStyles.bold16,
+                            // style: TextStyles.bold16,
                           ),
                         ),
                       );

@@ -25,9 +25,9 @@ class CustomPasswordField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyles.medium20.copyWith(
-            color: AppColors.moreDarkGreyColor,
-          ),
+          // style: TextStyles.medium20.copyWith(
+          //   color: AppColors.moreDarkGreyColor,
+          // ),
         ),
         SizedBox(
           height: 8,

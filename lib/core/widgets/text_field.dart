@@ -100,34 +100,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onTap: widget.onTap,
         readOnly: widget.readOnly ?? false,
         decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           floatingLabelBehavior: FloatingLabelBehavior.always,
-          suffixIcon: Icon(widget.suffixIcon, color: Colors.grey),
-          floatingLabelStyle: const TextStyle(
-            color: AppColors.customRed,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
+          suffixIcon: Icon(
+            widget.suffixIcon,
           ),
+        
           labelText: widget.labelText,
-          labelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
           hintText: widget.hint,
-          hintStyle: const TextStyle(
-            color: Colors.grey,
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(
-              color: Color(0xFFD92728),
-              width: 1.5,
-            ),
-          ),
+        
         ),
       ),
     );

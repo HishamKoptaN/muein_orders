@@ -22,17 +22,6 @@ class _HomeViewState extends State<HomeView> {
         appBar: CustomAppBar(
           title: t.orders,
         ),
-        //  AppBar(
-        //   centerTitle: true,
-        //   title: Text(
-        //     t.orders,
-        //     style: TextStyle(
-        //       color: Colors.black,
-        //       fontSize: 25.sp,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        // ),
         drawer: const MyDrawer(),
         body: OrdersView(),
         // bottomNavigationBar: Padding(

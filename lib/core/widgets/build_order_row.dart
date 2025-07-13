@@ -12,19 +12,6 @@ Widget buildOrderRow({
 }) {
   return Container(
     height: 75.h,
-    padding: const EdgeInsets.all(10),
-    margin: const EdgeInsets.symmetric(vertical: 5),
-    decoration: BoxDecoration(
-      color: Colors.white, 
-      borderRadius: BorderRadius.circular(10),
-      boxShadow: const [
-        BoxShadow(
-          color: Colors.black26,
-          blurRadius: 4,
-          offset: Offset(0, 2),
-        ),
-      ],
-    ),
     child: Row(
       children: [
         Expanded(
@@ -46,7 +33,9 @@ Widget buildOrderRow({
                 ),
               ));
             },
-            child: Icon(FontAwesomeIcons.filePdf, color: Colors.red),
+            child: Icon(
+              FontAwesomeIcons.filePdf,
+            ),
           ),
         ),
         Expanded(

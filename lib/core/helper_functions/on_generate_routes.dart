@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mubin_orders/features/home/home_view.dart';
-import '../../features/login/present/views/sign_in_view.dart';
+import '../../features/sign_in/present/views/sign_in_view.dart';
 import '../../features/main/present/view/mobile_layout.dart';
 import '../../features/main/present/view/main_view.dart';
 import '../../features/docs/present/views/docs_view.dart';
@@ -12,8 +12,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case MainView.routeName:
       return MaterialPageRoute(builder: (context) => const MainView());
-    case SigninView.routeName:
-      return MaterialPageRoute(builder: (context) => const SigninView());
+    case SignInView.routeName:
+      return MaterialPageRoute(builder: (context) => const SignInView());
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
     case OrdersView.routeName:

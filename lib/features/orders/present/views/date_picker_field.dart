@@ -62,7 +62,7 @@ class _DatePickerFieldState extends State<DatePickerField> {
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: const Icon(Icons.calendar_today, color: Colors.grey),
         floatingLabelStyle: const TextStyle(
-          color: AppColors.customRed,
+          // color: AppColors.customRed,
           fontWeight: FontWeight.bold,
           fontSize: 20,
         ),

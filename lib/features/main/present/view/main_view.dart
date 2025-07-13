@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
-
 import '../../../../core/widgets/custom_circular_progress.dart';
-import '../../../docs/present/views/add_doc_view.dart';
-import '../../../login/present/views/login_view.dart';
 import '../../../home/home_view.dart';
+import '../../../sign_in/present/views/sign_in_view.dart';
 import '../bloc/main_bloc.dart';
 import '../bloc/main_event.dart';
 import '../bloc/main_state.dart';
@@ -39,7 +37,7 @@ class MainView extends StatelessWidget {
                 },
                 logedOut: () {
                   if (kReleaseMode) {
-                    return LoginView();
+                    return SignInView();
                   } else {
                     return HomeView();
                   }

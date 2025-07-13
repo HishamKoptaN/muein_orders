@@ -59,12 +59,7 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
       obscureText: _obscureText,
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-        filled: true,
-        fillColor: widget.backGroundColor ?? AppColors.lightGreyColor,
         hintText: widget.hintText,
-        hintStyle: TextStyles.regular20.copyWith(
-          color: AppColors.darkGreyColor,
-        ),
         prefixIcon: widget.prefixIcon,
         suffixIcon: InkWell(
           onTap: () {
@@ -76,24 +71,6 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
             _obscureText ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash,
           ),
         ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-            width: 1.h,
-          ),
-        ),
-        border: buildBorder(),
-        enabledBorder: buildBorder(),
-        focusedBorder: buildBorder(),
-      ),
-    );
-  }
-
-  OutlineInputBorder buildBorder() {
-    return OutlineInputBorder(
-      borderSide: BorderSide(
-        color: AppColors.lightGreyColor,
-        width: 1.h,
       ),
     );
   }

@@ -50,7 +50,7 @@ class _AddDocViewState extends State<AddDocView> {
               },
               text: t.camera,
               iconData: CupertinoIcons.camera_fill,
-              color: AppColors.greenColor,
+              // color: AppColors.greenColor,
               textStyle: const TextStyle(
                 color: Colors.white,
               ),
@@ -66,7 +66,7 @@ class _AddDocViewState extends State<AddDocView> {
               },
               text: t.gallery,
               iconData: CupertinoIcons.photo_on_rectangle,
-              color: AppColors.greenColor,
+              // color: AppColors.greenColor,
               textStyle: const TextStyle(
                 color: Colors.white,
               ),
@@ -322,11 +322,11 @@ class _AddDocViewState extends State<AddDocView> {
                       child: Container(
                         height: 50.h,
                         width: 200.w,
-                        decoration: BoxDecoration(
-                          color: formzSubmissionStatus.isSuccess
-                              ? AppColors.primaryColor
-                              : AppColors.veryMoreDarkGreyColor,
-                        ),
+                        // decoration: BoxDecoration(
+                        //   color: formzSubmissionStatus.isSuccess
+                        //       ? AppColors.primaryColor
+                        //       : AppColors.veryMoreDarkGreyColor,
+                        // ),
                         child: Center(
                           child: uploadingProgress == null
                               ? Text(

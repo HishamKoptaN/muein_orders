@@ -29,15 +29,15 @@ class CustomField extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyles.medium20.copyWith(
-            color: AppColors.moreDarkGreyColor,
-          ),
+          // style: TextStyles.medium20.copyWith(
+          //   color: AppColors.moreDarkGreyColor,
+          // ),
         ),
         const SizedBox(
           height: 8,
         ),
         CustomTextFormField(
-          backGroundColor: backGroundColor ?? AppColors.lightGreyColor,
+          // backGroundColor: backGroundColor ?? AppColors.lightGreyColor,
           maxlines: maxlines ?? 1,
           onChanged: onChanged,
           validator: validator,

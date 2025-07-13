@@ -7,7 +7,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 
 import '../../features/docs/data/datasources/docs_api.dart';
 import '../../features/orders/data/datasources/orders_api.dart';
-import '../../features/login/data/data_sources/login_api.dart';
+import '../../features/sign_in/data/data_sources/sign_in_api.dart';
 import '../../features/main/data/datasources/main_api.dart';
 import '../networking/network_info.dart';
 
@@ -26,16 +26,16 @@ abstract class InjectionModule {
   NetworkInfoImpl networkInfoImpl(InternetConnection connectionChecker) =>
       NetworkInfoImpl(connectionChecker: connectionChecker);
   @lazySingleton
-  LoginRemDataSrc loginRemDataSrc(FirebaseAuth auth) =>
-      LoginRemDataSrc(firebaseAuth: auth);
+  SignInRemDataSrc loginRemDataSrc(FirebaseAuth auth) =>
+      SignInRemDataSrc(firebaseAuth: auth);
   //! MainApi
   @lazySingleton
   MainApi mainApi(Dio dio) => MainApi(
         dio,
       );
-  //! LoginApi
+  //! SignInApi
   @lazySingleton
-  LoginApi loginApi(Dio dio) => LoginApi(
+  SignInApi loginApi(Dio dio) => SignInApi(
         dio,
       );
   //! OrdersApi

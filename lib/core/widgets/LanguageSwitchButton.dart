@@ -14,7 +14,7 @@ class LanguageSwitchButton extends StatelessWidget {
       tooltip: currentLocale == 'ar' ? 'English' : 'العربية',
       onPressed: () {
         final newLang = currentLocale == 'ar' ? 'en' : 'ar';
-        context.read<LanguageCubit>().changeLanguage(newLang);
+        context.read<LanguageCubit>().changeLanguage(languageCode: newLang);
       },
     );
   }

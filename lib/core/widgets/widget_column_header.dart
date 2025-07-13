@@ -7,7 +7,7 @@ Widget buildColumnHeader({required String label, required int flex}) {
     fit: FlexFit.tight,
     child: Text(
       label,
-      style: TextStyles.bold18,
+      // style: TextStyles.bold18,
     ),
   );
 }
@@ -18,6 +18,6 @@ Widget buildTransactionDetail({
 }) {
   return Text(
     text,
-    style: TextStyles.bold14,
+    // style: TextStyles.bold14,
   );
 }

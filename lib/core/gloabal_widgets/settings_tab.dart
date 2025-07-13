@@ -21,22 +21,6 @@ class SettingsTabWidget extends StatelessWidget {
       onTap: () => onTap(),
       child: Container(
         padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          boxShadow: [
-            BoxShadow(
-              color:  AppColors.black.withOpacity(0.1),
-              blurRadius: .5,
-              spreadRadius: .5,
-            )
-          ],
-          border: Border(
-            bottom: BorderSide(
-              color: Colors.grey.shade300,
-              width: 1,
-            ),
-          ),
-        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -46,18 +30,11 @@ class SettingsTabWidget extends StatelessWidget {
                   width: 20,
                   child: FaIcon(
                     icon,
-                    color:  AppColors.black.withOpacity(0.6),
-                    size: 16,
                   ),
                 ),
                 const Gap(10),
                 Text(
                   title,
-                  style: TextStyle(
-                    color:  AppColors.black.withOpacity(0.6),
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
               ],
             ),

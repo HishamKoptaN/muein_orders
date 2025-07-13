@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import '../../core/gloabal_widgets/settings_tab.dart';
+import '../../core/widgets/LanguageSwitchButton.dart';
 import '../../l10n/app_localizations.dart';
-import '../login/present/views/login_view.dart';
-import '../language/view/language_view.dart';
-import 'my_drawer_controller.dart';
+import '../sign_in/present/views/sign_in_view.dart';
+import '../theme_cubit/theme_cubit.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -22,115 +22,107 @@ class MyDrawer extends StatelessWidget {
     return SafeArea(
       child: Drawer(
         width: 250.w,
-        backgroundColor: Colors.white,
         child: SizedBox(
           height: 70,
           child: SingleChildScrollView(
-            child: GetBuilder<MyDrawerController>(
-              init: MyDrawerController(),
-              builder: (cnr) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Gap(
-                      25.h,
-                    ),
-                    SettingsTabWidget(
-                      title: t.change_language,
-                      icon: FontAwesomeIcons.language,
-                      onTap: () => {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const ChangeLanguage(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Gap(
+                  25.h,
+                ),
+                BlocBuilder<ThemeCubit, ThemeState>(
+                  builder: (context, state) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Switch(
+                        value: state.themeMode == ThemeMode.dark,
+                        onChanged: (val) {
+                          context.read<ThemeCubit>().toggleTheme(isDark: val);
+                        },
+                      ),
+                    );
+                  },
+                ),
+                LanguageSwitchButton(),
+                SettingsTabWidget(
+                  title: t.log_out,
+                  icon: FontAwesomeIcons.signOut,
+                  onTap: () => {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Center(
+                            child: Text(
+                              t.log_out,
+                              style: const TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        )
-                      },
-                    ),
-                    SettingsTabWidget(
-                      title: t.log_out,
-                      icon: FontAwesomeIcons.signOut,
-                      onTap: () => {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                t.are_you_sure,
+                                textAlign: TextAlign.center,
                               ),
-                              title: Center(
-                                child: Text(
-                                  t.log_out,
-                                  style: const TextStyle(
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
+                              const SizedBox(height: 20),
+                              const Divider(thickness: 1),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text(
-                                    t.are_you_sure,
-                                    textAlign: TextAlign.center,
+                                  Expanded(
+                                    child: TextButton(
+                                      onPressed: () async {
+                                        await FirebaseAuth.instance.signOut();
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const SignInView(),
+                                          ),
+                                          (route) => false,
+                                        );
+                                      },
+                                      child: Text(
+                                        t.log_out,
+                                        style: const TextStyle(
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                  const SizedBox(height: 20),
-                                  const Divider(thickness: 1),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Expanded(
-                                        child: TextButton(
-                                          onPressed: () async {
-                                            await FirebaseAuth.instance
-                                                .signOut();
-                                            Navigator.of(context)
-                                                .pushAndRemoveUntil(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const LoginView(),
-                                              ),
-                                              (route) => false,
-                                            );
-                                          },
-                                          child: Text(
-                                            t.log_out,
-                                            style: const TextStyle(
-                                              color: Colors.blue,
-                                            ),
-                                          ),
+                                  Container(
+                                    height: 40,
+                                    width: 1,
+                                  ),
+                                  Expanded(
+                                    child: TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        t.close,
+                                        style: const TextStyle(
+                                          color: Colors.black,
                                         ),
                                       ),
-                                      Container(
-                                        height: 40,
-                                        width: 1,
-                                        color: Colors.grey,
-                                      ),
-                                      Expanded(
-                                        child: TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text(
-                                            t.close,
-                                            style: const TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ],
                               ),
-                            );
-                          },
-                        ),
+                            ],
+                          ),
+                        );
                       },
-                    )
-                  ],
-                );
-              },
+                    ),
+                  },
+                ),
+              ],
             ),
           ),
         ),
@@ -153,19 +145,10 @@ class MyListTile extends StatelessWidget {
         ListTile(
           title: Text(
             text,
-            style: const TextStyle(
-              fontSize: 17,
-              letterSpacing: 2,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
           ),
           onTap: onTap,
         ),
-        const Divider(
-          color: Colors.grey,
-          thickness: 1,
-        ),
+        const Divider(),
       ],
     );
   }

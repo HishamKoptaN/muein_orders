@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../utils/app_colors.dart';
-import '../utils/app_text_styles.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -29,19 +27,12 @@ class CustomButton extends StatelessWidget {
       height: height ?? 42,
       child: TextButton(
         style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-              side: BorderSide(
-                color: colorSide ?? Colors.transparent,
-                width: 1,
-              )),
-          backgroundColor: backgroundColor ?? AppColors.primaryColor,
+          backgroundColor: backgroundColor,
         ),
         onPressed: onPressed,
         child: widget ??
             Text(
               text ?? '',
-              style: TextStyles.medium15.copyWith(color: Colors.white),
             ),
       ),
     );
