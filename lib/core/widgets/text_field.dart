@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../utils/app_colors.dart';
-
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
     super.key,
@@ -104,10 +102,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           suffixIcon: Icon(
             widget.suffixIcon,
           ),
-        
           labelText: widget.labelText,
           hintText: widget.hint,
-        
         ),
       ),
     );

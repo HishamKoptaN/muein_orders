@@ -22,7 +22,6 @@ class _HomeViewState extends State<HomeView> {
         appBar: CustomAppBar(
           title: t.orders,
         ),
-        drawer: const MyDrawer(),
         body: OrdersView(),
         // bottomNavigationBar: Padding(
         //   padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../utils/app_text_styles.dart';
 
 Widget buildColumnHeader({required String label, required int flex}) {
   return Flexible(
@@ -7,7 +6,14 @@ Widget buildColumnHeader({required String label, required int flex}) {
     fit: FlexFit.tight,
     child: Text(
       label,
-      // style: TextStyles.bold18,
+      style: TextStyle(
+        fontWeight: FontWeight.w400,
+        fontStyle: FontStyle.normal,
+        fontSize: 14,
+        height: 1.0,
+        letterSpacing: 0.0,
+        color: Colors.white,
+      ),
     ),
   );
 }
@@ -18,6 +24,13 @@ Widget buildTransactionDetail({
 }) {
   return Text(
     text,
-    // style: TextStyles.bold14,
+    style: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontStyle: FontStyle.normal,
+      fontSize: 14,
+      height: 1.0,
+      letterSpacing: 0.0,
+      color: Colors.black,
+    ),
   );
 }

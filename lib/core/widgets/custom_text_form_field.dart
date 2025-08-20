@@ -1,10 +1,9 @@
 import '../all_imports.dart';
-import '../utils/device_helper.dart';
 
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField({
     super.key,
-    required this.hintText,
+    this.hintText,
     required this.textInputType,
     this.suffixIcon,
     this.onSaved,
@@ -17,7 +16,7 @@ class CustomTextFormField extends StatelessWidget {
 
   String? Function(String?)? validator;
   void Function(String)? onChanged;
-  final String hintText;
+  final String? hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
@@ -27,18 +26,46 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-       width: DeviceHelper.getResponsiveWidth(context).w,
-      height: DeviceHelper.getResponsiveHeight(context).h,  child: TextFormField(
-        maxLines: maxlines ?? 1,
-        obscureText: obscureText,
-        onSaved: onSaved,
-        validator: validator,
-        onChanged: onChanged,
-        keyboardType: textInputType,
-        decoration: InputDecoration(
-          hintText: hintText,
-          suffixIcon: suffixIcon,
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 18,
+        right: 24,
+        bottom: 18,
+        left: 24,
+      ),
+      child: Container(
+        width: 346.w,
+        height: 60.h,
+        decoration: BoxDecoration(
+          color: backGroundColor ?? const Color(0xFFF5F9FE),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Center(
+          child: TextFormField(
+            maxLines: maxlines ?? 1,
+            obscureText: obscureText,
+            onSaved: onSaved,
+            validator: validator,
+            onChanged: onChanged,
+            keyboardType: textInputType,
+            style: const TextStyle(
+              color: Colors.black,
+            ),
+            decoration: InputDecoration(
+              hintText: hintText,
+              suffixIcon: suffixIcon,
+              border: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              filled: true,
+              fillColor: Colors.transparent,
+              hintStyle: const TextStyle(
+                color: Color(0xFF757575),
+              ),
+            ),
+          ),
         ),
       ),
     );

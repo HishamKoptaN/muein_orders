@@ -8,9 +8,6 @@ import '../networking/api_constants.dart';
 
 @module
 abstract class ApiModule {
-  ApiModule() {
-    log("ApiModule has been initialized! 🚀");
-  }
   @singleton
   Dio dio(
     AuthInterceptor authInterceptor,
@@ -18,7 +15,7 @@ abstract class ApiModule {
   ) {
     final dio = Dio(
       BaseOptions(
-        baseUrl: ApiConstants.apiBaseUrl,
+        baseUrl: ApiConstants.baseUrl,
         connectTimeout: const Duration(
           seconds: 30,
         ),
@@ -51,14 +48,9 @@ abstract class ApiModule {
 @singleton
 class AuthInterceptor extends Interceptor {
   final TokenStorage tokenStorage;
-  String? _currentToken;
   AuthInterceptor(
     this.tokenStorage,
   );
-  Future<void> updateToken() async {
-    _currentToken = await tokenStorage.getToken();
-  }
-
   @override
   void onRequest(
     RequestOptions options,

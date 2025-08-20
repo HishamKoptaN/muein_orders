@@ -1,12 +1,10 @@
-import 'dart:io';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mubin_orders/core/entities/meta_entity.dart';
 import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
 import '../../../../../core/all_imports.dart';
 import '../../../../../core/errors/api_error_model.dart';
-import '../../../../../core/form_inputs/file_formz_input.dart';
-import '../../../../../core/form_inputs/generic_gormz_input.dart';
 import '../../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
 import 'docs_event.dart';
@@ -28,21 +26,23 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
   FormzSubmissionStatus? _formzSubmissionStatus;
   final Map<int, ({DocUploadStatus status, String? progress})> _orderDocStatus =
       {};
-
-  final List<
-      ({
-        int orderId,
-        File imageOne,
-        File imageTwo,
-        File videoOne,
-        File videoTwo,
-      })> _pendingUploads = [];
-
   String? _uploadingProgress;
   DocsBloc({
     required this.docsUseCase,
   }) : super(
-          const DocsState.initial(),
+          DocsState.loaded(
+            docs: [],
+            hasMore: false,
+            orderId: GenericFormzInput.pure(),
+            videoOne: FileFormzInput.pure(),
+            videoTwo: FileFormzInput.pure(),
+            imageOne: FileFormzInput.pure(),
+            imageTwo: FileFormzInput.pure(),
+            latitude: GenericFormzInput.pure(),
+            longitude: GenericFormzInput.pure(),
+            formzSubmissionStatus: FormzSubmissionStatus.initial,
+            uploadingProgress: null,
+          ),
         ) {
     on<DocsEvent>(
       (event, emit) async {
@@ -116,9 +116,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
               final id = _orderId?.value;
               _orderDocStatus[id] =
                   (status: DocUploadStatus.uploading, progress: "0%");
-
               emitCustomLoaded(emit: emit);
-
               try {
                 emitCustomLoaded(emit: emit);
                 final result = await docsUseCase.createDoc(

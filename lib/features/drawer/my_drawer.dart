@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:mode_theme/mode_theme.dart';
+import 'package:sign_in/sign_in.dart';
+import '../../SignInUi.dart';
 import '../../core/gloabal_widgets/settings_tab.dart';
 import '../../core/widgets/LanguageSwitchButton.dart';
 import '../../l10n/app_localizations.dart';
-import '../sign_in/present/views/sign_in_view.dart';
-import '../theme_cubit/theme_cubit.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -21,7 +21,7 @@ class MyDrawer extends StatelessWidget {
     final t = AppLocalizations.of(context)!;
     return SafeArea(
       child: Drawer(
-        width: 250.w,
+        width: 175.w,
         child: SizedBox(
           height: 70,
           child: SingleChildScrollView(
@@ -31,19 +31,7 @@ class MyDrawer extends StatelessWidget {
                 Gap(
                   25.h,
                 ),
-                BlocBuilder<ThemeCubit, ThemeState>(
-                  builder: (context, state) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Switch(
-                        value: state.themeMode == ThemeMode.dark,
-                        onChanged: (val) {
-                          context.read<ThemeCubit>().toggleTheme(isDark: val);
-                        },
-                      ),
-                    );
-                  },
-                ),
+                ThemeSwitcherTile(),
                 LanguageSwitchButton(),
                 SettingsTabWidget(
                   title: t.log_out,
@@ -79,11 +67,13 @@ class MyDrawer extends StatelessWidget {
                                     child: TextButton(
                                       onPressed: () async {
                                         await FirebaseAuth.instance.signOut();
+                                        // context
+                                        //     .read<AuthBloc>()
+                                        //     .add(const AuthEvent.clearToken());
                                         Navigator.of(context)
                                             .pushAndRemoveUntil(
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SignInView(),
+                                            builder: (context) => SignInView(),
                                           ),
                                           (route) => false,
                                         );

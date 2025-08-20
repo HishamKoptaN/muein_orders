@@ -14,7 +14,6 @@ class MetaEntity with _$MetaEntity {
     bool? hasNextPage,
     bool? hasPreviousPage,
   }) = _MetaEntity;
-
   factory MetaEntity.fromJson(Map<String, dynamic> json) =>
       _$MetaEntityFromJson(json);
 }

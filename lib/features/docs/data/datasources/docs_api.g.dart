@@ -6,11 +6,11 @@ part of 'docs_api.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _DocsApi implements DocsApi {
   _DocsApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://mapi.live90.fr/api/';
+    baseUrl ??= 'api/';
   }
 
   final Dio _dio;
@@ -56,7 +56,7 @@ class _DocsApi implements DocsApi {
     required File imageTwo,
     required String longitude,
     required String latitude,
-    void Function(int, int)? onSendProgress,
+    required void Function(int, int)? onSendProgress,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

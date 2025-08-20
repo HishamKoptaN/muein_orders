@@ -180,7 +180,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get order_id_exists => '\'معرف الطلب موجود , ادخل معرف اخر\'';
 
   @override
-  String get select_files => '\'حدد من اين تفضل اضافة الملفات \'';
+  String get select_files => 'حدد من اين تفضل اضافة الملفات';
 
   @override
   String get camera => 'الكاميرا';

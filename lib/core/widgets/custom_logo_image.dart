@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/app_images.dart';
-
+import '../../gen/assets.gen.dart';
 class CustomLogoImage extends StatelessWidget {
   const CustomLogoImage({
     super.key,
@@ -12,7 +11,7 @@ class CustomLogoImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      Assets.imagesLogopng,
+      Assets.icons.mubinLogo.toString(),
       width: width,
     );
   }

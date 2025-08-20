@@ -1,5 +1,6 @@
 import '../../../../core/all_imports.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../../core/widgets/app_container.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../blocs/bloc/docs_bloc.dart';
@@ -70,54 +71,43 @@ class _DocsViewState extends State<DocsView> {
               formzSubmissionStatus,
               uploadingProgress,
             ) {
-              return ListView.builder(
-                controller: _scrollController,
-                itemCount: (docs?.length ?? 0) + 1,
-                itemBuilder: (
-                  context,
-                  i,
-                ) {
-                  if (i < docs!.length) {
-                    final order = docs[i];
-                    return Stack(
-                      children: [
-                        Container(
-                          height: height / 3,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
-                          child: Card(
-                            semanticContainer: true,
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            child: DocWidget(
-                              orderEntity: order,
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  } else {
-                    if (hasMore!) {
-                      return OrderShimmerWidget();
-                    } else if (docs.isNotEmpty && !hasMore) {
-                      return Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'لا يوجد توثيقات أخرى.',
-                            // style: TextStyles.bold16,
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: (docs?.length ?? 0) + 1,
+                  itemBuilder: (
+                    context,
+                    i,
+                  ) {
+                    if (i < docs!.length) {
+                      final order = docs[i];
+                      return AppContainer(
+                        height: height / 3,
+                        child: Card(
+                          semanticContainer: true,
+                          child: DocWidget(
+                            orderEntity: order,
                           ),
                         ),
                       );
+                    } else {
+                      if (hasMore!) {
+                        return OrderShimmerWidget();
+                      } else if (docs.isNotEmpty && !hasMore) {
+                        return Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'لا يوجد توثيقات أخرى.',
+                            ),
+                          ),
+                        );
+                      }
+                      return CircularProgressIndicator();
                     }
-                    return CircularProgressIndicator();
-                  }
-                },
+                  },
+                ),
               );
             },
             loading: () {
@@ -136,9 +126,6 @@ class _DocsViewState extends State<DocsView> {
                 child: Text(
                   e.error ?? '',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
                 ),
               );
             },
@@ -163,16 +150,9 @@ class GestureDetectorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.green),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(50),
-          ),
-        ),
+      child: AppContainer(
         child: const Icon(
           Icons.location_on,
-          color: Colors.green,
         ),
       ),
     );

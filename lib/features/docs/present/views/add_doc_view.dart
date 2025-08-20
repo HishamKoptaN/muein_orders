@@ -5,7 +5,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import '../../../../core/all_imports.dart';
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../orders/present/bloc/orders_bloc.dart';
 import '../../../orders/present/bloc/orders_event.dart';
@@ -16,6 +17,8 @@ import '../../../../core/widgets/text_field.dart';
 
 class AddDocView extends StatefulWidget {
   const AddDocView({super.key, required this.orderId});
+  static const String routeName = "add-doc";
+
   final int orderId;
   @override
   State<AddDocView> createState() => _AddDocViewState();
@@ -116,17 +119,7 @@ class _AddDocViewState extends State<AddDocView> {
   ) {
     final t = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          t.add_order,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 25.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: t.add_order),
       body: BlocConsumer<DocsBloc, DocsState>(
         listener: (
           context,
@@ -313,37 +306,27 @@ class _AddDocViewState extends State<AddDocView> {
                         }
                       },
                     ),
-                    GestureDetector(
-                      onTap: () async {
-                        context.read<DocsBloc>().add(
-                              DocsEvent.createDoc(),
-                            );
-                      },
-                      child: Container(
-                        height: 50.h,
-                        width: 200.w,
-                        // decoration: BoxDecoration(
-                        //   color: formzSubmissionStatus.isSuccess
-                        //       ? AppColors.primaryColor
-                        //       : AppColors.veryMoreDarkGreyColor,
-                        // ),
-                        child: Center(
-                          child: uploadingProgress == null
-                              ? Text(
-                                  t.add_order,
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              : CircularProgressIndicator(
-                                  color: Colors.white,
-                                ),
-                        ),
+                    ElevatedButton(
+                      key: const Key('button'),
+                      onPressed: formzSubmissionStatus.isSuccess
+                          ? () {
+                              context.read<DocsBloc>().add(
+                                    DocsEvent.createDoc(),
+                                  );
+                            }
+                          : null,
+                      style: ButtonStyle(
+                        backgroundColor: formzSubmissionStatus.isInitial
+                            ? WidgetStateProperty.all(Colors.grey)
+                            : null,
                       ),
+                      child: formzSubmissionStatus.isInProgress
+                          ? const CustomCircularProgress()
+                          : Text(
+                              t.add_order,
+                            ),
                     ),
-                    if (uploadingProgress != null)
+                    if (formzSubmissionStatus.isInProgress)
                       Center(
                         child: Column(
                           children: [
@@ -352,7 +335,7 @@ class _AddDocViewState extends State<AddDocView> {
                               color: Colors.green,
                             ),
                             Text(
-                              uploadingProgress,
+                              uploadingProgress!,
                             )
                           ],
                         ),

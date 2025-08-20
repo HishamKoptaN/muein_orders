@@ -1,6 +1,7 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://mapi.live90.fr/api/";
-  static const String apiAuthBaseUrl = "https://mapi.live90.fr/auth/";
+  static const String baseUrl = "https://mapi.live90.fr/";
+  static const String apiBaseUrl = "api/";
+  static const String apiAuthBaseUrl = "auth/";
   static const String check = "check";
   static const String orders = "orders";
   static const String docs = "docs";

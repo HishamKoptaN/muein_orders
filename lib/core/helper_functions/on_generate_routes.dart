@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:mubin_orders/features/home/home_view.dart';
-import '../../features/sign_in/present/views/sign_in_view.dart';
-import '../../features/main/present/view/mobile_layout.dart';
-import '../../features/main/present/view/main_view.dart';
-import '../../features/docs/present/views/docs_view.dart';
+import 'package:sign_in/sign_in.dart';
+import '../../SignInUi.dart';
 import '../../features/docs/present/views/widgets/image_preview.dart';
 import '../../features/orders/present/views/orders_view.dart';
+import '../../l10n/app_localizations.dart';
 import '../gloabal_widgets/video_player.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case MainView.routeName:
-      return MaterialPageRoute(builder: (context) => const MainView());
+    // case AuthView.routeName:
+    //   return MaterialPageRoute(builder: (context) => const AuthView());
     case SignInView.routeName:
-      return MaterialPageRoute(builder: (context) => const SignInView());
+      return MaterialPageRoute(builder: (context) => SignInView());
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
     case OrdersView.routeName:
       return MaterialPageRoute(builder: (context) => const OrdersView());
-    case MobileLayout.routeName:
-      return MaterialPageRoute(builder: (context) => const MobileLayout());
     case ImagePreview.routeName:
       final args = settings.arguments as Map<String, dynamic>?;
       final imageUrl = args?['image_url'] ?? '';

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../utils/app_colors.dart';
-import '../utils/app_text_styles.dart';
+import 'package:mubin_orders/core/all_imports.dart';
 
 class CustomPasswordFormField extends StatefulWidget {
   final String? labelText;
@@ -11,13 +9,11 @@ class CustomPasswordFormField extends StatefulWidget {
   final bool obscureText;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
-  final Icon? prefixIcon;
   final double? height;
   final double? width;
   final InputBorder? border;
   final String? hintText;
   final TextInputType? textInputType;
-  final Color? backGroundColor;
 
   const CustomPasswordFormField({
     super.key,
@@ -29,10 +25,8 @@ class CustomPasswordFormField extends StatefulWidget {
     this.obscureText = true,
     this.controller,
     this.keyboardType,
-    this.prefixIcon,
     this.border,
     this.hintText,
-    this.backGroundColor,
     this.textInputType,
   });
 
@@ -52,23 +46,54 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      onChanged: widget.onChanged,
-      validator: widget.validator,
-      obscureText: _obscureText,
-      keyboardType: widget.keyboardType,
-      decoration: InputDecoration(
-        hintText: widget.hintText,
-        prefixIcon: widget.prefixIcon,
-        suffixIcon: InkWell(
-          onTap: () {
-            setState(() {
-              _obscureText = !_obscureText;
-            });
-          },
-          child: Icon(
-            _obscureText ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash,
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 18,
+        right: 24,
+        bottom: 18,
+        left: 24,
+      ),
+      child: Container(
+        width: 346.w,
+        height: 60.h,
+        decoration: BoxDecoration(
+          color: const Color(0xFFF5F9FE),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: TextFormField(
+          controller: widget.controller,
+          onChanged: widget.onChanged,
+          validator: widget.validator,
+          obscureText: _obscureText,
+          keyboardType: widget.keyboardType,
+          style: const TextStyle(
+            color: Colors.black,
+          ),
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            suffixIcon: InkWell(
+              onTap: () {
+                setState(
+                  () {
+                    _obscureText = !_obscureText;
+                  },
+                );
+              },
+              child: Icon(
+                _obscureText ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash,
+                color: Colors.grey[800],
+              ),
+            ),
+            border: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            errorBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
+            filled: true,
+            fillColor: Colors.transparent,
+            hintStyle: const TextStyle(
+              color: Color(0xFF757575),
+            ),
           ),
         ),
       ),

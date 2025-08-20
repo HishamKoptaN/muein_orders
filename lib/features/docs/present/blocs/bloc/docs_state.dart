@@ -1,10 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
 import '../../../../../core/errors/api_error_model.dart';
-import '../../../../../core/form_inputs/file_formz_input.dart';
 import 'package:formz/formz.dart';
+import 'package:form_inputs/form_inputs.dart';
 
-import '../../../../../core/form_inputs/generic_gormz_input.dart';
 part 'docs_state.freezed.dart';
 
 @freezed
