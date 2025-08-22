@@ -1,11 +1,15 @@
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mode_theme/mode_theme.dart';
 import 'core/all_imports.dart';
-import 'core/helper_functions/on_generate_routes.dart';
+import 'core/go_router.dart';
 import 'features/language/bloc/language_cubit.dart';
-import 'features/orders/present/views/orders_view.dart';
-import 'l10n/app_localizations.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'l10n/app_localizations.dart';
+
+class GlobalVariable {
+  static final GlobalKey<NavigatorState> navState = GlobalKey<NavigatorState>();
+}
 
 class MubinOrdersApp extends StatelessWidget {
   const MubinOrdersApp({
@@ -100,7 +104,7 @@ class MubinOrdersApp extends StatelessWidget {
               required ThemeData darkTheme,
               required ThemeMode currentTheme,
             }) {
-              return MaterialApp(
+              return MaterialApp.router(
                 debugShowCheckedModeBanner: false,
                 theme: lightTheme.copyWith(
                   appBarTheme: AppBarTheme(
@@ -110,12 +114,12 @@ class MubinOrdersApp extends StatelessWidget {
                     scrolledUnderElevation: 4,
                     // shadowColor: colorScheme.shadow,
                     centerTitle: true,
-                    toolbarHeight: 65.h,
-                    titleSpacing: 16.w,
+                    toolbarHeight: 70.h,
+                    titleSpacing: 30.w,
+                    leadingWidth: 70.w,
                     // iconTheme: IconThemeData(color: colorScheme.onPrimary),
                     // actionsIconTheme: IconThemeData(
-                    //   color:
-                    //       designTokens.applyOpacity(colorScheme.onPrimary, 0.9),
+                    //   color: designTokens.applyOpacity(colorScheme.onPrimary, 0.9),
                     // ),
                     titleTextStyle: TextStyle(
                       fontSize: 20.sp,
@@ -130,16 +134,16 @@ class MubinOrdersApp extends StatelessWidget {
                 ),
                 darkTheme: darkTheme,
                 themeMode: ThemeMode.light,
-                locale: locale,
                 localizationsDelegates: [
                   ...AppLocalizations.localizationsDelegates,
                   CountryLocalizations.delegate,
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: AppLocalizations.supportedLocales,
-                onGenerateRoute: onGenerateRoute,
-                // initialRoute: AuthView.routeName,
-                home: OrdersView(),
-                // MainView(),
+                routerConfig: router,
               );
             },
           );

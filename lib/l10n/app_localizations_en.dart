@@ -9,6 +9,29 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get welcome => 'welcome';
+
+  @override
+  String get we_are_happy_to_have_you_join_our_store =>
+      'We are happy to have you join our store.';
+
+  @override
+  String get get_to_know_the_application_interface =>
+      'Get to know the application interface';
+
+  @override
+  String get here_you_will_find_tasks_requests_alerts_and_filters =>
+      'Here you will find tasks, requests, alerts, and filters.';
+
+  @override
+  String get documentation_with_photos_and_videos =>
+      'Documentation with photos and videos';
+
+  @override
+  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+      'Make sure the images are clear and the number of copies of the Qur’an is correct before sending.';
+
+  @override
   String get the_name_printed_on_the_quran => 'The name printed on the Qur’an';
 
   @override
@@ -16,6 +39,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get email => 'email';
+
+  @override
+  String get start => 'start';
+
+  @override
+  String get next => 'next';
 
   @override
   String get upload_videos => 'Upload videos';

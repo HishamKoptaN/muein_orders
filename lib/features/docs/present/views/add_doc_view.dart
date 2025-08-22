@@ -7,18 +7,20 @@ import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import '../../../../core/all_imports.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_circular_progress.dart';
+import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../orders/present/bloc/orders_bloc.dart';
 import '../../../orders/present/bloc/orders_event.dart';
 import '../blocs/bloc/docs_bloc.dart';
 import '../blocs/bloc/docs_event.dart';
 import '../blocs/bloc/docs_state.dart';
-import '../../../../core/widgets/text_field.dart';
 
 class AddDocView extends StatefulWidget {
-  const AddDocView({super.key, required this.orderId});
+  const AddDocView({
+    super.key,
+    required this.orderId,
+  });
   static const String routeName = "add-doc";
-
   final int orderId;
   @override
   State<AddDocView> createState() => _AddDocViewState();
@@ -53,11 +55,6 @@ class _AddDocViewState extends State<AddDocView> {
               },
               text: t.camera,
               iconData: CupertinoIcons.camera_fill,
-              // color: AppColors.greenColor,
-              textStyle: const TextStyle(
-                color: Colors.white,
-              ),
-              iconColor: Colors.white,
             ),
             IconsOutlineButton(
               onPressed: () async {
@@ -69,11 +66,6 @@ class _AddDocViewState extends State<AddDocView> {
               },
               text: t.gallery,
               iconData: CupertinoIcons.photo_on_rectangle,
-              // color: AppColors.greenColor,
-              textStyle: const TextStyle(
-                color: Colors.white,
-              ),
-              iconColor: Colors.white,
             ),
           ],
         );
@@ -128,8 +120,10 @@ class _AddDocViewState extends State<AddDocView> {
           state.whenOrNull(
             success: () {
               context.read<OrdersBloc>().add(
-                  OrdersEvent.updateIsDistributionPhotographed(
-                      orderId: widget.orderId));
+                    OrdersEvent.updateIsDistributionPhotographed(
+                      orderId: widget.orderId,
+                    ),
+                  );
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: Colors.green,
@@ -141,9 +135,14 @@ class _AddDocViewState extends State<AddDocView> {
                   ),
                 ),
               );
-              Future.delayed(const Duration(milliseconds: 500), () {
-                Navigator.of(context).pop();
-              });
+              Future.delayed(
+                const Duration(
+                  milliseconds: 500,
+                ),
+                () {
+                  Navigator.of(context).pop();
+                },
+              );
             },
             failure: (
               e,
@@ -154,7 +153,9 @@ class _AddDocViewState extends State<AddDocView> {
                   content: Text(
                     e.error ?? t.order_addition_failed,
                   ),
-                  duration: const Duration(seconds: 4),
+                  duration: const Duration(
+                    seconds: 4,
+                  ),
                 ),
               );
             },
@@ -185,10 +186,10 @@ class _AddDocViewState extends State<AddDocView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CustomTextField(
+                    CustomTextFormField(
                       initialValue: videoOne.value?.path ?? '',
                       maxLines: 2,
-                      onTap: () async {
+                      onChanged: (v) async {
                         context.read<DocsBloc>().add(
                               DocsEvent.videoOneChanged(
                                 file: await selectFilesPath(
@@ -199,17 +200,15 @@ class _AddDocViewState extends State<AddDocView> {
                             );
                       },
                       readOnly: true,
-                      labelText: t.add_video,
-                      hint: t.add_video,
-                      suffixIcon: Icons.cloud_upload,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      hintText: t.add_video,
+                      suffixIcon: Icon(Icons.cloud_upload),
                       validator: (_) =>
                           videoOne.isNotValid ? videoOne.errorMessage : null,
                     ),
-                    CustomTextField(
+                    CustomTextFormField(
                       initialValue: videoTwo.value?.path,
                       maxLines: 2,
-                      onTap: () async {
+                      onChanged: (v) async {
                         context.read<DocsBloc>().add(
                               DocsEvent.videoTwoChanged(
                                 file: await selectFilesPath(
@@ -220,25 +219,26 @@ class _AddDocViewState extends State<AddDocView> {
                             );
                       },
                       readOnly: true,
-                      labelText: t.add_video,
-                      hint: t.add_video,
-                      suffixIcon: Icons.cloud_upload,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      hintText: t.add_video,
+                      suffixIcon: Icon(
+                        Icons.cloud_upload,
+                      ),
                       validator: (_) =>
                           videoTwo.isNotValid ? videoTwo.errorMessage : null,
                     ),
-                    // Image.file(imageOne.value!),
-                    CustomTextField(
+                    CustomTextFormField(
                       initialValue: imageOne.value?.path,
-                      onTap: () async {
+                      onChanged: (v) async {
                         final file = await selectFilesPath(
                           context: context,
                           fileType: FileType.image,
                         );
                         if (file != null) {
-                          context
-                              .read<DocsBloc>()
-                              .add(DocsEvent.imageOneChanged(file: file));
+                          context.read<DocsBloc>().add(
+                                DocsEvent.imageOneChanged(
+                                  file: file,
+                                ),
+                              );
                         }
                         // context.read<DocsBloc>().add(
                         //       DocsEvent.imageOneChanged(
@@ -251,16 +251,18 @@ class _AddDocViewState extends State<AddDocView> {
                       },
                       maxLines: 2,
                       readOnly: true,
-                      suffixIcon: Icons.cloud_upload,
-                      labelText: t.add_picure,
-                      hint: t.add_picure,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      hintText: t.add_picure,
+                      suffixIcon: Icon(
+                        Icons.cloud_upload,
+                      ),
                       validator: (_) =>
                           imageOne.isNotValid ? imageOne.errorMessage : null,
                     ),
-                    CustomTextField(
+                    CustomTextFormField(
                       initialValue: imageTwo.value?.path,
-                      onTap: () async {
+                      onChanged: (
+                        v,
+                      ) async {
                         context.read<DocsBloc>().add(
                               DocsEvent.imageTwoChanged(
                                 file: await selectFilesPath(
@@ -270,29 +272,30 @@ class _AddDocViewState extends State<AddDocView> {
                               ),
                             );
                       },
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       maxLines: 2,
                       readOnly: true,
-                      suffixIcon: Icons.cloud_upload,
-                      labelText: t.add_picure,
-                      hint: t.add_picure,
+                      suffixIcon: Icon(
+                        Icons.cloud_upload,
+                      ),
                       validator: (_) =>
                           imageTwo.isNotValid ? imageTwo.errorMessage : null,
                     ),
-                    CustomTextField(
+                    CustomTextFormField(
                       initialValue: latitude.isValid
                           ? '${latitude.value ?? ''} , ${longitude.value ?? ''}'
                           : '',
                       maxLines: 2,
                       readOnly: true,
-                      suffixIcon: Icons.gps_fixed,
-                      labelText: t.location,
-                      hint: t.location,
-                      onTap: () async {
+                      suffixIcon: Icon(
+                        Icons.gps_fixed,
+                      ),
+                      hintText: t.location,
+                      onChanged: (v) async {
                         final LatLng? result = await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const PickLocationView()),
+                            builder: (_) => const PickLocationView(),
+                          ),
                         );
                         if (result != null) {
                           final lat = result.latitude.toString();
@@ -317,7 +320,9 @@ class _AddDocViewState extends State<AddDocView> {
                           : null,
                       style: ButtonStyle(
                         backgroundColor: formzSubmissionStatus.isInitial
-                            ? WidgetStateProperty.all(Colors.grey)
+                            ? WidgetStateProperty.all(
+                                Colors.grey,
+                              )
                             : null,
                       ),
                       child: formzSubmissionStatus.isInProgress
@@ -357,33 +362,48 @@ class _AddDocViewState extends State<AddDocView> {
 }
 
 class PickLocationView extends StatefulWidget {
-  const PickLocationView({super.key});
-
+  const PickLocationView({
+    super.key,
+  });
   @override
   State<PickLocationView> createState() => _PickLocationViewState();
 }
 
 class _PickLocationViewState extends State<PickLocationView> {
   LatLng? selectedLatLng;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Scaffold(
-      appBar: AppBar(title: const Text("اختر الموقع")),
+      appBar: AppBar(
+        title: const Text(
+          "اختر الموقع",
+        ),
+      ),
       body: GoogleMap(
         initialCameraPosition: const CameraPosition(
-          target: LatLng(24.7136, 46.6753), // الرياض كمثال
+          target: LatLng(
+            24.7136,
+            46.6753,
+          ),
           zoom: 10,
         ),
-        onTap: (LatLng latLng) {
-          setState(() {
-            selectedLatLng = latLng;
-          });
+        onTap: (
+          LatLng latLng,
+        ) {
+          setState(
+            () {
+              selectedLatLng = latLng;
+            },
+          );
         },
         markers: selectedLatLng != null
             ? {
                 Marker(
-                  markerId: const MarkerId("selected"),
+                  markerId: const MarkerId(
+                    "selected",
+                  ),
                   position: selectedLatLng!,
                 ),
               }
@@ -392,10 +412,15 @@ class _PickLocationViewState extends State<PickLocationView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (selectedLatLng != null) {
-            Navigator.pop(context, selectedLatLng);
+            Navigator.pop(
+              context,
+              selectedLatLng,
+            );
           }
         },
-        child: const Icon(Icons.check),
+        child: const Icon(
+          Icons.check,
+        ),
       ),
     );
   }

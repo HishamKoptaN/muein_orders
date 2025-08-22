@@ -14,6 +14,15 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/base_cart.svg
+  String get baseCart => 'assets/icons/base_cart.svg';
+
+  /// File path: assets/icons/cart.svg
+  String get cart => 'assets/icons/cart.svg';
+
+  /// File path: assets/icons/menu.svg
+  String get menu => 'assets/icons/menu.svg';
+
   /// File path: assets/icons/mubin_custom_logo.jpeg
   AssetGenImage get mubinCustomLogo =>
       const AssetGenImage('assets/icons/mubin_custom_logo.jpeg');
@@ -30,34 +39,29 @@ class $AssetsIconsGen {
   AssetGenImage get nativeAndroidSplash =>
       const AssetGenImage('assets/icons/native_android_splash.png');
 
+  /// File path: assets/icons/pdf.svg
+  String get pdf => 'assets/icons/pdf.svg';
+
   /// File path: assets/icons/sticker_logo.png
   AssetGenImage get stickerLogo =>
       const AssetGenImage('assets/icons/sticker_logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
+  List<dynamic> get values => [
+        baseCart,
+        cart,
+        menu,
         mubinCustomLogo,
         mubinLogo,
         mubinLogoCircale,
         nativeAndroidSplash,
+        pdf,
         stickerLogo
       ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
-
-  /// File path: assets/images/Cart.png
-  AssetGenImage get cartPng => const AssetGenImage('assets/images/Cart.png');
-
-  /// File path: assets/images/Cart.svg
-  String get cartSvg => 'assets/images/Cart.svg';
-
-  /// File path: assets/images/Menu.svg
-  String get menu => 'assets/images/Menu.svg';
-
-  /// File path: assets/images/Pdf.svg
-  String get pdf => 'assets/images/Pdf.svg';
 
   /// File path: assets/images/Rectangle 10.png
   AssetGenImage get rectangle10 =>
@@ -72,8 +76,8 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/sign_in_background.png');
 
   /// List of all assets
-  List<dynamic> get values =>
-      [cartPng, cartSvg, menu, pdf, rectangle10, rectangle13, signInBackground];
+  List<AssetGenImage> get values =>
+      [rectangle10, rectangle13, signInBackground];
 }
 
 class Assets {

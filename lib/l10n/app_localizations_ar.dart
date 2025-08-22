@@ -9,6 +9,28 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get welcome => 'مرحباً بك';
+
+  @override
+  String get we_are_happy_to_have_you_join_our_store =>
+      'سعيدين بانضمامك إلى متجر مبين';
+
+  @override
+  String get get_to_know_the_application_interface => 'تعرّف على واجهة التطبيق';
+
+  @override
+  String get here_you_will_find_tasks_requests_alerts_and_filters =>
+      'هنا هتلاقي المهام، الطلبات، التنبيهات، والفلاتر';
+
+  @override
+  String get documentation_with_photos_and_videos => 'التوثيق بالصور والفيديو';
+
+  @override
+  String
+      get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+          'تأكد من وضوح الصور وعدد المصاحف قبل الإرسال';
+
+  @override
   String get the_name_printed_on_the_quran => 'الاسم الذي يطبع علي المصحف';
 
   @override
@@ -16,6 +38,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get email => 'الايميل';
+
+  @override
+  String get start => 'ابدأ';
+
+  @override
+  String get next => 'القادم';
 
   @override
   String get upload_videos => 'رفع الفيديوهات';

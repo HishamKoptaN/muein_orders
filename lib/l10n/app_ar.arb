@@ -1,7 +1,15 @@
 {
+  "welcome": "مرحباً بك",
+  "we_are_happy_to_have_you_join_our_store": "سعيدين بانضمامك إلى متجر مبين",
+  "get_to_know_the_application_interface": "تعرّف على واجهة التطبيق",
+  "here_you_will_find_tasks_requests_alerts_and_filters": "هنا هتلاقي المهام، الطلبات، التنبيهات، والفلاتر",
+  "documentation_with_photos_and_videos": "التوثيق بالصور والفيديو",
+  "make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending": "تأكد من وضوح الصور وعدد المصاحف قبل الإرسال",
   "@@locale": "ar",
   "the_name_printed_on_the_quran": "الاسم الذي يطبع علي المصحف",
   "printed_name": "الاسم المطبوع",
+  "start": "ابدأ",
+  "next": "القادم",
   "phone": "رقم الهاتف",
   "email": "الايميل",
   "done": "تم",
@@ -10,15 +18,12 @@
   "orders": "الطلبات",
   "package": "حزمة",
   "there_are_no_results_for_this_search": "لا توجد نتائج لهذا البحث",
-
-  
   "documentations_view": "===================================      documentations_view    ===========================================",
   "documentations": "التوثيقات",
   "show_documentations": "عرض التوثيقات",
   "add_documentations_view": "===================================      add_documentations_view    ===========================================",
-      "execution_number": "رقم التنفيذ",
-      "location": "الموقع",
-
+  "execution_number": "رقم التنفيذ",
+  "location": "الموقع",
   "add_documentation": "اضافة توثيق",
   "add_order": "اضافة طلب",
   "changeLanguage": "تغيير اللغة",

@@ -38,7 +38,7 @@ class CustomField extends StatelessWidget {
         ),
         CustomTextFormField(
           // backGroundColor: backGroundColor ?? AppColors.lightGreyColor,
-          maxlines: maxlines ?? 1,
+          maxLines: maxlines ?? 1,
           onChanged: onChanged,
           validator: validator,
           hintText: hintText,

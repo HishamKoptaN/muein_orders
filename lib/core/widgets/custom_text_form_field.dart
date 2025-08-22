@@ -3,26 +3,29 @@ import '../all_imports.dart';
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField({
     super.key,
+    this.initialValue,
     this.hintText,
-    required this.textInputType,
+    this.textInputType,
     this.suffixIcon,
     this.onSaved,
     this.obscureText = false,
-    this.maxlines,
+    this.maxLines,
     this.backGroundColor,
     this.validator,
     this.onChanged,
+    this.readOnly,
   });
-
+  final String? initialValue;
   String? Function(String?)? validator;
   void Function(String)? onChanged;
   final String? hintText;
-  final TextInputType textInputType;
+  final TextInputType? textInputType;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
   final bool obscureText;
-  final int? maxlines;
+  final int? maxLines;
   final Color? backGroundColor;
+  final bool? readOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,10 @@ class CustomTextFormField extends StatelessWidget {
         ),
         child: Center(
           child: TextFormField(
-            maxLines: maxlines ?? 1,
+            initialValue: initialValue,
+            readOnly: readOnly ?? true,
+            maxLines: maxLines ?? 1,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             obscureText: obscureText,
             onSaved: onSaved,
             validator: validator,

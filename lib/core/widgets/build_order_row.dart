@@ -51,7 +51,7 @@ Widget buildOrderRow({
                 );
               },
               child: SvgPicture.asset(
-                Assets.images.pdf,
+                Assets.icons.pdf,
                 fit: BoxFit.contain,
               ),
             ),

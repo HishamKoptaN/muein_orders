@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:mode_theme/mode_theme.dart';
-import 'package:sign_in/sign_in.dart';
 import '../../SignInUi.dart';
 import '../../core/gloabal_widgets/settings_tab.dart';
 import '../../core/widgets/LanguageSwitchButton.dart';
@@ -21,7 +20,7 @@ class MyDrawer extends StatelessWidget {
     final t = AppLocalizations.of(context)!;
     return SafeArea(
       child: Drawer(
-        width: 175.w,
+        width: 225.w,
         child: SizedBox(
           height: 70,
           child: SingleChildScrollView(

@@ -98,6 +98,43 @@ abstract class AppLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @welcome.
+  ///
+  /// In en, this message translates to:
+  /// **'welcome'**
+  String get welcome;
+
+  /// No description provided for @we_are_happy_to_have_you_join_our_store.
+  ///
+  /// In en, this message translates to:
+  /// **'We are happy to have you join our store.'**
+  String get we_are_happy_to_have_you_join_our_store;
+
+  /// No description provided for @get_to_know_the_application_interface.
+  ///
+  /// In en, this message translates to:
+  /// **'Get to know the application interface'**
+  String get get_to_know_the_application_interface;
+
+  /// No description provided for @here_you_will_find_tasks_requests_alerts_and_filters.
+  ///
+  /// In en, this message translates to:
+  /// **'Here you will find tasks, requests, alerts, and filters.'**
+  String get here_you_will_find_tasks_requests_alerts_and_filters;
+
+  /// No description provided for @documentation_with_photos_and_videos.
+  ///
+  /// In en, this message translates to:
+  /// **'Documentation with photos and videos'**
+  String get documentation_with_photos_and_videos;
+
+  /// No description provided for @make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending.
+  ///
+  /// In en, this message translates to:
+  /// **'Make sure the images are clear and the number of copies of the Qur’an is correct before sending.'**
+  String
+      get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
+
   /// No description provided for @the_name_printed_on_the_quran.
   ///
   /// In en, this message translates to:
@@ -115,6 +152,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'email'**
   String get email;
+
+  /// No description provided for @start.
+  ///
+  /// In en, this message translates to:
+  /// **'start'**
+  String get start;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'next'**
+  String get next;
 
   /// No description provided for @upload_videos.
   ///

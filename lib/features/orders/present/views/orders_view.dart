@@ -20,7 +20,7 @@ class OrdersView extends StatefulWidget {
   const OrdersView({
     super.key,
   });
-  static const String routeName = "OrdersView";
+  static const String routeName = "orders";
   @override
   State<OrdersView> createState() => _OrdersViewState();
 }
@@ -58,16 +58,22 @@ class _OrdersViewState extends State<OrdersView> {
     final t = AppLocalizations.of(context)!;
     return CustomScaffold(
       appBar: AppBar(
-        title: Text(t.orders),
+        title: Text(
+          t.orders,
+        ),
         leading: Builder(
           builder: (context) {
             return GestureDetector(
               onTap: () => Scaffold.of(context).openDrawer(),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 9,
+                ),
                 child: SvgPicture.asset(
-                  Assets.images.menu,
-                  fit: BoxFit.cover,
+                  Assets.icons.menu,
+                  fit: BoxFit.contain,
+                  width: 45,
+                  height: 45,
                 ),
               ),
             );
@@ -75,10 +81,14 @@ class _OrdersViewState extends State<OrdersView> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15,
+            ),
             child: SvgPicture.asset(
-              Assets.images.cartSvg,
-              fit: BoxFit.cover,
+              Assets.icons.baseCart,
+              fit: BoxFit.contain,
+              width: 45,
+              height: 45,
             ),
           ),
         ],
@@ -282,6 +292,7 @@ class _OrdersViewState extends State<OrdersView> {
     _scrollController.dispose();
     super.dispose();
   }
+
   Widget buildUploadStatus({required int orderId}) {
     final statusData =
         context.read<DocsBloc>().getUploadStatusForOrder(orderId);
