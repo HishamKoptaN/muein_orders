@@ -112,7 +112,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                 }
               }
               print(
-                  'https://www.google.com/maps/search/?api=1&query=${_latitude},${_longitude}');
+                  'https://www.google.com/maps/search/?api=1&query=$_latitude,$_longitude');
               final id = _orderId?.value;
               _orderDocStatus[id] =
                   (status: DocUploadStatus.uploading, progress: "0%");

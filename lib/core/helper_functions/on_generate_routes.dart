@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mubin_orders/features/home/home_view.dart';
-import 'package:sign_in/sign_in.dart';
 import '../../SignInUi.dart';
 import '../../features/docs/present/views/widgets/image_preview.dart';
 import '../../features/orders/present/views/orders_view.dart';
-import '../../l10n/app_localizations.dart';
 import '../gloabal_widgets/video_player.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../core/widgets/custom_password_form_field.dart';
-import '../utils/app_colors.dart';
-import '../utils/app_text_styles.dart';
 
 class CustomPasswordField extends StatelessWidget {
   CustomPasswordField({

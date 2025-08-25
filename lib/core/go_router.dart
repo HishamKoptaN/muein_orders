@@ -1,6 +1,7 @@
 // import 'package:piopiopizza/screens/main/settings/productivity/provider/ roduction_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../SignInUi.dart';
 import '../app.dart';
 import '../features/home/home_view.dart';
 import '../features/main_view.dart';
@@ -8,7 +9,7 @@ import '../features/orders/present/views/orders_view.dart';
 import '../onboarding_view.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: "/${OrdersView.routeName}",
+  initialLocation: "/${SignInView.routeName}",
   navigatorKey: GlobalVariable.navState,
   routes: [
     goRoute(
@@ -19,6 +20,12 @@ final GoRouter router = GoRouter(
       path: MainView.routeName,
       builder: (context, state) {
         return const MainView();
+      },
+    ),
+    goRoute(
+      path: SignInView.routeName,
+      builder: (context, state) {
+        return const SignInView();
       },
     ),
     goRoute(

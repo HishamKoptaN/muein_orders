@@ -85,7 +85,7 @@ class MyDrawer extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: 40,
                                     width: 1,
                                   ),

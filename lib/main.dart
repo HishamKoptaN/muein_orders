@@ -15,7 +15,6 @@ import 'features/language/bloc/language_cubit.dart';
 import 'features/docs/present/blocs/bloc/docs_bloc.dart';
 import 'features/orders/present/bloc/orders_bloc.dart';
 import 'firebase_options.dart';
-import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +48,7 @@ Future<void> main() async {
   }
   runApp(
     MultiBlocProvider(
-      providers: [  
+      providers: [
         BlocProvider(
           create: (context) => getIt<MainBloc>(),
         ),

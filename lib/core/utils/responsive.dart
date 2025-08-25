@@ -8,11 +8,11 @@ class Res extends StatelessWidget {
   final Widget? desktop;
 
   const Res({
-    Key? key,
+    super.key,
     this.mobile,
     this.tablet,
     this.desktop,
-  }) : super(key: key);
+  });
 
 // This size work fine on my design, maybe you need some customization depends on your design
 

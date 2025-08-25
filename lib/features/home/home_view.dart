@@ -2,7 +2,6 @@ import 'package:mubin_orders/core/all_imports.dart';
 import '../../core/widgets/custom_app_bar.dart';
 import '../../l10n/app_localizations.dart';
 import '../orders/present/views/orders_view.dart';
-import '../drawer/my_drawer.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({

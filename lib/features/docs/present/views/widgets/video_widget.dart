@@ -9,10 +9,10 @@ class VideoWidget extends StatefulWidget {
   final String thumbnailUrl; // ✅ thumbnail
 
   const VideoWidget({
-    Key? key,
+    super.key,
     required this.videoUrl,
     required this.thumbnailUrl,
-  }) : super(key: key);
+  });
 
   @override
   _VideoWidgetState createState() => _VideoWidgetState();
@@ -21,7 +21,7 @@ class VideoWidget extends StatefulWidget {
 class _VideoWidgetState extends State<VideoWidget> {
   late VideoPlayerController _controller;
   bool _isError = false;
-  bool _isPlaying = false;
+  final bool _isPlaying = false;
 
   @override
   void initState() {

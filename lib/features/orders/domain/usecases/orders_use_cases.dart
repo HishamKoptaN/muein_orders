@@ -1,5 +1,4 @@
 import '../../../../../core/networking/api_result.dart';
-import '../../data/models/orders_res_model.dart';
 import '../entities/orders_res_entity.dart';
 import '../repo/orders_repo.dart';
 import 'package:injectable/injectable.dart';

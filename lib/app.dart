@@ -4,7 +4,6 @@ import 'core/all_imports.dart';
 import 'core/go_router.dart';
 import 'features/language/bloc/language_cubit.dart';
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter/material.dart';
 import 'l10n/app_localizations.dart';
 
 class GlobalVariable {
@@ -34,9 +33,9 @@ class MubinOrdersApp extends StatelessWidget {
           return ModeTheme(
             lightColorScheme: const ColorScheme.light(
               primary: Color.fromRGBO(
-                239,
-                167,
-                53,
+                0,
+                58,
+                69,
                 1,
               ),
               onPrimary: Colors.white,
@@ -142,7 +141,7 @@ class MubinOrdersApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                supportedLocales: AppLocalizations.supportedLocales,
+                // supportedLocales: AppLocalizations.supportedLocales,
                 routerConfig: router,
               );
             },

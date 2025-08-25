@@ -1,5 +1,4 @@
 import '../../../../core/all_imports.dart';
-import '../../../../core/utils/app_text_styles.dart';
 import '../../../../core/widgets/app_container.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
