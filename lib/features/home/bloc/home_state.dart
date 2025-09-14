@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../../../core/errors/api_error_model.dart';
+import '../../../core/error/api_error_model.dart';
 part 'home_state.freezed.dart';
 
 @freezed

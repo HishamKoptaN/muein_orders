@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-import 'package:mode_theme/mode_theme.dart';
-import '../../SignInUi.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/gloabal_widgets/settings_tab.dart';
 import '../../core/widgets/LanguageSwitchButton.dart';
 import '../../l10n/app_localizations.dart';
+import '../auth/sign_in/present/views/sign_in_view.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -30,7 +30,7 @@ class MyDrawer extends StatelessWidget {
                 Gap(
                   25.h,
                 ),
-                ThemeSwitcherTile(),
+                // ThemeSwitcherTile(),
                 LanguageSwitchButton(),
                 SettingsTabWidget(
                   title: t.log_out,
@@ -53,7 +53,7 @@ class MyDrawer extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                t.are_you_sure,
+                                t.areYouSure,
                                 textAlign: TextAlign.center,
                               ),
                               const SizedBox(height: 20),
@@ -69,13 +69,9 @@ class MyDrawer extends StatelessWidget {
                                         // context
                                         //     .read<AuthBloc>()
                                         //     .add(const AuthEvent.clearToken());
-                                        Navigator.of(context)
-                                            .pushAndRemoveUntil(
-                                          MaterialPageRoute(
-                                            builder: (context) => SignInView(),
-                                          ),
-                                          (route) => false,
-                                        );
+                                        if (context.mounted) {
+                                          context.goNamed(SignInView.routeName);
+                                        }
                                       },
                                       child: Text(
                                         t.log_out,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../language_icon_button.dart';
 
 class AppLayout extends StatefulWidget {
   const AppLayout({
@@ -42,6 +43,10 @@ class _AppLayoutState extends State<AppLayout> {
                 style: const TextStyle(color: Colors.black),
               ),
               centerTitle: true,
+              actions: const [
+                LanguageIconButton(),
+                SizedBox(width: 8), // Add some spacing
+              ],
             )
           : null,
       body: widget.body,

@@ -4,6 +4,8 @@ class ApiConstants {
   static const String apiAuthBaseUrl = "auth/";
   static const String check = "check";
   static const String orders = "orders";
+  static const String signup = "signup";
+
   static const String docs = "docs";
   static const String authToken = "auth-token";
   static const String login = "login";

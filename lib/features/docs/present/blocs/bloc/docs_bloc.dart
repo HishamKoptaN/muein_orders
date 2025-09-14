@@ -2,9 +2,9 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mubin_orders/core/entities/meta_entity.dart';
+import 'package:mubin_orders/core/error/api_error_model.dart';
 import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
 import '../../../../../core/all_imports.dart';
-import '../../../../../core/errors/api_error_model.dart';
 import '../../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
 import 'docs_event.dart';
@@ -93,8 +93,9 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                   final result = await docsUseCase.getCurrentLocation();
                   _latitude =
                       GenericFormzInput<String>.dirty(result.lat.toString());
-                  _longitude =
-                      GenericFormzInput<String>.dirty(_longitude.toString());
+                  _longitude = GenericFormzInput<String>.dirty(
+                    result.lng.toString(),
+                  );
                   emitCustomLoaded(
                     emit: emit,
                   );
@@ -132,6 +133,12 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                     total,
                   ) {
                     _uploadingProgress = "${((sent / total) * 100).toInt()}%";
+                    if (id != null) {
+                      _orderDocStatus[id] = (
+                        status: DocUploadStatus.uploading,
+                        progress: _uploadingProgress,
+                      );
+                    }
                     emitCustomLoaded(
                       emit: emit,
                     );
@@ -142,8 +149,8 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                     order,
                   ) async {
                     _orderDocStatus[id!] = (
-                      status: DocUploadStatus.uploading,
-                      progress: _uploadingProgress,
+                      status: DocUploadStatus.success,
+                      progress: "100%",
                     );
                     resetFormInputs();
                     _allDocs = [
@@ -162,7 +169,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                     apiErrorModel,
                   ) async {
                     _orderDocStatus[id!] = (
-                      status: DocUploadStatus.uploading,
+                      status: DocUploadStatus.failed,
                       progress: _uploadingProgress,
                     );
                     emit(
@@ -177,7 +184,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                 );
               } catch (e) {
                 _orderDocStatus[id!] = (
-                  status: DocUploadStatus.uploading,
+                  status: DocUploadStatus.failed,
                   progress: _uploadingProgress,
                 );
                 emit(

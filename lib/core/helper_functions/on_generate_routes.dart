@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mubin_orders/features/home/home_view.dart';
-import '../../SignInUi.dart';
+import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/docs/present/views/widgets/image_preview.dart';
 import '../../features/orders/present/views/orders_view.dart';
 import '../gloabal_widgets/video_player.dart';
+import '../go_router.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     // case AuthView.routeName:
     //   return MaterialPageRoute(builder: (context) => const AuthView());
     case SignInView.routeName:
-      return MaterialPageRoute(builder: (context) => SignInView());
+      return MaterialPageRoute(builder: (context) => const SignInView());
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
     case OrdersView.routeName:

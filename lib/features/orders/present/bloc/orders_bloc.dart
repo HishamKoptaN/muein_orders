@@ -1,5 +1,5 @@
 import '../../../../core/entities/meta_entity.dart';
-import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/error/api_error_model.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/usecases/orders_use_cases.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

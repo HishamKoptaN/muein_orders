@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:mubin_orders/features/orders/data/mappers/orders_res_mapper.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../../../core/errors/api_error_handler.dart';
+import '../../../../core/error/api_error_handler.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/repo/orders_repo.dart';
 import '../datasources/orders_api.dart';

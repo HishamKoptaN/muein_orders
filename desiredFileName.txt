@@ -1,6 +1,1 @@
-{
-  "ar": [
-    "order_saving",
-    "order__is_sharing"
-  ]
-}
+{}

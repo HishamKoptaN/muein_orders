@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mode_theme/mode_theme.dart';
 
 AppBarTheme appBarTheme({
   required ColorScheme colorScheme,
-  required DesignTokens designTokens,
 }) {
   return AppBarTheme(
     backgroundColor: colorScheme.primary,
     foregroundColor: colorScheme.onPrimary,
-    elevation: designTokens.cardElevation,
+    elevation: 4,
     scrolledUnderElevation: 4,
     shadowColor: colorScheme.shadow,
     centerTitle: true,
@@ -18,7 +16,7 @@ AppBarTheme appBarTheme({
     titleSpacing: 16.w,
     iconTheme: IconThemeData(color: colorScheme.onPrimary),
     actionsIconTheme: IconThemeData(
-      color: designTokens.applyOpacity(colorScheme.onPrimary, 0.9),
+      color: colorScheme.onPrimary,
     ),
     titleTextStyle: TextStyle(
       fontSize: 20.sp,
@@ -27,7 +25,10 @@ AppBarTheme appBarTheme({
     ),
     systemOverlayStyle: SystemUiOverlayStyle.light,
     shape: RoundedRectangleBorder(
-      borderRadius: designTokens.defaultRadiusOnlyBottom,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(24.r),
+        topRight: Radius.circular(24.r),
+      ),
     ),
   );
 }

@@ -1,5 +1,6 @@
-import '../../../../../core/all_imports.dart';
-import '../../../../../l10n/app_localizations.dart';
+import 'package:flutter/material.dart';
+import 'package:mubin_orders/core/all_imports.dart';
+import 'package:mubin_orders/generated/l10n.dart';
 import '../../bloc/orders_bloc.dart';
 import '../../bloc/orders_event.dart';
 
@@ -7,11 +8,9 @@ class SearchTextWidget extends StatefulWidget {
   const SearchTextWidget({
     super.key,
     required TextEditingController controller,
-    required this.t,
   }) : _controller = controller;
 
   final TextEditingController _controller;
-  final AppLocalizations t;
 
   @override
   State<SearchTextWidget> createState() => _SearchTextWidgetState();
@@ -34,8 +33,8 @@ class _SearchTextWidgetState extends State<SearchTextWidget> {
         setState(() {});
       },
       decoration: InputDecoration(
-        hintText: 'search',
-        // widget.t.search_name_customer_number_mobile_number,
+        hintText: 'Search',
+        // Previously: widget.t.search_name_customer_number_mobile_number,
         hintStyle: TextStyle(
           color: Colors.white.withOpacity(0.5),
         ),

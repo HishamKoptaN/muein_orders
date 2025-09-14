@@ -3,11 +3,13 @@ import 'package:injectable/injectable.dart';
 import 'package:mubin_orders/core/di/dependency_injection.config.dart';
 
 final getIt = GetIt.instance;
+
 @InjectableInit(
-  initializerName: 'initGetIt',
+  initializerName: 'init',
   preferRelativeImports: true,
   asExtension: true,
 )
-void configureDependencies() {
-  getIt.initGetIt();
+Future<void> configureDependencies() async {
+  // Initialize injectable dependencies
+  await getIt.init();
 }

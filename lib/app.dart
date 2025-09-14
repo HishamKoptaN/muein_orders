@@ -1,10 +1,12 @@
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:mode_theme/mode_theme.dart';
-import 'core/all_imports.dart';
-import 'core/go_router.dart';
-import 'features/language/bloc/language_cubit.dart';
 import 'package:country_picker/country_picker.dart';
-import 'l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mubin_orders/core/go_router.dart';
+import 'package:mubin_orders/l10n/app_localizations.dart';
+import 'core/all_imports.dart';
+import 'core/config/app_config.dart';
+import 'features/language/bloc/language_bloc.dart';
+import 'features/theme/blocs/theme_bloc.dart';
+import 'features/theme/blocs/theme_state.dart';
 
 class GlobalVariable {
   static final GlobalKey<NavigatorState> navState = GlobalKey<NavigatorState>();
@@ -19,135 +21,93 @@ class MubinOrdersApp extends StatelessWidget {
     BuildContext context,
   ) {
     return ScreenUtilInit(
-      designSize: Size(
-        393,
-        852,
-      ),
+      designSize: const Size(393, 852),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: BlocBuilder<LanguageCubit, Locale>(
-        builder: (
-          context,
-          locale,
-        ) {
-          return ModeTheme(
-            lightColorScheme: const ColorScheme.light(
-              primary: Color.fromRGBO(
-                0,
-                58,
-                69,
-                1,
-              ),
-              onPrimary: Colors.white,
-              surface: Colors.white,
-              onSurface: Color.fromRGBO(
-                239,
-                167,
-                53,
-                1,
-              ),
-            ),
-            darkColorScheme: ColorScheme.dark(
-              primary: Color.fromRGBO(
-                239,
-                167,
-                53,
-                1,
-              ),
-              onPrimary: Colors.white,
-              surface: Colors.white,
-              onSurface: Color.fromRGBO(
-                239,
-                167,
-                53,
-                1,
-              ),
-            ),
-            designTokens: DesignTokens(
-              drawerElevation: 6,
-              defaultRadius: BorderRadius.all(
-                Radius.circular(
-                  14,
-                ),
-              ),
-              defaultRadiusOnlyBottom: BorderRadius.vertical(
-                bottom: Radius.circular(
-                  14,
-                ),
-              ),
-              cardElevation: 14,
-              cardMargin: EdgeInsets.symmetric(
-                vertical: 14,
-                horizontal: 14,
-              ),
-              checkboxRadius: BorderRadius.all(
-                Radius.circular(
-                  14,
-                ),
-              ),
-              splashRadius: 22,
-              buttonMinSize: Size(
-                345.w,
-                60.h,
-              ),
-              buttonMaxSize: Size(
-                345.w,
-                60.h,
-              ),
-            ),
-            baseTextStyle: TextStyle(
-              fontFamily: 'Almarai',
-            ),
-            builder: ({
-              required ThemeData lightTheme,
-              required ThemeData darkTheme,
-              required ThemeMode currentTheme,
-            }) {
+      builder: (context, child) => BlocBuilder<LanguageBloc, LanguageState>(
+        builder: (context, state) {
+          return BlocBuilder<ThemeBloc, ThemeState>(
+            builder: (context, themeState) {
+              final buttonSize = const Size(332, 60);
+              const primaryBtnColor = Color(0xFF83BEA8);
               return MaterialApp.router(
+                title: AppConfig.appName,
                 debugShowCheckedModeBanner: false,
-                theme: lightTheme.copyWith(
-                  appBarTheme: AppBarTheme(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.white,
-                    // elevation: designTokens.cardElevation,
-                    scrolledUnderElevation: 4,
-                    // shadowColor: colorScheme.shadow,
-                    centerTitle: true,
-                    toolbarHeight: 70.h,
-                    titleSpacing: 30.w,
-                    leadingWidth: 70.w,
-                    // iconTheme: IconThemeData(color: colorScheme.onPrimary),
-                    // actionsIconTheme: IconThemeData(
-                    //   color: designTokens.applyOpacity(colorScheme.onPrimary, 0.9),
-                    // ),
-                    titleTextStyle: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                routerConfig: router,
+                theme: ThemeData(
+                  colorScheme: ColorScheme(
+                    brightness: Brightness.light,
+                    primary: primaryBtnColor,
+                    onPrimary: Colors.white,
+                    secondary: primaryBtnColor,
+                    onSecondary: Colors.white,
+                    error: Colors.red,
+                    onError: Colors.red,
+                    background: Colors.white,
+                    onBackground: Colors.black,
+                    surface: Colors.white,
+                    onSurface: Colors.black,
+                    shadow: Colors.black,
+                  ),
+                  elevatedButtonTheme: ElevatedButtonThemeData(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: buttonSize,
+                      fixedSize: buttonSize,
+                      backgroundColor: primaryBtnColor,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                     ),
-                    // systemOverlayStyle: SystemUiOverlayStyle.light,
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius: designTokens.defaultRadiusOnlyBottom,
-                    // ),
                   ),
                 ),
-                darkTheme: darkTheme,
-                themeMode: ThemeMode.light,
-                localizationsDelegates: [
-                  ...AppLocalizations.localizationsDelegates,
-                  CountryLocalizations.delegate,
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                // supportedLocales: AppLocalizations.supportedLocales,
-                routerConfig: router,
+                darkTheme: ThemeData(
+                  colorScheme: ColorScheme(
+                    brightness: Brightness.dark,
+                    primary: primaryBtnColor,
+                    onPrimary: Colors.white,
+                    secondary: primaryBtnColor,
+                    onSecondary: Colors.white,
+                    error: Colors.red,
+                    onError: Colors.red,
+                    background: Colors.black,
+                    onBackground: Colors.white,
+                    surface: Colors.black,
+                    onSurface: Colors.white,
+                    shadow: Colors.white,
+                  ),
+                  elevatedButtonTheme: ElevatedButtonThemeData(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: buttonSize,
+                      fixedSize: buttonSize,
+                      backgroundColor: primaryBtnColor,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                    ),
+                  ),
+                ),
+                themeMode: themeState.mode,
+                locale: state.currentLocale,
+                localizationsDelegates: _buildLocalizationDelegates(),
+                supportedLocales: AppLocalizations.supportedLocales,
               );
             },
           );
         },
       ),
     );
+  }
+
+  static List<LocalizationsDelegate<dynamic>> _buildLocalizationDelegates() {
+    return [
+      ...AppLocalizations.localizationsDelegates,
+      CountryLocalizations.delegate,
+      AppLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ];
   }
 }

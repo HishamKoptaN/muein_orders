@@ -1,7 +1,8 @@
 import 'package:mubin_orders/core/all_imports.dart';
+
 import '../../core/widgets/custom_app_bar.dart';
 import '../../l10n/app_localizations.dart';
-import '../orders/present/views/orders_view.dart';
+import '../orders/present/views/modern_orders_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({
@@ -21,7 +22,7 @@ class _HomeViewState extends State<HomeView> {
         appBar: CustomAppBar(
           title: t.orders,
         ),
-        body: OrdersView(),
+        body: ModernOrdersView(),
         // bottomNavigationBar: Padding(
         //   padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
         //   child: PhysicalModel(

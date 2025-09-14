@@ -1,6 +1,141 @@
 {
+  // Java Configuration
   "java.configuration.updateBuildConfiguration": "interactive",
-  "cmake.sourceDirectory": "/Users/abdelrahmankhaled/Desktop/code_projects/mubin_orders/windows",
+
+  // C++ Configuration
   "C_Cpp.errorSquiggles": "enabled",
-  "firebase.cmake.sourceDirectory": "C:/Users/hesha/OneDrive/Documents/GitHub/mubin_orders/build/windows/x64/extracted/firebase_cpp_sdk_windows"
+
+  // Flutter & Dart Settings
+  "dart.flutterSdkPath": null,
+  "dart.checkForSdkUpdates": true,
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true,
+  "dart.hotReloadOnSave": "always",
+  "dart.lineLength": 80,
+  "dart.insertArgumentPlaceholders": false,
+  "dart.showTodos": true,
+  "dart.warnWhenEditingFilesOutsideWorkspace": false,
+
+  // Flutter Inspector
+  "dart.flutterOutline": true,
+  "dart.flutterCreateAndroidLanguage": "kotlin",
+  "dart.flutterCreateIOSLanguage": "swift",
+
+  // Editor Settings
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "windsurf.ai.autoApply": true,
+  "editor.rulers": [80],
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 80,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+
+  // Files Settings
+  "files.associations": {
+    "*.dart": "dart",
+    "*.arb": "json"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/build": true,
+    "**/.flutter-plugins": true,
+    "**/.flutter-plugins-dependencies": true,
+    "**/.packages": true,
+    "**/.pub-cache": true,
+    "**/.pub": true
+  },
+
+  // Git Settings
+  "git.ignoreLimitWarning": true,
+  "git.autofetch": true,
+
+  // Terminal Settings
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+
+  // Bracket Pair Colorization
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+
+  // Emmet
+  "emmet.includeLanguages": {
+    "dart": "html"
+  },
+
+  // JSON Settings
+  "json.schemas": [
+    {
+      "fileMatch": ["*.arb"],
+      "url": "https://raw.githubusercontent.com/google/app-resource-bundle/main/packages/arb/lib/arb_schema.json"
+    }
+  ],
+
+  // Arabic Language Support
+  "editor.unicodeHighlight.allowedCharacters": {
+    "ا": true,
+    "ب": true,
+    "ت": true,
+    "ث": true,
+    "ج": true,
+    "ح": true,
+    "خ": true,
+    "د": true,
+    "ذ": true,
+    "ر": true,
+    "ز": true,
+    "س": true,
+    "ش": true,
+    "ص": true,
+    "ض": true,
+    "ط": true,
+    "ظ": true,
+    "ع": true,
+    "غ": true,
+    "ف": true,
+    "ق": true,
+    "ك": true,
+    "ل": true,
+    "م": true,
+    "ن": true,
+    "ه": true,
+    "و": true,
+    "ي": true,
+    "ى": true,
+    "ة": true,
+    "ء": true,
+    "آ": true,
+    "أ": true,
+    "إ": true,
+    "ؤ": true,
+    "ئ": true
+  },
+  "cmake.sourceDirectory": "G:/flutter_projects/mubin_orders/windows/flutter",
+
+  // Windsurf AI unattended operation
+  "windsurf.autoApplyEdits": true,
+  "windsurf.autoRunSafeCommands": true,
+  "windsurf.safeCommandsAllowlist": [
+    "flutter test*",
+    "flutter run*",
+    "flutter analyze*",
+    "dart format*",
+    "dart fix*",
+    "flutter pub get",
+    "flutter gen-l10n",
+    "git status",
+    "git log -n *",
+    "adb devices",
+    "adb logcat*",
+    "ls",
+    "grep"
+  ]
 }

@@ -1,68 +1,58 @@
-import 'package:auth/auth.dart' as auth;
-import 'package:auth/auth/present/bloc/main_bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:sign_in/sign_in.dart' as signIn;
-import 'app.dart';
-import 'core/all_imports.dart';
-import 'core/app_observer.dart';
-import 'core/database/cache/shared_pref_helper.dart';
-import 'core/database/cache/shared_pref_keys.dart';
-import 'core/di/dependency_injection.dart';
-import 'features/language/bloc/language_cubit.dart';
-import 'features/docs/present/blocs/bloc/docs_bloc.dart';
-import 'features/orders/present/bloc/orders_bloc.dart';
-import 'firebase_options.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter/widgets.dart';
+import 'core/app/app_widget.dart';
+import 'core/app/error_handler.dart';
+import 'core/config/app_initializer.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: HydratedStorageDirectory(
-      (await getTemporaryDirectory()).path,
-    ),
-  );
-  configureDependencies();
-  auth.configureAuthDependencies(
-    instance: getIt,
-  );
-  signIn.configureSignInDependencies(
-    instance: getIt,
-  );
-  getIt.registerLazySingleton<Locale>(
-    () => const Locale(
-      'ar',
-    ),
-  );
-  await ScreenUtil.ensureScreenSize();
-  if (!kReleaseMode) {
-    Bloc.observer = AppBlocObserver();
-    SharedPrefHelper.setSecuredString(
-      key: SharedPrefKeys.userToken,
-      value: '69|jwDSZvEUw3kQo4wpRYqRLUgItpfjw6LwemI5oY8zece4ae63',
-    );
-  }
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => getIt<MainBloc>(),
+void main() {
+  runZonedGuarded<Future<void>>(
+    () async {
+      // Initialize Flutter bindings
+      final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+      // Keep native splash showing while initializing
+      FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+      try {
+        // Initialize app
+        await AppInitializer.initialize();
+        // Start the app
+        runApp(const MubinOrdersAppWrapper());
+        // Remove splash after first frame
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          FlutterNativeSplash.remove();
+        });
+      } catch (error, stackTrace) {
+        // Handle initialization errors
+        debugPrint('Error during app initialization: $error');
+        debugPrint('Stack trace: $stackTrace');
+
+        // Show error UI
+        runApp(ErrorApp(
+          errorDetails: FlutterErrorDetails(
+            exception: error,
+            stack: stackTrace,
+            library: 'app',
+            context: ErrorDescription('during app initialization'),
+          ),
+        ));
+      }
+    },
+    (error, stackTrace) {
+      // Handle uncaught errors
+      debugPrint('Uncaught error: $error');
+      debugPrint('Stack trace: $stackTrace');
+
+      // Show error UI
+      runApp(ErrorApp(
+        errorDetails: FlutterErrorDetails(
+          exception: error,
+          stack: stackTrace,
+          library: 'app',
+          context: ErrorDescription('uncaught error'),
         ),
-        BlocProvider(
-          create: (context) => getIt<LanguageCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<OrdersBloc>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt<DocsBloc>(),
-        )
-      ],
-      child: MubinOrdersApp(),
-    ),
+      ));
+    },
   );
 }

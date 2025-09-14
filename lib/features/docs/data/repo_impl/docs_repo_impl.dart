@@ -3,13 +3,13 @@ import 'package:dio/dio.dart';
 import 'package:mubin_orders/features/docs/data/mapper/docs_mapper.dart';
 import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../../../core/errors/api_error_handler.dart';
 import '../../domain/repo/docs_repo.dart';
 import 'dart:async';
 import 'package:location/location.dart';
 
 import '../datasources/docs_api.dart';
 import 'package:injectable/injectable.dart' show Injectable;
+import 'package:mubin_orders/core/error/api_error_handler.dart';
 
 @Injectable(
   as: DocsRepo,

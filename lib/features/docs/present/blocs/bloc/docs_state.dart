@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
-import '../../../../../core/errors/api_error_model.dart';
+import 'package:mubin_orders/core/error/api_error_model.dart';
 import 'package:formz/formz.dart';
 import 'package:form_inputs/form_inputs.dart';
 

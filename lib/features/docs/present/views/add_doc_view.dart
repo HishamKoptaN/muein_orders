@@ -1,9 +1,11 @@
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:formz/formz.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
+
 import '../../../../core/all_imports.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_circular_progress.dart';
@@ -316,6 +318,18 @@ class _AddDocViewState extends State<AddDocView> {
                               context.read<DocsBloc>().add(
                                     DocsEvent.createDoc(),
                                   );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('سيستمر الرفع في الخلفية'),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
+                              Future.delayed(const Duration(milliseconds: 300),
+                                  () {
+                                if (Navigator.of(context).canPop()) {
+                                  Navigator.of(context).pop();
+                                }
+                              });
                             }
                           : null,
                       style: ButtonStyle(

@@ -1,10 +1,18 @@
 #! flutter pub run flutter_native_splash:create --path=flutter_native_splash.yaml
 flutter_native_splash:
-  color: "#FFFFFF"
-  android_gravity: center
+  color: "#003A45"              # لون احتياطي
+  color_dark: "#003A45"        # نفس اللون للوضع الداكن
+  background_image: assets/images/splash.png
+
+  # محاذاة وملء
+  android_gravity: fill
+  ios_content_mode: scaleAspectFill
+  web_image_mode: cover
+
+  # Android 12: استخدم لون فقط (بدون صورة) لتفادي ظهور شاشة سوداء
   android_12:
-    color: "#FFFFFF"
-    image: assets/icons/native_android_splash.png
+    color: "#003A45"
+    color_dark: "#003A45"
   android: true
   ios: true
   web: true

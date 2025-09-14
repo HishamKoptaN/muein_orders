@@ -1,3 +1,5 @@
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../../../core/all_imports.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/build_order_row.dart';
@@ -5,6 +7,7 @@ import '../../../../core/widgets/widget_column_header.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../docs/present/blocs/bloc/docs_bloc.dart';
+import '../../../docs/present/blocs/bloc/docs_state.dart';
 import '../../../docs/present/views/add_doc_view.dart';
 import '../../../docs/present/views/docs_view.dart';
 import '../../../drawer/my_drawer.dart';
@@ -13,7 +16,6 @@ import '../bloc/orders_bloc.dart';
 import '../bloc/orders_event.dart';
 import '../bloc/orders_state.dart';
 import 'widgets/shimmer_client_row.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class OrdersView extends StatefulWidget {
   const OrdersView({
@@ -143,7 +145,7 @@ class _OrdersViewState extends State<OrdersView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               buildColumnHeader(
-                                label: t.printed_name,
+                                label: '',
                                 flex: 4,
                               ),
                               buildColumnHeader(
@@ -235,10 +237,39 @@ class _OrdersViewState extends State<OrdersView> {
                                                   ),
                                                 );
                                               },
-                                              child: buildOrderRow(
-                                                order: order,
-                                                t: t,
-                                                context: context,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                children: [
+                                                  buildOrderRow(
+                                                    order: order,
+                                                    t: t,
+                                                    context: context,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .only(
+                                                            start: 16,
+                                                            end: 16,
+                                                            top: 4),
+                                                    child: BlocBuilder<DocsBloc,
+                                                        DocsState>(
+                                                      builder: (context, _) {
+                                                        return Align(
+                                                          alignment:
+                                                              AlignmentDirectional
+                                                                  .centerStart,
+                                                          child:
+                                                              buildUploadStatus(
+                                                                  orderId: order
+                                                                          .id ??
+                                                                      0),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             );
                                           },
