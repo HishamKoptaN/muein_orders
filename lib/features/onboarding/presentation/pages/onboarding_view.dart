@@ -9,7 +9,7 @@ import '../bloc/onboarding_state.dart';
 import '../widgets/onboarding_page.dart';
 
 class OnboardingView extends StatefulWidget {
-  const OnboardingView({Key? key}) : super(key: key);
+  const OnboardingView({super.key});
   static const String routeName = "onboarding";
 
 

@@ -1,0 +1,23 @@
+import 'package:flutter/widgets.dart';
+import 'package:mubin_orders/gen/assets.gen.dart';
+
+import '../../../../../core/theme/app_colors.dart';
+
+class SignInHeader extends StatelessWidget {
+  const SignInHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(height: 148),
+        Image.asset(
+          Assets.logos.mubinLogo.path,
+          width: 272,
+          height: 137,
+          color: AppColors.brandMint,
+        ),
+      ],
+    );
+  }
+}

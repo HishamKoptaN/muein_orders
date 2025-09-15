@@ -41,10 +41,6 @@ class $AssetsIconsGen {
   AssetGenImage get mubinBaseLogo =>
       const AssetGenImage('assets/icons/mubin_base_logo.png');
 
-  /// File path: assets/icons/mubin_logo.png
-  AssetGenImage get mubinLogo =>
-      const AssetGenImage('assets/icons/mubin_logo.png');
-
   /// File path: assets/icons/pdf.svg
   String get pdf => 'assets/icons/pdf.svg';
 
@@ -60,7 +56,6 @@ class $AssetsIconsGen {
         iconoirLanguage,
         menu,
         mubinBaseLogo,
-        mubinLogo,
         pdf,
         stickerLogo
       ];
@@ -110,6 +105,10 @@ class $AssetsImagesGen {
 class $AssetsLogosGen {
   const $AssetsLogosGen();
 
+  /// File path: assets/logos/mubin_logo.png
+  AssetGenImage get mubinLogo =>
+      const AssetGenImage('assets/logos/mubin_logo.png');
+
   /// File path: assets/logos/second_logo.png
   AssetGenImage get secondLogoPng =>
       const AssetGenImage('assets/logos/second_logo.png');
@@ -118,7 +117,7 @@ class $AssetsLogosGen {
   String get secondLogoSvg => 'assets/logos/second_logo.svg';
 
   /// List of all assets
-  List<dynamic> get values => [secondLogoPng, secondLogoSvg];
+  List<dynamic> get values => [mubinLogo, secondLogoPng, secondLogoSvg];
 }
 
 class $LibL10nGen {

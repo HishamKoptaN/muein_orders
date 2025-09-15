@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../sign_in/present/bloc/sign_in_bloc.dart';
+import '../../../../../core/di/get_it_instance.dart';
+import '../bloc/forgot_password_bloc.dart';
+import '../bloc/forgot_password_event.dart';
+import '../bloc/forgot_password_state.dart';
 
 class ForgotPasswordView extends StatefulWidget {
   static const String routeName = 'forgot-password';
@@ -29,50 +32,27 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
       child: Scaffold(
         appBar: AppBar(title: const Text('هل نسيت كلمة المرور؟')),
         body: BlocProvider(
-          create: (_) => getIt<SignInBloc>(),
-          child: BlocConsumer<SignInBloc, SignInState>(
+          create: (_) => getIt<ForgotPasswordBloc>(),
+          child: BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
             listener: (context, state) {
-              // state.whenOrNull(
-              //   linkSent: () async {
-              //     ScaffoldMessenger.of(context).showSnackBar(
-              //       const SnackBar(
-              //           content:
-              //               Text('تم إرسال التعليمات إلى بريدك الإلكتروني')),
-              //     );
-              //     // Show confirmation dialog before leaving the screen
-              //     await showDialog(
-              //       context: context,
-              //       builder: (ctx) => AlertDialog(
-              //         key: const Key('reset_dialog'),
-              //         title: const Text('إعادة ضبط كلمة المرور'),
-              //         content: const Text(
-              //             'تم إرسال رابط ضبط كلمة المرور إلى بريدك الإلكتروني'),
-              //         actions: [
-              //           TextButton(
-              //             key: const Key('reset_dialog_ok'),
-              //             onPressed: () => Navigator.of(ctx).pop(),
-              //             child: const Text('حسناً'),
-              //           ),
-              //         ],
-              //       ),
-              //     );
-              //     if (mounted) {
-              //       Navigator.of(context).pop();
-              //     }
-              //   },
-              //   failure: (apiError) {
-              //     final message = apiError.error ?? 'حدث خطأ ما';
-              //     ScaffoldMessenger.of(context).showSnackBar(
-              //       SnackBar(content: Text(message)),
-              //     );
-              //   },
-              // );
+              state.whenOrNull(
+                success: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content:
+                            Text('تم إرسال التعليمات إلى بريدك الإلكتروني')),
+                  );
+                  Navigator.of(context).pop();
+                },
+                failure: (error) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(error)),
+                  );
+                },
+              );
             },
             builder: (context, state) {
-              final isLoading = state.maybeWhen(
-                loading: () => true,
-                orElse: () => false,
-              );
+              final isLoading = state is ForgotPasswordLoading;
               return Padding(
                 padding: const EdgeInsets.all(16),
                 child: Form(
@@ -94,10 +74,12 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                           border: OutlineInputBorder(),
                         ),
                         validator: (val) {
-                          if (val == null || val.isEmpty)
+                          if (val == null || val.isEmpty) {
                             return 'الرجاء إدخال البريد الإلكتروني';
-                          if (!val.contains('@'))
+                          }
+                          if (!val.contains('@')) {
                             return 'بريد إلكتروني غير صالح';
+                          }
                           return null;
                         },
                       ),
@@ -111,13 +93,10 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                   if (_formKey.currentState?.validate() ??
                                       false) {
                                     final email = _emailController.text.trim();
-                                    // update email then fire reset event
-                                    // context.read<SignInBloc>().add(
-                                    //       SignInEvent.updateData(email: email),
-                                    //     );
-                                    // context.read<SignInBloc>().add(
-                                    //       SignInEvent.resetPass(),
-                                    //     );
+                                    context.read<ForgotPasswordBloc>().add(
+                                          ForgotPasswordEvent
+                                              .sendPasswordResetEmail(email),
+                                        );
                                   }
                                 },
                           child: isLoading

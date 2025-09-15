@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../all_imports.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -96,14 +93,15 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
-      // width: widget.width ?? double.infinity,
-      height: widget.height ?? 56,
-      // margin: widget.margin ??
-      //     const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+      width: widget.width ?? 332.w,
+      height: 60.h,
+      margin: widget.margin ?? EdgeInsets.only(bottom: 16.h),
       decoration: BoxDecoration(
-        color: widget.backGroundColor ?? Colors.white.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(14),
+        color: widget.backGroundColor ?? Colors.white.withOpacity(0.19),
+        borderRadius: BorderRadius.circular(14.r),
       ),
       child: TextFormField(
         controller: widget.controller,
@@ -116,52 +114,58 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         onSaved: widget.onSaved,
         validator: widget.validator,
         readOnly: widget.readOnly,
-        style: widget.style ?? const TextStyle(color: Colors.white),
+        textAlign: TextAlign.right,
+        textDirection: TextDirection.rtl,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color: Colors.white,
+          fontFamily: 'Almarai',
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400,
+        ),
         onFieldSubmitted: widget.onFieldSubmitted,
         focusNode: widget.focusNode,
         decoration: InputDecoration(
           hintText: widget.hintText,
+          hintStyle: theme.textTheme.bodyMedium?.copyWith(
+            color: Colors.white.withOpacity(0.57),
+            fontFamily: 'Almarai',
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ),
           labelText: widget.labelText,
-          hintStyle: widget.hintStyle ??
-              TextStyle(
-                color: Colors.white.withOpacity(0.7),
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-          labelStyle: widget.labelStyle,
+          labelStyle: theme.textTheme.bodyMedium?.copyWith(
+            color: Colors.white,
+            fontFamily: 'Almarai',
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          errorText: widget.errorText,
           errorStyle: widget.errorStyle,
           border: InputBorder.none,
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
           errorBorder: InputBorder.none,
           disabledBorder: InputBorder.none,
-          prefixIcon: widget.prefixIcon,
-          errorText: widget.errorText,
-          suffixIcon: widget.isPassword
-              ? widget.showPasswordToggle
-                  ? IconButton(
-                      icon: Icon(
-                        _obscureText
-                            ? FontAwesomeIcons.eyeSlash
-                            : FontAwesomeIcons.eye,
-                        color:
-                            widget.iconColor ?? Colors.white.withOpacity(0.7),
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        setState(
-                          () {
-                            _obscureText = !_obscureText;
-                          },
-                        );
-                      },
-                    )
-                  : null
-              : widget.suffixIcon,
-          contentPadding: widget.contentPadding ??
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          contentPadding:
+              EdgeInsets.symmetric(horizontal: 24.w, vertical: 18.h),
           isDense: true,
           filled: false,
+          prefixIcon: widget.prefixIcon,
+          suffixIcon: widget.isPassword && widget.showPasswordToggle
+              ? IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: Colors.white.withOpacity(0.57),
+                    size: 24.sp,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                    widget.onToggleObscure?.call();
+                  },
+                )
+              : widget.suffixIcon,
         ),
       ),
     );

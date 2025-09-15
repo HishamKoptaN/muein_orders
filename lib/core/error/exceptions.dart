@@ -22,7 +22,7 @@ abstract class AppException implements Exception, Equatable {
   });
 
   @override
-  String toString() => '${runtimeType}(message: $message${code != null ? ', code: $code' : ''})';
+  String toString() => '$runtimeType(message: $message${code != null ? ', code: $code' : ''})';
 
   @override
   List<Object?> get props => [message, code];
@@ -37,39 +37,31 @@ abstract class AppException implements Exception, Equatable {
 /// but don't need a specific exception type.
 class CustomException extends AppException {
   const CustomException({
-    required String message,
-    String? code,
-    StackTrace? stackTrace,
-  }) : super(
-          message: message,
-          code: code,
-          stackTrace: stackTrace,
-        );
+    required super.message,
+    super.code,
+    super.stackTrace,
+  });
 }
 
 /// Exception thrown when there's an error with caching operations
 class CacheException extends AppException {
   const CacheException({
-    String message = 'Cache operation failed',
+    super.message = 'Cache operation failed',
     String? code,
-    StackTrace? stackTrace,
+    super.stackTrace,
   }) : super(
-          message: message,
           code: code ?? 'cache_error',
-          stackTrace: stackTrace,
         );
 }
 
 /// Exception thrown when there's an error with the server
 class ServerException extends AppException {
   const ServerException({
-    String message = 'Server error occurred',
+    super.message = 'Server error occurred',
     String? code,
-    StackTrace? stackTrace,
+    super.stackTrace,
   }) : super(
-          message: message,
           code: code ?? 'server_error',
-          stackTrace: stackTrace,
         );
 
   /// Creates a [ServerException] from a [DioException]
@@ -122,14 +114,10 @@ class ServerException extends AppException {
 /// Exception thrown when there's a network connectivity issue
 class NetworkException extends AppException {
   const NetworkException({
-    String message = 'No internet connection',
-    String? code = 'no_internet',
-    StackTrace? stackTrace,
-  }) : super(
-          message: message,
-          code: code,
-          stackTrace: stackTrace,
-        );
+    super.message = 'No internet connection',
+    super.code = 'no_internet',
+    super.stackTrace,
+  });
 }
 
 /// Exception thrown when there's a validation error
@@ -138,15 +126,11 @@ class ValidationException extends AppException {
   final String? field;
 
   const ValidationException({
-    required String message,
+    required super.message,
     this.field,
-    String? code = 'validation_error',
-    StackTrace? stackTrace,
-  }) : super(
-          message: message,
-          code: code,
-          stackTrace: stackTrace,
-        );
+    super.code = 'validation_error',
+    super.stackTrace,
+  });
 
   @override
   List<Object?> get props => [...super.props, field];
@@ -155,66 +139,46 @@ class ValidationException extends AppException {
 /// Exception thrown when a user cancels an operation
 class UserCancelledException extends AppException {
   const UserCancelledException({
-    String message = 'Operation was cancelled by user',
-    String? code = 'user_cancelled',
-    StackTrace? stackTrace,
-  }) : super(
-          message: message,
-          code: code,
-          stackTrace: stackTrace,
-        );
+    super.message = 'Operation was cancelled by user',
+    super.code = 'user_cancelled',
+    super.stackTrace,
+  });
 }
 
 /// Exception thrown when the provided password is too weak
 class WeakPasswordException extends AppException {
   const WeakPasswordException({
-    String message = 'The password provided is too weak',
-    String? code = 'weak_password',
-    StackTrace? stackTrace,
-  }) : super(
-          message: message,
-          code: code,
-          stackTrace: stackTrace,
-        );
+    super.message = 'The password provided is too weak',
+    super.code = 'weak_password',
+    super.stackTrace,
+  });
 }
 
 /// Exception thrown when an account already exists
 class ExistedAccountException extends AppException {
   const ExistedAccountException({
-    String message = 'An account already exists with this email',
-    String? code = 'email_exists',
-    StackTrace? stackTrace,
-  }) : super(
-          message: message,
-          code: code,
-          stackTrace: stackTrace,
-        );
+    super.message = 'An account already exists with this email',
+    super.code = 'email_exists',
+    super.stackTrace,
+  });
 }
 
 /// Exception thrown when no user is found
 class NoUserException extends AppException {
   const NoUserException({
-    String message = 'No user found with these credentials',
-    String? code = 'user_not_found',
-    StackTrace? stackTrace,
-  }) : super(
-          message: message,
-          code: code,
-          stackTrace: stackTrace,
-        );
+    super.message = 'No user found with these credentials',
+    super.code = 'user_not_found',
+    super.stackTrace,
+  });
 }
 
 /// Exception thrown when the password is incorrect
 class WrongPasswordException extends AppException {
   const WrongPasswordException({
-    String message = 'Incorrect password',
-    String? code = 'wrong_password',
-    StackTrace? stackTrace,
-  }) : super(
-          message: message,
-          code: code,
-          stackTrace: stackTrace,
-        );
+    super.message = 'Incorrect password',
+    super.code = 'wrong_password',
+    super.stackTrace,
+  });
 }
 
 /// Exception thrown when there are too many requests
@@ -223,15 +187,11 @@ class TooManyRequestsException extends AppException {
   final int? retryAfter;
 
   const TooManyRequestsException({
-    String message = 'Too many requests. Please try again later',
-    String? code = 'too_many_requests',
+    super.message = 'Too many requests. Please try again later',
+    super.code = 'too_many_requests',
     this.retryAfter,
-    StackTrace? stackTrace,
-  }) : super(
-          message: message,
-          code: code,
-          stackTrace: stackTrace,
-        );
+    super.stackTrace,
+  });
 
   @override
   List<Object?> get props => [...super.props, retryAfter];

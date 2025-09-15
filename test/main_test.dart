@@ -6,7 +6,6 @@ import 'package:mocktail/mocktail.dart';
 import 'package:mubin_orders/app.dart';
 import 'package:mubin_orders/core/performance/performance_manager.dart';
 import 'package:mubin_orders/features/language/bloc/language_bloc.dart';
-import 'package:mubin_orders/main.dart';
 
 class MockLanguageBloc extends MockBloc<LanguageEvent, LanguageState>
     implements LanguageBloc {}

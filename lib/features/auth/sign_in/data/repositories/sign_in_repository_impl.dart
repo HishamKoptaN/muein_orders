@@ -89,6 +89,8 @@ class SignInRepositoryImpl implements SignInRepository {
     ));
   }
 
+  // تم نقل sendPasswordResetEmail إلى ميزة forgot_password
+
   ApiErrorModel _handleFirebaseAuthError(FirebaseAuthException e) {
     switch (e.code) {
       case 'user-not-found':

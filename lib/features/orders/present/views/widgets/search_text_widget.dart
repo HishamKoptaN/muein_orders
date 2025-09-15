@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:mubin_orders/core/all_imports.dart';
-import 'package:mubin_orders/generated/l10n.dart';
 import '../../bloc/orders_bloc.dart';
 import '../../bloc/orders_event.dart';
 

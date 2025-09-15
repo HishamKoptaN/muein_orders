@@ -3,23 +3,27 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/error/api_error_model.dart';
 import '../../domain/use_cases/sign_in_use_cases.dart';
-import '../views/sign_in_view.dart';
 
 part 'sign_in_bloc.freezed.dart';
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 
+@lazySingleton
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final SignInUseCases signInUseCase;
   @factoryMethod
   SignInBloc({required this.signInUseCase})
-      : super(const SignInState.initial()) {
+      : super(const SignInState.loaded(
+          email: EmailInput.pure(),
+          password: PasswordInput.pure(),
+          isValid: false,
+          isPasswordVisible: false,
+        )) {
     on<SignInEvent>((event, emit) async {
       event.when(
         emailChanged: (email) => _onEmailChanged(email, emit),

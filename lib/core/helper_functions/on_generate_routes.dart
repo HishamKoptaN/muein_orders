@@ -4,7 +4,6 @@ import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/docs/present/views/widgets/image_preview.dart';
 import '../../features/orders/present/views/orders_view.dart';
 import '../gloabal_widgets/video_player.dart';
-import '../go_router.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {

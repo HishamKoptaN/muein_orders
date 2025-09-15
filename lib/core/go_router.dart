@@ -10,13 +10,12 @@ import '../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../features/home/home_view.dart';
 import '../features/language/view/select_language.dart';
 import '../features/main/present/view/main_view.dart';
-import '../features/main_view.dart';
 import '../features/notifications/notifications_view.dart';
-import '../features/orders/present/views/orders_view.dart';
 import '../features/onboarding/presentation/pages/onboarding_view.dart';
+import '../features/orders/present/views/orders_view.dart';
 import '../features/splash/start_view.dart';
 import 'database/cache/shared_pref_keys.dart';
-import 'di/dependency_injection.dart';
+import 'di/get_it_instance.dart';
 import 'security/security_manager.dart';
 
 /// Creates a GoRoute with the given widget
@@ -35,7 +34,7 @@ GoRoute _createRoute<T extends Widget>({
 
 // Route names constants for better maintainability
 final GoRouter router = GoRouter(
-  initialLocation: "/${OnboardingView.routeName}",
+  initialLocation: "/${SignInView.routeName}",
   navigatorKey: GlobalVariable.navState,
   redirect: _handleRedirect,
   errorBuilder: (context, state) => const ErrorPage(),
@@ -144,6 +143,9 @@ Future<String?> _handleRedirect(
 }
 
 Future<bool> _checkAuthentication() async {
+  final prefs = getIt<PrefsStorageService>();
+  final remember = await prefs.getBool(SharedPrefKeys.isLoged) ?? false;
+  if (!remember) return false;
   return await SecurityManager.isAuthenticated();
 }
 

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
-import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:formz/formz.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/error/api_error_model.dart';

@@ -1,15 +1,15 @@
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:mubin_orders/core/di/dependency_injection.config.dart';
 
-final getIt = GetIt.instance;
+import 'dependency_injection.config.dart';
+import 'get_it_instance.dart';
 
 @InjectableInit(
   initializerName: 'init',
   preferRelativeImports: true,
   asExtension: true,
+  generateForDir: ['lib'],
 )
 Future<void> configureDependencies() async {
   // Initialize injectable dependencies
-  await getIt.init();
+  getIt.init();
 }

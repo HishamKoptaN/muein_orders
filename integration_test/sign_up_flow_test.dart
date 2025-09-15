@@ -3,9 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:mubin_orders/app.dart';
 import 'package:mubin_orders/core/di/dependency_injection.dart';
-import 'package:mubin_orders/features/language/bloc/language_bloc.dart';
-import 'package:mubin_orders/l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

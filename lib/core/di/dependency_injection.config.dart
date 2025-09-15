@@ -18,12 +18,19 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
     as _i161;
 import 'package:storage_utils/storage_utils.dart' as _i939;
 
+import '../../features/auth/forgot_password/domain/repositories/forgot_password_repository.dart'
+    as _i284;
+import '../../features/auth/forgot_password/domain/usecases/send_password_reset_email_usecase.dart'
+    as _i188;
+import '../../features/auth/forgot_password/present/bloc/forgot_password_bloc.dart'
+    as _i680;
 import '../../features/auth/sign_in/data/repositories/sign_in_repository_impl.dart'
     as _i543;
 import '../../features/auth/sign_in/domain/repositories/sign_in_repository.dart'
     as _i147;
 import '../../features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart'
     as _i941;
+import '../../features/auth/sign_in/present/bloc/sign_in_bloc.dart' as _i665;
 import '../../features/auth/sign_up/data/data_sources/sign_up_api.dart'
     as _i552;
 import '../../features/auth/sign_up/data/sign_up_repo.dart' as _i534;
@@ -109,12 +116,17 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i59.FirebaseAuth>(),
           gh<_i116.GoogleSignIn>(),
         ));
+    gh.factory<_i188.SendPasswordResetEmailUseCase>(() =>
+        _i188.SendPasswordResetEmailUseCase(
+            gh<_i284.ForgotPasswordRepository>()));
     gh.lazySingleton<_i280.HomeRepo>(
         () => _i886.HomeRepoImpl(gh<_i278.HomeRemoteDataSource>()));
     gh.factory<_i303.NetworkInfoImpl>(
         () => injectionModule.networkInfoImpl(gh<_i161.InternetConnection>()));
     gh.factory<_i941.SignInUseCases>(
         () => _i941.SignInUseCases(gh<_i147.SignInRepository>()));
+    gh.lazySingleton<_i665.SignInBloc>(
+        () => _i665.SignInBloc(signInUseCase: gh<_i941.SignInUseCases>()));
     gh.factory<_i303.NetworkInfo>(
         () => injectionModule.networkInfo(gh<_i303.NetworkInfoImpl>()));
     gh.lazySingleton<_i552.SignUpApi>(() => _i552.SignUpApi(gh<_i361.Dio>()));
@@ -125,6 +137,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => injectionModule.notificationsApi(gh<_i361.Dio>()));
     gh.lazySingleton<_i278.MainUseCasess>(
         () => _i278.MainUseCasess(mainRepo: gh<_i587.MainRepo>()));
+    gh.factory<_i680.ForgotPasswordBloc>(() =>
+        _i680.ForgotPasswordBloc(gh<_i188.SendPasswordResetEmailUseCase>()));
     gh.factory<_i808.OrdersRepo>(
         () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()));
     gh.factory<_i924.MainBloc>(() => _i924.MainBloc(

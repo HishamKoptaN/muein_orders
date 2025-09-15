@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../../core/error/api_error_model.dart';
 
 abstract class SignInRepository {
@@ -9,8 +10,8 @@ abstract class SignInRepository {
   });
 
   Future<Either<ApiErrorModel, UserCredential>> signInWithGoogle();
-  
+
   Future<Either<ApiErrorModel, UserCredential>> signInWithFacebook();
-  
+
   Future<Either<ApiErrorModel, UserCredential>> signInWithApple();
 }

@@ -32,7 +32,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
                   }
                   _page = nextPage;
                   // If API doesn't return meta, infer hasMore by non-empty page
-                  _hasMore = items!.isNotEmpty;
+                  _hasMore = items.isNotEmpty;
                   emit(NotificationsState.loaded(
                     notifications: _notifications,
                     hasMore: _hasMore,

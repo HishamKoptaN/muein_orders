@@ -12,6 +12,7 @@ class SignInState with _$SignInState {
     required bool isPasswordVisible,
     @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
     String? errorMessage,
+
   }) = _Loaded;
 
   const factory SignInState.failure({
