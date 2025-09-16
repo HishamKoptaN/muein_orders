@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mubin_orders/core/helpers/snackbar_helper.dart';
+
 import '../../../../../core/di/dependency_injection.dart';
 import 'bloc/sign_up_bloc.dart';
 import 'bloc/sign_up_event.dart';
@@ -35,16 +36,13 @@ class SignUpFormContainer extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // TODO: Add your sign-up form fields here
-            // Example:
-            // EmailField(),
-            // PasswordField(),
-            // etc.
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Handle sign up
-                context.read<SignUpBloc>().add(SignUpEvent.signUp(),);
+                context.read<SignUpBloc>().add(
+                      SignUpEvent.signUp(),
+                    );
               },
               child: const Text('تسجيل حساب جديد'),
             ),

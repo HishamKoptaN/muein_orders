@@ -48,11 +48,11 @@ import '../../features/home/data/datasources/home_remote_datasource.dart'
 import '../../features/home/data/repo_impl/home_repo_impl.dart' as _i886;
 import '../../features/home/domain/repo/home_repo.dart' as _i280;
 import '../../features/home/domain/usecases/get_home_summary.dart' as _i817;
-import '../../features/main/data/datasources/main_api.dart' as _i942;
-import '../../features/main/data/repo_impl/main_repo_impl.dart' as _i880;
-import '../../features/main/domain/repo/main_repo.dart' as _i587;
-import '../../features/main/domain/usecases/main_use_casees.dart' as _i278;
-import '../../features/main/present/bloc/main_bloc.dart' as _i924;
+import '../../features/auth/main/data/datasources/main_api.dart' as _i942;
+import '../../features/auth/main/data/repo_impl/main_repo_impl.dart' as _i880;
+import '../../features/auth/main/domain/repo/main_repo.dart' as _i587;
+import '../../features/auth/main/domain/usecases/main_use_casees.dart' as _i278;
+import '../../features/auth/main/present/bloc/main_bloc.dart' as _i924;
 import '../../features/notifications/data/datasources/notifications_api.dart'
     as _i352;
 import '../../features/notifications/data/repo_impl/notifications_repo_impl.dart'

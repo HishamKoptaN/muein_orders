@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../core/di/dependency_injection.dart';
-import '../../../../core/widgets/custom_circular_progress.dart';
-import '../../../auth/sign_in/present/views/sign_in_view.dart';
+import '../../../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/widgets/custom_circular_progress.dart';
+import '../../../sign_in/present/views/sign_in_view.dart';
 import '../bloc/main_bloc.dart';
-import '../bloc/main_event.dart';
-import '../bloc/main_state.dart';
 
 class MainView extends StatelessWidget {
   const MainView({

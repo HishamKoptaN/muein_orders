@@ -1,8 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../core/error/api_error_model.dart';
-
-part 'main_state.freezed.dart';
+part of 'main_bloc.dart';
 
 @freezed
 class MainState with _$MainState {

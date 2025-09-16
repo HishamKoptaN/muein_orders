@@ -1,6 +1,6 @@
-import '../../../../core/models/user_data.dart';
+import '../../../../../core/models/user_data.dart';
 import 'package:injectable/injectable.dart' show LazySingleton;
-import '../../../../core/networking/api_result.dart';
+import '../../../../../core/networking/api_result.dart';
 import '../repo/main_repo.dart';
 
 @LazySingleton()

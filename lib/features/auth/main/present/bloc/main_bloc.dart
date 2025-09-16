@@ -1,9 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../domain/usecases/main_use_casees.dart';
-import 'main_event.dart';
-import 'main_state.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart' show Injectable;
+
+import '../../../../../core/error/api_error_model.dart';
+import '../../domain/usecases/main_use_casees.dart';
+
+part 'main_bloc.freezed.dart';
+part 'main_event.dart';
+part 'main_state.dart';
 
 @Injectable()
 class MainBloc extends Bloc<MainEvent, MainState> {
@@ -48,6 +53,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
               );
             }
           },
+          toggleRememberMe: () {},
         );
       },
     );

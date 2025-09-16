@@ -8,7 +8,6 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/error/api_error_model.dart';
 import '../../domain/use_cases/sign_in_use_cases.dart';
-
 part 'sign_in_bloc.freezed.dart';
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -30,8 +29,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         passwordChanged: (password) => _onPasswordChanged(password, emit),
         signInWithCredentialsPressed: () =>
             _onSignInWithCredentialsPressed(emit),
-        signInWithGooglePressed: () => _onSignInWithGooglePressed(emit),
-        signInWithApplePressed: () => _onSignInWithApplePressed(emit),
         togglePasswordVisibility: () => _onTogglePasswordVisibility(emit),
       );
     });

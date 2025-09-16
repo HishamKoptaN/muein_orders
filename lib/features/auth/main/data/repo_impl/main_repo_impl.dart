@@ -1,6 +1,6 @@
-import '../../../../core/error/api_error_handler.dart';
-import '../../../../core/networking/api_result.dart';
-import '../../../../core/models/user_data.dart';
+import '../../../../../core/error/api_error_handler.dart';
+import '../../../../../core/networking/api_result.dart';
+import '../../../../../core/models/user_data.dart';
 import '../../domain/repo/main_repo.dart';
 import '../datasources/main_api.dart';
 import 'package:injectable/injectable.dart' show Injectable;

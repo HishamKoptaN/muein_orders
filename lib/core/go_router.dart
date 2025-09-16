@@ -9,7 +9,7 @@ import '../features/auth/forgot_password/present/views/reset_password_view.dart'
 import '../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../features/home/home_view.dart';
 import '../features/language/view/select_language.dart';
-import '../features/main/present/view/main_view.dart';
+import '../features/auth/main/present/view/main_view.dart';
 import '../features/notifications/notifications_view.dart';
 import '../features/onboarding/presentation/pages/onboarding_view.dart';
 import '../features/orders/present/views/orders_view.dart';
