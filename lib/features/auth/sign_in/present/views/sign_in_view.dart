@@ -1,14 +1,14 @@
 import 'package:go_router/go_router.dart';
 import 'package:mubin_orders/core/all_imports.dart';
 
-import '../../../../../core/di/get_it_instance.dart';
+import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../orders/present/views/orders_view.dart';
 import '../bloc/sign_in_bloc.dart';
-import '../widgets/sign_in_actions.dart';
-import '../widgets/sign_in_background.dart';
-import '../widgets/sign_in_form.dart';
-import '../widgets/sign_in_header.dart';
+import 'widgets/sign_in_actions.dart';
+import 'widgets/sign_in_background.dart';
+import 'widgets/sign_in_form.dart';
+import 'widgets/sign_in_header.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({

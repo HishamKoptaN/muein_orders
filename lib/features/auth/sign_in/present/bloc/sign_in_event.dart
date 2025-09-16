@@ -6,9 +6,6 @@ class SignInEvent with _$SignInEvent {
   const factory SignInEvent.passwordChanged(String password) = _PasswordChanged;
   const factory SignInEvent.signInWithCredentialsPressed() =
       _SignInWithCredentialsPressed;
-  const factory SignInEvent.signInWithGooglePressed() =
-      _SignInWithGooglePressed;
-  const factory SignInEvent.signInWithApplePressed() = _SignInWithApplePressed;
   const factory SignInEvent.togglePasswordVisibility() =
       _TogglePasswordVisibility;
 }

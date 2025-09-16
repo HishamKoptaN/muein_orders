@@ -6,8 +6,8 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:storage_utils/storage_utils.dart';
 
 import '../database/cache/shared_pref_keys.dart';
-import '../di/get_it_instance.dart';
 import '../networking/api_constants.dart';
+import 'dependency_injection.dart';
 
 @module
 abstract class ApiModule {

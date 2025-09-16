@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:storage_utils/storage_utils.dart';
 
 import '../database/cache/shared_pref_keys.dart';
-import '../di/get_it_instance.dart';
+import '../di/dependency_injection.dart';
 
 class SecurityManager {
   static const String _devTokenKey = 'DEV_TOKEN';

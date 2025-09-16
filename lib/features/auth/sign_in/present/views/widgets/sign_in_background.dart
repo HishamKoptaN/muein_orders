@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:mubin_orders/gen/assets.gen.dart';
 
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/theme/app_colors.dart';
 
 class SignInBackground extends StatelessWidget {
   final Widget child;

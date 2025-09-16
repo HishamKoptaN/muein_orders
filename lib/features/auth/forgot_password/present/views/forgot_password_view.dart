@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/di/get_it_instance.dart';
 import '../bloc/forgot_password_bloc.dart';
 import '../bloc/forgot_password_event.dart';
 import '../bloc/forgot_password_state.dart';

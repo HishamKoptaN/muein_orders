@@ -15,7 +15,7 @@ import '../features/onboarding/presentation/pages/onboarding_view.dart';
 import '../features/orders/present/views/orders_view.dart';
 import '../features/splash/start_view.dart';
 import 'database/cache/shared_pref_keys.dart';
-import 'di/get_it_instance.dart';
+import 'di/dependency_injection.dart';
 import 'security/security_manager.dart';
 
 /// Creates a GoRoute with the given widget

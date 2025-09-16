@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/di/dependency_injection.dart';
-import '../../../../core/di/get_it_instance.dart';
 import '../../../../core/widgets/custom_circular_progress.dart';
 import '../../../auth/sign_in/present/views/sign_in_view.dart';
 import '../bloc/main_bloc.dart';

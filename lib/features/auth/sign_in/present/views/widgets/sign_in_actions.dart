@@ -6,8 +6,8 @@ import 'package:mubin_orders/core/extensions/app_localizations_extension.dart';
 import 'package:mubin_orders/core/widgets/custom_circular_progress.dart';
 import 'package:mubin_orders/l10n/app_localizations.dart';
 
-import '../../../../orders/present/views/orders_view.dart';
-import '../../present/bloc/sign_in_bloc.dart';
+import '../../../../../orders/present/views/orders_view.dart';
+import '../../bloc/sign_in_bloc.dart';
 
 class SignInActions extends StatelessWidget {
   const SignInActions({super.key});

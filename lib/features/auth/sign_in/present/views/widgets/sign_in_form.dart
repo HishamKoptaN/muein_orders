@@ -6,9 +6,9 @@ import 'package:mubin_orders/core/widgets/custom_text_form_field.dart';
 import 'package:mubin_orders/l10n/app_localizations.dart';
 import 'package:storage_utils/storage_utils.dart';
 
-import '../../../../../core/database/cache/shared_pref_keys.dart';
-import '../../../../../core/di/get_it_instance.dart';
-import '../../present/bloc/sign_in_bloc.dart';
+import '../../../../../../core/database/cache/shared_pref_keys.dart';
+import '../../../../../../core/di/dependency_injection.dart';
+import '../../bloc/sign_in_bloc.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});

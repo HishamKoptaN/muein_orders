@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mubin_orders/core/helpers/snackbar_helper.dart';
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../core/di/get_it_instance.dart';
 import 'bloc/sign_up_bloc.dart';
 import 'bloc/sign_up_event.dart';
 import 'bloc/sign_up_state.dart';

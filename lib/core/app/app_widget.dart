@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../core/go_router.dart';
-import '../di/get_it_instance.dart';
+import '../di/dependency_injection.dart';
 import '../theme/app_theme.dart';
 
 class MubinOrdersAppWrapper extends StatelessWidget {
