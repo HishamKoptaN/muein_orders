@@ -3,7 +3,7 @@ part 'permission.freezed.dart';
 part 'permission.g.dart';
 
 @freezed
-class Permission with _$Permission {
+abstract class Permission with _$Permission {
   const factory Permission({
     @JsonKey(name: "id") int? id,
     @JsonKey(name: "name") String? name,

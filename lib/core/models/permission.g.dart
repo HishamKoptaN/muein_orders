@@ -17,9 +17,9 @@ _$PermissionImpl _$$PermissionImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$PermissionImplToJson(_$PermissionImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'guard_name': instance.guardName,
-      'created_at': instance.createdAt,
-      'updated_at': instance.updatedAt,
+      if (instance.id case final value?) 'id': value,
+      if (instance.name case final value?) 'name': value,
+      if (instance.guardName case final value?) 'guard_name': value,
+      if (instance.createdAt case final value?) 'created_at': value,
+      if (instance.updatedAt case final value?) 'updated_at': value,
     };

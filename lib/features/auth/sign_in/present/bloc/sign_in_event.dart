@@ -2,10 +2,13 @@ part of 'sign_in_bloc.dart';
 
 @freezed
 class SignInEvent with _$SignInEvent {
-  const factory SignInEvent.emailChanged(String email) = _EmailChanged;
-  const factory SignInEvent.passwordChanged(String password) = _PasswordChanged;
+  const factory SignInEvent.dataChanged({
+    EmailInput? email,
+    PasswordInput? password,
+    GenericFormzInput? rememberMe,
+    GenericFormzInput? obscurePassword,
+  }) = _DataChanged;
   const factory SignInEvent.signInWithCredentialsPressed() =
       _SignInWithCredentialsPressed;
-  const factory SignInEvent.togglePasswordVisibility() =
-      _TogglePasswordVisibility;
+  const factory SignInEvent.signedOut() = _SignedOut;
 }

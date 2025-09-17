@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+
 import '../../../../../core/networking/api_constants.dart';
 import '../models/orders_res_model.dart';
+
 part 'orders_api.g.dart';
 
 @RestApi(
@@ -17,8 +19,8 @@ abstract class OrdersApi {
     ApiConstants.orders,
   )
   Future<List<OrdersResModel>> getOrders({
-    @Query("page") int? page,
-    @Query("query") String? query,
+    @Query('page') int? page,
+    @Query('query') String? query,
   });
   // ! updateClientField
   @POST(

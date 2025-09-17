@@ -34,6 +34,62 @@ mixin _$Meta {
   bool? get hasNextPage => throw _privateConstructorUsedError;
   @JsonKey(name: "has_previous_page")
   bool? get hasPreviousPage => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: "post_id") int? postId,
+            @JsonKey(name: "current_page") int? currentPage,
+            @JsonKey(name: "total_pages") int? totalPages,
+            @JsonKey(name: "total_comments") int? totalComments,
+            @JsonKey(name: "per_page") int? perPage,
+            @JsonKey(name: "has_next_page") bool? hasNextPage,
+            @JsonKey(name: "has_previous_page") bool? hasPreviousPage)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: "post_id") int? postId,
+            @JsonKey(name: "current_page") int? currentPage,
+            @JsonKey(name: "total_pages") int? totalPages,
+            @JsonKey(name: "total_comments") int? totalComments,
+            @JsonKey(name: "per_page") int? perPage,
+            @JsonKey(name: "has_next_page") bool? hasNextPage,
+            @JsonKey(name: "has_previous_page") bool? hasPreviousPage)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: "post_id") int? postId,
+            @JsonKey(name: "current_page") int? currentPage,
+            @JsonKey(name: "total_pages") int? totalPages,
+            @JsonKey(name: "total_comments") int? totalComments,
+            @JsonKey(name: "per_page") int? perPage,
+            @JsonKey(name: "has_next_page") bool? hasNextPage,
+            @JsonKey(name: "has_previous_page") bool? hasPreviousPage)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Meta value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Meta value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Meta value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this Meta to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -258,6 +314,89 @@ class _$MetaImpl implements _Meta {
   @pragma('vm:prefer-inline')
   _$$MetaImplCopyWith<_$MetaImpl> get copyWith =>
       __$$MetaImplCopyWithImpl<_$MetaImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: "post_id") int? postId,
+            @JsonKey(name: "current_page") int? currentPage,
+            @JsonKey(name: "total_pages") int? totalPages,
+            @JsonKey(name: "total_comments") int? totalComments,
+            @JsonKey(name: "per_page") int? perPage,
+            @JsonKey(name: "has_next_page") bool? hasNextPage,
+            @JsonKey(name: "has_previous_page") bool? hasPreviousPage)
+        $default,
+  ) {
+    return $default(postId, currentPage, totalPages, totalComments, perPage,
+        hasNextPage, hasPreviousPage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: "post_id") int? postId,
+            @JsonKey(name: "current_page") int? currentPage,
+            @JsonKey(name: "total_pages") int? totalPages,
+            @JsonKey(name: "total_comments") int? totalComments,
+            @JsonKey(name: "per_page") int? perPage,
+            @JsonKey(name: "has_next_page") bool? hasNextPage,
+            @JsonKey(name: "has_previous_page") bool? hasPreviousPage)?
+        $default,
+  ) {
+    return $default?.call(postId, currentPage, totalPages, totalComments,
+        perPage, hasNextPage, hasPreviousPage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: "post_id") int? postId,
+            @JsonKey(name: "current_page") int? currentPage,
+            @JsonKey(name: "total_pages") int? totalPages,
+            @JsonKey(name: "total_comments") int? totalComments,
+            @JsonKey(name: "per_page") int? perPage,
+            @JsonKey(name: "has_next_page") bool? hasNextPage,
+            @JsonKey(name: "has_previous_page") bool? hasPreviousPage)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(postId, currentPage, totalPages, totalComments, perPage,
+          hasNextPage, hasPreviousPage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Meta value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Meta value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Meta value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {

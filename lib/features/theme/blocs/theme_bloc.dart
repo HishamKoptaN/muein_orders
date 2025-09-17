@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'theme_event.dart';
-import 'theme_state.dart';
+
+part 'theme_bloc.freezed.dart';
+part 'theme_event.dart';
+part 'theme_state.dart';
 
 @injectable
 class ThemeBloc extends HydratedBloc<ThemeEvent, ThemeState> {
   @factoryMethod
-  ThemeBloc() : super(ThemeState(mode: ThemeMode.system)) {
+  ThemeBloc() : super(const ThemeState.loading()) {
     on<ThemeEvent>((event, emit) {
       event.map(
         toggleTheme: (_) {
           emit(
-            state.mode == ThemeMode.light
-                ? ThemeState.dark()
-                : ThemeState.light(),
+            state.maybeWhen(
+              orElse: () => const ThemeState.loading(),
+              loaded: (themeMode) => themeMode == ThemeMode.light
+                  ? const ThemeState.loaded(themeMode: ThemeMode.dark)
+                  : const ThemeState.loaded(themeMode: ThemeMode.light),
+            ),
           );
         },
-        setLight: (_) => emit(ThemeState.light()),
-        setDark: (_) => emit(ThemeState.dark()),
-        setMode: (v) => emit(ThemeState(mode: v.mode)),
+        setLight: (_) =>
+            emit(const ThemeState.loaded(themeMode: ThemeMode.light)),
+        setDark: (_) =>
+            emit(const ThemeState.loaded(themeMode: ThemeMode.dark)),
+        setMode: (v) => emit(ThemeState.loaded(themeMode: v.mode)),
       );
     });
   }
@@ -28,18 +36,21 @@ class ThemeBloc extends HydratedBloc<ThemeEvent, ThemeState> {
     final modeStr = json['mode'] as String?;
     switch (modeStr) {
       case 'light':
-        return ThemeState.light();
+        return const ThemeState.loaded(themeMode: ThemeMode.light);
       case 'dark':
-        return ThemeState.dark();
+        return const ThemeState.loaded(themeMode: ThemeMode.dark);
       case 'system':
-        return ThemeState(mode: ThemeMode.system);
+        return const ThemeState.loaded(themeMode: ThemeMode.system);
       default:
-        return ThemeState(mode: ThemeMode.system);
+        return const ThemeState.loaded(themeMode: ThemeMode.system);
     }
   }
 
   @override
-  Map<String, dynamic>? toJson(ThemeState state) {
-    return {'mode': state.mode.name};
-  }
+  Map<String, dynamic>? toJson(ThemeState state) => {
+    'mode': state.maybeWhen(
+      orElse: () => 'system',
+      loaded: (themeMode) => themeMode.name,
+    ),
+  };
 }

@@ -125,6 +125,9 @@ class AppLocalizationsLg extends AppLocalizations {
       'Ebiwandiiko by\'okwenyumiriza tebikwatagana';
 
   @override
+  String get passwordsDontMatch => '';
+
+  @override
   String get password => 'Ekigambo ekisumulukusa';
 
   @override
@@ -474,6 +477,9 @@ class AppLocalizationsLgUg extends AppLocalizationsLg {
   @override
   String get passwordsDoNotMatch =>
       'Ebiwandiiko by\'okwenyumiriza tebikwatagana';
+
+  @override
+  String get passwordsDontMatch => '';
 
   @override
   String get password => 'Ekigambo ekisumulukusa';

@@ -7,20 +7,25 @@ class LanguageSwitchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentLocale = context.watch<LanguageBloc>().state.currentLocale;
-
-    return IconButton(
-      icon: Icon(Icons.language),
-      tooltip: currentLocale == 'ar' ? 'English' : 'العربية',
-      onPressed: () {
-        final newLang = currentLocale == 'ar' ? 'en' : 'ar';
-        context.read<LanguageBloc>().add(
+    final state = context.watch<LanguageBloc>().state;
+    final currentLocale = state.maybeWhen(
+      loaded: (locale) {
+        return IconButton(
+          icon: const Icon(Icons.language),
+          tooltip: locale.languageCode == 'ar' ? 'English' : 'العربية',
+          onPressed: () {
+            final newLang = locale.languageCode == 'ar' ? 'en' : 'ar';
+            context.read<LanguageBloc>().add(
               LanguageEvent.changeLanguage(
                 languageCode: newLang,
                 countryCode: 'US',
               ),
             );
+          },
+        );
       },
+      orElse: () => null,
     );
+    return currentLocale ?? const SizedBox.shrink();
   }
 }

@@ -1,10 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
-import 'package:mubin_orders/core/error/api_error_model.dart';
-import 'package:formz/formz.dart';
-import 'package:form_inputs/form_inputs.dart';
 
-part 'docs_state.freezed.dart';
+part of 'docs_bloc.dart';
 
 @freezed
 class DocsState with _$DocsState {

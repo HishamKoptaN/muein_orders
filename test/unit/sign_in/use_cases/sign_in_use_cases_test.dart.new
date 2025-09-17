@@ -1,0 +1,128 @@
+import 'dart:async';
+
+import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mock.dart';
+import 'package:mubin_orders/core/error/api_error_model.dart';
+import 'package:mubin_orders/features/auth/sign_in/domain/repo/sign_in_repo.dart';
+import 'package:mubin_orders/features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart';
+
+// Mock for SignInRepository
+class MockSignInRepository extends Mock implements SignInRepo {}
+
+// Mock for FirebaseAuth
+class MockFirebaseAuth extends Mock implements FirebaseAuth {
+  @override
+  Stream<User?> authStateChanges() => const Stream.empty();
+}
+
+// Mock for User
+class MockUser extends Mock implements User {
+  @override
+  Future<String> getIdToken([bool forceRefresh = false]) async => 'test_token';
+}
+
+// Mock for UserCredential
+class MockUserCredential extends Mock implements UserCredential {
+  final MockUser _user = MockUser();
+  
+  @override
+  User? get user => _user;
+  
+  @override
+  AdditionalUserInfo? get additionalUserInfo => null;
+  
+  @override
+  AuthCredential? get credential => null;
+}
+
+void main() {
+  late SignInUseCases signInUseCases;
+  late MockSignInRepository mockRepository;
+  late MockFirebaseAuth mockFirebaseAuth;
+  late MockUserCredential mockUserCredential;
+  late MockUser mockUser;
+  late StreamController<User?> authStateController;
+
+  setUp(() {
+    mockRepository = MockSignInRepository();
+    mockFirebaseAuth = MockFirebaseAuth();
+    mockUser = MockUser();
+    mockUserCredential = MockUserCredential();
+    authStateController = StreamController<User?>.broadcast();
+
+    // Setup auth state changes
+    when(mockFirebaseAuth.authStateChanges())
+        .thenAnswer((_) => authStateController.stream);
+    
+    signInUseCases = SignInUseCases(mockRepository, mockFirebaseAuth);
+  });
+
+  group('SignInUseCases', () {
+    const tEmail = 'test@example.com';
+    const tPassword = 'password123';
+    const tRememberMe = true;
+
+    test(
+      'should return token when sign in with email and password is successful',
+      () async {
+        // arrange
+        when(mockRepository.signInWithEmailAndPassword(
+          email: anyNamed('email'),
+          password: anyNamed('password'),
+          rememberMe: anyNamed('rememberMe'),
+        )).thenAnswer((_) async => Right(mockUserCredential));
+
+        // act
+        final result = await signInUseCases.signInWithEmailAndPassword(
+          email: tEmail,
+          password: tPassword,
+          rememberMe: tRememberMe,
+        );
+
+        // assert
+        expect(result, const Right('test_token'));
+        verify(mockRepository.signInWithEmailAndPassword(
+          email: tEmail,
+          password: tPassword,
+          rememberMe: tRememberMe,
+        ));
+        verifyNoMoreInteractions(mockRepository);
+      },
+    );
+
+    test(
+      'should return ApiErrorModel when sign in with email and password fails',
+      () async {
+        // arrange
+        const error = ApiErrorModel(message: 'Invalid credentials');
+        when(mockRepository.signInWithEmailAndPassword(
+          email: anyNamed('email'),
+          password: anyNamed('password'),
+          rememberMe: anyNamed('rememberMe'),
+        )).thenAnswer((_) async => const Left(error));
+
+        // act
+        final result = await signInUseCases.signInWithEmailAndPassword(
+          email: tEmail,
+          password: 'wrong_password',
+          rememberMe: tRememberMe,
+        );
+
+        // assert
+        expect(result, const Left(error));
+        verify(mockRepository.signInWithEmailAndPassword(
+          email: tEmail,
+          password: 'wrong_password',
+          rememberMe: tRememberMe,
+        ));
+        verifyNoMoreInteractions(mockRepository);
+      },
+    );
+  });
+  
+  tearDown(() {
+    authStateController.close();
+  });
+}

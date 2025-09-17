@@ -8,7 +8,7 @@ part 'role.freezed.dart';
 part 'role.g.dart';
 
 @freezed
-class Role with _$Role {
+abstract class Role with _$Role {
   const factory Role({
     @JsonKey(name: "id") int? id,
     @JsonKey(name: "name") String? name,

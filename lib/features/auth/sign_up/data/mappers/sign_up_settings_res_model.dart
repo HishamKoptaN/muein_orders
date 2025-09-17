@@ -3,7 +3,7 @@ part 'sign_up_settings_res_model.freezed.dart';
 part 'sign_up_settings_res_model.g.dart';
 
 @freezed
-class SignUpSettingsResModel with _$SignUpSettingsResModel {
+abstract class SignUpSettingsResModel with _$SignUpSettingsResModel {
   const factory SignUpSettingsResModel({
     @JsonKey(name: "countries") List<Country>? countries,
     @JsonKey(name: "cities") List<City>? cities,
@@ -16,7 +16,7 @@ class SignUpSettingsResModel with _$SignUpSettingsResModel {
 }
 
 @freezed
-class City with _$City {
+abstract class City with _$City {
   const factory City({
     @JsonKey(name: "id") int? id,
     @JsonKey(name: "name") String? name,
@@ -26,7 +26,7 @@ class City with _$City {
 }
 
 @freezed
-class Country with _$Country {
+abstract class Country with _$Country {
   const factory Country({
     @JsonKey(name: "id") int? id,
     @JsonKey(name: "code") String? code,
@@ -37,7 +37,7 @@ class Country with _$Country {
 }
 
 @freezed
-class OpportunityLooking with _$OpportunityLooking {
+abstract class OpportunityLooking with _$OpportunityLooking {
   const factory OpportunityLooking({
     @JsonKey(name: "id") int? id,
     @JsonKey(name: "first_name") String? firstName,

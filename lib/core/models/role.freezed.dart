@@ -32,6 +32,59 @@ mixin _$Role {
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: "updated_at")
   String? get updatedAt => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: "id") int? id,
+            @JsonKey(name: "name") String? name,
+            @JsonKey(name: "guard_name") String? guardName,
+            @JsonKey(name: "permissions") List<Permission>? permissions,
+            @JsonKey(name: "created_at") String? createdAt,
+            @JsonKey(name: "updated_at") String? updatedAt)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: "id") int? id,
+            @JsonKey(name: "name") String? name,
+            @JsonKey(name: "guard_name") String? guardName,
+            @JsonKey(name: "permissions") List<Permission>? permissions,
+            @JsonKey(name: "created_at") String? createdAt,
+            @JsonKey(name: "updated_at") String? updatedAt)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: "id") int? id,
+            @JsonKey(name: "name") String? name,
+            @JsonKey(name: "guard_name") String? guardName,
+            @JsonKey(name: "permissions") List<Permission>? permissions,
+            @JsonKey(name: "created_at") String? createdAt,
+            @JsonKey(name: "updated_at") String? updatedAt)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Role value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Role value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Role value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this Role to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -247,6 +300,84 @@ class _$RoleImpl implements _Role {
   @pragma('vm:prefer-inline')
   _$$RoleImplCopyWith<_$RoleImpl> get copyWith =>
       __$$RoleImplCopyWithImpl<_$RoleImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: "id") int? id,
+            @JsonKey(name: "name") String? name,
+            @JsonKey(name: "guard_name") String? guardName,
+            @JsonKey(name: "permissions") List<Permission>? permissions,
+            @JsonKey(name: "created_at") String? createdAt,
+            @JsonKey(name: "updated_at") String? updatedAt)
+        $default,
+  ) {
+    return $default(id, name, guardName, permissions, createdAt, updatedAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: "id") int? id,
+            @JsonKey(name: "name") String? name,
+            @JsonKey(name: "guard_name") String? guardName,
+            @JsonKey(name: "permissions") List<Permission>? permissions,
+            @JsonKey(name: "created_at") String? createdAt,
+            @JsonKey(name: "updated_at") String? updatedAt)?
+        $default,
+  ) {
+    return $default?.call(
+        id, name, guardName, permissions, createdAt, updatedAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: "id") int? id,
+            @JsonKey(name: "name") String? name,
+            @JsonKey(name: "guard_name") String? guardName,
+            @JsonKey(name: "permissions") List<Permission>? permissions,
+            @JsonKey(name: "created_at") String? createdAt,
+            @JsonKey(name: "updated_at") String? updatedAt)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(id, name, guardName, permissions, createdAt, updatedAt);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Role value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Role value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Role value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {

@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/services/language_service.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../auth/auth_choice/presentation/views/auth_choice_view.dart';
+import '../../auth/auth_choice/present/views/auth_choice_view.dart';
 
 class SelectLanguage extends StatefulWidget {
   const SelectLanguage({super.key});
-  static const String routeName = "selectLanguage";
+  static const String routeName = 'selectLanguage';
 
   @override
   State<SelectLanguage> createState() => _SelectLanguageState();

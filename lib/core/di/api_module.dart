@@ -8,9 +8,13 @@ import 'package:storage_utils/storage_utils.dart';
 import '../database/cache/shared_pref_keys.dart';
 import '../networking/api_constants.dart';
 import 'dependency_injection.dart';
+import '../../features/auth/main/data/datasources/main_api.dart';
 
 @module
 abstract class ApiModule {
+  @lazySingleton
+  MainApi mainApi(Dio dio) => MainApi(dio);
+
   @singleton
   Dio dio(
     AuthInterceptor authInterceptor,

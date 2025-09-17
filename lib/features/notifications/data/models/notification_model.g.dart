@@ -24,6 +24,6 @@ Map<String, dynamic> _$$NotificationModelImplToJson(
       'title': instance.title,
       'body': instance.body,
       'created_at': instance.createdAt.toIso8601String(),
-      'image_url': instance.imageUrl,
+      if (instance.imageUrl case final value?) 'image_url': value,
       'read': instance.read,
     };

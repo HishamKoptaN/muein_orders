@@ -1,5 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-part 'orders_event.freezed.dart';
+part of 'orders_bloc.dart';
 
 @freezed
 class OrdersEvent with _$OrdersEvent {

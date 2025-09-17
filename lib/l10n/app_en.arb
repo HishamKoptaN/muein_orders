@@ -40,6 +40,7 @@
   "documentations_view": "================================  documentations_view  ============================================",
   "done": "Done",
   "passwordsDoNotMatch": "Passwords do not match",
+  "passwordsDontMatch": "Passwords do not match",
   "password": "Password",
   "emailHint": "Email",
   "emailRequired": "Email is required",

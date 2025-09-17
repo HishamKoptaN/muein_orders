@@ -23,6 +23,44 @@ mixin _$SignUpReqEntity {
   String get password => throw _privateConstructorUsedError;
   int? get countryId => throw _privateConstructorUsedError;
   int? get cityId => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String firstName, String lastName, String phone,
+            String email, String password, int? countryId, int? cityId)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String firstName, String lastName, String phone,
+            String email, String password, int? countryId, int? cityId)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String firstName, String lastName, String phone,
+            String email, String password, int? countryId, int? cityId)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SignUpReqEntity value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SignUpReqEntity value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SignUpReqEntity value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of SignUpReqEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -237,6 +275,71 @@ class _$SignUpReqEntityImpl implements _SignUpReqEntity {
   _$$SignUpReqEntityImplCopyWith<_$SignUpReqEntityImpl> get copyWith =>
       __$$SignUpReqEntityImplCopyWithImpl<_$SignUpReqEntityImpl>(
           this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String firstName, String lastName, String phone,
+            String email, String password, int? countryId, int? cityId)
+        $default,
+  ) {
+    return $default(
+        firstName, lastName, phone, email, password, countryId, cityId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String firstName, String lastName, String phone,
+            String email, String password, int? countryId, int? cityId)?
+        $default,
+  ) {
+    return $default?.call(
+        firstName, lastName, phone, email, password, countryId, cityId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String firstName, String lastName, String phone,
+            String email, String password, int? countryId, int? cityId)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(
+          firstName, lastName, phone, email, password, countryId, cityId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SignUpReqEntity value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SignUpReqEntity value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SignUpReqEntity value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class _SignUpReqEntity implements SignUpReqEntity {

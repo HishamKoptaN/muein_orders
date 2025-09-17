@@ -5,13 +5,17 @@ import 'dependency_injection.config.dart';
 
 final getIt = GetIt.instance;
 
+/// Configure all dependencies using injectable + get_it
 @InjectableInit(
-  initializerName: 'init',
+  initializerName: r'$initGetIt',
   preferRelativeImports: true,
-  asExtension: true,
-  generateForDir: ['lib'],
+  asExtension: false,
 )
-Future<void> configureDependencies() async {
-  // Initialize injectable dependencies
-  getIt.init();
+Future<void> configureDependencies({
+  String environment = Environment.prod,
+}) async {
+  $initGetIt(
+    getIt,
+    environment: environment,
+  );
 }

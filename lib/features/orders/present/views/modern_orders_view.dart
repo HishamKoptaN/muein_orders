@@ -13,8 +13,6 @@ import '../../../docs/present/views/docs_view.dart';
 import '../../../drawer/modern_drawer.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../bloc/orders_bloc.dart';
-import '../bloc/orders_event.dart';
-import '../bloc/orders_state.dart';
 import 'widgets/shimmer_client_row.dart';
 
 class ModernOrdersView extends StatefulWidget {
@@ -71,8 +69,7 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
           ),
         ),
         child: BlocBuilder<OrdersBloc, OrdersState>(
-          builder: (context, state) {
-            return state.maybeWhen(
+          builder: (context, state) => state.maybeWhen(
               loaded: (clients, hasMore, isSearching) {
                 if (clients?.isEmpty ?? true) {
                   return _buildEmptyState(isSearching ?? false);
@@ -82,15 +79,13 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
               loading: () => _buildLoadingState(),
               failure: (e) => _buildErrorState(e.error ?? ''),
               orElse: () => const SizedBox(),
-            );
-          },
+            ),
         ),
       ),
     );
   }
 
-  PreferredSizeWidget _buildModernAppBar(AppLocalizations t) {
-    return AppBar(
+  PreferredSizeWidget _buildModernAppBar(AppLocalizations t) => AppBar(
       title: Text(
         t.orders,
         style: AppTextStyles.appBarTitle.copyWith(
@@ -140,13 +135,11 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
         const SizedBox(width: 8),
       ],
     );
-  }
 
   Widget _buildOrdersList(
     List<OrdersResEntity> clients,
     AppLocalizations t,
-  ) {
-    return RefreshIndicator(
+  ) => RefreshIndicator(
       onRefresh: () async {
         context.read<OrdersBloc>().add(
               OrdersEvent.getOrders(getMore: false),
@@ -161,7 +154,7 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
           final group = clients[index];
           final package = group.package;
           final orders = group.orders ?? [];
-          final packageTitle = '${t.package} : ${package?.quantity}';
+          final packageTitle = '${t.package} : ${package?.name}';
 
           return Column(
             children: [
@@ -177,7 +170,7 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
               ...orders.map((order) => ModernOrderCard(
                     order: order,
                     onTap: () => _navigateToOrderDetails(order),
-                  )),
+                  ),),
 
               Gap(16.h),
             ],
@@ -185,7 +178,6 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
         },
       ),
     );
-  }
 
   Widget _buildEmptyState(bool isSearching) {
     final t = AppLocalizations.of(context)!;
@@ -232,8 +224,7 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
     );
   }
 
-  Widget _buildLoadingState() {
-    return ListView.builder(
+  Widget _buildLoadingState() => ListView.builder(
       padding: EdgeInsets.symmetric(vertical: 16.h),
       itemCount: 6,
       itemBuilder: (context, index) => Container(
@@ -241,7 +232,6 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
         child: ShimmerClientRow(height: 120.h),
       ),
     );
-  }
 
   Widget _buildErrorState(String error) {
     final t = AppLocalizations.of(context)!;

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mubin_orders/features/language/view/select_language.dart';
-
 import '../../gen/assets.gen.dart';
 import '../../l10n/app_localizations.dart';
 

@@ -1,6 +1,5 @@
-import 'dart:io';
-import 'package:freezed_annotation/freezed_annotation.dart';
-part 'docs_event.freezed.dart';
+part of 'docs_bloc.dart';
+
 
 @freezed
 class DocsEvent with _$DocsEvent {

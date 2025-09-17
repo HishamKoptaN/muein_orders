@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../repositories/forgot_password_repository.dart';
+import '../repo/forgot_password_repository.dart';
 
 @injectable
 class SendPasswordResetEmailUseCase {

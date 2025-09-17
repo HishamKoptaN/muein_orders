@@ -16,10 +16,8 @@ class MainView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => MainBloc(
-            auth: getIt(),
-            mainUseCasess: getIt(),
-          )..add(
+          create: (context) => getIt<MainBloc>()
+            ..add(
               const MainEvent.check(),
             ),
           child: BlocBuilder<MainBloc, MainState>(

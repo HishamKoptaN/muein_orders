@@ -1,151 +1,155 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_inputs/form_inputs/email_input.dart';
+import 'package:form_inputs/form_inputs/generic_formz_input.dart';
+import 'package:form_inputs/form_inputs/password_input.dart';
+import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mubin_orders/core/extensions/app_localizations_extension.dart';
-import 'package:mubin_orders/core/widgets/custom_text_form_field.dart';
-import 'package:mubin_orders/l10n/app_localizations.dart';
-import 'package:storage_utils/storage_utils.dart';
 
-import '../../../../../../core/database/cache/shared_pref_keys.dart';
 import '../../../../../../core/di/dependency_injection.dart';
+import '../../../../../../core/extensions/app_localizations_extension.dart';
+import '../../../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../../../l10n/app_localizations.dart';
+import '../../../domain/repo/sign_in_repo.dart';
 import '../../bloc/sign_in_bloc.dart';
 
 class SignInForm extends StatefulWidget {
-  const SignInForm({super.key});
+  final EmailInput email;
+  final PasswordInput password;
+  final GenericFormzInput obscurePassword;
+  final GenericFormzInput rememberMe;
+  final FormzSubmissionStatus formzSubmissionStatus;
+
+  const SignInForm({
+    super.key,
+    required this.email,
+    required this.password,
+    required this.obscurePassword,
+    required this.rememberMe,
+    required this.formzSubmissionStatus,
+  });
 
   @override
   State<SignInForm> createState() => _SignInFormState();
 }
 
 class _SignInFormState extends State<SignInForm> {
-  bool _remember = false;
-
   @override
   void initState() {
     super.initState();
     _loadRemember();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   Future<void> _loadRemember() async {
-    final prefs = getIt<PrefsStorageService>();
-    _remember = await prefs.getBool(SharedPrefKeys.isLoged) ?? false;
-    if (mounted) setState(() {});
+    final repository = getIt<SignInRepo>();
+    final savedData = await repository.getSavedCredentials();
+    if (savedData != null && mounted) {
+      setState(
+        () {
+          if (widget.rememberMe.value) {
+            context.read<SignInBloc>().add(
+                  SignInEvent.dataChanged(
+                    email: EmailInput.dirty(savedData.email),
+                    password: PasswordInput.dirty(savedData.password),
+                    rememberMe:
+                        GenericFormzInput.dirty(widget.rememberMe.value),
+                    obscurePassword:
+                        GenericFormzInput.dirty(widget.obscurePassword.value),
+                  ),
+                );
+          }
+        },
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     return BlocBuilder<SignInBloc, SignInState>(
-      builder: (context, state) {
-        return state.maybeWhen(
-          loaded: (
-            email,
-            password,
-            isValid,
-            isPasswordVisible,
-            status,
-            errorMessage,
-          ) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 16),
-                CustomTextFormField(
-                  onChanged: (v) => context
-                      .read<SignInBloc>()
-                      .add(SignInEvent.emailChanged(v)),
-                  hintText: t.emailHint,
-                  keyboardType: TextInputType.emailAddress,
-                ),
-                const SizedBox(height: 16),
-                CustomTextFormField(
-                  onChanged: (v) => context
-                      .read<SignInBloc>()
-                      .add(SignInEvent.passwordChanged(v)),
-                  hintText: t.password,
-                  obscureText: !isPasswordVisible,
-                  suffixIcon: Icon(
-                    isPasswordVisible ? Icons.visibility_off : Icons.visibility,
-                    color: Colors.white.withOpacity(0.57),
-                    size: 19,
+      builder: (context, state) => Form(
+        child: Column(
+          children: [
+            // Email Field
+            CustomTextFormField(
+              initialValue: widget.email.value,
+              hintText: t.emailHint,
+              prefixIcon: const Icon(Icons.email_outlined),
+              keyboardType: TextInputType.emailAddress,
+              onChanged: (value) => context.read<SignInBloc>().add(
+                    SignInEvent.dataChanged(email: EmailInput.dirty(value)),
                   ),
-                  onToggleObscure: () => context
-                      .read<SignInBloc>()
-                      .add(const SignInEvent.togglePasswordVisibility()),
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    TextButton(
-                      onPressed: () => context.go('/forgot-password'),
-                      child: Text(
-                        t.forgotPassword,
-                        style: const TextStyle(
-                          fontFamily: 'Almarai',
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
+            ),
+            const SizedBox(height: 16),
+            // Password Field
+            CustomTextFormField(
+              initialValue: widget.password.value,
+              hintText: t.password,
+              prefixIcon: const Icon(Icons.lock_outline),
+              isPassword: true,
+              obscureText: widget.obscurePassword.value ?? true,
+              showPasswordToggle: true,
+              onToggleObscure: () => context.read<SignInBloc>().add(
+                    SignInEvent.dataChanged(
+                      obscurePassword: GenericFormzInput.dirty(
+                        widget.obscurePassword.value,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () async {
-                        setState(() => _remember = !_remember);
-                        final prefs = getIt<PrefsStorageService>();
-                        await prefs.setBool(SharedPrefKeys.isLoged, _remember);
-                      },
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        // mainAxisSize: MainAxisSize.max,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const SizedBox(width: 8),
-                          Text(
-                            t.rememberMe,
-                            style: const TextStyle(
-                              fontFamily: 'Almarai',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              color: _remember
-                                  ? const Color(0xFF83BEA8)
-                                  : Colors.transparent,
-                              borderRadius: BorderRadius.circular(2),
-                              border: Border.all(
-                                color: const Color(0xFF83BEA8),
-                                width: 2,
-                              ),
-                            ),
-                            child: _remember
-                                ? const Icon(
-                                    Icons.check,
-                                    color: Colors.white,
-                                    size: 16,
-                                  )
-                                : null,
-                          ),
-                        ],
+                  ),
+              onChanged: (v) => context.read<SignInBloc>().add(
+                    SignInEvent.dataChanged(
+                      password: PasswordInput.dirty(
+                        v,
                       ),
+                    ),
+                  ),
+              // validator: (value) => state.password.error?.message,
+            ),
+            const SizedBox(height: 16),
+            // Remember Me & Forgot Password
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Remember Me Checkbox
+                Row(
+                  children: [
+                    Checkbox(
+                      value: widget.rememberMe.value ?? false,
+                      onChanged: (value) => context.read<SignInBloc>().add(
+                            SignInEvent.dataChanged(
+                              rememberMe:
+                                  GenericFormzInput.dirty(value ?? false),
+                            ),
+                          ),
+                    ),
+                    Text(
+                      t.rememberMe,
+                      style: const TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ],
                 ),
+                // Forgot Password
+                TextButton(
+                  onPressed: () => context.go('/forgot-password'),
+                  child: Text(
+                    t.forgotPassword,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
               ],
-            );
-          },
-          orElse: () => const SizedBox.shrink(),
-        );
-      },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

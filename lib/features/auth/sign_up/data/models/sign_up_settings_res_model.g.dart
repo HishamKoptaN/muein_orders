@@ -17,7 +17,8 @@ _$SignUpSettingsResModelImpl _$$SignUpSettingsResModelImplFromJson(
 Map<String, dynamic> _$$SignUpSettingsResModelImplToJson(
         _$SignUpSettingsResModelImpl instance) =>
     <String, dynamic>{
-      'countries': instance.countries,
+      if (instance.countries?.map((e) => e.toJson()).toList() case final value?)
+        'countries': value,
     };
 
 _$CountryImpl _$$CountryImplFromJson(Map<String, dynamic> json) =>
@@ -28,6 +29,6 @@ _$CountryImpl _$$CountryImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CountryImplToJson(_$CountryImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'code': instance.code,
+      if (instance.id case final value?) 'id': value,
+      if (instance.code case final value?) 'code': value,
     };

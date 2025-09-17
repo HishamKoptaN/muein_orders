@@ -18,8 +18,9 @@ _$DocsResModelImpl _$$DocsResModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$DocsResModelImplToJson(_$DocsResModelImpl instance) =>
     <String, dynamic>{
-      'docs': instance.docs,
-      'meta': instance.meta,
+      if (instance.docs?.map((e) => e.toJson()).toList() case final value?)
+        'docs': value,
+      if (instance.meta?.toJson() case final value?) 'meta': value,
     };
 
 _$DocImpl _$$DocImplFromJson(Map<String, dynamic> json) => _$DocImpl(
@@ -40,18 +41,20 @@ _$DocImpl _$$DocImplFromJson(Map<String, dynamic> json) => _$DocImpl(
     );
 
 Map<String, dynamic> _$$DocImplToJson(_$DocImpl instance) => <String, dynamic>{
-      'id': instance.id,
-      'order_number': instance.orderNumber,
-      'place': instance.place,
-      'video_one': instance.videoOne,
-      'video_two': instance.videoTwo,
-      'thumbnail_url_one': instance.thumbnailUrlOne,
-      'thumbnail_url_two': instance.thumbnailUrlTwo,
-      'image_one': instance.imageOne,
-      'image_two': instance.imageTwo,
-      'updated_at': instance.updatedAt,
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'branch_id': instance.branchId,
-      'created_at': instance.createdAt,
+      if (instance.id case final value?) 'id': value,
+      if (instance.orderNumber case final value?) 'order_number': value,
+      if (instance.place case final value?) 'place': value,
+      if (instance.videoOne case final value?) 'video_one': value,
+      if (instance.videoTwo case final value?) 'video_two': value,
+      if (instance.thumbnailUrlOne case final value?)
+        'thumbnail_url_one': value,
+      if (instance.thumbnailUrlTwo case final value?)
+        'thumbnail_url_two': value,
+      if (instance.imageOne case final value?) 'image_one': value,
+      if (instance.imageTwo case final value?) 'image_two': value,
+      if (instance.updatedAt case final value?) 'updated_at': value,
+      if (instance.latitude case final value?) 'latitude': value,
+      if (instance.longitude case final value?) 'longitude': value,
+      if (instance.branchId case final value?) 'branch_id': value,
+      if (instance.createdAt case final value?) 'created_at': value,
     };

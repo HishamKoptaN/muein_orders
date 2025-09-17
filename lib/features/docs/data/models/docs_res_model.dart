@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/models/meta.dart';
 part 'docs_res_model.freezed.dart';
 part 'docs_res_model.g.dart';
-
+  
 @freezed
 class DocsResModel with _$DocsResModel {
   const factory DocsResModel({

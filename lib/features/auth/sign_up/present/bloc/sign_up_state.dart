@@ -1,7 +1,8 @@
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mubin_orders/core/error/api_error_model.dart';
+
+import '../../../../../core/error/api_error_model.dart';
 
 part 'sign_up_state.freezed.dart';
 
@@ -22,7 +23,6 @@ class SignUpState with _$SignUpState {
     required FormzSubmissionStatus formzSubmissionStatus,
     required bool loading,
   }) = _Loaded;
-  const factory SignUpState.failure({
-    required ApiErrorModel apiErrorModel,
-  }) = _Failure;
+  const factory SignUpState.failure({required ApiErrorModel apiErrorModel}) =
+      _Failure;
 }

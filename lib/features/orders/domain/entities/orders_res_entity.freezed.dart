@@ -20,8 +20,48 @@ OrdersResEntity _$OrdersResEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OrdersResEntity {
+  @JsonKey(name: 'package')
   PackageEntity? get package => throw _privateConstructorUsedError;
+  @JsonKey(name: 'orders')
   List<OrderEntity>? get orders => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'orders') List<OrderEntity>? orders)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'orders') List<OrderEntity>? orders)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'orders') List<OrderEntity>? orders)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrdersResEntity value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrdersResEntity value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrdersResEntity value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this OrdersResEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +79,9 @@ abstract class $OrdersResEntityCopyWith<$Res> {
           OrdersResEntity value, $Res Function(OrdersResEntity) then) =
       _$OrdersResEntityCopyWithImpl<$Res, OrdersResEntity>;
   @useResult
-  $Res call({PackageEntity? package, List<OrderEntity>? orders});
+  $Res call(
+      {@JsonKey(name: 'package') PackageEntity? package,
+      @JsonKey(name: 'orders') List<OrderEntity>? orders});
 
   $PackageEntityCopyWith<$Res>? get package;
 }
@@ -97,7 +139,9 @@ abstract class _$$OrdersResEntityImplCopyWith<$Res>
       __$$OrdersResEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PackageEntity? package, List<OrderEntity>? orders});
+  $Res call(
+      {@JsonKey(name: 'package') PackageEntity? package,
+      @JsonKey(name: 'orders') List<OrderEntity>? orders});
 
   @override
   $PackageEntityCopyWith<$Res>? get package;
@@ -135,16 +179,20 @@ class __$$OrdersResEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OrdersResEntityImpl implements _OrdersResEntity {
-  const _$OrdersResEntityImpl({this.package, final List<OrderEntity>? orders})
+  const _$OrdersResEntityImpl(
+      {@JsonKey(name: 'package') this.package,
+      @JsonKey(name: 'orders') final List<OrderEntity>? orders})
       : _orders = orders;
 
   factory _$OrdersResEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrdersResEntityImplFromJson(json);
 
   @override
+  @JsonKey(name: 'package')
   final PackageEntity? package;
   final List<OrderEntity>? _orders;
   @override
+  @JsonKey(name: 'orders')
   List<OrderEntity>? get orders {
     final value = _orders;
     if (value == null) return null;
@@ -182,6 +230,68 @@ class _$OrdersResEntityImpl implements _OrdersResEntity {
           this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'orders') List<OrderEntity>? orders)
+        $default,
+  ) {
+    return $default(package, orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'orders') List<OrderEntity>? orders)?
+        $default,
+  ) {
+    return $default?.call(package, orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'orders') List<OrderEntity>? orders)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(package, orders);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrdersResEntity value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrdersResEntity value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrdersResEntity value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$OrdersResEntityImplToJson(
       this,
@@ -191,15 +301,18 @@ class _$OrdersResEntityImpl implements _OrdersResEntity {
 
 abstract class _OrdersResEntity implements OrdersResEntity {
   const factory _OrdersResEntity(
-      {final PackageEntity? package,
-      final List<OrderEntity>? orders}) = _$OrdersResEntityImpl;
+          {@JsonKey(name: 'package') final PackageEntity? package,
+          @JsonKey(name: 'orders') final List<OrderEntity>? orders}) =
+      _$OrdersResEntityImpl;
 
   factory _OrdersResEntity.fromJson(Map<String, dynamic> json) =
       _$OrdersResEntityImpl.fromJson;
 
   @override
+  @JsonKey(name: 'package')
   PackageEntity? get package;
   @override
+  @JsonKey(name: 'orders')
   List<OrderEntity>? get orders;
 
   /// Create a copy of OrdersResEntity
@@ -216,32 +329,174 @@ OrderEntity _$OrderEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OrderEntity {
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'printed_name')
   String? get printedName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'country_code')
   dynamic get countryCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
   bool? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
   String? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'execution_num')
   String? get executionNum => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_num')
   String? get orderNum => throw _privateConstructorUsedError;
-  OrderPackageEntity? get package => throw _privateConstructorUsedError;
+  @JsonKey(name: 'package')
+  PackageEntity? get package => throw _privateConstructorUsedError;
+  @JsonKey(name: 'carton_count')
   int? get cartonCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'orders_count')
   int? get ordersCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_amount')
   String? get totalAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'date')
   DateTime? get date => throw _privateConstructorUsedError;
+  @JsonKey(name: 'days')
   int? get days => throw _privateConstructorUsedError;
+  @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'phone')
   String? get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_quran_printed')
   bool? get isQuranPrinted => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_quran_photographed')
   bool? get isQuranPhotographed => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_distribution_photographed')
   bool? get isDistributionPhotographed => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_location_received')
   bool? get isLocationReceived => throw _privateConstructorUsedError;
+  @JsonKey(name: 'location_link')
   dynamic get locationLink => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_final_report_ready')
   bool? get isFinalReportReady => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_report_sent')
   bool? get isReportSent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sticker_prepared')
   bool? get stickerPrepared => throw _privateConstructorUsedError;
+  @JsonKey(name: 'videos_uploaded')
   bool? get videosUploaded => throw _privateConstructorUsedError;
+  @JsonKey(name: 'final_estimate_ready')
   bool? get finalEstimateReady => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') dynamic countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') dynamic locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') dynamic countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') dynamic locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') dynamic countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') dynamic locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrderEntity value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrderEntity value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrderEntity value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this OrderEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -260,34 +515,35 @@ abstract class $OrderEntityCopyWith<$Res> {
       _$OrderEntityCopyWithImpl<$Res, OrderEntity>;
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? printedName,
-      dynamic countryCode,
-      bool? status,
-      String? createdAt,
-      String? executionNum,
-      String? orderNum,
-      OrderPackageEntity? package,
-      int? cartonCount,
-      int? ordersCount,
-      String? totalAmount,
-      DateTime? date,
-      int? days,
-      String? email,
-      String? phone,
-      bool? isQuranPrinted,
-      bool? isQuranPhotographed,
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'printed_name') String? printedName,
+      @JsonKey(name: 'country_code') dynamic countryCode,
+      @JsonKey(name: 'status') bool? status,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'execution_num') String? executionNum,
+      @JsonKey(name: 'order_num') String? orderNum,
+      @JsonKey(name: 'package') PackageEntity? package,
+      @JsonKey(name: 'carton_count') int? cartonCount,
+      @JsonKey(name: 'orders_count') int? ordersCount,
+      @JsonKey(name: 'total_amount') String? totalAmount,
+      @JsonKey(name: 'date') DateTime? date,
+      @JsonKey(name: 'days') int? days,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'phone') String? phone,
+      @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+      @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+      @JsonKey(name: 'is_distribution_photographed')
       bool? isDistributionPhotographed,
-      bool? isLocationReceived,
-      dynamic locationLink,
-      bool? isFinalReportReady,
-      bool? isReportSent,
-      bool? stickerPrepared,
-      bool? videosUploaded,
-      bool? finalEstimateReady});
+      @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+      @JsonKey(name: 'location_link') dynamic locationLink,
+      @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+      @JsonKey(name: 'is_report_sent') bool? isReportSent,
+      @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+      @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady});
 
-  $OrderPackageEntityCopyWith<$Res>? get package;
+  $PackageEntityCopyWith<$Res>? get package;
 }
 
 /// @nodoc
@@ -368,7 +624,7 @@ class _$OrderEntityCopyWithImpl<$Res, $Val extends OrderEntity>
       package: freezed == package
           ? _value.package
           : package // ignore: cast_nullable_to_non_nullable
-              as OrderPackageEntity?,
+              as PackageEntity?,
       cartonCount: freezed == cartonCount
           ? _value.cartonCount
           : cartonCount // ignore: cast_nullable_to_non_nullable
@@ -444,12 +700,12 @@ class _$OrderEntityCopyWithImpl<$Res, $Val extends OrderEntity>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $OrderPackageEntityCopyWith<$Res>? get package {
+  $PackageEntityCopyWith<$Res>? get package {
     if (_value.package == null) {
       return null;
     }
 
-    return $OrderPackageEntityCopyWith<$Res>(_value.package!, (value) {
+    return $PackageEntityCopyWith<$Res>(_value.package!, (value) {
       return _then(_value.copyWith(package: value) as $Val);
     });
   }
@@ -464,35 +720,36 @@ abstract class _$$OrderEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? printedName,
-      dynamic countryCode,
-      bool? status,
-      String? createdAt,
-      String? executionNum,
-      String? orderNum,
-      OrderPackageEntity? package,
-      int? cartonCount,
-      int? ordersCount,
-      String? totalAmount,
-      DateTime? date,
-      int? days,
-      String? email,
-      String? phone,
-      bool? isQuranPrinted,
-      bool? isQuranPhotographed,
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'printed_name') String? printedName,
+      @JsonKey(name: 'country_code') dynamic countryCode,
+      @JsonKey(name: 'status') bool? status,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'execution_num') String? executionNum,
+      @JsonKey(name: 'order_num') String? orderNum,
+      @JsonKey(name: 'package') PackageEntity? package,
+      @JsonKey(name: 'carton_count') int? cartonCount,
+      @JsonKey(name: 'orders_count') int? ordersCount,
+      @JsonKey(name: 'total_amount') String? totalAmount,
+      @JsonKey(name: 'date') DateTime? date,
+      @JsonKey(name: 'days') int? days,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'phone') String? phone,
+      @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+      @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+      @JsonKey(name: 'is_distribution_photographed')
       bool? isDistributionPhotographed,
-      bool? isLocationReceived,
-      dynamic locationLink,
-      bool? isFinalReportReady,
-      bool? isReportSent,
-      bool? stickerPrepared,
-      bool? videosUploaded,
-      bool? finalEstimateReady});
+      @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+      @JsonKey(name: 'location_link') dynamic locationLink,
+      @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+      @JsonKey(name: 'is_report_sent') bool? isReportSent,
+      @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+      @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady});
 
   @override
-  $OrderPackageEntityCopyWith<$Res>? get package;
+  $PackageEntityCopyWith<$Res>? get package;
 }
 
 /// @nodoc
@@ -571,7 +828,7 @@ class __$$OrderEntityImplCopyWithImpl<$Res>
       package: freezed == package
           ? _value.package
           : package // ignore: cast_nullable_to_non_nullable
-              as OrderPackageEntity?,
+              as PackageEntity?,
       cartonCount: freezed == cartonCount
           ? _value.cartonCount
           : cartonCount // ignore: cast_nullable_to_non_nullable
@@ -648,87 +905,114 @@ class __$$OrderEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrderEntityImpl implements _OrderEntity {
   const _$OrderEntityImpl(
-      {this.id,
-      this.name,
-      this.printedName,
-      this.countryCode,
-      this.status,
-      this.createdAt,
-      this.executionNum,
-      this.orderNum,
-      this.package,
-      this.cartonCount,
-      this.ordersCount,
-      this.totalAmount,
-      this.date,
-      this.days,
-      this.email,
-      this.phone,
-      this.isQuranPrinted,
-      this.isQuranPhotographed,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'printed_name') this.printedName,
+      @JsonKey(name: 'country_code') this.countryCode,
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'execution_num') this.executionNum,
+      @JsonKey(name: 'order_num') this.orderNum,
+      @JsonKey(name: 'package') this.package,
+      @JsonKey(name: 'carton_count') this.cartonCount,
+      @JsonKey(name: 'orders_count') this.ordersCount,
+      @JsonKey(name: 'total_amount') this.totalAmount,
+      @JsonKey(name: 'date') this.date,
+      @JsonKey(name: 'days') this.days,
+      @JsonKey(name: 'email') this.email,
+      @JsonKey(name: 'phone') this.phone,
+      @JsonKey(name: 'is_quran_printed') this.isQuranPrinted,
+      @JsonKey(name: 'is_quran_photographed') this.isQuranPhotographed,
+      @JsonKey(name: 'is_distribution_photographed')
       this.isDistributionPhotographed,
-      this.isLocationReceived,
-      this.locationLink,
-      this.isFinalReportReady,
-      this.isReportSent,
-      this.stickerPrepared,
-      this.videosUploaded,
-      this.finalEstimateReady});
+      @JsonKey(name: 'is_location_received') this.isLocationReceived,
+      @JsonKey(name: 'location_link') this.locationLink,
+      @JsonKey(name: 'is_final_report_ready') this.isFinalReportReady,
+      @JsonKey(name: 'is_report_sent') this.isReportSent,
+      @JsonKey(name: 'sticker_prepared') this.stickerPrepared,
+      @JsonKey(name: 'videos_uploaded') this.videosUploaded,
+      @JsonKey(name: 'final_estimate_ready') this.finalEstimateReady});
 
   factory _$OrderEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderEntityImplFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final int? id;
   @override
+  @JsonKey(name: 'name')
   final String? name;
   @override
+  @JsonKey(name: 'printed_name')
   final String? printedName;
   @override
+  @JsonKey(name: 'country_code')
   final dynamic countryCode;
   @override
+  @JsonKey(name: 'status')
   final bool? status;
   @override
+  @JsonKey(name: 'created_at')
   final String? createdAt;
   @override
+  @JsonKey(name: 'execution_num')
   final String? executionNum;
   @override
+  @JsonKey(name: 'order_num')
   final String? orderNum;
   @override
-  final OrderPackageEntity? package;
+  @JsonKey(name: 'package')
+  final PackageEntity? package;
   @override
+  @JsonKey(name: 'carton_count')
   final int? cartonCount;
   @override
+  @JsonKey(name: 'orders_count')
   final int? ordersCount;
   @override
+  @JsonKey(name: 'total_amount')
   final String? totalAmount;
   @override
+  @JsonKey(name: 'date')
   final DateTime? date;
   @override
+  @JsonKey(name: 'days')
   final int? days;
   @override
+  @JsonKey(name: 'email')
   final String? email;
   @override
+  @JsonKey(name: 'phone')
   final String? phone;
   @override
+  @JsonKey(name: 'is_quran_printed')
   final bool? isQuranPrinted;
   @override
+  @JsonKey(name: 'is_quran_photographed')
   final bool? isQuranPhotographed;
   @override
+  @JsonKey(name: 'is_distribution_photographed')
   final bool? isDistributionPhotographed;
   @override
+  @JsonKey(name: 'is_location_received')
   final bool? isLocationReceived;
   @override
+  @JsonKey(name: 'location_link')
   final dynamic locationLink;
   @override
+  @JsonKey(name: 'is_final_report_ready')
   final bool? isFinalReportReady;
   @override
+  @JsonKey(name: 'is_report_sent')
   final bool? isReportSent;
   @override
+  @JsonKey(name: 'sticker_prepared')
   final bool? stickerPrepared;
   @override
+  @JsonKey(name: 'videos_uploaded')
   final bool? videosUploaded;
   @override
+  @JsonKey(name: 'final_estimate_ready')
   final bool? finalEstimateReady;
 
   @override
@@ -830,6 +1114,224 @@ class _$OrderEntityImpl implements _OrderEntity {
       __$$OrderEntityImplCopyWithImpl<_$OrderEntityImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') dynamic countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') dynamic locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)
+        $default,
+  ) {
+    return $default(
+        id,
+        name,
+        printedName,
+        countryCode,
+        status,
+        createdAt,
+        executionNum,
+        orderNum,
+        package,
+        cartonCount,
+        ordersCount,
+        totalAmount,
+        date,
+        days,
+        email,
+        phone,
+        isQuranPrinted,
+        isQuranPhotographed,
+        isDistributionPhotographed,
+        isLocationReceived,
+        locationLink,
+        isFinalReportReady,
+        isReportSent,
+        stickerPrepared,
+        videosUploaded,
+        finalEstimateReady);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') dynamic countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') dynamic locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)?
+        $default,
+  ) {
+    return $default?.call(
+        id,
+        name,
+        printedName,
+        countryCode,
+        status,
+        createdAt,
+        executionNum,
+        orderNum,
+        package,
+        cartonCount,
+        ordersCount,
+        totalAmount,
+        date,
+        days,
+        email,
+        phone,
+        isQuranPrinted,
+        isQuranPhotographed,
+        isDistributionPhotographed,
+        isLocationReceived,
+        locationLink,
+        isFinalReportReady,
+        isReportSent,
+        stickerPrepared,
+        videosUploaded,
+        finalEstimateReady);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') dynamic countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') PackageEntity? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') dynamic locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(
+          id,
+          name,
+          printedName,
+          countryCode,
+          status,
+          createdAt,
+          executionNum,
+          orderNum,
+          package,
+          cartonCount,
+          ordersCount,
+          totalAmount,
+          date,
+          days,
+          email,
+          phone,
+          isQuranPrinted,
+          isQuranPhotographed,
+          isDistributionPhotographed,
+          isLocationReceived,
+          locationLink,
+          isFinalReportReady,
+          isReportSent,
+          stickerPrepared,
+          videosUploaded,
+          finalEstimateReady);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrderEntity value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrderEntity value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrderEntity value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$OrderEntityImplToJson(
       this,
@@ -839,87 +1341,115 @@ class _$OrderEntityImpl implements _OrderEntity {
 
 abstract class _OrderEntity implements OrderEntity {
   const factory _OrderEntity(
-      {final int? id,
-      final String? name,
-      final String? printedName,
-      final dynamic countryCode,
-      final bool? status,
-      final String? createdAt,
-      final String? executionNum,
-      final String? orderNum,
-      final OrderPackageEntity? package,
-      final int? cartonCount,
-      final int? ordersCount,
-      final String? totalAmount,
-      final DateTime? date,
-      final int? days,
-      final String? email,
-      final String? phone,
-      final bool? isQuranPrinted,
-      final bool? isQuranPhotographed,
+      {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'name') final String? name,
+      @JsonKey(name: 'printed_name') final String? printedName,
+      @JsonKey(name: 'country_code') final dynamic countryCode,
+      @JsonKey(name: 'status') final bool? status,
+      @JsonKey(name: 'created_at') final String? createdAt,
+      @JsonKey(name: 'execution_num') final String? executionNum,
+      @JsonKey(name: 'order_num') final String? orderNum,
+      @JsonKey(name: 'package') final PackageEntity? package,
+      @JsonKey(name: 'carton_count') final int? cartonCount,
+      @JsonKey(name: 'orders_count') final int? ordersCount,
+      @JsonKey(name: 'total_amount') final String? totalAmount,
+      @JsonKey(name: 'date') final DateTime? date,
+      @JsonKey(name: 'days') final int? days,
+      @JsonKey(name: 'email') final String? email,
+      @JsonKey(name: 'phone') final String? phone,
+      @JsonKey(name: 'is_quran_printed') final bool? isQuranPrinted,
+      @JsonKey(name: 'is_quran_photographed') final bool? isQuranPhotographed,
+      @JsonKey(name: 'is_distribution_photographed')
       final bool? isDistributionPhotographed,
-      final bool? isLocationReceived,
-      final dynamic locationLink,
-      final bool? isFinalReportReady,
-      final bool? isReportSent,
-      final bool? stickerPrepared,
-      final bool? videosUploaded,
+      @JsonKey(name: 'is_location_received') final bool? isLocationReceived,
+      @JsonKey(name: 'location_link') final dynamic locationLink,
+      @JsonKey(name: 'is_final_report_ready') final bool? isFinalReportReady,
+      @JsonKey(name: 'is_report_sent') final bool? isReportSent,
+      @JsonKey(name: 'sticker_prepared') final bool? stickerPrepared,
+      @JsonKey(name: 'videos_uploaded') final bool? videosUploaded,
+      @JsonKey(name: 'final_estimate_ready')
       final bool? finalEstimateReady}) = _$OrderEntityImpl;
 
   factory _OrderEntity.fromJson(Map<String, dynamic> json) =
       _$OrderEntityImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   int? get id;
   @override
+  @JsonKey(name: 'name')
   String? get name;
   @override
+  @JsonKey(name: 'printed_name')
   String? get printedName;
   @override
+  @JsonKey(name: 'country_code')
   dynamic get countryCode;
   @override
+  @JsonKey(name: 'status')
   bool? get status;
   @override
+  @JsonKey(name: 'created_at')
   String? get createdAt;
   @override
+  @JsonKey(name: 'execution_num')
   String? get executionNum;
   @override
+  @JsonKey(name: 'order_num')
   String? get orderNum;
   @override
-  OrderPackageEntity? get package;
+  @JsonKey(name: 'package')
+  PackageEntity? get package;
   @override
+  @JsonKey(name: 'carton_count')
   int? get cartonCount;
   @override
+  @JsonKey(name: 'orders_count')
   int? get ordersCount;
   @override
+  @JsonKey(name: 'total_amount')
   String? get totalAmount;
   @override
+  @JsonKey(name: 'date')
   DateTime? get date;
   @override
+  @JsonKey(name: 'days')
   int? get days;
   @override
+  @JsonKey(name: 'email')
   String? get email;
   @override
+  @JsonKey(name: 'phone')
   String? get phone;
   @override
+  @JsonKey(name: 'is_quran_printed')
   bool? get isQuranPrinted;
   @override
+  @JsonKey(name: 'is_quran_photographed')
   bool? get isQuranPhotographed;
   @override
+  @JsonKey(name: 'is_distribution_photographed')
   bool? get isDistributionPhotographed;
   @override
+  @JsonKey(name: 'is_location_received')
   bool? get isLocationReceived;
   @override
+  @JsonKey(name: 'location_link')
   dynamic get locationLink;
   @override
+  @JsonKey(name: 'is_final_report_ready')
   bool? get isFinalReportReady;
   @override
+  @JsonKey(name: 'is_report_sent')
   bool? get isReportSent;
   @override
+  @JsonKey(name: 'sticker_prepared')
   bool? get stickerPrepared;
   @override
+  @JsonKey(name: 'videos_uploaded')
   bool? get videosUploaded;
   @override
+  @JsonKey(name: 'final_estimate_ready')
   bool? get finalEstimateReady;
 
   /// Create a copy of OrderEntity
@@ -927,358 +1457,5 @@ abstract class _OrderEntity implements OrderEntity {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderEntityImplCopyWith<_$OrderEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-OrderPackageEntity _$OrderPackageEntityFromJson(Map<String, dynamic> json) {
-  return _OrderPackageEntity.fromJson(json);
-}
-
-/// @nodoc
-mixin _$OrderPackageEntity {
-  int? get id => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
-  int? get quantity => throw _privateConstructorUsedError;
-
-  /// Serializes this OrderPackageEntity to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of OrderPackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderPackageEntityCopyWith<OrderPackageEntity> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $OrderPackageEntityCopyWith<$Res> {
-  factory $OrderPackageEntityCopyWith(
-          OrderPackageEntity value, $Res Function(OrderPackageEntity) then) =
-      _$OrderPackageEntityCopyWithImpl<$Res, OrderPackageEntity>;
-  @useResult
-  $Res call({int? id, String? type, int? quantity});
-}
-
-/// @nodoc
-class _$OrderPackageEntityCopyWithImpl<$Res, $Val extends OrderPackageEntity>
-    implements $OrderPackageEntityCopyWith<$Res> {
-  _$OrderPackageEntityCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of OrderPackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? quantity = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$OrderPackageEntityImplCopyWith<$Res>
-    implements $OrderPackageEntityCopyWith<$Res> {
-  factory _$$OrderPackageEntityImplCopyWith(_$OrderPackageEntityImpl value,
-          $Res Function(_$OrderPackageEntityImpl) then) =
-      __$$OrderPackageEntityImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int? id, String? type, int? quantity});
-}
-
-/// @nodoc
-class __$$OrderPackageEntityImplCopyWithImpl<$Res>
-    extends _$OrderPackageEntityCopyWithImpl<$Res, _$OrderPackageEntityImpl>
-    implements _$$OrderPackageEntityImplCopyWith<$Res> {
-  __$$OrderPackageEntityImplCopyWithImpl(_$OrderPackageEntityImpl _value,
-      $Res Function(_$OrderPackageEntityImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrderPackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? quantity = freezed,
-  }) {
-    return _then(_$OrderPackageEntityImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$OrderPackageEntityImpl implements _OrderPackageEntity {
-  const _$OrderPackageEntityImpl({this.id, this.type, this.quantity});
-
-  factory _$OrderPackageEntityImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrderPackageEntityImplFromJson(json);
-
-  @override
-  final int? id;
-  @override
-  final String? type;
-  @override
-  final int? quantity;
-
-  @override
-  String toString() {
-    return 'OrderPackageEntity(id: $id, type: $type, quantity: $quantity)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OrderPackageEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, type, quantity);
-
-  /// Create a copy of OrderPackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OrderPackageEntityImplCopyWith<_$OrderPackageEntityImpl> get copyWith =>
-      __$$OrderPackageEntityImplCopyWithImpl<_$OrderPackageEntityImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$OrderPackageEntityImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _OrderPackageEntity implements OrderPackageEntity {
-  const factory _OrderPackageEntity(
-      {final int? id,
-      final String? type,
-      final int? quantity}) = _$OrderPackageEntityImpl;
-
-  factory _OrderPackageEntity.fromJson(Map<String, dynamic> json) =
-      _$OrderPackageEntityImpl.fromJson;
-
-  @override
-  int? get id;
-  @override
-  String? get type;
-  @override
-  int? get quantity;
-
-  /// Create a copy of OrderPackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrderPackageEntityImplCopyWith<_$OrderPackageEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-PackageEntity _$PackageEntityFromJson(Map<String, dynamic> json) {
-  return _PackageEntity.fromJson(json);
-}
-
-/// @nodoc
-mixin _$PackageEntity {
-  int? get id => throw _privateConstructorUsedError;
-  int? get quantity => throw _privateConstructorUsedError;
-
-  /// Serializes this PackageEntity to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of PackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PackageEntityCopyWith<PackageEntity> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PackageEntityCopyWith<$Res> {
-  factory $PackageEntityCopyWith(
-          PackageEntity value, $Res Function(PackageEntity) then) =
-      _$PackageEntityCopyWithImpl<$Res, PackageEntity>;
-  @useResult
-  $Res call({int? id, int? quantity});
-}
-
-/// @nodoc
-class _$PackageEntityCopyWithImpl<$Res, $Val extends PackageEntity>
-    implements $PackageEntityCopyWith<$Res> {
-  _$PackageEntityCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of PackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? quantity = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$PackageEntityImplCopyWith<$Res>
-    implements $PackageEntityCopyWith<$Res> {
-  factory _$$PackageEntityImplCopyWith(
-          _$PackageEntityImpl value, $Res Function(_$PackageEntityImpl) then) =
-      __$$PackageEntityImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int? id, int? quantity});
-}
-
-/// @nodoc
-class __$$PackageEntityImplCopyWithImpl<$Res>
-    extends _$PackageEntityCopyWithImpl<$Res, _$PackageEntityImpl>
-    implements _$$PackageEntityImplCopyWith<$Res> {
-  __$$PackageEntityImplCopyWithImpl(
-      _$PackageEntityImpl _value, $Res Function(_$PackageEntityImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of PackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? quantity = freezed,
-  }) {
-    return _then(_$PackageEntityImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$PackageEntityImpl implements _PackageEntity {
-  const _$PackageEntityImpl({this.id, this.quantity});
-
-  factory _$PackageEntityImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PackageEntityImplFromJson(json);
-
-  @override
-  final int? id;
-  @override
-  final int? quantity;
-
-  @override
-  String toString() {
-    return 'PackageEntity(id: $id, quantity: $quantity)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PackageEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, quantity);
-
-  /// Create a copy of PackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PackageEntityImplCopyWith<_$PackageEntityImpl> get copyWith =>
-      __$$PackageEntityImplCopyWithImpl<_$PackageEntityImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PackageEntityImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _PackageEntity implements PackageEntity {
-  const factory _PackageEntity({final int? id, final int? quantity}) =
-      _$PackageEntityImpl;
-
-  factory _PackageEntity.fromJson(Map<String, dynamic> json) =
-      _$PackageEntityImpl.fromJson;
-
-  @override
-  int? get id;
-  @override
-  int? get quantity;
-
-  /// Create a copy of PackageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PackageEntityImplCopyWith<_$PackageEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -20,10 +20,48 @@ OrdersResModel _$OrdersResModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OrdersResModel {
-  @JsonKey(name: "package")
+  @JsonKey(name: 'package')
   OrdersResModelPackage? get package => throw _privateConstructorUsedError;
-  @JsonKey(name: "orders")
+  @JsonKey(name: 'orders')
   List<Order>? get orders => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'package') OrdersResModelPackage? package,
+            @JsonKey(name: 'orders') List<Order>? orders)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'package') OrdersResModelPackage? package,
+            @JsonKey(name: 'orders') List<Order>? orders)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'package') OrdersResModelPackage? package,
+            @JsonKey(name: 'orders') List<Order>? orders)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrdersResModel value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrdersResModel value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrdersResModel value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this OrdersResModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,8 +80,8 @@ abstract class $OrdersResModelCopyWith<$Res> {
       _$OrdersResModelCopyWithImpl<$Res, OrdersResModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "package") OrdersResModelPackage? package,
-      @JsonKey(name: "orders") List<Order>? orders});
+      {@JsonKey(name: 'package') OrdersResModelPackage? package,
+      @JsonKey(name: 'orders') List<Order>? orders});
 
   $OrdersResModelPackageCopyWith<$Res>? get package;
 }
@@ -102,8 +140,8 @@ abstract class _$$OrdersResModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "package") OrdersResModelPackage? package,
-      @JsonKey(name: "orders") List<Order>? orders});
+      {@JsonKey(name: 'package') OrdersResModelPackage? package,
+      @JsonKey(name: 'orders') List<Order>? orders});
 
   @override
   $OrdersResModelPackageCopyWith<$Res>? get package;
@@ -142,19 +180,19 @@ class __$$OrdersResModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrdersResModelImpl implements _OrdersResModel {
   const _$OrdersResModelImpl(
-      {@JsonKey(name: "package") this.package,
-      @JsonKey(name: "orders") final List<Order>? orders})
+      {@JsonKey(name: 'package') this.package,
+      @JsonKey(name: 'orders') final List<Order>? orders})
       : _orders = orders;
 
   factory _$OrdersResModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrdersResModelImplFromJson(json);
 
   @override
-  @JsonKey(name: "package")
+  @JsonKey(name: 'package')
   final OrdersResModelPackage? package;
   final List<Order>? _orders;
   @override
-  @JsonKey(name: "orders")
+  @JsonKey(name: 'orders')
   List<Order>? get orders {
     final value = _orders;
     if (value == null) return null;
@@ -192,6 +230,68 @@ class _$OrdersResModelImpl implements _OrdersResModel {
           this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'package') OrdersResModelPackage? package,
+            @JsonKey(name: 'orders') List<Order>? orders)
+        $default,
+  ) {
+    return $default(package, orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'package') OrdersResModelPackage? package,
+            @JsonKey(name: 'orders') List<Order>? orders)?
+        $default,
+  ) {
+    return $default?.call(package, orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'package') OrdersResModelPackage? package,
+            @JsonKey(name: 'orders') List<Order>? orders)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(package, orders);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrdersResModel value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrdersResModel value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrdersResModel value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$OrdersResModelImplToJson(
       this,
@@ -201,18 +301,18 @@ class _$OrdersResModelImpl implements _OrdersResModel {
 
 abstract class _OrdersResModel implements OrdersResModel {
   const factory _OrdersResModel(
-          {@JsonKey(name: "package") final OrdersResModelPackage? package,
-          @JsonKey(name: "orders") final List<Order>? orders}) =
+          {@JsonKey(name: 'package') final OrdersResModelPackage? package,
+          @JsonKey(name: 'orders') final List<Order>? orders}) =
       _$OrdersResModelImpl;
 
   factory _OrdersResModel.fromJson(Map<String, dynamic> json) =
       _$OrdersResModelImpl.fromJson;
 
   @override
-  @JsonKey(name: "package")
+  @JsonKey(name: 'package')
   OrdersResModelPackage? get package;
   @override
-  @JsonKey(name: "orders")
+  @JsonKey(name: 'orders')
   List<Order>? get orders;
 
   /// Create a copy of OrdersResModel
@@ -229,58 +329,174 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Order {
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "name")
+  @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: "printed_name")
+  @JsonKey(name: 'printed_name')
   String? get printedName => throw _privateConstructorUsedError;
-  @JsonKey(name: "country_code")
-  dynamic get countryCode => throw _privateConstructorUsedError;
-  @JsonKey(name: "status")
+  @JsonKey(name: 'country_code')
+  String? get countryCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
   bool? get status => throw _privateConstructorUsedError;
-  @JsonKey(name: "created_at")
+  @JsonKey(name: 'created_at')
   String? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: "execution_num")
+  @JsonKey(name: 'execution_num')
   String? get executionNum => throw _privateConstructorUsedError;
-  @JsonKey(name: "order_num")
+  @JsonKey(name: 'order_num')
   String? get orderNum => throw _privateConstructorUsedError;
-  @JsonKey(name: "package")
+  @JsonKey(name: 'package')
   OrderPackage? get package => throw _privateConstructorUsedError;
-  @JsonKey(name: "carton_count")
+  @JsonKey(name: 'carton_count')
   int? get cartonCount => throw _privateConstructorUsedError;
-  @JsonKey(name: "orders_count")
+  @JsonKey(name: 'orders_count')
   int? get ordersCount => throw _privateConstructorUsedError;
-  @JsonKey(name: "total_amount")
+  @JsonKey(name: 'total_amount')
   String? get totalAmount => throw _privateConstructorUsedError;
-  @JsonKey(name: "date")
+  @JsonKey(name: 'date')
   DateTime? get date => throw _privateConstructorUsedError;
-  @JsonKey(name: "days")
+  @JsonKey(name: 'days')
   int? get days => throw _privateConstructorUsedError;
-  @JsonKey(name: "email")
+  @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
-  @JsonKey(name: "phone")
+  @JsonKey(name: 'phone')
   String? get phone => throw _privateConstructorUsedError;
-  @JsonKey(name: "is_quran_printed")
+  @JsonKey(name: 'is_quran_printed')
   bool? get isQuranPrinted => throw _privateConstructorUsedError;
-  @JsonKey(name: "is_quran_photographed")
+  @JsonKey(name: 'is_quran_photographed')
   bool? get isQuranPhotographed => throw _privateConstructorUsedError;
-  @JsonKey(name: "is_distribution_photographed")
+  @JsonKey(name: 'is_distribution_photographed')
   bool? get isDistributionPhotographed => throw _privateConstructorUsedError;
-  @JsonKey(name: "is_location_received")
+  @JsonKey(name: 'is_location_received')
   bool? get isLocationReceived => throw _privateConstructorUsedError;
-  @JsonKey(name: "location_link")
-  dynamic get locationLink => throw _privateConstructorUsedError;
-  @JsonKey(name: "is_final_report_ready")
+  @JsonKey(name: 'location_link')
+  String? get locationLink => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_final_report_ready')
   bool? get isFinalReportReady => throw _privateConstructorUsedError;
-  @JsonKey(name: "is_report_sent")
+  @JsonKey(name: 'is_report_sent')
   bool? get isReportSent => throw _privateConstructorUsedError;
-  @JsonKey(name: "sticker_prepared")
+  @JsonKey(name: 'sticker_prepared')
   bool? get stickerPrepared => throw _privateConstructorUsedError;
-  @JsonKey(name: "videos_uploaded")
+  @JsonKey(name: 'videos_uploaded')
   bool? get videosUploaded => throw _privateConstructorUsedError;
-  @JsonKey(name: "final_estimate_ready")
+  @JsonKey(name: 'final_estimate_ready')
   bool? get finalEstimateReady => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') String? countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') OrderPackage? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') String? locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') String? countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') OrderPackage? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') String? locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') String? countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') OrderPackage? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') String? locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Order value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Order value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Order value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this Order to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -297,33 +513,33 @@ abstract class $OrderCopyWith<$Res> {
       _$OrderCopyWithImpl<$Res, Order>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "name") String? name,
-      @JsonKey(name: "printed_name") String? printedName,
-      @JsonKey(name: "country_code") dynamic countryCode,
-      @JsonKey(name: "status") bool? status,
-      @JsonKey(name: "created_at") String? createdAt,
-      @JsonKey(name: "execution_num") String? executionNum,
-      @JsonKey(name: "order_num") String? orderNum,
-      @JsonKey(name: "package") OrderPackage? package,
-      @JsonKey(name: "carton_count") int? cartonCount,
-      @JsonKey(name: "orders_count") int? ordersCount,
-      @JsonKey(name: "total_amount") String? totalAmount,
-      @JsonKey(name: "date") DateTime? date,
-      @JsonKey(name: "days") int? days,
-      @JsonKey(name: "email") String? email,
-      @JsonKey(name: "phone") String? phone,
-      @JsonKey(name: "is_quran_printed") bool? isQuranPrinted,
-      @JsonKey(name: "is_quran_photographed") bool? isQuranPhotographed,
-      @JsonKey(name: "is_distribution_photographed")
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'printed_name') String? printedName,
+      @JsonKey(name: 'country_code') String? countryCode,
+      @JsonKey(name: 'status') bool? status,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'execution_num') String? executionNum,
+      @JsonKey(name: 'order_num') String? orderNum,
+      @JsonKey(name: 'package') OrderPackage? package,
+      @JsonKey(name: 'carton_count') int? cartonCount,
+      @JsonKey(name: 'orders_count') int? ordersCount,
+      @JsonKey(name: 'total_amount') String? totalAmount,
+      @JsonKey(name: 'date') DateTime? date,
+      @JsonKey(name: 'days') int? days,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'phone') String? phone,
+      @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+      @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+      @JsonKey(name: 'is_distribution_photographed')
       bool? isDistributionPhotographed,
-      @JsonKey(name: "is_location_received") bool? isLocationReceived,
-      @JsonKey(name: "location_link") dynamic locationLink,
-      @JsonKey(name: "is_final_report_ready") bool? isFinalReportReady,
-      @JsonKey(name: "is_report_sent") bool? isReportSent,
-      @JsonKey(name: "sticker_prepared") bool? stickerPrepared,
-      @JsonKey(name: "videos_uploaded") bool? videosUploaded,
-      @JsonKey(name: "final_estimate_ready") bool? finalEstimateReady});
+      @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+      @JsonKey(name: 'location_link') String? locationLink,
+      @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+      @JsonKey(name: 'is_report_sent') bool? isReportSent,
+      @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+      @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady});
 
   $OrderPackageCopyWith<$Res>? get package;
 }
@@ -386,7 +602,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
       countryCode: freezed == countryCode
           ? _value.countryCode
           : countryCode // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -454,7 +670,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
       locationLink: freezed == locationLink
           ? _value.locationLink
           : locationLink // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       isFinalReportReady: freezed == isFinalReportReady
           ? _value.isFinalReportReady
           : isFinalReportReady // ignore: cast_nullable_to_non_nullable
@@ -501,33 +717,33 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "name") String? name,
-      @JsonKey(name: "printed_name") String? printedName,
-      @JsonKey(name: "country_code") dynamic countryCode,
-      @JsonKey(name: "status") bool? status,
-      @JsonKey(name: "created_at") String? createdAt,
-      @JsonKey(name: "execution_num") String? executionNum,
-      @JsonKey(name: "order_num") String? orderNum,
-      @JsonKey(name: "package") OrderPackage? package,
-      @JsonKey(name: "carton_count") int? cartonCount,
-      @JsonKey(name: "orders_count") int? ordersCount,
-      @JsonKey(name: "total_amount") String? totalAmount,
-      @JsonKey(name: "date") DateTime? date,
-      @JsonKey(name: "days") int? days,
-      @JsonKey(name: "email") String? email,
-      @JsonKey(name: "phone") String? phone,
-      @JsonKey(name: "is_quran_printed") bool? isQuranPrinted,
-      @JsonKey(name: "is_quran_photographed") bool? isQuranPhotographed,
-      @JsonKey(name: "is_distribution_photographed")
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'printed_name') String? printedName,
+      @JsonKey(name: 'country_code') String? countryCode,
+      @JsonKey(name: 'status') bool? status,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'execution_num') String? executionNum,
+      @JsonKey(name: 'order_num') String? orderNum,
+      @JsonKey(name: 'package') OrderPackage? package,
+      @JsonKey(name: 'carton_count') int? cartonCount,
+      @JsonKey(name: 'orders_count') int? ordersCount,
+      @JsonKey(name: 'total_amount') String? totalAmount,
+      @JsonKey(name: 'date') DateTime? date,
+      @JsonKey(name: 'days') int? days,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'phone') String? phone,
+      @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+      @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+      @JsonKey(name: 'is_distribution_photographed')
       bool? isDistributionPhotographed,
-      @JsonKey(name: "is_location_received") bool? isLocationReceived,
-      @JsonKey(name: "location_link") dynamic locationLink,
-      @JsonKey(name: "is_final_report_ready") bool? isFinalReportReady,
-      @JsonKey(name: "is_report_sent") bool? isReportSent,
-      @JsonKey(name: "sticker_prepared") bool? stickerPrepared,
-      @JsonKey(name: "videos_uploaded") bool? videosUploaded,
-      @JsonKey(name: "final_estimate_ready") bool? finalEstimateReady});
+      @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+      @JsonKey(name: 'location_link') String? locationLink,
+      @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+      @JsonKey(name: 'is_report_sent') bool? isReportSent,
+      @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+      @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady});
 
   @override
   $OrderPackageCopyWith<$Res>? get package;
@@ -589,7 +805,7 @@ class __$$OrderImplCopyWithImpl<$Res>
       countryCode: freezed == countryCode
           ? _value.countryCode
           : countryCode // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -657,7 +873,7 @@ class __$$OrderImplCopyWithImpl<$Res>
       locationLink: freezed == locationLink
           ? _value.locationLink
           : locationLink // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       isFinalReportReady: freezed == isFinalReportReady
           ? _value.isFinalReportReady
           : isFinalReportReady // ignore: cast_nullable_to_non_nullable
@@ -686,114 +902,114 @@ class __$$OrderImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrderImpl implements _Order {
   const _$OrderImpl(
-      {@JsonKey(name: "id") this.id,
-      @JsonKey(name: "name") this.name,
-      @JsonKey(name: "printed_name") this.printedName,
-      @JsonKey(name: "country_code") this.countryCode,
-      @JsonKey(name: "status") this.status,
-      @JsonKey(name: "created_at") this.createdAt,
-      @JsonKey(name: "execution_num") this.executionNum,
-      @JsonKey(name: "order_num") this.orderNum,
-      @JsonKey(name: "package") this.package,
-      @JsonKey(name: "carton_count") this.cartonCount,
-      @JsonKey(name: "orders_count") this.ordersCount,
-      @JsonKey(name: "total_amount") this.totalAmount,
-      @JsonKey(name: "date") this.date,
-      @JsonKey(name: "days") this.days,
-      @JsonKey(name: "email") this.email,
-      @JsonKey(name: "phone") this.phone,
-      @JsonKey(name: "is_quran_printed") this.isQuranPrinted,
-      @JsonKey(name: "is_quran_photographed") this.isQuranPhotographed,
-      @JsonKey(name: "is_distribution_photographed")
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'printed_name') this.printedName,
+      @JsonKey(name: 'country_code') this.countryCode,
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'execution_num') this.executionNum,
+      @JsonKey(name: 'order_num') this.orderNum,
+      @JsonKey(name: 'package') this.package,
+      @JsonKey(name: 'carton_count') this.cartonCount,
+      @JsonKey(name: 'orders_count') this.ordersCount,
+      @JsonKey(name: 'total_amount') this.totalAmount,
+      @JsonKey(name: 'date') this.date,
+      @JsonKey(name: 'days') this.days,
+      @JsonKey(name: 'email') this.email,
+      @JsonKey(name: 'phone') this.phone,
+      @JsonKey(name: 'is_quran_printed') this.isQuranPrinted,
+      @JsonKey(name: 'is_quran_photographed') this.isQuranPhotographed,
+      @JsonKey(name: 'is_distribution_photographed')
       this.isDistributionPhotographed,
-      @JsonKey(name: "is_location_received") this.isLocationReceived,
-      @JsonKey(name: "location_link") this.locationLink,
-      @JsonKey(name: "is_final_report_ready") this.isFinalReportReady,
-      @JsonKey(name: "is_report_sent") this.isReportSent,
-      @JsonKey(name: "sticker_prepared") this.stickerPrepared,
-      @JsonKey(name: "videos_uploaded") this.videosUploaded,
-      @JsonKey(name: "final_estimate_ready") this.finalEstimateReady});
+      @JsonKey(name: 'is_location_received') this.isLocationReceived,
+      @JsonKey(name: 'location_link') this.locationLink,
+      @JsonKey(name: 'is_final_report_ready') this.isFinalReportReady,
+      @JsonKey(name: 'is_report_sent') this.isReportSent,
+      @JsonKey(name: 'sticker_prepared') this.stickerPrepared,
+      @JsonKey(name: 'videos_uploaded') this.videosUploaded,
+      @JsonKey(name: 'final_estimate_ready') this.finalEstimateReady});
 
   factory _$OrderImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderImplFromJson(json);
 
   @override
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   final int? id;
   @override
-  @JsonKey(name: "name")
+  @JsonKey(name: 'name')
   final String? name;
   @override
-  @JsonKey(name: "printed_name")
+  @JsonKey(name: 'printed_name')
   final String? printedName;
   @override
-  @JsonKey(name: "country_code")
-  final dynamic countryCode;
+  @JsonKey(name: 'country_code')
+  final String? countryCode;
   @override
-  @JsonKey(name: "status")
+  @JsonKey(name: 'status')
   final bool? status;
   @override
-  @JsonKey(name: "created_at")
+  @JsonKey(name: 'created_at')
   final String? createdAt;
   @override
-  @JsonKey(name: "execution_num")
+  @JsonKey(name: 'execution_num')
   final String? executionNum;
   @override
-  @JsonKey(name: "order_num")
+  @JsonKey(name: 'order_num')
   final String? orderNum;
   @override
-  @JsonKey(name: "package")
+  @JsonKey(name: 'package')
   final OrderPackage? package;
   @override
-  @JsonKey(name: "carton_count")
+  @JsonKey(name: 'carton_count')
   final int? cartonCount;
   @override
-  @JsonKey(name: "orders_count")
+  @JsonKey(name: 'orders_count')
   final int? ordersCount;
   @override
-  @JsonKey(name: "total_amount")
+  @JsonKey(name: 'total_amount')
   final String? totalAmount;
   @override
-  @JsonKey(name: "date")
+  @JsonKey(name: 'date')
   final DateTime? date;
   @override
-  @JsonKey(name: "days")
+  @JsonKey(name: 'days')
   final int? days;
   @override
-  @JsonKey(name: "email")
+  @JsonKey(name: 'email')
   final String? email;
   @override
-  @JsonKey(name: "phone")
+  @JsonKey(name: 'phone')
   final String? phone;
   @override
-  @JsonKey(name: "is_quran_printed")
+  @JsonKey(name: 'is_quran_printed')
   final bool? isQuranPrinted;
   @override
-  @JsonKey(name: "is_quran_photographed")
+  @JsonKey(name: 'is_quran_photographed')
   final bool? isQuranPhotographed;
   @override
-  @JsonKey(name: "is_distribution_photographed")
+  @JsonKey(name: 'is_distribution_photographed')
   final bool? isDistributionPhotographed;
   @override
-  @JsonKey(name: "is_location_received")
+  @JsonKey(name: 'is_location_received')
   final bool? isLocationReceived;
   @override
-  @JsonKey(name: "location_link")
-  final dynamic locationLink;
+  @JsonKey(name: 'location_link')
+  final String? locationLink;
   @override
-  @JsonKey(name: "is_final_report_ready")
+  @JsonKey(name: 'is_final_report_ready')
   final bool? isFinalReportReady;
   @override
-  @JsonKey(name: "is_report_sent")
+  @JsonKey(name: 'is_report_sent')
   final bool? isReportSent;
   @override
-  @JsonKey(name: "sticker_prepared")
+  @JsonKey(name: 'sticker_prepared')
   final bool? stickerPrepared;
   @override
-  @JsonKey(name: "videos_uploaded")
+  @JsonKey(name: 'videos_uploaded')
   final bool? videosUploaded;
   @override
-  @JsonKey(name: "final_estimate_ready")
+  @JsonKey(name: 'final_estimate_ready')
   final bool? finalEstimateReady;
 
   @override
@@ -810,8 +1026,8 @@ class _$OrderImpl implements _Order {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.printedName, printedName) ||
                 other.printedName == printedName) &&
-            const DeepCollectionEquality()
-                .equals(other.countryCode, countryCode) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -840,8 +1056,8 @@ class _$OrderImpl implements _Order {
                     isDistributionPhotographed) &&
             (identical(other.isLocationReceived, isLocationReceived) ||
                 other.isLocationReceived == isLocationReceived) &&
-            const DeepCollectionEquality()
-                .equals(other.locationLink, locationLink) &&
+            (identical(other.locationLink, locationLink) ||
+                other.locationLink == locationLink) &&
             (identical(other.isFinalReportReady, isFinalReportReady) ||
                 other.isFinalReportReady == isFinalReportReady) &&
             (identical(other.isReportSent, isReportSent) ||
@@ -861,7 +1077,7 @@ class _$OrderImpl implements _Order {
         id,
         name,
         printedName,
-        const DeepCollectionEquality().hash(countryCode),
+        countryCode,
         status,
         createdAt,
         executionNum,
@@ -878,7 +1094,7 @@ class _$OrderImpl implements _Order {
         isQuranPhotographed,
         isDistributionPhotographed,
         isLocationReceived,
-        const DeepCollectionEquality().hash(locationLink),
+        locationLink,
         isFinalReportReady,
         isReportSent,
         stickerPrepared,
@@ -895,6 +1111,224 @@ class _$OrderImpl implements _Order {
       __$$OrderImplCopyWithImpl<_$OrderImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') String? countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') OrderPackage? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') String? locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)
+        $default,
+  ) {
+    return $default(
+        id,
+        name,
+        printedName,
+        countryCode,
+        status,
+        createdAt,
+        executionNum,
+        orderNum,
+        package,
+        cartonCount,
+        ordersCount,
+        totalAmount,
+        date,
+        days,
+        email,
+        phone,
+        isQuranPrinted,
+        isQuranPhotographed,
+        isDistributionPhotographed,
+        isLocationReceived,
+        locationLink,
+        isFinalReportReady,
+        isReportSent,
+        stickerPrepared,
+        videosUploaded,
+        finalEstimateReady);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') String? countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') OrderPackage? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') String? locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)?
+        $default,
+  ) {
+    return $default?.call(
+        id,
+        name,
+        printedName,
+        countryCode,
+        status,
+        createdAt,
+        executionNum,
+        orderNum,
+        package,
+        cartonCount,
+        ordersCount,
+        totalAmount,
+        date,
+        days,
+        email,
+        phone,
+        isQuranPrinted,
+        isQuranPhotographed,
+        isDistributionPhotographed,
+        isLocationReceived,
+        locationLink,
+        isFinalReportReady,
+        isReportSent,
+        stickerPrepared,
+        videosUploaded,
+        finalEstimateReady);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'printed_name') String? printedName,
+            @JsonKey(name: 'country_code') String? countryCode,
+            @JsonKey(name: 'status') bool? status,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'execution_num') String? executionNum,
+            @JsonKey(name: 'order_num') String? orderNum,
+            @JsonKey(name: 'package') OrderPackage? package,
+            @JsonKey(name: 'carton_count') int? cartonCount,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'date') DateTime? date,
+            @JsonKey(name: 'days') int? days,
+            @JsonKey(name: 'email') String? email,
+            @JsonKey(name: 'phone') String? phone,
+            @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+            @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
+            @JsonKey(name: 'is_distribution_photographed')
+            bool? isDistributionPhotographed,
+            @JsonKey(name: 'is_location_received') bool? isLocationReceived,
+            @JsonKey(name: 'location_link') String? locationLink,
+            @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
+            @JsonKey(name: 'is_report_sent') bool? isReportSent,
+            @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
+            @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
+            @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(
+          id,
+          name,
+          printedName,
+          countryCode,
+          status,
+          createdAt,
+          executionNum,
+          orderNum,
+          package,
+          cartonCount,
+          ordersCount,
+          totalAmount,
+          date,
+          days,
+          email,
+          phone,
+          isQuranPrinted,
+          isQuranPhotographed,
+          isDistributionPhotographed,
+          isLocationReceived,
+          locationLink,
+          isFinalReportReady,
+          isReportSent,
+          stickerPrepared,
+          videosUploaded,
+          finalEstimateReady);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Order value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Order value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Order value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$OrderImplToJson(
       this,
@@ -904,114 +1338,114 @@ class _$OrderImpl implements _Order {
 
 abstract class _Order implements Order {
   const factory _Order(
-      {@JsonKey(name: "id") final int? id,
-      @JsonKey(name: "name") final String? name,
-      @JsonKey(name: "printed_name") final String? printedName,
-      @JsonKey(name: "country_code") final dynamic countryCode,
-      @JsonKey(name: "status") final bool? status,
-      @JsonKey(name: "created_at") final String? createdAt,
-      @JsonKey(name: "execution_num") final String? executionNum,
-      @JsonKey(name: "order_num") final String? orderNum,
-      @JsonKey(name: "package") final OrderPackage? package,
-      @JsonKey(name: "carton_count") final int? cartonCount,
-      @JsonKey(name: "orders_count") final int? ordersCount,
-      @JsonKey(name: "total_amount") final String? totalAmount,
-      @JsonKey(name: "date") final DateTime? date,
-      @JsonKey(name: "days") final int? days,
-      @JsonKey(name: "email") final String? email,
-      @JsonKey(name: "phone") final String? phone,
-      @JsonKey(name: "is_quran_printed") final bool? isQuranPrinted,
-      @JsonKey(name: "is_quran_photographed") final bool? isQuranPhotographed,
-      @JsonKey(name: "is_distribution_photographed")
+      {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'name') final String? name,
+      @JsonKey(name: 'printed_name') final String? printedName,
+      @JsonKey(name: 'country_code') final String? countryCode,
+      @JsonKey(name: 'status') final bool? status,
+      @JsonKey(name: 'created_at') final String? createdAt,
+      @JsonKey(name: 'execution_num') final String? executionNum,
+      @JsonKey(name: 'order_num') final String? orderNum,
+      @JsonKey(name: 'package') final OrderPackage? package,
+      @JsonKey(name: 'carton_count') final int? cartonCount,
+      @JsonKey(name: 'orders_count') final int? ordersCount,
+      @JsonKey(name: 'total_amount') final String? totalAmount,
+      @JsonKey(name: 'date') final DateTime? date,
+      @JsonKey(name: 'days') final int? days,
+      @JsonKey(name: 'email') final String? email,
+      @JsonKey(name: 'phone') final String? phone,
+      @JsonKey(name: 'is_quran_printed') final bool? isQuranPrinted,
+      @JsonKey(name: 'is_quran_photographed') final bool? isQuranPhotographed,
+      @JsonKey(name: 'is_distribution_photographed')
       final bool? isDistributionPhotographed,
-      @JsonKey(name: "is_location_received") final bool? isLocationReceived,
-      @JsonKey(name: "location_link") final dynamic locationLink,
-      @JsonKey(name: "is_final_report_ready") final bool? isFinalReportReady,
-      @JsonKey(name: "is_report_sent") final bool? isReportSent,
-      @JsonKey(name: "sticker_prepared") final bool? stickerPrepared,
-      @JsonKey(name: "videos_uploaded") final bool? videosUploaded,
-      @JsonKey(name: "final_estimate_ready")
+      @JsonKey(name: 'is_location_received') final bool? isLocationReceived,
+      @JsonKey(name: 'location_link') final String? locationLink,
+      @JsonKey(name: 'is_final_report_ready') final bool? isFinalReportReady,
+      @JsonKey(name: 'is_report_sent') final bool? isReportSent,
+      @JsonKey(name: 'sticker_prepared') final bool? stickerPrepared,
+      @JsonKey(name: 'videos_uploaded') final bool? videosUploaded,
+      @JsonKey(name: 'final_estimate_ready')
       final bool? finalEstimateReady}) = _$OrderImpl;
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$OrderImpl.fromJson;
 
   @override
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   int? get id;
   @override
-  @JsonKey(name: "name")
+  @JsonKey(name: 'name')
   String? get name;
   @override
-  @JsonKey(name: "printed_name")
+  @JsonKey(name: 'printed_name')
   String? get printedName;
   @override
-  @JsonKey(name: "country_code")
-  dynamic get countryCode;
+  @JsonKey(name: 'country_code')
+  String? get countryCode;
   @override
-  @JsonKey(name: "status")
+  @JsonKey(name: 'status')
   bool? get status;
   @override
-  @JsonKey(name: "created_at")
+  @JsonKey(name: 'created_at')
   String? get createdAt;
   @override
-  @JsonKey(name: "execution_num")
+  @JsonKey(name: 'execution_num')
   String? get executionNum;
   @override
-  @JsonKey(name: "order_num")
+  @JsonKey(name: 'order_num')
   String? get orderNum;
   @override
-  @JsonKey(name: "package")
+  @JsonKey(name: 'package')
   OrderPackage? get package;
   @override
-  @JsonKey(name: "carton_count")
+  @JsonKey(name: 'carton_count')
   int? get cartonCount;
   @override
-  @JsonKey(name: "orders_count")
+  @JsonKey(name: 'orders_count')
   int? get ordersCount;
   @override
-  @JsonKey(name: "total_amount")
+  @JsonKey(name: 'total_amount')
   String? get totalAmount;
   @override
-  @JsonKey(name: "date")
+  @JsonKey(name: 'date')
   DateTime? get date;
   @override
-  @JsonKey(name: "days")
+  @JsonKey(name: 'days')
   int? get days;
   @override
-  @JsonKey(name: "email")
+  @JsonKey(name: 'email')
   String? get email;
   @override
-  @JsonKey(name: "phone")
+  @JsonKey(name: 'phone')
   String? get phone;
   @override
-  @JsonKey(name: "is_quran_printed")
+  @JsonKey(name: 'is_quran_printed')
   bool? get isQuranPrinted;
   @override
-  @JsonKey(name: "is_quran_photographed")
+  @JsonKey(name: 'is_quran_photographed')
   bool? get isQuranPhotographed;
   @override
-  @JsonKey(name: "is_distribution_photographed")
+  @JsonKey(name: 'is_distribution_photographed')
   bool? get isDistributionPhotographed;
   @override
-  @JsonKey(name: "is_location_received")
+  @JsonKey(name: 'is_location_received')
   bool? get isLocationReceived;
   @override
-  @JsonKey(name: "location_link")
-  dynamic get locationLink;
+  @JsonKey(name: 'location_link')
+  String? get locationLink;
   @override
-  @JsonKey(name: "is_final_report_ready")
+  @JsonKey(name: 'is_final_report_ready')
   bool? get isFinalReportReady;
   @override
-  @JsonKey(name: "is_report_sent")
+  @JsonKey(name: 'is_report_sent')
   bool? get isReportSent;
   @override
-  @JsonKey(name: "sticker_prepared")
+  @JsonKey(name: 'sticker_prepared')
   bool? get stickerPrepared;
   @override
-  @JsonKey(name: "videos_uploaded")
+  @JsonKey(name: 'videos_uploaded')
   bool? get videosUploaded;
   @override
-  @JsonKey(name: "final_estimate_ready")
+  @JsonKey(name: 'final_estimate_ready')
   bool? get finalEstimateReady;
 
   /// Create a copy of Order
@@ -1028,12 +1462,76 @@ OrderPackage _$OrderPackageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OrderPackage {
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "type")
-  String? get type => throw _privateConstructorUsedError;
-  @JsonKey(name: "quantity")
-  int? get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'price')
+  String? get price => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
+  String? get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrderPackage value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrderPackage value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrderPackage value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this OrderPackage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1052,9 +1550,13 @@ abstract class $OrderPackageCopyWith<$Res> {
       _$OrderPackageCopyWithImpl<$Res, OrderPackage>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "type") String? type,
-      @JsonKey(name: "quantity") int? quantity});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'price') String? price,
+      @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -1073,22 +1575,42 @@ class _$OrderPackageCopyWithImpl<$Res, $Val extends OrderPackage>
   @override
   $Res call({
     Object? id = freezed,
-    Object? type = freezed,
-    Object? quantity = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? price = freezed,
+    Object? image = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -1102,9 +1624,13 @@ abstract class _$$OrderPackageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "type") String? type,
-      @JsonKey(name: "quantity") int? quantity});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'price') String? price,
+      @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -1121,22 +1647,42 @@ class __$$OrderPackageImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? type = freezed,
-    Object? quantity = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? price = freezed,
+    Object? image = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$OrderPackageImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -1145,26 +1691,42 @@ class __$$OrderPackageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrderPackageImpl implements _OrderPackage {
   const _$OrderPackageImpl(
-      {@JsonKey(name: "id") this.id,
-      @JsonKey(name: "type") this.type,
-      @JsonKey(name: "quantity") this.quantity});
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'price') this.price,
+      @JsonKey(name: 'image') this.image,
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updatedAt});
 
   factory _$OrderPackageImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderPackageImplFromJson(json);
 
   @override
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   final int? id;
   @override
-  @JsonKey(name: "type")
-  final String? type;
+  @JsonKey(name: 'name')
+  final String? name;
   @override
-  @JsonKey(name: "quantity")
-  final int? quantity;
+  @JsonKey(name: 'description')
+  final String? description;
+  @override
+  @JsonKey(name: 'price')
+  final String? price;
+  @override
+  @JsonKey(name: 'image')
+  final String? image;
+  @override
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'OrderPackage(id: $id, type: $type, quantity: $quantity)';
+    return 'OrderPackage(id: $id, name: $name, description: $description, price: $price, image: $image, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -1173,14 +1735,21 @@ class _$OrderPackageImpl implements _OrderPackage {
         (other.runtimeType == runtimeType &&
             other is _$OrderPackageImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, type, quantity);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, description, price, image, createdAt, updatedAt);
 
   /// Create a copy of OrderPackage
   /// with the given fields replaced by the non-null parameter values.
@@ -1189,6 +1758,88 @@ class _$OrderPackageImpl implements _OrderPackage {
   @pragma('vm:prefer-inline')
   _$$OrderPackageImplCopyWith<_$OrderPackageImpl> get copyWith =>
       __$$OrderPackageImplCopyWithImpl<_$OrderPackageImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)
+        $default,
+  ) {
+    return $default(id, name, description, price, image, createdAt, updatedAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)?
+        $default,
+  ) {
+    return $default?.call(
+        id, name, description, price, image, createdAt, updatedAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(
+          id, name, description, price, image, createdAt, updatedAt);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrderPackage value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrderPackage value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrderPackage value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -1200,22 +1851,39 @@ class _$OrderPackageImpl implements _OrderPackage {
 
 abstract class _OrderPackage implements OrderPackage {
   const factory _OrderPackage(
-      {@JsonKey(name: "id") final int? id,
-      @JsonKey(name: "type") final String? type,
-      @JsonKey(name: "quantity") final int? quantity}) = _$OrderPackageImpl;
+          {@JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'price') final String? price,
+          @JsonKey(name: 'image') final String? image,
+          @JsonKey(name: 'created_at') final DateTime? createdAt,
+          @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
+      _$OrderPackageImpl;
 
   factory _OrderPackage.fromJson(Map<String, dynamic> json) =
       _$OrderPackageImpl.fromJson;
 
   @override
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   int? get id;
   @override
-  @JsonKey(name: "type")
-  String? get type;
+  @JsonKey(name: 'name')
+  String? get name;
   @override
-  @JsonKey(name: "quantity")
-  int? get quantity;
+  @JsonKey(name: 'description')
+  String? get description;
+  @override
+  @JsonKey(name: 'price')
+  String? get price;
+  @override
+  @JsonKey(name: 'image')
+  String? get image;
+  @override
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  DateTime? get updatedAt;
 
   /// Create a copy of OrderPackage
   /// with the given fields replaced by the non-null parameter values.
@@ -1232,10 +1900,86 @@ OrdersResModelPackage _$OrdersResModelPackageFromJson(
 
 /// @nodoc
 mixin _$OrdersResModelPackage {
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "quantity")
-  int? get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'price')
+  String? get price => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image')
+  String? get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'orders_count')
+  int? get ordersCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_amount')
+  String? get totalAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrdersResModelPackage value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrdersResModelPackage value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrdersResModelPackage value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this OrdersResModelPackage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1254,7 +1998,15 @@ abstract class $OrdersResModelPackageCopyWith<$Res> {
       _$OrdersResModelPackageCopyWithImpl<$Res, OrdersResModelPackage>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id, @JsonKey(name: "quantity") int? quantity});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'price') String? price,
+      @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'orders_count') int? ordersCount,
+      @JsonKey(name: 'total_amount') String? totalAmount,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -1274,17 +2026,52 @@ class _$OrdersResModelPackageCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = freezed,
-    Object? quantity = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? price = freezed,
+    Object? image = freezed,
+    Object? ordersCount = freezed,
+    Object? totalAmount = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ordersCount: freezed == ordersCount
+          ? _value.ordersCount
+          : ordersCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      totalAmount: freezed == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -1299,7 +2086,15 @@ abstract class _$$OrdersResModelPackageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") int? id, @JsonKey(name: "quantity") int? quantity});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'price') String? price,
+      @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'orders_count') int? ordersCount,
+      @JsonKey(name: 'total_amount') String? totalAmount,
+      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'updated_at') DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -1317,17 +2112,52 @@ class __$$OrdersResModelPackageImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? quantity = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? price = freezed,
+    Object? image = freezed,
+    Object? ordersCount = freezed,
+    Object? totalAmount = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$OrdersResModelPackageImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: freezed == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ordersCount: freezed == ordersCount
+          ? _value.ordersCount
+          : ordersCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      totalAmount: freezed == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -1336,21 +2166,50 @@ class __$$OrdersResModelPackageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrdersResModelPackageImpl implements _OrdersResModelPackage {
   const _$OrdersResModelPackageImpl(
-      {@JsonKey(name: "id") this.id, @JsonKey(name: "quantity") this.quantity});
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'price') this.price,
+      @JsonKey(name: 'image') this.image,
+      @JsonKey(name: 'orders_count') this.ordersCount,
+      @JsonKey(name: 'total_amount') this.totalAmount,
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updatedAt});
 
   factory _$OrdersResModelPackageImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrdersResModelPackageImplFromJson(json);
 
   @override
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   final int? id;
   @override
-  @JsonKey(name: "quantity")
-  final int? quantity;
+  @JsonKey(name: 'name')
+  final String? name;
+  @override
+  @JsonKey(name: 'description')
+  final String? description;
+  @override
+  @JsonKey(name: 'price')
+  final String? price;
+  @override
+  @JsonKey(name: 'image')
+  final String? image;
+  @override
+  @JsonKey(name: 'orders_count')
+  final int? ordersCount;
+  @override
+  @JsonKey(name: 'total_amount')
+  final String? totalAmount;
+  @override
+  @JsonKey(name: 'created_at')
+  final DateTime? createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'OrdersResModelPackage(id: $id, quantity: $quantity)';
+    return 'OrdersResModelPackage(id: $id, name: $name, description: $description, price: $price, image: $image, ordersCount: $ordersCount, totalAmount: $totalAmount, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -1359,13 +2218,25 @@ class _$OrdersResModelPackageImpl implements _OrdersResModelPackage {
         (other.runtimeType == runtimeType &&
             other is _$OrdersResModelPackageImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.ordersCount, ordersCount) ||
+                other.ordersCount == ordersCount) &&
+            (identical(other.totalAmount, totalAmount) ||
+                other.totalAmount == totalAmount) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, quantity);
+  int get hashCode => Object.hash(runtimeType, id, name, description, price,
+      image, ordersCount, totalAmount, createdAt, updatedAt);
 
   /// Create a copy of OrdersResModelPackage
   /// with the given fields replaced by the non-null parameter values.
@@ -1377,6 +2248,95 @@ class _$OrdersResModelPackageImpl implements _OrdersResModelPackage {
           _$OrdersResModelPackageImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)
+        $default,
+  ) {
+    return $default(id, name, description, price, image, ordersCount,
+        totalAmount, createdAt, updatedAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)?
+        $default,
+  ) {
+    return $default?.call(id, name, description, price, image, ordersCount,
+        totalAmount, createdAt, updatedAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'price') String? price,
+            @JsonKey(name: 'image') String? image,
+            @JsonKey(name: 'orders_count') int? ordersCount,
+            @JsonKey(name: 'total_amount') String? totalAmount,
+            @JsonKey(name: 'created_at') DateTime? createdAt,
+            @JsonKey(name: 'updated_at') DateTime? updatedAt)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(id, name, description, price, image, ordersCount,
+          totalAmount, createdAt, updatedAt);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OrdersResModelPackage value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OrdersResModelPackage value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OrdersResModelPackage value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$OrdersResModelPackageImplToJson(
       this,
@@ -1386,19 +2346,47 @@ class _$OrdersResModelPackageImpl implements _OrdersResModelPackage {
 
 abstract class _OrdersResModelPackage implements OrdersResModelPackage {
   const factory _OrdersResModelPackage(
-          {@JsonKey(name: "id") final int? id,
-          @JsonKey(name: "quantity") final int? quantity}) =
+          {@JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'price') final String? price,
+          @JsonKey(name: 'image') final String? image,
+          @JsonKey(name: 'orders_count') final int? ordersCount,
+          @JsonKey(name: 'total_amount') final String? totalAmount,
+          @JsonKey(name: 'created_at') final DateTime? createdAt,
+          @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
       _$OrdersResModelPackageImpl;
 
   factory _OrdersResModelPackage.fromJson(Map<String, dynamic> json) =
       _$OrdersResModelPackageImpl.fromJson;
 
   @override
-  @JsonKey(name: "id")
+  @JsonKey(name: 'id')
   int? get id;
   @override
-  @JsonKey(name: "quantity")
-  int? get quantity;
+  @JsonKey(name: 'name')
+  String? get name;
+  @override
+  @JsonKey(name: 'description')
+  String? get description;
+  @override
+  @JsonKey(name: 'price')
+  String? get price;
+  @override
+  @JsonKey(name: 'image')
+  String? get image;
+  @override
+  @JsonKey(name: 'orders_count')
+  int? get ordersCount;
+  @override
+  @JsonKey(name: 'total_amount')
+  String? get totalAmount;
+  @override
+  @JsonKey(name: 'created_at')
+  DateTime? get createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  DateTime? get updatedAt;
 
   /// Create a copy of OrdersResModelPackage
   /// with the given fields replaced by the non-null parameter values.

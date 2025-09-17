@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
 import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
 import 'core/config/app_initializer.dart';

@@ -4,7 +4,7 @@ part 'sign_up_settings_res_model.freezed.dart';
 part 'sign_up_settings_res_model.g.dart';
 
 @freezed
-class SignUpSettingsResModel with _$SignUpSettingsResModel {
+abstract class SignUpSettingsResModel with _$SignUpSettingsResModel {
   const factory SignUpSettingsResModel({
     @JsonKey(name: "countries") List<Country>? countries,
   }) = _SignUpSettingsResModel;
@@ -13,7 +13,7 @@ class SignUpSettingsResModel with _$SignUpSettingsResModel {
 }
 
 @freezed
-class Country with _$Country {
+abstract class Country with _$Country {
   const factory Country({
     @JsonKey(name: "id") int? id,
     @JsonKey(name: "code") String? code,

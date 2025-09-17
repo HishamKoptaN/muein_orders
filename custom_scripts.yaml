@@ -1,0 +1,18 @@
+# Custom Scripts Configuration
+# This file contains custom scripts and rules for the project
+
+# Prevent running 'flutter clean' directly
+# Use 'dart run clean' instead which will handle cleanup safely
+scripts:
+  clean:
+    description: 'Safely clean the project build files without removing dependencies'
+    script: |
+      @echo off
+      echo "Running safe clean..."
+      echo "Removing build directories..."
+      if exist build rd /s /q build
+      if exist .dart_tool rd /s /q .dart_tool
+      if exist .packages del /q .packages
+      if exist .flutter-plugins del /q .flutter-plugins
+      if exist .flutter-plugins-dependencies del /q .flutter-plugins-dependencies
+      echo "Clean completed. Run 'flutter pub get' to restore dependencies."

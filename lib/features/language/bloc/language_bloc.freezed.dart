@@ -16,46 +16,44 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LanguageEvent {
-  String get languageCode => throw _privateConstructorUsedError;
-  String? get countryCode => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String languageCode, String? countryCode)
         changeLanguage,
+    required TResult Function() resetToSystem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String languageCode, String? countryCode)? changeLanguage,
+    TResult? Function()? resetToSystem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String languageCode, String? countryCode)? changeLanguage,
+    TResult Function()? resetToSystem,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeLanguage value) changeLanguage,
+    required TResult Function(_ResetToSystem value) resetToSystem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeLanguage value)? changeLanguage,
+    TResult? Function(_ResetToSystem value)? resetToSystem,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeLanguage value)? changeLanguage,
+    TResult Function(_ResetToSystem value)? resetToSystem,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of LanguageEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LanguageEventCopyWith<LanguageEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -64,8 +62,6 @@ abstract class $LanguageEventCopyWith<$Res> {
   factory $LanguageEventCopyWith(
           LanguageEvent value, $Res Function(LanguageEvent) then) =
       _$LanguageEventCopyWithImpl<$Res, LanguageEvent>;
-  @useResult
-  $Res call({String languageCode, String? countryCode});
 }
 
 /// @nodoc
@@ -80,32 +76,13 @@ class _$LanguageEventCopyWithImpl<$Res, $Val extends LanguageEvent>
 
   /// Create a copy of LanguageEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? languageCode = null,
-    Object? countryCode = freezed,
-  }) {
-    return _then(_value.copyWith(
-      languageCode: null == languageCode
-          ? _value.languageCode
-          : languageCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      countryCode: freezed == countryCode
-          ? _value.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$ChangeLanguageImplCopyWith<$Res>
-    implements $LanguageEventCopyWith<$Res> {
+abstract class _$$ChangeLanguageImplCopyWith<$Res> {
   factory _$$ChangeLanguageImplCopyWith(_$ChangeLanguageImpl value,
           $Res Function(_$ChangeLanguageImpl) then) =
       __$$ChangeLanguageImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String languageCode, String? countryCode});
 }
@@ -182,6 +159,7 @@ class _$ChangeLanguageImpl implements _ChangeLanguage {
   TResult when<TResult extends Object?>({
     required TResult Function(String languageCode, String? countryCode)
         changeLanguage,
+    required TResult Function() resetToSystem,
   }) {
     return changeLanguage(languageCode, countryCode);
   }
@@ -190,6 +168,7 @@ class _$ChangeLanguageImpl implements _ChangeLanguage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String languageCode, String? countryCode)? changeLanguage,
+    TResult? Function()? resetToSystem,
   }) {
     return changeLanguage?.call(languageCode, countryCode);
   }
@@ -198,6 +177,7 @@ class _$ChangeLanguageImpl implements _ChangeLanguage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String languageCode, String? countryCode)? changeLanguage,
+    TResult Function()? resetToSystem,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -210,6 +190,7 @@ class _$ChangeLanguageImpl implements _ChangeLanguage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeLanguage value) changeLanguage,
+    required TResult Function(_ResetToSystem value) resetToSystem,
   }) {
     return changeLanguage(this);
   }
@@ -218,6 +199,7 @@ class _$ChangeLanguageImpl implements _ChangeLanguage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeLanguage value)? changeLanguage,
+    TResult? Function(_ResetToSystem value)? resetToSystem,
   }) {
     return changeLanguage?.call(this);
   }
@@ -226,6 +208,7 @@ class _$ChangeLanguageImpl implements _ChangeLanguage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeLanguage value)? changeLanguage,
+    TResult Function(_ResetToSystem value)? resetToSystem,
     required TResult orElse(),
   }) {
     if (changeLanguage != null) {
@@ -240,29 +223,167 @@ abstract class _ChangeLanguage implements LanguageEvent {
       {required final String languageCode,
       final String? countryCode}) = _$ChangeLanguageImpl;
 
-  @override
   String get languageCode;
-  @override
   String? get countryCode;
 
   /// Create a copy of LanguageEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeLanguageImplCopyWith<_$ChangeLanguageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$LanguageState {
-  Locale get currentLocale => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
-  String? get errorMessage => throw _privateConstructorUsedError;
+abstract class _$$ResetToSystemImplCopyWith<$Res> {
+  factory _$$ResetToSystemImplCopyWith(
+          _$ResetToSystemImpl value, $Res Function(_$ResetToSystemImpl) then) =
+      __$$ResetToSystemImplCopyWithImpl<$Res>;
+}
 
-  /// Create a copy of LanguageState
+/// @nodoc
+class __$$ResetToSystemImplCopyWithImpl<$Res>
+    extends _$LanguageEventCopyWithImpl<$Res, _$ResetToSystemImpl>
+    implements _$$ResetToSystemImplCopyWith<$Res> {
+  __$$ResetToSystemImplCopyWithImpl(
+      _$ResetToSystemImpl _value, $Res Function(_$ResetToSystemImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LanguageEvent
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LanguageStateCopyWith<LanguageState> get copyWith =>
+}
+
+/// @nodoc
+
+class _$ResetToSystemImpl implements _ResetToSystem {
+  const _$ResetToSystemImpl();
+
+  @override
+  String toString() {
+    return 'LanguageEvent.resetToSystem()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetToSystemImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String languageCode, String? countryCode)
+        changeLanguage,
+    required TResult Function() resetToSystem,
+  }) {
+    return resetToSystem();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String languageCode, String? countryCode)? changeLanguage,
+    TResult? Function()? resetToSystem,
+  }) {
+    return resetToSystem?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String languageCode, String? countryCode)? changeLanguage,
+    TResult Function()? resetToSystem,
+    required TResult orElse(),
+  }) {
+    if (resetToSystem != null) {
+      return resetToSystem();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangeLanguage value) changeLanguage,
+    required TResult Function(_ResetToSystem value) resetToSystem,
+  }) {
+    return resetToSystem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangeLanguage value)? changeLanguage,
+    TResult? Function(_ResetToSystem value)? resetToSystem,
+  }) {
+    return resetToSystem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangeLanguage value)? changeLanguage,
+    TResult Function(_ResetToSystem value)? resetToSystem,
+    required TResult orElse(),
+  }) {
+    if (resetToSystem != null) {
+      return resetToSystem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetToSystem implements LanguageEvent {
+  const factory _ResetToSystem() = _$ResetToSystemImpl;
+}
+
+/// @nodoc
+mixin _$LanguageState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Locale currentLocale) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(Locale currentLocale)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Locale currentLocale)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -271,8 +392,6 @@ abstract class $LanguageStateCopyWith<$Res> {
   factory $LanguageStateCopyWith(
           LanguageState value, $Res Function(LanguageState) then) =
       _$LanguageStateCopyWithImpl<$Res, LanguageState>;
-  @useResult
-  $Res call({Locale currentLocale, bool isLoading, String? errorMessage});
 }
 
 /// @nodoc
@@ -287,47 +406,247 @@ class _$LanguageStateCopyWithImpl<$Res, $Val extends LanguageState>
 
   /// Create a copy of LanguageState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
+}
+
+/// @nodoc
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$LanguageStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LanguageState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$InitialImpl extends _Initial {
+  const _$InitialImpl() : super._();
+
   @override
-  $Res call({
-    Object? currentLocale = null,
-    Object? isLoading = null,
-    Object? errorMessage = freezed,
+  String toString() {
+    return 'LanguageState.initial()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Locale currentLocale) loaded,
   }) {
-    return _then(_value.copyWith(
-      currentLocale: null == currentLocale
-          ? _value.currentLocale
-          : currentLocale // ignore: cast_nullable_to_non_nullable
-              as Locale,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(Locale currentLocale)? loaded,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Locale currentLocale)? loaded,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-abstract class _$$LanguageStateImplCopyWith<$Res>
-    implements $LanguageStateCopyWith<$Res> {
-  factory _$$LanguageStateImplCopyWith(
-          _$LanguageStateImpl value, $Res Function(_$LanguageStateImpl) then) =
-      __$$LanguageStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Locale currentLocale, bool isLoading, String? errorMessage});
+abstract class _Initial extends LanguageState {
+  const factory _Initial() = _$InitialImpl;
+  const _Initial._() : super._();
 }
 
 /// @nodoc
-class __$$LanguageStateImplCopyWithImpl<$Res>
-    extends _$LanguageStateCopyWithImpl<$Res, _$LanguageStateImpl>
-    implements _$$LanguageStateImplCopyWith<$Res> {
-  __$$LanguageStateImplCopyWithImpl(
-      _$LanguageStateImpl _value, $Res Function(_$LanguageStateImpl) _then)
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$LanguageStateCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LanguageState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadingImpl extends _Loading {
+  const _$LoadingImpl() : super._();
+
+  @override
+  String toString() {
+    return 'LanguageState.loading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Locale currentLocale) loaded,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(Locale currentLocale)? loaded,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Locale currentLocale)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading extends LanguageState {
+  const factory _Loading() = _$LoadingImpl;
+  const _Loading._() : super._();
+}
+
+/// @nodoc
+abstract class _$$LoadedImplCopyWith<$Res> {
+  factory _$$LoadedImplCopyWith(
+          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
+      __$$LoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Locale currentLocale});
+}
+
+/// @nodoc
+class __$$LoadedImplCopyWithImpl<$Res>
+    extends _$LanguageStateCopyWithImpl<$Res, _$LoadedImpl>
+    implements _$$LoadedImplCopyWith<$Res> {
+  __$$LoadedImplCopyWithImpl(
+      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of LanguageState
@@ -336,88 +655,127 @@ class __$$LanguageStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentLocale = null,
-    Object? isLoading = null,
-    Object? errorMessage = freezed,
   }) {
-    return _then(_$LanguageStateImpl(
+    return _then(_$LoadedImpl(
       currentLocale: null == currentLocale
           ? _value.currentLocale
           : currentLocale // ignore: cast_nullable_to_non_nullable
               as Locale,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$LanguageStateImpl implements _LanguageState {
-  const _$LanguageStateImpl(
-      {required this.currentLocale, this.isLoading = false, this.errorMessage});
+class _$LoadedImpl extends _Loaded {
+  const _$LoadedImpl({required this.currentLocale}) : super._();
 
   @override
   final Locale currentLocale;
-  @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  final String? errorMessage;
 
   @override
   String toString() {
-    return 'LanguageState(currentLocale: $currentLocale, isLoading: $isLoading, errorMessage: $errorMessage)';
+    return 'LanguageState.loaded(currentLocale: $currentLocale)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LanguageStateImpl &&
+            other is _$LoadedImpl &&
             (identical(other.currentLocale, currentLocale) ||
-                other.currentLocale == currentLocale) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.currentLocale == currentLocale));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, currentLocale, isLoading, errorMessage);
+  int get hashCode => Object.hash(runtimeType, currentLocale);
 
   /// Create a copy of LanguageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LanguageStateImplCopyWith<_$LanguageStateImpl> get copyWith =>
-      __$$LanguageStateImplCopyWithImpl<_$LanguageStateImpl>(this, _$identity);
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(Locale currentLocale) loaded,
+  }) {
+    return loaded(currentLocale);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(Locale currentLocale)? loaded,
+  }) {
+    return loaded?.call(currentLocale);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(Locale currentLocale)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(currentLocale);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _LanguageState implements LanguageState {
-  const factory _LanguageState(
-      {required final Locale currentLocale,
-      final bool isLoading,
-      final String? errorMessage}) = _$LanguageStateImpl;
+abstract class _Loaded extends LanguageState {
+  const factory _Loaded({required final Locale currentLocale}) = _$LoadedImpl;
+  const _Loaded._() : super._();
 
-  @override
   Locale get currentLocale;
-  @override
-  bool get isLoading;
-  @override
-  String? get errorMessage;
 
   /// Create a copy of LanguageState
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LanguageStateImplCopyWith<_$LanguageStateImpl> get copyWith =>
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

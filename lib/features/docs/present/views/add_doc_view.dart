@@ -5,17 +5,13 @@ import 'package:formz/formz.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
-
 import '../../../../core/all_imports.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../orders/present/bloc/orders_bloc.dart';
-import '../../../orders/present/bloc/orders_event.dart';
 import '../blocs/bloc/docs_bloc.dart';
-import '../blocs/bloc/docs_event.dart';
-import '../blocs/bloc/docs_state.dart';
 
 class AddDocView extends StatefulWidget {
   const AddDocView({

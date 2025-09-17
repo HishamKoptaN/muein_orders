@@ -28,6 +28,59 @@ mixin _$NotificationModel {
   @JsonKey(name: 'image_url')
   String? get imageUrl => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String title,
+            String body,
+            @JsonKey(name: 'created_at') DateTime createdAt,
+            @JsonKey(name: 'image_url') String? imageUrl,
+            bool read)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String id,
+            String title,
+            String body,
+            @JsonKey(name: 'created_at') DateTime createdAt,
+            @JsonKey(name: 'image_url') String? imageUrl,
+            bool read)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String title,
+            String body,
+            @JsonKey(name: 'created_at') DateTime createdAt,
+            @JsonKey(name: 'image_url') String? imageUrl,
+            bool read)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_NotificationModel value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_NotificationModel value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_NotificationModel value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this NotificationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -235,6 +288,83 @@ class _$NotificationModelImpl implements _NotificationModel {
   _$$NotificationModelImplCopyWith<_$NotificationModelImpl> get copyWith =>
       __$$NotificationModelImplCopyWithImpl<_$NotificationModelImpl>(
           this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String title,
+            String body,
+            @JsonKey(name: 'created_at') DateTime createdAt,
+            @JsonKey(name: 'image_url') String? imageUrl,
+            bool read)
+        $default,
+  ) {
+    return $default(id, title, body, createdAt, imageUrl, read);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String id,
+            String title,
+            String body,
+            @JsonKey(name: 'created_at') DateTime createdAt,
+            @JsonKey(name: 'image_url') String? imageUrl,
+            bool read)?
+        $default,
+  ) {
+    return $default?.call(id, title, body, createdAt, imageUrl, read);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String title,
+            String body,
+            @JsonKey(name: 'created_at') DateTime createdAt,
+            @JsonKey(name: 'image_url') String? imageUrl,
+            bool read)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(id, title, body, createdAt, imageUrl, read);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_NotificationModel value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_NotificationModel value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_NotificationModel value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {

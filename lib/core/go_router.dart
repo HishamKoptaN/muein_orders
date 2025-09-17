@@ -3,15 +3,15 @@ import 'package:go_router/go_router.dart';
 import 'package:storage_utils/storage_utils.dart';
 
 import '../app.dart';
-import '../features/auth/auth_choice/presentation/views/auth_choice_view.dart';
+import '../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../features/auth/forgot_password/present/views/forgot_password_view.dart';
 import '../features/auth/forgot_password/present/views/reset_password_view.dart';
+import '../features/auth/main/present/view/main_view.dart';
 import '../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../features/home/home_view.dart';
 import '../features/language/view/select_language.dart';
-import '../features/auth/main/present/view/main_view.dart';
 import '../features/notifications/notifications_view.dart';
-import '../features/onboarding/presentation/pages/onboarding_view.dart';
+import '../features/onboarding/present/pages/onboarding_view.dart';
 import '../features/orders/present/views/orders_view.dart';
 import '../features/splash/start_view.dart';
 import 'database/cache/shared_pref_keys.dart';

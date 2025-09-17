@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'theme_state.freezed.dart';
+part of 'theme_bloc.dart';
 
 @freezed
 class ThemeState with _$ThemeState {
-  const factory ThemeState({required ThemeMode mode}) = _ThemeState;
-  factory ThemeState.light() => const ThemeState(mode: ThemeMode.light);
-  factory ThemeState.dark() => const ThemeState(mode: ThemeMode.dark);
+  const factory ThemeState.loading() = _Loading;
+  const factory ThemeState.loaded({required ThemeMode themeMode}) = _Loaded;
 }

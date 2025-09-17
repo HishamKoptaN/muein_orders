@@ -1,7 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../../core/error/api_error_model.dart';
-import '../../domain/entities/orders_res_entity.dart';
-part 'orders_state.freezed.dart';
+part of 'orders_bloc.dart';
 
 @freezed
 class OrdersState with _$OrdersState {

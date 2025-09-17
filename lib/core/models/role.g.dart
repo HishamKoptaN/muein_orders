@@ -19,10 +19,12 @@ _$RoleImpl _$$RoleImplFromJson(Map<String, dynamic> json) => _$RoleImpl(
 
 Map<String, dynamic> _$$RoleImplToJson(_$RoleImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'guard_name': instance.guardName,
-      'permissions': instance.permissions,
-      'created_at': instance.createdAt,
-      'updated_at': instance.updatedAt,
+      if (instance.id case final value?) 'id': value,
+      if (instance.name case final value?) 'name': value,
+      if (instance.guardName case final value?) 'guard_name': value,
+      if (instance.permissions?.map((e) => e.toJson()).toList()
+          case final value?)
+        'permissions': value,
+      if (instance.createdAt case final value?) 'created_at': value,
+      if (instance.updatedAt case final value?) 'updated_at': value,
     };

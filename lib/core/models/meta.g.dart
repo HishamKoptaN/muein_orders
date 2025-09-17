@@ -18,11 +18,12 @@ _$MetaImpl _$$MetaImplFromJson(Map<String, dynamic> json) => _$MetaImpl(
 
 Map<String, dynamic> _$$MetaImplToJson(_$MetaImpl instance) =>
     <String, dynamic>{
-      'post_id': instance.postId,
-      'current_page': instance.currentPage,
-      'total_pages': instance.totalPages,
-      'total_comments': instance.totalComments,
-      'per_page': instance.perPage,
-      'has_next_page': instance.hasNextPage,
-      'has_previous_page': instance.hasPreviousPage,
+      if (instance.postId case final value?) 'post_id': value,
+      if (instance.currentPage case final value?) 'current_page': value,
+      if (instance.totalPages case final value?) 'total_pages': value,
+      if (instance.totalComments case final value?) 'total_comments': value,
+      if (instance.perPage case final value?) 'per_page': value,
+      if (instance.hasNextPage case final value?) 'has_next_page': value,
+      if (instance.hasPreviousPage case final value?)
+        'has_previous_page': value,
     };

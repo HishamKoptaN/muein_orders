@@ -1,16 +1,63 @@
-# mbean_talabat
+# Mubeen Orders
 
-A new Flutter project.
+A Flutter application for managing orders.
+
+## Project Rules
+
+### Clean Command
+
+**Important:** The `flutter clean` command is disabled for this project to prevent accidental removal of important files.
+
+#### Instead, use:
+
+```bash
+dart run clean
+```
+
+This will safely clean build files without removing dependencies.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK
+- Dart SDK
+- Android Studio / Xcode (for mobile development)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
+3. Run the app:
+   ```bash
+   flutter run
+   ```
+
+## Development
+
+### Code Generation
+
+After making changes to models or repositories, run:
+
+```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+### Project Structure
+
+```
+lib/
+  features/         # Feature-based modules
+  core/             # Core functionality
+  shared/           # Shared widgets and utilities
+```
+
+## Contributing
+
+1. Create a new branch for your feature
+2. Make your changes
+3. Run tests
+4. Submit a pull request

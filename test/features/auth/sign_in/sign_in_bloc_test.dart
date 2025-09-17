@@ -1,11 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:formz/formz.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:flutter_test/flutter_test.dart';
+import 'package:form_inputs/form_inputs.dart';
+import 'package:formz/formz.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:mubin_orders/core/error/failures.dart';
 import 'package:mubin_orders/features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart';
 import 'package:mubin_orders/features/auth/sign_in/present/bloc/sign_in_bloc.dart';
@@ -26,7 +25,7 @@ void main() {
 
   setUp(() {
     mockSignInUseCases = MockSignInUseCases();
-    signInBloc = SignInBloc(signInUseCase: mockSignInUseCases);
+    signInBloc = SignInBloc(signInUseCases: mockSignInUseCases);
   });
 
   tearDown(() {
@@ -65,7 +64,8 @@ void main() {
       blocTest<SignInBloc, SignInState>(
         'emits [loaded] with updated password and validation status',
         build: () => signInBloc,
-        act: (bloc) => bloc.add(const SignInEvent.passwordChanged(testPassword)),
+        act: (bloc) =>
+            bloc.add(const SignInEvent.passwordChanged(testPassword)),
         expect: () => [
           SignInState.loaded(
             email: const EmailInput.pure(),
@@ -102,9 +102,9 @@ void main() {
         'emits [loading, success] when sign in is successful',
         build: () {
           when(() => mockSignInUseCases.signInWithEmailAndPassword(
-            email: testEmail,
-            password: testPassword,
-          )).thenAnswer((_) async => Right(testCredential));
+                email: testEmail,
+                password: testPassword,
+              )).thenAnswer((_) async => Right(testCredential));
           return signInBloc;
         },
         seed: () => SignInState.loaded(
@@ -112,7 +112,8 @@ void main() {
           password: PasswordInput.dirty(testPassword),
           isPasswordVisible: false,
         ),
-        act: (bloc) => bloc.add(const SignInEvent.signInWithCredentialsPressed()),
+        act: (bloc) =>
+            bloc.add(const SignInEvent.signInWithCredentialsPressed()),
         expect: () => [
           SignInState.loaded(
             email: EmailInput.dirty(testEmail),
@@ -133,9 +134,9 @@ void main() {
         'emits [loading, failure] when sign in fails',
         build: () {
           when(() => mockSignInUseCases.signInWithEmailAndPassword(
-            email: testEmail,
-            password: testPassword,
-          )).thenThrow(FirebaseAuthException(code: 'user-not-found'));
+                email: testEmail,
+                password: testPassword,
+              )).thenThrow(FirebaseAuthException(code: 'user-not-found'));
           return signInBloc;
         },
         seed: () => SignInState.loaded(
@@ -143,7 +144,8 @@ void main() {
           password: PasswordInput.dirty(testPassword),
           isPasswordVisible: false,
         ),
-        act: (bloc) => bloc.add(const SignInEvent.signInWithCredentialsPressed()),
+        act: (bloc) =>
+            bloc.add(const SignInEvent.signInWithCredentialsPressed()),
         expect: () => [
           SignInState.loaded(
             email: EmailInput.dirty(testEmail),
@@ -190,8 +192,9 @@ void main() {
       blocTest<SignInBloc, SignInState>(
         'emits [loading, failure] when Google sign in fails',
         build: () {
-          when(() => mockSignInUseCases.signInWithGoogle())
-              .thenThrow(FirebaseAuthException(code: 'account-exists-with-different-credential'));
+          when(() => mockSignInUseCases.signInWithGoogle()).thenThrow(
+              FirebaseAuthException(
+                  code: 'account-exists-with-different-credential'));
           return signInBloc;
         },
         act: (bloc) => bloc.add(const SignInEvent.signInWithGooglePressed()),
@@ -207,7 +210,8 @@ void main() {
             password: const PasswordInput.pure(),
             isPasswordVisible: false,
             status: FormzSubmissionStatus.failure,
-            errorMessage: 'An account already exists with the same email address but different sign-in credentials',
+            errorMessage:
+                'An account already exists with the same email address but different sign-in credentials',
           ),
         ],
       );
@@ -258,7 +262,8 @@ void main() {
             password: const PasswordInput.pure(),
             isPasswordVisible: false,
             status: FormzSubmissionStatus.failure,
-            errorMessage: 'The supplied auth credential is malformed or has expired',
+            errorMessage:
+                'The supplied auth credential is malformed or has expired',
           ),
         ],
       );

@@ -19,11 +19,11 @@ _$MetaEntityImpl _$$MetaEntityImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$MetaEntityImplToJson(_$MetaEntityImpl instance) =>
     <String, dynamic>{
-      'postId': instance.postId,
-      'currentPage': instance.currentPage,
-      'totalPages': instance.totalPages,
-      'totalComments': instance.totalComments,
-      'perPage': instance.perPage,
-      'hasNextPage': instance.hasNextPage,
-      'hasPreviousPage': instance.hasPreviousPage,
+      if (instance.postId case final value?) 'postId': value,
+      if (instance.currentPage case final value?) 'currentPage': value,
+      if (instance.totalPages case final value?) 'totalPages': value,
+      if (instance.totalComments case final value?) 'totalComments': value,
+      if (instance.perPage case final value?) 'perPage': value,
+      if (instance.hasNextPage case final value?) 'hasNextPage': value,
+      if (instance.hasPreviousPage case final value?) 'hasPreviousPage': value,
     };

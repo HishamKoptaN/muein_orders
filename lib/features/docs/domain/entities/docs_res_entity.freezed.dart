@@ -20,8 +20,48 @@ DocsResEntity _$DocsResEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DocsResEntity {
+  @JsonKey(name: 'docs')
   List<DocEntity>? get docs => throw _privateConstructorUsedError;
+  @JsonKey(name: 'meta')
   MetaEntity? get meta => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'docs') List<DocEntity>? docs,
+            @JsonKey(name: 'meta') MetaEntity? meta)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'docs') List<DocEntity>? docs,
+            @JsonKey(name: 'meta') MetaEntity? meta)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'docs') List<DocEntity>? docs,
+            @JsonKey(name: 'meta') MetaEntity? meta)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DocsResEntity value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_DocsResEntity value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DocsResEntity value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this DocsResEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +79,9 @@ abstract class $DocsResEntityCopyWith<$Res> {
           DocsResEntity value, $Res Function(DocsResEntity) then) =
       _$DocsResEntityCopyWithImpl<$Res, DocsResEntity>;
   @useResult
-  $Res call({List<DocEntity>? docs, MetaEntity? meta});
+  $Res call(
+      {@JsonKey(name: 'docs') List<DocEntity>? docs,
+      @JsonKey(name: 'meta') MetaEntity? meta});
 
   $MetaEntityCopyWith<$Res>? get meta;
 }
@@ -97,7 +139,9 @@ abstract class _$$DocsResEntityImplCopyWith<$Res>
       __$$DocsResEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<DocEntity>? docs, MetaEntity? meta});
+  $Res call(
+      {@JsonKey(name: 'docs') List<DocEntity>? docs,
+      @JsonKey(name: 'meta') MetaEntity? meta});
 
   @override
   $MetaEntityCopyWith<$Res>? get meta;
@@ -135,7 +179,9 @@ class __$$DocsResEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DocsResEntityImpl implements _DocsResEntity {
-  const _$DocsResEntityImpl({final List<DocEntity>? docs, this.meta})
+  const _$DocsResEntityImpl(
+      {@JsonKey(name: 'docs') final List<DocEntity>? docs,
+      @JsonKey(name: 'meta') this.meta})
       : _docs = docs;
 
   factory _$DocsResEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -143,6 +189,7 @@ class _$DocsResEntityImpl implements _DocsResEntity {
 
   final List<DocEntity>? _docs;
   @override
+  @JsonKey(name: 'docs')
   List<DocEntity>? get docs {
     final value = _docs;
     if (value == null) return null;
@@ -152,6 +199,7 @@ class _$DocsResEntityImpl implements _DocsResEntity {
   }
 
   @override
+  @JsonKey(name: 'meta')
   final MetaEntity? meta;
 
   @override
@@ -182,6 +230,68 @@ class _$DocsResEntityImpl implements _DocsResEntity {
       __$$DocsResEntityImplCopyWithImpl<_$DocsResEntityImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'docs') List<DocEntity>? docs,
+            @JsonKey(name: 'meta') MetaEntity? meta)
+        $default,
+  ) {
+    return $default(docs, meta);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'docs') List<DocEntity>? docs,
+            @JsonKey(name: 'meta') MetaEntity? meta)?
+        $default,
+  ) {
+    return $default?.call(docs, meta);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'docs') List<DocEntity>? docs,
+            @JsonKey(name: 'meta') MetaEntity? meta)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(docs, meta);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DocsResEntity value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_DocsResEntity value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DocsResEntity value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$DocsResEntityImplToJson(
       this,
@@ -191,15 +301,17 @@ class _$DocsResEntityImpl implements _DocsResEntity {
 
 abstract class _DocsResEntity implements DocsResEntity {
   const factory _DocsResEntity(
-      {final List<DocEntity>? docs,
-      final MetaEntity? meta}) = _$DocsResEntityImpl;
+      {@JsonKey(name: 'docs') final List<DocEntity>? docs,
+      @JsonKey(name: 'meta') final MetaEntity? meta}) = _$DocsResEntityImpl;
 
   factory _DocsResEntity.fromJson(Map<String, dynamic> json) =
       _$DocsResEntityImpl.fromJson;
 
   @override
+  @JsonKey(name: 'docs')
   List<DocEntity>? get docs;
   @override
+  @JsonKey(name: 'meta')
   MetaEntity? get meta;
 
   /// Create a copy of DocsResEntity
@@ -216,20 +328,111 @@ DocEntity _$DocEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DocEntity {
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_number')
   String? get orderNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'place')
   String? get place => throw _privateConstructorUsedError;
+  @JsonKey(name: 'video_one')
   String? get videoOne => throw _privateConstructorUsedError;
+  @JsonKey(name: 'video_two')
   String? get videoTwo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'thumbnail_url_one')
   String? get thumbnailUrlOne => throw _privateConstructorUsedError;
+  @JsonKey(name: 'thumbnail_url_two')
   String? get thumbnailUrlTwo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_one')
   String? get imageOne => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_two')
   String? get imageTwo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
   String? get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'latitude')
   String? get latitude => throw _privateConstructorUsedError;
+  @JsonKey(name: 'longitude')
   String? get longitude => throw _privateConstructorUsedError;
+  @JsonKey(name: 'branch_id')
   int? get branchId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
   String? get createdAt => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'order_number') String? orderNumber,
+            @JsonKey(name: 'place') String? place,
+            @JsonKey(name: 'video_one') String? videoOne,
+            @JsonKey(name: 'video_two') String? videoTwo,
+            @JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,
+            @JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,
+            @JsonKey(name: 'image_one') String? imageOne,
+            @JsonKey(name: 'image_two') String? imageTwo,
+            @JsonKey(name: 'updated_at') String? updatedAt,
+            @JsonKey(name: 'latitude') String? latitude,
+            @JsonKey(name: 'longitude') String? longitude,
+            @JsonKey(name: 'branch_id') int? branchId,
+            @JsonKey(name: 'created_at') String? createdAt)
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'order_number') String? orderNumber,
+            @JsonKey(name: 'place') String? place,
+            @JsonKey(name: 'video_one') String? videoOne,
+            @JsonKey(name: 'video_two') String? videoTwo,
+            @JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,
+            @JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,
+            @JsonKey(name: 'image_one') String? imageOne,
+            @JsonKey(name: 'image_two') String? imageTwo,
+            @JsonKey(name: 'updated_at') String? updatedAt,
+            @JsonKey(name: 'latitude') String? latitude,
+            @JsonKey(name: 'longitude') String? longitude,
+            @JsonKey(name: 'branch_id') int? branchId,
+            @JsonKey(name: 'created_at') String? createdAt)?
+        $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'order_number') String? orderNumber,
+            @JsonKey(name: 'place') String? place,
+            @JsonKey(name: 'video_one') String? videoOne,
+            @JsonKey(name: 'video_two') String? videoTwo,
+            @JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,
+            @JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,
+            @JsonKey(name: 'image_one') String? imageOne,
+            @JsonKey(name: 'image_two') String? imageTwo,
+            @JsonKey(name: 'updated_at') String? updatedAt,
+            @JsonKey(name: 'latitude') String? latitude,
+            @JsonKey(name: 'longitude') String? longitude,
+            @JsonKey(name: 'branch_id') int? branchId,
+            @JsonKey(name: 'created_at') String? createdAt)?
+        $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DocEntity value) $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_DocEntity value)? $default,
+  ) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DocEntity value)? $default, {
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this DocEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -247,20 +450,20 @@ abstract class $DocEntityCopyWith<$Res> {
       _$DocEntityCopyWithImpl<$Res, DocEntity>;
   @useResult
   $Res call(
-      {int? id,
-      String? orderNumber,
-      String? place,
-      String? videoOne,
-      String? videoTwo,
-      String? thumbnailUrlOne,
-      String? thumbnailUrlTwo,
-      String? imageOne,
-      String? imageTwo,
-      String? updatedAt,
-      String? latitude,
-      String? longitude,
-      int? branchId,
-      String? createdAt});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'order_number') String? orderNumber,
+      @JsonKey(name: 'place') String? place,
+      @JsonKey(name: 'video_one') String? videoOne,
+      @JsonKey(name: 'video_two') String? videoTwo,
+      @JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,
+      @JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,
+      @JsonKey(name: 'image_one') String? imageOne,
+      @JsonKey(name: 'image_two') String? imageTwo,
+      @JsonKey(name: 'updated_at') String? updatedAt,
+      @JsonKey(name: 'latitude') String? latitude,
+      @JsonKey(name: 'longitude') String? longitude,
+      @JsonKey(name: 'branch_id') int? branchId,
+      @JsonKey(name: 'created_at') String? createdAt});
 }
 
 /// @nodoc
@@ -363,20 +566,20 @@ abstract class _$$DocEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? orderNumber,
-      String? place,
-      String? videoOne,
-      String? videoTwo,
-      String? thumbnailUrlOne,
-      String? thumbnailUrlTwo,
-      String? imageOne,
-      String? imageTwo,
-      String? updatedAt,
-      String? latitude,
-      String? longitude,
-      int? branchId,
-      String? createdAt});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'order_number') String? orderNumber,
+      @JsonKey(name: 'place') String? place,
+      @JsonKey(name: 'video_one') String? videoOne,
+      @JsonKey(name: 'video_two') String? videoTwo,
+      @JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,
+      @JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,
+      @JsonKey(name: 'image_one') String? imageOne,
+      @JsonKey(name: 'image_two') String? imageTwo,
+      @JsonKey(name: 'updated_at') String? updatedAt,
+      @JsonKey(name: 'latitude') String? latitude,
+      @JsonKey(name: 'longitude') String? longitude,
+      @JsonKey(name: 'branch_id') int? branchId,
+      @JsonKey(name: 'created_at') String? createdAt});
 }
 
 /// @nodoc
@@ -472,51 +675,65 @@ class __$$DocEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DocEntityImpl implements _DocEntity {
   const _$DocEntityImpl(
-      {this.id,
-      this.orderNumber,
-      this.place,
-      this.videoOne,
-      this.videoTwo,
-      this.thumbnailUrlOne,
-      this.thumbnailUrlTwo,
-      this.imageOne,
-      this.imageTwo,
-      this.updatedAt,
-      this.latitude,
-      this.longitude,
-      this.branchId,
-      this.createdAt});
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'order_number') this.orderNumber,
+      @JsonKey(name: 'place') this.place,
+      @JsonKey(name: 'video_one') this.videoOne,
+      @JsonKey(name: 'video_two') this.videoTwo,
+      @JsonKey(name: 'thumbnail_url_one') this.thumbnailUrlOne,
+      @JsonKey(name: 'thumbnail_url_two') this.thumbnailUrlTwo,
+      @JsonKey(name: 'image_one') this.imageOne,
+      @JsonKey(name: 'image_two') this.imageTwo,
+      @JsonKey(name: 'updated_at') this.updatedAt,
+      @JsonKey(name: 'latitude') this.latitude,
+      @JsonKey(name: 'longitude') this.longitude,
+      @JsonKey(name: 'branch_id') this.branchId,
+      @JsonKey(name: 'created_at') this.createdAt});
 
   factory _$DocEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$DocEntityImplFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final int? id;
   @override
+  @JsonKey(name: 'order_number')
   final String? orderNumber;
   @override
+  @JsonKey(name: 'place')
   final String? place;
   @override
+  @JsonKey(name: 'video_one')
   final String? videoOne;
   @override
+  @JsonKey(name: 'video_two')
   final String? videoTwo;
   @override
+  @JsonKey(name: 'thumbnail_url_one')
   final String? thumbnailUrlOne;
   @override
+  @JsonKey(name: 'thumbnail_url_two')
   final String? thumbnailUrlTwo;
   @override
+  @JsonKey(name: 'image_one')
   final String? imageOne;
   @override
+  @JsonKey(name: 'image_two')
   final String? imageTwo;
   @override
+  @JsonKey(name: 'updated_at')
   final String? updatedAt;
   @override
+  @JsonKey(name: 'latitude')
   final String? latitude;
   @override
+  @JsonKey(name: 'longitude')
   final String? longitude;
   @override
+  @JsonKey(name: 'branch_id')
   final int? branchId;
   @override
+  @JsonKey(name: 'created_at')
   final String? createdAt;
 
   @override
@@ -585,6 +802,149 @@ class _$DocEntityImpl implements _DocEntity {
       __$$DocEntityImplCopyWithImpl<_$DocEntityImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'order_number') String? orderNumber,
+            @JsonKey(name: 'place') String? place,
+            @JsonKey(name: 'video_one') String? videoOne,
+            @JsonKey(name: 'video_two') String? videoTwo,
+            @JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,
+            @JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,
+            @JsonKey(name: 'image_one') String? imageOne,
+            @JsonKey(name: 'image_two') String? imageTwo,
+            @JsonKey(name: 'updated_at') String? updatedAt,
+            @JsonKey(name: 'latitude') String? latitude,
+            @JsonKey(name: 'longitude') String? longitude,
+            @JsonKey(name: 'branch_id') int? branchId,
+            @JsonKey(name: 'created_at') String? createdAt)
+        $default,
+  ) {
+    return $default(
+        id,
+        orderNumber,
+        place,
+        videoOne,
+        videoTwo,
+        thumbnailUrlOne,
+        thumbnailUrlTwo,
+        imageOne,
+        imageTwo,
+        updatedAt,
+        latitude,
+        longitude,
+        branchId,
+        createdAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'order_number') String? orderNumber,
+            @JsonKey(name: 'place') String? place,
+            @JsonKey(name: 'video_one') String? videoOne,
+            @JsonKey(name: 'video_two') String? videoTwo,
+            @JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,
+            @JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,
+            @JsonKey(name: 'image_one') String? imageOne,
+            @JsonKey(name: 'image_two') String? imageTwo,
+            @JsonKey(name: 'updated_at') String? updatedAt,
+            @JsonKey(name: 'latitude') String? latitude,
+            @JsonKey(name: 'longitude') String? longitude,
+            @JsonKey(name: 'branch_id') int? branchId,
+            @JsonKey(name: 'created_at') String? createdAt)?
+        $default,
+  ) {
+    return $default?.call(
+        id,
+        orderNumber,
+        place,
+        videoOne,
+        videoTwo,
+        thumbnailUrlOne,
+        thumbnailUrlTwo,
+        imageOne,
+        imageTwo,
+        updatedAt,
+        latitude,
+        longitude,
+        branchId,
+        createdAt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'order_number') String? orderNumber,
+            @JsonKey(name: 'place') String? place,
+            @JsonKey(name: 'video_one') String? videoOne,
+            @JsonKey(name: 'video_two') String? videoTwo,
+            @JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,
+            @JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,
+            @JsonKey(name: 'image_one') String? imageOne,
+            @JsonKey(name: 'image_two') String? imageTwo,
+            @JsonKey(name: 'updated_at') String? updatedAt,
+            @JsonKey(name: 'latitude') String? latitude,
+            @JsonKey(name: 'longitude') String? longitude,
+            @JsonKey(name: 'branch_id') int? branchId,
+            @JsonKey(name: 'created_at') String? createdAt)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(
+          id,
+          orderNumber,
+          place,
+          videoOne,
+          videoTwo,
+          thumbnailUrlOne,
+          thumbnailUrlTwo,
+          imageOne,
+          imageTwo,
+          updatedAt,
+          latitude,
+          longitude,
+          branchId,
+          createdAt);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DocEntity value) $default,
+  ) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_DocEntity value)? $default,
+  ) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DocEntity value)? $default, {
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$DocEntityImplToJson(
       this,
@@ -594,51 +954,65 @@ class _$DocEntityImpl implements _DocEntity {
 
 abstract class _DocEntity implements DocEntity {
   const factory _DocEntity(
-      {final int? id,
-      final String? orderNumber,
-      final String? place,
-      final String? videoOne,
-      final String? videoTwo,
-      final String? thumbnailUrlOne,
-      final String? thumbnailUrlTwo,
-      final String? imageOne,
-      final String? imageTwo,
-      final String? updatedAt,
-      final String? latitude,
-      final String? longitude,
-      final int? branchId,
-      final String? createdAt}) = _$DocEntityImpl;
+      {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'order_number') final String? orderNumber,
+      @JsonKey(name: 'place') final String? place,
+      @JsonKey(name: 'video_one') final String? videoOne,
+      @JsonKey(name: 'video_two') final String? videoTwo,
+      @JsonKey(name: 'thumbnail_url_one') final String? thumbnailUrlOne,
+      @JsonKey(name: 'thumbnail_url_two') final String? thumbnailUrlTwo,
+      @JsonKey(name: 'image_one') final String? imageOne,
+      @JsonKey(name: 'image_two') final String? imageTwo,
+      @JsonKey(name: 'updated_at') final String? updatedAt,
+      @JsonKey(name: 'latitude') final String? latitude,
+      @JsonKey(name: 'longitude') final String? longitude,
+      @JsonKey(name: 'branch_id') final int? branchId,
+      @JsonKey(name: 'created_at') final String? createdAt}) = _$DocEntityImpl;
 
   factory _DocEntity.fromJson(Map<String, dynamic> json) =
       _$DocEntityImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   int? get id;
   @override
+  @JsonKey(name: 'order_number')
   String? get orderNumber;
   @override
+  @JsonKey(name: 'place')
   String? get place;
   @override
+  @JsonKey(name: 'video_one')
   String? get videoOne;
   @override
+  @JsonKey(name: 'video_two')
   String? get videoTwo;
   @override
+  @JsonKey(name: 'thumbnail_url_one')
   String? get thumbnailUrlOne;
   @override
+  @JsonKey(name: 'thumbnail_url_two')
   String? get thumbnailUrlTwo;
   @override
+  @JsonKey(name: 'image_one')
   String? get imageOne;
   @override
+  @JsonKey(name: 'image_two')
   String? get imageTwo;
   @override
+  @JsonKey(name: 'updated_at')
   String? get updatedAt;
   @override
+  @JsonKey(name: 'latitude')
   String? get latitude;
   @override
+  @JsonKey(name: 'longitude')
   String? get longitude;
   @override
+  @JsonKey(name: 'branch_id')
   int? get branchId;
   @override
+  @JsonKey(name: 'created_at')
   String? get createdAt;
 
   /// Create a copy of DocEntity

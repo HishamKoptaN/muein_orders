@@ -7,38 +7,41 @@ part 'language_event.dart';
 part 'language_state.dart';
 
 class LanguageBloc extends HydratedBloc<LanguageEvent, LanguageState> {
-  LanguageBloc() : super(LanguageState.initial()) {
-    on<LanguageEvent>((event, emit) {
-      event.when(
-        changeLanguage: (languageCode, countryCode) {
-          final locale = Locale(languageCode, countryCode ?? '');
-          emit(state.copyWith(currentLocale: locale, errorMessage: null));
+  LanguageBloc() : super(const LanguageState.initial()) {
+    on<LanguageEvent>((event, emit) async {
+      await event.map(
+        changeLanguage: (e) async {
+          emit(const LanguageState.loading());
+          final locale = Locale(e.languageCode, e.countryCode ?? '');
+          emit(LanguageState.loaded(currentLocale: locale));
+        },
+        resetToSystem: (_) async {
+          emit(const LanguageState.loading());
+          emit(const LanguageState.loaded(currentLocale: Locale('ar')));
         },
       );
     });
   }
 
-  // ✅ HydratedBloc يحتاج حفظ الحالة
+  // ✅ Save state to storage
   @override
   LanguageState? fromJson(Map<String, dynamic> json) {
     try {
       final code = json['languageCode'] as String?;
       final country = json['countryCode'] as String?;
-      if (code == null) return null;
-      return LanguageState(
-        currentLocale: Locale(code, country ?? ''),
-        isLoading: false,
-      );
+      if (code == null) return const LanguageState.initial();
+      return LanguageState.loaded(currentLocale: Locale(code, country ?? ''));
     } catch (_) {
-      return null;
+      return const LanguageState.initial();
     }
   }
 
   @override
-  Map<String, dynamic>? toJson(LanguageState state) {
-    return {
-      'languageCode': state.currentLocale.languageCode,
-      'countryCode': state.currentLocale.countryCode,
-    };
-  }
+  Map<String, dynamic>? toJson(LanguageState state) => state.maybeWhen(
+    loaded: (locale) => {
+      'languageCode': locale.languageCode,
+      'countryCode': locale.countryCode,
+    },
+    orElse: () => null,
+  );
 }

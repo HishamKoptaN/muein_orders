@@ -123,6 +123,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get passwordsDoNotMatch => 'Nenosiri halifanani';
 
   @override
+  String get passwordsDontMatch => '';
+
+  @override
   String get password => 'Nenosiri';
 
   @override
@@ -470,6 +473,9 @@ class AppLocalizationsSwKe extends AppLocalizationsSw {
 
   @override
   String get passwordsDoNotMatch => 'Nenosiri halifanani';
+
+  @override
+  String get passwordsDontMatch => '';
 
   @override
   String get password => 'Nenosiri';
@@ -822,6 +828,9 @@ class AppLocalizationsSwTz extends AppLocalizationsSw {
 
   @override
   String get passwordsDoNotMatch => 'Nenosiri halilingani';
+
+  @override
+  String get passwordsDontMatch => '';
 
   @override
   String get password => 'Nenosiri';

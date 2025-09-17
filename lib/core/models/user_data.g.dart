@@ -14,6 +14,6 @@ _$UserDataImpl _$$UserDataImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$UserDataImplToJson(_$UserDataImpl instance) =>
     <String, dynamic>{
-      'token': instance.token,
-      'role': instance.role,
+      if (instance.token case final value?) 'token': value,
+      if (instance.role case final value?) 'role': value,
     };

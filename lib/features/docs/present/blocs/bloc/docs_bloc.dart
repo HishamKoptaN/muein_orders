@@ -1,15 +1,20 @@
+import 'dart:io';
+
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:mubin_orders/core/entities/meta_entity.dart';
-import 'package:mubin_orders/core/error/api_error_model.dart';
-import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
-import '../../../../../core/all_imports.dart';
-import '../../../../orders/domain/entities/orders_res_entity.dart';
-import '../../../domain/usecases/docs_use_cases.dart';
-import 'docs_event.dart';
-import 'docs_state.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart' show Injectable;
+
+import '../../../../../core/all_imports.dart';
+import '../../../../../core/entities/meta_entity.dart';
+import '../../../../../core/error/api_error_model.dart';
+import '../../../../orders/domain/entities/orders_res_entity.dart';
+import '../../../domain/entities/docs_res_entity.dart';
+import '../../../domain/usecases/docs_use_cases.dart';
+
+part 'docs_bloc.freezed.dart';
+part 'docs_event.dart';
+part 'docs_state.dart';
 
 @Injectable()
 class DocsBloc extends Bloc<DocsEvent, DocsState> {
@@ -30,7 +35,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
   DocsBloc({
     required this.docsUseCase,
   }) : super(
-          DocsState.loaded(
+          const DocsState.loaded(
             docs: [],
             hasMore: false,
             orderId: GenericFormzInput.pure(),
@@ -50,29 +55,29 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
           getDocs: (orderId) async {
             try {
               final res = await docsUseCase.getDocs(orderId: orderId);
-              await res.when(
-                success: (
-                  res,
-                ) async {
-                  _allDocs = [..._allDocs ?? [], ...res?.docs ?? []];
-                  _meta = res?.meta ?? MetaEntity();
-                  emitCustomLoaded(
-                    emit: emit,
-                  );
-                },
-                failure: (
-                  apiErrorModel,
-                ) async {
-                  emit(
-                    DocsState.getDocsfailure(
-                      apiErrorModel: apiErrorModel,
-                    ),
-                  );
-                  emitCustomLoaded(
-                    emit: emit,
-                  );
-                },
-              );
+              // await res.when(
+              //   success: (
+              //     res,
+              //   ) async {
+              //     _allDocs = [..._allDocs ?? [], ...res?.docs ?? []];
+              //     _meta = res?.meta ?? const MetaEntity();
+              //     emitCustomLoaded(
+              //       emit: emit,
+              //     );
+              //   },
+              //   failure: (
+              //     apiErrorModel,
+              //   ) async {
+              //     emit(
+              //       DocsState.getDocsfailure(
+              //         apiErrorModel: apiErrorModel,
+              //       ),
+              //     );
+              //     emitCustomLoaded(
+              //       emit: emit,
+              //     );
+              //   },
+              // );
             } catch (e) {
               emit(
                 DocsState.getDocsfailure(
@@ -101,7 +106,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                   );
                 } catch (e) {
                   emit(
-                    DocsState.failure(
+                    const DocsState.failure(
                       apiErrorModel: ApiErrorModel(
                         error:
                             'تعذر جلب الموقع الحالي تلقائيًا. الرجاء المحاولة مرة أخرى.',
@@ -113,10 +118,11 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                 }
               }
               print(
-                  'https://www.google.com/maps/search/?api=1&query=$_latitude,$_longitude');
+                'https://www.google.com/maps/search/?api=1&query=$_latitude,$_longitude',
+              );
               final id = _orderId?.value;
               _orderDocStatus[id] =
-                  (status: DocUploadStatus.uploading, progress: "0%");
+                  (status: DocUploadStatus.uploading, progress: '0%');
               emitCustomLoaded(emit: emit);
               try {
                 emitCustomLoaded(emit: emit);
@@ -132,7 +138,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                     sent,
                     total,
                   ) {
-                    _uploadingProgress = "${((sent / total) * 100).toInt()}%";
+                    _uploadingProgress = '${((sent / total) * 100).toInt()}%';
                     if (id != null) {
                       _orderDocStatus[id] = (
                         status: DocUploadStatus.uploading,
@@ -144,44 +150,44 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                     );
                   },
                 );
-                await result.when(
-                  success: (
-                    order,
-                  ) async {
-                    _orderDocStatus[id!] = (
-                      status: DocUploadStatus.success,
-                      progress: "100%",
-                    );
-                    resetFormInputs();
-                    _allDocs = [
-                      order!,
-                      ...?_allDocs,
-                    ];
-                    _uploadingProgress = null;
-                    emit(
-                      const DocsState.success(),
-                    );
-                    emitCustomLoaded(
-                      emit: emit,
-                    );
-                  },
-                  failure: (
-                    apiErrorModel,
-                  ) async {
-                    _orderDocStatus[id!] = (
-                      status: DocUploadStatus.failed,
-                      progress: _uploadingProgress,
-                    );
-                    emit(
-                      DocsState.failure(
-                        apiErrorModel: apiErrorModel,
-                      ),
-                    );
-                    emitCustomLoaded(
-                      emit: emit,
-                    );
-                  },
-                );
+                // await result.when(
+                //   success: (
+                //     order,
+                //   ) async {
+                //     _orderDocStatus[id!] = (
+                //       status: DocUploadStatus.success,
+                //       progress: '100%',
+                //     );
+                //     resetFormInputs();
+                //     _allDocs = [
+                //       order!,
+                //       ...?_allDocs,
+                //     ];
+                //     _uploadingProgress = null;
+                //     emit(
+                //       const DocsState.success(),
+                //     );
+                //     emitCustomLoaded(
+                //       emit: emit,
+                //     );
+                //   },
+                //   failure: (
+                //     apiErrorModel,
+                //   ) async {
+                //     _orderDocStatus[id!] = (
+                //       status: DocUploadStatus.failed,
+                //       progress: _uploadingProgress,
+                //     );
+                //     emit(
+                //       DocsState.failure(
+                //         apiErrorModel: apiErrorModel,
+                //       ),
+                //     );
+                //     emitCustomLoaded(
+                //       emit: emit,
+                //     );
+                //   },
+                // );
               } catch (e) {
                 _orderDocStatus[id!] = (
                   status: DocUploadStatus.failed,
@@ -200,9 +206,9 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
               }
             } else {
               emit(
-                DocsState.failure(
+                const DocsState.failure(
                   apiErrorModel: ApiErrorModel(
-                    error: "قم بملئ جميع الحقول",
+                    error: 'قم بملئ جميع الحقول',
                   ),
                 ),
               );
@@ -255,11 +261,11 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
     required Emitter<DocsState> emit,
   }) {
     _formzSubmissionStatus = Formz.validate([
-      _orderId ?? GenericFormzInput.pure(),
-      _videoOne ?? FileFormzInput.pure(),
-      _videoTwo ?? FileFormzInput.pure(),
-      _imageOne ?? FileFormzInput.pure(),
-      _imageTwo ?? FileFormzInput.pure(),
+      _orderId ?? const GenericFormzInput.pure(),
+      _videoOne ?? const FileFormzInput.pure(),
+      _videoTwo ?? const FileFormzInput.pure(),
+      _imageOne ?? const FileFormzInput.pure(),
+      _imageTwo ?? const FileFormzInput.pure(),
     ])
         ? FormzSubmissionStatus.success
         : FormzSubmissionStatus.failure;
@@ -267,13 +273,13 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
       DocsState.loaded(
         docs: _allDocs ?? [],
         hasMore: _meta?.hasNextPage ?? false,
-        orderId: _orderId ?? GenericFormzInput.pure(),
-        videoOne: _videoOne ?? FileFormzInput.pure(),
-        videoTwo: _videoTwo ?? FileFormzInput.pure(),
-        imageOne: _imageOne ?? FileFormzInput.pure(),
-        imageTwo: _imageTwo ?? FileFormzInput.pure(),
-        latitude: _latitude ?? GenericFormzInput.pure(),
-        longitude: _longitude ?? GenericFormzInput.pure(),
+        orderId: _orderId ?? const GenericFormzInput.pure(),
+        videoOne: _videoOne ?? const FileFormzInput.pure(),
+        videoTwo: _videoTwo ?? const FileFormzInput.pure(),
+        imageOne: _imageOne ?? const FileFormzInput.pure(),
+        imageTwo: _imageTwo ?? const FileFormzInput.pure(),
+        latitude: _latitude ?? const GenericFormzInput.pure(),
+        longitude: _longitude ?? const GenericFormzInput.pure(),
         formzSubmissionStatus:
             _formzSubmissionStatus ?? FormzSubmissionStatus.initial,
         uploadingProgress: _uploadingProgress,
@@ -365,7 +371,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
   }
 
   ({DocUploadStatus status, String? progress})? getUploadStatusForOrder(
-      int orderId) {
-    return _orderDocStatus[orderId];
-  }
+    int orderId,
+  ) =>
+      _orderDocStatus[orderId];
 }

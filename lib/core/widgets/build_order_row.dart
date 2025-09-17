@@ -22,7 +22,7 @@ Widget buildOrderRow({
         horizontal: 16,
       ),
       decoration: BoxDecoration(
-        color: Color.fromRGBO(247, 247, 247, 1),
+        color: const Color.fromRGBO(247, 247, 247, 1),
         borderRadius: BorderRadius.circular(
           8,
         ),

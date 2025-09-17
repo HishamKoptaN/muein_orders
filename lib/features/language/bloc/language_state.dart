@@ -2,12 +2,17 @@ part of 'language_bloc.dart';
 
 @freezed
 class LanguageState with _$LanguageState {
-  const factory LanguageState({
-    required Locale currentLocale,
-    @Default(false) bool isLoading,
-    String? errorMessage,
-  }) = _LanguageState;
+  /// Initial state
+  const factory LanguageState.initial() = _Initial;
 
-  factory LanguageState.initial() =>
-      const LanguageState(currentLocale: Locale('ar'));
+  /// Loading state
+  const factory LanguageState.loading() = _Loading;
+
+  /// Loaded state with current locale
+  const factory LanguageState.loaded({required Locale currentLocale}) = _Loaded;
+
+  const LanguageState._();
+
+  // Helper
+  bool get isLoaded => maybeWhen(loaded: (_) => true, orElse: () => false);
 }

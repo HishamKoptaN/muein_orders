@@ -3,8 +3,6 @@ import '../../../../core/widgets/app_container.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../blocs/bloc/docs_bloc.dart';
-import '../blocs/bloc/docs_event.dart';
-import '../blocs/bloc/docs_state.dart';
 import 'build_shimmer_order_placeholder.dart';
 import 'widgets/doc_widget.dart';
 

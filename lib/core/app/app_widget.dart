@@ -11,8 +11,7 @@ class MubinOrdersAppWrapper extends StatelessWidget {
   const MubinOrdersAppWrapper({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
+  Widget build(BuildContext context) => MultiBlocProvider(
       providers: [
         // Add your Bloc providers here
         BlocProvider(create: (_) => getIt<Bloc<dynamic, dynamic>>()),
@@ -23,8 +22,7 @@ class MubinOrdersAppWrapper extends StatelessWidget {
         designSize: const Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: (context, child) {
-          return MaterialApp.router(
+        builder: (context, child) => MaterialApp.router(
             title: 'Mubin Orders',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
@@ -38,15 +36,11 @@ class MubinOrdersAppWrapper extends StatelessWidget {
               Locale('ar'),
             ],
             locale: const Locale('ar'),
-            builder: (context, child) {
-              return Directionality(
+            builder: (context, child) => Directionality(
                 textDirection: TextDirection.rtl,
                 child: child!,
-              );
-            },
-          );
-        },
+              ),
+          ),
       ),
     );
-  }
 }

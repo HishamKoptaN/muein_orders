@@ -1,0 +1,12 @@
+# flutter_gen configuration
+flutter_gen:
+  output: lib/gen/ # This is the default output directory
+  line_length: 80
+  colors:
+    inputs:
+      - assets/colors/*.xml
+  assets:
+    - assets/images/
+    - assets/icons/
+  fonts:
+    - assets/fonts/

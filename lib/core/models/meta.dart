@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'meta.freezed.dart';
 part 'meta.g.dart';
 
 @freezed
-class Meta with _$Meta {
+abstract class Meta with _$Meta {
   const factory Meta({
     @JsonKey(name: "post_id") int? postId,
     @JsonKey(name: "current_page") int? currentPage,
