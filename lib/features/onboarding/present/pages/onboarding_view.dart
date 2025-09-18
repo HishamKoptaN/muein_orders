@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
+import '../../../../core/di/dependency_injection.dart';
+import '../../../../core/navigation/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../orders/present/views/orders_view.dart';
 import '../bloc/onboarding_bloc.dart';
 import '../bloc/onboarding_event.dart';
 import '../bloc/onboarding_state.dart';
@@ -34,9 +36,11 @@ class _OnboardingViewState extends State<OnboardingView> {
   }
 
   void _onPageChanged(int index) {
-    setState(() {
-      _currentPageIndex = index;
-    });
+    setState(
+      () {
+        _currentPageIndex = index;
+      },
+    );
   }
 
   void _onNextPressed() {
@@ -59,11 +63,16 @@ class _OnboardingViewState extends State<OnboardingView> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      BlocListener<OnboardingBloc, OnboardingState>(
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<OnboardingBloc>(),
+      child: BlocListener<OnboardingBloc, OnboardingState>(
         listener: (context, state) {
           if (state is OnboardingCompleted) {
-            context.go('/sign_in');
+            AppRouter.navigateAndRemoveUntil(
+              context: context,
+              routeName: OrdersView.routeName,
+            );
           }
         },
         child: Scaffold(
@@ -180,5 +189,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             },
           ),
         ),
-      );
+      ),
+    );
+  }
 }

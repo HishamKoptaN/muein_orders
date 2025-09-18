@@ -6,7 +6,7 @@ part 'sign_in_req_body_model.g.dart';
 @freezed
 class SignInReqBodyModel with _$SignInReqBodyModel {
   const factory SignInReqBodyModel({
-    required String token,
+    @JsonKey(name: 'id_token') required String idToken,
   }) = _SignInReqBodyModel;
 
   factory SignInReqBodyModel.fromJson(Map<String, dynamic> json) =>

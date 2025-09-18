@@ -19,8 +19,8 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
     required TResult Function() invalidEmailOrPassword,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmail,
@@ -32,8 +32,8 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
     TResult? Function()? invalidEmailOrPassword,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmail,
@@ -45,8 +45,8 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
     TResult Function()? invalidEmailOrPassword,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmail,
@@ -59,8 +59,8 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(InvalidEmailOrPassword value)
         invalidEmailOrPassword,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -73,8 +73,8 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmail value)? invalidEmail,
@@ -86,8 +86,8 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmail value)? invalidEmail,
@@ -154,8 +154,8 @@ class __$$ServerFailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ServerFailureImpl implements ServerFailure {
-  const _$ServerFailureImpl({required this.message});
+class _$ServerFailureImpl extends ServerFailure {
+  const _$ServerFailureImpl({required this.message}) : super._();
 
   @override
   final String message;
@@ -188,8 +188,8 @@ class _$ServerFailureImpl implements ServerFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
     required TResult Function() invalidEmailOrPassword,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmail,
@@ -204,8 +204,8 @@ class _$ServerFailureImpl implements ServerFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
     TResult? Function()? invalidEmailOrPassword,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmail,
@@ -220,8 +220,8 @@ class _$ServerFailureImpl implements ServerFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
     TResult Function()? invalidEmailOrPassword,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmail,
@@ -240,8 +240,8 @@ class _$ServerFailureImpl implements ServerFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(InvalidEmailOrPassword value)
         invalidEmailOrPassword,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -257,8 +257,8 @@ class _$ServerFailureImpl implements ServerFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmail value)? invalidEmail,
@@ -273,8 +273,8 @@ class _$ServerFailureImpl implements ServerFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmail value)? invalidEmail,
@@ -290,9 +290,10 @@ class _$ServerFailureImpl implements ServerFailure {
   }
 }
 
-abstract class ServerFailure implements Failure {
+abstract class ServerFailure extends Failure {
   const factory ServerFailure({required final String message}) =
       _$ServerFailureImpl;
+  const ServerFailure._() : super._();
 
   String get message;
 
@@ -304,196 +305,12 @@ abstract class ServerFailure implements Failure {
 }
 
 /// @nodoc
-abstract class _$$CacheFailureImplCopyWith<$Res> {
-  factory _$$CacheFailureImplCopyWith(
-          _$CacheFailureImpl value, $Res Function(_$CacheFailureImpl) then) =
-      __$$CacheFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class __$$CacheFailureImplCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res, _$CacheFailureImpl>
-    implements _$$CacheFailureImplCopyWith<$Res> {
-  __$$CacheFailureImplCopyWithImpl(
-      _$CacheFailureImpl _value, $Res Function(_$CacheFailureImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Failure
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$CacheFailureImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CacheFailureImpl implements CacheFailure {
-  const _$CacheFailureImpl({required this.message});
-
-  @override
-  final String message;
-
-  @override
-  String toString() {
-    return 'Failure.cacheFailure(message: $message)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CacheFailureImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  /// Create a copy of Failure
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CacheFailureImplCopyWith<_$CacheFailureImpl> get copyWith =>
-      __$$CacheFailureImplCopyWithImpl<_$CacheFailureImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
-    required TResult Function() invalidEmailOrPassword,
-    required TResult Function() emailAlreadyInUse,
-    required TResult Function() invalidEmail,
-    required TResult Function() weakPassword,
-    required TResult Function() userDisabled,
-    required TResult Function() userNotLoggedIn,
-  }) {
-    return cacheFailure(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
-    TResult? Function()? invalidEmailOrPassword,
-    TResult? Function()? emailAlreadyInUse,
-    TResult? Function()? invalidEmail,
-    TResult? Function()? weakPassword,
-    TResult? Function()? userDisabled,
-    TResult? Function()? userNotLoggedIn,
-  }) {
-    return cacheFailure?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
-    TResult Function()? invalidEmailOrPassword,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmail,
-    TResult Function()? weakPassword,
-    TResult Function()? userDisabled,
-    TResult Function()? userNotLoggedIn,
-    required TResult orElse(),
-  }) {
-    if (cacheFailure != null) {
-      return cacheFailure(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
-    required TResult Function(NetworkFailure value) networkFailure,
-    required TResult Function(InvalidEmailOrPassword value)
-        invalidEmailOrPassword,
-    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(InvalidEmail value) invalidEmail,
-    required TResult Function(WeakPassword value) weakPassword,
-    required TResult Function(UserDisabled value) userDisabled,
-    required TResult Function(UserNotLoggedIn value) userNotLoggedIn,
-  }) {
-    return cacheFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
-    TResult? Function(NetworkFailure value)? networkFailure,
-    TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult? Function(InvalidEmail value)? invalidEmail,
-    TResult? Function(WeakPassword value)? weakPassword,
-    TResult? Function(UserDisabled value)? userDisabled,
-    TResult? Function(UserNotLoggedIn value)? userNotLoggedIn,
-  }) {
-    return cacheFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
-    TResult Function(NetworkFailure value)? networkFailure,
-    TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
-    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(InvalidEmail value)? invalidEmail,
-    TResult Function(WeakPassword value)? weakPassword,
-    TResult Function(UserDisabled value)? userDisabled,
-    TResult Function(UserNotLoggedIn value)? userNotLoggedIn,
-    required TResult orElse(),
-  }) {
-    if (cacheFailure != null) {
-      return cacheFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CacheFailure implements Failure {
-  const factory CacheFailure({required final String message}) =
-      _$CacheFailureImpl;
-
-  String get message;
-
-  /// Create a copy of Failure
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CacheFailureImplCopyWith<_$CacheFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 abstract class _$$NetworkFailureImplCopyWith<$Res> {
   factory _$$NetworkFailureImplCopyWith(_$NetworkFailureImpl value,
           $Res Function(_$NetworkFailureImpl) then) =
       __$$NetworkFailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({String message, String? code});
 }
 
 /// @nodoc
@@ -510,27 +327,34 @@ class __$$NetworkFailureImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
+    Object? code = freezed,
   }) {
     return _then(_$NetworkFailureImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$NetworkFailureImpl implements NetworkFailure {
-  const _$NetworkFailureImpl({required this.message});
+class _$NetworkFailureImpl extends NetworkFailure {
+  const _$NetworkFailureImpl({required this.message, this.code}) : super._();
 
   @override
   final String message;
+  @override
+  final String? code;
 
   @override
   String toString() {
-    return 'Failure.networkFailure(message: $message)';
+    return 'Failure.networkFailure(message: $message, code: $code)';
   }
 
   @override
@@ -538,11 +362,12 @@ class _$NetworkFailureImpl implements NetworkFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NetworkFailureImpl &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.code, code) || other.code == code));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, code);
 
   /// Create a copy of Failure
   /// with the given fields replaced by the non-null parameter values.
@@ -557,8 +382,8 @@ class _$NetworkFailureImpl implements NetworkFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
     required TResult Function() invalidEmailOrPassword,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmail,
@@ -566,15 +391,15 @@ class _$NetworkFailureImpl implements NetworkFailure {
     required TResult Function() userDisabled,
     required TResult Function() userNotLoggedIn,
   }) {
-    return networkFailure(message);
+    return networkFailure(message, code);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
     TResult? Function()? invalidEmailOrPassword,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmail,
@@ -582,15 +407,15 @@ class _$NetworkFailureImpl implements NetworkFailure {
     TResult? Function()? userDisabled,
     TResult? Function()? userNotLoggedIn,
   }) {
-    return networkFailure?.call(message);
+    return networkFailure?.call(message, code);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
     TResult Function()? invalidEmailOrPassword,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmail,
@@ -600,7 +425,7 @@ class _$NetworkFailureImpl implements NetworkFailure {
     required TResult orElse(),
   }) {
     if (networkFailure != null) {
-      return networkFailure(message);
+      return networkFailure(message, code);
     }
     return orElse();
   }
@@ -609,8 +434,8 @@ class _$NetworkFailureImpl implements NetworkFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(InvalidEmailOrPassword value)
         invalidEmailOrPassword,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -626,8 +451,8 @@ class _$NetworkFailureImpl implements NetworkFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmail value)? invalidEmail,
@@ -642,8 +467,8 @@ class _$NetworkFailureImpl implements NetworkFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmail value)? invalidEmail,
@@ -659,16 +484,213 @@ class _$NetworkFailureImpl implements NetworkFailure {
   }
 }
 
-abstract class NetworkFailure implements Failure {
-  const factory NetworkFailure({required final String message}) =
-      _$NetworkFailureImpl;
+abstract class NetworkFailure extends Failure {
+  const factory NetworkFailure(
+      {required final String message,
+      final String? code}) = _$NetworkFailureImpl;
+  const NetworkFailure._() : super._();
 
   String get message;
+  String? get code;
 
   /// Create a copy of Failure
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NetworkFailureImplCopyWith<_$NetworkFailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CacheFailureImplCopyWith<$Res> {
+  factory _$$CacheFailureImplCopyWith(
+          _$CacheFailureImpl value, $Res Function(_$CacheFailureImpl) then) =
+      __$$CacheFailureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message, String? code});
+}
+
+/// @nodoc
+class __$$CacheFailureImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$CacheFailureImpl>
+    implements _$$CacheFailureImplCopyWith<$Res> {
+  __$$CacheFailureImplCopyWithImpl(
+      _$CacheFailureImpl _value, $Res Function(_$CacheFailureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+    Object? code = freezed,
+  }) {
+    return _then(_$CacheFailureImpl(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CacheFailureImpl extends CacheFailure {
+  const _$CacheFailureImpl({required this.message, this.code}) : super._();
+
+  @override
+  final String message;
+  @override
+  final String? code;
+
+  @override
+  String toString() {
+    return 'Failure.cacheFailure(message: $message, code: $code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CacheFailureImpl &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message, code);
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CacheFailureImplCopyWith<_$CacheFailureImpl> get copyWith =>
+      __$$CacheFailureImplCopyWithImpl<_$CacheFailureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) serverFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
+    required TResult Function() invalidEmailOrPassword,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidEmail,
+    required TResult Function() weakPassword,
+    required TResult Function() userDisabled,
+    required TResult Function() userNotLoggedIn,
+  }) {
+    return cacheFailure(message, code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message)? serverFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
+    TResult? Function()? invalidEmailOrPassword,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? weakPassword,
+    TResult? Function()? userDisabled,
+    TResult? Function()? userNotLoggedIn,
+  }) {
+    return cacheFailure?.call(message, code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? serverFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
+    TResult Function()? invalidEmailOrPassword,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmail,
+    TResult Function()? weakPassword,
+    TResult Function()? userDisabled,
+    TResult Function()? userNotLoggedIn,
+    required TResult orElse(),
+  }) {
+    if (cacheFailure != null) {
+      return cacheFailure(message, code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
+    required TResult Function(InvalidEmailOrPassword value)
+        invalidEmailOrPassword,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidEmail value) invalidEmail,
+    required TResult Function(WeakPassword value) weakPassword,
+    required TResult Function(UserDisabled value) userDisabled,
+    required TResult Function(UserNotLoggedIn value) userNotLoggedIn,
+  }) {
+    return cacheFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerFailure value)? serverFailure,
+    TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
+    TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(WeakPassword value)? weakPassword,
+    TResult? Function(UserDisabled value)? userDisabled,
+    TResult? Function(UserNotLoggedIn value)? userNotLoggedIn,
+  }) {
+    return cacheFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmail value)? invalidEmail,
+    TResult Function(WeakPassword value)? weakPassword,
+    TResult Function(UserDisabled value)? userDisabled,
+    TResult Function(UserNotLoggedIn value)? userNotLoggedIn,
+    required TResult orElse(),
+  }) {
+    if (cacheFailure != null) {
+      return cacheFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CacheFailure extends Failure {
+  const factory CacheFailure(
+      {required final String message, final String? code}) = _$CacheFailureImpl;
+  const CacheFailure._() : super._();
+
+  String get message;
+  String? get code;
+
+  /// Create a copy of Failure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CacheFailureImplCopyWith<_$CacheFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -695,8 +717,8 @@ class __$$InvalidEmailOrPasswordImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InvalidEmailOrPasswordImpl implements InvalidEmailOrPassword {
-  const _$InvalidEmailOrPasswordImpl();
+class _$InvalidEmailOrPasswordImpl extends InvalidEmailOrPassword {
+  const _$InvalidEmailOrPasswordImpl() : super._();
 
   @override
   String toString() {
@@ -717,8 +739,8 @@ class _$InvalidEmailOrPasswordImpl implements InvalidEmailOrPassword {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
     required TResult Function() invalidEmailOrPassword,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmail,
@@ -733,8 +755,8 @@ class _$InvalidEmailOrPasswordImpl implements InvalidEmailOrPassword {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
     TResult? Function()? invalidEmailOrPassword,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmail,
@@ -749,8 +771,8 @@ class _$InvalidEmailOrPasswordImpl implements InvalidEmailOrPassword {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
     TResult Function()? invalidEmailOrPassword,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmail,
@@ -769,8 +791,8 @@ class _$InvalidEmailOrPasswordImpl implements InvalidEmailOrPassword {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(InvalidEmailOrPassword value)
         invalidEmailOrPassword,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -786,8 +808,8 @@ class _$InvalidEmailOrPasswordImpl implements InvalidEmailOrPassword {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmail value)? invalidEmail,
@@ -802,8 +824,8 @@ class _$InvalidEmailOrPasswordImpl implements InvalidEmailOrPassword {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmail value)? invalidEmail,
@@ -819,8 +841,9 @@ class _$InvalidEmailOrPasswordImpl implements InvalidEmailOrPassword {
   }
 }
 
-abstract class InvalidEmailOrPassword implements Failure {
+abstract class InvalidEmailOrPassword extends Failure {
   const factory InvalidEmailOrPassword() = _$InvalidEmailOrPasswordImpl;
+  const InvalidEmailOrPassword._() : super._();
 }
 
 /// @nodoc
@@ -844,8 +867,8 @@ class __$$EmailAlreadyInUseImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$EmailAlreadyInUseImpl implements EmailAlreadyInUse {
-  const _$EmailAlreadyInUseImpl();
+class _$EmailAlreadyInUseImpl extends EmailAlreadyInUse {
+  const _$EmailAlreadyInUseImpl() : super._();
 
   @override
   String toString() {
@@ -865,8 +888,8 @@ class _$EmailAlreadyInUseImpl implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
     required TResult Function() invalidEmailOrPassword,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmail,
@@ -881,8 +904,8 @@ class _$EmailAlreadyInUseImpl implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
     TResult? Function()? invalidEmailOrPassword,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmail,
@@ -897,8 +920,8 @@ class _$EmailAlreadyInUseImpl implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
     TResult Function()? invalidEmailOrPassword,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmail,
@@ -917,8 +940,8 @@ class _$EmailAlreadyInUseImpl implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(InvalidEmailOrPassword value)
         invalidEmailOrPassword,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -934,8 +957,8 @@ class _$EmailAlreadyInUseImpl implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmail value)? invalidEmail,
@@ -950,8 +973,8 @@ class _$EmailAlreadyInUseImpl implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmail value)? invalidEmail,
@@ -967,8 +990,9 @@ class _$EmailAlreadyInUseImpl implements EmailAlreadyInUse {
   }
 }
 
-abstract class EmailAlreadyInUse implements Failure {
+abstract class EmailAlreadyInUse extends Failure {
   const factory EmailAlreadyInUse() = _$EmailAlreadyInUseImpl;
+  const EmailAlreadyInUse._() : super._();
 }
 
 /// @nodoc
@@ -992,8 +1016,8 @@ class __$$InvalidEmailImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InvalidEmailImpl implements InvalidEmail {
-  const _$InvalidEmailImpl();
+class _$InvalidEmailImpl extends InvalidEmail {
+  const _$InvalidEmailImpl() : super._();
 
   @override
   String toString() {
@@ -1013,8 +1037,8 @@ class _$InvalidEmailImpl implements InvalidEmail {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
     required TResult Function() invalidEmailOrPassword,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmail,
@@ -1029,8 +1053,8 @@ class _$InvalidEmailImpl implements InvalidEmail {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
     TResult? Function()? invalidEmailOrPassword,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmail,
@@ -1045,8 +1069,8 @@ class _$InvalidEmailImpl implements InvalidEmail {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
     TResult Function()? invalidEmailOrPassword,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmail,
@@ -1065,8 +1089,8 @@ class _$InvalidEmailImpl implements InvalidEmail {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(InvalidEmailOrPassword value)
         invalidEmailOrPassword,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -1082,8 +1106,8 @@ class _$InvalidEmailImpl implements InvalidEmail {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmail value)? invalidEmail,
@@ -1098,8 +1122,8 @@ class _$InvalidEmailImpl implements InvalidEmail {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmail value)? invalidEmail,
@@ -1115,8 +1139,9 @@ class _$InvalidEmailImpl implements InvalidEmail {
   }
 }
 
-abstract class InvalidEmail implements Failure {
+abstract class InvalidEmail extends Failure {
   const factory InvalidEmail() = _$InvalidEmailImpl;
+  const InvalidEmail._() : super._();
 }
 
 /// @nodoc
@@ -1140,8 +1165,8 @@ class __$$WeakPasswordImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WeakPasswordImpl implements WeakPassword {
-  const _$WeakPasswordImpl();
+class _$WeakPasswordImpl extends WeakPassword {
+  const _$WeakPasswordImpl() : super._();
 
   @override
   String toString() {
@@ -1161,8 +1186,8 @@ class _$WeakPasswordImpl implements WeakPassword {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
     required TResult Function() invalidEmailOrPassword,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmail,
@@ -1177,8 +1202,8 @@ class _$WeakPasswordImpl implements WeakPassword {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
     TResult? Function()? invalidEmailOrPassword,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmail,
@@ -1193,8 +1218,8 @@ class _$WeakPasswordImpl implements WeakPassword {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
     TResult Function()? invalidEmailOrPassword,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmail,
@@ -1213,8 +1238,8 @@ class _$WeakPasswordImpl implements WeakPassword {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(InvalidEmailOrPassword value)
         invalidEmailOrPassword,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -1230,8 +1255,8 @@ class _$WeakPasswordImpl implements WeakPassword {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmail value)? invalidEmail,
@@ -1246,8 +1271,8 @@ class _$WeakPasswordImpl implements WeakPassword {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmail value)? invalidEmail,
@@ -1263,8 +1288,9 @@ class _$WeakPasswordImpl implements WeakPassword {
   }
 }
 
-abstract class WeakPassword implements Failure {
+abstract class WeakPassword extends Failure {
   const factory WeakPassword() = _$WeakPasswordImpl;
+  const WeakPassword._() : super._();
 }
 
 /// @nodoc
@@ -1288,8 +1314,8 @@ class __$$UserDisabledImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UserDisabledImpl implements UserDisabled {
-  const _$UserDisabledImpl();
+class _$UserDisabledImpl extends UserDisabled {
+  const _$UserDisabledImpl() : super._();
 
   @override
   String toString() {
@@ -1309,8 +1335,8 @@ class _$UserDisabledImpl implements UserDisabled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
     required TResult Function() invalidEmailOrPassword,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmail,
@@ -1325,8 +1351,8 @@ class _$UserDisabledImpl implements UserDisabled {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
     TResult? Function()? invalidEmailOrPassword,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmail,
@@ -1341,8 +1367,8 @@ class _$UserDisabledImpl implements UserDisabled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
     TResult Function()? invalidEmailOrPassword,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmail,
@@ -1361,8 +1387,8 @@ class _$UserDisabledImpl implements UserDisabled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(InvalidEmailOrPassword value)
         invalidEmailOrPassword,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -1378,8 +1404,8 @@ class _$UserDisabledImpl implements UserDisabled {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmail value)? invalidEmail,
@@ -1394,8 +1420,8 @@ class _$UserDisabledImpl implements UserDisabled {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmail value)? invalidEmail,
@@ -1411,8 +1437,9 @@ class _$UserDisabledImpl implements UserDisabled {
   }
 }
 
-abstract class UserDisabled implements Failure {
+abstract class UserDisabled extends Failure {
   const factory UserDisabled() = _$UserDisabledImpl;
+  const UserDisabled._() : super._();
 }
 
 /// @nodoc
@@ -1436,8 +1463,8 @@ class __$$UserNotLoggedInImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UserNotLoggedInImpl implements UserNotLoggedIn {
-  const _$UserNotLoggedInImpl();
+class _$UserNotLoggedInImpl extends UserNotLoggedIn {
+  const _$UserNotLoggedInImpl() : super._();
 
   @override
   String toString() {
@@ -1457,8 +1484,8 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) serverFailure,
-    required TResult Function(String message) cacheFailure,
-    required TResult Function(String message) networkFailure,
+    required TResult Function(String message, String? code) networkFailure,
+    required TResult Function(String message, String? code) cacheFailure,
     required TResult Function() invalidEmailOrPassword,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmail,
@@ -1473,8 +1500,8 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? serverFailure,
-    TResult? Function(String message)? cacheFailure,
-    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message, String? code)? networkFailure,
+    TResult? Function(String message, String? code)? cacheFailure,
     TResult? Function()? invalidEmailOrPassword,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmail,
@@ -1489,8 +1516,8 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? serverFailure,
-    TResult Function(String message)? cacheFailure,
-    TResult Function(String message)? networkFailure,
+    TResult Function(String message, String? code)? networkFailure,
+    TResult Function(String message, String? code)? cacheFailure,
     TResult Function()? invalidEmailOrPassword,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmail,
@@ -1509,8 +1536,8 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ServerFailure value) serverFailure,
-    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(NetworkFailure value) networkFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
     required TResult Function(InvalidEmailOrPassword value)
         invalidEmailOrPassword,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
@@ -1526,8 +1553,8 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ServerFailure value)? serverFailure,
-    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(CacheFailure value)? cacheFailure,
     TResult? Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmail value)? invalidEmail,
@@ -1542,8 +1569,8 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ServerFailure value)? serverFailure,
-    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(NetworkFailure value)? networkFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
     TResult Function(InvalidEmailOrPassword value)? invalidEmailOrPassword,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmail value)? invalidEmail,
@@ -1559,6 +1586,7 @@ class _$UserNotLoggedInImpl implements UserNotLoggedIn {
   }
 }
 
-abstract class UserNotLoggedIn implements Failure {
+abstract class UserNotLoggedIn extends Failure {
   const factory UserNotLoggedIn() = _$UserNotLoggedInImpl;
+  const UserNotLoggedIn._() : super._();
 }

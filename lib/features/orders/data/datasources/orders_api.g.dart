@@ -52,7 +52,7 @@ class _OrdersApi implements OrdersApi {
   }
 
   @override
-  Future<Order?> updateClientField({
+  Future<Order> updateClientField({
     required int clientId,
     required bool isQuranPhotographed,
   }) async {
@@ -70,10 +70,10 @@ class _OrdersApi implements OrdersApi {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
-    late Order? _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late Order _value;
     try {
-      _value = _result.data == null ? null : Order.fromJson(_result.data!);
+      _value = Order.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

@@ -20,28 +20,36 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserData {
-  @JsonKey(name: "token")
+  @JsonKey(name: 'token')
   String? get token => throw _privateConstructorUsedError;
-  @JsonKey(name: "role")
+  @JsonKey(name: 'fcm_token')
+  String? get fcmToken => throw _privateConstructorUsedError;
+  @JsonKey(name: 'role')
   String? get role => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: "token") String? token,
-            @JsonKey(name: "role") String? role)
+    TResult Function(
+            @JsonKey(name: 'token') String? token,
+            @JsonKey(name: 'fcm_token') String? fcmToken,
+            @JsonKey(name: 'role') String? role)
         $default,
   ) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: "token") String? token,
-            @JsonKey(name: "role") String? role)?
+    TResult? Function(
+            @JsonKey(name: 'token') String? token,
+            @JsonKey(name: 'fcm_token') String? fcmToken,
+            @JsonKey(name: 'role') String? role)?
         $default,
   ) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: "token") String? token,
-            @JsonKey(name: "role") String? role)?
+    TResult Function(
+            @JsonKey(name: 'token') String? token,
+            @JsonKey(name: 'fcm_token') String? fcmToken,
+            @JsonKey(name: 'role') String? role)?
         $default, {
     required TResult orElse(),
   }) =>
@@ -79,8 +87,9 @@ abstract class $UserDataCopyWith<$Res> {
       _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
   $Res call(
-      {@JsonKey(name: "token") String? token,
-      @JsonKey(name: "role") String? role});
+      {@JsonKey(name: 'token') String? token,
+      @JsonKey(name: 'fcm_token') String? fcmToken,
+      @JsonKey(name: 'role') String? role});
 }
 
 /// @nodoc
@@ -99,12 +108,17 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
   @override
   $Res call({
     Object? token = freezed,
+    Object? fcmToken = freezed,
     Object? role = freezed,
   }) {
     return _then(_value.copyWith(
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
               as String?,
       role: freezed == role
           ? _value.role
@@ -123,8 +137,9 @@ abstract class _$$UserDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "token") String? token,
-      @JsonKey(name: "role") String? role});
+      {@JsonKey(name: 'token') String? token,
+      @JsonKey(name: 'fcm_token') String? fcmToken,
+      @JsonKey(name: 'role') String? role});
 }
 
 /// @nodoc
@@ -141,12 +156,17 @@ class __$$UserDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? token = freezed,
+    Object? fcmToken = freezed,
     Object? role = freezed,
   }) {
     return _then(_$UserDataImpl(
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
               as String?,
       role: freezed == role
           ? _value.role
@@ -160,21 +180,26 @@ class __$$UserDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserDataImpl implements _UserData {
   const _$UserDataImpl(
-      {@JsonKey(name: "token") this.token, @JsonKey(name: "role") this.role});
+      {@JsonKey(name: 'token') this.token,
+      @JsonKey(name: 'fcm_token') this.fcmToken,
+      @JsonKey(name: 'role') this.role});
 
   factory _$UserDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDataImplFromJson(json);
 
   @override
-  @JsonKey(name: "token")
+  @JsonKey(name: 'token')
   final String? token;
   @override
-  @JsonKey(name: "role")
+  @JsonKey(name: 'fcm_token')
+  final String? fcmToken;
+  @override
+  @JsonKey(name: 'role')
   final String? role;
 
   @override
   String toString() {
-    return 'UserData(token: $token, role: $role)';
+    return 'UserData(token: $token, fcmToken: $fcmToken, role: $role)';
   }
 
   @override
@@ -183,12 +208,14 @@ class _$UserDataImpl implements _UserData {
         (other.runtimeType == runtimeType &&
             other is _$UserDataImpl &&
             (identical(other.token, token) || other.token == token) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken) &&
             (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, token, role);
+  int get hashCode => Object.hash(runtimeType, token, fcmToken, role);
 
   /// Create a copy of UserData
   /// with the given fields replaced by the non-null parameter values.
@@ -201,33 +228,39 @@ class _$UserDataImpl implements _UserData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: "token") String? token,
-            @JsonKey(name: "role") String? role)
+    TResult Function(
+            @JsonKey(name: 'token') String? token,
+            @JsonKey(name: 'fcm_token') String? fcmToken,
+            @JsonKey(name: 'role') String? role)
         $default,
   ) {
-    return $default(token, role);
+    return $default(token, fcmToken, role);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: "token") String? token,
-            @JsonKey(name: "role") String? role)?
+    TResult? Function(
+            @JsonKey(name: 'token') String? token,
+            @JsonKey(name: 'fcm_token') String? fcmToken,
+            @JsonKey(name: 'role') String? role)?
         $default,
   ) {
-    return $default?.call(token, role);
+    return $default?.call(token, fcmToken, role);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: "token") String? token,
-            @JsonKey(name: "role") String? role)?
+    TResult Function(
+            @JsonKey(name: 'token') String? token,
+            @JsonKey(name: 'fcm_token') String? fcmToken,
+            @JsonKey(name: 'role') String? role)?
         $default, {
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(token, role);
+      return $default(token, fcmToken, role);
     }
     return orElse();
   }
@@ -270,17 +303,21 @@ class _$UserDataImpl implements _UserData {
 
 abstract class _UserData implements UserData {
   const factory _UserData(
-      {@JsonKey(name: "token") final String? token,
-      @JsonKey(name: "role") final String? role}) = _$UserDataImpl;
+      {@JsonKey(name: 'token') final String? token,
+      @JsonKey(name: 'fcm_token') final String? fcmToken,
+      @JsonKey(name: 'role') final String? role}) = _$UserDataImpl;
 
   factory _UserData.fromJson(Map<String, dynamic> json) =
       _$UserDataImpl.fromJson;
 
   @override
-  @JsonKey(name: "token")
+  @JsonKey(name: 'token')
   String? get token;
   @override
-  @JsonKey(name: "role")
+  @JsonKey(name: 'fcm_token')
+  String? get fcmToken;
+  @override
+  @JsonKey(name: 'role')
   String? get role;
 
   /// Create a copy of UserData

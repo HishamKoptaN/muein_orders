@@ -12,6 +12,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signUp => 'Sign Up';
 
   @override
+  String passwordResetEmailSentTo(Object email) {
+    return 'Password reset email has been sent to $email';
+  }
+
+  @override
   String get signUpTitle => 'Create Account';
 
   @override
@@ -358,4 +363,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get documentation_with_photos_and_videos =>
       'Documentation with photos and videos';
+
+  @override
+  String get enterYourEmailToResetPassword =>
+      'Enter your email address to receive a password reset link';
+
+  @override
+  String get send => 'Send';
 }

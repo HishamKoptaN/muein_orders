@@ -3,27 +3,11 @@ import 'package:logger/logger.dart';
 
 import 'api_error_model.dart';
 
-/// A comprehensive error handler for API requests that converts various types of errors
-/// into standardized [ApiErrorModel] objects.
-///
-/// This handler supports:
-/// - Dio network errors
-/// - Server error responses
-/// - Response parsing errors
-/// - Unexpected error formats
 class ApiErrorHandler {
   static final _logger = Logger(
-    printer: PrettyPrinter(
-      methodCount: 0,
-      errorMethodCount: 5,
-      colors: true,
-    ),
+    printer: PrettyPrinter(methodCount: 0, errorMethodCount: 5, colors: true),
   );
 
-  /// Handles API errors and returns a standardized [ApiErrorModel].
-  ///
-  /// [error]: The error object to handle, typically from a Dio request
-  /// [stackTrace]: Optional stack trace for better error tracking
   static ApiErrorModel handle({
     required dynamic error,
     StackTrace? stackTrace,
@@ -34,7 +18,6 @@ class ApiErrorHandler {
       return _handleDioError(error);
     }
 
-    // Handle other types of errors
     if (error is Map<String, dynamic>) {
       return _parseErrorResponse(error);
     }
@@ -54,12 +37,10 @@ class ApiErrorHandler {
     );
   }
 
-  /// Handles Dio-specific errors
   static ApiErrorModel _handleDioError(DioException error) {
     final response = error.response;
     final statusCode = response?.statusCode ?? 500;
-    
-    // Handle different types of Dio errors
+
     switch (error.type) {
       case DioExceptionType.connectionError:
         return const ApiErrorModel(
@@ -67,48 +48,39 @@ class ApiErrorHandler {
           statusCode: 0,
           error: 'connection_error',
         );
-        
       case DioExceptionType.connectionTimeout:
         return const ApiErrorModel(
           message: 'Connection timeout. The server took too long to respond.',
           statusCode: 408,
           error: 'connection_timeout',
         );
-        
       case DioExceptionType.sendTimeout:
         return const ApiErrorModel(
           message: 'Request timeout. Please try again.',
           statusCode: 408,
           error: 'send_timeout',
         );
-        
       case DioExceptionType.receiveTimeout:
         return const ApiErrorModel(
           message: 'Response timeout. The server took too long to send data.',
           statusCode: 408,
           error: 'receive_timeout',
         );
-        
       case DioExceptionType.badResponse:
         if (response?.data != null) {
-          return _parseErrorResponse(
-            response!.data,
-            statusCode: statusCode,
-          );
+          return _parseErrorResponse(response!.data, statusCode: statusCode);
         }
         return ApiErrorModel(
           message: _getHttpErrorMessage(statusCode) ?? 'An error occurred',
           statusCode: statusCode,
           error: 'http_${statusCode}_error',
         );
-        
       case DioExceptionType.cancel:
         return const ApiErrorModel(
           message: 'Request was cancelled',
           statusCode: -1,
           error: 'request_cancelled',
         );
-        
       case DioExceptionType.unknown:
         if (error.message?.contains('SocketException') == true) {
           return const ApiErrorModel(
@@ -131,22 +103,19 @@ class ApiErrorHandler {
     }
   }
 
-  /// Parses error response from server
   static ApiErrorModel _parseErrorResponse(
     dynamic data, {
     int statusCode = 500,
   }) {
     try {
       if (data is Map<String, dynamic>) {
-        // Try to parse as ApiErrorModel
         try {
           return ApiErrorModel.fromJson(data);
         } catch (_) {
-          // Fallback to manual parsing if standard parsing fails
-          final message = data['message'] ?? 
-                        data['error'] ?? 
-                        data['error_description'] ??
-                        'An error occurred';
+          final message = data['message'] ??
+              data['error'] ??
+              data['error_description'] ??
+              'An error occurred';
           return ApiErrorModel(
             message: message.toString(),
             statusCode: statusCode,
@@ -155,7 +124,6 @@ class ApiErrorHandler {
           );
         }
       }
-      
       if (data is String) {
         return ApiErrorModel(
           message: data,
@@ -163,7 +131,6 @@ class ApiErrorHandler {
           error: 'server_error',
         );
       }
-      
       return ApiErrorModel(
         message: 'An error occurred while processing the response',
         statusCode: statusCode,
@@ -179,7 +146,6 @@ class ApiErrorHandler {
     }
   }
 
-  /// Returns a user-friendly error message based on HTTP status code
   static String? _getHttpErrorMessage(int statusCode) {
     switch (statusCode) {
       case 400:

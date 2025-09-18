@@ -7,7 +7,6 @@ class SignInState with _$SignInState {
   const factory SignInState.loaded({
     required EmailInput email,
     required PasswordInput password,
-    required GenericFormzInput rememberMe,
     required GenericFormzInput obscurePassword,
     required FormzSubmissionStatus formzSubmissionStatus,
   }) = _Loaded;

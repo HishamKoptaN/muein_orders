@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:mubin_orders/core/error/api_error_model.dart';
-import 'package:mubin_orders/core/networking/api_result.dart';
 
+import '../../../../core/error/api_error_model.dart';
+import '../../../../core/networking/api_result.dart';
 import '../domain/entities/sign_up_res_entity.dart';
 import '../domain/entities/signup_req_entity.dart';
 import '../domain/repo/sign_up_repo.dart';
@@ -23,14 +23,14 @@ class SignUpRepoImpl implements SignUpRepo {
   }) async {
     try {
       if (signUpReq.countryId == null) {
-        return ApiResult.failure(
+        return const ApiResult.failure(
           apiErrorModel: ApiErrorModel(
             message: 'Country ID is required',
             statusCode: 400,
           ),
         );
       }
-      
+
       final response = await _api.signUp(
         signUpReq: SignUpReqModel(
           firstName: signUpReq.firstName,
@@ -49,12 +49,12 @@ class SignUpRepoImpl implements SignUpRepo {
       );
     } on DioException catch (error) {
       log('SignUp Error: ${error.message}');
-      return ApiResult.failure(
+      return const ApiResult.failure(
         apiErrorModel: ApiErrorModel(),
       );
     } catch (e) {
       log('Unexpected Error in SignUp: $e');
-      return ApiResult.failure(
+      return const ApiResult.failure(
         apiErrorModel: ApiErrorModel(),
       );
     }

@@ -1,5 +1,12 @@
 targets:
   $default:
+    sources:
+      include:
+        - lib/**
+      exclude:
+        - lib/l10n/**
+        - test/**
+        - tool/**
     builders:
       json_serializable:
         options:

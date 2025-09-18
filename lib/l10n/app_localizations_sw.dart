@@ -12,6 +12,11 @@ class AppLocalizationsSw extends AppLocalizations {
   String get signUp => 'Jisajili';
 
   @override
+  String passwordResetEmailSentTo(Object email) {
+    return 'Password reset email has been sent to $email';
+  }
+
+  @override
   String get signUpTitle => 'Fungua Akaunti Mpya';
 
   @override
@@ -354,6 +359,13 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get documentation_with_photos_and_videos =>
       'Uthibitishaji kwa picha na video';
+
+  @override
+  String get enterYourEmailToResetPassword =>
+      'Weka barua pepe yako kupokea kiungo cha kubadilisha nenosiri';
+
+  @override
+  String get send => 'Send';
 }
 
 /// The translations for Swahili, as used in Kenya (`sw_KE`).
@@ -709,6 +721,9 @@ class AppLocalizationsSwKe extends AppLocalizationsSw {
   @override
   String get documentation_with_photos_and_videos =>
       'Uthibitishaji kwa picha na video';
+
+  @override
+  String get send => 'Tuma';
 }
 
 /// The translations for Swahili, as used in the United Republic of Tanzania (`sw_TZ`).
@@ -1064,4 +1079,7 @@ class AppLocalizationsSwTz extends AppLocalizationsSw {
   @override
   String get documentation_with_photos_and_videos =>
       'Uthibitishaji kwa picha na video';
+
+  @override
+  String get send => 'Tuma';
 }

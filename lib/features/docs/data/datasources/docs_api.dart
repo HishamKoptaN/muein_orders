@@ -1,21 +1,27 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+
 import '../../../../../core/networking/api_constants.dart';
 import '../models/docs_res_model.dart';
+
 part 'docs_api.g.dart';
 
+@injectable
 @RestApi(
   baseUrl: ApiConstants.apiBaseUrl,
 )
 abstract class DocsApi {
+  @factoryMethod
   factory DocsApi(
     Dio dio, {
     String? baseUrl,
   }) = _DocsApi;
   @GET('/docs/{clientId}')
   Future<DocsResModel?> getClientDocs({
-    @Path("clientId") required int clientId,
+    @Path('clientId') required int clientId,
   });
 
   //! createDoc

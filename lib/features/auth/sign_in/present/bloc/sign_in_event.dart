@@ -5,7 +5,6 @@ class SignInEvent with _$SignInEvent {
   const factory SignInEvent.dataChanged({
     EmailInput? email,
     PasswordInput? password,
-    GenericFormzInput? rememberMe,
     GenericFormzInput? obscurePassword,
   }) = _DataChanged;
   const factory SignInEvent.signInWithCredentialsPressed() =

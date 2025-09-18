@@ -9,7 +9,6 @@ abstract class OnboardingLocalDataSource {
 class OnboardingLocalDataSourceImpl implements OnboardingLocalDataSource {
   @override
   Future<bool> isOnboardingCompleted() async {
-    // Implementation will be added after PrefsStorageService is available
     return false;
   }
 

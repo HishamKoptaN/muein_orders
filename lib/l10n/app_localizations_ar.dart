@@ -12,6 +12,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signUp => 'تسجيل حساب جديد';
 
   @override
+  String passwordResetEmailSentTo(Object email) {
+    return 'تم إرسال بريد إعادة تعيين كلمة المرور إلى $email';
+  }
+
+  @override
   String get signUpTitle => 'إنشاء حساب جديد';
 
   @override
@@ -76,7 +81,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get close => 'إغلاق';
 
   @override
-  String get selectLanguage => 'اختر اللغة';
+  String get selectLanguage => 'Select Language';
 
   @override
   String get follow => 'متابعة';
@@ -358,4 +363,11 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get documentation_with_photos_and_videos =>
       'التوثيق بالصور والفيديوهات';
+
+  @override
+  String get enterYourEmailToResetPassword =>
+      'أدخل بريدك الإلكتروني لاستلام رابط إعادة تعيين كلمة المرور';
+
+  @override
+  String get send => 'إرسال';
 }

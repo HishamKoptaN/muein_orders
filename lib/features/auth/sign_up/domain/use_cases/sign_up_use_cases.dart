@@ -10,7 +10,6 @@ abstract class SignUpUseCases {
     required SignUpReqEntity signUpReq,
   });
 }
-
 /// تنفيذ الـ UseCases
 @LazySingleton(as: SignUpUseCases)
 class SignUpUseCasesImpl implements SignUpUseCases {

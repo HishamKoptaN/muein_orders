@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:storage_utils/storage_utils.dart';
 
 import '../app.dart';
 import '../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../features/auth/forgot_password/present/views/forgot_password_view.dart';
-import '../features/auth/forgot_password/present/views/reset_password_view.dart';
 import '../features/auth/main/present/view/main_view.dart';
 import '../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../features/home/home_view.dart';
@@ -14,8 +12,8 @@ import '../features/notifications/notifications_view.dart';
 import '../features/onboarding/present/pages/onboarding_view.dart';
 import '../features/orders/present/views/orders_view.dart';
 import '../features/splash/start_view.dart';
-import 'database/cache/shared_pref_keys.dart';
-import 'di/dependency_injection.dart';
+import 'database/shared_pref_helper.dart';
+import 'database/shared_pref_keys.dart';
 import 'security/security_manager.dart';
 
 /// Creates a GoRoute with the given widget
@@ -34,7 +32,7 @@ GoRoute _createRoute<T extends Widget>({
 
 // Route names constants for better maintainability
 final GoRouter router = GoRouter(
-  initialLocation: "/${SignInView.routeName}",
+  initialLocation: '/${SignInView.routeName}',
   navigatorKey: GlobalVariable.navState,
   redirect: _handleRedirect,
   errorBuilder: (context, state) => const ErrorPage(),
@@ -64,10 +62,6 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const ForgotPasswordView(),
     ),
     _createRoute(
-      routeName: ResetPasswordView.routeName,
-      builder: (context, state) => const ResetPasswordView(),
-    ),
-    _createRoute(
       routeName: OnboardingView.routeName,
       builder: (context, state) => const OnboardingView(),
     ),
@@ -92,7 +86,9 @@ final GoRouter router = GoRouter(
 
 // Route protection logic
 Future<String?> _handleRedirect(
-    BuildContext context, GoRouterState state) async {
+  BuildContext context,
+  GoRouterState state,
+) async {
   final isAuthenticated = await _checkAuthentication();
   final currentPath = state.uri.path; // e.g. '/sign-up'
   final currentName = currentPath.startsWith('/')
@@ -113,7 +109,6 @@ Future<String?> _handleRedirect(
     OnboardingView.routeName,
     SignInView.routeName,
     ForgotPasswordView.routeName,
-    ResetPasswordView.routeName,
   };
 
   // If user is not authenticated and trying to access a protected route
@@ -123,9 +118,9 @@ Future<String?> _handleRedirect(
 
   // If user is authenticated
   if (isAuthenticated) {
-    final prefs = getIt<PrefsStorageService>();
-    final onboardingShown =
-        await prefs.getBool(SharedPrefKeys.onboardingShown) ?? false;
+    final onboardingShown = await SharedPrefHelper.getBool(
+      key: SharedPrefKeys.onboardingShown,
+    );
 
     // Redirect to onboarding if not shown yet
     if (!onboardingShown && currentName != OnboardingView.routeName) {
@@ -143,9 +138,6 @@ Future<String?> _handleRedirect(
 }
 
 Future<bool> _checkAuthentication() async {
-  final prefs = getIt<PrefsStorageService>();
-  final remember = await prefs.getBool(SharedPrefKeys.isLoged) ?? false;
-  if (!remember) return false;
   return await SecurityManager.isAuthenticated();
 }
 
@@ -160,18 +152,18 @@ class ErrorPage extends StatelessWidget {
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.error_outline, size: 64, color: Colors.red),
-            const SizedBox(height: 16),
-            const Text(
+            Icon(Icons.error_outline, size: 64, color: Colors.red),
+            SizedBox(height: 16),
+            Text(
               'الصفحة غير موجودة',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 8),
-            const Text('يرجى التحقق من الرابط والمحاولة مرة أخرى'),
+            SizedBox(height: 8),
+            Text('يرجى التحقق من الرابط والمحاولة مرة أخرى'),
           ],
         ),
       ),
@@ -182,7 +174,7 @@ class ErrorPage extends StatelessWidget {
 class SignUpPlaceholderPage extends StatelessWidget {
   const SignUpPlaceholderPage({super.key});
 
-  static const String routeName = "sign-up-placeholder";
+  static const String routeName = 'sign-up-placeholder';
 
   @override
   Widget build(BuildContext context) {

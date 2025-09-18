@@ -11,4 +11,5 @@ class SharedPrefKeys {
   static const String favCoupons = 'favoriteCoupons';
   static const String favStores = 'favsStores';
   static const String userTopic = 'userTopic';
+  static const String rememberMe = 'rememberMe';
 }

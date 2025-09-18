@@ -1,11 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
-import 'dependency_injection.config.dart';
+import 'dependency_injection.config.dart'; // لازم يتولد
 
 final getIt = GetIt.instance;
 
-/// Configure all dependencies using injectable + get_it
 @InjectableInit(
   initializerName: r'$initGetIt',
   preferRelativeImports: true,
@@ -14,6 +13,7 @@ final getIt = GetIt.instance;
 Future<void> configureDependencies({
   String environment = Environment.prod,
 }) async {
+  // ✅ PrefsStorageService
   $initGetIt(
     getIt,
     environment: environment,

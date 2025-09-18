@@ -31,7 +31,6 @@ dependencies:
   flutter_bloc: ^9.0.0
   hydrated_bloc: ^10.0.0
   equatable: ^2.0.5
-  dartz: ^0.10.1
   formz: ^0.8.0
 
   # UI
@@ -97,10 +96,11 @@ dependencies:
     git:
       url: https://github.com/HishamKoptaN/form_inputs.git
       ref: main
-  storage_utils:
-    git:
-      url: https://github.com/HishamKoptaN/storage_utils.git
-      ref: main
+  # storage_utils:
+  #   git:
+  #     url: https://github.com/HishamKoptaN/storage_utils.git
+  #     ref: main
+  shared_preferences: ^2.5.3
 dependency_overrides:
   form_inputs:
     path: G:/packages/form_inputs

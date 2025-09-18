@@ -9,11 +9,11 @@ part of 'sign_in_req_body_model.dart';
 _$SignInReqBodyModelImpl _$$SignInReqBodyModelImplFromJson(
         Map<String, dynamic> json) =>
     _$SignInReqBodyModelImpl(
-      token: json['token'] as String,
+      idToken: json['id_token'] as String,
     );
 
 Map<String, dynamic> _$$SignInReqBodyModelImplToJson(
         _$SignInReqBodyModelImpl instance) =>
     <String, dynamic>{
-      'token': instance.token,
+      'id_token': instance.idToken,
     };

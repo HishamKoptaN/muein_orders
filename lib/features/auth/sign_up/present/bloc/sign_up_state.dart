@@ -1,10 +1,4 @@
-import 'package:form_inputs/form_inputs.dart';
-import 'package:formz/formz.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../../core/error/api_error_model.dart';
-
-part 'sign_up_state.freezed.dart';
+part of 'sign_up_bloc.dart';
 
 @freezed
 class SignUpState with _$SignUpState {
@@ -14,12 +8,12 @@ class SignUpState with _$SignUpState {
   const factory SignUpState.success() = _Success;
   const factory SignUpState.loaded({
     required GenericFormzInput name,
-    required GenericFormzInput lastName,
     required EmailInput email,
     required PhoneNumberInput phone,
-    required GenericFormzInput countrtyId,
+    required GenericFormzInput countryId,
     required PasswordInput password,
     required ConfirmPasswordInput confirmPassword,
+    required GenericFormzInput obscurePassword,
     required FormzSubmissionStatus formzSubmissionStatus,
     required bool loading,
   }) = _Loaded;

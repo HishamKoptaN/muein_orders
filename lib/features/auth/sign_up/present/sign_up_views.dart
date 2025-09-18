@@ -1,12 +1,16 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_inputs/form_inputs.dart';
+
+import '../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../l10n/app_localizations.dart';
+import 'bloc/sign_up_bloc.dart';
 
 class SignUpView extends StatelessWidget {
-  static const String routeName = "SignUpView";
-
+  static const String routeName = 'SignUpView';
   const SignUpView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +28,7 @@ class SignUpView extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                // الخلفيات والزخارف
                 _BackgroundDecorations(),
-                // محتوى الصفحة
                 _SignUpContent(),
               ],
             ),
@@ -100,11 +102,9 @@ class _BackgroundDecorations extends StatelessWidget {
 class _SignUpContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     return Column(
       children: [
-        // Status Bar
-        const SizedBox(height: 0),
-        _StatusBar(),
         // شعار
         const SizedBox(height: 12),
         Container(
@@ -121,121 +121,153 @@ class _SignUpContent extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22),
-            child: ListView(
-              children: [
-                _buildInputField('الاسم الاول'),
-                const SizedBox(height: 16),
-                _buildInputField('الاسم الاخير'),
-                const SizedBox(height: 16),
-                _buildInputField('البريد الإلكتروني'),
-                const SizedBox(height: 16),
-                _buildInputField('رقم الهاتف'),
-                const SizedBox(height: 16),
-                _buildInputField('الدولة'),
-                const SizedBox(height: 16),
-                _buildInputField('كلمة المرور', isPassword: true),
-                const SizedBox(height: 16),
-                _buildInputField('تأكيد كلمة المرور', isPassword: true),
-                const SizedBox(height: 32),
-                SizedBox(
-                  width: double.infinity,
-                  height: 60,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF83BEA8),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      'إنشاء حساب',
-                      style: TextStyle(
-                        fontFamily: 'Almarai',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24),
-              ],
+            child: BlocBuilder<SignUpBloc, SignUpState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loaded: (
+                    name,
+                    email,
+                    phone,
+                    countryId,
+                    password,
+                    confirmPassword,
+                    obscurePassword,
+                    formzSubmissionStatus,
+                    loading,
+                  ) {
+                    return ListView(
+                      children: [
+                        // Email
+                        CustomTextFormField(
+                          initialValue: email.value,
+                          hintText: t.emailHint,
+                          prefixIcon: const Icon(Icons.email_outlined),
+                          keyboardType: TextInputType.emailAddress,
+                          onChanged: (value) => context.read<SignUpBloc>().add(
+                                SignUpEvent.dataChanged(
+                                  email: EmailInput.dirty(
+                                    value,
+                                  ),
+                                ),
+                              ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Name
+                        CustomTextFormField(
+                          initialValue: name.value,
+                          hintText: t.firstName,
+                          onChanged: (value) => context.read<SignUpBloc>().add(
+                                SignUpEvent.dataChanged(
+                                  name: GenericFormzInput.dirty(value),
+                                ),
+                              ),
+                        ),
+                        const SizedBox(height: 16),
+                        const SizedBox(height: 16),
+
+                        // Phone
+                        CustomTextFormField(
+                          initialValue: phone.value,
+                          hintText: t.phoneNumber,
+                          keyboardType: TextInputType.phone,
+                          onChanged: (value) => context.read<SignUpBloc>().add(
+                                SignUpEvent.dataChanged(
+                                  phone: PhoneNumberInput.dirty(value),
+                                ),
+                              ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Country
+                        CustomTextFormField(
+                          initialValue: countryId.value,
+                          hintText: t.country,
+                          onChanged: (value) => context.read<SignUpBloc>().add(
+                                SignUpEvent.dataChanged(
+                                  countryId: GenericFormzInput.dirty(value),
+                                ),
+                              ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Password
+                        CustomTextFormField(
+                          initialValue: password.value,
+                          hintText: t.password,
+                          prefixIcon: const Icon(Icons.lock_outline),
+                          isPassword: true,
+                          obscureText: obscurePassword.value ?? true,
+                          showPasswordToggle: true,
+                          onToggleObscure: () => context.read<SignUpBloc>().add(
+                                SignUpEvent.dataChanged(
+                                  obscurePassword: GenericFormzInput.dirty(
+                                    !obscurePassword.value,
+                                  ),
+                                ),
+                              ),
+                          onChanged: (v) => context.read<SignUpBloc>().add(
+                                SignUpEvent.dataChanged(
+                                  password: PasswordInput.dirty(v),
+                                ),
+                              ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // Confirm Password
+                        CustomTextFormField(
+                          initialValue: confirmPassword.value,
+                          hintText: t.confirmPassword,
+                          isPassword: true,
+                          onChanged: (v) => context.read<SignUpBloc>().add(
+                                SignUpEvent.dataChanged(
+                                  confirmPassword: ConfirmPasswordInput.dirty(
+                                    password: v,
+                                  ),
+                                ),
+                              ),
+                        ),
+                        const SizedBox(height: 32),
+
+                        // Submit Button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 60,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF83BEA8),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                            ),
+                            onPressed: () {
+                              context
+                                  .read<SignUpBloc>()
+                                  .add(const SignUpEvent.signUp());
+                            },
+                            child: const Text(
+                              'إنشاء حساب',
+                              style: TextStyle(
+                                fontFamily: 'Almarai',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                      ],
+                    );
+                  },
+                  orElse: () =>
+                      const Center(child: CircularProgressIndicator()),
+                );
+              },
             ),
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildInputField(String label, {bool isPassword = false}) {
-    return Container(
-      height: 60,
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.19),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      alignment: Alignment.centerRight,
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: TextField(
-        obscureText: isPassword,
-        textAlign: TextAlign.right,
-        style: const TextStyle(
-          fontFamily: 'Almarai',
-          fontSize: 16,
-          color: Color.fromRGBO(255, 255, 255, 0.57),
-        ),
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: label,
-          hintStyle: const TextStyle(
-            fontFamily: 'Almarai',
-            fontSize: 16,
-            color: Color.fromRGBO(255, 255, 255, 0.57),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _StatusBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 375,
-      height: 44,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // الوقت
-          Container(
-            width: 54,
-            height: 21,
-            alignment: Alignment.center,
-            child: const Text(
-              '9:41',
-              style: TextStyle(
-                fontFamily: 'SF UI Text',
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
-                color: Colors.white,
-                letterSpacing: -0.5,
-              ),
-            ),
-          ),
-          // أيقونات البطارية والشبكة (شكل مبسط)
-          Row(
-            children: [
-              Icon(Icons.signal_cellular_alt, color: Colors.white, size: 18),
-              const SizedBox(width: 4),
-              Icon(Icons.wifi, color: Colors.white, size: 18),
-              const SizedBox(width: 4),
-              Icon(Icons.battery_full, color: Colors.white, size: 18),
-            ],
-          ),
-        ],
-      ),
     );
   }
 }

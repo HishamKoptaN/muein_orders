@@ -1,18 +1,17 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-part 'sign_up_event.freezed.dart';
+part of 'sign_up_bloc.dart';
 
 @freezed
 class SignUpEvent with _$SignUpEvent {
-  const factory SignUpEvent.updateData({
-    String? firstName,
-    String? lastName,
-    String? email,
-    String? phone,
-    int? countryId,
-    String? country,
-    String? password,
-    String? confirmPassword,
-  }) = _UpdateData;
+  const factory SignUpEvent.dataChanged({
+    GenericFormzInput? name,
+    EmailInput? email,
+    PhoneNumberInput? phone,
+    GenericFormzInput? countryId,
+    PasswordInput? password,
+    ConfirmPasswordInput? confirmPassword,
+    GenericFormzInput? obscurePassword,
+    FormzSubmissionStatus? formzSubmissionStatus,
+  }) = _DataChanged;
   const factory SignUpEvent.signUp() = _SignUp;
   const factory SignUpEvent.getSettings() = _GetCountries;
 }

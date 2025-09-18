@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart' show injectable, factoryMethod;
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../../core/networking/api_constants.dart';
@@ -9,7 +10,9 @@ part 'orders_api.g.dart';
 @RestApi(
   baseUrl: ApiConstants.apiBaseUrl,
 )
+@injectable
 abstract class OrdersApi {
+  @factoryMethod
   factory OrdersApi(
     Dio dio, {
     String? baseUrl,
@@ -26,7 +29,7 @@ abstract class OrdersApi {
   @POST(
     ApiConstants.orders,
   )
-  Future<Order?> updateClientField({
+  Future<Order> updateClientField({
     required int clientId,
     required bool isQuranPhotographed,
   });

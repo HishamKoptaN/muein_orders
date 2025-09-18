@@ -20,20 +20,21 @@ SignInReqBodyModel _$SignInReqBodyModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignInReqBodyModel {
-  String get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id_token')
+  String get idToken => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String token) $default,
+    TResult Function(@JsonKey(name: 'id_token') String idToken) $default,
   ) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String token)? $default,
+    TResult? Function(@JsonKey(name: 'id_token') String idToken)? $default,
   ) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String token)? $default, {
+    TResult Function(@JsonKey(name: 'id_token') String idToken)? $default, {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,7 +71,7 @@ abstract class $SignInReqBodyModelCopyWith<$Res> {
           SignInReqBodyModel value, $Res Function(SignInReqBodyModel) then) =
       _$SignInReqBodyModelCopyWithImpl<$Res, SignInReqBodyModel>;
   @useResult
-  $Res call({String token});
+  $Res call({@JsonKey(name: 'id_token') String idToken});
 }
 
 /// @nodoc
@@ -88,12 +89,12 @@ class _$SignInReqBodyModelCopyWithImpl<$Res, $Val extends SignInReqBodyModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
+    Object? idToken = null,
   }) {
     return _then(_value.copyWith(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      idToken: null == idToken
+          ? _value.idToken
+          : idToken // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -107,7 +108,7 @@ abstract class _$$SignInReqBodyModelImplCopyWith<$Res>
       __$$SignInReqBodyModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token});
+  $Res call({@JsonKey(name: 'id_token') String idToken});
 }
 
 /// @nodoc
@@ -123,12 +124,12 @@ class __$$SignInReqBodyModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
+    Object? idToken = null,
   }) {
     return _then(_$SignInReqBodyModelImpl(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      idToken: null == idToken
+          ? _value.idToken
+          : idToken // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -137,17 +138,19 @@ class __$$SignInReqBodyModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignInReqBodyModelImpl implements _SignInReqBodyModel {
-  const _$SignInReqBodyModelImpl({required this.token});
+  const _$SignInReqBodyModelImpl(
+      {@JsonKey(name: 'id_token') required this.idToken});
 
   factory _$SignInReqBodyModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignInReqBodyModelImplFromJson(json);
 
   @override
-  final String token;
+  @JsonKey(name: 'id_token')
+  final String idToken;
 
   @override
   String toString() {
-    return 'SignInReqBodyModel(token: $token)';
+    return 'SignInReqBodyModel(idToken: $idToken)';
   }
 
   @override
@@ -155,12 +158,12 @@ class _$SignInReqBodyModelImpl implements _SignInReqBodyModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignInReqBodyModelImpl &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.idToken, idToken) || other.idToken == idToken));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, token);
+  int get hashCode => Object.hash(runtimeType, idToken);
 
   /// Create a copy of SignInReqBodyModel
   /// with the given fields replaced by the non-null parameter values.
@@ -174,27 +177,27 @@ class _$SignInReqBodyModelImpl implements _SignInReqBodyModel {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String token) $default,
+    TResult Function(@JsonKey(name: 'id_token') String idToken) $default,
   ) {
-    return $default(token);
+    return $default(idToken);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String token)? $default,
+    TResult? Function(@JsonKey(name: 'id_token') String idToken)? $default,
   ) {
-    return $default?.call(token);
+    return $default?.call(idToken);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String token)? $default, {
+    TResult Function(@JsonKey(name: 'id_token') String idToken)? $default, {
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(token);
+      return $default(idToken);
     }
     return orElse();
   }
@@ -236,14 +239,16 @@ class _$SignInReqBodyModelImpl implements _SignInReqBodyModel {
 }
 
 abstract class _SignInReqBodyModel implements SignInReqBodyModel {
-  const factory _SignInReqBodyModel({required final String token}) =
+  const factory _SignInReqBodyModel(
+          {@JsonKey(name: 'id_token') required final String idToken}) =
       _$SignInReqBodyModelImpl;
 
   factory _SignInReqBodyModel.fromJson(Map<String, dynamic> json) =
       _$SignInReqBodyModelImpl.fromJson;
 
   @override
-  String get token;
+  @JsonKey(name: 'id_token')
+  String get idToken;
 
   /// Create a copy of SignInReqBodyModel
   /// with the given fields replaced by the non-null parameter values.

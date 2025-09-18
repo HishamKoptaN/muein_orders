@@ -111,6 +111,12 @@ abstract class AppLocalizations {
   /// **'Sign Up'**
   String get signUp;
 
+  /// No description provided for @passwordResetEmailSentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email has been sent to {email}'**
+  String passwordResetEmailSentTo(Object email);
+
   /// No description provided for @signUpTitle.
   ///
   /// In en, this message translates to:
@@ -789,6 +795,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Documentation with photos and videos'**
   String get documentation_with_photos_and_videos;
+
+  /// No description provided for @enterYourEmailToResetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address to receive a password reset link'**
+  String get enterYourEmailToResetPassword;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get send;
 }
 
 class _AppLocalizationsDelegate

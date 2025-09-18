@@ -18,10 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignInEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    required TResult Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)
         dataChanged,
     required TResult Function() signInWithCredentialsPressed,
@@ -30,10 +27,7 @@ mixin _$SignInEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    TResult? Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult? Function()? signInWithCredentialsPressed,
@@ -42,10 +36,7 @@ mixin _$SignInEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    TResult Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult Function()? signInWithCredentialsPressed,
@@ -110,7 +101,6 @@ abstract class _$$DataChangedImplCopyWith<$Res> {
   $Res call(
       {EmailInput? email,
       PasswordInput? password,
-      GenericFormzInput<dynamic>? rememberMe,
       GenericFormzInput<dynamic>? obscurePassword});
 }
 
@@ -129,7 +119,6 @@ class __$$DataChangedImplCopyWithImpl<$Res>
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
-    Object? rememberMe = freezed,
     Object? obscurePassword = freezed,
   }) {
     return _then(_$DataChangedImpl(
@@ -141,10 +130,6 @@ class __$$DataChangedImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput?,
-      rememberMe: freezed == rememberMe
-          ? _value.rememberMe
-          : rememberMe // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>?,
       obscurePassword: freezed == obscurePassword
           ? _value.obscurePassword
           : obscurePassword // ignore: cast_nullable_to_non_nullable
@@ -156,21 +141,18 @@ class __$$DataChangedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DataChangedImpl implements _DataChanged {
-  const _$DataChangedImpl(
-      {this.email, this.password, this.rememberMe, this.obscurePassword});
+  const _$DataChangedImpl({this.email, this.password, this.obscurePassword});
 
   @override
   final EmailInput? email;
   @override
   final PasswordInput? password;
   @override
-  final GenericFormzInput<dynamic>? rememberMe;
-  @override
   final GenericFormzInput<dynamic>? obscurePassword;
 
   @override
   String toString() {
-    return 'SignInEvent.dataChanged(email: $email, password: $password, rememberMe: $rememberMe, obscurePassword: $obscurePassword)';
+    return 'SignInEvent.dataChanged(email: $email, password: $password, obscurePassword: $obscurePassword)';
   }
 
   @override
@@ -181,15 +163,13 @@ class _$DataChangedImpl implements _DataChanged {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.rememberMe, rememberMe) ||
-                other.rememberMe == rememberMe) &&
             (identical(other.obscurePassword, obscurePassword) ||
                 other.obscurePassword == obscurePassword));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, email, password, rememberMe, obscurePassword);
+      Object.hash(runtimeType, email, password, obscurePassword);
 
   /// Create a copy of SignInEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -202,40 +182,31 @@ class _$DataChangedImpl implements _DataChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    required TResult Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)
         dataChanged,
     required TResult Function() signInWithCredentialsPressed,
     required TResult Function() signedOut,
   }) {
-    return dataChanged(email, password, rememberMe, obscurePassword);
+    return dataChanged(email, password, obscurePassword);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    TResult? Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult? Function()? signInWithCredentialsPressed,
     TResult? Function()? signedOut,
   }) {
-    return dataChanged?.call(email, password, rememberMe, obscurePassword);
+    return dataChanged?.call(email, password, obscurePassword);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    TResult Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult Function()? signInWithCredentialsPressed,
@@ -243,7 +214,7 @@ class _$DataChangedImpl implements _DataChanged {
     required TResult orElse(),
   }) {
     if (dataChanged != null) {
-      return dataChanged(email, password, rememberMe, obscurePassword);
+      return dataChanged(email, password, obscurePassword);
     }
     return orElse();
   }
@@ -290,12 +261,10 @@ abstract class _DataChanged implements SignInEvent {
   const factory _DataChanged(
       {final EmailInput? email,
       final PasswordInput? password,
-      final GenericFormzInput<dynamic>? rememberMe,
       final GenericFormzInput<dynamic>? obscurePassword}) = _$DataChangedImpl;
 
   EmailInput? get email;
   PasswordInput? get password;
-  GenericFormzInput<dynamic>? get rememberMe;
   GenericFormzInput<dynamic>? get obscurePassword;
 
   /// Create a copy of SignInEvent
@@ -350,10 +319,7 @@ class _$SignInWithCredentialsPressedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    required TResult Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)
         dataChanged,
     required TResult Function() signInWithCredentialsPressed,
@@ -365,10 +331,7 @@ class _$SignInWithCredentialsPressedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    TResult? Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult? Function()? signInWithCredentialsPressed,
@@ -380,10 +343,7 @@ class _$SignInWithCredentialsPressedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    TResult Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult Function()? signInWithCredentialsPressed,
@@ -480,10 +440,7 @@ class _$SignedOutImpl implements _SignedOut {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    required TResult Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)
         dataChanged,
     required TResult Function() signInWithCredentialsPressed,
@@ -495,10 +452,7 @@ class _$SignedOutImpl implements _SignedOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    TResult? Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult? Function()? signInWithCredentialsPressed,
@@ -510,10 +464,7 @@ class _$SignedOutImpl implements _SignedOut {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            EmailInput? email,
-            PasswordInput? password,
-            GenericFormzInput<dynamic>? rememberMe,
+    TResult Function(EmailInput? email, PasswordInput? password,
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult Function()? signInWithCredentialsPressed,
@@ -577,7 +528,6 @@ mixin _$SignInState {
     required TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
@@ -593,7 +543,6 @@ mixin _$SignInState {
     TResult? Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -609,7 +558,6 @@ mixin _$SignInState {
     TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -719,7 +667,6 @@ class _$InitialImpl implements _Initial {
     required TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
@@ -738,7 +685,6 @@ class _$InitialImpl implements _Initial {
     TResult? Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -757,7 +703,6 @@ class _$InitialImpl implements _Initial {
     TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -866,7 +811,6 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
@@ -885,7 +829,6 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -904,7 +847,6 @@ class _$LoadingImpl implements _Loading {
     TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -976,7 +918,6 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   $Res call(
       {EmailInput email,
       PasswordInput password,
-      GenericFormzInput<dynamic> rememberMe,
       GenericFormzInput<dynamic> obscurePassword,
       FormzSubmissionStatus formzSubmissionStatus});
 }
@@ -996,7 +937,6 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? rememberMe = null,
     Object? obscurePassword = null,
     Object? formzSubmissionStatus = null,
   }) {
@@ -1009,10 +949,6 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as PasswordInput,
-      rememberMe: null == rememberMe
-          ? _value.rememberMe
-          : rememberMe // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>,
       obscurePassword: null == obscurePassword
           ? _value.obscurePassword
           : obscurePassword // ignore: cast_nullable_to_non_nullable
@@ -1031,7 +967,6 @@ class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
       {required this.email,
       required this.password,
-      required this.rememberMe,
       required this.obscurePassword,
       required this.formzSubmissionStatus});
 
@@ -1040,15 +975,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   final PasswordInput password;
   @override
-  final GenericFormzInput<dynamic> rememberMe;
-  @override
   final GenericFormzInput<dynamic> obscurePassword;
   @override
   final FormzSubmissionStatus formzSubmissionStatus;
 
   @override
   String toString() {
-    return 'SignInState.loaded(email: $email, password: $password, rememberMe: $rememberMe, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+    return 'SignInState.loaded(email: $email, password: $password, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
   }
 
   @override
@@ -1059,8 +992,6 @@ class _$LoadedImpl implements _Loaded {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.rememberMe, rememberMe) ||
-                other.rememberMe == rememberMe) &&
             (identical(other.obscurePassword, obscurePassword) ||
                 other.obscurePassword == obscurePassword) &&
             (identical(other.formzSubmissionStatus, formzSubmissionStatus) ||
@@ -1068,8 +999,8 @@ class _$LoadedImpl implements _Loaded {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, rememberMe,
-      obscurePassword, formzSubmissionStatus);
+  int get hashCode => Object.hash(
+      runtimeType, email, password, obscurePassword, formzSubmissionStatus);
 
   /// Create a copy of SignInState
   /// with the given fields replaced by the non-null parameter values.
@@ -1087,7 +1018,6 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
@@ -1095,8 +1025,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(String errorMessage) failure,
     required TResult Function() unauthenticated,
   }) {
-    return loaded(
-        email, password, rememberMe, obscurePassword, formzSubmissionStatus);
+    return loaded(email, password, obscurePassword, formzSubmissionStatus);
   }
 
   @override
@@ -1107,7 +1036,6 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -1116,7 +1044,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? unauthenticated,
   }) {
     return loaded?.call(
-        email, password, rememberMe, obscurePassword, formzSubmissionStatus);
+        email, password, obscurePassword, formzSubmissionStatus);
   }
 
   @override
@@ -1127,7 +1055,6 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -1137,8 +1064,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(
-          email, password, rememberMe, obscurePassword, formzSubmissionStatus);
+      return loaded(email, password, obscurePassword, formzSubmissionStatus);
     }
     return orElse();
   }
@@ -1191,14 +1117,12 @@ abstract class _Loaded implements SignInState {
   const factory _Loaded(
           {required final EmailInput email,
           required final PasswordInput password,
-          required final GenericFormzInput<dynamic> rememberMe,
           required final GenericFormzInput<dynamic> obscurePassword,
           required final FormzSubmissionStatus formzSubmissionStatus}) =
       _$LoadedImpl;
 
   EmailInput get email;
   PasswordInput get password;
-  GenericFormzInput<dynamic> get rememberMe;
   GenericFormzInput<dynamic> get obscurePassword;
   FormzSubmissionStatus get formzSubmissionStatus;
 
@@ -1255,7 +1179,6 @@ class _$SuccessImpl implements _Success {
     required TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
@@ -1274,7 +1197,6 @@ class _$SuccessImpl implements _Success {
     TResult? Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -1293,7 +1215,6 @@ class _$SuccessImpl implements _Success {
     TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -1431,7 +1352,6 @@ class _$FailureImpl implements _Failure {
     required TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
@@ -1450,7 +1370,6 @@ class _$FailureImpl implements _Failure {
     TResult? Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -1469,7 +1388,6 @@ class _$FailureImpl implements _Failure {
     TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -1586,7 +1504,6 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
     required TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
@@ -1605,7 +1522,6 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
     TResult? Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
@@ -1624,7 +1540,6 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
     TResult Function(
             EmailInput email,
             PasswordInput password,
-            GenericFormzInput<dynamic> rememberMe,
             GenericFormzInput<dynamic> obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,

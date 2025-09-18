@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/widgets/custom_circular_progress.dart';
+import '../../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../bloc/forgot_pass_bloc.dart';
 
 class ForgotPasswordView extends StatefulWidget {
@@ -23,102 +26,120 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   }
 
   @override
-  Widget build(BuildContext context) => Directionality(
-        textDirection: TextDirection.rtl,
-        child: Scaffold(
-          appBar: AppBar(title: const Text('هل نسيت كلمة المرور؟')),
-          body: BlocProvider(
-            create: (_) => getIt<ForgotPasswordBloc>(),
-            child: BlocConsumer<ForgotPasswordBloc, ForgotPassState>(
-              listener: (context, state) {
-                state.whenOrNull(
-                  success: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content:
-                            Text('تم إرسال التعليمات إلى بريدك الإلكتروني'),
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(title: Text(t.forgotPassword)),
+        body: BlocProvider(
+          create: (_) => getIt<ForgotPasswordBloc>(),
+          child: BlocConsumer<ForgotPasswordBloc, ForgotPassState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                success: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        t.passwordResetEmailSentTo(_emailController.text),
                       ),
-                    );
-                    Navigator.of(context).pop();
-                  },
-                  failure: (error) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(error)),
-                    );
-                  },
-                );
-              },
-              builder: (context, state) {
-                state.whenOrNull(
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-                return Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(height: 24),
-                        const Text(
-                          'أدخل بريدك الإلكتروني لإرسال رابط استعادة كلمة المرور',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        const SizedBox(height: 16),
-                        TextFormField(
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                            labelText: 'البريد الإلكتروني',
-                            border: OutlineInputBorder(),
-                          ),
-                          validator: (val) {
-                            if (val == null || val.isEmpty) {
-                              return 'الرجاء إدخال البريد الإلكتروني';
-                            }
-                            if (!val.contains('@')) {
-                              return 'بريد إلكتروني غير صالح';
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(height: 24),
-                        SizedBox(
-                          height: 48,
-                          child: ElevatedButton(
-                            onPressed: state is ForgotPassLoading
-                                ? null
-                                : () {
-                                    if (_formKey.currentState?.validate() ??
-                                        false) {
-                                      final email =
-                                          _emailController.text.trim();
-                                      context.read<ForgotPasswordBloc>().add(
-                                            ForgotPassEvent.sendPassResetEmail(
-                                                email: email),
-                                          );
-                                    }
-                                  },
-                            child: state is ForgotPassLoading
-                                ? const SizedBox(
-                                    width: 22,
-                                    height: 22,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                    ),
-                                  )
-                                : const Text('إرسال'),
-                          ),
-                        ),
-                      ],
                     ),
+                  );
+                  Navigator.of(context).pop();
+                },
+                failure: (error) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(error)),
+                  );
+                },
+              );
+            },
+            builder: (context, state) {
+              state.whenOrNull(
+                loading: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+              return Padding(
+                padding: const EdgeInsets.all(16),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(height: 24),
+                      Text(
+                        t.emailHint,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      const SizedBox(height: 16),
+                      CustomTextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        labelText: t.emailHint,
+                        validator: (val) {
+                          if (val == null || val.isEmpty) {
+                            return t.required;
+                          }
+                          if (!val.contains('@')) {
+                            return t.invalidEmail;
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 24),
+                      SizedBox(
+                        width: 332,
+                        height: 60,
+                        child: ElevatedButton(
+                          onPressed: state is ForgotPassSuccess
+                              ? () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    final email = _emailController.text.trim();
+                                    context.read<ForgotPasswordBloc>().add(
+                                          ForgotPassEvent.sendPassResetEmail(
+                                            email: email,
+                                          ),
+                                        );
+                                  }
+                                }
+                              : null,
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.resolveWith(
+                              (states) => const Color(0xFF83BEA8),
+                            ),
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                            ),
+                            elevation: WidgetStateProperty.all(0),
+                          ),
+                          child: state is ForgotPassLoading
+                              ? const CustomCircularProgress()
+                              : Text(
+                                  t.follow,
+                                  style: TextStyle(
+                                    fontFamily: 'Almarai',
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w700,
+                                    color: _formKey.currentState?.validate() ??
+                                            false
+                                        ? Colors.white
+                                        : Colors.grey,
+                                  ),
+                                ),
+                        ),
+                      ),
+                    ],
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
-      );
+      ),
+    );
+  }
 }

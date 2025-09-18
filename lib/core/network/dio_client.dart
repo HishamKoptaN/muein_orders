@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
+import '../database/shared_pref_helper.dart';
+import '../database/shared_pref_keys.dart';
 import '../networking/api_constants.dart';
 
 @singleton
@@ -26,10 +28,12 @@ class DioClient {
       InterceptorsWrapper(
         onRequest: (options, handler) async {
           // Add authentication token if available
-          // final token = await getIt<SecureStorageService>().getAuthToken();
-          // if (token != null) {
-          //   options.headers['Authorization'] = 'Bearer $token';
-          // }
+          final token = await SharedPrefHelper.getSecuredString(
+            key: SharedPrefKeys.userToken,
+          );
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
           return handler.next(options);
         },
         onError: (error, handler) async {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:formz/formz.dart';
+
 import '../../../../../../core/extensions/app_localizations_extension.dart';
+import '../../../../../../core/navigation/app_router.dart';
 import '../../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../sign_up/present/sign_up_views.dart';
@@ -10,12 +12,9 @@ import '../../bloc/sign_in_bloc.dart';
 class SignInActions extends StatelessWidget {
   const SignInActions({
     super.key,
-    required this.isLoading,
-    required this.isValid,
+    required this.formzSubmissionStatus,
   });
-
-  final bool isLoading;
-  final bool isValid;
+  final FormzSubmissionStatus formzSubmissionStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +26,10 @@ class SignInActions extends StatelessWidget {
             width: 332,
             height: 60,
             child: ElevatedButton(
-              onPressed: !isLoading && isValid
+              onPressed: formzSubmissionStatus.isSuccess
                   ? () => context.read<SignInBloc>().add(
-                      const SignInEvent.signInWithCredentialsPressed(),
-                    )
+                        const SignInEvent.signInWithCredentialsPressed(),
+                      )
                   : null,
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.resolveWith(
@@ -43,15 +42,17 @@ class SignInActions extends StatelessWidget {
                 ),
                 elevation: WidgetStateProperty.all(0),
               ),
-              child: isLoading
+              child: formzSubmissionStatus.isInProgress
                   ? const CustomCircularProgress()
                   : Text(
                       t.login,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Almarai',
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                        color: formzSubmissionStatus.isSuccess
+                            ? Colors.white
+                            : Colors.grey,
                       ),
                     ),
             ),
@@ -69,7 +70,12 @@ class SignInActions extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () => context.go(SignUpView.routeName),
+                onPressed: () {
+                  AppRouter.navigateAndRemoveUntil(
+                    context: context,
+                    routeName: SignUpView.routeName,
+                  );
+                },
                 child: Text(
                   t.signUp,
                   style: const TextStyle(

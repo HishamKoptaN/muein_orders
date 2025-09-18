@@ -12,6 +12,11 @@ class AppLocalizationsLg extends AppLocalizations {
   String get signUp => 'Wandikise';
 
   @override
+  String passwordResetEmailSentTo(Object email) {
+    return 'Password reset email has been sent to $email';
+  }
+
+  @override
   String get signUpTitle => 'Funa akawunti empya';
 
   @override
@@ -356,6 +361,13 @@ class AppLocalizationsLg extends AppLocalizations {
   @override
   String get documentation_with_photos_and_videos =>
       'Okukubiriza ku ngeri y\'okozesa ebitonotono n\'ebivvulu';
+
+  @override
+  String get enterYourEmailToResetPassword =>
+      'Enter your email address to receive a password reset link';
+
+  @override
+  String get send => 'Send';
 }
 
 /// The translations for Ganda Luganda, as used in Uganda (`lg_UG`).
@@ -714,4 +726,7 @@ class AppLocalizationsLgUg extends AppLocalizationsLg {
   @override
   String get documentation_with_photos_and_videos =>
       'Okukubiriza ku ngeri y\'okozesa ebitonotono n\'ebivvulu';
+
+  @override
+  String get send => 'Tuma';
 }

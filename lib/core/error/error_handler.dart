@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mubin_orders/l10n/app_localizations.dart';
+
+import 'firebase_errors.dart';
 
 class AppErrorHandler {
   static void handleError(dynamic error, StackTrace? stackTrace) {
@@ -22,9 +25,18 @@ class AppErrorHandler {
     // FirebaseCrashlytics.instance.recordError(error, stackTrace);
   }
   
+  /// Gets a user-friendly error message from any type of error
   static String getErrorMessage(dynamic error) {
     if (error is DioException) {
       return _handleDioError(error);
+    }
+    
+    if (error is FirebaseAuthException) {
+      return FirebaseErrorHandler.getAuthErrorMessage(error.code);
+    }
+    
+    if (error is String) {
+      return error;
     }
     
     if (error is Exception) {
@@ -73,19 +85,20 @@ class AppErrorHandler {
   }
   
   static String _handleGenericException(Exception error) {
-    final errorString = error.toString();
-    
-    if (errorString.contains('SocketException')) {
-      return 'لا يوجد اتصال بالإنترنت';
+    if (error is FormatException) {
+      return 'تنسيق البيانات غير صالح';
     }
     
-    if (errorString.contains('FormatException')) {
-      return 'خطأ في تنسيق البيانات';
+    if (error is TypeError) {
+      return 'خطأ في نوع البيانات';
     }
     
-    if (errorString.contains('TimeoutException')) {
-      return 'انتهت مهلة العملية';
+    if (error is NoSuchMethodError) {
+      return 'عملية غير مدعومة';
     }
+    
+    // Log the error for debugging
+    debugPrint('Unhandled error: $error');
     
     return 'حدث خطأ غير متوقع';
   }
