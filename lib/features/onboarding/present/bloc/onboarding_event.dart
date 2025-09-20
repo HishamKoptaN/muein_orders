@@ -1,24 +1,10 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
+part of 'onboarding_bloc.dart';
 
-@immutable
-abstract class OnboardingEvent extends Equatable {
-  const OnboardingEvent();
-
-  @override
-  List<Object> get props => [];
-}
-
-class CheckOnboardingStatus extends OnboardingEvent {
-  const CheckOnboardingStatus();
-
-  @override
-  List<Object> get props => [];
-}
-
-class CompleteOnboarding extends OnboardingEvent {
-  const CompleteOnboarding();
-
-  @override
-  List<Object> get props => [];
+@freezed
+class OnboardingEvent with _$OnboardingEvent {
+  const factory OnboardingEvent.checkOnboardingStatus() = CheckOnboardingStatus;
+  const factory OnboardingEvent.completeOnboarding() = CompleteOnboarding;
+  const factory OnboardingEvent.pageChanged(int index) = PageChanged;
+  const factory OnboardingEvent.nextPage() = NextPage;
+  const factory OnboardingEvent.skipOnboarding() = SkipOnboarding;
 }

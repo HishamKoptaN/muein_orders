@@ -16,51 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignUpReqEntity {
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  int? get countryId => throw _privateConstructorUsedError;
-  int? get cityId => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String firstName, String lastName, String phone,
-            String email, String password, int? countryId, int? cityId)
-        $default,
-  ) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String firstName, String lastName, String phone,
-            String email, String password, int? countryId, int? cityId)?
-        $default,
-  ) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String firstName, String lastName, String phone,
-            String email, String password, int? countryId, int? cityId)?
-        $default, {
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SignUpReqEntity value) $default,
-  ) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SignUpReqEntity value)? $default,
-  ) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SignUpReqEntity value)? $default, {
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
+  String? get fcmToken => throw _privateConstructorUsedError;
 
   /// Create a copy of SignUpReqEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -76,13 +36,11 @@ abstract class $SignUpReqEntityCopyWith<$Res> {
       _$SignUpReqEntityCopyWithImpl<$Res, SignUpReqEntity>;
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
+      {String name,
       String phone,
-      String email,
-      String password,
-      int? countryId,
-      int? cityId});
+      String? email,
+      String? password,
+      String? fcmToken});
 }
 
 /// @nodoc
@@ -100,43 +58,33 @@ class _$SignUpReqEntityCopyWithImpl<$Res, $Val extends SignUpReqEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? name = null,
     Object? phone = null,
-    Object? email = null,
-    Object? password = null,
-    Object? countryId = freezed,
-    Object? cityId = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? fcmToken = freezed,
   }) {
     return _then(_value.copyWith(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      countryId: freezed == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      cityId: freezed == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -150,13 +98,11 @@ abstract class _$$SignUpReqEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
+      {String name,
       String phone,
-      String email,
-      String password,
-      int? countryId,
-      int? cityId});
+      String? email,
+      String? password,
+      String? fcmToken});
 }
 
 /// @nodoc
@@ -172,43 +118,33 @@ class __$$SignUpReqEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? name = null,
     Object? phone = null,
-    Object? email = null,
-    Object? password = null,
-    Object? countryId = freezed,
-    Object? cityId = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
+    Object? fcmToken = freezed,
   }) {
     return _then(_$SignUpReqEntityImpl(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
+              as String?,
+      password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      countryId: freezed == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      cityId: freezed == cityId
-          ? _value.cityId
-          : cityId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
+      fcmToken: freezed == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -217,32 +153,26 @@ class __$$SignUpReqEntityImplCopyWithImpl<$Res>
 
 class _$SignUpReqEntityImpl implements _SignUpReqEntity {
   const _$SignUpReqEntityImpl(
-      {required this.firstName,
-      required this.lastName,
+      {required this.name,
       required this.phone,
-      required this.email,
-      required this.password,
-      this.countryId,
-      this.cityId});
+      this.email,
+      this.password,
+      this.fcmToken});
 
   @override
-  final String firstName;
-  @override
-  final String lastName;
+  final String name;
   @override
   final String phone;
   @override
-  final String email;
+  final String? email;
   @override
-  final String password;
+  final String? password;
   @override
-  final int? countryId;
-  @override
-  final int? cityId;
+  final String? fcmToken;
 
   @override
   String toString() {
-    return 'SignUpReqEntity(firstName: $firstName, lastName: $lastName, phone: $phone, email: $email, password: $password, countryId: $countryId, cityId: $cityId)';
+    return 'SignUpReqEntity(name: $name, phone: $phone, email: $email, password: $password, fcmToken: $fcmToken)';
   }
 
   @override
@@ -250,22 +180,18 @@ class _$SignUpReqEntityImpl implements _SignUpReqEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignUpReqEntityImpl &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.countryId, countryId) ||
-                other.countryId == countryId) &&
-            (identical(other.cityId, cityId) || other.cityId == cityId));
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, firstName, lastName, phone,
-      email, password, countryId, cityId);
+  int get hashCode =>
+      Object.hash(runtimeType, name, phone, email, password, fcmToken);
 
   /// Create a copy of SignUpReqEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -275,97 +201,26 @@ class _$SignUpReqEntityImpl implements _SignUpReqEntity {
   _$$SignUpReqEntityImplCopyWith<_$SignUpReqEntityImpl> get copyWith =>
       __$$SignUpReqEntityImplCopyWithImpl<_$SignUpReqEntityImpl>(
           this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String firstName, String lastName, String phone,
-            String email, String password, int? countryId, int? cityId)
-        $default,
-  ) {
-    return $default(
-        firstName, lastName, phone, email, password, countryId, cityId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String firstName, String lastName, String phone,
-            String email, String password, int? countryId, int? cityId)?
-        $default,
-  ) {
-    return $default?.call(
-        firstName, lastName, phone, email, password, countryId, cityId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String firstName, String lastName, String phone,
-            String email, String password, int? countryId, int? cityId)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(
-          firstName, lastName, phone, email, password, countryId, cityId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SignUpReqEntity value) $default,
-  ) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SignUpReqEntity value)? $default,
-  ) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SignUpReqEntity value)? $default, {
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _SignUpReqEntity implements SignUpReqEntity {
   const factory _SignUpReqEntity(
-      {required final String firstName,
-      required final String lastName,
+      {required final String name,
       required final String phone,
-      required final String email,
-      required final String password,
-      final int? countryId,
-      final int? cityId}) = _$SignUpReqEntityImpl;
+      final String? email,
+      final String? password,
+      final String? fcmToken}) = _$SignUpReqEntityImpl;
 
   @override
-  String get firstName;
-  @override
-  String get lastName;
+  String get name;
   @override
   String get phone;
   @override
-  String get email;
+  String? get email;
   @override
-  String get password;
+  String? get password;
   @override
-  int? get countryId;
-  @override
-  int? get cityId;
+  String? get fcmToken;
 
   /// Create a copy of SignUpReqEntity
   /// with the given fields replaced by the non-null parameter values.

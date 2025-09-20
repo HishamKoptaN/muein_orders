@@ -3,9 +3,10 @@ import 'package:go_router/go_router.dart';
 
 import '../app.dart';
 import '../features/auth/auth_choice/present/views/auth_choice_view.dart';
-import '../features/auth/forgot_password/present/views/forgot_password_view.dart';
+import '../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../features/auth/main/present/view/main_view.dart';
 import '../features/auth/sign_in/present/views/sign_in_view.dart';
+import '../features/auth/sign_up/present/sign_up_views.dart';
 import '../features/home/home_view.dart';
 import '../features/language/view/select_language.dart';
 import '../features/notifications/notifications_view.dart';
@@ -32,7 +33,7 @@ GoRoute _createRoute<T extends Widget>({
 
 // Route names constants for better maintainability
 final GoRouter router = GoRouter(
-  initialLocation: '/${SignInView.routeName}',
+  initialLocation: '/${OnboardingView.routeName}',
   navigatorKey: GlobalVariable.navState,
   redirect: _handleRedirect,
   errorBuilder: (context, state) => const ErrorPage(),
@@ -54,12 +55,12 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const SignInView(),
     ),
     _createRoute(
-      routeName: 'sign-up',
-      builder: (context, state) => const SignUpPlaceholderPage(),
+      routeName: SignUpView.routeName,
+      builder: (context, state) => const SignUpView(),
     ),
     _createRoute(
-      routeName: ForgotPasswordView.routeName,
-      builder: (context, state) => const ForgotPasswordView(),
+      routeName: ForgotPassView.routeName,
+      builder: (context, state) => const ForgotPassView(),
     ),
     _createRoute(
       routeName: OnboardingView.routeName,
@@ -106,9 +107,11 @@ Future<String?> _handleRedirect(
   final publicRoutes = <String>{
     StartView.routeName,
     SelectLanguage.routeName,
-    OnboardingView.routeName,
+    AuthChoiceView.routeName,
     SignInView.routeName,
-    ForgotPasswordView.routeName,
+    ForgotPassView.routeName,
+    SignUpView.routeName,
+    OnboardingView.routeName,
   };
 
   // If user is not authenticated and trying to access a protected route
@@ -164,48 +167,6 @@ class ErrorPage extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text('يرجى التحقق من الرابط والمحاولة مرة أخرى'),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SignUpPlaceholderPage extends StatelessWidget {
-  const SignUpPlaceholderPage({super.key});
-
-  static const String routeName = 'sign-up-placeholder';
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('إنشاء حساب'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.person_add_alt_1, size: 64),
-            const SizedBox(height: 16),
-            const Text(
-              'صفحة التسجيل غير مُفعّلة بعد',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Text(
-                'سنقوم بربطها لاحقًا مع موديول التسجيل الحقيقي. بإمكانك العودة لتسجيل الدخول الآن.',
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () => context.go('/${SignInView.routeName}'),
-              child: const Text('العودة لتسجيل الدخول'),
-            ),
           ],
         ),
       ),

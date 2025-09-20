@@ -9,365 +9,446 @@ class AppLocalizationsLg extends AppLocalizations {
   AppLocalizationsLg([String locale = 'lg']) : super(locale);
 
   @override
-  String get signUp => 'Wandikise';
+  String get upload_videos => 'Teeka Vidiyo';
 
   @override
-  String passwordResetEmailSentTo(Object email) {
-    return 'Password reset email has been sent to $email';
-  }
+  String get welcometoMubinOrders => 'Mwaniriziddwa mu Mubin Orders';
 
   @override
-  String get signUpTitle => 'Funa akawunti empya';
+  String get welcome => 'Kaale';
 
   @override
-  String get firstName => 'Erinnya ly\'okusooka';
+  String get wearehappytohaveyoujoinourstore =>
+      'Tuli basanyufu okuba nti weegasse ku dduuka lyaffe.';
 
   @override
-  String get lastName => 'Erinnya ly\'okubiri';
+  String get gettoknowtheapplicationinterface => 'Manya enkola y’okukozesa';
 
   @override
-  String get fieldRequired => 'Kino kye wajja kukakasa';
+  String get hereyouwillfindtasksrequestsalertsandfilters =>
+      'Wano ojja kusanga emirimu, okusaba, okulabula, n\'okusengejja.';
 
   @override
-  String get accountCreated => 'Kontu eyongeddewo';
+  String get documentationWithPphotosAndVideos =>
+      'Ebiwandiiko nga mulimu ebifaananyi ne vidiyo';
 
   @override
-  String get errorCreatingAccount => 'Waliwo olubaluleko olw\'okukola kontu';
-
-  @override
-  String get add => 'Yongeza';
-
-  @override
-  String get add_documentation => '';
-
-  @override
-  String get welcome => 'Tukuyambe ku Mubin Orders';
-
-  @override
-  String get add_documentations_view => '';
-
-  @override
-  String get add_order => '';
-
-  @override
-  String get add_picure => '';
-
-  @override
-  String get add_video => '';
-
-  @override
-  String get alreadyHaveAnAccount => '';
-
-  @override
-  String get arabic => '';
-
-  @override
-  String get camera => '';
-
-  @override
-  String get cant_be_embty => '';
-
-  @override
-  String get changeLanguage => '';
-
-  @override
-  String get change_language => '';
-
-  @override
-  String get client_id => '';
-
-  @override
-  String get close => '';
-
-  @override
-  String get selectLanguage => 'Londa olulimi';
-
-  @override
-  String get follow => 'Jjako';
-
-  @override
-  String get confirmPasswordHint => 'Ddamu n\'ekigambo k\'okwewala';
-
-  @override
-  String get confirmPasswordRequired =>
-      'Ddamu n\'ekigambo k\'okwewala kya nnyangu';
-
-  @override
-  String get confirmPassword => 'Ddamu n\'ekigambo k\'okwewala';
-
-  @override
-  String get confirmYourPassword => '';
-
-  @override
-  String get confirm_password_hint => '';
-
-  @override
-  String get count => '';
-
-  @override
-  String get country => '';
-
-  @override
-  String get countryHint => '';
-
-  @override
-  String get data_dont_saved => '';
-
-  @override
-  String get data_saved => '';
-
-  @override
-  String get documentations => '';
-
-  @override
-  String get documentations_view => '';
-
-  @override
-  String get done => '';
-
-  @override
-  String get passwordsDoNotMatch =>
-      'Ebiwandiiko by\'okwenyumiriza tebikwatagana';
-
-  @override
-  String get passwordsDontMatch => '';
-
-  @override
-  String get password => 'Ekigambo ekisumulukusa';
-
-  @override
-  String get emailHint => '';
-
-  @override
-  String get emailRequired => 'Email yawe erabikwata';
-
-  @override
-  String get english => '';
-
-  @override
-  String get forgotPassword => 'Wewedde ekigambo k\'okwewala?';
-
-  @override
-  String get createAccount => 'Funa akawunti';
-
-  @override
-  String get alreadyHaveAccount => 'Olina akawunti?';
-
-  @override
-  String get enter_order_id => '';
-
-  @override
-  String get enter_valid_email_password => '';
-
-  @override
-  String get execution_number => '';
-
-  @override
-  String get failed => '';
-
-  @override
-  String get file_pick_failed => '';
-
-  @override
-  String get firstNameRequired => '';
-
-  @override
-  String get gallery => '';
-
-  @override
-  String get settings => 'Eby\'okukola ku nkola';
-
-  @override
-  String get help => '';
-
-  @override
-  String get home_title => '';
-
-  @override
-  String get instead => '';
-
-  @override
-  String get invalidEmail => '';
-
-  @override
-  String get kinia_name => '';
-
-  @override
-  String get loading => '';
-
-  @override
-  String get location => '';
-
-  @override
-  String get log_out => '';
-
-  @override
-  String get areYouSure => 'Okakasa nti oyagala kugenda?';
-
-  @override
-  String get login => '';
-
-  @override
-  String get login_text => '';
-
-  @override
-  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Kakasa nti ebitonotono biri mu ngeri ennungi era n\'omuwendo gwa koppi za Kurani gutuufu nga tonnatuma';
-
-  @override
-  String get next => 'Ddala';
-
-  @override
-  String get start => 'Tandika';
-
-  @override
-  String get get_to_know_the_application_interface =>
-      'Manya enkola y\'okozesa pulogulaamu eno';
-
-  @override
-  String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Wano ojja kusanga emirimu, okusaba, okulabula, n\'okufiiriza';
+  String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
+      'Kakasa nti ebifaananyi bitegeerekeka bulungi, omuwendo gwa kkopi za Qur’an, n’ebisale by’okulagira bitegeerekeka bulungi nga tonnasindika.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Tuyambe okukugabana n\'okukola nammwe!';
+      'Tuli basanyufu okuba nti naawe otwegattako!';
 
   @override
-  String get luganda_uganda => '';
+  String get get_to_know_the_application_interface => 'Manya enkola ya app';
 
   @override
-  String get not_have_account => '';
-
-  @override
-  String get ok => '';
-
-  @override
-  String get or => '';
-
-  @override
-  String get order__is_sharing => '';
-
-  @override
-  String get order_added_successfully => '';
-
-  @override
-  String get order_addition_failed => '';
-
-  @override
-  String get order_id => '';
-
-  @override
-  String get order_id_exists => '';
-
-  @override
-  String get order_is_sharing => '';
-
-  @override
-  String get order_number => '';
-
-  @override
-  String get order_place => '';
-
-  @override
-  String get order_saving => '';
-
-  @override
-  String get orders => '';
-
-  @override
-  String get orders_view => '';
-
-  @override
-  String get package => '';
-
-  @override
-  String get passwordMinLength => '';
-
-  @override
-  String get passwordRequired => '';
-
-  @override
-  String get phone => '';
-
-  @override
-  String get phoneNumberHint => 'Namba y\'essimu';
-
-  @override
-  String get phoneNumber => 'Namba y\'essimu';
-
-  @override
-  String get phoneRequired => '';
-
-  @override
-  String get place_hint => '';
-
-  @override
-  String get please_enter_all_data => '';
-
-  @override
-  String get remember_me => '';
-
-  @override
-  String get request_saving => '';
-
-  @override
-  String get request_time_out => '';
-
-  @override
-  String get required => '';
-
-  @override
-  String get reset_link_sent => '';
-
-  @override
-  String get retry => '';
-
-  @override
-  String get secondNameRequired => '';
-
-  @override
-  String get selectCountry => '';
-
-  @override
-  String get select_files => '';
-
-  @override
-  String get show_documentations => '';
-
-  @override
-  String get smoal_name => '';
-
-  @override
-  String get successfully => '';
-
-  @override
-  String get swahili_kenya => '';
-
-  @override
-  String get swahili_tanzania => '';
-
-  @override
-  String get tanzania => '';
-
-  @override
-  String get there_are_no_results_for_this_search => '';
-
-  @override
-  String get unexpected_error => '';
-
-  @override
-  String get upload_videos => '';
+  String get here_you_will_find_tasks_requests_alerts_and_filters =>
+      'Wano ojja kusanga emirimu, okusaba, okulabula n’okusengejja';
 
   @override
   String get documentation_with_photos_and_videos =>
-      'Okukubiriza ku ngeri y\'okozesa ebitonotono n\'ebivvulu';
+      'Ebiwandiiko nga mulimu ebifaananyi ne vidiyo';
+
+  @override
+  String get send => 'Okutuma';
+
+  @override
+  String get phone => 'Ennamba y\'essimu';
+
+  @override
+  String get done => 'Okumala';
+
+  @override
+  String get orders => 'Ebiragiro';
+
+  @override
+  String get package => 'Okusabika';
+
+  @override
+  String get there_are_no_results_for_this_search =>
+      'Tewali bivudde mu kunoonyereza kuno';
+
+  @override
+  String get documentations => 'Ebiwandiiko';
+
+  @override
+  String get show_documentations => 'Laga Ebiwandiiko';
+
+  @override
+  String get execution_number => 'Ennamba y’okuttibwa';
+
+  @override
+  String get add_documentation => 'Okwongerako Ebiwandiiko';
+
+  @override
+  String get location => 'Ekifo';
+
+  @override
+  String get count => 'Okubala';
+
+  @override
+  String get kinia_name => 'Kenya';
+
+  @override
+  String get smoal_name => 'Somalia';
+
+  @override
+  String get tanzania => 'Tanzania';
+
+  @override
+  String get home_title => 'Ewaka';
+
+  @override
+  String get add_order => 'Yongera ku Order';
+
+  @override
+  String get order_place => 'Ekifo';
+
+  @override
+  String get order_id => 'ID y\'okulagira';
+
+  @override
+  String get order_number => 'Ennamba ya Order';
+
+  @override
+  String get client_id => 'ID ya kasitoma';
+
+  @override
+  String get enter_order_id => 'Yingiza ID ya Order';
+
+  @override
+  String get place_hint => 'Ekyalo/Omuzikiti/Essomero';
+
+  @override
+  String get add_video => 'Yongera ku Vidiyo';
+
+  @override
+  String get add_picure => 'Okwongerako Ekifaananyi';
+
+  @override
+  String get add => 'Okwongerako';
+
+  @override
+  String get loading => 'Okutikka...';
+
+  @override
+  String get changeLanguage => 'Kyusa Olulimi';
+
+  @override
+  String get login_text => 'Yingira mu';
+
+  @override
+  String get login => 'Yingira mu';
+
+  @override
+  String get emailHint => 'Email';
+
+  @override
+  String get emailRequired => 'Email yeetaagibwa';
+
+  @override
+  String get phoneNumberHint => 'Ennamba y\'essimu';
+
+  @override
+  String get phoneNumber => 'Ennamba y\'essimu';
+
+  @override
+  String get countryHint => 'Eggwanga';
+
+  @override
+  String get confirmPasswordHint => 'Kakasa Password';
+
+  @override
+  String get confirmPassword => 'Kakasa Password';
+
+  @override
+  String get remember_me => 'Nzijukira';
+
+  @override
+  String get log_out => 'Okufuluma';
+
+  @override
+  String get areYouSure => 'Okakasa nti oyagala kufuluma?';
+
+  @override
+  String get file_pick_failed => 'Okulonda fayiro kulemereddwa';
+
+  @override
+  String get order_saving => 'Okutereka order...';
+
+  @override
+  String get order__is_sharing => 'Okugabana order...';
+
+  @override
+  String get failed => 'Okugwa';
+
+  @override
+  String get or => 'Oba';
+
+  @override
+  String get request_time_out => 'Okusaba kuweddeko obudde';
+
+  @override
+  String get change_language => 'Kyusa Olulimi';
+
+  @override
+  String get arabic => 'Oluwarabu';
+
+  @override
+  String get english => 'Olungereeza';
+
+  @override
+  String get close => 'Okuggalawo';
+
+  @override
+  String get required => 'Etaagisa';
+
+  @override
+  String get order_added_successfully => 'Order yayongeddeko bulungi';
+
+  @override
+  String get order_addition_failed => 'Okwongerako order kulemereddwa';
+
+  @override
+  String get country => 'Eggwanga';
+
+  @override
+  String get selectCountry => 'Londa Ensi';
+
+  @override
+  String get passwordsDontMatch => 'Ebigambo by’okuyingira tebikwatagana';
+
+  @override
+  String get firstNameRequired => 'Erinnya erisooka lyetaagisa';
+
+  @override
+  String get secondNameRequired => 'Erinnya eryokubiri lyetaagibwa';
+
+  @override
+  String get reset_link_sent => 'Reset link esindikiddwa';
+
+  @override
+  String get enter_valid_email_password => 'Yingiza email ne password entuufu';
+
+  @override
+  String get invalidEmail => 'Email etali ntuufu';
+
+  @override
+  String get phoneRequired => 'Ennamba y’essimu yeetaagibwa';
+
+  @override
+  String get passwordRequired => 'Password yeetaagibwa';
+
+  @override
+  String get passwordMinLength => 'Password erina okuba nga waakiri ennukuta 8';
+
+  @override
+  String get confirmPasswordRequired => 'Kakasa nti password yeetaagibwa';
+
+  @override
+  String get alreadyHaveAnAccount => 'Olina dda akawunti?';
+
+  @override
+  String get confirmYourPassword => 'Kakasa ekigambo kyo eky\'okuyingira';
+
+  @override
+  String get request_saving => 'Okusaba okutereka...';
+
+  @override
+  String get order_is_sharing => 'Okugabana order...';
+
+  @override
+  String get successfully => 'Obuwanguzi';
+
+  @override
+  String get data_dont_saved => 'Data teterekeddwa';
+
+  @override
+  String get data_saved => 'Data eterekeddwa';
+
+  @override
+  String get order_id_exists => 'Order ID yaliwo dda';
+
+  @override
+  String get select_files => 'Londa fayiro';
+
+  @override
+  String get camera => 'Kkamera';
+
+  @override
+  String get gallery => 'Gallery (Ekifo ekisanyukirwamu).';
+
+  @override
+  String get cant_be_embty => 'Tesobola kuba bwereere';
+
+  @override
+  String get please_enter_all_data => 'Nsaba oyingize data yonna';
+
+  @override
+  String get ok => 'KALE';
+
+  @override
+  String get swahili_kenya => 'Oluswayiri - Kenya';
+
+  @override
+  String get swahili_tanzania => 'Oluswayiri - Tanzania';
+
+  @override
+  String get luganda_uganda => 'Oluganda - Uganda';
+
+  @override
+  String get retry => 'Ddamu gezaako';
+
+  @override
+  String get unexpected_error => 'Ensobi etasuubirwa yabaddewo';
+
+  @override
+  String get not_have_account => 'Tolina akawunti?';
+
+  @override
+  String get passwordsDoNotMatch => 'Ebigambo by’okuyingira tebikwatagana';
 
   @override
   String get enterYourEmailToResetPassword =>
-      'Enter your email address to receive a password reset link';
+      'Yingiza email yo okufuna password reset link';
 
   @override
-  String get send => 'Send';
+  String get follow => 'Okugoberera';
+
+  @override
+  String get confirm_password_hint => 'Kakasa ekigambo ky\'okuyingira';
+
+  @override
+  String get instead => 'Mu kifo kya';
+
+  @override
+  String get skip => 'Okubuuka';
+
+  @override
+  String get next => 'Ekiddako';
+
+  @override
+  String get errorLoadingOnboarding => 'Ensobi mu kutikka ebirimu ku boarding';
+
+  @override
+  String get onboardingWelcomeTitle => 'Mwaniriziddwa mu Mubin Orders';
+
+  @override
+  String get onboardingWelcomeDescription =>
+      'Ekigonjoola kyo ekijjuvu eky\'okuddukanya ebiragiro n\'ebiwandiiko';
+
+  @override
+  String get onboardingTrackingTitle => 'Olondoole Ebiragiro Byo';
+
+  @override
+  String get onboardingTrackingDescription =>
+      'Londoola orders zo mu kiseera ekituufu n\'enkola yaffe ey\'okulondoola ennyangu';
+
+  @override
+  String get onboardingDocumentsTitle => 'Enzirukanya y’ebiwandiiko';
+
+  @override
+  String get onboardingDocumentsDescription =>
+      'Teeka era oyingire ebiwandiiko byo byonna ebikulu mu kifo kimu ekikuumibwa';
+
+  @override
+  String get help => 'Okuyamba';
+
+  @override
+  String get settings => 'Enteekateeka';
+
+  @override
+  String get createAccount => 'Tonda Akawunti';
+
+  @override
+  String get alreadyHaveAccount => 'Olina dda akawunti?';
+
+  @override
+  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+      'Kakasa nti ebifaananyi bitangaavu era n’omuwendo gwa kkopi za Qur’an gutuufu nga tonnasindika';
+
+  @override
+  String get signUp => 'Wewandiise';
+
+  @override
+  String get apPasswordResetLinkHasBeenSentToYourEmail =>
+      'Enkolagana y’okuzzaawo ekigambo ky’okuyingira (password reset link) esindikiddwa ku email yo';
+
+  @override
+  String get signUpTitle => 'Tonda Akawunti Empya';
+
+  @override
+  String get firstName => 'Erinnya erisooka';
+
+  @override
+  String get lastName => 'Erinnya erisemba';
+
+  @override
+  String get fieldRequired => 'Ennimiro eno yeetaagibwa';
+
+  @override
+  String get accountCreated => 'Akawunti yatondeddwa bulungi';
+
+  @override
+  String get start => 'Okutandika';
+
+  @override
+  String get errorCreatingAccount => 'Ensobi mu kutondawo akawunti';
+
+  @override
+  String get password => 'Paasiwaadi';
+
+  @override
+  String get forgotPassword => 'Werabidde Password?';
+
+  @override
+  String get notHaveAccount => 'Tolina akawunti?';
+
+  @override
+  String get selectLanguage => 'Londa Olulimi';
+
+  @override
+  String get name => 'Erinnya';
+
+  @override
+  String get welcomeLine1 => 'Kaale';
+
+  @override
+  String get welcomeLine2 => 'Ku';
+
+  @override
+  String get signIn => 'Yingira mu';
+
+  @override
+  String get followUp => 'Okugoberera';
+
+  @override
+  String get aLinkWillBeSentToYouToResetYourPassword =>
+      'Link ejja kukusindikibwa okuddamu okuteekawo password yo';
+
+  @override
+  String get onboardingPage1Title => 'Kaale';
+
+  @override
+  String get onboardingPage1Description =>
+      'Tuli basanyufu okuba nti weegasse ku Mubeen Store';
+
+  @override
+  String get onboardingPage2Title => 'Zuula enkola ya App Interface';
+
+  @override
+  String get onboardingPage2Description =>
+      'Wano ojja kusanga emirimu, ebiragiro, okulabula, n\'okusengejja';
+
+  @override
+  String get onboardingPage3Title =>
+      'Ebiwandiiko nga biriko Ebifaananyi ne Vidiyo';
+
+  @override
+  String get onboardingPage3Description =>
+      'Kakasa nti ebifaananyi bitangaavu era nga n’omuwendo gwa kkopi za Qur’an mutuufu nga tonnasindika';
 }
 
 /// The translations for Ganda Luganda, as used in Uganda (`lg_UG`).
@@ -375,358 +456,444 @@ class AppLocalizationsLgUg extends AppLocalizationsLg {
   AppLocalizationsLgUg() : super('lg_UG');
 
   @override
-  String get signUp => 'Wandikise';
+  String get upload_videos => 'Teeka Vidiyo';
 
   @override
-  String get signUpTitle => 'Funa akawunti empya';
+  String get welcometoMubinOrders => 'Mwaniriziddwa mu Mubin Orders';
 
   @override
-  String get firstName => 'Erinnya ly\'okusooka';
+  String get welcome => 'Kaale';
 
   @override
-  String get lastName => 'Erinnya ly\'okubiri';
+  String get wearehappytohaveyoujoinourstore =>
+      'Tuli basanyufu okuba nti weegasse ku dduuka lyaffe.';
 
   @override
-  String get fieldRequired => 'Kino kye wajja kukakasa';
+  String get gettoknowtheapplicationinterface => 'Manya enkola y’okukozesa';
 
   @override
-  String get accountCreated => 'Kontu eyongeddewo';
+  String get hereyouwillfindtasksrequestsalertsandfilters =>
+      'Wano ojja kusanga emirimu, okusaba, okulabula, n\'okusengejja.';
 
   @override
-  String get errorCreatingAccount => 'Waliwo olubaluleko olw\'okukola kontu';
+  String get documentationWithPphotosAndVideos =>
+      'Ebiwandiiko nga mulimu ebifaananyi ne vidiyo';
 
   @override
-  String get add => 'Yongeza';
-
-  @override
-  String get add_documentation => 'Gatta ennyonyola';
-
-  @override
-  String get welcome => 'Tukuyambe ku Mubin Orders';
-
-  @override
-  String get add_documentations_view => 'okugatta ennyonyola';
-
-  @override
-  String get add_order => 'Yongeza ekiragiro';
-
-  @override
-  String get add_picure => 'Yongeza ekifaananyi';
-
-  @override
-  String get add_video => 'Yongeza vidiyo';
-
-  @override
-  String get alreadyHaveAnAccount => '';
-
-  @override
-  String get arabic => 'Luwarabu';
-
-  @override
-  String get camera => 'Kamera';
-
-  @override
-  String get cant_be_embty => 'Tekisobola kuba nga tekirimu kantu';
-
-  @override
-  String get changeLanguage => 'Kyusa olulimi';
-
-  @override
-  String get change_language => 'Kyusa olulimi';
-
-  @override
-  String get client_id => 'Aka wandiiko k\'omugula';
-
-  @override
-  String get close => 'Ggalawo';
-
-  @override
-  String get selectLanguage => 'Londa olulimi';
-
-  @override
-  String get follow => 'Jjako';
-
-  @override
-  String get confirmPasswordHint => 'Ddamu n\'ekigambo k\'okwewala';
-
-  @override
-  String get confirmPasswordRequired =>
-      'Ddamu n\'ekigambo k\'okwewala kya nnyangu';
-
-  @override
-  String get confirmPassword => 'Ddamu n\'ekigambo k\'okwewala';
-
-  @override
-  String get confirmYourPassword => '';
-
-  @override
-  String get confirm_password_hint => '';
-
-  @override
-  String get count => 'Obungi';
-
-  @override
-  String get country => '';
-
-  @override
-  String get countryHint => '';
-
-  @override
-  String get data_dont_saved => 'Ebipya tebiterekeddwa, gezako nate';
-
-  @override
-  String get data_saved => 'Ebibalo biterekeddwa bulungi';
-
-  @override
-  String get documentations => 'Ennyonyola';
-
-  @override
-  String get documentations_view => 'okulaba ennyonyola';
-
-  @override
-  String get done => 'Kiwedde';
-
-  @override
-  String get passwordsDoNotMatch =>
-      'Ebiwandiiko by\'okwenyumiriza tebikwatagana';
-
-  @override
-  String get passwordsDontMatch => '';
-
-  @override
-  String get password => 'Ekigambo ekisumulukusa';
-
-  @override
-  String get emailHint => '';
-
-  @override
-  String get emailRequired => 'Email yawe erabikwata';
-
-  @override
-  String get english => 'Lungereza';
-
-  @override
-  String get forgotPassword => 'Wewedde ekigambo k\'okwewala?';
-
-  @override
-  String get createAccount => 'Funa akawunti';
-
-  @override
-  String get alreadyHaveAccount => 'Olina akawunti?';
-
-  @override
-  String get enter_order_id => 'Yongeza aka wandiiko k\'ekiragiro';
-
-  @override
-  String get enter_valid_email_password =>
-      'Bambi tekamu email n\'password entuufu';
-
-  @override
-  String get execution_number => 'Ennamba y\'okukola';
-
-  @override
-  String get failed => 'Kigaanye';
-
-  @override
-  String get file_pick_failed => 'Okulonda fayiro kugaanye';
-
-  @override
-  String get firstNameRequired => '';
-
-  @override
-  String get gallery => 'Galerii';
-
-  @override
-  String get settings => 'Eby\'okukola ku nkola';
-
-  @override
-  String get help => '';
-
-  @override
-  String get home_title => 'Eka';
-
-  @override
-  String get instead => '';
-
-  @override
-  String get invalidEmail => '';
-
-  @override
-  String get kinia_name => 'Kenya';
-
-  @override
-  String get loading => 'Okutikka...';
-
-  @override
-  String get location => 'Ekifo';
-
-  @override
-  String get log_out => 'Fuluma';
-
-  @override
-  String get areYouSure => 'Okakasa nti oyagala kugenda?';
-
-  @override
-  String get login => 'Yingira';
-
-  @override
-  String get login_text => 'Yingira';
-
-  @override
-  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Kakasa nti ebitonotono biri mu ngeri ennungi era n\'omuwendo gwa koppi za Kurani gutuufu nga tonnatuma';
-
-  @override
-  String get next => 'Ddala';
-
-  @override
-  String get start => 'Tandika';
-
-  @override
-  String get get_to_know_the_application_interface =>
-      'Manya enkola y\'okozesa pulogulaamu eno';
-
-  @override
-  String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Wano ojja kusanga emirimu, okusaba, okulabula, n\'okufiiriza';
+  String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
+      'Kakasa nti ebifaananyi bitegeerekeka bulungi, omuwendo gwa kkopi za Qur’an, n’ebisale by’okulagira bitegeerekeka bulungi nga tonnasindika.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Tuyambe okukugabana n\'okukola nammwe!';
+      'Tuli basanyufu okuba nti naawe otwegattako!';
 
   @override
-  String get luganda_uganda => 'Luganda - Uganda';
+  String get get_to_know_the_application_interface => 'Manya enkola ya app';
 
   @override
-  String get not_have_account => '';
+  String get here_you_will_find_tasks_requests_alerts_and_filters =>
+      'Wano ojja kusanga emirimu, okusaba, okulabula n’okusengejja';
 
   @override
-  String get ok => 'Kale';
+  String get documentation_with_photos_and_videos =>
+      'Ebiwandiiko nga mulimu ebifaananyi ne vidiyo';
 
   @override
-  String get or => 'oba';
-
-  @override
-  String get order__is_sharing => 'Okugaba ekiragiro';
-
-  @override
-  String get order_added_successfully => 'Otegedde ekiragiro bulungi';
-
-  @override
-  String get order_addition_failed => 'Okugatta ekiragiro kugaanye';
-
-  @override
-  String get order_id => 'Aka wandiiko k\'ekiragiro';
-
-  @override
-  String get order_id_exists =>
-      'Aka wandiiko k\'ekiragiro kaliko, tekamu akalala';
-
-  @override
-  String get order_is_sharing => '';
-
-  @override
-  String get order_number => 'Ennamba y\'ekiragiro';
-
-  @override
-  String get order_place => 'Ekifo';
-
-  @override
-  String get order_saving => 'Okutereka ekiragiro';
-
-  @override
-  String get orders => 'Ebiragiro';
-
-  @override
-  String get orders_view => 'okulaba ebyawandiikiddwa';
-
-  @override
-  String get package => 'Ebbikadde';
-
-  @override
-  String get passwordMinLength => '';
-
-  @override
-  String get passwordRequired => '';
+  String get send => 'Okutuma';
 
   @override
   String get phone => 'Ennamba y\'essimu';
 
   @override
-  String get phoneNumberHint => 'Namba y\'essimu';
+  String get done => 'Okumala';
 
   @override
-  String get phoneNumber => 'Namba y\'essimu';
+  String get orders => 'Ebiragiro';
 
   @override
-  String get phoneRequired => '';
+  String get package => 'Okusabika';
 
   @override
-  String get place_hint => 'Kiggwa/masjid/skul';
+  String get there_are_no_results_for_this_search =>
+      'Tewali bivudde mu kunoonyereza kuno';
 
   @override
-  String get please_enter_all_data => 'Bambi tekamu ebirala byonna';
+  String get documentations => 'Ebiwandiiko';
 
   @override
-  String get remember_me => 'Nzijjukire';
+  String get show_documentations => 'Laga Ebiwandiiko';
 
   @override
-  String get request_saving => '';
+  String get execution_number => 'Ennamba y’okuttibwa';
 
   @override
-  String get request_time_out => 'Ekiseera kigguse';
+  String get add_documentation => 'Okwongerako Ebiwandiiko';
 
   @override
-  String get required => 'Kyakusanyizo';
+  String get location => 'Ekifo';
 
   @override
-  String get reset_link_sent =>
-      'Akasukko ka kuteekawo password mupya katwaliddwa ku email yo';
+  String get count => 'Okubala';
 
   @override
-  String get retry => 'Gezako nate';
-
-  @override
-  String get secondNameRequired => '';
-
-  @override
-  String get selectCountry => '';
-
-  @override
-  String get select_files => 'Londa we wava mu fayiro';
-
-  @override
-  String get show_documentations => 'Laga ennyonyola';
+  String get kinia_name => 'Kenya';
 
   @override
   String get smoal_name => 'Somalia';
 
   @override
-  String get successfully => 'Kigudde bulungi';
-
-  @override
-  String get swahili_kenya => 'Kiswahili - Kenya';
-
-  @override
-  String get swahili_tanzania => 'Kiswahili - Tanzania';
-
-  @override
   String get tanzania => 'Tanzania';
 
   @override
-  String get there_are_no_results_for_this_search =>
-      'Tewali byazuuliddwa mu kussearchinga kuno.';
+  String get home_title => 'Ewaka';
 
   @override
-  String get unexpected_error => 'Waliwo ensobi eteretegeerebwa';
+  String get add_order => 'Yongera ku Order';
 
   @override
-  String get upload_videos => 'Teeka ebivideo';
+  String get order_place => 'Ekifo';
 
   @override
-  String get documentation_with_photos_and_videos =>
-      'Okukubiriza ku ngeri y\'okozesa ebitonotono n\'ebivvulu';
+  String get order_id => 'ID y\'okulagira';
 
   @override
-  String get send => 'Tuma';
+  String get order_number => 'Ennamba ya Order';
+
+  @override
+  String get client_id => 'ID ya kasitoma';
+
+  @override
+  String get enter_order_id => 'Yingiza ID ya Order';
+
+  @override
+  String get place_hint => 'Ekyalo/Omuzikiti/Essomero';
+
+  @override
+  String get add_video => 'Yongera ku Vidiyo';
+
+  @override
+  String get add_picure => 'Okwongerako Ekifaananyi';
+
+  @override
+  String get add => 'Okwongerako';
+
+  @override
+  String get loading => 'Okutikka...';
+
+  @override
+  String get changeLanguage => 'Kyusa Olulimi';
+
+  @override
+  String get login_text => 'Yingira mu';
+
+  @override
+  String get login => 'Yingira mu';
+
+  @override
+  String get emailHint => 'Email';
+
+  @override
+  String get emailRequired => 'Email yeetaagibwa';
+
+  @override
+  String get phoneNumberHint => 'Ennamba y\'essimu';
+
+  @override
+  String get phoneNumber => 'Ennamba y\'essimu';
+
+  @override
+  String get countryHint => 'Eggwanga';
+
+  @override
+  String get confirmPasswordHint => 'Kakasa Password';
+
+  @override
+  String get confirmPassword => 'Kakasa Password';
+
+  @override
+  String get remember_me => 'Nzijukira';
+
+  @override
+  String get log_out => 'Okufuluma';
+
+  @override
+  String get areYouSure => 'Okakasa nti oyagala kufuluma?';
+
+  @override
+  String get file_pick_failed => 'Okulonda fayiro kulemereddwa';
+
+  @override
+  String get order_saving => 'Okutereka order...';
+
+  @override
+  String get order__is_sharing => 'Okugabana order...';
+
+  @override
+  String get failed => 'Okugwa';
+
+  @override
+  String get or => 'Oba';
+
+  @override
+  String get request_time_out => 'Okusaba kuweddeko obudde';
+
+  @override
+  String get change_language => 'Kyusa Olulimi';
+
+  @override
+  String get arabic => 'Oluwarabu';
+
+  @override
+  String get english => 'Olungereeza';
+
+  @override
+  String get close => 'Okuggalawo';
+
+  @override
+  String get required => 'Etaagisa';
+
+  @override
+  String get order_added_successfully => 'Order yayongeddeko bulungi';
+
+  @override
+  String get order_addition_failed => 'Okwongerako order kulemereddwa';
+
+  @override
+  String get country => 'Eggwanga';
+
+  @override
+  String get selectCountry => 'Londa Ensi';
+
+  @override
+  String get passwordsDontMatch => 'Ebigambo by’okuyingira tebikwatagana';
+
+  @override
+  String get firstNameRequired => 'Erinnya erisooka lyetaagisa';
+
+  @override
+  String get secondNameRequired => 'Erinnya eryokubiri lyetaagibwa';
+
+  @override
+  String get reset_link_sent => 'Reset link esindikiddwa';
+
+  @override
+  String get enter_valid_email_password => 'Yingiza email ne password entuufu';
+
+  @override
+  String get invalidEmail => 'Email etali ntuufu';
+
+  @override
+  String get phoneRequired => 'Ennamba y’essimu yeetaagibwa';
+
+  @override
+  String get passwordRequired => 'Password yeetaagibwa';
+
+  @override
+  String get passwordMinLength => 'Password erina okuba nga waakiri ennukuta 8';
+
+  @override
+  String get confirmPasswordRequired => 'Kakasa nti password yeetaagibwa';
+
+  @override
+  String get alreadyHaveAnAccount => 'Olina dda akawunti?';
+
+  @override
+  String get confirmYourPassword => 'Kakasa ekigambo kyo eky\'okuyingira';
+
+  @override
+  String get request_saving => 'Okusaba okutereka...';
+
+  @override
+  String get order_is_sharing => 'Okugabana order...';
+
+  @override
+  String get successfully => 'Obuwanguzi';
+
+  @override
+  String get data_dont_saved => 'Data teterekeddwa';
+
+  @override
+  String get data_saved => 'Data eterekeddwa';
+
+  @override
+  String get order_id_exists => 'Order ID yaliwo dda';
+
+  @override
+  String get select_files => 'Londa fayiro';
+
+  @override
+  String get camera => 'Kkamera';
+
+  @override
+  String get gallery => 'Gallery (Ekifo ekisanyukirwamu).';
+
+  @override
+  String get cant_be_embty => 'Tesobola kuba bwereere';
+
+  @override
+  String get please_enter_all_data => 'Nsaba oyingize data yonna';
+
+  @override
+  String get ok => 'KALE';
+
+  @override
+  String get swahili_kenya => 'Oluswayiri - Kenya';
+
+  @override
+  String get swahili_tanzania => 'Oluswayiri - Tanzania';
+
+  @override
+  String get luganda_uganda => 'Oluganda - Uganda';
+
+  @override
+  String get retry => 'Ddamu gezaako';
+
+  @override
+  String get unexpected_error => 'Ensobi etasuubirwa yabaddewo';
+
+  @override
+  String get not_have_account => 'Tolina akawunti?';
+
+  @override
+  String get passwordsDoNotMatch => 'Ebigambo by’okuyingira tebikwatagana';
+
+  @override
+  String get enterYourEmailToResetPassword =>
+      'Yingiza email yo okufuna password reset link';
+
+  @override
+  String get follow => 'Okugoberera';
+
+  @override
+  String get confirm_password_hint => 'Kakasa ekigambo ky\'okuyingira';
+
+  @override
+  String get instead => 'Mu kifo kya';
+
+  @override
+  String get skip => 'Okubuuka';
+
+  @override
+  String get next => 'Ekiddako';
+
+  @override
+  String get errorLoadingOnboarding => 'Ensobi mu kutikka ebirimu ku boarding';
+
+  @override
+  String get onboardingWelcomeTitle => 'Mwaniriziddwa mu Mubin Orders';
+
+  @override
+  String get onboardingWelcomeDescription =>
+      'Ekigonjoola kyo ekijjuvu eky\'okuddukanya ebiragiro n\'ebiwandiiko';
+
+  @override
+  String get onboardingTrackingTitle => 'Olondoole Ebiragiro Byo';
+
+  @override
+  String get onboardingTrackingDescription =>
+      'Londoola orders zo mu kiseera ekituufu n\'enkola yaffe ey\'okulondoola ennyangu';
+
+  @override
+  String get onboardingDocumentsTitle => 'Enzirukanya y’ebiwandiiko';
+
+  @override
+  String get onboardingDocumentsDescription =>
+      'Teeka era oyingire ebiwandiiko byo byonna ebikulu mu kifo kimu ekikuumibwa';
+
+  @override
+  String get help => 'Okuyamba';
+
+  @override
+  String get settings => 'Ensengeka';
+
+  @override
+  String get createAccount => 'Tonda Akawunti';
+
+  @override
+  String get alreadyHaveAccount => 'Olina dda akawunti?';
+
+  @override
+  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+      'Kakasa nti ebifaananyi bitangaavu era n’omuwendo gwa kkopi za Qur’an gutuufu nga tonnasindika';
+
+  @override
+  String get signUp => 'Wewandiise';
+
+  @override
+  String get apPasswordResetLinkHasBeenSentToYourEmail =>
+      'Enkolagana y’okuzzaawo ekigambo ky’okuyingira (password reset link) esindikiddwa ku email yo';
+
+  @override
+  String get signUpTitle => 'Tonda Akawunti Empya';
+
+  @override
+  String get firstName => 'Erinnya erisooka';
+
+  @override
+  String get lastName => 'Erinnya erisemba';
+
+  @override
+  String get fieldRequired => 'Ennimiro eno yeetaagibwa';
+
+  @override
+  String get accountCreated => 'Akawunti yatondeddwa bulungi';
+
+  @override
+  String get start => 'Okutandika';
+
+  @override
+  String get errorCreatingAccount => 'Ensobi mu kutondawo akawunti';
+
+  @override
+  String get password => 'Paasiwaadi';
+
+  @override
+  String get forgotPassword => 'Werabidde Password?';
+
+  @override
+  String get notHaveAccount => 'Tolina akawunti?';
+
+  @override
+  String get selectLanguage => 'Londa Olulimi';
+
+  @override
+  String get name => 'Erinnya';
+
+  @override
+  String get welcomeLine1 => 'Kaale';
+
+  @override
+  String get welcomeLine2 => 'Ku';
+
+  @override
+  String get signIn => 'Yingira mu';
+
+  @override
+  String get followUp => 'Okugoberera';
+
+  @override
+  String get aLinkWillBeSentToYouToResetYourPassword =>
+      'Link ejja kukusindikibwa okuddamu okuteekawo password yo';
+
+  @override
+  String get onboardingPage1Title => 'Kaale';
+
+  @override
+  String get onboardingPage1Description =>
+      'Tuli basanyufu okuba nti weegasse ku Mubeen Store';
+
+  @override
+  String get onboardingPage2Title => 'Zuula enkola ya App Interface';
+
+  @override
+  String get onboardingPage2Description =>
+      'Wano ojja kusanga emirimu, ebiragiro, okulabula, n\'okusengejja';
+
+  @override
+  String get onboardingPage3Title =>
+      'Ebiwandiiko nga biriko Ebifaananyi ne Vidiyo';
+
+  @override
+  String get onboardingPage3Description =>
+      'Kakasa nti ebifaananyi bitangaavu era nga n’omuwendo gwa kkopi za Qur’an mutuufu nga tonnasindika';
 }

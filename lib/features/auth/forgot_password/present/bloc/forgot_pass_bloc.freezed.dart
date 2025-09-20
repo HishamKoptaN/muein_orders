@@ -16,44 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ForgotPassEvent {
-  String get email => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email) sendPassResetEmail,
+    required TResult Function(EmailInput? email) dataChanged,
+    required TResult Function() sendPassResetEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email)? sendPassResetEmail,
+    TResult? Function(EmailInput? email)? dataChanged,
+    TResult? Function()? sendPassResetEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email)? sendPassResetEmail,
+    TResult Function(EmailInput? email)? dataChanged,
+    TResult Function()? sendPassResetEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(SendPassResetEmail value) sendPassResetEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_DataChanged value)? dataChanged,
     TResult? Function(SendPassResetEmail value)? sendPassResetEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_DataChanged value)? dataChanged,
     TResult Function(SendPassResetEmail value)? sendPassResetEmail,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of ForgotPassEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ForgotPassEventCopyWith<ForgotPassEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +61,6 @@ abstract class $ForgotPassEventCopyWith<$Res> {
   factory $ForgotPassEventCopyWith(
           ForgotPassEvent value, $Res Function(ForgotPassEvent) then) =
       _$ForgotPassEventCopyWithImpl<$Res, ForgotPassEvent>;
-  @useResult
-  $Res call({String email});
 }
 
 /// @nodoc
@@ -78,29 +75,153 @@ class _$ForgotPassEventCopyWithImpl<$Res, $Val extends ForgotPassEvent>
 
   /// Create a copy of ForgotPassEvent
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$DataChangedImplCopyWith<$Res> {
+  factory _$$DataChangedImplCopyWith(
+          _$DataChangedImpl value, $Res Function(_$DataChangedImpl) then) =
+      __$$DataChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({EmailInput? email});
+}
+
+/// @nodoc
+class __$$DataChangedImplCopyWithImpl<$Res>
+    extends _$ForgotPassEventCopyWithImpl<$Res, _$DataChangedImpl>
+    implements _$$DataChangedImplCopyWith<$Res> {
+  __$$DataChangedImplCopyWithImpl(
+      _$DataChangedImpl _value, $Res Function(_$DataChangedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ForgotPassEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = null,
+    Object? email = freezed,
   }) {
-    return _then(_value.copyWith(
-      email: null == email
+    return _then(_$DataChangedImpl(
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+              as EmailInput?,
+    ));
   }
 }
 
 /// @nodoc
-abstract class _$$SendPassResetEmailImplCopyWith<$Res>
-    implements $ForgotPassEventCopyWith<$Res> {
+
+class _$DataChangedImpl implements _DataChanged {
+  const _$DataChangedImpl({this.email});
+
+  @override
+  final EmailInput? email;
+
+  @override
+  String toString() {
+    return 'ForgotPassEvent.dataChanged(email: $email)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DataChangedImpl &&
+            (identical(other.email, email) || other.email == email));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email);
+
+  /// Create a copy of ForgotPassEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DataChangedImplCopyWith<_$DataChangedImpl> get copyWith =>
+      __$$DataChangedImplCopyWithImpl<_$DataChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EmailInput? email) dataChanged,
+    required TResult Function() sendPassResetEmail,
+  }) {
+    return dataChanged(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(EmailInput? email)? dataChanged,
+    TResult? Function()? sendPassResetEmail,
+  }) {
+    return dataChanged?.call(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EmailInput? email)? dataChanged,
+    TResult Function()? sendPassResetEmail,
+    required TResult orElse(),
+  }) {
+    if (dataChanged != null) {
+      return dataChanged(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_DataChanged value) dataChanged,
+    required TResult Function(SendPassResetEmail value) sendPassResetEmail,
+  }) {
+    return dataChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_DataChanged value)? dataChanged,
+    TResult? Function(SendPassResetEmail value)? sendPassResetEmail,
+  }) {
+    return dataChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_DataChanged value)? dataChanged,
+    TResult Function(SendPassResetEmail value)? sendPassResetEmail,
+    required TResult orElse(),
+  }) {
+    if (dataChanged != null) {
+      return dataChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DataChanged implements ForgotPassEvent {
+  const factory _DataChanged({final EmailInput? email}) = _$DataChangedImpl;
+
+  EmailInput? get email;
+
+  /// Create a copy of ForgotPassEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DataChangedImplCopyWith<_$DataChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SendPassResetEmailImplCopyWith<$Res> {
   factory _$$SendPassResetEmailImplCopyWith(_$SendPassResetEmailImpl value,
           $Res Function(_$SendPassResetEmailImpl) then) =
       __$$SendPassResetEmailImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String email});
 }
 
 /// @nodoc
@@ -113,77 +234,54 @@ class __$$SendPassResetEmailImplCopyWithImpl<$Res>
 
   /// Create a copy of ForgotPassEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-  }) {
-    return _then(_$SendPassResetEmailImpl(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$SendPassResetEmailImpl implements SendPassResetEmail {
-  const _$SendPassResetEmailImpl({required this.email});
-
-  @override
-  final String email;
+  const _$SendPassResetEmailImpl();
 
   @override
   String toString() {
-    return 'ForgotPassEvent.sendPassResetEmail(email: $email)';
+    return 'ForgotPassEvent.sendPassResetEmail()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SendPassResetEmailImpl &&
-            (identical(other.email, email) || other.email == email));
+        (other.runtimeType == runtimeType && other is _$SendPassResetEmailImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email);
-
-  /// Create a copy of ForgotPassEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SendPassResetEmailImplCopyWith<_$SendPassResetEmailImpl> get copyWith =>
-      __$$SendPassResetEmailImplCopyWithImpl<_$SendPassResetEmailImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email) sendPassResetEmail,
+    required TResult Function(EmailInput? email) dataChanged,
+    required TResult Function() sendPassResetEmail,
   }) {
-    return sendPassResetEmail(email);
+    return sendPassResetEmail();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email)? sendPassResetEmail,
+    TResult? Function(EmailInput? email)? dataChanged,
+    TResult? Function()? sendPassResetEmail,
   }) {
-    return sendPassResetEmail?.call(email);
+    return sendPassResetEmail?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email)? sendPassResetEmail,
+    TResult Function(EmailInput? email)? dataChanged,
+    TResult Function()? sendPassResetEmail,
     required TResult orElse(),
   }) {
     if (sendPassResetEmail != null) {
-      return sendPassResetEmail(email);
+      return sendPassResetEmail();
     }
     return orElse();
   }
@@ -191,6 +289,7 @@ class _$SendPassResetEmailImpl implements SendPassResetEmail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(SendPassResetEmail value) sendPassResetEmail,
   }) {
     return sendPassResetEmail(this);
@@ -199,6 +298,7 @@ class _$SendPassResetEmailImpl implements SendPassResetEmail {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_DataChanged value)? dataChanged,
     TResult? Function(SendPassResetEmail value)? sendPassResetEmail,
   }) {
     return sendPassResetEmail?.call(this);
@@ -207,6 +307,7 @@ class _$SendPassResetEmailImpl implements SendPassResetEmail {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_DataChanged value)? dataChanged,
     TResult Function(SendPassResetEmail value)? sendPassResetEmail,
     required TResult orElse(),
   }) {
@@ -218,42 +319,37 @@ class _$SendPassResetEmailImpl implements SendPassResetEmail {
 }
 
 abstract class SendPassResetEmail implements ForgotPassEvent {
-  const factory SendPassResetEmail({required final String email}) =
-      _$SendPassResetEmailImpl;
-
-  @override
-  String get email;
-
-  /// Create a copy of ForgotPassEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SendPassResetEmailImplCopyWith<_$SendPassResetEmailImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory SendPassResetEmail() = _$SendPassResetEmailImpl;
 }
 
 /// @nodoc
 mixin _$ForgotPassState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)
+        loaded,
     required TResult Function() success,
     required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
     TResult? Function()? success,
     TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
     TResult Function()? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
@@ -261,24 +357,24 @@ mixin _$ForgotPassState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ForgotPassInitial value) initial,
     required TResult Function(ForgotPassLoading value) loading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(ForgotPassSuccess value) success,
     required TResult Function(ForgotPassFailure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ForgotPassInitial value)? initial,
     TResult? Function(ForgotPassLoading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(ForgotPassSuccess value)? success,
     TResult? Function(ForgotPassFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ForgotPassInitial value)? initial,
     TResult Function(ForgotPassLoading value)? loading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(ForgotPassSuccess value)? success,
     TResult Function(ForgotPassFailure value)? failure,
     required TResult orElse(),
@@ -305,123 +401,6 @@ class _$ForgotPassStateCopyWithImpl<$Res, $Val extends ForgotPassState>
 
   /// Create a copy of ForgotPassState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$ForgotPassInitialImplCopyWith<$Res> {
-  factory _$$ForgotPassInitialImplCopyWith(_$ForgotPassInitialImpl value,
-          $Res Function(_$ForgotPassInitialImpl) then) =
-      __$$ForgotPassInitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ForgotPassInitialImplCopyWithImpl<$Res>
-    extends _$ForgotPassStateCopyWithImpl<$Res, _$ForgotPassInitialImpl>
-    implements _$$ForgotPassInitialImplCopyWith<$Res> {
-  __$$ForgotPassInitialImplCopyWithImpl(_$ForgotPassInitialImpl _value,
-      $Res Function(_$ForgotPassInitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ForgotPassState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ForgotPassInitialImpl implements ForgotPassInitial {
-  const _$ForgotPassInitialImpl();
-
-  @override
-  String toString() {
-    return 'ForgotPassState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ForgotPassInitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String error) failure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String error)? failure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String error)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ForgotPassInitial value) initial,
-    required TResult Function(ForgotPassLoading value) loading,
-    required TResult Function(ForgotPassSuccess value) success,
-    required TResult Function(ForgotPassFailure value) failure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ForgotPassInitial value)? initial,
-    TResult? Function(ForgotPassLoading value)? loading,
-    TResult? Function(ForgotPassSuccess value)? success,
-    TResult? Function(ForgotPassFailure value)? failure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ForgotPassInitial value)? initial,
-    TResult Function(ForgotPassLoading value)? loading,
-    TResult Function(ForgotPassSuccess value)? success,
-    TResult Function(ForgotPassFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ForgotPassInitial implements ForgotPassState {
-  const factory ForgotPassInitial() = _$ForgotPassInitialImpl;
 }
 
 /// @nodoc
@@ -465,8 +444,10 @@ class _$ForgotPassLoadingImpl implements ForgotPassLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)
+        loaded,
     required TResult Function() success,
     required TResult Function(String error) failure,
   }) {
@@ -476,8 +457,10 @@ class _$ForgotPassLoadingImpl implements ForgotPassLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
     TResult? Function()? success,
     TResult? Function(String error)? failure,
   }) {
@@ -487,8 +470,10 @@ class _$ForgotPassLoadingImpl implements ForgotPassLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
     TResult Function()? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
@@ -502,8 +487,8 @@ class _$ForgotPassLoadingImpl implements ForgotPassLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ForgotPassInitial value) initial,
     required TResult Function(ForgotPassLoading value) loading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(ForgotPassSuccess value) success,
     required TResult Function(ForgotPassFailure value) failure,
   }) {
@@ -513,8 +498,8 @@ class _$ForgotPassLoadingImpl implements ForgotPassLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ForgotPassInitial value)? initial,
     TResult? Function(ForgotPassLoading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(ForgotPassSuccess value)? success,
     TResult? Function(ForgotPassFailure value)? failure,
   }) {
@@ -524,8 +509,8 @@ class _$ForgotPassLoadingImpl implements ForgotPassLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ForgotPassInitial value)? initial,
     TResult Function(ForgotPassLoading value)? loading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(ForgotPassSuccess value)? success,
     TResult Function(ForgotPassFailure value)? failure,
     required TResult orElse(),
@@ -539,6 +524,178 @@ class _$ForgotPassLoadingImpl implements ForgotPassLoading {
 
 abstract class ForgotPassLoading implements ForgotPassState {
   const factory ForgotPassLoading() = _$ForgotPassLoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadedImplCopyWith<$Res> {
+  factory _$$LoadedImplCopyWith(
+          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
+      __$$LoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({EmailInput email, FormzSubmissionStatus formzSubmissionStatus});
+}
+
+/// @nodoc
+class __$$LoadedImplCopyWithImpl<$Res>
+    extends _$ForgotPassStateCopyWithImpl<$Res, _$LoadedImpl>
+    implements _$$LoadedImplCopyWith<$Res> {
+  __$$LoadedImplCopyWithImpl(
+      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ForgotPassState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? formzSubmissionStatus = null,
+  }) {
+    return _then(_$LoadedImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as EmailInput,
+      formzSubmissionStatus: null == formzSubmissionStatus
+          ? _value.formzSubmissionStatus
+          : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+              as FormzSubmissionStatus,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadedImpl implements _Loaded {
+  const _$LoadedImpl(
+      {required this.email, required this.formzSubmissionStatus});
+
+  @override
+  final EmailInput email;
+  @override
+  final FormzSubmissionStatus formzSubmissionStatus;
+
+  @override
+  String toString() {
+    return 'ForgotPassState.loaded(email: $email, formzSubmissionStatus: $formzSubmissionStatus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedImpl &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.formzSubmissionStatus, formzSubmissionStatus) ||
+                other.formzSubmissionStatus == formzSubmissionStatus));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email, formzSubmissionStatus);
+
+  /// Create a copy of ForgotPassState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)
+        loaded,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+  }) {
+    return loaded(email, formzSubmissionStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+  }) {
+    return loaded?.call(email, formzSubmissionStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(email, formzSubmissionStatus);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ForgotPassLoading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(ForgotPassSuccess value) success,
+    required TResult Function(ForgotPassFailure value) failure,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ForgotPassLoading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(ForgotPassSuccess value)? success,
+    TResult? Function(ForgotPassFailure value)? failure,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ForgotPassLoading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(ForgotPassSuccess value)? success,
+    TResult Function(ForgotPassFailure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loaded implements ForgotPassState {
+  const factory _Loaded(
+          {required final EmailInput email,
+          required final FormzSubmissionStatus formzSubmissionStatus}) =
+      _$LoadedImpl;
+
+  EmailInput get email;
+  FormzSubmissionStatus get formzSubmissionStatus;
+
+  /// Create a copy of ForgotPassState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -582,8 +739,10 @@ class _$ForgotPassSuccessImpl implements ForgotPassSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)
+        loaded,
     required TResult Function() success,
     required TResult Function(String error) failure,
   }) {
@@ -593,8 +752,10 @@ class _$ForgotPassSuccessImpl implements ForgotPassSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
     TResult? Function()? success,
     TResult? Function(String error)? failure,
   }) {
@@ -604,8 +765,10 @@ class _$ForgotPassSuccessImpl implements ForgotPassSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
     TResult Function()? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
@@ -619,8 +782,8 @@ class _$ForgotPassSuccessImpl implements ForgotPassSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ForgotPassInitial value) initial,
     required TResult Function(ForgotPassLoading value) loading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(ForgotPassSuccess value) success,
     required TResult Function(ForgotPassFailure value) failure,
   }) {
@@ -630,8 +793,8 @@ class _$ForgotPassSuccessImpl implements ForgotPassSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ForgotPassInitial value)? initial,
     TResult? Function(ForgotPassLoading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(ForgotPassSuccess value)? success,
     TResult? Function(ForgotPassFailure value)? failure,
   }) {
@@ -641,8 +804,8 @@ class _$ForgotPassSuccessImpl implements ForgotPassSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ForgotPassInitial value)? initial,
     TResult Function(ForgotPassLoading value)? loading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(ForgotPassSuccess value)? success,
     TResult Function(ForgotPassFailure value)? failure,
     required TResult orElse(),
@@ -727,8 +890,10 @@ class _$ForgotPassFailureImpl implements ForgotPassFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)
+        loaded,
     required TResult Function() success,
     required TResult Function(String error) failure,
   }) {
@@ -738,8 +903,10 @@ class _$ForgotPassFailureImpl implements ForgotPassFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
     TResult? Function()? success,
     TResult? Function(String error)? failure,
   }) {
@@ -749,8 +916,10 @@ class _$ForgotPassFailureImpl implements ForgotPassFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(
+            EmailInput email, FormzSubmissionStatus formzSubmissionStatus)?
+        loaded,
     TResult Function()? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
@@ -764,8 +933,8 @@ class _$ForgotPassFailureImpl implements ForgotPassFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ForgotPassInitial value) initial,
     required TResult Function(ForgotPassLoading value) loading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(ForgotPassSuccess value) success,
     required TResult Function(ForgotPassFailure value) failure,
   }) {
@@ -775,8 +944,8 @@ class _$ForgotPassFailureImpl implements ForgotPassFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ForgotPassInitial value)? initial,
     TResult? Function(ForgotPassLoading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(ForgotPassSuccess value)? success,
     TResult? Function(ForgotPassFailure value)? failure,
   }) {
@@ -786,8 +955,8 @@ class _$ForgotPassFailureImpl implements ForgotPassFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ForgotPassInitial value)? initial,
     TResult Function(ForgotPassLoading value)? loading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(ForgotPassSuccess value)? success,
     TResult Function(ForgotPassFailure value)? failure,
     required TResult orElse(),

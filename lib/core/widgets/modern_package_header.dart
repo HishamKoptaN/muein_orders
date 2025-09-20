@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 
@@ -47,7 +48,7 @@ class ModernPackageHeader extends StatelessWidget {
             ),
           ),
           Gap(12.w),
-          
+
           // Package Info
           Expanded(
             child: Column(
@@ -70,7 +71,7 @@ class ModernPackageHeader extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // Arrow Icon
           Icon(
             Icons.keyboard_arrow_down,

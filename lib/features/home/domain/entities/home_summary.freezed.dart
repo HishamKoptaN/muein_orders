@@ -20,44 +20,6 @@ mixin _$HomeSummary {
   int get pendingOrders => throw _privateConstructorUsedError;
   int get deliveredOrders => throw _privateConstructorUsedError;
   double? get revenue => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(int totalOrders, int pendingOrders, int deliveredOrders,
-            double? revenue)
-        $default,
-  ) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int totalOrders, int pendingOrders, int deliveredOrders,
-            double? revenue)?
-        $default,
-  ) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int totalOrders, int pendingOrders, int deliveredOrders,
-            double? revenue)?
-        $default, {
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HomeSummary value) $default,
-  ) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HomeSummary value)? $default,
-  ) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeSummary value)? $default, {
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
   /// Create a copy of HomeSummary
   /// with the given fields replaced by the non-null parameter values.
@@ -222,68 +184,6 @@ class _$HomeSummaryImpl implements _HomeSummary {
   @pragma('vm:prefer-inline')
   _$$HomeSummaryImplCopyWith<_$HomeSummaryImpl> get copyWith =>
       __$$HomeSummaryImplCopyWithImpl<_$HomeSummaryImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(int totalOrders, int pendingOrders, int deliveredOrders,
-            double? revenue)
-        $default,
-  ) {
-    return $default(totalOrders, pendingOrders, deliveredOrders, revenue);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int totalOrders, int pendingOrders, int deliveredOrders,
-            double? revenue)?
-        $default,
-  ) {
-    return $default?.call(totalOrders, pendingOrders, deliveredOrders, revenue);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int totalOrders, int pendingOrders, int deliveredOrders,
-            double? revenue)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(totalOrders, pendingOrders, deliveredOrders, revenue);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_HomeSummary value) $default,
-  ) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_HomeSummary value)? $default,
-  ) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_HomeSummary value)? $default, {
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _HomeSummary implements HomeSummary {

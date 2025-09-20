@@ -1,25 +1,20 @@
 import '../../domain/entities/sign_up_res_entity.dart';
 import '../../domain/entities/signup_req_entity.dart';
-import '../models/signup_req_model.dart';
-import 'sign_up_res_model.dart';
+import '../models/sign_up_req_model.dart';
+import '../models/sign_up_res_model.dart';
 
 extension SignUpReqMapper on SignUpReqEntity {
-  SignUpReqModel toModel() => SignUpReqModel(
-        firstName: firstName,
-        lastName: lastName,
+  SignUpReqModel toModel({required String idToken}) => SignUpReqModel(
+        name: name,
         phone: phone,
-        email: email,
-        password: password,
-        countryId: countryId ?? 0, // Provide default value for nullable int
+        idToken: idToken,
+        fcmToken: fcmToken,
       );
 }
 
 extension SignUpResMapper on SignUpResModel {
   SignUpResEntity toEntity() => SignUpResEntity(
-      // Map fields from model to entity
-      // Example:
-      // id: id,
-      // token: token,
-      // ... other fields
+        token: token,
+        role: role,
       );
 }

@@ -22,14 +22,12 @@ mixin _$SignUpEvent {
             GenericFormzInput<dynamic>? name,
             EmailInput? email,
             PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
             PasswordInput? password,
             ConfirmPasswordInput? confirmPassword,
             GenericFormzInput<dynamic>? obscurePassword,
             FormzSubmissionStatus? formzSubmissionStatus)
         dataChanged,
     required TResult Function() signUp,
-    required TResult Function() getSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,14 +36,12 @@ mixin _$SignUpEvent {
             GenericFormzInput<dynamic>? name,
             EmailInput? email,
             PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
             PasswordInput? password,
             ConfirmPasswordInput? confirmPassword,
             GenericFormzInput<dynamic>? obscurePassword,
             FormzSubmissionStatus? formzSubmissionStatus)?
         dataChanged,
     TResult? Function()? signUp,
-    TResult? Function()? getSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,14 +50,12 @@ mixin _$SignUpEvent {
             GenericFormzInput<dynamic>? name,
             EmailInput? email,
             PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
             PasswordInput? password,
             ConfirmPasswordInput? confirmPassword,
             GenericFormzInput<dynamic>? obscurePassword,
             FormzSubmissionStatus? formzSubmissionStatus)?
         dataChanged,
     TResult Function()? signUp,
-    TResult Function()? getSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,21 +63,18 @@ mixin _$SignUpEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(_SignUp value) signUp,
-    required TResult Function(_GetCountries value) getSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_DataChanged value)? dataChanged,
     TResult? Function(_SignUp value)? signUp,
-    TResult? Function(_GetCountries value)? getSettings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_SignUp value)? signUp,
-    TResult Function(_GetCountries value)? getSettings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +111,6 @@ abstract class _$$DataChangedImplCopyWith<$Res> {
       {GenericFormzInput<dynamic>? name,
       EmailInput? email,
       PhoneNumberInput? phone,
-      GenericFormzInput<dynamic>? countryId,
       PasswordInput? password,
       ConfirmPasswordInput? confirmPassword,
       GenericFormzInput<dynamic>? obscurePassword,
@@ -143,7 +133,6 @@ class __$$DataChangedImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? email = freezed,
     Object? phone = freezed,
-    Object? countryId = freezed,
     Object? password = freezed,
     Object? confirmPassword = freezed,
     Object? obscurePassword = freezed,
@@ -162,10 +151,6 @@ class __$$DataChangedImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as PhoneNumberInput?,
-      countryId: freezed == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>?,
       password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -188,12 +173,11 @@ class __$$DataChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataChangedImpl implements _DataChanged {
+class _$DataChangedImpl with DiagnosticableTreeMixin implements _DataChanged {
   const _$DataChangedImpl(
       {this.name,
       this.email,
       this.phone,
-      this.countryId,
       this.password,
       this.confirmPassword,
       this.obscurePassword,
@@ -206,8 +190,6 @@ class _$DataChangedImpl implements _DataChanged {
   @override
   final PhoneNumberInput? phone;
   @override
-  final GenericFormzInput<dynamic>? countryId;
-  @override
   final PasswordInput? password;
   @override
   final ConfirmPasswordInput? confirmPassword;
@@ -217,8 +199,23 @@ class _$DataChangedImpl implements _DataChanged {
   final FormzSubmissionStatus? formzSubmissionStatus;
 
   @override
-  String toString() {
-    return 'SignUpEvent.dataChanged(name: $name, email: $email, phone: $phone, countryId: $countryId, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SignUpEvent.dataChanged(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SignUpEvent.dataChanged'))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('phone', phone))
+      ..add(DiagnosticsProperty('password', password))
+      ..add(DiagnosticsProperty('confirmPassword', confirmPassword))
+      ..add(DiagnosticsProperty('obscurePassword', obscurePassword))
+      ..add(
+          DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
   }
 
   @override
@@ -229,8 +226,6 @@ class _$DataChangedImpl implements _DataChanged {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.countryId, countryId) ||
-                other.countryId == countryId) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.confirmPassword, confirmPassword) ||
@@ -242,8 +237,8 @@ class _$DataChangedImpl implements _DataChanged {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, email, phone, countryId,
-      password, confirmPassword, obscurePassword, formzSubmissionStatus);
+  int get hashCode => Object.hash(runtimeType, name, email, phone, password,
+      confirmPassword, obscurePassword, formzSubmissionStatus);
 
   /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -260,16 +255,14 @@ class _$DataChangedImpl implements _DataChanged {
             GenericFormzInput<dynamic>? name,
             EmailInput? email,
             PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
             PasswordInput? password,
             ConfirmPasswordInput? confirmPassword,
             GenericFormzInput<dynamic>? obscurePassword,
             FormzSubmissionStatus? formzSubmissionStatus)
         dataChanged,
     required TResult Function() signUp,
-    required TResult Function() getSettings,
   }) {
-    return dataChanged(name, email, phone, countryId, password, confirmPassword,
+    return dataChanged(name, email, phone, password, confirmPassword,
         obscurePassword, formzSubmissionStatus);
   }
 
@@ -280,17 +273,15 @@ class _$DataChangedImpl implements _DataChanged {
             GenericFormzInput<dynamic>? name,
             EmailInput? email,
             PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
             PasswordInput? password,
             ConfirmPasswordInput? confirmPassword,
             GenericFormzInput<dynamic>? obscurePassword,
             FormzSubmissionStatus? formzSubmissionStatus)?
         dataChanged,
     TResult? Function()? signUp,
-    TResult? Function()? getSettings,
   }) {
-    return dataChanged?.call(name, email, phone, countryId, password,
-        confirmPassword, obscurePassword, formzSubmissionStatus);
+    return dataChanged?.call(name, email, phone, password, confirmPassword,
+        obscurePassword, formzSubmissionStatus);
   }
 
   @override
@@ -300,19 +291,17 @@ class _$DataChangedImpl implements _DataChanged {
             GenericFormzInput<dynamic>? name,
             EmailInput? email,
             PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
             PasswordInput? password,
             ConfirmPasswordInput? confirmPassword,
             GenericFormzInput<dynamic>? obscurePassword,
             FormzSubmissionStatus? formzSubmissionStatus)?
         dataChanged,
     TResult Function()? signUp,
-    TResult Function()? getSettings,
     required TResult orElse(),
   }) {
     if (dataChanged != null) {
-      return dataChanged(name, email, phone, countryId, password,
-          confirmPassword, obscurePassword, formzSubmissionStatus);
+      return dataChanged(name, email, phone, password, confirmPassword,
+          obscurePassword, formzSubmissionStatus);
     }
     return orElse();
   }
@@ -322,7 +311,6 @@ class _$DataChangedImpl implements _DataChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(_SignUp value) signUp,
-    required TResult Function(_GetCountries value) getSettings,
   }) {
     return dataChanged(this);
   }
@@ -332,7 +320,6 @@ class _$DataChangedImpl implements _DataChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_DataChanged value)? dataChanged,
     TResult? Function(_SignUp value)? signUp,
-    TResult? Function(_GetCountries value)? getSettings,
   }) {
     return dataChanged?.call(this);
   }
@@ -342,7 +329,6 @@ class _$DataChangedImpl implements _DataChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_SignUp value)? signUp,
-    TResult Function(_GetCountries value)? getSettings,
     required TResult orElse(),
   }) {
     if (dataChanged != null) {
@@ -357,7 +343,6 @@ abstract class _DataChanged implements SignUpEvent {
       {final GenericFormzInput<dynamic>? name,
       final EmailInput? email,
       final PhoneNumberInput? phone,
-      final GenericFormzInput<dynamic>? countryId,
       final PasswordInput? password,
       final ConfirmPasswordInput? confirmPassword,
       final GenericFormzInput<dynamic>? obscurePassword,
@@ -366,7 +351,6 @@ abstract class _DataChanged implements SignUpEvent {
   GenericFormzInput<dynamic>? get name;
   EmailInput? get email;
   PhoneNumberInput? get phone;
-  GenericFormzInput<dynamic>? get countryId;
   PasswordInput? get password;
   ConfirmPasswordInput? get confirmPassword;
   GenericFormzInput<dynamic>? get obscurePassword;
@@ -400,12 +384,18 @@ class __$$SignUpImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SignUpImpl implements _SignUp {
+class _$SignUpImpl with DiagnosticableTreeMixin implements _SignUp {
   const _$SignUpImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SignUpEvent.signUp()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'SignUpEvent.signUp'));
   }
 
   @override
@@ -424,14 +414,12 @@ class _$SignUpImpl implements _SignUp {
             GenericFormzInput<dynamic>? name,
             EmailInput? email,
             PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
             PasswordInput? password,
             ConfirmPasswordInput? confirmPassword,
             GenericFormzInput<dynamic>? obscurePassword,
             FormzSubmissionStatus? formzSubmissionStatus)
         dataChanged,
     required TResult Function() signUp,
-    required TResult Function() getSettings,
   }) {
     return signUp();
   }
@@ -443,14 +431,12 @@ class _$SignUpImpl implements _SignUp {
             GenericFormzInput<dynamic>? name,
             EmailInput? email,
             PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
             PasswordInput? password,
             ConfirmPasswordInput? confirmPassword,
             GenericFormzInput<dynamic>? obscurePassword,
             FormzSubmissionStatus? formzSubmissionStatus)?
         dataChanged,
     TResult? Function()? signUp,
-    TResult? Function()? getSettings,
   }) {
     return signUp?.call();
   }
@@ -462,14 +448,12 @@ class _$SignUpImpl implements _SignUp {
             GenericFormzInput<dynamic>? name,
             EmailInput? email,
             PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
             PasswordInput? password,
             ConfirmPasswordInput? confirmPassword,
             GenericFormzInput<dynamic>? obscurePassword,
             FormzSubmissionStatus? formzSubmissionStatus)?
         dataChanged,
     TResult Function()? signUp,
-    TResult Function()? getSettings,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -483,7 +467,6 @@ class _$SignUpImpl implements _SignUp {
   TResult map<TResult extends Object?>({
     required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(_SignUp value) signUp,
-    required TResult Function(_GetCountries value) getSettings,
   }) {
     return signUp(this);
   }
@@ -493,7 +476,6 @@ class _$SignUpImpl implements _SignUp {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_DataChanged value)? dataChanged,
     TResult? Function(_SignUp value)? signUp,
-    TResult? Function(_GetCountries value)? getSettings,
   }) {
     return signUp?.call(this);
   }
@@ -503,7 +485,6 @@ class _$SignUpImpl implements _SignUp {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_SignUp value)? signUp,
-    TResult Function(_GetCountries value)? getSettings,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -518,144 +499,6 @@ abstract class _SignUp implements SignUpEvent {
 }
 
 /// @nodoc
-abstract class _$$GetCountriesImplCopyWith<$Res> {
-  factory _$$GetCountriesImplCopyWith(
-          _$GetCountriesImpl value, $Res Function(_$GetCountriesImpl) then) =
-      __$$GetCountriesImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GetCountriesImplCopyWithImpl<$Res>
-    extends _$SignUpEventCopyWithImpl<$Res, _$GetCountriesImpl>
-    implements _$$GetCountriesImplCopyWith<$Res> {
-  __$$GetCountriesImplCopyWithImpl(
-      _$GetCountriesImpl _value, $Res Function(_$GetCountriesImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignUpEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$GetCountriesImpl implements _GetCountries {
-  const _$GetCountriesImpl();
-
-  @override
-  String toString() {
-    return 'SignUpEvent.getSettings()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetCountriesImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
-            PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)
-        dataChanged,
-    required TResult Function() signUp,
-    required TResult Function() getSettings,
-  }) {
-    return getSettings();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
-            PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)?
-        dataChanged,
-    TResult? Function()? signUp,
-    TResult? Function()? getSettings,
-  }) {
-    return getSettings?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            GenericFormzInput<dynamic>? countryId,
-            PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)?
-        dataChanged,
-    TResult Function()? signUp,
-    TResult Function()? getSettings,
-    required TResult orElse(),
-  }) {
-    if (getSettings != null) {
-      return getSettings();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DataChanged value) dataChanged,
-    required TResult Function(_SignUp value) signUp,
-    required TResult Function(_GetCountries value) getSettings,
-  }) {
-    return getSettings(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DataChanged value)? dataChanged,
-    TResult? Function(_SignUp value)? signUp,
-    TResult? Function(_GetCountries value)? getSettings,
-  }) {
-    return getSettings?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DataChanged value)? dataChanged,
-    TResult Function(_SignUp value)? signUp,
-    TResult Function(_GetCountries value)? getSettings,
-    required TResult orElse(),
-  }) {
-    if (getSettings != null) {
-      return getSettings(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetCountries implements SignUpEvent {
-  const factory _GetCountries() = _$GetCountriesImpl;
-}
-
-/// @nodoc
 mixin _$SignUpState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -667,14 +510,12 @@ mixin _$SignUpState {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)
+            FormzSubmissionStatus formzSubmissionStatus)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
+    required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -687,14 +528,12 @@ mixin _$SignUpState {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+    TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -707,14 +546,12 @@ mixin _$SignUpState {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -793,12 +630,18 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
+class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   const _$InitialImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SignUpState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'SignUpState.initial'));
   }
 
   @override
@@ -821,14 +664,12 @@ class _$InitialImpl implements _Initial {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)
+            FormzSubmissionStatus formzSubmissionStatus)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
+    required TResult Function(String error) failure,
   }) {
     return initial();
   }
@@ -844,14 +685,12 @@ class _$InitialImpl implements _Initial {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+    TResult? Function(String error)? failure,
   }) {
     return initial?.call();
   }
@@ -867,14 +706,12 @@ class _$InitialImpl implements _Initial {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -952,12 +789,18 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
+class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   const _$LoadingImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SignUpState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'SignUpState.loading'));
   }
 
   @override
@@ -980,14 +823,12 @@ class _$LoadingImpl implements _Loading {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)
+            FormzSubmissionStatus formzSubmissionStatus)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
+    required TResult Function(String error) failure,
   }) {
     return loading();
   }
@@ -1003,14 +844,12 @@ class _$LoadingImpl implements _Loading {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+    TResult? Function(String error)? failure,
   }) {
     return loading?.call();
   }
@@ -1026,14 +865,12 @@ class _$LoadingImpl implements _Loading {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1111,12 +948,20 @@ class __$$SettingsLoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SettingsLoadingImpl implements _SettingsLoading {
+class _$SettingsLoadingImpl
+    with DiagnosticableTreeMixin
+    implements _SettingsLoading {
   const _$SettingsLoadingImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SignUpState.settingsLoading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'SignUpState.settingsLoading'));
   }
 
   @override
@@ -1139,14 +984,12 @@ class _$SettingsLoadingImpl implements _SettingsLoading {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)
+            FormzSubmissionStatus formzSubmissionStatus)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
+    required TResult Function(String error) failure,
   }) {
     return settingsLoading();
   }
@@ -1162,14 +1005,12 @@ class _$SettingsLoadingImpl implements _SettingsLoading {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+    TResult? Function(String error)? failure,
   }) {
     return settingsLoading?.call();
   }
@@ -1185,14 +1026,12 @@ class _$SettingsLoadingImpl implements _SettingsLoading {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (settingsLoading != null) {
@@ -1270,12 +1109,18 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
+class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
   const _$SuccessImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SignUpState.success()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'SignUpState.success'));
   }
 
   @override
@@ -1298,14 +1143,12 @@ class _$SuccessImpl implements _Success {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)
+            FormzSubmissionStatus formzSubmissionStatus)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
+    required TResult Function(String error) failure,
   }) {
     return success();
   }
@@ -1321,14 +1164,12 @@ class _$SuccessImpl implements _Success {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+    TResult? Function(String error)? failure,
   }) {
     return success?.call();
   }
@@ -1344,14 +1185,12 @@ class _$SuccessImpl implements _Success {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -1418,12 +1257,10 @@ abstract class _$$LoadedImplCopyWith<$Res> {
       {GenericFormzInput<dynamic> name,
       EmailInput email,
       PhoneNumberInput phone,
-      GenericFormzInput<dynamic> countryId,
       PasswordInput password,
       ConfirmPasswordInput confirmPassword,
       GenericFormzInput<dynamic> obscurePassword,
-      FormzSubmissionStatus formzSubmissionStatus,
-      bool loading});
+      FormzSubmissionStatus formzSubmissionStatus});
 }
 
 /// @nodoc
@@ -1442,12 +1279,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? name = null,
     Object? email = null,
     Object? phone = null,
-    Object? countryId = null,
     Object? password = null,
     Object? confirmPassword = null,
     Object? obscurePassword = null,
     Object? formzSubmissionStatus = null,
-    Object? loading = null,
   }) {
     return _then(_$LoadedImpl(
       name: null == name
@@ -1462,10 +1297,6 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as PhoneNumberInput,
-      countryId: null == countryId
-          ? _value.countryId
-          : countryId // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -1482,27 +1313,21 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.formzSubmissionStatus
           : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
               as FormzSubmissionStatus,
-      loading: null == loading
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
+class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   const _$LoadedImpl(
       {required this.name,
       required this.email,
       required this.phone,
-      required this.countryId,
       required this.password,
       required this.confirmPassword,
       required this.obscurePassword,
-      required this.formzSubmissionStatus,
-      required this.loading});
+      required this.formzSubmissionStatus});
 
   @override
   final GenericFormzInput<dynamic> name;
@@ -1511,8 +1336,6 @@ class _$LoadedImpl implements _Loaded {
   @override
   final PhoneNumberInput phone;
   @override
-  final GenericFormzInput<dynamic> countryId;
-  @override
   final PasswordInput password;
   @override
   final ConfirmPasswordInput confirmPassword;
@@ -1520,12 +1343,25 @@ class _$LoadedImpl implements _Loaded {
   final GenericFormzInput<dynamic> obscurePassword;
   @override
   final FormzSubmissionStatus formzSubmissionStatus;
-  @override
-  final bool loading;
 
   @override
-  String toString() {
-    return 'SignUpState.loaded(name: $name, email: $email, phone: $phone, countryId: $countryId, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus, loading: $loading)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SignUpState.loaded(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SignUpState.loaded'))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('phone', phone))
+      ..add(DiagnosticsProperty('password', password))
+      ..add(DiagnosticsProperty('confirmPassword', confirmPassword))
+      ..add(DiagnosticsProperty('obscurePassword', obscurePassword))
+      ..add(
+          DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
   }
 
   @override
@@ -1536,8 +1372,6 @@ class _$LoadedImpl implements _Loaded {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.countryId, countryId) ||
-                other.countryId == countryId) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.confirmPassword, confirmPassword) ||
@@ -1545,22 +1379,12 @@ class _$LoadedImpl implements _Loaded {
             (identical(other.obscurePassword, obscurePassword) ||
                 other.obscurePassword == obscurePassword) &&
             (identical(other.formzSubmissionStatus, formzSubmissionStatus) ||
-                other.formzSubmissionStatus == formzSubmissionStatus) &&
-            (identical(other.loading, loading) || other.loading == loading));
+                other.formzSubmissionStatus == formzSubmissionStatus));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      email,
-      phone,
-      countryId,
-      password,
-      confirmPassword,
-      obscurePassword,
-      formzSubmissionStatus,
-      loading);
+  int get hashCode => Object.hash(runtimeType, name, email, phone, password,
+      confirmPassword, obscurePassword, formzSubmissionStatus);
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -1581,17 +1405,15 @@ class _$LoadedImpl implements _Loaded {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)
+            FormzSubmissionStatus formzSubmissionStatus)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
+    required TResult Function(String error) failure,
   }) {
-    return loaded(name, email, phone, countryId, password, confirmPassword,
-        obscurePassword, formzSubmissionStatus, this.loading);
+    return loaded(name, email, phone, password, confirmPassword,
+        obscurePassword, formzSubmissionStatus);
   }
 
   @override
@@ -1605,17 +1427,15 @@ class _$LoadedImpl implements _Loaded {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+    TResult? Function(String error)? failure,
   }) {
-    return loaded?.call(name, email, phone, countryId, password,
-        confirmPassword, obscurePassword, formzSubmissionStatus, this.loading);
+    return loaded?.call(name, email, phone, password, confirmPassword,
+        obscurePassword, formzSubmissionStatus);
   }
 
   @override
@@ -1629,19 +1449,17 @@ class _$LoadedImpl implements _Loaded {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(name, email, phone, countryId, password, confirmPassword,
-          obscurePassword, formzSubmissionStatus, this.loading);
+      return loaded(name, email, phone, password, confirmPassword,
+          obscurePassword, formzSubmissionStatus);
     }
     return orElse();
   }
@@ -1692,25 +1510,22 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements SignUpState {
   const factory _Loaded(
-      {required final GenericFormzInput<dynamic> name,
-      required final EmailInput email,
-      required final PhoneNumberInput phone,
-      required final GenericFormzInput<dynamic> countryId,
-      required final PasswordInput password,
-      required final ConfirmPasswordInput confirmPassword,
-      required final GenericFormzInput<dynamic> obscurePassword,
-      required final FormzSubmissionStatus formzSubmissionStatus,
-      required final bool loading}) = _$LoadedImpl;
+          {required final GenericFormzInput<dynamic> name,
+          required final EmailInput email,
+          required final PhoneNumberInput phone,
+          required final PasswordInput password,
+          required final ConfirmPasswordInput confirmPassword,
+          required final GenericFormzInput<dynamic> obscurePassword,
+          required final FormzSubmissionStatus formzSubmissionStatus}) =
+      _$LoadedImpl;
 
   GenericFormzInput<dynamic> get name;
   EmailInput get email;
   PhoneNumberInput get phone;
-  GenericFormzInput<dynamic> get countryId;
   PasswordInput get password;
   ConfirmPasswordInput get confirmPassword;
   GenericFormzInput<dynamic> get obscurePassword;
   FormzSubmissionStatus get formzSubmissionStatus;
-  bool get loading;
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -1725,7 +1540,7 @@ abstract class _$$FailureImplCopyWith<$Res> {
           _$FailureImpl value, $Res Function(_$FailureImpl) then) =
       __$$FailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ApiErrorModel apiErrorModel});
+  $Res call({String error});
 }
 
 /// @nodoc
@@ -1741,28 +1556,36 @@ class __$$FailureImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apiErrorModel = null,
+    Object? error = null,
   }) {
     return _then(_$FailureImpl(
-      apiErrorModel: null == apiErrorModel
-          ? _value.apiErrorModel
-          : apiErrorModel // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl({required this.apiErrorModel});
+class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
+  const _$FailureImpl({required this.error});
 
   @override
-  final ApiErrorModel apiErrorModel;
+  final String error;
 
   @override
-  String toString() {
-    return 'SignUpState.failure(apiErrorModel: $apiErrorModel)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SignUpState.failure(error: $error)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SignUpState.failure'))
+      ..add(DiagnosticsProperty('error', error));
   }
 
   @override
@@ -1770,12 +1593,11 @@ class _$FailureImpl implements _Failure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureImpl &&
-            (identical(other.apiErrorModel, apiErrorModel) ||
-                other.apiErrorModel == apiErrorModel));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, apiErrorModel);
+  int get hashCode => Object.hash(runtimeType, error);
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -1796,16 +1618,14 @@ class _$FailureImpl implements _Failure {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)
+            FormzSubmissionStatus formzSubmissionStatus)
         loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
+    required TResult Function(String error) failure,
   }) {
-    return failure(apiErrorModel);
+    return failure(error);
   }
 
   @override
@@ -1819,16 +1639,14 @@ class _$FailureImpl implements _Failure {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+    TResult? Function(String error)? failure,
   }) {
-    return failure?.call(apiErrorModel);
+    return failure?.call(error);
   }
 
   @override
@@ -1842,18 +1660,16 @@ class _$FailureImpl implements _Failure {
             GenericFormzInput<dynamic> name,
             EmailInput email,
             PhoneNumberInput phone,
-            GenericFormzInput<dynamic> countryId,
             PasswordInput password,
             ConfirmPasswordInput confirmPassword,
             GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus,
-            bool loading)?
+            FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(apiErrorModel);
+      return failure(error);
     }
     return orElse();
   }
@@ -1903,10 +1719,9 @@ class _$FailureImpl implements _Failure {
 }
 
 abstract class _Failure implements SignUpState {
-  const factory _Failure({required final ApiErrorModel apiErrorModel}) =
-      _$FailureImpl;
+  const factory _Failure({required final String error}) = _$FailureImpl;
 
-  ApiErrorModel get apiErrorModel;
+  String get error;
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.

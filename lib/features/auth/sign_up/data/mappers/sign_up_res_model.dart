@@ -17,14 +17,14 @@ abstract class SignUpResModel with _$SignUpResModel {
 
 extension SignUpResModelX on SignUpResModel {
   SignUpResEntity toEntity() => SignUpResEntity(
-      token: token,
-      role: role,
-    );
+        token: token!,
+        role: role!,
+      );
 }
 
 extension SignUpResEntityX on SignUpResEntity {
   SignUpResModel toModel() => SignUpResModel(
-      token: token,
-      role: role,
-    );
+        token: token,
+        role: role,
+      );
 }

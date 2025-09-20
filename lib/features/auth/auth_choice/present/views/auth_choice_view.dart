@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mubin_orders/core/theme/app_colors.dart';
-import 'package:mubin_orders/gen/assets.gen.dart';
-import 'package:mubin_orders/l10n/app_localizations.dart';
+
+import '../../../../../core/navigation/app_router.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../gen/assets.gen.dart';
+import '../../../../../l10n/app_localizations.dart';
+import '../../../sign_in/present/views/sign_in_view.dart';
+import '../../../sign_up/present/sign_up_views.dart';
 
 class AuthChoiceView extends StatelessWidget {
   const AuthChoiceView({super.key});
-  static const String routeName = "AuthChoiceView";
+  static const String routeName = 'auth-choice';
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -22,7 +24,6 @@ class AuthChoiceView extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-
           // Logo at the center
           Positioned(
             top: size.height * 0.2,
@@ -61,8 +62,12 @@ class AuthChoiceView extends StatelessWidget {
                     width: double.infinity,
                     height: 56,
                     child: ElevatedButton(
-                      onPressed: () =>
-                          context.push('/sign-up'),
+                      onPressed: () {
+                        AppRouter.navigateAndRemoveUntil(
+                          context: context,
+                          routeName: SignUpView.routeName,
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                       ),
@@ -83,7 +88,12 @@ class AuthChoiceView extends StatelessWidget {
                     width: double.infinity,
                     height: 56,
                     child: ElevatedButton(
-                      onPressed: () => context.push('/sign-in'),
+                      onPressed: () {
+                        AppRouter.navigateAndRemoveUntil(
+                          context: context,
+                          routeName: SignInView.routeName,
+                        );
+                      },
                       child: Text(
                         t.login,
                         style: const TextStyle(

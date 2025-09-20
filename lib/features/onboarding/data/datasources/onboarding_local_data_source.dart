@@ -1,39 +1,50 @@
-import 'package:mubin_orders/features/onboarding/data/models/onboarding_model.dart';
+import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../gen/assets.gen.dart';
+import '../../domain/entities/onboarding_page_entity.dart';
 
 abstract class OnboardingLocalDataSource {
   Future<bool> isOnboardingCompleted();
   Future<void> completeOnboarding();
-  List<OnboardingModel> getOnboardingPages();
+  List<OnboardingPageEntity> getOnboardingPages();
 }
 
+@LazySingleton(as: OnboardingLocalDataSource)
 class OnboardingLocalDataSourceImpl implements OnboardingLocalDataSource {
+  final SharedPreferences _prefs;
+  static const String _onboardingCompletedKey = 'onboarding_completed';
+
+  OnboardingLocalDataSourceImpl({required SharedPreferences prefs})
+      : _prefs = prefs;
+
   @override
   Future<bool> isOnboardingCompleted() async {
-    return false;
+    return _prefs.getBool(_onboardingCompletedKey) ?? false;
   }
 
   @override
   Future<void> completeOnboarding() async {
-    // Implementation will be added after PrefsStorageService is available
+    await _prefs.setBool(_onboardingCompletedKey, true);
   }
 
   @override
-  List<OnboardingModel> getOnboardingPages() {
+  List<OnboardingPageEntity> getOnboardingPages() {
     return [
-      OnboardingModel(
-        title: 'مرحباً بك في تطبيق مبن',
-        description: 'نحن سعداء بانضمامك إلينا في متجرنا الإلكتروني',
-        imagePath: 'assets/images/onboarding_1.png',
+      OnboardingPageEntity(
+        titleKey: 'welcome',
+        descriptionKey: 'we_are_happy_to_have_you_join_our_store',
+        imagePath: Assets.images.onboarding.onboarding1.path,
       ),
-      OnboardingModel(
-        title: 'تعرف على واجهة التطبيق',
-        description: 'هنا ستجد المهام والطلبات والتنبيهات والفلترات',
-        imagePath: 'assets/images/onboarding_2.png',
+      OnboardingPageEntity(
+        titleKey: 'get_to_know_the_application_interface',
+        descriptionKey: 'here_you_will_find_tasks_requests_alerts_and_filters',
+        imagePath: Assets.images.onboarding.onboarding2.path,
       ),
-      OnboardingModel(
-        title: 'التوثيق بالصور والفيديوهات',
-        description: 'تأكد من وضوح الصور وعدد نسخ المصحف قبل الإرسال',
-        imagePath: 'assets/images/onboarding_3.png',
+      OnboardingPageEntity(
+        titleKey: 'documentation_with_photos_and_videos',
+        descriptionKey: 'make_sure_the_images_are_clear_and_correct',
+        imagePath: Assets.images.onboarding.onboarding3.path,
       ),
     ];
   }

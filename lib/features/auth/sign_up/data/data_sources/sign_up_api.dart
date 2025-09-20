@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
-
-import '../../../../../../core/networking/api_constants.dart';
-import '../mappers/sign_up_res_model.dart';
-import '../mappers/sign_up_settings_res_model.dart';
-import '../models/signup_req_model.dart';
+import '../../../../../core/networking/api_constants.dart';
+import '../models/sign_up_req_model.dart';
+import '../models/sign_up_res_model.dart';
 
 part 'sign_up_api.g.dart';
 
@@ -17,10 +15,8 @@ part 'sign_up_api.g.dart';
 abstract class SignUpApi {
   @factoryMethod
   factory SignUpApi(Dio dio) = _SignUpApi;
-
-  @GET(ApiConstants.signup)
-  Future<SignUpSettingsResModel> getCountries();
-
-  @POST(ApiConstants.signup)
-  Future<SignUpResModel> signUp({@Body() required SignUpReqModel signUpReq});
+  @POST('sign-up')
+  Future<SignUpResModel> signUp(
+    @Body() SignUpReqModel signUpReq,
+  );
 }

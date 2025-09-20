@@ -10,13 +10,10 @@ class SignUpState with _$SignUpState {
     required GenericFormzInput name,
     required EmailInput email,
     required PhoneNumberInput phone,
-    required GenericFormzInput countryId,
     required PasswordInput password,
     required ConfirmPasswordInput confirmPassword,
     required GenericFormzInput obscurePassword,
     required FormzSubmissionStatus formzSubmissionStatus,
-    required bool loading,
   }) = _Loaded;
-  const factory SignUpState.failure({required ApiErrorModel apiErrorModel}) =
-      _Failure;
+  const factory SignUpState.failure({required String error}) = _Failure;
 }

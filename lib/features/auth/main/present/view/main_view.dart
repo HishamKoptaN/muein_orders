@@ -10,7 +10,7 @@ class MainView extends StatelessWidget {
   const MainView({
     super.key,
   });
-  static const String routeName = "MainView";
+  static const String routeName = 'main';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -9,7 +9,9 @@ import '../models/token_res_model.dart';
 part 'sign_in_api.g.dart';
 
 @injectable
-@RestApi(baseUrl: '${ApiConstants.baseUrl}${ApiConstants.apiAuthBaseUrl}')
+@RestApi(
+  baseUrl: ApiConstants.apiAuthBaseUrl,
+)
 abstract class SignInApi {
   @factoryMethod
   factory SignInApi(Dio dio, {@factoryParam String? baseUrl}) = _SignInApi;

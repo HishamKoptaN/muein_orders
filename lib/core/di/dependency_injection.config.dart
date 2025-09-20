@@ -21,10 +21,10 @@ import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../features/auth/forgot_password/data/repo/forgot_password_repo_impl.dart'
     as _i877;
-import '../../features/auth/forgot_password/domain/repo/forgot_password_repository.dart'
-    as _i899;
-import '../../features/auth/forgot_password/domain/usecases/send_password_reset_email_usecase.dart'
-    as _i188;
+import '../../features/auth/forgot_password/domain/repo/forgot_pass_repo.dart'
+    as _i614;
+import '../../features/auth/forgot_password/domain/usecases/send_pass_reset_email_usecase.dart'
+    as _i629;
 import '../../features/auth/forgot_password/present/bloc/forgot_pass_bloc.dart'
     as _i154;
 import '../../features/auth/main/data/datasources/main_api.dart' as _i975;
@@ -56,6 +56,7 @@ import '../../features/home/data/datasources/home_remote_datasource.dart'
 import '../../features/home/data/repo_impl/home_repo_impl.dart' as _i886;
 import '../../features/home/domain/repo/home_repo.dart' as _i280;
 import '../../features/home/domain/usecases/get_home_summary.dart' as _i817;
+import '../../features/language/bloc/language_bloc.dart' as _i724;
 import '../../features/notifications/data/datasources/notifications_api.dart'
     as _i352;
 import '../../features/notifications/data/repo_impl/notifications_repo_impl.dart'
@@ -66,6 +67,11 @@ import '../../features/notifications/domain/usecases/notifications_use_cases.dar
     as _i139;
 import '../../features/notifications/present/bloc/notifications_bloc.dart'
     as _i781;
+import '../../features/onboarding/data/datasources/onboarding_local_data_source.dart'
+    as _i870;
+import '../../features/onboarding/data/repo/onboarding_repo_impl.dart' as _i527;
+import '../../features/onboarding/domain/repo/onboarding_rep.dart' as _i876;
+import '../../features/onboarding/present/bloc/onboarding_bloc.dart' as _i708;
 import '../../features/orders/data/datasources/orders_api.dart' as _i165;
 import '../../features/orders/data/repo_impl/orders_repo_impl.dart' as _i450;
 import '../../features/orders/domain/repo/orders_repo.dart' as _i808;
@@ -96,6 +102,7 @@ Future<_i174.GetIt> $initGetIt(
     () => injectionModule.prefs,
     preResolve: true,
   );
+  gh.factory<_i724.LanguageBloc>(() => _i724.LanguageBloc());
   gh.factory<_i307.ThemeBloc>(() => _i307.ThemeBloc());
   gh.singleton<_i804.LoggingInterceptor>(() => _i804.LoggingInterceptor());
   gh.singleton<_i667.DioClient>(() => _i667.DioClient());
@@ -114,10 +121,14 @@ Future<_i174.GetIt> $initGetIt(
       () => _i278.HomeRemoteDataSource());
   gh.singleton<_i804.AuthInterceptor>(
       () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()));
+  gh.lazySingleton<_i614.ForgotPassRepo>(
+      () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()));
   gh.singleton<_i361.Dio>(() => apiModule.dio(
         gh<_i804.AuthInterceptor>(),
         gh<_i804.LoggingInterceptor>(),
       ));
+  gh.factory<_i629.SendPassResetEmailUseCase>(
+      () => _i629.SendPassResetEmailUseCase(gh<_i614.ForgotPassRepo>()));
   gh.factory<_i975.MainApi>(() => _i975.MainApi(
         gh<_i361.Dio>(),
         baseUrl: gh<String>(),
@@ -134,8 +145,9 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i361.Dio>(),
         baseUrl: gh<String>(),
       ));
-  gh.lazySingleton<_i899.ForgotPasswordRepository>(
-      () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()));
+  gh.lazySingleton<_i870.OnboardingLocalDataSource>(() =>
+      _i870.OnboardingLocalDataSourceImpl(
+          prefs: gh<_i460.SharedPreferences>()));
   gh.factory<_i303.NetworkInfo>(() =>
       _i303.NetworkInfoImpl(connectionChecker: gh<_i161.InternetConnection>()));
   gh.factoryParam<_i804.SignInApi, String?, dynamic>((
@@ -152,9 +164,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i886.HomeRepoImpl(gh<_i278.HomeRemoteDataSource>()));
   gh.factory<_i672.DocsRepo>(
       () => _i430.DocsRepoImpl(postsApi: gh<_i715.DocsApi>()));
-  gh.factory<_i188.SendPasswordResetEmailUseCase>(() =>
-      _i188.SendPasswordResetEmailUseCase(
-          gh<_i899.ForgotPasswordRepository>()));
   gh.factory<_i290.MainRepo>(
       () => _i330.MainRepoImpl(mainApi: gh<_i975.MainApi>()));
   gh.lazySingleton<_i305.SignInRepo>(() => _i218.SignInRepoImpl(
@@ -166,15 +175,17 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i305.SignInRepo>(),
         gh<_i59.FirebaseAuth>(),
       ));
+  gh.factory<_i154.ForgotPassBloc>(
+      () => _i154.ForgotPassBloc(gh<_i629.SendPassResetEmailUseCase>()));
   gh.factory<_i139.NotificationsUseCases>(
       () => _i139.NotificationsUseCases(gh<_i967.NotificationsRepo>()));
   gh.lazySingleton<_i552.SignUpApi>(() => _i552.SignUpApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i1008.MainUseCasess>(
       () => _i1008.MainUseCasess(mainRepo: gh<_i290.MainRepo>()));
-  gh.factory<_i154.ForgotPasswordBloc>(() =>
-      _i154.ForgotPasswordBloc(gh<_i188.SendPasswordResetEmailUseCase>()));
   gh.factory<_i808.OrdersRepo>(
       () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()));
+  gh.lazySingleton<_i876.OnboardingRepo>(() => _i527.OnboardingRepoImpl(
+      localDataSource: gh<_i870.OnboardingLocalDataSource>()));
   gh.factory<_i665.SignInBloc>(
       () => _i665.SignInBloc(signInUseCases: gh<_i941.SignInUseCases>()));
   gh.factory<_i817.GetHomeSummary>(
@@ -191,6 +202,8 @@ Future<_i174.GetIt> $initGetIt(
         auth: gh<_i59.FirebaseAuth>(),
         mainUseCasess: gh<_i1008.MainUseCasess>(),
       ));
+  gh.factory<_i708.OnboardingBloc>(
+      () => _i708.OnboardingBloc(repo: gh<_i876.OnboardingRepo>()));
   gh.factory<_i802.OrdersUseCases>(
       () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()));
   gh.factory<_i189.OrdersBloc>(

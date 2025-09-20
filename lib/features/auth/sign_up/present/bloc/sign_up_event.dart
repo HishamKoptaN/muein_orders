@@ -6,12 +6,10 @@ class SignUpEvent with _$SignUpEvent {
     GenericFormzInput? name,
     EmailInput? email,
     PhoneNumberInput? phone,
-    GenericFormzInput? countryId,
     PasswordInput? password,
     ConfirmPasswordInput? confirmPassword,
     GenericFormzInput? obscurePassword,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) = _DataChanged;
   const factory SignUpEvent.signUp() = _SignUp;
-  const factory SignUpEvent.getSettings() = _GetCountries;
 }

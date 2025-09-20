@@ -2,18 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/error/api_error_model.dart';
-import '../../../../../core/error/failures.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../domain/repo/forgot_password_repository.dart';
+import '../../domain/repo/forgot_pass_repo.dart';
 
-@LazySingleton(as: ForgotPasswordRepository)
-class ForgotPasswordRepositoryImpl implements ForgotPasswordRepository {
+@LazySingleton(as: ForgotPassRepo)
+class ForgotPasswordRepositoryImpl implements ForgotPassRepo {
   final FirebaseAuth _auth;
 
   ForgotPasswordRepositoryImpl(this._auth);
 
   @override
-  Future<ApiResult<void>> sendPasswordResetEmail({
+  Future<ApiResult<void>> sendPassResetEmail({
     required String email,
   }) async {
     try {
@@ -26,7 +25,7 @@ class ForgotPasswordRepositoryImpl implements ForgotPasswordRepository {
         ),
       );
     } catch (e) {
-      return ApiResult.failure(
+      return const ApiResult.failure(
         apiErrorModel: ApiErrorModel(
           message: 'Failed to send password reset email. Please try again.',
         ),

@@ -10,7 +10,7 @@ part of 'sign_in_api.dart';
 
 class _SignInApi implements SignInApi {
   _SignInApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://mapi.live90.fr/auth/';
+    baseUrl ??= 'auth/';
   }
 
   final Dio _dio;

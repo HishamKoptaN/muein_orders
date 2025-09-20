@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:mubin_orders/features/language/view/select_language.dart';
+
+import '../../core/navigation/app_router.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/app_localizations.dart';
+import '../language/view/select_language.dart';
 
 class StartView extends StatelessWidget {
   const StartView({super.key});
 
-  static const String routeName = "start";
+  static const String routeName = 'start';
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
+    final t = AppLocalizations.of(context)!;
     return Scaffold(
       body: Stack(
         children: [
@@ -24,7 +24,6 @@ class StartView extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-
           // Content
           Padding(
             padding:
@@ -39,26 +38,20 @@ class StartView extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'l10n.welcomeLine1',
+                          t.welcomeLine1,
                           style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            height: 1.2,
-                            letterSpacing: -0.01,
-                            fontFamily: "Tajawal",
+                            fontSize: 24,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                           textAlign: TextAlign.center,
                         ),
                         Text(
-                          'l10n.welcomeLine2',
+                          t.welcomeLine2,
                           style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            height: 1.2,
-                            letterSpacing: -0.01,
-                            fontFamily: "Tajawal",
+                            fontSize: 24,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -71,7 +64,6 @@ class StartView extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-
                 // Buttons
                 Padding(
                   padding: const EdgeInsets.only(bottom: 49.0),
@@ -79,31 +71,26 @@ class StartView extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: Column(
                       children: [
-// Language Selection Button
+                        // Language Selection Button
                         ElevatedButton.icon(
                           key: const Key('selectLanguage'),
                           onPressed: () {
-                            // Navigate to language selection screen using GoRouter
-                            context.pushNamed(SelectLanguage.routeName);
+                            AppRouter.navigateTo(
+                              context: context,
+                              routeName: SelectLanguage.routeName,
+                            );
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white.withOpacity(0.2),
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
                           icon: SvgPicture.asset(
                             Assets.icons.iconoirLanguage,
                             width: 24,
                             height: 24,
                             colorFilter: const ColorFilter.mode(
-                                Colors.white, BlendMode.srcIn),
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
                           ),
                           label: Text(
-                            l10n.selectLanguage,
+                            t.selectLanguage,
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -111,35 +98,6 @@ class StartView extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 16),
-
-                        // Continue as Guest Button
-                        OutlinedButton(
-                          onPressed: () async {
-                            // Navigate to main app without authentication
-                            // final prefs = context.read<PrefsStorageService>();
-                            // await prefs.setBool(
-                            //     SharedPrefKeys.skippedLogin, true);
-                            // if (context.mounted) {
-                            //   context.go('/${MainView.routeName}');
-                            // }
-                          },
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Colors.white),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                          child: Text(
-                            'l10n.continueAsGuest',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),

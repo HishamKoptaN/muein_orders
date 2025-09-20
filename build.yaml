@@ -5,32 +5,22 @@ targets:
         - lib/**
       exclude:
         - lib/l10n/**
-        - test/**
-        - tool/**
     builders:
       json_serializable:
         options:
           explicit_to_json: true
-          field_rename: none
           include_if_null: false
-
       freezed:
         options:
           union_key: type
           union_value_case: snake
-          map: true
-          when: true
-
       retrofit_generator:
         options:
           generate_example: false
           include_if_null: false
-          null_header: false
-
       injectable_generator:injectable_builder:
         options:
           prefer_relative_imports: true
-
       injectable_generator:injectable_config_builder:
         options:
           generate_for_dir:

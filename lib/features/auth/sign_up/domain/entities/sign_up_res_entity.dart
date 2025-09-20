@@ -1,9 +1,15 @@
-class SignUpResEntity {
-  final String? token;
-  final String? role;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const SignUpResEntity({
-    this.token,
-    this.role,
-  });
+part 'sign_up_res_entity.freezed.dart';
+part 'sign_up_res_entity.g.dart';
+
+@freezed
+class SignUpResEntity with _$SignUpResEntity {
+  const factory SignUpResEntity({
+    required String token,
+    @Default('user') String role,
+  }) = _SignUpResEntity;
+
+  factory SignUpResEntity.fromJson(Map<String, dynamic> json) =>
+      _$SignUpResEntityFromJson(json);
 }

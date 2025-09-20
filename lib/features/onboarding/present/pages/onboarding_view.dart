@@ -4,10 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/navigation/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../orders/present/views/orders_view.dart';
 import '../bloc/onboarding_bloc.dart';
-import '../bloc/onboarding_event.dart';
-import '../bloc/onboarding_state.dart';
 import '../widgets/onboarding_page.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -20,13 +19,13 @@ class OnboardingView extends StatefulWidget {
 
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController();
-  int _currentPageIndex = 0;
+  late final OnboardingBloc _bloc;
 
   @override
   void initState() {
     super.initState();
-    // The bloc will be provided by the parent widget
-    context.read<OnboardingBloc>().add(const CheckOnboardingStatus());
+    _bloc = getIt<OnboardingBloc>();
+    _bloc.add(const OnboardingEvent.checkOnboardingStatus());
   }
 
   @override
@@ -35,161 +34,164 @@ class _OnboardingViewState extends State<OnboardingView> {
     super.dispose();
   }
 
-  void _onPageChanged(int index) {
-    setState(
-      () {
-        _currentPageIndex = index;
-      },
-    );
-  }
-
-  void _onNextPressed() {
-    if (_currentPageIndex < 2) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      _completeOnboarding();
-    }
-  }
-
-  void _onSkipPressed() {
-    _completeOnboarding();
-  }
-
-  void _completeOnboarding() {
-    context.read<OnboardingBloc>().add(const CompleteOnboarding());
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<OnboardingBloc>(),
-      child: BlocListener<OnboardingBloc, OnboardingState>(
-        listener: (context, state) {
-          if (state is OnboardingCompleted) {
-            AppRouter.navigateAndRemoveUntil(
-              context: context,
-              routeName: OrdersView.routeName,
+    final t = AppLocalizations.of(context)!;
+
+    return Scaffold(
+      body: BlocProvider.value(
+        value: _bloc,
+        child: BlocListener<OnboardingBloc, OnboardingState>(
+          listener: (context, state) {
+            state.whenOrNull(
+              onboardingCompleted: () {
+                AppRouter.navigateAndRemoveUntil(
+                  context: context,
+                  routeName: OrdersView.routeName,
+                );
+              },
             );
-          }
-        },
-        child: Scaffold(
-          body: BlocBuilder<OnboardingBloc, OnboardingState>(
+          },
+          child: BlocBuilder<OnboardingBloc, OnboardingState>(
             builder: (context, state) {
-              if (state is OnboardingLoading || state is OnboardingInitial) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              if (state is OnboardingError) {
-                return Center(
+              return state.maybeWhen(
+                orElse: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                failure: (errorMessage) => Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('حدث خطأ أثناء تحميل شاشات التعريف'),
+                      Text(errorMessage),
                       const SizedBox(height: 16),
                       ElevatedButton(
-                        onPressed: () => context
-                            .read<OnboardingBloc>()
-                            .add(const CheckOnboardingStatus()),
-                        child: const Text('إعادة المحاولة'),
+                        onPressed: () => _bloc.add(
+                          const OnboardingEvent.checkOnboardingStatus(),
+                        ),
+                        child: Text(t.retry),
                       ),
                     ],
                   ),
-                );
-              }
-
-              if (state is OnboardingNotCompleted) {
-                return Stack(
-                  children: [
-                    PageView.builder(
-                      controller: _pageController,
-                      onPageChanged: _onPageChanged,
-                      itemCount: state.pages.length,
-                      itemBuilder: (context, index) {
-                        final page = state.pages[index];
-                        return OnboardingPage(
-                          title: page['title'] ?? '',
-                          description: page['description'] ?? '',
-                          imagePath: page['image'] ?? '',
-                          isLastPage: index == state.pages.length - 1,
-                        );
-                      },
-                    ),
-                    // Skip Button
-                    Positioned(
-                      top: MediaQuery.of(context).padding.top + 16,
-                      right: 16,
-                      child: TextButton(
-                        onPressed: _onSkipPressed,
-                        child: Text(
-                          'تخطي',
-                          style: TextStyle(
-                            color: AppColors.primary,
-                            fontSize: 16,
-                          ),
-                        ),
+                ),
+                onboardingNotCompleted: (pages, currentPageIndex, isLastPage) {
+                  return Stack(
+                    children: [
+                      // PageView
+                      PageView.builder(
+                        controller: _pageController,
+                        onPageChanged: (int index) {
+                          _bloc.add(OnboardingEvent.pageChanged(index));
+                        },
+                        itemCount: pages.length,
+                        itemBuilder: (context, index) {
+                          final page = pages[index];
+                          return OnboardingPage(
+                            title: t.byKey(page.titleKey),
+                            description: t.byKey(page.descriptionKey),
+                            imagePath: page.imagePath,
+                            isLastPage: index == pages.length - 1,
+                          );
+                        },
                       ),
-                    ),
-                    // Page Indicators
-                    Positioned(
-                      bottom: MediaQuery.of(context).padding.bottom + 100,
-                      left: 0,
-                      right: 0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          state.pages.length,
-                          (index) => AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            margin: const EdgeInsets.symmetric(horizontal: 4),
-                            width: _currentPageIndex == index ? 24 : 8,
-                            height: 8,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: _currentPageIndex == index
-                                  ? AppColors.primary
-                                  : Colors.grey[300],
+
+                      // Skip Button
+                      Positioned(
+                        top: MediaQuery.of(context).padding.top + 16,
+                        right: 16,
+                        child: TextButton(
+                          onPressed: () {
+                            _bloc.add(const OnboardingEvent.skipOnboarding());
+                          },
+                          child: Text(
+                            t.skip,
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontSize: 16,
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    // Next/Get Started Button
-                    Positioned(
-                      left: 24,
-                      right: 24,
-                      bottom: MediaQuery.of(context).padding.bottom + 32,
-                      child: ElevatedButton(
-                        onPressed: _onNextPressed,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: Text(
-                          _currentPageIndex == state.pages.length - 1
-                              ? 'ابدأ الآن'
-                              : 'التالي',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+
+                      // Page Indicators
+                      Positioned(
+                        bottom: MediaQuery.of(context).padding.bottom + 100,
+                        left: 0,
+                        right: 0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            pages.length,
+                            (index) => AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
+                              width: currentPageIndex == index ? 24 : 8,
+                              height: 8,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: currentPageIndex == index
+                                    ? AppColors.primary
+                                    : Colors.grey[300],
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                );
-              }
 
-              return const Center(child: CircularProgressIndicator());
+                      // Next/Get Started Button
+                      Positioned(
+                        left: 24,
+                        right: 24,
+                        bottom: MediaQuery.of(context).padding.bottom + 32,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            _bloc.add(const OnboardingEvent.nextPage());
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Text(
+                            isLastPage ? t.start : t.next,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+                onboardingCompleted: () => const SizedBox.shrink(),
+              );
             },
           ),
         ),
       ),
     );
+  }
+}
+
+extension LocalizationHelper on AppLocalizations {
+  String byKey(String key) {
+    switch (key) {
+      case 'welcome':
+        return welcome;
+      case 'we_are_happy_to_have_you_join_our_store':
+        return we_are_happy_to_have_you_join_our_store;
+      case 'get_to_know_the_application_interface':
+        return get_to_know_the_application_interface;
+      case 'here_you_will_find_tasks_requests_alerts_and_filters':
+        return here_you_will_find_tasks_requests_alerts_and_filters;
+      case 'documentation_with_photos_and_videos':
+        return documentation_with_photos_and_videos;
+      case 'make_sure_the_images_are_clear_and_correct':
+        return make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
+      default:
+        return key;
+    }
   }
 }

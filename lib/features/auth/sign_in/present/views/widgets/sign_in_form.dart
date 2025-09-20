@@ -4,11 +4,11 @@ import 'package:form_inputs/form_inputs/email_input.dart';
 import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:form_inputs/form_inputs/password_input.dart';
 import 'package:formz/formz.dart';
-import '../../../../../../core/extensions/app_localizations_extension.dart';
+
 import '../../../../../../core/navigation/app_router.dart';
 import '../../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../../l10n/app_localizations.dart';
-import '../../../../forgot_password/present/views/forgot_password_view.dart';
+import '../../../../forgot_password/present/views/forgot_pass_view.dart';
 import '../../bloc/sign_in_bloc.dart';
 
 class SignInForm extends StatefulWidget {
@@ -42,13 +42,14 @@ class _SignInFormState extends State<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
+    final t = AppLocalizations.of(context)!;
     return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) => Form(
         child: Column(
           children: [
             // Email Field
             CustomTextFormField(
+              key: const Key('email_field'),
               initialValue: widget.email.value,
               hintText: t.emailHint,
               prefixIcon: const Icon(Icons.email_outlined),
@@ -60,6 +61,7 @@ class _SignInFormState extends State<SignInForm> {
             const SizedBox(height: 16),
             // Password Field
             CustomTextFormField(
+              key: const Key('password_field'),
               initialValue: widget.password.value,
               hintText: t.password,
               prefixIcon: const Icon(Icons.lock_outline),
@@ -91,7 +93,7 @@ class _SignInFormState extends State<SignInForm> {
                   onPressed: () {
                     AppRouter.navigateTo(
                       context: context,
-                      routeName: ForgotPasswordView.routeName,
+                      routeName: ForgotPassView.routeName,
                     );
                   },
                   child: Text(

@@ -13,7 +13,7 @@ class FirebaseMessagingService {
       RemoteMessage message) async {
     await Firebase.initializeApp();
     log(
-      "📩 رسالة إشعار في الخلفية: ${message.messageId}",
+      '📩 رسالة إشعار في الخلفية: ${message.messageId}',
     );
   }
 
@@ -25,7 +25,7 @@ class FirebaseMessagingService {
     );
     FirebaseMessaging.onMessageOpenedApp.listen(
       (RemoteMessage message) {
-        log("📨 تم فتح التطبيق من خلال الإشعار: ${message.notification?.title}");
+        log('📨 تم فتح التطبيق من خلال الإشعار: ${message.notification?.title}');
       },
     );
     await _requestPermission();
@@ -33,18 +33,18 @@ class FirebaseMessagingService {
 
   //! طلب إذن استقبال الإشعارات
   static Future<void> _requestPermission() async {
-    NotificationSettings settings = await _firebaseMessaging.requestPermission(
+    final NotificationSettings settings = await _firebaseMessaging.requestPermission(
       alert: true,
       badge: true,
       sound: true,
     );
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       log(
-        "✅ تم منح إذن الإشعارات",
+        '✅ تم منح إذن الإشعارات',
       );
     } else {
       log(
-        "🚫 تم رفض إذن الإشعارات",
+        '🚫 تم رفض إذن الإشعارات',
       );
     }
   }
@@ -52,14 +52,14 @@ class FirebaseMessagingService {
   //! جلب FCM Token
   Future<String?> getFCMToken() async {
     try {
-      String? token = await _firebaseMessaging.getToken();
+      final String? token = await _firebaseMessaging.getToken();
       log(
-        "📌 تم جلب FCM Token: $token",
+        '📌 تم جلب FCM Token: $token',
       );
       return token;
     } catch (e) {
       log(
-        "❌ خطأ أثناء جلب FCM Token: $e",
+        '❌ خطأ أثناء جلب FCM Token: $e',
       );
       return null;
     }

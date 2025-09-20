@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../core/all_imports.dart';
 import '../../../../../core/database/shared_pref_helper.dart';
+import '../../../../../core/database/shared_pref_keys.dart';
 import '../../../../../core/error/api_error_model.dart';
 import '../../../../../core/models/user_data.dart';
 import '../../../../../core/networking/api_result.dart';
@@ -48,16 +50,23 @@ class SignInRepoImpl implements SignInRepo {
         );
       }
 
+    
       // 3. Send token to Laravel backend to get JWT
       final res = await signInApi.authToken(
         SignInReqBodyModel(
           idToken: idToken,
         ),
       );
-
+  // Store the token securely
+      await SharedPrefHelper.setSecuredString(
+        key: SharedPrefKeys.userToken,
+        value: res.token,
+      );
+      // Log successful storage
+      debugPrint('[log] ✅ تم تخزين التوكن بنجاح');
       // 4. Save the JWT token to secure storage
       await SharedPrefHelper.setSecuredString(
-        key: 'auth_token',
+        key:  SharedPrefKeys.userToken,
         value: res.token,
       );
       // 4. Get FCM token
@@ -73,11 +82,11 @@ class SignInRepoImpl implements SignInRepo {
       }
       // 5. Save tokens to secure storage
       await SharedPrefHelper.setSecuredString(
-        key: 'auth_token',
+        key: SharedPrefKeys.userToken,
         value: idToken,
       );
       await SharedPrefHelper.setSecuredString(
-        key: 'fcm_token',
+        key: SharedPrefKeys.fcmToken,
         value: fcmToken!,
       );
       // 6. Return success with the token data

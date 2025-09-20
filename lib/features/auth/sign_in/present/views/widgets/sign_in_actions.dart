@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
-import '../../../../../../core/extensions/app_localizations_extension.dart';
 import '../../../../../../core/navigation/app_router.dart';
 import '../../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../../l10n/app_localizations.dart';
@@ -18,7 +17,7 @@ class SignInActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
+    final t = AppLocalizations.of(context)!;
     return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) => Column(
         children: [
@@ -26,6 +25,7 @@ class SignInActions extends StatelessWidget {
             width: 332,
             height: 60,
             child: ElevatedButton(
+              key: const Key('signIn_button'),
               onPressed: formzSubmissionStatus.isSuccess
                   ? () => context.read<SignInBloc>().add(
                         const SignInEvent.signInWithCredentialsPressed(),
