@@ -153,7 +153,7 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
     context.read<SignInBloc>()
       ..add(
         const SignInEvent.dataChanged(
-          email: EmailInput.dirty('mohamed@gmail.com'),
+          email: EmailInput.dirty('msaad@gmail.com'),
         ),
       )
       ..add(

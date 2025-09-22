@@ -1,20 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class OnboardingPageEntity extends Equatable {
-  final String titleKey;
-  final String descriptionKey;
-  final String imagePath;
+part 'onboarding_page_entity.freezed.dart';
 
-  const OnboardingPageEntity({
-    required this.titleKey,
-    required this.descriptionKey,
-    required this.imagePath,
-  });
-
-  @override
-  List<Object?> get props => [
-        titleKey,
-        descriptionKey,
-        imagePath,
-      ];
+@freezed
+class OnboardingPageEntity with _$OnboardingPageEntity {
+  const factory OnboardingPageEntity({
+    required String titleKey,
+    required String descriptionKey,
+    required String imagePath,
+  }) = _OnboardingPageEntity;
 }

@@ -19,7 +19,7 @@ class AuthGuard extends StatelessWidget {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         state.maybeWhen(
-          authenticated: (_) {
+          authenticated: () {
             // Handle navigation to home when authenticated
             NavigationService.go(
                 context: context, routeName: OrdersView.routeName);
@@ -47,7 +47,7 @@ class AuthGuard extends StatelessWidget {
       },
       builder: (context, state) {
         return state.maybeWhen(
-          authenticated: (_) => child,
+          authenticated: () => child,
           loading: () => const Center(child: CircularProgressIndicator()),
           unauthenticated: () => const SizedBox.shrink(),
           failure: (message) => Center(

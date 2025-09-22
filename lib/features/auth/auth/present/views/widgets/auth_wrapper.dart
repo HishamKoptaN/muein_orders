@@ -20,7 +20,7 @@ class AuthWrapper extends StatelessWidget {
           loading: () => const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           ),
-          authenticated: (_) => authenticatedChild,
+          authenticated: () => authenticatedChild,
           unauthenticated: () => unauthenticatedChild,
           failure: (message) => Scaffold(
             body: Center(

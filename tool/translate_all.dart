@@ -60,6 +60,19 @@ Future<void> main() async {
     }
   }
 
+  // ✅ إصلاح مشكلة single quotes بعد الترجمة
+  print('🛠 Fixing single quotes in .arb files...');
+  for (final file in arbFiles) {
+    final filePath = '${l10nDir.path}/$file';
+    var content = await File(filePath).readAsString();
+
+    // استبدل أي single quote بـ double single quote
+    content = content.replaceAll("'", "''");
+
+    await File(filePath).writeAsString(content);
+  }
+  print('✅ All single quotes fixed.');
+
   print('📦 Generating l10n classes...');
 
   // تنفيذ gen-l10n في النهاية

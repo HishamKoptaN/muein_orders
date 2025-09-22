@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -54,9 +53,13 @@ abstract class ApiModule {
 @singleton
 class AuthInterceptor extends Interceptor {
   final TokenStorage tokenStorage;
+  String? _currentToken;
   AuthInterceptor(
     this.tokenStorage,
   );
+  Future<void> updateToken() async {
+    _currentToken = await tokenStorage.getToken();
+  }
 
   @override
   Future<void> onRequest(
@@ -68,15 +71,10 @@ class AuthInterceptor extends Interceptor {
       if (token != null) {
         options.headers['Authorization'] = 'Bearer $token';
       }
-      super.onRequest(
-        options,
-        handler,
-      );
+      super.onRequest(options, handler);
     } catch (e) {
-      super.onRequest(
-        options,
-        handler,
-      );
+      log('AuthInterceptor Error: $e');
+      super.onRequest(options, handler);
     }
   }
 }
@@ -125,22 +123,9 @@ class LoggingInterceptor extends Interceptor {
 
 @lazySingleton
 class TokenStorage {
-  final Dio dio;
-  TokenStorage(this.dio);
-
   Future<String?> getToken() async {
     return await SharedPrefHelper.getSecuredString(
       key: SharedPrefKeys.jwtToken,
     );
-  }
-
-  Future<void> setToken(String token) async {
-    await SharedPrefHelper.setSecuredString(
-      key: SharedPrefKeys.jwtToken,
-      value: token,
-    );
-    debugPrint('✅ تم تخزين التوكن بنجاح');
-    // ✅ حدّث الهيدر مباشرة
-    dio.options.headers['Authorization'] = 'Bearer $token';
   }
 }

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/auth_choice/present/views/auth_choice_view.dart';
+import '../../features/language/view/select_language.dart';
 import '../../features/orders/present/views/orders_view.dart';
 import 'app_routes.dart';
 
@@ -15,31 +16,31 @@ class AppRouterRedirect {
     AppRoutes.signUp,
     AppRoutes.forgotPass,
   };
-
   static String? handleRedirect(
     BuildContext context,
     GoRouterState goRouterState,
     AuthBloc authBloc,
   ) {
-    final state = authBloc.state;
-    final path = goRouterState.uri.path.replaceAll(RegExp('^/'), '');
-    return state.when(
-      // طول فترة التحميل => خليك على splash (يعني مفيش redirect)
-      loading: () => null,
-      unauthenticated: () {
-        if (!public.contains(path)) {
-          return AuthChoiceView.routeName;
-        }
-        return null;
+    final path = goRouterState.uri.path;
+    final location = path.startsWith('/') ? path.substring(1) : path;
+    return authBloc.state.when(
+      loading: () {
+        return null; // Stay on current route while loading
       },
-      authenticated: (_) {
-        if (public.contains(path)) {
-          return OrdersView.routeName;
+      unauthenticated: () {
+        if (public.contains(location) || location.isEmpty) {
+          return null; // Allow access to public routes
         }
-        return null;
+        return '/${SelectLanguageView.routeName}';
+      },
+      authenticated: () {
+        if (public.contains(location) || location.isEmpty) {
+          return '/${OrdersView.routeName}';
+        }
+        return null; // Allow access to private routes
       },
       failure: (_) {
-        return AuthChoiceView.routeName;
+        return '/${AuthChoiceView.routeName}';
       },
     );
   }

@@ -18,6 +18,10 @@ class RouteConfig {
   static List<RouteBase> get routes {
     final routes = [
       createRoute(
+        routeName: OnBoardingView.routeName,
+        builder: (context, state) => const OnBoardingView(),
+      ),
+      createRoute(
         routeName: SelectLanguageView.routeName,
         builder: (context, state) => const SelectLanguageView(),
       ),
@@ -36,10 +40,6 @@ class RouteConfig {
       createRoute(
         routeName: SignUpView.routeName,
         builder: (context, state) => const SignUpView(),
-      ),
-      createRoute(
-        routeName: OnBoardingView.routeName,
-        builder: (context, state) => const OnBoardingView(),
       ),
       createRoute(
         routeName: OrdersView.routeName,

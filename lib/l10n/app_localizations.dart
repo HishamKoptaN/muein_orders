@@ -5,10 +5,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_ak.dart';
 import 'app_localizations_ar.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_ff.dart';
+import 'app_localizations_fr.dart';
 import 'app_localizations_lg.dart';
 import 'app_localizations_sw.dart';
+import 'app_localizations_yo.dart';
 
 // ignore_for_file: type=lint
 
@@ -69,8 +73,8 @@ abstract class AppLocalizations {
 
   final String localeName;
 
-  static AppLocalizations? of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate =
@@ -96,13 +100,17 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('en'),
     Locale('ar'),
-    Locale('lg'),
+    Locale('en'),
     Locale('lg', 'UG'),
-    Locale('sw'),
     Locale('sw', 'KE'),
-    Locale('sw', 'TZ')
+    Locale('sw', 'TZ'),
+    Locale('sw'),
+    Locale('ak'),
+    Locale('ff'),
+    Locale('fr'),
+    Locale('lg'),
+    Locale('yo')
   ];
 
   /// No description provided for @upload_videos.
@@ -682,11 +690,11 @@ abstract class AppLocalizations {
   /// **'Unexpected error occurred'**
   String get unexpected_error;
 
-  /// No description provided for @not_have_account.
+  /// No description provided for @notHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Don\'t have an account?'**
-  String get not_have_account;
+  /// **'Don\'\'\'\'\'\'\'\'t have an account?'**
+  String get notHaveAccount;
 
   /// No description provided for @passwordsDoNotMatch.
   ///
@@ -799,7 +807,7 @@ abstract class AppLocalizations {
   /// No description provided for @make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending.
   ///
   /// In en, this message translates to:
-  /// **'Make sure the images are clear and the number of Qur\'an copies is correct before sending'**
+  /// **'Make sure the images are clear and the number of Qur\'\'\'\'\'\'\'\'an copies is correct before sending'**
   String
       get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
 
@@ -869,12 +877,6 @@ abstract class AppLocalizations {
   /// **'Forgot Password?'**
   String get forgotPassword;
 
-  /// No description provided for @notHaveAccount.
-  ///
-  /// In en, this message translates to:
-  /// **'Don\'t have an account?'**
-  String get notHaveAccount;
-
   /// No description provided for @selectLanguage.
   ///
   /// In en, this message translates to:
@@ -926,7 +928,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingPage1Description.
   ///
   /// In en, this message translates to:
-  /// **'We\'re happy to have you join Mubeen Store'**
+  /// **'We\'\'\'\'\'\'\'\'re happy to have you join Mubeen Store'**
   String get onboardingPage1Description;
 
   /// No description provided for @onboardingPage2Title.
@@ -938,7 +940,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingPage2Description.
   ///
   /// In en, this message translates to:
-  /// **'Here you\'ll find tasks, orders, alerts, and filters'**
+  /// **'Here you\'\'\'\'\'\'\'\'ll find tasks, orders, alerts, and filters'**
   String get onboardingPage2Description;
 
   /// No description provided for @onboardingPage3Title.
@@ -950,7 +952,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingPage3Description.
   ///
   /// In en, this message translates to:
-  /// **'Ensure images are clear and the number of Qur\'an copies is correct before sending'**
+  /// **'Ensure images are clear and the number of Qur\'\'\'\'\'\'\'\'an copies is correct before sending'**
   String get onboardingPage3Description;
 }
 
@@ -964,46 +966,40 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en', 'lg', 'sw'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+        'ak',
+        'ar',
+        'en',
+        'ff',
+        'fr',
+        'lg',
+        'sw',
+        'yo'
+      ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-  // Lookup logic when language+country codes are specified.
-  switch (locale.languageCode) {
-    case 'lg':
-      {
-        switch (locale.countryCode) {
-          case 'UG':
-            return AppLocalizationsLgUg();
-        }
-        break;
-      }
-    case 'sw':
-      {
-        switch (locale.countryCode) {
-          case 'KE':
-            return AppLocalizationsSwKe();
-          case 'TZ':
-            return AppLocalizationsSwTz();
-        }
-        break;
-      }
-  }
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ak':
+      return AppLocalizationsAk();
     case 'ar':
       return AppLocalizationsAr();
     case 'en':
       return AppLocalizationsEn();
+    case 'ff':
+      return AppLocalizationsFf();
+    case 'fr':
+      return AppLocalizationsFr();
     case 'lg':
       return AppLocalizationsLg();
     case 'sw':
       return AppLocalizationsSw();
+    case 'yo':
+      return AppLocalizationsYo();
   }
 
   throw FlutterError(

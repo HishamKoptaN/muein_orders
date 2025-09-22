@@ -6,6 +6,16 @@ import '../../../core/routing/navigation_service.dart';
 import '../../auth/auth_choice/present/views/auth_choice_view.dart';
 import '../bloc/language_bloc.dart';
 
+// قائمة اللغات المتاحة في التطبيق
+
+// كيينا
+// تنزانيا
+// الكاميرون
+// غانا
+// غينيا
+// بنين
+// العربية
+// الانجليزية
 class SelectLanguageView extends StatelessWidget {
   const SelectLanguageView({super.key});
   static const String routeName = 'select-language';
@@ -13,149 +23,168 @@ class SelectLanguageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> languages = [
-      {'name': 'العربية', 'code': 'ar'}, // Arabic
-      {'name': 'English', 'code': 'en'}, // English
-      {'name': 'Luganda (Uganda)', 'code': 'lg-UG'}, // Luganda - Uganda
-      {'name': 'Kiswahili (Tanzania)', 'code': 'sw-TZ'}, // Swahili - Tanzania
-      {'name': 'Kiswahili (Kenya)', 'code': 'sw-KE'}, // Swahili - Kenya
+      {'name': 'العربية', 'code': 'ar'}, // عربية عامة
+      {'name': 'English', 'code': 'en'}, // إنجليزية عامة
+      {'name': 'Kiswahili', 'code': 'sw'}, // سواحيلية عامة
+      {'name': 'Français', 'code': 'fr'}, // فرنسية عامة
+      {'name': 'Akan', 'code': 'ak'}, // الأكانية عامة
+      {'name': 'Fulfulde', 'code': 'ff'}, // الفولانية عامة
+      {'name': 'Yorùbá', 'code': 'yo'}, // اليوروبا عامة
+      {'name': 'Luganda', 'code': 'lg'}, // اللوغندية عامة
     ];
 
-    final t = AppLocalizations.of(context)!;
+    final t = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: const Color(0xFF003A45),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: BlocBuilder<LanguageBloc, LanguageState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                loaded: (currentLocale) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 80),
-                      Text(
-                        t.selectLanguage,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          height: 1.5,
-                        ),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          itemCount: languages.length,
-                          itemBuilder: (
-                            context,
-                            index,
-                          ) {
-                            final langCode =
-                                languages[index]['code']!.split('-').first;
-                            final countryCode =
-                                languages[index]['code']!.split('-').length > 1
-                                    ? languages[index]['code']!
-                                        .split('-')
-                                        .last
-                                        .toUpperCase()
-                                    : null;
-                            final isSelected = currentLocale.languageCode ==
-                                    langCode &&
-                                (countryCode == null ||
-                                    currentLocale.countryCode?.toUpperCase() ==
-                                        countryCode);
-                            return GestureDetector(
-                              onTap: () {
-                                final parts =
-                                    languages[index]['code']!.split('-');
-                                final langCode = parts[0];
-                                final countryCode =
-                                    parts.length > 1 ? parts[1] : null;
-                                context.read<LanguageBloc>().add(
-                                      LanguageEvent.changeLanguage(
-                                        languageCode: langCode,
-                                        countryCode: countryCode,
-                                      ),
-                                    );
-                              },
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 56,
-                                  decoration: BoxDecoration(
-                                    color: isSelected
-                                        ? const Color(0xFF83BEA8)
-                                            .withValues(alpha: 0.2)
-                                        : Colors.white.withValues(alpha: 0.1),
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
+                ),
+                child: IntrinsicHeight(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: BlocBuilder<LanguageBloc, LanguageState>(
+                      builder: (context, state) {
+                        return state.maybeWhen(
+                          loaded: (currentLocale) {
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                const SizedBox(height: 40),
+                                Text(
+                                  t.selectLanguage,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    height: 1.5,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 32),
+                                ...languages.map((language) {
+                                  final langCode =
+                                      language['code']!.split('-').first;
+                                  final countryCode =
+                                      language['code']!.split('-').length > 1
+                                          ? language['code']!
+                                              .split('-')
+                                              .last
+                                              .toUpperCase()
+                                          : null;
+                                  final isSelected =
+                                      currentLocale.languageCode == langCode &&
+                                          (countryCode == null ||
+                                              currentLocale.countryCode
+                                                      ?.toUpperCase() ==
+                                                  countryCode);
+
+                                  return Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 12.0),
+                                    child: Material(
                                       color: isSelected
                                           ? const Color(0xFF83BEA8)
-                                          : Colors.white.withValues(alpha: 0.5),
-                                      width: isSelected ? 2 : 1,
+                                              .withOpacity(0.2)
+                                          : Colors.white.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: InkWell(
+                                        onTap: () {
+                                          final parts =
+                                              language['code']!.split('-');
+                                          context.read<LanguageBloc>().add(
+                                                LanguageEvent.changeLanguage(
+                                                  languageCode: parts[0],
+                                                  countryCode: parts.length > 1
+                                                      ? parts[1]
+                                                      : null,
+                                                ),
+                                              );
+                                        },
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Container(
+                                          width: double.infinity,
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 16.0,
+                                            horizontal: 20.0,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  language['name']!,
+                                                  style: TextStyle(
+                                                    color: isSelected
+                                                        ? const Color(
+                                                            0xFF83BEA8,
+                                                          )
+                                                        : Colors.white,
+                                                    fontSize: 16,
+                                                    fontWeight: isSelected
+                                                        ? FontWeight.bold
+                                                        : FontWeight.normal,
+                                                  ),
+                                                ),
+                                              ),
+                                              if (isSelected)
+                                                const Icon(
+                                                  Icons.check_circle,
+                                                  color: Color(0xFF83BEA8),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                                const SizedBox(height: 20),
+                                ElevatedButton(
+                                  key: const Key('follow'),
+                                  onPressed: () {
+                                    NavigationService.navigateTo(
+                                      context: context,
+                                      routeName: AuthChoiceView.routeName,
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFF83BEA8),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 16,
                                     ),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      languages[index]['name']!,
-                                      style: TextStyle(
-                                        color: isSelected
-                                            ? const Color(0xFF83BEA8)
-                                            : Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: isSelected
-                                            ? FontWeight.bold
-                                            : FontWeight.w500,
-                                      ),
+                                  child: Text(
+                                    t.followUp,
+                                    style: const TextStyle(
+                                      fontSize: 17,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                              ),
+                                const SizedBox(height: 20),
+                              ],
                             );
                           },
-                        ),
-                      ),
-                      const Spacer(),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          key: const Key('follow'),
-                          onPressed: () {
-                            NavigationService.navigateTo(
-                              context: context,
-                              routeName: AuthChoiceView.routeName,
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF83BEA8),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            disabledBackgroundColor: Colors.grey[400],
+                          orElse: () => const Center(
+                            child: CircularProgressIndicator(),
                           ),
-                          child: Text(
-                            t.followUp,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 17,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-                orElse: () => const SizedBox(),
-              );
-            },
-          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

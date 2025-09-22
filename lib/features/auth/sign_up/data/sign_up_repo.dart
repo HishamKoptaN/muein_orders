@@ -5,7 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/database/shared_pref_helper.dart';
+import '../../../../core/database/shared_pref_keys.dart';
 import '../../../../core/di/api_module.dart';
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/error/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../domain/entities/sign_up_res_entity.dart';
@@ -28,13 +31,10 @@ class SignUpRepoImpl implements SignUpRepo {
     // 1. First, create user in Firebase Authentication
     UserCredential? userCredential;
     try {
-      // Generate a temporary password using phone and timestamp
-      final tempPassword =
-          '${signUpReq.phone}@${DateTime.now().millisecondsSinceEpoch}';
       // Create user in Firebase with phone as email
       userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: '${signUpReq.phone}@mubin.com',
-        password: tempPassword,
+        email: signUpReq.email ?? '',
+        password: signUpReq.password ?? '',
       );
 
       // Update user display name with the provided name
@@ -66,8 +66,12 @@ class SignUpRepoImpl implements SignUpRepo {
           fcmToken: signUpReq.fcmToken ?? fcmToken,
         ),
       );
-      // Store the token securely
-      await tokenStorage.setToken(res.token);
+      // Store the JWT token in SharedPreferences
+      await SharedPrefHelper.setSecuredString(
+        key: SharedPrefKeys.jwtToken,
+        value: res.token,
+      );
+      await getIt<AuthInterceptor>().updateToken();
       return ApiResult.success(
         data: SignUpResEntity(
           token: res.token,

@@ -1,9 +1,14 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../../core/database/shared_pref_helper.dart';
+import '../../../../../core/database/shared_pref_keys.dart';
 import '../../../../../core/di/api_module.dart';
+import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/error/api_error_model.dart';
 import '../../../../../core/models/user_data.dart';
 import '../../../../../core/networking/api_result.dart';
@@ -39,6 +44,7 @@ class SignInRepoImpl implements SignInRepo {
 
       // 2. Get the Firebase ID token
       final idToken = await userCredential.user?.getIdToken();
+      developer.log('Firebase ID Token: $idToken');
       if (idToken == null) {
         return const ApiResult.failure(
           apiErrorModel: ApiErrorModel(
@@ -58,7 +64,6 @@ class SignInRepoImpl implements SignInRepo {
 
       // 4. Get FCM token
       final fcmToken = await _firebaseMessaging.getToken();
-
       if (res.token.isEmpty) {
         return const ApiResult.failure(
           apiErrorModel: ApiErrorModel(
@@ -70,8 +75,11 @@ class SignInRepoImpl implements SignInRepo {
       }
 
       // Store the JWT token in SharedPreferences
-      await tokenStorage.setToken(res.token);
-
+      await SharedPrefHelper.setSecuredString(
+        key: SharedPrefKeys.jwtToken,
+        value: res.token,
+      );
+      await getIt<AuthInterceptor>().updateToken();
       // 7. Return success with the user data
       return ApiResult.success(
         data: UserData(

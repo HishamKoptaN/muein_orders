@@ -98,7 +98,7 @@
   "luganda_uganda": "Luganda - Uganda",
   "retry": "Retry",
   "unexpected_error": "Unexpected error occurred",
-  "not_have_account": "Don't have an account?",
+  "notHaveAccount": "Don''''''''t have an account?",
   "passwordsDoNotMatch": "Passwords do not match",
   "enterYourEmailToResetPassword": "Enter your email to receive password reset link",
   "follow": "Follow",
@@ -117,7 +117,7 @@
   "settings": "Settings",
   "createAccount": "Create Account",
   "alreadyHaveAccount": "Already have an account?",
-  "make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending": "Make sure the images are clear and the number of Qur'an copies is correct before sending",
+  "make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending": "Make sure the images are clear and the number of Qur''''''''an copies is correct before sending",
   "signUp": "Sign Up",
   "apPasswordResetLinkHasBeenSentToYourEmail": "A password reset link has been sent to your email",
   "signUpTitle": "Create New Account",
@@ -129,7 +129,6 @@
   "errorCreatingAccount": "Error creating account",
   "password": "Password",
   "forgotPassword": "Forgot Password?",
-  "notHaveAccount": "Don't have an account?",
   "selectLanguage": "Select Language",
   "name": "Name",
   "welcomeLine1": "Welcome",
@@ -138,9 +137,9 @@
   "followUp": "Follow Up",
   "aLinkWillBeSentToYouToResetYourPassword": "A link will be sent to you to reset your password",
   "onboardingPage1Title": "Welcome",
-  "onboardingPage1Description": "We're happy to have you join Mubeen Store",
+  "onboardingPage1Description": "We''''''''re happy to have you join Mubeen Store",
   "onboardingPage2Title": "Discover the App Interface",
-  "onboardingPage2Description": "Here you'll find tasks, orders, alerts, and filters",
+  "onboardingPage2Description": "Here you''''''''ll find tasks, orders, alerts, and filters",
   "onboardingPage3Title": "Documentation with Photos and Videos",
-  "onboardingPage3Description": "Ensure images are clear and the number of Qur'an copies is correct before sending"
+  "onboardingPage3Description": "Ensure images are clear and the number of Qur''''''''an copies is correct before sending"
 }

@@ -23,7 +23,7 @@ class AuthView extends StatelessWidget {
           child: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               return state.maybeWhen(
-                authenticated: (token) => SignInView(),
+                authenticated: () => SignInView(),
                 unauthenticated: () {
                   return SignInView();
                   // if (kReleaseMode) {

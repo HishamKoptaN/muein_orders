@@ -8,11 +8,11 @@ part 'onboarding_bloc.freezed.dart';
 part 'onboarding_event.dart';
 part 'onboarding_state.dart';
 
-@injectable
+@singleton
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   final int totalPages = 3;
 
-  OnboardingBloc() : super(OnboardingState.loading()) {
+  OnboardingBloc() : super(const OnboardingState.loading()) {
     on<OnboardingEvent>((event, emit) async {
       await event.whenOrNull(
         checkOnboardingStatus: () => _onStartOnboarding(emit),

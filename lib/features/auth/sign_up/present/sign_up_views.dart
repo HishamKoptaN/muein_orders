@@ -35,10 +35,6 @@ class SignUpView extends StatelessWidget {
                 );
               },
               success: () {
-                debugPrint(
-                  '[Navigation] Navigating to ${OnBoardingView.routeName}',
-                );
-                // Use GoRouter to navigate and remove all previous routes
                 context.goNamed(OnBoardingView.routeName);
               },
             );
@@ -185,8 +181,8 @@ class _DebugIntegrationRunnerState extends State<DebugIntegrationRunner> {
       nameField?.controller?.text = 'Attach User';
       emailField?.controller?.text = 'attach@example.com';
       phoneField?.controller?.text = '0100000000';
-      passwordField?.controller?.text = 'P@ssw0rd123';
-      confirmPasswordField?.controller?.text = 'P@ssw0rd123';
+      passwordField?.controller?.text = 'password';
+      confirmPasswordField?.controller?.text = 'password';
 
       // Simulate pressing Sign Up button
       signUpButton?.onPressed?.call();
@@ -196,14 +192,11 @@ class _DebugIntegrationRunnerState extends State<DebugIntegrationRunner> {
       debugPrint('❌ Error in scenario: $e\n$st');
     }
   }
-
   /// Helper: يبحث عن TextFormField/CustomTextFormField بالـ Key
   _InputElement? findInputByKey(String key) {
     final element = findElementByKey(key);
     if (element == null) return null;
-
     TextEditingController? controller;
-
     if (element.widget is TextFormField) {
       controller = (element.widget as TextFormField).controller;
     } else if (element.widget is TextField) {
@@ -211,7 +204,6 @@ class _DebugIntegrationRunnerState extends State<DebugIntegrationRunner> {
     } else {
       debugPrint("⚠️ Widget with key '$key' is not a TextField/TextFormField");
     }
-
     return _InputElement(controller);
   }
 
@@ -226,7 +218,6 @@ class _DebugIntegrationRunnerState extends State<DebugIntegrationRunner> {
     debugPrint("⚠️ Widget with key '$key' is not an ElevatedButton");
     return null;
   }
-
   /// Helper عام
   Element? findElementByKey(String valueKey) {
     Element? result;
@@ -243,7 +234,7 @@ class _DebugIntegrationRunnerState extends State<DebugIntegrationRunner> {
 
   @override
   Widget build(BuildContext context) {
-    if (kReleaseMode) return widget.child; // ممنوع في الإنتاج
+    if (kReleaseMode) return widget.child; 
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: _handleTap,

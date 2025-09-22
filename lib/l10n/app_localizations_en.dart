@@ -307,7 +307,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unexpected_error => 'Unexpected error occurred';
 
   @override
-  String get not_have_account => 'Don\'t have an account?';
+  String get notHaveAccount => 'Don\'\'\'\'t have an account?';
 
   @override
   String get passwordsDoNotMatch => 'Passwords do not match';
@@ -369,7 +369,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Make sure the images are clear and the number of Qur\'an copies is correct before sending';
+      'Make sure the images are clear and the number of Qur\'\'\'\'an copies is correct before sending';
 
   @override
   String get signUp => 'Sign Up';
@@ -406,9 +406,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgotPassword => 'Forgot Password?';
 
   @override
-  String get notHaveAccount => 'Don\'t have an account?';
-
-  @override
   String get selectLanguage => 'Select Language';
 
   @override
@@ -435,19 +432,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingPage1Description =>
-      'We\'re happy to have you join Mubeen Store';
+      'We\'\'\'\'re happy to have you join Mubeen Store';
 
   @override
   String get onboardingPage2Title => 'Discover the App Interface';
 
   @override
   String get onboardingPage2Description =>
-      'Here you\'ll find tasks, orders, alerts, and filters';
+      'Here you\'\'\'\'ll find tasks, orders, alerts, and filters';
 
   @override
   String get onboardingPage3Title => 'Documentation with Photos and Videos';
 
   @override
   String get onboardingPage3Description =>
-      'Ensure images are clear and the number of Qur\'an copies is correct before sending';
+      'Ensure images are clear and the number of Qur\'\'\'\'an copies is correct before sending';
 }

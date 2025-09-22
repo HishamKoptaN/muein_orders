@@ -306,7 +306,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get unexpected_error => 'حدث خطأ غير متوقع';
 
   @override
-  String get not_have_account => 'ليس لديك حساب؟';
+  String get notHaveAccount => 'ليس لديك حساب؟';
 
   @override
   String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
@@ -404,9 +404,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get forgotPassword => 'هل نسيت كلمة السر؟';
-
-  @override
-  String get notHaveAccount => 'ليس لديك حساب؟';
 
   @override
   String get selectLanguage => 'اختر اللغة';

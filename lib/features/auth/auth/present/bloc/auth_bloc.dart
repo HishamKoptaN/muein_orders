@@ -23,7 +23,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             try {
               final res = await _authUseCase.check();
               res?.when(
-                success: (data) => emit(const AuthState.authenticated('')),
+                success: (data) => emit(const AuthState.authenticated()),
                 failure: (error) => emit(const AuthState.unauthenticated()),
               );
             } catch (e) {
@@ -36,7 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             try {
               final res = await _authUseCase.check();
               res?.when(
-                success: (data) => emit(const AuthState.authenticated('')),
+                success: (data) => emit(const AuthState.authenticated()),
                 failure: (error) => emit(const AuthState.unauthenticated()),
               );
             } catch (e) {

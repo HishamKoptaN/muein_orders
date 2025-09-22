@@ -2,11 +2,13 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:intl/intl_standalone.dart';
+import 'package:intl/intl.dart' as intl;
 import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
 import 'core/app_observer.dart';
 import 'core/config/app_initializer.dart';
+// import 'core/database/shared_pref_helper.dart';
 import 'core/di/dependency_injection.dart';
 
 Future<void> main() async {
@@ -14,18 +16,16 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.presentError(details);
-    _handleError(
-      details.exception,
-      details.stack ?? StackTrace.current,
-      'flutter error',
-    );
   };
-
   try {
+    // Initialize Flutter Intl
+    await findSystemLocale();
+    intl.Intl.defaultLocale = 'en';
+
     // Initialize Firebase
     await Firebase.initializeApp();
 
-    // Configure dependencies 
+    // Configure dependencies
     await configureDependencies();
 
     // Set up BLoC observer
@@ -34,15 +34,13 @@ Future<void> main() async {
     // Initialize app dependencies
     await AppInitializer.initialize();
 
+    // Clear any existing auth data for testing
+    // SharedPrefHelper.clearAllSecuredData();
+
     // Run the app
     runApp(
       const MubinOrdersApp(),
     );
-
-    // Remove splash screen after first frame
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      FlutterNativeSplash.remove();
-    });
   } catch (error, stackTrace) {
     _handleError(error, stackTrace, 'app initialization');
   }
@@ -51,7 +49,6 @@ Future<void> main() async {
 void _handleError(Object error, StackTrace stackTrace, String context) {
   debugPrint('🔥 Error ($context): $error');
   debugPrint('$stackTrace');
-
   runApp(
     ErrorApp(
       errorDetails: FlutterErrorDetails(

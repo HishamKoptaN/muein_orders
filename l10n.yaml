@@ -1,6 +1,8 @@
-#! flutter gen-l10n
 arb-dir: lib/l10n
 template-arb-file: app_en.arb
 output-localization-file: app_localizations.dart
-preferred-supported-locales: ['en', 'ar']
+output-class: AppLocalizations
+preferred-supported-locales: ['ar', 'en', 'lg_UG', 'sw_KE', 'sw_TZ', 'sw']
 untranslated-messages-file: desiredFileName.txt
+use-escaping: true
+nullable-getter: false

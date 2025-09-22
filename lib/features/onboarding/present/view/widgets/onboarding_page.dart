@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingWidget extends StatelessWidget {
   final String title;
   final String description;
   final String imagePath;
   final bool isLastPage;
 
-  const OnboardingPage({
+  const OnboardingWidget({
     super.key,
     required this.title,
     required this.description,
