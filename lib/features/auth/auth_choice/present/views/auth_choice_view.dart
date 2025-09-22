@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/navigation/app_router.dart';
+import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../l10n/app_localizations.dart';
@@ -63,7 +63,7 @@ class AuthChoiceView extends StatelessWidget {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        AppRouter.navigateAndRemoveUntil(
+                        NavigationService.navigateAndRemoveUntil(
                           context: context,
                           routeName: SignUpView.routeName,
                         );
@@ -89,7 +89,7 @@ class AuthChoiceView extends StatelessWidget {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        AppRouter.navigateAndRemoveUntil(
+                        NavigationService.navigateAndRemoveUntil(
                           context: context,
                           routeName: SignInView.routeName,
                         );

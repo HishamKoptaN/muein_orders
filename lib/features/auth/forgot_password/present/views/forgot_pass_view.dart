@@ -4,26 +4,15 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:form_inputs/form_inputs/email_input.dart';
 import 'package:formz/formz.dart';
 
-import '../../../../../core/navigation/app_router.dart';
+import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../../sign_in/present/views/sign_in_view.dart';
 import '../bloc/forgot_pass_bloc.dart';
 
-class ForgotPassView extends StatefulWidget {
+class ForgotPassView extends StatelessWidget {
   static const String routeName = 'forgot-password';
   const ForgotPassView({super.key});
-
-  @override
-  State<ForgotPassView> createState() => _ForgotPassViewState();
-}
-
-class _ForgotPassViewState extends State<ForgotPassView> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +23,18 @@ class _ForgotPassViewState extends State<ForgotPassView> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           title: Text(
             t.forgotPassword,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
-          ),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
           ),
         ),
         body: BlocConsumer<ForgotPassBloc, ForgotPassState>(
@@ -70,14 +59,7 @@ class _ForgotPassViewState extends State<ForgotPassView> {
                     .closed
                     .then(
                   (_) {
-                    if (AppRouter.canPop(context)) {
-                      AppRouter.goBack(context);
-                    } else {
-                      AppRouter.navigateAndRemoveUntil(
-                        context: context,
-                        routeName: SignInView.routeName,
-                      );
-                    }
+                    NavigationService.goBack(context);
                   },
                 );
               },

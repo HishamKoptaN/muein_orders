@@ -1,12 +1,9 @@
-import 'dart:developer' as developer;
-
+import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../../core/all_imports.dart';
-import '../../../../../core/database/shared_pref_helper.dart';
-import '../../../../../core/database/shared_pref_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../../core/di/api_module.dart';
 import '../../../../../core/error/api_error_model.dart';
 import '../../../../../core/models/user_data.dart';
 import '../../../../../core/networking/api_result.dart';
@@ -19,11 +16,13 @@ class SignInRepoImpl implements SignInRepo {
   final FirebaseAuth _auth;
   final FirebaseMessaging _firebaseMessaging;
   final SignInApi signInApi;
+  final TokenStorage tokenStorage;
   @factoryMethod
   SignInRepoImpl(
     this._auth,
     this._firebaseMessaging,
     this.signInApi,
+    this.tokenStorage,
   );
 
   @override
@@ -50,27 +49,16 @@ class SignInRepoImpl implements SignInRepo {
         );
       }
 
-    
       // 3. Send token to Laravel backend to get JWT
       final res = await signInApi.authToken(
         SignInReqBodyModel(
           idToken: idToken,
         ),
       );
-  // Store the token securely
-      await SharedPrefHelper.setSecuredString(
-        key: SharedPrefKeys.userToken,
-        value: res.token,
-      );
-      // Log successful storage
-      debugPrint('[log] ✅ تم تخزين التوكن بنجاح');
-      // 4. Save the JWT token to secure storage
-      await SharedPrefHelper.setSecuredString(
-        key:  SharedPrefKeys.userToken,
-        value: res.token,
-      );
+
       // 4. Get FCM token
       final fcmToken = await _firebaseMessaging.getToken();
+
       if (res.token.isEmpty) {
         return const ApiResult.failure(
           apiErrorModel: ApiErrorModel(
@@ -80,16 +68,10 @@ class SignInRepoImpl implements SignInRepo {
           ),
         );
       }
-      // 5. Save tokens to secure storage
-      await SharedPrefHelper.setSecuredString(
-        key: SharedPrefKeys.userToken,
-        value: idToken,
-      );
-      await SharedPrefHelper.setSecuredString(
-        key: SharedPrefKeys.fcmToken,
-        value: fcmToken!,
-      );
-      // 6. Return success with the token data
+
+      // Store the JWT token in SharedPreferences
+      await tokenStorage.setToken(res.token);
+
       // 7. Return success with the user data
       return ApiResult.success(
         data: UserData(
@@ -106,7 +88,7 @@ class SignInRepoImpl implements SignInRepo {
         ),
       );
     } catch (e) {
-      developer.log('Sign in error: $e', name: 'SignInRepoImpl');
+      debugPrint('Sign in error: $e');
       return const ApiResult.failure(
         apiErrorModel: ApiErrorModel(
           message: 'An unexpected error occurred',

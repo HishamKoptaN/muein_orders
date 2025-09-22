@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
-import '../../../../../core/networking/api_constants.dart';
+
+import '../../../../../core/constants/api_constants.dart';
 import '../models/sign_up_req_model.dart';
 import '../models/sign_up_res_model.dart';
 

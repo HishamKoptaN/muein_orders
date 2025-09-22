@@ -2,21 +2,20 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart' show injectable, factoryMethod;
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../../core/networking/api_constants.dart';
+import '../../../../core/constants/api_constants.dart';
 import '../models/orders_res_model.dart';
 
 part 'orders_api.g.dart';
 
+@injectable
 @RestApi(
   baseUrl: ApiConstants.apiBaseUrl,
 )
-@injectable
 abstract class OrdersApi {
   @factoryMethod
   factory OrdersApi(
-    Dio dio, {
-    String? baseUrl,
-  }) = _OrdersApi;
+    Dio dio,
+  ) = _OrdersApi;
   // ! Get
   @GET(
     ApiConstants.orders,

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:form_inputs/form_inputs/email_input.dart';
 import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:form_inputs/form_inputs/password_input.dart' show PasswordInput;
@@ -18,7 +17,9 @@ part 'sign_in_state.dart';
 @injectable
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final SignInUseCases signInUseCases;
-  StreamSubscription<User?>? _authSubscription;
+  EmailInput? _email;
+  PasswordInput? _password;
+  GenericFormzInput? _obscurePassword;
   SignInBloc({required this.signInUseCases})
       : super(
           const SignInState.loaded(
@@ -28,91 +29,75 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             formzSubmissionStatus: FormzSubmissionStatus.initial,
           ),
         ) {
-    _authSubscription = signInUseCases.onAuthStateChanged.listen(
-      (user) {
-        if (user == null) {
-          add(const SignInEvent.signedOut());
-        } else {}
-      },
-    );
     on<SignInEvent>(
       (event, emit) async {
         await event.map(
           dataChanged: (e) async {
-            if (state is _Loaded) {
-              final loaded = state as _Loaded;
-              emit(
-                loaded.copyWith(
-                  email: e.email ?? loaded.email,
-                  password: e.password ?? loaded.password,
-                  obscurePassword: e.obscurePassword ?? loaded.obscurePassword,
-                  formzSubmissionStatus: Formz.validate(
-                    [e.email ?? loaded.email],
-                  )
-                      ? FormzSubmissionStatus.success
-                      : FormzSubmissionStatus.failure,
-                ),
-              );
-            }
+            _email = e.email ?? _email;
+            _password = e.password ?? _password;
+            _obscurePassword = e.obscurePassword ?? _obscurePassword;
+            _emitCustomLoaded(
+              emit,
+            );
           },
           signInWithCredentialsPressed: (_) async =>
-              await _onSignInWithCredentialsPressed(emit),
-          signedOut: (_) async => _onSignedOut(emit),
+              await _onSignInWithCredentialsPressed(
+            emit,
+          ),
         );
       },
     );
   }
 
-  @override
-  Future<void> close() {
-    _authSubscription?.cancel();
-    return super.close();
-  }
-
   Future<void> _onSignInWithCredentialsPressed(
     Emitter<SignInState> emit,
   ) async {
-    final loaded = state as _Loaded;
-    emit(
-      loaded.copyWith(
-        formzSubmissionStatus: FormzSubmissionStatus.inProgress,
-      ),
+    _emitCustomLoaded(
+      emit,
     );
-    try {
-      final result = await signInUseCases.signInWithEmailAndPassword(
-        email: loaded.email.value,
-        password: loaded.password.value,
-      );
-      result.when(
-        success: (data) => emit(
+    final result = await signInUseCases.signInWithEmailAndPassword(
+      email: _email!.value,
+      password: _password!.value,
+    );
+    result.when(
+      success: (
+        data,
+      ) {
+        emit(
           const SignInState.success(),
-        ),
-        failure: (error) {
-          emit(
-            SignInState.failure(
-              errorMessage: error.message ?? 'Login failed',
-            ),
-          );
-          emit(
-            loaded.copyWith(
-              formzSubmissionStatus: FormzSubmissionStatus.initial,
-            ),
-          );
-        },
-      );
-    } catch (e) {
-      emit(
-        SignInState.failure(
-          errorMessage: e.toString(),
-        ),
-      );
-      emit(
-        loaded.copyWith(
-          formzSubmissionStatus: FormzSubmissionStatus.initial,
-        ),
-      );
-    }
+        );
+        _emitCustomLoaded(
+          emit,
+        );
+      },
+      failure: (
+        error,
+      ) {
+        emit(
+          SignInState.failure(
+            errorMessage: error.message ?? 'Login failed',
+          ),
+        );
+        _emitCustomLoaded(
+          emit,
+        );
+      },
+    );
   }
 
-  void _onSignedOut(Emitter<SignInState> emit) {}
+  void _emitCustomLoaded(
+    Emitter<SignInState> emit,
+  ) {
+    emit(
+      SignInState.loaded(
+        email: _email ?? const EmailInput.pure(),
+        password: _password ?? const PasswordInput.pure(),
+        obscurePassword: _obscurePassword ?? const GenericFormzInput.pure(),
+        formzSubmissionStatus:
+            Formz.validate([_email ?? const EmailInput.pure()])
+                ? FormzSubmissionStatus.success
+                : FormzSubmissionStatus.failure,
+      ),
+    );
+  }
 }

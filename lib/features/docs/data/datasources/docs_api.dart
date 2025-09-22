@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
-
-import '../../../../../core/networking/api_constants.dart';
+import '../../../../core/constants/api_constants.dart';
 import '../models/docs_res_model.dart';
 
 part 'docs_api.g.dart';

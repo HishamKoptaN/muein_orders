@@ -10,7 +10,7 @@ part of 'docs_api.dart';
 
 class _DocsApi implements DocsApi {
   _DocsApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'api/';
+    baseUrl ??= 'https://mapi.live90.fr/api/';
   }
 
   final Dio _dio;

@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 import '../../../../../core/all_imports.dart';
-import '../../../../../core/navigation/app_router.dart';
+import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/custom_circular_progress.dart';
-import '../../../../onboarding/present/pages/onboarding_view.dart';
+import '../../../../orders/present/views/orders_view.dart';
 import '../bloc/sign_in_bloc.dart';
 import 'widgets/sign_in_actions.dart';
 import 'widgets/sign_in_background.dart';
@@ -21,25 +21,27 @@ class SignInView extends StatelessWidget {
         listener: (context, state) {
           state.whenOrNull(
             failure: (failure) {
-              AppRouter.navigateAndRemoveUntil(
-                context: context,
-                routeName: OnboardingView.routeName,
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    failure,
+                  ),
+                ),
               );
-              // ScaffoldMessenger.of(
-              //   context,
-              // ).showSnackBar(
-              //   SnackBar(
-              //     content: Text(
-              //       failure,
-              //     ),
-              //   ),
-              // );
             },
             success: () {
-              AppRouter.navigateAndRemoveUntil(
-                context: context,
-                routeName: OnboardingView.routeName,
-              );
+              // First pop any dialogs or keyboards
+              if (context.mounted) {
+                Navigator.of(context, rootNavigator: true)
+                    .popUntil((route) => route.isFirst);
+                // Then navigate to the start view
+                NavigationService.navigateAndRemoveUntil(
+                  context: context,
+                  routeName: OrdersView.routeName,
+                );
+              }
             },
           );
         },
@@ -126,14 +128,21 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
 
   void _handleTap(BuildContext context) {
     final now = DateTime.now();
-    if (_lastTap == null ||
+
+    // Reset tap count if more than 1 second has passed since last tap
+    if (_lastTap != null &&
         now.difference(_lastTap!) > const Duration(seconds: 1)) {
       _tapCount = 0;
     }
+
     _lastTap = now;
     _tapCount++;
 
-    if (_tapCount == 3) {
+    // Debug output to verify tap counting
+    debugPrint('Tap detected! Count: $_tapCount');
+
+    if (_tapCount >= 3) {
+      debugPrint('✅ Triple tap detected! Running login scenario...');
       _tapCount = 0;
       _runLoginScenario(context);
     }
@@ -142,10 +151,16 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
   void _runLoginScenario(BuildContext context) {
     debugPrint('🚀 Running Debug AutoFill Login with BLoC...');
     context.read<SignInBloc>()
-      ..add(const SignInEvent.dataChanged(
-          email: EmailInput.dirty('mohamed@gmail.com')))
-      ..add(const SignInEvent.dataChanged(
-          password: PasswordInput.dirty('password')))
+      ..add(
+        const SignInEvent.dataChanged(
+          email: EmailInput.dirty('mohamed@gmail.com'),
+        ),
+      )
+      ..add(
+        const SignInEvent.dataChanged(
+          password: PasswordInput.dirty('password'),
+        ),
+      )
       ..add(const SignInEvent.signInWithCredentialsPressed());
     debugPrint('✅ AutoFill Login Done (via BLoC)');
   }

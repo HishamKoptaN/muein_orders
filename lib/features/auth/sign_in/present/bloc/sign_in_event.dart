@@ -9,5 +9,4 @@ class SignInEvent with _$SignInEvent {
   }) = _DataChanged;
   const factory SignInEvent.signInWithCredentialsPressed() =
       _SignInWithCredentialsPressed;
-  const factory SignInEvent.signedOut() = _SignedOut;
 }

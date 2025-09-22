@@ -15,10 +15,12 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 5));
 
     // إدخال بيانات تسجيل الدخول
-    await tester.enterText(find.byKey(const Key('email_field')), 'test@example.com');
+    await tester.enterText(
+        find.byKey(const Key('email_field')), 'test@example.com');
     await tester.pump();
 
-    await tester.enterText(find.byKey(const Key('password_field')), 'P@ssw0rd123');
+    await tester.enterText(
+        find.byKey(const Key('password_field')), 'P@ssw0rd123');
     await tester.pump();
 
     // اضغط زر تسجيل الدخول

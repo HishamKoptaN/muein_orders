@@ -5,13 +5,13 @@ import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:form_inputs/form_inputs/password_input.dart';
 import 'package:formz/formz.dart';
 
-import '../../../../../../core/navigation/app_router.dart';
+import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../forgot_password/present/views/forgot_pass_view.dart';
 import '../../bloc/sign_in_bloc.dart';
 
-class SignInForm extends StatefulWidget {
+class SignInForm extends StatelessWidget {
   final EmailInput email;
   final PasswordInput password;
   final GenericFormzInput obscurePassword;
@@ -26,21 +26,6 @@ class SignInForm extends StatefulWidget {
   });
 
   @override
-  State<SignInForm> createState() => _SignInFormState();
-}
-
-class _SignInFormState extends State<SignInForm> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     return BlocBuilder<SignInBloc, SignInState>(
@@ -50,7 +35,7 @@ class _SignInFormState extends State<SignInForm> {
             // Email Field
             CustomTextFormField(
               key: const Key('email_field'),
-              initialValue: widget.email.value,
+              initialValue: email.value,
               hintText: t.emailHint,
               prefixIcon: const Icon(Icons.email_outlined),
               keyboardType: TextInputType.emailAddress,
@@ -62,16 +47,16 @@ class _SignInFormState extends State<SignInForm> {
             // Password Field
             CustomTextFormField(
               key: const Key('password_field'),
-              initialValue: widget.password.value,
+              initialValue: password.value,
               hintText: t.password,
               prefixIcon: const Icon(Icons.lock_outline),
               isPassword: true,
-              obscureText: widget.obscurePassword.value ?? true,
+              obscureText: obscurePassword.value ?? true,
               showPasswordToggle: true,
               onToggleObscure: () => context.read<SignInBloc>().add(
                     SignInEvent.dataChanged(
                       obscurePassword: GenericFormzInput.dirty(
-                        widget.obscurePassword.value,
+                        obscurePassword.value,
                       ),
                     ),
                   ),
@@ -91,7 +76,7 @@ class _SignInFormState extends State<SignInForm> {
               children: [
                 TextButton(
                   onPressed: () {
-                    AppRouter.navigateTo(
+                    NavigationService.navigateTo(
                       context: context,
                       routeName: ForgotPassView.routeName,
                     );

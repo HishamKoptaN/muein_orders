@@ -10,7 +10,7 @@ part of 'notifications_api.dart';
 
 class _NotificationsApi implements NotificationsApi {
   _NotificationsApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'api/';
+    baseUrl ??= 'https://mapi.live90.fr/api/';
   }
 
   final Dio _dio;

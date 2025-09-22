@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
+
 import '../database/shared_pref_helper.dart';
 import '../database/shared_pref_keys.dart';
-import '../di/dependency_injection.dart';
 
 class SecurityManager {
   static const String _devTokenKey = 'DEV_TOKEN';
@@ -18,7 +18,7 @@ class SecurityManager {
     try { 
       // Only set if not already present
       final existingToken = await   SharedPrefHelper.getSecuredString(
-            key: SharedPrefKeys.userToken,
+            key: SharedPrefKeys.jwtToken,
           );
       if (existingToken == null || existingToken.isEmpty) {
         const devToken = String.fromEnvironment(
@@ -27,7 +27,7 @@ class SecurityManager {
         );
 
         await SharedPrefHelper.setSecuredString(
-          key: SharedPrefKeys.userToken,
+          key: SharedPrefKeys.jwtToken,
           value: devToken,
         );
 
@@ -42,7 +42,7 @@ class SecurityManager {
   static Future<bool> isAuthenticated() async {
     try {
       final token = await SharedPrefHelper.getSecuredString(
-        key: SharedPrefKeys.userToken,
+        key: SharedPrefKeys.jwtToken,
       );
       return token != null && token.isNotEmpty && _isValidToken(token);
     } catch (e) {
@@ -60,7 +60,7 @@ class SecurityManager {
   /// Clear all authentication data
   static Future<void> clearAuthData() async {
     try {
-      await SharedPrefHelper.removeData(key: SharedPrefKeys.userToken);
+      await SharedPrefHelper.removeData(key: SharedPrefKeys.jwtToken);
       // Clear other auth-related data if needed
     } catch (e) {
       debugPrint('Error clearing auth data: $e');
@@ -71,7 +71,7 @@ class SecurityManager {
   static Future<String?> getCurrentToken() async {
     try {
       final token = await SharedPrefHelper.getSecuredString(
-        key: SharedPrefKeys.userToken,
+        key: SharedPrefKeys.jwtToken,
       );
       return token;
     } catch (e) {
@@ -89,7 +89,7 @@ class SecurityManager {
       }
 
       await SharedPrefHelper.setSecuredString(
-        key: SharedPrefKeys.userToken,
+        key: SharedPrefKeys.jwtToken,
         value: token,
       );
       return true;

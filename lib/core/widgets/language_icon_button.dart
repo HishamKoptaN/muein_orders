@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mubin_orders/features/language/view/select_language.dart'
-    show SelectLanguage;
+    show SelectLanguageView;
 
 
 class LanguageIconButton extends StatelessWidget {
@@ -13,7 +13,7 @@ class LanguageIconButton extends StatelessWidget {
       icon: const Icon(Icons.language, color: Colors.black),
       onPressed: () {
         // Navigate to language screen
-        context.goNamed(SelectLanguage.routeName);
+        context.goNamed(SelectLanguageView.routeName);
       },
     );
   }

@@ -1,15 +1,19 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../constants/api_constants.dart';
 import '../database/shared_pref_helper.dart';
 import '../database/shared_pref_keys.dart';
-import '../networking/api_constants.dart';
 
 @module
 abstract class ApiModule {
+  ApiModule() {
+    log('ApiModule has been initialized! 🚀');
+  }
   @singleton
   Dio dio(
     AuthInterceptor authInterceptor,
@@ -53,6 +57,7 @@ class AuthInterceptor extends Interceptor {
   AuthInterceptor(
     this.tokenStorage,
   );
+
   @override
   Future<void> onRequest(
     RequestOptions options,
@@ -120,9 +125,22 @@ class LoggingInterceptor extends Interceptor {
 
 @lazySingleton
 class TokenStorage {
+  final Dio dio;
+  TokenStorage(this.dio);
+
   Future<String?> getToken() async {
     return await SharedPrefHelper.getSecuredString(
-      key: SharedPrefKeys.userToken,
+      key: SharedPrefKeys.jwtToken,
     );
+  }
+
+  Future<void> setToken(String token) async {
+    await SharedPrefHelper.setSecuredString(
+      key: SharedPrefKeys.jwtToken,
+      value: token,
+    );
+    debugPrint('✅ تم تخزين التوكن بنجاح');
+    // ✅ حدّث الهيدر مباشرة
+    dio.options.headers['Authorization'] = 'Bearer $token';
   }
 }

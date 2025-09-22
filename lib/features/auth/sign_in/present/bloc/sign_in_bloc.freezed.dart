@@ -22,7 +22,6 @@ mixin _$SignInEvent {
             GenericFormzInput<dynamic>? obscurePassword)
         dataChanged,
     required TResult Function() signInWithCredentialsPressed,
-    required TResult Function() signedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,7 +30,6 @@ mixin _$SignInEvent {
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult? Function()? signInWithCredentialsPressed,
-    TResult? Function()? signedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,7 +38,6 @@ mixin _$SignInEvent {
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult Function()? signInWithCredentialsPressed,
-    TResult Function()? signedOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,7 +46,6 @@ mixin _$SignInEvent {
     required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(_SignInWithCredentialsPressed value)
         signInWithCredentialsPressed,
-    required TResult Function(_SignedOut value) signedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,7 +53,6 @@ mixin _$SignInEvent {
     TResult? Function(_DataChanged value)? dataChanged,
     TResult? Function(_SignInWithCredentialsPressed value)?
         signInWithCredentialsPressed,
-    TResult? Function(_SignedOut value)? signedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,7 +60,6 @@ mixin _$SignInEvent {
     TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_SignInWithCredentialsPressed value)?
         signInWithCredentialsPressed,
-    TResult Function(_SignedOut value)? signedOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -186,7 +180,6 @@ class _$DataChangedImpl implements _DataChanged {
             GenericFormzInput<dynamic>? obscurePassword)
         dataChanged,
     required TResult Function() signInWithCredentialsPressed,
-    required TResult Function() signedOut,
   }) {
     return dataChanged(email, password, obscurePassword);
   }
@@ -198,7 +191,6 @@ class _$DataChangedImpl implements _DataChanged {
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult? Function()? signInWithCredentialsPressed,
-    TResult? Function()? signedOut,
   }) {
     return dataChanged?.call(email, password, obscurePassword);
   }
@@ -210,7 +202,6 @@ class _$DataChangedImpl implements _DataChanged {
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult Function()? signInWithCredentialsPressed,
-    TResult Function()? signedOut,
     required TResult orElse(),
   }) {
     if (dataChanged != null) {
@@ -225,7 +216,6 @@ class _$DataChangedImpl implements _DataChanged {
     required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(_SignInWithCredentialsPressed value)
         signInWithCredentialsPressed,
-    required TResult Function(_SignedOut value) signedOut,
   }) {
     return dataChanged(this);
   }
@@ -236,7 +226,6 @@ class _$DataChangedImpl implements _DataChanged {
     TResult? Function(_DataChanged value)? dataChanged,
     TResult? Function(_SignInWithCredentialsPressed value)?
         signInWithCredentialsPressed,
-    TResult? Function(_SignedOut value)? signedOut,
   }) {
     return dataChanged?.call(this);
   }
@@ -247,7 +236,6 @@ class _$DataChangedImpl implements _DataChanged {
     TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_SignInWithCredentialsPressed value)?
         signInWithCredentialsPressed,
-    TResult Function(_SignedOut value)? signedOut,
     required TResult orElse(),
   }) {
     if (dataChanged != null) {
@@ -323,7 +311,6 @@ class _$SignInWithCredentialsPressedImpl
             GenericFormzInput<dynamic>? obscurePassword)
         dataChanged,
     required TResult Function() signInWithCredentialsPressed,
-    required TResult Function() signedOut,
   }) {
     return signInWithCredentialsPressed();
   }
@@ -335,7 +322,6 @@ class _$SignInWithCredentialsPressedImpl
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult? Function()? signInWithCredentialsPressed,
-    TResult? Function()? signedOut,
   }) {
     return signInWithCredentialsPressed?.call();
   }
@@ -347,7 +333,6 @@ class _$SignInWithCredentialsPressedImpl
             GenericFormzInput<dynamic>? obscurePassword)?
         dataChanged,
     TResult Function()? signInWithCredentialsPressed,
-    TResult Function()? signedOut,
     required TResult orElse(),
   }) {
     if (signInWithCredentialsPressed != null) {
@@ -362,7 +347,6 @@ class _$SignInWithCredentialsPressedImpl
     required TResult Function(_DataChanged value) dataChanged,
     required TResult Function(_SignInWithCredentialsPressed value)
         signInWithCredentialsPressed,
-    required TResult Function(_SignedOut value) signedOut,
   }) {
     return signInWithCredentialsPressed(this);
   }
@@ -373,7 +357,6 @@ class _$SignInWithCredentialsPressedImpl
     TResult? Function(_DataChanged value)? dataChanged,
     TResult? Function(_SignInWithCredentialsPressed value)?
         signInWithCredentialsPressed,
-    TResult? Function(_SignedOut value)? signedOut,
   }) {
     return signInWithCredentialsPressed?.call(this);
   }
@@ -384,7 +367,6 @@ class _$SignInWithCredentialsPressedImpl
     TResult Function(_DataChanged value)? dataChanged,
     TResult Function(_SignInWithCredentialsPressed value)?
         signInWithCredentialsPressed,
-    TResult Function(_SignedOut value)? signedOut,
     required TResult orElse(),
   }) {
     if (signInWithCredentialsPressed != null) {
@@ -397,126 +379,6 @@ class _$SignInWithCredentialsPressedImpl
 abstract class _SignInWithCredentialsPressed implements SignInEvent {
   const factory _SignInWithCredentialsPressed() =
       _$SignInWithCredentialsPressedImpl;
-}
-
-/// @nodoc
-abstract class _$$SignedOutImplCopyWith<$Res> {
-  factory _$$SignedOutImplCopyWith(
-          _$SignedOutImpl value, $Res Function(_$SignedOutImpl) then) =
-      __$$SignedOutImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SignedOutImplCopyWithImpl<$Res>
-    extends _$SignInEventCopyWithImpl<$Res, _$SignedOutImpl>
-    implements _$$SignedOutImplCopyWith<$Res> {
-  __$$SignedOutImplCopyWithImpl(
-      _$SignedOutImpl _value, $Res Function(_$SignedOutImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignInEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SignedOutImpl implements _SignedOut {
-  const _$SignedOutImpl();
-
-  @override
-  String toString() {
-    return 'SignInEvent.signedOut()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SignedOutImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)
-        dataChanged,
-    required TResult Function() signInWithCredentialsPressed,
-    required TResult Function() signedOut,
-  }) {
-    return signedOut();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)?
-        dataChanged,
-    TResult? Function()? signInWithCredentialsPressed,
-    TResult? Function()? signedOut,
-  }) {
-    return signedOut?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)?
-        dataChanged,
-    TResult Function()? signInWithCredentialsPressed,
-    TResult Function()? signedOut,
-    required TResult orElse(),
-  }) {
-    if (signedOut != null) {
-      return signedOut();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DataChanged value) dataChanged,
-    required TResult Function(_SignInWithCredentialsPressed value)
-        signInWithCredentialsPressed,
-    required TResult Function(_SignedOut value) signedOut,
-  }) {
-    return signedOut(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DataChanged value)? dataChanged,
-    TResult? Function(_SignInWithCredentialsPressed value)?
-        signInWithCredentialsPressed,
-    TResult? Function(_SignedOut value)? signedOut,
-  }) {
-    return signedOut?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DataChanged value)? dataChanged,
-    TResult Function(_SignInWithCredentialsPressed value)?
-        signInWithCredentialsPressed,
-    TResult Function(_SignedOut value)? signedOut,
-    required TResult orElse(),
-  }) {
-    if (signedOut != null) {
-      return signedOut(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SignedOut implements SignInEvent {
-  const factory _SignedOut() = _$SignedOutImpl;
 }
 
 /// @nodoc

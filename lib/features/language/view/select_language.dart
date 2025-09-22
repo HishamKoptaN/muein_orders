@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../l10n/app_localizations.dart';
-import '../../../core/navigation/app_router.dart';
+import '../../../core/routing/navigation_service.dart';
 import '../../auth/auth_choice/present/views/auth_choice_view.dart';
 import '../bloc/language_bloc.dart';
 
-class SelectLanguage extends StatelessWidget {
-  const SelectLanguage({super.key});
-  static const String routeName = 'selectLanguage';
+class SelectLanguageView extends StatelessWidget {
+  const SelectLanguageView({super.key});
+  static const String routeName = 'select-language';
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +126,7 @@ class SelectLanguage extends StatelessWidget {
                         child: ElevatedButton(
                           key: const Key('follow'),
                           onPressed: () {
-                            AppRouter.navigateTo(
+                            NavigationService.navigateTo(
                               context: context,
                               routeName: AuthChoiceView.routeName,
                             );

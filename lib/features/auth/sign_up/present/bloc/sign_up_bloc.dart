@@ -20,7 +20,6 @@ part 'sign_up_state.dart';
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final SignUpUseCases signUpUseCases;
   final FirebaseMessagingService firebaseMessagingService;
-
   // Initialize with default values to prevent null errors
   GenericFormzInput _name = const GenericFormzInput.pure();
   PhoneNumberInput _phone = const PhoneNumberInput.pure();
@@ -78,9 +77,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               await result.when(
                 success: (res) async {
                   if (res?.token != null) {
-                   
-   // Log the received token in the requested format
-      debugPrint('[log] 📌 تم استلام id_token: ${res!.token}');
+                    // Log the received token in the requested format
+                    debugPrint('[log] 📌 تم استلام id_token: ${res!.token}');
                     // Emit success state
                     emit(const SignUpState.success());
                   } else {

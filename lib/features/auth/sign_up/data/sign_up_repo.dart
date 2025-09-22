@@ -5,9 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/all_imports.dart';
-import '../../../../core/database/shared_pref_helper.dart';
-import '../../../../core/database/shared_pref_keys.dart';
+import '../../../../core/di/api_module.dart';
 import '../../../../core/error/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../domain/entities/sign_up_res_entity.dart';
@@ -16,12 +14,12 @@ import '../domain/repo/sign_up_repo.dart';
 import 'data_sources/sign_up_api.dart';
 import 'models/sign_up_req_model.dart';
 
-@Injectable(as: SignUpRepo)
+@LazySingleton(as: SignUpRepo)
 class SignUpRepoImpl implements SignUpRepo {
   final SignUpApi _api;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
-  SignUpRepoImpl(this._api);
+  final TokenStorage tokenStorage;
+  SignUpRepoImpl(this._api, this.tokenStorage);
 
   @override
   Future<ApiResult<SignUpResEntity>> signUp({
@@ -33,7 +31,6 @@ class SignUpRepoImpl implements SignUpRepo {
       // Generate a temporary password using phone and timestamp
       final tempPassword =
           '${signUpReq.phone}@${DateTime.now().millisecondsSinceEpoch}';
-
       // Create user in Firebase with phone as email
       userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: '${signUpReq.phone}@mubin.com',
@@ -70,12 +67,7 @@ class SignUpRepoImpl implements SignUpRepo {
         ),
       );
       // Store the token securely
-      await SharedPrefHelper.setSecuredString(
-        key: SharedPrefKeys.userToken,
-        value: res.token,
-      );
-      // Log successful storage
-      debugPrint('[log] ✅ تم تخزين التوكن بنجاح');
+      await tokenStorage.setToken(res.token);
       return ApiResult.success(
         data: SignUpResEntity(
           token: res.token,

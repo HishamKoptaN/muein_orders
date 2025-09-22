@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
-import '../../../../../../core/navigation/app_router.dart';
+import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../sign_up/present/sign_up_views.dart';
@@ -71,7 +71,7 @@ class SignInActions extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  AppRouter.navigateAndRemoveUntil(
+                  NavigationService.go(
                     context: context,
                     routeName: SignUpView.routeName,
                   );

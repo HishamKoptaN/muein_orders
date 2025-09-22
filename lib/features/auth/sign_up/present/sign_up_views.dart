@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/widgets/app_snackbar.dart';
 import '../../../../core/widgets/custom_circular_progress.dart';
-import '../../../onboarding/present/pages/onboarding_view.dart';
+import '../../../onboarding/present/view/onboarding_view.dart';
 import '../../sign_in/present/views/widgets/sign_in_background.dart';
 import 'bloc/sign_up_bloc.dart';
 import 'views/widgets/sign_in_actions.dart';
@@ -36,10 +36,10 @@ class SignUpView extends StatelessWidget {
               },
               success: () {
                 debugPrint(
-                  '[Navigation] Navigating to ${OnboardingView.routeName}',
+                  '[Navigation] Navigating to ${OnBoardingView.routeName}',
                 );
                 // Use GoRouter to navigate and remove all previous routes
-                context.goNamed(OnboardingView.routeName);
+                context.goNamed(OnBoardingView.routeName);
               },
             );
           },

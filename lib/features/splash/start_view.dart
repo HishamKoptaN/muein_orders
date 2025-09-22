@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../core/navigation/app_router.dart';
+import '../../core/routing/navigation_service.dart';
 import '../../gen/assets.gen.dart';
 import '../../l10n/app_localizations.dart';
 import '../language/view/select_language.dart';
@@ -75,9 +75,9 @@ class StartView extends StatelessWidget {
                         ElevatedButton.icon(
                           key: const Key('selectLanguage'),
                           onPressed: () {
-                            AppRouter.navigateTo(
+                            NavigationService.navigateTo(
                               context: context,
-                              routeName: SelectLanguage.routeName,
+                              routeName: SelectLanguageView.routeName,
                             );
                           },
                           icon: SvgPicture.asset(
