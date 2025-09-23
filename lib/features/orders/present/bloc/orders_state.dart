@@ -6,9 +6,8 @@ class OrdersState with _$OrdersState {
   const factory OrdersState.loading() = _Loading;
   const factory OrdersState.success() = _Success;
   const factory OrdersState.loaded({
-    required List<OrdersResEntity>? orders,
+    required List<OrderEntity>? orders,
     required bool? hasMore,
-    required bool? isSearching,
   }) = _Loaded;
   const factory OrdersState.clientShare() = _ClientShare;
   const factory OrdersState.failure({

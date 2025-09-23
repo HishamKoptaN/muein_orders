@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
+import '../../features/docs/present/views/add_doc_view.dart';
+import '../../features/home/present/home_view.dart';
 import '../../features/language/view/select_language.dart';
 import '../../features/orders/present/views/orders_view.dart';
 import '../../features/auth/auth_choice/present/views/auth_choice_view.dart';
@@ -17,7 +19,7 @@ class AppRouter {
     return GoRouter(
       initialLocation: authBloc.state.maybeWhen(
         authenticated: () {
-          return '/${OrdersView.routeName}';
+          return '/${AddDocView.routeName}';
         },
         unauthenticated: () {
           return '/${SelectLanguageView.routeName}';

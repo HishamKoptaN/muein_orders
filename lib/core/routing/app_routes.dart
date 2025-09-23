@@ -1,7 +1,7 @@
 import '../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
-import '../../features/auth/sign_up/present/sign_up_views.dart';
+import '../../features/auth/sign_up/present/views/sign_up_views.dart';
 import '../../features/language/view/select_language.dart';
 import '../../features/onboarding/present/view/onboarding_view.dart';
 import '../../features/orders/present/views/orders_view.dart';

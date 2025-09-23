@@ -116,13 +116,13 @@ abstract class AppLocalizations {
   /// No description provided for @upload_videos.
   ///
   /// In en, this message translates to:
-  /// **'Upload Videos'**
+  /// **'Download videos'**
   String get upload_videos;
 
   /// No description provided for @welcometoMubinOrders.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Mubin Orders'**
+  /// **'Welcome to Mobin Talabat'**
   String get welcometoMubinOrders;
 
   /// No description provided for @welcome.
@@ -131,10 +131,22 @@ abstract class AppLocalizations {
   /// **'Welcome'**
   String get welcome;
 
+  /// No description provided for @indevedual.
+  ///
+  /// In en, this message translates to:
+  /// **'individual'**
+  String get indevedual;
+
+  /// No description provided for @indveduals.
+  ///
+  /// In en, this message translates to:
+  /// **'Vocabulary'**
+  String get indveduals;
+
   /// No description provided for @wearehappytohaveyoujoinourstore.
   ///
   /// In en, this message translates to:
-  /// **'We are happy to have you join our store.'**
+  /// **'We are glad to have you join our store.'**
   String get wearehappytohaveyoujoinourstore;
 
   /// No description provided for @gettoknowtheapplicationinterface.
@@ -146,38 +158,38 @@ abstract class AppLocalizations {
   /// No description provided for @hereyouwillfindtasksrequestsalertsandfilters.
   ///
   /// In en, this message translates to:
-  /// **'Here you will find tasks, requests, alerts, and filters.'**
+  /// **'Here you\'\'ll find tasks, requests, alerts, and filters.'**
   String get hereyouwillfindtasksrequestsalertsandfilters;
 
-  /// No description provided for @documentationWithPphotosAndVideos.
+  /// No description provided for @documentationWithPhotosAndVideos.
   ///
   /// In en, this message translates to:
   /// **'Documentation with photos and videos'**
-  String get documentationWithPphotosAndVideos;
+  String get documentationWithPhotosAndVideos;
 
   /// No description provided for @makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending.
   ///
   /// In en, this message translates to:
-  /// **'Make sure the images are clear, the number of copies of the Qur’an, and the order costs are clear before sending.'**
+  /// **'Ensure the clarity of the images, the number of copies of the Holy Quran, and the cost of the order before sending.'**
   String
       get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending;
 
   /// No description provided for @we_are_happy_to_have_you_join_our_store.
   ///
   /// In en, this message translates to:
-  /// **'We are happy to have you join us!'**
+  /// **'We are glad you joined us!'**
   String get we_are_happy_to_have_you_join_our_store;
 
   /// No description provided for @get_to_know_the_application_interface.
   ///
   /// In en, this message translates to:
-  /// **'Get to know the app interface'**
+  /// **'Get to know the application interface'**
   String get get_to_know_the_application_interface;
 
   /// No description provided for @here_you_will_find_tasks_requests_alerts_and_filters.
   ///
   /// In en, this message translates to:
-  /// **'Here you will find tasks, requests, alerts and filters'**
+  /// **'Here you will find tasks, requests, alerts, and filters.'**
   String get here_you_will_find_tasks_requests_alerts_and_filters;
 
   /// No description provided for @documentation_with_photos_and_videos.
@@ -189,31 +201,31 @@ abstract class AppLocalizations {
   /// No description provided for @send.
   ///
   /// In en, this message translates to:
-  /// **'Send'**
+  /// **'Sends'**
   String get send;
 
   /// No description provided for @phone.
   ///
   /// In en, this message translates to:
-  /// **'Phone Number'**
+  /// **'Phone number'**
   String get phone;
 
   /// No description provided for @done.
   ///
   /// In en, this message translates to:
-  /// **'Done'**
+  /// **'finished'**
   String get done;
 
   /// No description provided for @orders.
   ///
   /// In en, this message translates to:
-  /// **'Orders'**
+  /// **'Requests'**
   String get orders;
 
   /// No description provided for @package.
   ///
   /// In en, this message translates to:
-  /// **'Package'**
+  /// **'pack'**
   String get package;
 
   /// No description provided for @there_are_no_results_for_this_search.
@@ -225,37 +237,49 @@ abstract class AppLocalizations {
   /// No description provided for @documentations.
   ///
   /// In en, this message translates to:
-  /// **'Documentations'**
+  /// **'Documents'**
   String get documentations;
 
   /// No description provided for @show_documentations.
   ///
   /// In en, this message translates to:
-  /// **'Show Documentations'**
+  /// **'View documents'**
   String get show_documentations;
 
   /// No description provided for @execution_number.
   ///
   /// In en, this message translates to:
-  /// **'Execution Number'**
+  /// **'Execution number'**
   String get execution_number;
 
   /// No description provided for @add_documentation.
   ///
   /// In en, this message translates to:
-  /// **'Add Documentation'**
+  /// **'Add documents'**
   String get add_documentation;
 
   /// No description provided for @location.
   ///
   /// In en, this message translates to:
-  /// **'Location'**
+  /// **'location'**
   String get location;
+
+  /// No description provided for @selectLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Locate'**
+  String get selectLocation;
+
+  /// No description provided for @select.
+  ///
+  /// In en, this message translates to:
+  /// **'to set'**
+  String get select;
 
   /// No description provided for @count.
   ///
   /// In en, this message translates to:
-  /// **'Count'**
+  /// **'number'**
   String get count;
 
   /// No description provided for @kinia_name.
@@ -279,19 +303,25 @@ abstract class AppLocalizations {
   /// No description provided for @home_title.
   ///
   /// In en, this message translates to:
-  /// **'Home'**
+  /// **'house'**
   String get home_title;
+
+  /// No description provided for @main.
+  ///
+  /// In en, this message translates to:
+  /// **'major'**
+  String get main;
 
   /// No description provided for @add_order.
   ///
   /// In en, this message translates to:
-  /// **'Add Order'**
+  /// **'Add a request'**
   String get add_order;
 
   /// No description provided for @order_place.
   ///
   /// In en, this message translates to:
-  /// **'Place'**
+  /// **'place'**
   String get order_place;
 
   /// No description provided for @order_id.
@@ -303,19 +333,19 @@ abstract class AppLocalizations {
   /// No description provided for @order_number.
   ///
   /// In en, this message translates to:
-  /// **'Order Number'**
+  /// **'order number'**
   String get order_number;
 
   /// No description provided for @client_id.
   ///
   /// In en, this message translates to:
-  /// **'Client ID'**
+  /// **'Customer ID'**
   String get client_id;
 
   /// No description provided for @enter_order_id.
   ///
   /// In en, this message translates to:
-  /// **'Enter Order ID'**
+  /// **'Enter order ID'**
   String get enter_order_id;
 
   /// No description provided for @place_hint.
@@ -327,43 +357,43 @@ abstract class AppLocalizations {
   /// No description provided for @add_video.
   ///
   /// In en, this message translates to:
-  /// **'Add Video'**
+  /// **'Add video'**
   String get add_video;
 
   /// No description provided for @add_picure.
   ///
   /// In en, this message translates to:
-  /// **'Add Picture'**
+  /// **'Add a photo'**
   String get add_picure;
 
   /// No description provided for @add.
   ///
   /// In en, this message translates to:
-  /// **'Add'**
+  /// **'Adds'**
   String get add;
 
   /// No description provided for @loading.
   ///
   /// In en, this message translates to:
-  /// **'Loading...'**
+  /// **'download...'**
   String get loading;
 
   /// No description provided for @changeLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Change Language'**
+  /// **'Change language'**
   String get changeLanguage;
 
   /// No description provided for @login_text.
   ///
   /// In en, this message translates to:
-  /// **'Login'**
+  /// **'Log in'**
   String get login_text;
 
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
-  /// **'Login'**
+  /// **'Log in'**
   String get login;
 
   /// No description provided for @emailHint.
@@ -375,49 +405,49 @@ abstract class AppLocalizations {
   /// No description provided for @emailRequired.
   ///
   /// In en, this message translates to:
-  /// **'Email is required'**
+  /// **'Email required'**
   String get emailRequired;
 
   /// No description provided for @phoneNumberHint.
   ///
   /// In en, this message translates to:
-  /// **'Phone Number'**
+  /// **'Phone number'**
   String get phoneNumberHint;
 
   /// No description provided for @phoneNumber.
   ///
   /// In en, this message translates to:
-  /// **'Phone Number'**
+  /// **'Phone number'**
   String get phoneNumber;
 
   /// No description provided for @countryHint.
   ///
   /// In en, this message translates to:
-  /// **'Country'**
+  /// **'nation'**
   String get countryHint;
 
   /// No description provided for @confirmPasswordHint.
   ///
   /// In en, this message translates to:
-  /// **'Confirm Password'**
+  /// **'Confirm password'**
   String get confirmPasswordHint;
 
   /// No description provided for @confirmPassword.
   ///
   /// In en, this message translates to:
-  /// **'Confirm Password'**
+  /// **'Confirm password'**
   String get confirmPassword;
 
   /// No description provided for @remember_me.
   ///
   /// In en, this message translates to:
-  /// **'Remember Me'**
+  /// **'Remember me'**
   String get remember_me;
 
   /// No description provided for @log_out.
   ///
   /// In en, this message translates to:
-  /// **'Log Out'**
+  /// **'Sign out'**
   String get log_out;
 
   /// No description provided for @areYouSure.
@@ -429,49 +459,49 @@ abstract class AppLocalizations {
   /// No description provided for @file_pick_failed.
   ///
   /// In en, this message translates to:
-  /// **'File pick failed'**
+  /// **'File selection failed'**
   String get file_pick_failed;
 
   /// No description provided for @order_saving.
   ///
   /// In en, this message translates to:
-  /// **'Saving order...'**
+  /// **'Saving request...'**
   String get order_saving;
 
   /// No description provided for @order__is_sharing.
   ///
   /// In en, this message translates to:
-  /// **'Sharing order...'**
+  /// **'Request for participation...'**
   String get order__is_sharing;
 
   /// No description provided for @failed.
   ///
   /// In en, this message translates to:
-  /// **'Failed'**
+  /// **'to fail'**
   String get failed;
 
   /// No description provided for @or.
   ///
   /// In en, this message translates to:
-  /// **'Or'**
+  /// **'or'**
   String get or;
 
   /// No description provided for @request_time_out.
   ///
   /// In en, this message translates to:
-  /// **'Request timed out'**
+  /// **'The request has expired.'**
   String get request_time_out;
 
   /// No description provided for @change_language.
   ///
   /// In en, this message translates to:
-  /// **'Change Language'**
+  /// **'Change language'**
   String get change_language;
 
   /// No description provided for @arabic.
   ///
   /// In en, this message translates to:
-  /// **'Arabic'**
+  /// **'Arab'**
   String get arabic;
 
   /// No description provided for @english.
@@ -483,37 +513,37 @@ abstract class AppLocalizations {
   /// No description provided for @close.
   ///
   /// In en, this message translates to:
-  /// **'Close'**
+  /// **'Closes'**
   String get close;
 
   /// No description provided for @required.
   ///
   /// In en, this message translates to:
-  /// **'Required'**
+  /// **'required'**
   String get required;
 
   /// No description provided for @order_added_successfully.
   ///
   /// In en, this message translates to:
-  /// **'Order added successfully'**
+  /// **'The request has been added successfully.'**
   String get order_added_successfully;
 
   /// No description provided for @order_addition_failed.
   ///
   /// In en, this message translates to:
-  /// **'Order addition failed'**
+  /// **'Request addition failed'**
   String get order_addition_failed;
 
   /// No description provided for @country.
   ///
   /// In en, this message translates to:
-  /// **'Country'**
+  /// **'nation'**
   String get country;
 
   /// No description provided for @selectCountry.
   ///
   /// In en, this message translates to:
-  /// **'Select Country'**
+  /// **'Select country'**
   String get selectCountry;
 
   /// No description provided for @passwordsDontMatch.
@@ -531,7 +561,7 @@ abstract class AppLocalizations {
   /// No description provided for @secondNameRequired.
   ///
   /// In en, this message translates to:
-  /// **'Second name is required'**
+  /// **'Second name required'**
   String get secondNameRequired;
 
   /// No description provided for @reset_link_sent.
@@ -543,43 +573,43 @@ abstract class AppLocalizations {
   /// No description provided for @enter_valid_email_password.
   ///
   /// In en, this message translates to:
-  /// **'Enter a valid email and password'**
+  /// **'Enter a valid email address and password.'**
   String get enter_valid_email_password;
 
   /// No description provided for @invalidEmail.
   ///
   /// In en, this message translates to:
-  /// **'Invalid Email'**
+  /// **'Invalid email'**
   String get invalidEmail;
 
   /// No description provided for @phoneRequired.
   ///
   /// In en, this message translates to:
-  /// **'Phone number is required'**
+  /// **'Phone number required'**
   String get phoneRequired;
 
   /// No description provided for @passwordRequired.
   ///
   /// In en, this message translates to:
-  /// **'Password is required'**
+  /// **'Password required'**
   String get passwordRequired;
 
   /// No description provided for @passwordMinLength.
   ///
   /// In en, this message translates to:
-  /// **'Password must be at least 8 characters'**
+  /// **'Password must be at least 8 characters long.'**
   String get passwordMinLength;
 
   /// No description provided for @confirmPasswordRequired.
   ///
   /// In en, this message translates to:
-  /// **'Confirm password is required'**
+  /// **'Password confirmation required'**
   String get confirmPasswordRequired;
 
   /// No description provided for @alreadyHaveAnAccount.
   ///
   /// In en, this message translates to:
-  /// **'Already have an account?'**
+  /// **'Do you already have an account?'**
   String get alreadyHaveAnAccount;
 
   /// No description provided for @confirmYourPassword.
@@ -597,7 +627,7 @@ abstract class AppLocalizations {
   /// No description provided for @order_is_sharing.
   ///
   /// In en, this message translates to:
-  /// **'Sharing order...'**
+  /// **'Request for participation...'**
   String get order_is_sharing;
 
   /// No description provided for @successfully.
@@ -615,7 +645,7 @@ abstract class AppLocalizations {
   /// No description provided for @data_saved.
   ///
   /// In en, this message translates to:
-  /// **'Data saved'**
+  /// **'Stored data'**
   String get data_saved;
 
   /// No description provided for @order_id_exists.
@@ -633,19 +663,19 @@ abstract class AppLocalizations {
   /// No description provided for @camera.
   ///
   /// In en, this message translates to:
-  /// **'Camera'**
+  /// **'camera'**
   String get camera;
 
   /// No description provided for @gallery.
   ///
   /// In en, this message translates to:
-  /// **'Gallery'**
+  /// **'Photo Gallery'**
   String get gallery;
 
   /// No description provided for @cant_be_embty.
   ///
   /// In en, this message translates to:
-  /// **'Cannot be empty'**
+  /// **'It cannot be empty.'**
   String get cant_be_embty;
 
   /// No description provided for @please_enter_all_data.
@@ -657,7 +687,7 @@ abstract class AppLocalizations {
   /// No description provided for @ok.
   ///
   /// In en, this message translates to:
-  /// **'OK'**
+  /// **'Yes'**
   String get ok;
 
   /// No description provided for @swahili_kenya.
@@ -687,13 +717,13 @@ abstract class AppLocalizations {
   /// No description provided for @unexpected_error.
   ///
   /// In en, this message translates to:
-  /// **'Unexpected error occurred'**
+  /// **'An unexpected error occurred.'**
   String get unexpected_error;
 
   /// No description provided for @notHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Don\'\'\'\'\'\'\'\'t have an account?'**
+  /// **'Don\'\'t have an account?'**
   String get notHaveAccount;
 
   /// No description provided for @passwordsDoNotMatch.
@@ -705,13 +735,13 @@ abstract class AppLocalizations {
   /// No description provided for @enterYourEmailToResetPassword.
   ///
   /// In en, this message translates to:
-  /// **'Enter your email to receive password reset link'**
+  /// **'Enter your email to receive a password reset link.'**
   String get enterYourEmailToResetPassword;
 
   /// No description provided for @follow.
   ///
   /// In en, this message translates to:
-  /// **'Follow'**
+  /// **'He follows'**
   String get follow;
 
   /// No description provided for @confirm_password_hint.
@@ -723,7 +753,7 @@ abstract class AppLocalizations {
   /// No description provided for @instead.
   ///
   /// In en, this message translates to:
-  /// **'Instead'**
+  /// **'instead of'**
   String get instead;
 
   /// No description provided for @skip.
@@ -735,55 +765,61 @@ abstract class AppLocalizations {
   /// No description provided for @next.
   ///
   /// In en, this message translates to:
-  /// **'Next'**
+  /// **'the next'**
   String get next;
+
+  /// No description provided for @not_have_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'\'t have an account?'**
+  String get not_have_account;
 
   /// No description provided for @errorLoadingOnboarding.
   ///
   /// In en, this message translates to:
-  /// **'Error loading onboarding content'**
+  /// **'An error occurred while loading the directive content.'**
   String get errorLoadingOnboarding;
 
   /// No description provided for @onboardingWelcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Mubin Orders'**
+  /// **'Welcome to Mobin Talabat'**
   String get onboardingWelcomeTitle;
 
   /// No description provided for @onboardingWelcomeDescription.
   ///
   /// In en, this message translates to:
-  /// **'Your complete solution for managing orders and documentation'**
+  /// **'The comprehensive solution for order management and documentation'**
   String get onboardingWelcomeDescription;
 
   /// No description provided for @onboardingTrackingTitle.
   ///
   /// In en, this message translates to:
-  /// **'Track Your Orders'**
+  /// **'Track your orders'**
   String get onboardingTrackingTitle;
 
   /// No description provided for @onboardingTrackingDescription.
   ///
   /// In en, this message translates to:
-  /// **'Monitor your orders in real-time with our intuitive tracking system'**
+  /// **'Monitor your orders in real time with our intuitive tracking system.'**
   String get onboardingTrackingDescription;
 
   /// No description provided for @onboardingDocumentsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Document Management'**
+  /// **'Document management'**
   String get onboardingDocumentsTitle;
 
   /// No description provided for @onboardingDocumentsDescription.
   ///
   /// In en, this message translates to:
-  /// **'Store and access all your important documents in one secure place'**
+  /// **'Store and access all your important documents in one secure place.'**
   String get onboardingDocumentsDescription;
 
   /// No description provided for @help.
   ///
   /// In en, this message translates to:
-  /// **'Help'**
+  /// **'Helps'**
   String get help;
 
   /// No description provided for @settings.
@@ -795,50 +831,56 @@ abstract class AppLocalizations {
   /// No description provided for @createAccount.
   ///
   /// In en, this message translates to:
-  /// **'Create Account'**
+  /// **'Create an account'**
   String get createAccount;
+
+  /// No description provided for @passwordResetEmailSentTo.
+  ///
+  /// In en, this message translates to:
+  /// **'A password reset email has been sent to {email}.'**
+  String passwordResetEmailSentTo(Object email);
 
   /// No description provided for @alreadyHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Already have an account?'**
+  /// **'Do you already have an account?'**
   String get alreadyHaveAccount;
 
   /// No description provided for @make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending.
   ///
   /// In en, this message translates to:
-  /// **'Make sure the images are clear and the number of Qur\'\'\'\'\'\'\'\'an copies is correct before sending'**
+  /// **'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending'**
   String
       get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
 
   /// No description provided for @signUp.
   ///
   /// In en, this message translates to:
-  /// **'Sign Up'**
+  /// **'subscription'**
   String get signUp;
 
   /// No description provided for @apPasswordResetLinkHasBeenSentToYourEmail.
   ///
   /// In en, this message translates to:
-  /// **'A password reset link has been sent to your email'**
+  /// **'A password reset link has been sent to your email.'**
   String get apPasswordResetLinkHasBeenSentToYourEmail;
 
   /// No description provided for @signUpTitle.
   ///
   /// In en, this message translates to:
-  /// **'Create New Account'**
+  /// **'Create a new account'**
   String get signUpTitle;
 
   /// No description provided for @firstName.
   ///
   /// In en, this message translates to:
-  /// **'First Name'**
+  /// **'first name'**
   String get firstName;
 
   /// No description provided for @lastName.
   ///
   /// In en, this message translates to:
-  /// **'Last Name'**
+  /// **'last name'**
   String get lastName;
 
   /// No description provided for @fieldRequired.
@@ -856,37 +898,37 @@ abstract class AppLocalizations {
   /// No description provided for @start.
   ///
   /// In en, this message translates to:
-  /// **'Start'**
+  /// **'It begins'**
   String get start;
 
   /// No description provided for @errorCreatingAccount.
   ///
   /// In en, this message translates to:
-  /// **'Error creating account'**
+  /// **'Account creation error'**
   String get errorCreatingAccount;
 
   /// No description provided for @password.
   ///
   /// In en, this message translates to:
-  /// **'Password'**
+  /// **'password'**
   String get password;
 
   /// No description provided for @forgotPassword.
   ///
   /// In en, this message translates to:
-  /// **'Forgot Password?'**
+  /// **'Forgot your password?'**
   String get forgotPassword;
 
   /// No description provided for @selectLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Select Language'**
+  /// **'Select language'**
   String get selectLanguage;
 
   /// No description provided for @name.
   ///
   /// In en, this message translates to:
-  /// **'Name'**
+  /// **'name'**
   String get name;
 
   /// No description provided for @welcomeLine1.
@@ -898,25 +940,25 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeLine2.
   ///
   /// In en, this message translates to:
-  /// **'To'**
+  /// **'to'**
   String get welcomeLine2;
 
   /// No description provided for @signIn.
   ///
   /// In en, this message translates to:
-  /// **'Sign In'**
+  /// **'Log in'**
   String get signIn;
 
   /// No description provided for @followUp.
   ///
   /// In en, this message translates to:
-  /// **'Follow Up'**
+  /// **'tracking'**
   String get followUp;
 
   /// No description provided for @aLinkWillBeSentToYouToResetYourPassword.
   ///
   /// In en, this message translates to:
-  /// **'A link will be sent to you to reset your password'**
+  /// **'A link will be sent to you to reset your password.'**
   String get aLinkWillBeSentToYouToResetYourPassword;
 
   /// No description provided for @onboardingPage1Title.
@@ -928,32 +970,92 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingPage1Description.
   ///
   /// In en, this message translates to:
-  /// **'We\'\'\'\'\'\'\'\'re happy to have you join Mubeen Store'**
+  /// **'We are pleased to have you join our store.'**
   String get onboardingPage1Description;
 
   /// No description provided for @onboardingPage2Title.
   ///
   /// In en, this message translates to:
-  /// **'Discover the App Interface'**
+  /// **'Explore the app interface'**
   String get onboardingPage2Title;
 
   /// No description provided for @onboardingPage2Description.
   ///
   /// In en, this message translates to:
-  /// **'Here you\'\'\'\'\'\'\'\'ll find tasks, orders, alerts, and filters'**
+  /// **'Here you will find tasks, commands, alerts, and filters.'**
   String get onboardingPage2Description;
+
+  /// No description provided for @aPasswordResetLinkHasBeenSentToYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'A password reset link has been sent to your email.'**
+  String get aPasswordResetLinkHasBeenSentToYourEmail;
 
   /// No description provided for @onboardingPage3Title.
   ///
   /// In en, this message translates to:
-  /// **'Documentation with Photos and Videos'**
+  /// **'Documentation with photos and videos'**
   String get onboardingPage3Title;
 
   /// No description provided for @onboardingPage3Description.
   ///
   /// In en, this message translates to:
-  /// **'Ensure images are clear and the number of Qur\'\'\'\'\'\'\'\'an copies is correct before sending'**
+  /// **'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending'**
   String get onboardingPage3Description;
+
+  /// No description provided for @sticker.
+  ///
+  /// In en, this message translates to:
+  /// **'poster'**
+  String get sticker;
+
+  /// No description provided for @finished.
+  ///
+  /// In en, this message translates to:
+  /// **'finished'**
+  String get finished;
+
+  /// No description provided for @current.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get current;
+
+  /// No description provided for @inProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get inProgress;
+
+  /// No description provided for @theEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'The end'**
+  String get theEnd;
+
+  /// No description provided for @noOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests'**
+  String get noOrders;
+
+  /// No description provided for @documented.
+  ///
+  /// In en, this message translates to:
+  /// **'Documented'**
+  String get documented;
+
+  /// No description provided for @order.
+  ///
+  /// In en, this message translates to:
+  /// **'to request'**
+  String get order;
+
+  /// No description provided for @welcomeLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to'**
+  String get welcomeLine;
 }
 
 class _AppLocalizationsDelegate

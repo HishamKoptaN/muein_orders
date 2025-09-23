@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$OrdersEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool getMore) getOrders,
+    required TResult Function(
+            int packageId, bool loadMore, bool? isQuranPhotographed)
+        getOrders,
     required TResult Function(int orderId) updateIsDistributionPhotographed,
     required TResult Function(String query, bool getMore) searchOrders,
     required TResult Function() disposeSearch,
@@ -26,7 +28,8 @@ mixin _$OrdersEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult? Function(int orderId)? updateIsDistributionPhotographed,
     TResult? Function(String query, bool getMore)? searchOrders,
     TResult? Function()? disposeSearch,
@@ -34,7 +37,8 @@ mixin _$OrdersEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool getMore)? getOrders,
+    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult Function(int orderId)? updateIsDistributionPhotographed,
     TResult Function(String query, bool getMore)? searchOrders,
     TResult Function()? disposeSearch,
@@ -98,7 +102,7 @@ abstract class _$$GetOrdersImplCopyWith<$Res> {
           _$GetOrdersImpl value, $Res Function(_$GetOrdersImpl) then) =
       __$$GetOrdersImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({bool getMore});
+  $Res call({int packageId, bool loadMore, bool? isQuranPhotographed});
 }
 
 /// @nodoc
@@ -114,13 +118,23 @@ class __$$GetOrdersImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? getMore = null,
+    Object? packageId = null,
+    Object? loadMore = null,
+    Object? isQuranPhotographed = freezed,
   }) {
     return _then(_$GetOrdersImpl(
-      getMore: null == getMore
-          ? _value.getMore
-          : getMore // ignore: cast_nullable_to_non_nullable
+      packageId: null == packageId
+          ? _value.packageId
+          : packageId // ignore: cast_nullable_to_non_nullable
+              as int,
+      loadMore: null == loadMore
+          ? _value.loadMore
+          : loadMore // ignore: cast_nullable_to_non_nullable
               as bool,
+      isQuranPhotographed: freezed == isQuranPhotographed
+          ? _value.isQuranPhotographed
+          : isQuranPhotographed // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -128,15 +142,21 @@ class __$$GetOrdersImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetOrdersImpl implements _GetOrders {
-  const _$GetOrdersImpl({this.getMore = false});
+  const _$GetOrdersImpl(
+      {required this.packageId,
+      required this.loadMore,
+      this.isQuranPhotographed});
 
   @override
-  @JsonKey()
-  final bool getMore;
+  final int packageId;
+  @override
+  final bool loadMore;
+  @override
+  final bool? isQuranPhotographed;
 
   @override
   String toString() {
-    return 'OrdersEvent.getOrders(getMore: $getMore)';
+    return 'OrdersEvent.getOrders(packageId: $packageId, loadMore: $loadMore, isQuranPhotographed: $isQuranPhotographed)';
   }
 
   @override
@@ -144,11 +164,17 @@ class _$GetOrdersImpl implements _GetOrders {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetOrdersImpl &&
-            (identical(other.getMore, getMore) || other.getMore == getMore));
+            (identical(other.packageId, packageId) ||
+                other.packageId == packageId) &&
+            (identical(other.loadMore, loadMore) ||
+                other.loadMore == loadMore) &&
+            (identical(other.isQuranPhotographed, isQuranPhotographed) ||
+                other.isQuranPhotographed == isQuranPhotographed));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, getMore);
+  int get hashCode =>
+      Object.hash(runtimeType, packageId, loadMore, isQuranPhotographed);
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -161,36 +187,40 @@ class _$GetOrdersImpl implements _GetOrders {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool getMore) getOrders,
+    required TResult Function(
+            int packageId, bool loadMore, bool? isQuranPhotographed)
+        getOrders,
     required TResult Function(int orderId) updateIsDistributionPhotographed,
     required TResult Function(String query, bool getMore) searchOrders,
     required TResult Function() disposeSearch,
   }) {
-    return getOrders(getMore);
+    return getOrders(packageId, loadMore, isQuranPhotographed);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult? Function(int orderId)? updateIsDistributionPhotographed,
     TResult? Function(String query, bool getMore)? searchOrders,
     TResult? Function()? disposeSearch,
   }) {
-    return getOrders?.call(getMore);
+    return getOrders?.call(packageId, loadMore, isQuranPhotographed);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool getMore)? getOrders,
+    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult Function(int orderId)? updateIsDistributionPhotographed,
     TResult Function(String query, bool getMore)? searchOrders,
     TResult Function()? disposeSearch,
     required TResult orElse(),
   }) {
     if (getOrders != null) {
-      return getOrders(getMore);
+      return getOrders(packageId, loadMore, isQuranPhotographed);
     }
     return orElse();
   }
@@ -237,9 +267,14 @@ class _$GetOrdersImpl implements _GetOrders {
 }
 
 abstract class _GetOrders implements OrdersEvent {
-  const factory _GetOrders({final bool getMore}) = _$GetOrdersImpl;
+  const factory _GetOrders(
+      {required final int packageId,
+      required final bool loadMore,
+      final bool? isQuranPhotographed}) = _$GetOrdersImpl;
 
-  bool get getMore;
+  int get packageId;
+  bool get loadMore;
+  bool? get isQuranPhotographed;
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -322,7 +357,9 @@ class _$UpdateIsDistributionPhotographedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool getMore) getOrders,
+    required TResult Function(
+            int packageId, bool loadMore, bool? isQuranPhotographed)
+        getOrders,
     required TResult Function(int orderId) updateIsDistributionPhotographed,
     required TResult Function(String query, bool getMore) searchOrders,
     required TResult Function() disposeSearch,
@@ -333,7 +370,8 @@ class _$UpdateIsDistributionPhotographedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult? Function(int orderId)? updateIsDistributionPhotographed,
     TResult? Function(String query, bool getMore)? searchOrders,
     TResult? Function()? disposeSearch,
@@ -344,7 +382,8 @@ class _$UpdateIsDistributionPhotographedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool getMore)? getOrders,
+    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult Function(int orderId)? updateIsDistributionPhotographed,
     TResult Function(String query, bool getMore)? searchOrders,
     TResult Function()? disposeSearch,
@@ -488,7 +527,9 @@ class _$SearchOrdersImpl implements _SearchOrders {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool getMore) getOrders,
+    required TResult Function(
+            int packageId, bool loadMore, bool? isQuranPhotographed)
+        getOrders,
     required TResult Function(int orderId) updateIsDistributionPhotographed,
     required TResult Function(String query, bool getMore) searchOrders,
     required TResult Function() disposeSearch,
@@ -499,7 +540,8 @@ class _$SearchOrdersImpl implements _SearchOrders {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult? Function(int orderId)? updateIsDistributionPhotographed,
     TResult? Function(String query, bool getMore)? searchOrders,
     TResult? Function()? disposeSearch,
@@ -510,7 +552,8 @@ class _$SearchOrdersImpl implements _SearchOrders {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool getMore)? getOrders,
+    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult Function(int orderId)? updateIsDistributionPhotographed,
     TResult Function(String query, bool getMore)? searchOrders,
     TResult Function()? disposeSearch,
@@ -618,7 +661,9 @@ class _$DisposeSearchImpl implements _DisposeSearch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool getMore) getOrders,
+    required TResult Function(
+            int packageId, bool loadMore, bool? isQuranPhotographed)
+        getOrders,
     required TResult Function(int orderId) updateIsDistributionPhotographed,
     required TResult Function(String query, bool getMore) searchOrders,
     required TResult Function() disposeSearch,
@@ -629,7 +674,8 @@ class _$DisposeSearchImpl implements _DisposeSearch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool getMore)? getOrders,
+    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult? Function(int orderId)? updateIsDistributionPhotographed,
     TResult? Function(String query, bool getMore)? searchOrders,
     TResult? Function()? disposeSearch,
@@ -640,7 +686,8 @@ class _$DisposeSearchImpl implements _DisposeSearch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool getMore)? getOrders,
+    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
+        getOrders,
     TResult Function(int orderId)? updateIsDistributionPhotographed,
     TResult Function(String query, bool getMore)? searchOrders,
     TResult Function()? disposeSearch,
@@ -704,9 +751,7 @@ mixin _$OrdersState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
-        loaded,
+    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
     required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) =>
@@ -716,9 +761,7 @@ mixin _$OrdersState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) =>
@@ -728,9 +771,7 @@ mixin _$OrdersState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
@@ -834,9 +875,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
-        loaded,
+    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
     required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
@@ -849,9 +888,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
@@ -864,9 +901,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
@@ -969,9 +1004,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
-        loaded,
+    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
     required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
@@ -984,9 +1017,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
@@ -999,9 +1030,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
@@ -1104,9 +1133,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
-        loaded,
+    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
     required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
@@ -1119,9 +1146,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
@@ -1134,9 +1159,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
@@ -1201,7 +1224,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching});
+  $Res call({List<OrderEntity>? orders, bool? hasMore});
 }
 
 /// @nodoc
@@ -1219,20 +1242,15 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? orders = freezed,
     Object? hasMore = freezed,
-    Object? isSearching = freezed,
   }) {
     return _then(_$LoadedImpl(
       orders: freezed == orders
           ? _value._orders
           : orders // ignore: cast_nullable_to_non_nullable
-              as List<OrdersResEntity>?,
+              as List<OrderEntity>?,
       hasMore: freezed == hasMore
           ? _value.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isSearching: freezed == isSearching
-          ? _value.isSearching
-          : isSearching // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -1242,14 +1260,12 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
-      {required final List<OrdersResEntity>? orders,
-      required this.hasMore,
-      required this.isSearching})
+      {required final List<OrderEntity>? orders, required this.hasMore})
       : _orders = orders;
 
-  final List<OrdersResEntity>? _orders;
+  final List<OrderEntity>? _orders;
   @override
-  List<OrdersResEntity>? get orders {
+  List<OrderEntity>? get orders {
     final value = _orders;
     if (value == null) return null;
     if (_orders is EqualUnmodifiableListView) return _orders;
@@ -1259,12 +1275,10 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   final bool? hasMore;
-  @override
-  final bool? isSearching;
 
   @override
   String toString() {
-    return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore, isSearching: $isSearching)';
+    return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore)';
   }
 
   @override
@@ -1273,14 +1287,12 @@ class _$LoadedImpl implements _Loaded {
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
             const DeepCollectionEquality().equals(other._orders, _orders) &&
-            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
-            (identical(other.isSearching, isSearching) ||
-                other.isSearching == isSearching));
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_orders), hasMore, isSearching);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_orders), hasMore);
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -1296,13 +1308,11 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
-        loaded,
+    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
     required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return loaded(orders, hasMore, isSearching);
+    return loaded(orders, hasMore);
   }
 
   @override
@@ -1311,13 +1321,11 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return loaded?.call(orders, hasMore, isSearching);
+    return loaded?.call(orders, hasMore);
   }
 
   @override
@@ -1326,15 +1334,13 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(orders, hasMore, isSearching);
+      return loaded(orders, hasMore);
     }
     return orElse();
   }
@@ -1385,13 +1391,11 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements OrdersState {
   const factory _Loaded(
-      {required final List<OrdersResEntity>? orders,
-      required final bool? hasMore,
-      required final bool? isSearching}) = _$LoadedImpl;
+      {required final List<OrderEntity>? orders,
+      required final bool? hasMore}) = _$LoadedImpl;
 
-  List<OrdersResEntity>? get orders;
+  List<OrderEntity>? get orders;
   bool? get hasMore;
-  bool? get isSearching;
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -1444,9 +1448,7 @@ class _$ClientShareImpl implements _ClientShare {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
-        loaded,
+    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
     required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
@@ -1459,9 +1461,7 @@ class _$ClientShareImpl implements _ClientShare {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
@@ -1474,9 +1474,7 @@ class _$ClientShareImpl implements _ClientShare {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
@@ -1607,9 +1605,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)
-        loaded,
+    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
     required TResult Function() clientShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
@@ -1622,9 +1618,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult? Function()? clientShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
@@ -1637,9 +1631,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<OrdersResEntity>? orders, bool? hasMore, bool? isSearching)?
-        loaded,
+    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
     TResult Function()? clientShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),

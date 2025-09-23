@@ -4,11 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/forgot_password/present/bloc/forgot_pass_bloc.dart';
 import '../../features/auth/sign_in/present/bloc/sign_in_bloc.dart';
 import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart';
+import '../../features/docs/present/blocs/bloc/docs_bloc.dart';
+import '../../features/home/present/bloc/home_bloc.dart';
 import '../../features/language/bloc/language_bloc.dart';
 import '../../features/orders/present/bloc/orders_bloc.dart';
 import '../../features/theme/blocs/theme_bloc.dart';
@@ -32,7 +33,9 @@ class MubinOrdersApp extends StatelessWidget {
         BlocProvider<ForgotPassBloc>(create: (_) => getIt<ForgotPassBloc>()),
         BlocProvider<LanguageBloc>(create: (_) => getIt<LanguageBloc>()),
         BlocProvider<ThemeBloc>(create: (_) => getIt<ThemeBloc>()),
+        BlocProvider<HomeBloc>(create: (_) => getIt<HomeBloc>()),
         BlocProvider<OrdersBloc>(create: (_) => getIt<OrdersBloc>()),
+        BlocProvider<DocsBloc>(create: (_) => getIt<DocsBloc>()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(393, 852),

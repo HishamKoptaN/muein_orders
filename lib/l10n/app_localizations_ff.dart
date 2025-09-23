@@ -9,13 +9,19 @@ class AppLocalizationsFf extends AppLocalizations {
   AppLocalizationsFf([String locale = 'ff']) : super(locale);
 
   @override
-  String get upload_videos => 'Neldu Wideyooji';
+  String get upload_videos => 'Sokkitde wideyooji';
 
   @override
-  String get welcometoMubinOrders => 'On njaaraama e Jamirooje Mubin';
+  String get welcometoMubinOrders => 'A jaɓɓaama e Mobin Talabat';
 
   @override
   String get welcome => 'Jabbama';
+
+  @override
+  String get indevedual => 'goodo';
+
+  @override
+  String get indveduals => 'Ngewte';
 
   @override
   String get wearehappytohaveyoujoinourstore =>
@@ -30,12 +36,12 @@ class AppLocalizationsFf extends AppLocalizations {
       'Ɗoo aɗa heɓa golle, ɗaɓɓaaɗe, jeertinaali, e filtoraaji.';
 
   @override
-  String get documentationWithPphotosAndVideos =>
+  String get documentationWithPhotosAndVideos =>
       'Dokimaaji e fotooji e wideyooji';
 
   @override
   String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-      'Yenanee natal ngal ina laaɓi, limoore defte Qur\'aana ɗee ina laaɓi, e njoɓdi yamiroore ndee ina laaɓi hade maa neldude.';
+      'Yenaneede laaɓal natal ngal, limoore koppiiji Qur’aana ceniiɗi ɗii, e njoɓdi yamiroore ndee hade maa neldude.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
@@ -43,30 +49,30 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get get_to_know_the_application_interface =>
-      'Anndu jokkorgal app ngal';
+      'Anndu jokkorgal kuutorgal ngal';
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Ɗoo aɗa heɓa golle, ɗaɓɓaaɗe, jeertinaali e filtoraaji';
+      'Ɗoo aɗa heɓa golle, ɗaɓɓaaɗe, jeertinaali, e filtoraaji.';
 
   @override
   String get documentation_with_photos_and_videos =>
       'Dokimaaji e fotooji e wideyooji';
 
   @override
-  String get send => 'Neldugo';
+  String get send => 'Neldata';
 
   @override
-  String get phone => 'Limoore Telefoŋ';
+  String get phone => 'Limoore telefoŋ';
 
   @override
-  String get done => 'Timmi';
+  String get done => 'timmi';
 
   @override
-  String get orders => 'Yamirooje';
+  String get orders => 'Ɗaɓɓaaɗe';
 
   @override
-  String get package => 'Takarde';
+  String get package => 'moftugo';
 
   @override
   String get there_are_no_results_for_this_search =>
@@ -76,19 +82,25 @@ class AppLocalizationsFf extends AppLocalizations {
   String get documentations => 'Kaayitaaji';
 
   @override
-  String get show_documentations => 'Hollit Binndanɗe';
+  String get show_documentations => 'Yiylo binndanɗe';
 
   @override
-  String get execution_number => 'Limoore Ƴellitaare';
+  String get execution_number => 'Limre njuɓɓudi';
 
   @override
-  String get add_documentation => 'Ɓeydu heen Binndanɗe';
+  String get add_documentation => 'Ɓeydu heen binndanɗe';
 
   @override
-  String get location => 'Wakere';
+  String get location => 'wakere';
 
   @override
-  String get count => 'Limmugo';
+  String get selectLocation => 'Yiytu';
+
+  @override
+  String get select => 'ngam settingol';
+
+  @override
+  String get count => 'lamba';
 
   @override
   String get kinia_name => 'Keñiya';
@@ -100,73 +112,76 @@ class AppLocalizationsFf extends AppLocalizations {
   String get tanzania => 'Tansani';
 
   @override
-  String get home_title => 'Saare';
+  String get home_title => 'saare';
 
   @override
-  String get add_order => 'Ɓeydu Yamiroore';
+  String get main => 'buri';
 
   @override
-  String get order_place => 'Baabal';
+  String get add_order => 'Ɓeydu heen ɗaɓɓaande';
+
+  @override
+  String get order_place => 'baabal';
 
   @override
   String get order_id => 'ID yamiroore';
 
   @override
-  String get order_number => 'Limoore yamiroore';
+  String get order_number => 'limoore yamiroore';
 
   @override
-  String get client_id => 'ID kiliyanke';
+  String get client_id => 'ID soodoowo';
 
   @override
-  String get enter_order_id => 'Naat ID yamiroore';
+  String get enter_order_id => 'Naatnu ID yamiroore';
 
   @override
   String get place_hint => 'Wuro/Juulirde/Duɗal';
 
   @override
-  String get add_video => 'Ɓeydu Wideyoo';
+  String get add_video => 'Ɓeydu heen wideyoo';
 
   @override
-  String get add_picure => 'Ɓeydu Natal';
+  String get add_picure => 'Ɓeydu heen foto';
 
   @override
-  String get add => 'Besdugo';
+  String get add => 'Ɓeydi';
 
   @override
-  String get loading => 'Ina loowa...';
+  String get loading => 'hoosugo do internaati...';
 
   @override
-  String get changeLanguage => 'Waylu Ɗemngal';
+  String get changeLanguage => 'Waylu ɗemngal';
 
   @override
-  String get login_text => 'Naatde';
+  String get login_text => 'Naat';
 
   @override
-  String get login => 'Naatde';
+  String get login => 'Naat';
 
   @override
   String get emailHint => 'Imeel';
 
   @override
-  String get emailRequired => 'Imeel ina haani';
+  String get emailRequired => 'Imeel ina ɗaɓɓiree';
 
   @override
-  String get phoneNumberHint => 'Limoore Telefoŋ';
+  String get phoneNumberHint => 'Limoore telefoŋ';
 
   @override
-  String get phoneNumber => 'Limoore Telefoŋ';
+  String get phoneNumber => 'Limoore telefoŋ';
 
   @override
-  String get countryHint => 'Lesdi';
+  String get countryHint => 'ngenndi';
 
   @override
-  String get confirmPasswordHint => 'Tabintin Konngol';
+  String get confirmPasswordHint => 'Tabintin konngol';
 
   @override
-  String get confirmPassword => 'Tabintin Konngol';
+  String get confirmPassword => 'Tabintin konngol';
 
   @override
-  String get remember_me => 'Siftor Mi';
+  String get remember_me => 'Siftor kam';
 
   @override
   String get log_out => 'Yaltu';
@@ -175,25 +190,25 @@ class AppLocalizationsFf extends AppLocalizations {
   String get areYouSure => 'Aɗa sikki aɗa yiɗi yaltude?';
 
   @override
-  String get file_pick_failed => 'Suɓngo fiilngo ngo ŋakki';
+  String get file_pick_failed => 'Suɓagol fiilde ngol ŋakki';
 
   @override
-  String get order_saving => 'Hisnude yamiroore...';
+  String get order_saving => 'Hisnude ɗaɓɓaande...';
 
   @override
-  String get order__is_sharing => 'Yamiroore renndinde...';
+  String get order__is_sharing => 'Ɗaɓɓaande tawtoreede...';
 
   @override
-  String get failed => 'Sallay';
+  String get failed => 'ngam waasde';
 
   @override
-  String get or => 'Mala';
+  String get or => 'mala';
 
   @override
-  String get request_time_out => 'Ɗaɓɓaande ndee timmi';
+  String get request_time_out => 'Ɗaɓɓaande ndee gasii.';
 
   @override
-  String get change_language => 'Waylu Ɗemngal';
+  String get change_language => 'Waylu ɗemngal';
 
   @override
   String get arabic => 'Arab';
@@ -202,22 +217,22 @@ class AppLocalizationsFf extends AppLocalizations {
   String get english => 'Inglisia';
 
   @override
-  String get close => 'Mabbugo';
+  String get close => 'Uddita';
 
   @override
-  String get required => 'Emmi';
+  String get required => 'emmi';
 
   @override
-  String get order_added_successfully => 'Yamiroore ɓeydaama no moƴƴi';
+  String get order_added_successfully => 'Ɗaɓɓaande ndee ɓeydaama no moƴƴi.';
 
   @override
-  String get order_addition_failed => 'Ɓeydugol yamiroore ngol ŋakki';
+  String get order_addition_failed => 'Ɗaɓɓaande ɓeydugol ndee dañaani';
 
   @override
-  String get country => 'Lesdi';
+  String get country => 'ngenndi';
 
   @override
-  String get selectCountry => 'Suɓo Leydi';
+  String get selectCountry => 'Suɓo leydi';
 
   @override
   String get passwordsDontMatch => 'Passwords njiidaani';
@@ -233,7 +248,7 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get enter_valid_email_password =>
-      'Naatnu iimeel e konngol kuutorteengol';
+      'Winndu adres imeel e konngol kuutorgol moƴƴol.';
 
   @override
   String get invalidEmail => 'Imeel mo moƴƴaani';
@@ -242,17 +257,17 @@ class AppLocalizationsFf extends AppLocalizations {
   String get phoneRequired => 'Limoore telefoŋ ina ɗaɓɓiree';
 
   @override
-  String get passwordRequired => 'Konngol ina haani';
+  String get passwordRequired => 'Konngol ina ɗaɓɓiree';
 
   @override
   String get passwordMinLength =>
-      'Password ina foti wonde ko famɗi fof alkule 8';
+      'Password ina foti wonde ko famɗi fof alkule 8.';
 
   @override
-  String get confirmPasswordRequired => 'Tabitin konngol ina haani';
+  String get confirmPasswordRequired => 'Tabitingol konngol ina ɗaɓɓiree';
 
   @override
-  String get alreadyHaveAnAccount => 'Aɗa jogii konte jooni?';
+  String get alreadyHaveAnAccount => 'Mbele aɗa jogii konte jooni?';
 
   @override
   String get confirmYourPassword => 'Tabintin konngol maa';
@@ -261,7 +276,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get request_saving => 'Hisnude ɗaɓɓaande...';
 
   @override
-  String get order_is_sharing => 'Yamiroore renndinde...';
+  String get order_is_sharing => 'Ɗaɓɓaande tawtoreede...';
 
   @override
   String get successfully => 'E nafoore';
@@ -270,7 +285,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get data_dont_saved => 'Dataaji ɗii ndartinaaka';
 
   @override
-  String get data_saved => 'Dataaji ɗii ndartinaama';
+  String get data_saved => 'Dowlaaji mooftaaɗi';
 
   @override
   String get order_id_exists => 'ID yamiroore ina woodi tawo';
@@ -279,19 +294,19 @@ class AppLocalizationsFf extends AppLocalizations {
   String get select_files => 'Suɓo piille';
 
   @override
-  String get camera => 'Kamera';
+  String get camera => 'kamera';
 
   @override
-  String get gallery => 'Galle';
+  String get gallery => 'Galle fotooje';
 
   @override
-  String get cant_be_embty => 'Waawaa wonde meere';
+  String get cant_be_embty => 'Nde waawaa wonde meere.';
 
   @override
-  String get please_enter_all_data => 'Tiiɗno, winndu denndaangal dokke';
+  String get please_enter_all_data => 'Tiiɗno, naatnu denndaangal dokke ɗee';
 
   @override
-  String get ok => 'TO';
+  String get ok => 'Oho';
 
   @override
   String get swahili_kenya => 'Suwahili - Keñiya';
@@ -306,7 +321,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get retry => 'Enndu kadi';
 
   @override
-  String get unexpected_error => 'Juumre nde sikkaano waɗii';
+  String get unexpected_error => 'Juumre nde sikkaano waɗii.';
 
   @override
   String get notHaveAccount => 'A alaa konte?';
@@ -316,49 +331,53 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get enterYourEmailToResetPassword =>
-      'Winndu imeel maa ngam heɓde jokkorde restoraade konngol';
+      'Winndu iimeel maa ngam heɓde jokkorde mbayliigu konngol.';
 
   @override
-  String get follow => 'Tokkugo';
+  String get follow => 'O rewi heen';
 
   @override
   String get confirm_password_hint => 'Tabintin konngol';
 
   @override
-  String get instead => 'Do';
+  String get instead => 'do';
 
   @override
   String get skip => 'Juwugo';
 
   @override
-  String get next => 'Tokki';
+  String get next => 'ko arata';
 
   @override
-  String get errorLoadingOnboarding => 'Juumre e loowdi onboarding';
+  String get not_have_account => 'A alaa konte?';
 
   @override
-  String get onboardingWelcomeTitle => 'On njaaraama e Jamirooje Mubin';
+  String get errorLoadingOnboarding =>
+      'Juumre waɗii e loowdi loowdi yamiroore ndee.';
+
+  @override
+  String get onboardingWelcomeTitle => 'A jaɓɓaama e Mobin Talabat';
 
   @override
   String get onboardingWelcomeDescription =>
-      'Kuulal maa timmungal ngam ƴellitde jamirooje e binndanɗe';
+      'Kuulal kuuɓtodinngal ngam njuɓɓudi yamiroore e binnditagol';
 
   @override
-  String get onboardingTrackingTitle => 'Rewta Jamirooje maa';
+  String get onboardingTrackingTitle => 'Rewrude e jamirooje maa';
 
   @override
   String get onboardingTrackingDescription =>
-      'Yiylo jamirooje maa e sahaa tigi-rigi e njuɓɓudi men rewindaade laaɓtundi';
+      'Yiylo jamirooje maa e sahaa tigi-rigi e njuɓɓudi men rewindaade.';
 
   @override
   String get onboardingDocumentsTitle => 'Njuɓɓudi binndanɗe';
 
   @override
   String get onboardingDocumentsDescription =>
-      'Siftor e naatde e denndaangal binndanɗe maa teeŋtuɗe e nokku gooto kisal';
+      'Siftor e naatde e denndaangal binndanɗe maa teeŋtuɗe e nokku gooto kisal.';
 
   @override
-  String get help => 'Wallende';
+  String get help => 'Ina wallita';
 
   @override
   String get settings => 'Dottaaɗe';
@@ -367,27 +386,32 @@ class AppLocalizationsFf extends AppLocalizations {
   String get createAccount => 'Sos konte';
 
   @override
-  String get alreadyHaveAccount => 'Aɗa jogii konte tawo?';
+  String passwordResetEmailSentTo(Object email) {
+    return 'Imeel mbayliigu konngol neldaama to $email.';
+  }
+
+  @override
+  String get alreadyHaveAccount => 'Mbele aɗa jogii konte jooni?';
 
   @override
   String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Yenaneede natal ngal ina laaɓi kadi limoore koppi Qur\'\'\'\' ina selli hade maa neldude';
+      'Yenaneede laaɓal natal ngal e limoore laaɓtunde e nder Qur’aana tedduɗo oo hade maa neldude';
 
   @override
-  String get signUp => 'Winndito';
+  String get signUp => 'abonmaaji';
 
   @override
   String get apPasswordResetLinkHasBeenSentToYourEmail =>
-      'Jokkorde mbayliigu konngol neldaama e iimeel maa';
+      'Jokkorde mbayliigu konngol neldaama e iimeel maa.';
 
   @override
   String get signUpTitle => 'Sos konte kese';
 
   @override
-  String get firstName => 'Arandere inde';
+  String get firstName => 'arandere inde';
 
   @override
-  String get lastName => 'Inde arandere';
+  String get lastName => 'inde arandere';
 
   @override
   String get fieldRequired => 'Oo fannu ina ɗaɓɓiree';
@@ -396,57 +420,88 @@ class AppLocalizationsFf extends AppLocalizations {
   String get accountCreated => 'Konte ɗee sosaa ko no moƴƴi';
 
   @override
-  String get start => 'Start';
+  String get start => 'Ina fuɗɗoo';
 
   @override
   String get errorCreatingAccount => 'Juumre sosde konte';
 
   @override
-  String get password => 'Siiri nastirde';
+  String get password => 'siiri nastirde';
 
   @override
-  String get forgotPassword => 'Yejjitii konngol?';
+  String get forgotPassword => 'Yejjitii konngol maa?';
 
   @override
-  String get selectLanguage => 'Suɓo Ɗemngal';
+  String get selectLanguage => 'Suɓo ɗemngal';
 
   @override
-  String get name => 'Inde';
+  String get name => 'inde';
 
   @override
   String get welcomeLine1 => 'Jabbama';
 
   @override
-  String get welcomeLine2 => 'Ha';
+  String get welcomeLine2 => 'ha';
 
   @override
-  String get signIn => 'Nastu';
+  String get signIn => 'Naat';
 
   @override
-  String get followUp => 'Tokkitugo';
+  String get followUp => 'rewindaade';
 
   @override
   String get aLinkWillBeSentToYouToResetYourPassword =>
-      'Jokkorde neldetee ma ngam ustude konngol maa';
+      'Jokkorde neldetee ma ngam ustude konngol maa.';
 
   @override
   String get onboardingPage1Title => 'Jabbama';
 
   @override
   String get onboardingPage1Description =>
-      'Min\'\'\'\'\'\'re ɗon seyi ngam on nasti nder Mubeen Store';
+      'Min mbeltiima no feewi e naatde e lowre amen.';
 
   @override
-  String get onboardingPage2Title => 'Yiytu App oo';
+  String get onboardingPage2Title => 'Yiylo jokkorgal app ngal';
 
   @override
   String get onboardingPage2Description =>
-      'Ɗoo aɗa heɓa golle, jamirooje, jeertinaali, e filtoraaji';
+      'Ɗoo aɗa heɓa golle, jamirooje, jeertinaali, e filtoraaji.';
 
   @override
-  String get onboardingPage3Title => 'Documentation e Fotooji e Wideyooji';
+  String get aPasswordResetLinkHasBeenSentToYourEmail =>
+      'Jokkorde mbayliigu konngol neldaama e iimeel maa.';
+
+  @override
+  String get onboardingPage3Title => 'Dokimaaji e fotooji e wideyooji';
 
   @override
   String get onboardingPage3Description =>
-      'Yenaneede natal ina laaɓi e limoore koppi Qur\'\'\'\' ina selli hade neldude';
+      'Yenaneede laaɓal natal ngal e limoore laaɓtunde e nder Qur’aana tedduɗo oo hade maa neldude';
+
+  @override
+  String get sticker => 'posto';
+
+  @override
+  String get finished => 'timmi';
+
+  @override
+  String get current => 'Jonta';
+
+  @override
+  String get inProgress => 'Jonta';
+
+  @override
+  String get theEnd => 'Ko joofnirde';
+
+  @override
+  String get noOrders => 'Alaa ɗaɓɓaande';
+
+  @override
+  String get documented => 'Binnditagol';
+
+  @override
+  String get order => 'ngam ɗaɓɓude';
+
+  @override
+  String get welcomeLine => 'On njaaraama e...';
 }

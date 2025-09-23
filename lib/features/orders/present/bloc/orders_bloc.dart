@@ -1,8 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/entities/meta_entity.dart';
 import '../../../../core/error/api_error_model.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/usecases/orders_use_cases.dart';
@@ -14,48 +12,49 @@ part 'orders_state.dart';
 @injectable
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   final OrdersUseCases ordersUseCases;
-  List<OrdersResEntity>? _allOrders;
-  List<OrdersResEntity>? _searchOrders;
-  MetaEntity? _meta;
-  MetaEntity? _searchMeta;
-  bool? _isSearching;
   OrdersBloc(this.ordersUseCases) : super(const OrdersState.initial()) {
     on<OrdersEvent>((event, emit) async {
       await event.when(
-        getOrders: (getMore) async {
+        getOrders: (
+          packageId,
+          loadMore,
+          isQuranPhotographed,
+        ) async {
           try {
-            if (!getMore) {
-              emit(const OrdersState.loading());
-            }
-            final res = await ordersUseCases.getOrders(
-              page: (_meta?.currentPage ?? 0) + 1,
+            emit(const OrdersState.loading());
+            final result = await ordersUseCases.getOrders(
+              packageId: packageId,
+              isDistributionPhotographed: isQuranPhotographed,
+              loadMore: loadMore,
             );
-            // await res.when(
-            //   success: (res) async {
-            //     if (getMore) {
-            //       _allOrders = [...?_allOrders, ...?res];
-            //     } else if (!getMore) {
-            //       _allOrders = res;
-            //     }
-            //     emitLoaded(emit: emit);
-            //   },
-            //   failure: (apiErrorModel) async {
-            //     emitFaliure(apiErrorModel: apiErrorModel, emit: emit);
-            //   },
-            // );
-          } catch (e) {
-            emitFaliure(
-              apiErrorModel: ApiErrorModel(error: e.toString()),
-              emit: emit,
+            result.when(
+              success: (response) {
+                emit(
+                  OrdersState.loaded(
+                    orders: response?.orders ?? [],
+                    hasMore: response?.meta?.hasNextPage ?? false,
+                  ),
+                );
+              },
+              failure: (error) =>
+                  emit(OrdersState.failure(apiErrorModel: error)),
+            );
+          } catch (e, stackTrace) {
+            emit(
+              OrdersState.failure(
+                apiErrorModel: ApiErrorModel(
+                  error: e.toString(),
+                ),
+              ),
             );
           }
         },
         searchOrders: (query, getMore) async {
-          _isSearching = true;
-          final res = await ordersUseCases.getOrders(
-            query: query,
-            page: getMore ? (_meta?.currentPage ?? 0) + 1 : 1,
-          );
+          // final res = await ordersUseCases.getOrders(
+          //   packageId: 1,
+          //   query: query,
+          //   page: getMore ? (_meta?.currentPage ?? 0) + 1 : 1,
+          // );
           // await res.when(
           //   success: (res) async {
           //     if (!getMore) {
@@ -71,34 +70,33 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           // );
         },
         disposeSearch: () {
-          _isSearching = false;
-          emit(
-            OrdersState.loaded(
-              orders: _allOrders ?? [],
-              hasMore: _meta?.hasNextPage ?? false,
-              isSearching: _isSearching,
-            ),
-          );
+          // emit(
+          //   OrdersState.loaded(
+          //     orders: _allOrders ?? [],
+          //     hasMore: _meta?.hasNextPage ?? false,
+          //     isSearching: _isSearching,
+          //   ),
+          // );
         },
         updateIsDistributionPhotographed: (orderId) async {
-          final listToUpdate = (_isSearching ?? false)
-              ? _searchOrders
-              : _allOrders;
-          final updatedList = listToUpdate?.map((group) {
-            final updatedOrders = group.orders?.map((order) {
-              if (order.id == orderId) {
-                return order.copyWith(isDistributionPhotographed: true);
-              }
-              return order;
-            }).toList();
-            return group.copyWith(orders: updatedOrders);
-          }).toList();
-          if (_isSearching ?? false) {
-            _searchOrders = updatedList;
-          } else {
-            _allOrders = updatedList;
-          }
-          emitLoaded(emit: emit);
+          // final listToUpdate = (_isSearching ?? false)
+          //     ? _searchOrders
+          //     : _allOrders;
+          // final updatedList = listToUpdate?.map((group) {
+          //   final updatedOrders = group.orders?.map((order) {
+          //     if (order.id == orderId) {
+          //       return order.copyWith(isDistributionPhotographed: true);
+          //     }
+          //     return order;
+          //   }).toList();
+          //   return group.copyWith(orders: updatedOrders);
+          // }).toList();
+          // if (_isSearching ?? false) {
+          //   _searchOrders = updatedList;
+          // } else {
+          //   _allOrders = updatedList;
+          // }
+          // emitLoaded(emit: emit);
         },
       );
     });
@@ -106,15 +104,16 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   void emitFaliure({
     required Emitter<OrdersState> emit,
     required ApiErrorModel apiErrorModel,
-  }) => emit(OrdersState.failure(apiErrorModel: apiErrorModel));
+  }) =>
+      emit(OrdersState.failure(apiErrorModel: apiErrorModel));
 
-  void emitLoaded({required Emitter<OrdersState> emit}) => emit(
-    OrdersState.loaded(
-      orders: _isSearching ?? false ? _searchOrders : (_allOrders ?? []),
-      hasMore: _isSearching ?? false
-          ? (_searchMeta?.hasNextPage ?? false)
-          : (_meta?.hasNextPage ?? false),
-      isSearching: _isSearching,
-    ),
-  );
+  void emitLoaded(
+          {required Emitter<OrdersState> emit,
+          OrdersResEntity? ordersResEntity}) =>
+      emit(
+        OrdersState.loaded(
+          orders: ordersResEntity?.orders ?? [],
+          hasMore: ordersResEntity?.meta?.hasNextPage ?? false,
+        ),
+      );
 }

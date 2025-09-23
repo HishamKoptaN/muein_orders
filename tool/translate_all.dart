@@ -1,5 +1,4 @@
 //! dart run tool/translate_all.dart
-
 import 'dart:io';
 
 Future<void> main() async {
@@ -9,15 +8,13 @@ Future<void> main() async {
     print('❌ Folder lib/l10n not found');
     return;
   }
-
   // ابحث عن كل ملفات .arb
   final arbFiles = l10nDir
       .listSync()
       .where((f) => f is File && f.path.endsWith('.arb'))
       .map((f) => f.path.split(Platform.pathSeparator).last)
       .toList();
-
-  // استخرج كل اللغات من الملفات باستثناء en
+  // استخرج كل اللغات من الملفات باستثناء ar (اللغة الأساسية)
   final targetLangs = arbFiles
       .map((file) {
         final regex = RegExp(r'app_(.+)\.arb');
@@ -27,7 +24,7 @@ Future<void> main() async {
         }
         return null;
       })
-      .where((lang) => lang != null && lang != 'en')
+      .where((lang) => lang != null && lang != 'ar') // ✅ تجاهل ar بدل en
       .toSet()
       .toList();
 
@@ -42,7 +39,7 @@ Future<void> main() async {
         'run',
         'flutter_arb_translator:main',
         '--from',
-        'en',
+        'ar', // ✅ خلي الأساس هو ar
         '--to',
         lang!,
         '--service',

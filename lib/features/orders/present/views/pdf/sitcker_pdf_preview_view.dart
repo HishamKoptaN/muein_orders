@@ -5,6 +5,8 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
+import '../../../../../l10n/app_localizations.dart';
+
 class PdfPreviewView extends StatelessWidget {
   final String printedName;
   final String executionNum;
@@ -13,6 +15,7 @@ class PdfPreviewView extends StatelessWidget {
     required this.printedName,
     required this.executionNum,
   });
+  static const routeName = 'pdf-preview';
   Future<Uint8List> _buildPdf({required PdfPageFormat format}) async {
     final pdf = pw.Document();
     final img = pw.MemoryImage(
@@ -44,7 +47,7 @@ class PdfPreviewView extends StatelessWidget {
             pw.Spacer(flex: 1),
             pw.Text(
               executionNum,
-              style: pw.TextStyle(fontSize: 12),
+              style: const pw.TextStyle(fontSize: 12),
               textAlign: pw.TextAlign.center,
             ),
             pw.Spacer(flex: 1),
@@ -52,8 +55,10 @@ class PdfPreviewView extends StatelessWidget {
             pw.SizedBox(height: 5.h),
             pw.Directionality(
               textDirection: pw.TextDirection.rtl,
-              child: pw.Text('للتواصل',
-                  style: pw.TextStyle(font: tajawalBold, fontSize: 12)),
+              child: pw.Text(
+                'للتواصل',
+                style: pw.TextStyle(font: tajawalBold, fontSize: 12),
+              ),
             ),
             pw.SizedBox(height: 5.h),
             pw.Directionality(
@@ -93,8 +98,22 @@ class PdfPreviewView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
+        title: Text(
+          t.sticker,
+          style: const TextStyle(color: Colors.black),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        centerTitle: true,
+      ),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: PdfPreview(

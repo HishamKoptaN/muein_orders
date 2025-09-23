@@ -20,10 +20,10 @@ OrdersResModel _$OrdersResModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OrdersResModel {
-  @JsonKey(name: 'package')
-  OrdersResModelPackage? get package => throw _privateConstructorUsedError;
   @JsonKey(name: 'orders')
   List<Order>? get orders => throw _privateConstructorUsedError;
+  @JsonKey(name: 'meta')
+  Meta? get meta => throw _privateConstructorUsedError;
 
   /// Serializes this OrdersResModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +42,10 @@ abstract class $OrdersResModelCopyWith<$Res> {
       _$OrdersResModelCopyWithImpl<$Res, OrdersResModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'package') OrdersResModelPackage? package,
-      @JsonKey(name: 'orders') List<Order>? orders});
+      {@JsonKey(name: 'orders') List<Order>? orders,
+      @JsonKey(name: 'meta') Meta? meta});
 
-  $OrdersResModelPackageCopyWith<$Res>? get package;
+  $MetaCopyWith<$Res>? get meta;
 }
 
 /// @nodoc
@@ -63,18 +63,18 @@ class _$OrdersResModelCopyWithImpl<$Res, $Val extends OrdersResModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? package = freezed,
     Object? orders = freezed,
+    Object? meta = freezed,
   }) {
     return _then(_value.copyWith(
-      package: freezed == package
-          ? _value.package
-          : package // ignore: cast_nullable_to_non_nullable
-              as OrdersResModelPackage?,
       orders: freezed == orders
           ? _value.orders
           : orders // ignore: cast_nullable_to_non_nullable
               as List<Order>?,
+      meta: freezed == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Meta?,
     ) as $Val);
   }
 
@@ -82,13 +82,13 @@ class _$OrdersResModelCopyWithImpl<$Res, $Val extends OrdersResModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $OrdersResModelPackageCopyWith<$Res>? get package {
-    if (_value.package == null) {
+  $MetaCopyWith<$Res>? get meta {
+    if (_value.meta == null) {
       return null;
     }
 
-    return $OrdersResModelPackageCopyWith<$Res>(_value.package!, (value) {
-      return _then(_value.copyWith(package: value) as $Val);
+    return $MetaCopyWith<$Res>(_value.meta!, (value) {
+      return _then(_value.copyWith(meta: value) as $Val);
     });
   }
 }
@@ -102,11 +102,11 @@ abstract class _$$OrdersResModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'package') OrdersResModelPackage? package,
-      @JsonKey(name: 'orders') List<Order>? orders});
+      {@JsonKey(name: 'orders') List<Order>? orders,
+      @JsonKey(name: 'meta') Meta? meta});
 
   @override
-  $OrdersResModelPackageCopyWith<$Res>? get package;
+  $MetaCopyWith<$Res>? get meta;
 }
 
 /// @nodoc
@@ -122,18 +122,18 @@ class __$$OrdersResModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? package = freezed,
     Object? orders = freezed,
+    Object? meta = freezed,
   }) {
     return _then(_$OrdersResModelImpl(
-      package: freezed == package
-          ? _value.package
-          : package // ignore: cast_nullable_to_non_nullable
-              as OrdersResModelPackage?,
       orders: freezed == orders
           ? _value._orders
           : orders // ignore: cast_nullable_to_non_nullable
               as List<Order>?,
+      meta: freezed == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as Meta?,
     ));
   }
 }
@@ -142,16 +142,13 @@ class __$$OrdersResModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OrdersResModelImpl implements _OrdersResModel {
   const _$OrdersResModelImpl(
-      {@JsonKey(name: 'package') this.package,
-      @JsonKey(name: 'orders') final List<Order>? orders})
+      {@JsonKey(name: 'orders') final List<Order>? orders,
+      @JsonKey(name: 'meta') this.meta})
       : _orders = orders;
 
   factory _$OrdersResModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrdersResModelImplFromJson(json);
 
-  @override
-  @JsonKey(name: 'package')
-  final OrdersResModelPackage? package;
   final List<Order>? _orders;
   @override
   @JsonKey(name: 'orders')
@@ -164,8 +161,12 @@ class _$OrdersResModelImpl implements _OrdersResModel {
   }
 
   @override
+  @JsonKey(name: 'meta')
+  final Meta? meta;
+
+  @override
   String toString() {
-    return 'OrdersResModel(package: $package, orders: $orders)';
+    return 'OrdersResModel(orders: $orders, meta: $meta)';
   }
 
   @override
@@ -173,14 +174,14 @@ class _$OrdersResModelImpl implements _OrdersResModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OrdersResModelImpl &&
-            (identical(other.package, package) || other.package == package) &&
-            const DeepCollectionEquality().equals(other._orders, _orders));
+            const DeepCollectionEquality().equals(other._orders, _orders) &&
+            (identical(other.meta, meta) || other.meta == meta));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, package, const DeepCollectionEquality().hash(_orders));
+      runtimeType, const DeepCollectionEquality().hash(_orders), meta);
 
   /// Create a copy of OrdersResModel
   /// with the given fields replaced by the non-null parameter values.
@@ -201,19 +202,18 @@ class _$OrdersResModelImpl implements _OrdersResModel {
 
 abstract class _OrdersResModel implements OrdersResModel {
   const factory _OrdersResModel(
-          {@JsonKey(name: 'package') final OrdersResModelPackage? package,
-          @JsonKey(name: 'orders') final List<Order>? orders}) =
-      _$OrdersResModelImpl;
+      {@JsonKey(name: 'orders') final List<Order>? orders,
+      @JsonKey(name: 'meta') final Meta? meta}) = _$OrdersResModelImpl;
 
   factory _OrdersResModel.fromJson(Map<String, dynamic> json) =
       _$OrdersResModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'package')
-  OrdersResModelPackage? get package;
-  @override
   @JsonKey(name: 'orders')
   List<Order>? get orders;
+  @override
+  @JsonKey(name: 'meta')
+  Meta? get meta;
 
   /// Create a copy of OrdersResModel
   /// with the given fields replaced by the non-null parameter values.
@@ -231,22 +231,23 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
 mixin _$Order {
   @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  bool? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'printed_name')
   String? get printedName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'country_code')
-  String? get countryCode => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status')
-  bool? get status => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'execution_num')
   String? get executionNum => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_num')
   String? get orderNum => throw _privateConstructorUsedError;
+  @JsonKey(name: 'docs')
+  List<dynamic>? get docs => throw _privateConstructorUsedError;
   @JsonKey(name: 'package')
-  OrderPackage? get package => throw _privateConstructorUsedError;
+  Package? get package => throw _privateConstructorUsedError;
+  @JsonKey(name: 'distribution_country')
+  DistributionCountry? get distributionCountry =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: 'carton_count')
   int? get cartonCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'orders_count')
@@ -270,7 +271,7 @@ mixin _$Order {
   @JsonKey(name: 'is_location_received')
   bool? get isLocationReceived => throw _privateConstructorUsedError;
   @JsonKey(name: 'location_link')
-  String? get locationLink => throw _privateConstructorUsedError;
+  bool? get locationLink => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_final_report_ready')
   bool? get isFinalReportReady => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_report_sent')
@@ -281,6 +282,8 @@ mixin _$Order {
   bool? get videosUploaded => throw _privateConstructorUsedError;
   @JsonKey(name: 'final_estimate_ready')
   bool? get finalEstimateReady => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  String? get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this Order to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -298,14 +301,15 @@ abstract class $OrderCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'status') bool? status,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'printed_name') String? printedName,
-      @JsonKey(name: 'country_code') String? countryCode,
-      @JsonKey(name: 'status') bool? status,
-      @JsonKey(name: 'created_at') String? createdAt,
       @JsonKey(name: 'execution_num') String? executionNum,
       @JsonKey(name: 'order_num') String? orderNum,
-      @JsonKey(name: 'package') OrderPackage? package,
+      @JsonKey(name: 'docs') List<dynamic>? docs,
+      @JsonKey(name: 'package') Package? package,
+      @JsonKey(name: 'distribution_country')
+      DistributionCountry? distributionCountry,
       @JsonKey(name: 'carton_count') int? cartonCount,
       @JsonKey(name: 'orders_count') int? ordersCount,
       @JsonKey(name: 'total_amount') String? totalAmount,
@@ -318,14 +322,16 @@ abstract class $OrderCopyWith<$Res> {
       @JsonKey(name: 'is_distribution_photographed')
       bool? isDistributionPhotographed,
       @JsonKey(name: 'is_location_received') bool? isLocationReceived,
-      @JsonKey(name: 'location_link') String? locationLink,
+      @JsonKey(name: 'location_link') bool? locationLink,
       @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
       @JsonKey(name: 'is_report_sent') bool? isReportSent,
       @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
       @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
-      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady});
+      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady,
+      @JsonKey(name: 'created_at') String? createdAt});
 
-  $OrderPackageCopyWith<$Res>? get package;
+  $PackageCopyWith<$Res>? get package;
+  $DistributionCountryCopyWith<$Res>? get distributionCountry;
 }
 
 /// @nodoc
@@ -344,14 +350,14 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
   @override
   $Res call({
     Object? id = freezed,
+    Object? status = freezed,
     Object? name = freezed,
     Object? printedName = freezed,
-    Object? countryCode = freezed,
-    Object? status = freezed,
-    Object? createdAt = freezed,
     Object? executionNum = freezed,
     Object? orderNum = freezed,
+    Object? docs = freezed,
     Object? package = freezed,
+    Object? distributionCountry = freezed,
     Object? cartonCount = freezed,
     Object? ordersCount = freezed,
     Object? totalAmount = freezed,
@@ -369,12 +375,17 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? stickerPrepared = freezed,
     Object? videosUploaded = freezed,
     Object? finalEstimateReady = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -382,18 +393,6 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
       printedName: freezed == printedName
           ? _value.printedName
           : printedName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      countryCode: freezed == countryCode
-          ? _value.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
       executionNum: freezed == executionNum
           ? _value.executionNum
@@ -403,10 +402,18 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.orderNum
           : orderNum // ignore: cast_nullable_to_non_nullable
               as String?,
+      docs: freezed == docs
+          ? _value.docs
+          : docs // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
       package: freezed == package
           ? _value.package
           : package // ignore: cast_nullable_to_non_nullable
-              as OrderPackage?,
+              as Package?,
+      distributionCountry: freezed == distributionCountry
+          ? _value.distributionCountry
+          : distributionCountry // ignore: cast_nullable_to_non_nullable
+              as DistributionCountry?,
       cartonCount: freezed == cartonCount
           ? _value.cartonCount
           : cartonCount // ignore: cast_nullable_to_non_nullable
@@ -454,7 +461,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
       locationLink: freezed == locationLink
           ? _value.locationLink
           : locationLink // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       isFinalReportReady: freezed == isFinalReportReady
           ? _value.isFinalReportReady
           : isFinalReportReady // ignore: cast_nullable_to_non_nullable
@@ -475,6 +482,10 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.finalEstimateReady
           : finalEstimateReady // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -482,13 +493,28 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $OrderPackageCopyWith<$Res>? get package {
+  $PackageCopyWith<$Res>? get package {
     if (_value.package == null) {
       return null;
     }
 
-    return $OrderPackageCopyWith<$Res>(_value.package!, (value) {
+    return $PackageCopyWith<$Res>(_value.package!, (value) {
       return _then(_value.copyWith(package: value) as $Val);
+    });
+  }
+
+  /// Create a copy of Order
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DistributionCountryCopyWith<$Res>? get distributionCountry {
+    if (_value.distributionCountry == null) {
+      return null;
+    }
+
+    return $DistributionCountryCopyWith<$Res>(_value.distributionCountry!,
+        (value) {
+      return _then(_value.copyWith(distributionCountry: value) as $Val);
     });
   }
 }
@@ -502,14 +528,15 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'status') bool? status,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'printed_name') String? printedName,
-      @JsonKey(name: 'country_code') String? countryCode,
-      @JsonKey(name: 'status') bool? status,
-      @JsonKey(name: 'created_at') String? createdAt,
       @JsonKey(name: 'execution_num') String? executionNum,
       @JsonKey(name: 'order_num') String? orderNum,
-      @JsonKey(name: 'package') OrderPackage? package,
+      @JsonKey(name: 'docs') List<dynamic>? docs,
+      @JsonKey(name: 'package') Package? package,
+      @JsonKey(name: 'distribution_country')
+      DistributionCountry? distributionCountry,
       @JsonKey(name: 'carton_count') int? cartonCount,
       @JsonKey(name: 'orders_count') int? ordersCount,
       @JsonKey(name: 'total_amount') String? totalAmount,
@@ -522,15 +549,18 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
       @JsonKey(name: 'is_distribution_photographed')
       bool? isDistributionPhotographed,
       @JsonKey(name: 'is_location_received') bool? isLocationReceived,
-      @JsonKey(name: 'location_link') String? locationLink,
+      @JsonKey(name: 'location_link') bool? locationLink,
       @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
       @JsonKey(name: 'is_report_sent') bool? isReportSent,
       @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
       @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
-      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady});
+      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady,
+      @JsonKey(name: 'created_at') String? createdAt});
 
   @override
-  $OrderPackageCopyWith<$Res>? get package;
+  $PackageCopyWith<$Res>? get package;
+  @override
+  $DistributionCountryCopyWith<$Res>? get distributionCountry;
 }
 
 /// @nodoc
@@ -547,14 +577,14 @@ class __$$OrderImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? status = freezed,
     Object? name = freezed,
     Object? printedName = freezed,
-    Object? countryCode = freezed,
-    Object? status = freezed,
-    Object? createdAt = freezed,
     Object? executionNum = freezed,
     Object? orderNum = freezed,
+    Object? docs = freezed,
     Object? package = freezed,
+    Object? distributionCountry = freezed,
     Object? cartonCount = freezed,
     Object? ordersCount = freezed,
     Object? totalAmount = freezed,
@@ -572,12 +602,17 @@ class __$$OrderImplCopyWithImpl<$Res>
     Object? stickerPrepared = freezed,
     Object? videosUploaded = freezed,
     Object? finalEstimateReady = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_$OrderImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -585,18 +620,6 @@ class __$$OrderImplCopyWithImpl<$Res>
       printedName: freezed == printedName
           ? _value.printedName
           : printedName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      countryCode: freezed == countryCode
-          ? _value.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
       executionNum: freezed == executionNum
           ? _value.executionNum
@@ -606,10 +629,18 @@ class __$$OrderImplCopyWithImpl<$Res>
           ? _value.orderNum
           : orderNum // ignore: cast_nullable_to_non_nullable
               as String?,
+      docs: freezed == docs
+          ? _value._docs
+          : docs // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
       package: freezed == package
           ? _value.package
           : package // ignore: cast_nullable_to_non_nullable
-              as OrderPackage?,
+              as Package?,
+      distributionCountry: freezed == distributionCountry
+          ? _value.distributionCountry
+          : distributionCountry // ignore: cast_nullable_to_non_nullable
+              as DistributionCountry?,
       cartonCount: freezed == cartonCount
           ? _value.cartonCount
           : cartonCount // ignore: cast_nullable_to_non_nullable
@@ -657,7 +688,7 @@ class __$$OrderImplCopyWithImpl<$Res>
       locationLink: freezed == locationLink
           ? _value.locationLink
           : locationLink // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       isFinalReportReady: freezed == isFinalReportReady
           ? _value.isFinalReportReady
           : isFinalReportReady // ignore: cast_nullable_to_non_nullable
@@ -678,6 +709,10 @@ class __$$OrderImplCopyWithImpl<$Res>
           ? _value.finalEstimateReady
           : finalEstimateReady // ignore: cast_nullable_to_non_nullable
               as bool?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -687,14 +722,14 @@ class __$$OrderImplCopyWithImpl<$Res>
 class _$OrderImpl implements _Order {
   const _$OrderImpl(
       {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'status') this.status,
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'printed_name') this.printedName,
-      @JsonKey(name: 'country_code') this.countryCode,
-      @JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'created_at') this.createdAt,
       @JsonKey(name: 'execution_num') this.executionNum,
       @JsonKey(name: 'order_num') this.orderNum,
+      @JsonKey(name: 'docs') final List<dynamic>? docs,
       @JsonKey(name: 'package') this.package,
+      @JsonKey(name: 'distribution_country') this.distributionCountry,
       @JsonKey(name: 'carton_count') this.cartonCount,
       @JsonKey(name: 'orders_count') this.ordersCount,
       @JsonKey(name: 'total_amount') this.totalAmount,
@@ -712,7 +747,9 @@ class _$OrderImpl implements _Order {
       @JsonKey(name: 'is_report_sent') this.isReportSent,
       @JsonKey(name: 'sticker_prepared') this.stickerPrepared,
       @JsonKey(name: 'videos_uploaded') this.videosUploaded,
-      @JsonKey(name: 'final_estimate_ready') this.finalEstimateReady});
+      @JsonKey(name: 'final_estimate_ready') this.finalEstimateReady,
+      @JsonKey(name: 'created_at') this.createdAt})
+      : _docs = docs;
 
   factory _$OrderImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderImplFromJson(json);
@@ -721,29 +758,37 @@ class _$OrderImpl implements _Order {
   @JsonKey(name: 'id')
   final int? id;
   @override
+  @JsonKey(name: 'status')
+  final bool? status;
+  @override
   @JsonKey(name: 'name')
   final String? name;
   @override
   @JsonKey(name: 'printed_name')
   final String? printedName;
   @override
-  @JsonKey(name: 'country_code')
-  final String? countryCode;
-  @override
-  @JsonKey(name: 'status')
-  final bool? status;
-  @override
-  @JsonKey(name: 'created_at')
-  final String? createdAt;
-  @override
   @JsonKey(name: 'execution_num')
   final String? executionNum;
   @override
   @JsonKey(name: 'order_num')
   final String? orderNum;
+  final List<dynamic>? _docs;
+  @override
+  @JsonKey(name: 'docs')
+  List<dynamic>? get docs {
+    final value = _docs;
+    if (value == null) return null;
+    if (_docs is EqualUnmodifiableListView) return _docs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'package')
-  final OrderPackage? package;
+  final Package? package;
+  @override
+  @JsonKey(name: 'distribution_country')
+  final DistributionCountry? distributionCountry;
   @override
   @JsonKey(name: 'carton_count')
   final int? cartonCount;
@@ -779,7 +824,7 @@ class _$OrderImpl implements _Order {
   final bool? isLocationReceived;
   @override
   @JsonKey(name: 'location_link')
-  final String? locationLink;
+  final bool? locationLink;
   @override
   @JsonKey(name: 'is_final_report_ready')
   final bool? isFinalReportReady;
@@ -795,10 +840,13 @@ class _$OrderImpl implements _Order {
   @override
   @JsonKey(name: 'final_estimate_ready')
   final bool? finalEstimateReady;
+  @override
+  @JsonKey(name: 'created_at')
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'Order(id: $id, name: $name, printedName: $printedName, countryCode: $countryCode, status: $status, createdAt: $createdAt, executionNum: $executionNum, orderNum: $orderNum, package: $package, cartonCount: $cartonCount, ordersCount: $ordersCount, totalAmount: $totalAmount, date: $date, days: $days, email: $email, phone: $phone, isQuranPrinted: $isQuranPrinted, isQuranPhotographed: $isQuranPhotographed, isDistributionPhotographed: $isDistributionPhotographed, isLocationReceived: $isLocationReceived, locationLink: $locationLink, isFinalReportReady: $isFinalReportReady, isReportSent: $isReportSent, stickerPrepared: $stickerPrepared, videosUploaded: $videosUploaded, finalEstimateReady: $finalEstimateReady)';
+    return 'Order(id: $id, status: $status, name: $name, printedName: $printedName, executionNum: $executionNum, orderNum: $orderNum, docs: $docs, package: $package, distributionCountry: $distributionCountry, cartonCount: $cartonCount, ordersCount: $ordersCount, totalAmount: $totalAmount, date: $date, days: $days, email: $email, phone: $phone, isQuranPrinted: $isQuranPrinted, isQuranPhotographed: $isQuranPhotographed, isDistributionPhotographed: $isDistributionPhotographed, isLocationReceived: $isLocationReceived, locationLink: $locationLink, isFinalReportReady: $isFinalReportReady, isReportSent: $isReportSent, stickerPrepared: $stickerPrepared, videosUploaded: $videosUploaded, finalEstimateReady: $finalEstimateReady, createdAt: $createdAt)';
   }
 
   @override
@@ -807,19 +855,18 @@ class _$OrderImpl implements _Order {
         (other.runtimeType == runtimeType &&
             other is _$OrderImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.printedName, printedName) ||
                 other.printedName == printedName) &&
-            (identical(other.countryCode, countryCode) ||
-                other.countryCode == countryCode) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
             (identical(other.executionNum, executionNum) ||
                 other.executionNum == executionNum) &&
             (identical(other.orderNum, orderNum) ||
                 other.orderNum == orderNum) &&
+            const DeepCollectionEquality().equals(other._docs, _docs) &&
             (identical(other.package, package) || other.package == package) &&
+            (identical(other.distributionCountry, distributionCountry) ||
+                other.distributionCountry == distributionCountry) &&
             (identical(other.cartonCount, cartonCount) ||
                 other.cartonCount == cartonCount) &&
             (identical(other.ordersCount, ordersCount) ||
@@ -851,7 +898,9 @@ class _$OrderImpl implements _Order {
             (identical(other.videosUploaded, videosUploaded) ||
                 other.videosUploaded == videosUploaded) &&
             (identical(other.finalEstimateReady, finalEstimateReady) ||
-                other.finalEstimateReady == finalEstimateReady));
+                other.finalEstimateReady == finalEstimateReady) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -859,14 +908,14 @@ class _$OrderImpl implements _Order {
   int get hashCode => Object.hashAll([
         runtimeType,
         id,
+        status,
         name,
         printedName,
-        countryCode,
-        status,
-        createdAt,
         executionNum,
         orderNum,
+        const DeepCollectionEquality().hash(_docs),
         package,
+        distributionCountry,
         cartonCount,
         ordersCount,
         totalAmount,
@@ -883,7 +932,8 @@ class _$OrderImpl implements _Order {
         isReportSent,
         stickerPrepared,
         videosUploaded,
-        finalEstimateReady
+        finalEstimateReady,
+        createdAt
       ]);
 
   /// Create a copy of Order
@@ -905,14 +955,15 @@ class _$OrderImpl implements _Order {
 abstract class _Order implements Order {
   const factory _Order(
       {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'status') final bool? status,
       @JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'printed_name') final String? printedName,
-      @JsonKey(name: 'country_code') final String? countryCode,
-      @JsonKey(name: 'status') final bool? status,
-      @JsonKey(name: 'created_at') final String? createdAt,
       @JsonKey(name: 'execution_num') final String? executionNum,
       @JsonKey(name: 'order_num') final String? orderNum,
-      @JsonKey(name: 'package') final OrderPackage? package,
+      @JsonKey(name: 'docs') final List<dynamic>? docs,
+      @JsonKey(name: 'package') final Package? package,
+      @JsonKey(name: 'distribution_country')
+      final DistributionCountry? distributionCountry,
       @JsonKey(name: 'carton_count') final int? cartonCount,
       @JsonKey(name: 'orders_count') final int? ordersCount,
       @JsonKey(name: 'total_amount') final String? totalAmount,
@@ -925,13 +976,13 @@ abstract class _Order implements Order {
       @JsonKey(name: 'is_distribution_photographed')
       final bool? isDistributionPhotographed,
       @JsonKey(name: 'is_location_received') final bool? isLocationReceived,
-      @JsonKey(name: 'location_link') final String? locationLink,
+      @JsonKey(name: 'location_link') final bool? locationLink,
       @JsonKey(name: 'is_final_report_ready') final bool? isFinalReportReady,
       @JsonKey(name: 'is_report_sent') final bool? isReportSent,
       @JsonKey(name: 'sticker_prepared') final bool? stickerPrepared,
       @JsonKey(name: 'videos_uploaded') final bool? videosUploaded,
-      @JsonKey(name: 'final_estimate_ready')
-      final bool? finalEstimateReady}) = _$OrderImpl;
+      @JsonKey(name: 'final_estimate_ready') final bool? finalEstimateReady,
+      @JsonKey(name: 'created_at') final String? createdAt}) = _$OrderImpl;
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$OrderImpl.fromJson;
 
@@ -939,20 +990,14 @@ abstract class _Order implements Order {
   @JsonKey(name: 'id')
   int? get id;
   @override
+  @JsonKey(name: 'status')
+  bool? get status;
+  @override
   @JsonKey(name: 'name')
   String? get name;
   @override
   @JsonKey(name: 'printed_name')
   String? get printedName;
-  @override
-  @JsonKey(name: 'country_code')
-  String? get countryCode;
-  @override
-  @JsonKey(name: 'status')
-  bool? get status;
-  @override
-  @JsonKey(name: 'created_at')
-  String? get createdAt;
   @override
   @JsonKey(name: 'execution_num')
   String? get executionNum;
@@ -960,8 +1005,14 @@ abstract class _Order implements Order {
   @JsonKey(name: 'order_num')
   String? get orderNum;
   @override
+  @JsonKey(name: 'docs')
+  List<dynamic>? get docs;
+  @override
   @JsonKey(name: 'package')
-  OrderPackage? get package;
+  Package? get package;
+  @override
+  @JsonKey(name: 'distribution_country')
+  DistributionCountry? get distributionCountry;
   @override
   @JsonKey(name: 'carton_count')
   int? get cartonCount;
@@ -997,7 +1048,7 @@ abstract class _Order implements Order {
   bool? get isLocationReceived;
   @override
   @JsonKey(name: 'location_link')
-  String? get locationLink;
+  bool? get locationLink;
   @override
   @JsonKey(name: 'is_final_report_ready')
   bool? get isFinalReportReady;
@@ -1013,6 +1064,9 @@ abstract class _Order implements Order {
   @override
   @JsonKey(name: 'final_estimate_ready')
   bool? get finalEstimateReady;
+  @override
+  @JsonKey(name: 'created_at')
+  String? get createdAt;
 
   /// Create a copy of Order
   /// with the given fields replaced by the non-null parameter values.
@@ -1022,653 +1076,379 @@ abstract class _Order implements Order {
       throw _privateConstructorUsedError;
 }
 
-OrderPackage _$OrderPackageFromJson(Map<String, dynamic> json) {
-  return _OrderPackage.fromJson(json);
+DistributionCountry _$DistributionCountryFromJson(Map<String, dynamic> json) {
+  return _DistributionCountry.fromJson(json);
 }
 
 /// @nodoc
-mixin _$OrderPackage {
+mixin _$DistributionCountry {
   @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'price')
-  String? get price => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image')
-  String? get image => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'code')
+  String? get code => throw _privateConstructorUsedError;
 
-  /// Serializes this OrderPackage to a JSON map.
+  /// Serializes this DistributionCountry to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of OrderPackage
+  /// Create a copy of DistributionCountry
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderPackageCopyWith<OrderPackage> get copyWith =>
+  $DistributionCountryCopyWith<DistributionCountry> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderPackageCopyWith<$Res> {
-  factory $OrderPackageCopyWith(
-          OrderPackage value, $Res Function(OrderPackage) then) =
-      _$OrderPackageCopyWithImpl<$Res, OrderPackage>;
+abstract class $DistributionCountryCopyWith<$Res> {
+  factory $DistributionCountryCopyWith(
+          DistributionCountry value, $Res Function(DistributionCountry) then) =
+      _$DistributionCountryCopyWithImpl<$Res, DistributionCountry>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'price') String? price,
-      @JsonKey(name: 'image') String? image,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'code') String? code});
 }
 
 /// @nodoc
-class _$OrderPackageCopyWithImpl<$Res, $Val extends OrderPackage>
-    implements $OrderPackageCopyWith<$Res> {
-  _$OrderPackageCopyWithImpl(this._value, this._then);
+class _$DistributionCountryCopyWithImpl<$Res, $Val extends DistributionCountry>
+    implements $DistributionCountryCopyWith<$Res> {
+  _$DistributionCountryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrderPackage
+  /// Create a copy of DistributionCountry
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? price = freezed,
-    Object? image = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? code = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$OrderPackageImplCopyWith<$Res>
-    implements $OrderPackageCopyWith<$Res> {
-  factory _$$OrderPackageImplCopyWith(
-          _$OrderPackageImpl value, $Res Function(_$OrderPackageImpl) then) =
-      __$$OrderPackageImplCopyWithImpl<$Res>;
+abstract class _$$DistributionCountryImplCopyWith<$Res>
+    implements $DistributionCountryCopyWith<$Res> {
+  factory _$$DistributionCountryImplCopyWith(_$DistributionCountryImpl value,
+          $Res Function(_$DistributionCountryImpl) then) =
+      __$$DistributionCountryImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'price') String? price,
-      @JsonKey(name: 'image') String? image,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
+      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'code') String? code});
 }
 
 /// @nodoc
-class __$$OrderPackageImplCopyWithImpl<$Res>
-    extends _$OrderPackageCopyWithImpl<$Res, _$OrderPackageImpl>
-    implements _$$OrderPackageImplCopyWith<$Res> {
-  __$$OrderPackageImplCopyWithImpl(
-      _$OrderPackageImpl _value, $Res Function(_$OrderPackageImpl) _then)
+class __$$DistributionCountryImplCopyWithImpl<$Res>
+    extends _$DistributionCountryCopyWithImpl<$Res, _$DistributionCountryImpl>
+    implements _$$DistributionCountryImplCopyWith<$Res> {
+  __$$DistributionCountryImplCopyWithImpl(_$DistributionCountryImpl _value,
+      $Res Function(_$DistributionCountryImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderPackage
+  /// Create a copy of DistributionCountry
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? price = freezed,
-    Object? image = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? code = freezed,
   }) {
-    return _then(_$OrderPackageImpl(
+    return _then(_$DistributionCountryImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$OrderPackageImpl implements _OrderPackage {
-  const _$OrderPackageImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'price') this.price,
-      @JsonKey(name: 'image') this.image,
-      @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
+class _$DistributionCountryImpl implements _DistributionCountry {
+  const _$DistributionCountryImpl(
+      {@JsonKey(name: 'id') this.id, @JsonKey(name: 'code') this.code});
 
-  factory _$OrderPackageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrderPackageImplFromJson(json);
+  factory _$DistributionCountryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DistributionCountryImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
   final int? id;
   @override
-  @JsonKey(name: 'name')
-  final String? name;
-  @override
-  @JsonKey(name: 'description')
-  final String? description;
-  @override
-  @JsonKey(name: 'price')
-  final String? price;
-  @override
-  @JsonKey(name: 'image')
-  final String? image;
-  @override
-  @JsonKey(name: 'created_at')
-  final DateTime? createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final DateTime? updatedAt;
+  @JsonKey(name: 'code')
+  final String? code;
 
   @override
   String toString() {
-    return 'OrderPackage(id: $id, name: $name, description: $description, price: $price, image: $image, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DistributionCountry(id: $id, code: $code)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OrderPackageImpl &&
+            other is _$DistributionCountryImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, code);
+
+  /// Create a copy of DistributionCountry
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DistributionCountryImplCopyWith<_$DistributionCountryImpl> get copyWith =>
+      __$$DistributionCountryImplCopyWithImpl<_$DistributionCountryImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DistributionCountryImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DistributionCountry implements DistributionCountry {
+  const factory _DistributionCountry(
+      {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'code') final String? code}) = _$DistributionCountryImpl;
+
+  factory _DistributionCountry.fromJson(Map<String, dynamic> json) =
+      _$DistributionCountryImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'id')
+  int? get id;
+  @override
+  @JsonKey(name: 'code')
+  String? get code;
+
+  /// Create a copy of DistributionCountry
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DistributionCountryImplCopyWith<_$DistributionCountryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Package _$PackageFromJson(Map<String, dynamic> json) {
+  return _Package.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Package {
+  @JsonKey(name: 'id')
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type')
+  dynamic get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quantity')
+  int? get quantity => throw _privateConstructorUsedError;
+
+  /// Serializes this Package to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of Package
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PackageCopyWith<Package> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PackageCopyWith<$Res> {
+  factory $PackageCopyWith(Package value, $Res Function(Package) then) =
+      _$PackageCopyWithImpl<$Res, Package>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'type') dynamic type,
+      @JsonKey(name: 'quantity') int? quantity});
+}
+
+/// @nodoc
+class _$PackageCopyWithImpl<$Res, $Val extends Package>
+    implements $PackageCopyWith<$Res> {
+  _$PackageCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Package
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? type = freezed,
+    Object? quantity = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PackageImplCopyWith<$Res> implements $PackageCopyWith<$Res> {
+  factory _$$PackageImplCopyWith(
+          _$PackageImpl value, $Res Function(_$PackageImpl) then) =
+      __$$PackageImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'type') dynamic type,
+      @JsonKey(name: 'quantity') int? quantity});
+}
+
+/// @nodoc
+class __$$PackageImplCopyWithImpl<$Res>
+    extends _$PackageCopyWithImpl<$Res, _$PackageImpl>
+    implements _$$PackageImplCopyWith<$Res> {
+  __$$PackageImplCopyWithImpl(
+      _$PackageImpl _value, $Res Function(_$PackageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Package
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? type = freezed,
+    Object? quantity = freezed,
+  }) {
+    return _then(_$PackageImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PackageImpl implements _Package {
+  const _$PackageImpl(
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'type') this.type,
+      @JsonKey(name: 'quantity') this.quantity});
+
+  factory _$PackageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PackageImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'type')
+  final dynamic type;
+  @override
+  @JsonKey(name: 'quantity')
+  final int? quantity;
+
+  @override
+  String toString() {
+    return 'Package(id: $id, type: $type, quantity: $quantity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PackageImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, name, description, price, image, createdAt, updatedAt);
+      runtimeType, id, const DeepCollectionEquality().hash(type), quantity);
 
-  /// Create a copy of OrderPackage
+  /// Create a copy of Package
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$OrderPackageImplCopyWith<_$OrderPackageImpl> get copyWith =>
-      __$$OrderPackageImplCopyWithImpl<_$OrderPackageImpl>(this, _$identity);
+  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
+      __$$PackageImplCopyWithImpl<_$PackageImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$OrderPackageImplToJson(
+    return _$$PackageImplToJson(
       this,
     );
   }
 }
 
-abstract class _OrderPackage implements OrderPackage {
-  const factory _OrderPackage(
-          {@JsonKey(name: 'id') final int? id,
-          @JsonKey(name: 'name') final String? name,
-          @JsonKey(name: 'description') final String? description,
-          @JsonKey(name: 'price') final String? price,
-          @JsonKey(name: 'image') final String? image,
-          @JsonKey(name: 'created_at') final DateTime? createdAt,
-          @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
-      _$OrderPackageImpl;
+abstract class _Package implements Package {
+  const factory _Package(
+      {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'type') final dynamic type,
+      @JsonKey(name: 'quantity') final int? quantity}) = _$PackageImpl;
 
-  factory _OrderPackage.fromJson(Map<String, dynamic> json) =
-      _$OrderPackageImpl.fromJson;
+  factory _Package.fromJson(Map<String, dynamic> json) = _$PackageImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
   int? get id;
   @override
-  @JsonKey(name: 'name')
-  String? get name;
+  @JsonKey(name: 'type')
+  dynamic get type;
   @override
-  @JsonKey(name: 'description')
-  String? get description;
-  @override
-  @JsonKey(name: 'price')
-  String? get price;
-  @override
-  @JsonKey(name: 'image')
-  String? get image;
-  @override
-  @JsonKey(name: 'created_at')
-  DateTime? get createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt;
+  @JsonKey(name: 'quantity')
+  int? get quantity;
 
-  /// Create a copy of OrderPackage
+  /// Create a copy of Package
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrderPackageImplCopyWith<_$OrderPackageImpl> get copyWith =>
+  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-OrdersResModelPackage _$OrdersResModelPackageFromJson(
-    Map<String, dynamic> json) {
-  return _OrdersResModelPackage.fromJson(json);
-}
-
-/// @nodoc
-mixin _$OrdersResModelPackage {
-  @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'price')
-  String? get price => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image')
-  String? get image => throw _privateConstructorUsedError;
-  @JsonKey(name: 'orders_count')
-  int? get ordersCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_amount')
-  String? get totalAmount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
-
-  /// Serializes this OrdersResModelPackage to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of OrdersResModelPackage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrdersResModelPackageCopyWith<OrdersResModelPackage> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $OrdersResModelPackageCopyWith<$Res> {
-  factory $OrdersResModelPackageCopyWith(OrdersResModelPackage value,
-          $Res Function(OrdersResModelPackage) then) =
-      _$OrdersResModelPackageCopyWithImpl<$Res, OrdersResModelPackage>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'price') String? price,
-      @JsonKey(name: 'image') String? image,
-      @JsonKey(name: 'orders_count') int? ordersCount,
-      @JsonKey(name: 'total_amount') String? totalAmount,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
-}
-
-/// @nodoc
-class _$OrdersResModelPackageCopyWithImpl<$Res,
-        $Val extends OrdersResModelPackage>
-    implements $OrdersResModelPackageCopyWith<$Res> {
-  _$OrdersResModelPackageCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of OrdersResModelPackage
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? price = freezed,
-    Object? image = freezed,
-    Object? ordersCount = freezed,
-    Object? totalAmount = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ordersCount: freezed == ordersCount
-          ? _value.ordersCount
-          : ordersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalAmount: freezed == totalAmount
-          ? _value.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$OrdersResModelPackageImplCopyWith<$Res>
-    implements $OrdersResModelPackageCopyWith<$Res> {
-  factory _$$OrdersResModelPackageImplCopyWith(
-          _$OrdersResModelPackageImpl value,
-          $Res Function(_$OrdersResModelPackageImpl) then) =
-      __$$OrdersResModelPackageImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'price') String? price,
-      @JsonKey(name: 'image') String? image,
-      @JsonKey(name: 'orders_count') int? ordersCount,
-      @JsonKey(name: 'total_amount') String? totalAmount,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
-      @JsonKey(name: 'updated_at') DateTime? updatedAt});
-}
-
-/// @nodoc
-class __$$OrdersResModelPackageImplCopyWithImpl<$Res>
-    extends _$OrdersResModelPackageCopyWithImpl<$Res,
-        _$OrdersResModelPackageImpl>
-    implements _$$OrdersResModelPackageImplCopyWith<$Res> {
-  __$$OrdersResModelPackageImplCopyWithImpl(_$OrdersResModelPackageImpl _value,
-      $Res Function(_$OrdersResModelPackageImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrdersResModelPackage
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? description = freezed,
-    Object? price = freezed,
-    Object? image = freezed,
-    Object? ordersCount = freezed,
-    Object? totalAmount = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-  }) {
-    return _then(_$OrdersResModelPackageImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ordersCount: freezed == ordersCount
-          ? _value.ordersCount
-          : ordersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalAmount: freezed == totalAmount
-          ? _value.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$OrdersResModelPackageImpl implements _OrdersResModelPackage {
-  const _$OrdersResModelPackageImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'price') this.price,
-      @JsonKey(name: 'image') this.image,
-      @JsonKey(name: 'orders_count') this.ordersCount,
-      @JsonKey(name: 'total_amount') this.totalAmount,
-      @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'updated_at') this.updatedAt});
-
-  factory _$OrdersResModelPackageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrdersResModelPackageImplFromJson(json);
-
-  @override
-  @JsonKey(name: 'id')
-  final int? id;
-  @override
-  @JsonKey(name: 'name')
-  final String? name;
-  @override
-  @JsonKey(name: 'description')
-  final String? description;
-  @override
-  @JsonKey(name: 'price')
-  final String? price;
-  @override
-  @JsonKey(name: 'image')
-  final String? image;
-  @override
-  @JsonKey(name: 'orders_count')
-  final int? ordersCount;
-  @override
-  @JsonKey(name: 'total_amount')
-  final String? totalAmount;
-  @override
-  @JsonKey(name: 'created_at')
-  final DateTime? createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final DateTime? updatedAt;
-
-  @override
-  String toString() {
-    return 'OrdersResModelPackage(id: $id, name: $name, description: $description, price: $price, image: $image, ordersCount: $ordersCount, totalAmount: $totalAmount, createdAt: $createdAt, updatedAt: $updatedAt)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OrdersResModelPackageImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.ordersCount, ordersCount) ||
-                other.ordersCount == ordersCount) &&
-            (identical(other.totalAmount, totalAmount) ||
-                other.totalAmount == totalAmount) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, price,
-      image, ordersCount, totalAmount, createdAt, updatedAt);
-
-  /// Create a copy of OrdersResModelPackage
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OrdersResModelPackageImplCopyWith<_$OrdersResModelPackageImpl>
-      get copyWith => __$$OrdersResModelPackageImplCopyWithImpl<
-          _$OrdersResModelPackageImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$OrdersResModelPackageImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _OrdersResModelPackage implements OrdersResModelPackage {
-  const factory _OrdersResModelPackage(
-          {@JsonKey(name: 'id') final int? id,
-          @JsonKey(name: 'name') final String? name,
-          @JsonKey(name: 'description') final String? description,
-          @JsonKey(name: 'price') final String? price,
-          @JsonKey(name: 'image') final String? image,
-          @JsonKey(name: 'orders_count') final int? ordersCount,
-          @JsonKey(name: 'total_amount') final String? totalAmount,
-          @JsonKey(name: 'created_at') final DateTime? createdAt,
-          @JsonKey(name: 'updated_at') final DateTime? updatedAt}) =
-      _$OrdersResModelPackageImpl;
-
-  factory _OrdersResModelPackage.fromJson(Map<String, dynamic> json) =
-      _$OrdersResModelPackageImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'id')
-  int? get id;
-  @override
-  @JsonKey(name: 'name')
-  String? get name;
-  @override
-  @JsonKey(name: 'description')
-  String? get description;
-  @override
-  @JsonKey(name: 'price')
-  String? get price;
-  @override
-  @JsonKey(name: 'image')
-  String? get image;
-  @override
-  @JsonKey(name: 'orders_count')
-  int? get ordersCount;
-  @override
-  @JsonKey(name: 'total_amount')
-  String? get totalAmount;
-  @override
-  @JsonKey(name: 'created_at')
-  DateTime? get createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  DateTime? get updatedAt;
-
-  /// Create a copy of OrdersResModelPackage
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrdersResModelPackageImplCopyWith<_$OrdersResModelPackageImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }

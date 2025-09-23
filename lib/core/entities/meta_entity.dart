@@ -6,10 +6,8 @@ part 'meta_entity.g.dart';
 @freezed
 class MetaEntity with _$MetaEntity {
   const factory MetaEntity({
-    int? postId,
     int? currentPage,
     int? totalPages,
-    int? totalComments,
     int? perPage,
     bool? hasNextPage,
     bool? hasPreviousPage,

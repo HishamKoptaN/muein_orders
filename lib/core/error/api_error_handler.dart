@@ -12,7 +12,22 @@ class ApiErrorHandler {
     required dynamic error,
     StackTrace? stackTrace,
   }) {
-    _logger.e('API Error:', error: error, stackTrace: stackTrace);
+    // تحسين تسجيل الخطأ للتعامل مع جميع أنواع البيانات
+    try {
+      if (error is DioException) {
+        _logger.e(
+          'Dio Error: ${error.message}',
+          error: error.error,
+          stackTrace: error.stackTrace ?? stackTrace,
+        );
+      } else if (error is Map) {
+        _logger.e('API Error: $error', stackTrace: stackTrace);
+      } else {
+        _logger.e('Error: ${error.toString()}', stackTrace: stackTrace);
+      }
+    } catch (e) {
+      _logger.e('Error while logging error: $e', stackTrace: stackTrace);
+    }
 
     if (error is DioException) {
       return _handleDioError(error);
@@ -110,20 +125,51 @@ class ApiErrorHandler {
     try {
       if (data is Map<String, dynamic>) {
         try {
+          // Handle Laravel API response format
+          if (data.containsKey('success') && data['success'] == false) {
+            dynamic errorMessage = data['message'] ?? data['error'] ?? 'An error occurred';
+            dynamic errorDetails = data['errors'] ?? data['error'];
+            
+            String messageStr = 'An error occurred';
+            if (errorMessage != null) {
+              if (errorMessage is String) {
+                messageStr = errorMessage;
+              } else if (errorMessage is Map) {
+                messageStr = errorMessage.values.join('\n');
+              } else {
+                messageStr = errorMessage.toString();
+              }
+            }
+            
+            // Handle validation errors (422)
+            if (statusCode == 422 && data['errors'] is Map) {
+              final errors = (data['errors'] as Map).values.expand((e) => e is List ? e : [e]);
+              messageStr = errors.join('\n');
+            }
+            
+            return ApiErrorModel(
+              message: messageStr,
+              statusCode: statusCode,
+              error: data['error']?.toString() ?? 'api_error',
+              data: data,
+            );
+          }
+          
+          // Default to fromJson if not a standard error response
           return ApiErrorModel.fromJson(data);
         } catch (_) {
-          final message = data['message'] ??
-              data['error'] ??
-              data['error_description'] ??
-              'An error occurred';
+          // Fallback error handling
+          dynamic message = data['message'] ?? data['error'] ?? 'An error occurred';
           return ApiErrorModel(
             message: message.toString(),
             statusCode: statusCode,
-            error: data['code']?.toString() ?? 'api_error',
+            error: data['error']?.toString() ?? 'api_error',
             data: data,
           );
         }
       }
+      
+      // Handle string responses
       if (data is String) {
         return ApiErrorModel(
           message: data,

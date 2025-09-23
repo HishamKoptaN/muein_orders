@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/auth_choice/present/views/auth_choice_view.dart';
+import '../../features/home/present/home_view.dart';
 import '../../features/language/view/select_language.dart';
 import '../../features/orders/present/views/orders_view.dart';
 import 'app_routes.dart';
@@ -35,7 +36,7 @@ class AppRouterRedirect {
       },
       authenticated: () {
         if (public.contains(location) || location.isEmpty) {
-          return '/${OrdersView.routeName}';
+          return '/${HomeView.routeName}';
         }
         return null; // Allow access to private routes
       },

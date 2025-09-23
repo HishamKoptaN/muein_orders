@@ -1,7 +1,8 @@
+import 'package:injectable/injectable.dart';
+
 import '../../../../../core/networking/api_result.dart';
 import '../entities/orders_res_entity.dart';
 import '../repo/orders_repo.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class OrdersUseCases {
@@ -9,9 +10,17 @@ class OrdersUseCases {
   OrdersUseCases(
     this.ordersRepo,
   );
-  Future<ApiResult<List<OrdersResEntity>?>> getOrders(
-      {String? query, int? page}) async {
-    return await ordersRepo.getOrders(query: query, page: page);
+  Future<ApiResult<OrdersResEntity?>> getOrders({
+    required int packageId,
+    String? query,
+    bool loadMore = false,
+    bool? isDistributionPhotographed,
+  }) async {
+    return await ordersRepo.getOrders(
+      packageId: packageId,
+      loadMore: loadMore,
+      isDistributionPhotographed: isDistributionPhotographed,
+    );
   }
 
   Future<ApiResult<OrderEntity?>> updateClientField({

@@ -25,6 +25,7 @@ mixin _$DocsEvent {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -39,6 +40,7 @@ mixin _$DocsEvent {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -53,6 +55,7 @@ mixin _$DocsEvent {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -68,6 +71,7 @@ mixin _$DocsEvent {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -83,6 +87,7 @@ mixin _$DocsEvent {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -97,6 +102,7 @@ mixin _$DocsEvent {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -200,6 +206,7 @@ class _$GetDocsImpl implements _GetDocs {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -217,6 +224,7 @@ class _$GetDocsImpl implements _GetDocs {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -234,6 +242,7 @@ class _$GetDocsImpl implements _GetDocs {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -255,6 +264,7 @@ class _$GetDocsImpl implements _GetDocs {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -273,6 +283,7 @@ class _$GetDocsImpl implements _GetDocs {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -290,6 +301,7 @@ class _$GetDocsImpl implements _GetDocs {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -390,6 +402,7 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -407,6 +420,7 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -424,6 +438,7 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -445,6 +460,7 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -463,6 +479,7 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -480,6 +497,7 @@ class _$OrderIdChangedImpl implements _OrderIdChanged {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -581,6 +599,7 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -598,6 +617,7 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -615,6 +635,7 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -636,6 +657,7 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -654,6 +676,7 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -671,6 +694,7 @@ class _$VideoOneChangedImpl implements _VideoOneChanged {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -772,6 +796,7 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -789,6 +814,7 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -806,6 +832,7 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -827,6 +854,7 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -845,6 +873,7 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -862,6 +891,7 @@ class _$VideoTwoChangedImpl implements _VideoTwoChanged {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -963,6 +993,7 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -980,6 +1011,7 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -997,6 +1029,7 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -1018,6 +1051,7 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -1036,6 +1070,7 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1053,6 +1088,7 @@ class _$ImageOneChangedImpl implements _ImageOneChanged {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1154,6 +1190,7 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -1171,6 +1208,7 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -1188,6 +1226,7 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -1209,6 +1248,7 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -1227,6 +1267,7 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1244,6 +1285,7 @@ class _$ImageTwoChangedImpl implements _ImageTwoChanged {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1355,6 +1397,7 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -1372,6 +1415,7 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -1389,6 +1433,7 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -1410,6 +1455,7 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -1428,6 +1474,7 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1445,6 +1492,7 @@ class _$UpdateLocationImpl implements _UpdateLocation {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1469,6 +1517,204 @@ abstract class _UpdateLocation implements DocsEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateLocationImplCopyWith<_$UpdateLocationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateShippingCostsImplCopyWith<$Res> {
+  factory _$$UpdateShippingCostsImplCopyWith(_$UpdateShippingCostsImpl value,
+          $Res Function(_$UpdateShippingCostsImpl) then) =
+      __$$UpdateShippingCostsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String shippingCosts});
+}
+
+/// @nodoc
+class __$$UpdateShippingCostsImplCopyWithImpl<$Res>
+    extends _$DocsEventCopyWithImpl<$Res, _$UpdateShippingCostsImpl>
+    implements _$$UpdateShippingCostsImplCopyWith<$Res> {
+  __$$UpdateShippingCostsImplCopyWithImpl(_$UpdateShippingCostsImpl _value,
+      $Res Function(_$UpdateShippingCostsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DocsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? shippingCosts = null,
+  }) {
+    return _then(_$UpdateShippingCostsImpl(
+      shippingCosts: null == shippingCosts
+          ? _value.shippingCosts
+          : shippingCosts // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateShippingCostsImpl implements _UpdateShippingCosts {
+  const _$UpdateShippingCostsImpl({required this.shippingCosts});
+
+  @override
+  final String shippingCosts;
+
+  @override
+  String toString() {
+    return 'DocsEvent.updateShippingCosts(shippingCosts: $shippingCosts)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateShippingCostsImpl &&
+            (identical(other.shippingCosts, shippingCosts) ||
+                other.shippingCosts == shippingCosts));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, shippingCosts);
+
+  /// Create a copy of DocsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateShippingCostsImplCopyWith<_$UpdateShippingCostsImpl> get copyWith =>
+      __$$UpdateShippingCostsImplCopyWithImpl<_$UpdateShippingCostsImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int orderId) getDocs,
+    required TResult Function(int orderId) orderIdChanged,
+    required TResult Function(File? file) videoOneChanged,
+    required TResult Function(File? file) videoTwoChanged,
+    required TResult Function(File? file) imageOneChanged,
+    required TResult Function(File? file) imageTwoChanged,
+    required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
+    required TResult Function() createDoc,
+    required TResult Function() resumePendingUploads,
+    required TResult Function() getUploadStatusForOrder,
+  }) {
+    return updateShippingCosts(shippingCosts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int orderId)? getDocs,
+    TResult? Function(int orderId)? orderIdChanged,
+    TResult? Function(File? file)? videoOneChanged,
+    TResult? Function(File? file)? videoTwoChanged,
+    TResult? Function(File? file)? imageOneChanged,
+    TResult? Function(File? file)? imageTwoChanged,
+    TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
+    TResult? Function()? createDoc,
+    TResult? Function()? resumePendingUploads,
+    TResult? Function()? getUploadStatusForOrder,
+  }) {
+    return updateShippingCosts?.call(shippingCosts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int orderId)? getDocs,
+    TResult Function(int orderId)? orderIdChanged,
+    TResult Function(File? file)? videoOneChanged,
+    TResult Function(File? file)? videoTwoChanged,
+    TResult Function(File? file)? imageOneChanged,
+    TResult Function(File? file)? imageTwoChanged,
+    TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
+    TResult Function()? createDoc,
+    TResult Function()? resumePendingUploads,
+    TResult Function()? getUploadStatusForOrder,
+    required TResult orElse(),
+  }) {
+    if (updateShippingCosts != null) {
+      return updateShippingCosts(shippingCosts);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetDocs value) getDocs,
+    required TResult Function(_OrderIdChanged value) orderIdChanged,
+    required TResult Function(_VideoOneChanged value) videoOneChanged,
+    required TResult Function(_VideoTwoChanged value) videoTwoChanged,
+    required TResult Function(_ImageOneChanged value) imageOneChanged,
+    required TResult Function(_ImageTwoChanged value) imageTwoChanged,
+    required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
+    required TResult Function(_CreateDoc value) createDoc,
+    required TResult Function(_ResumePendingUploads value) resumePendingUploads,
+    required TResult Function(_GetUploadStatusForOrder value)
+        getUploadStatusForOrder,
+  }) {
+    return updateShippingCosts(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetDocs value)? getDocs,
+    TResult? Function(_OrderIdChanged value)? orderIdChanged,
+    TResult? Function(_VideoOneChanged value)? videoOneChanged,
+    TResult? Function(_VideoTwoChanged value)? videoTwoChanged,
+    TResult? Function(_ImageOneChanged value)? imageOneChanged,
+    TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
+    TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
+    TResult? Function(_CreateDoc value)? createDoc,
+    TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
+  }) {
+    return updateShippingCosts?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetDocs value)? getDocs,
+    TResult Function(_OrderIdChanged value)? orderIdChanged,
+    TResult Function(_VideoOneChanged value)? videoOneChanged,
+    TResult Function(_VideoTwoChanged value)? videoTwoChanged,
+    TResult Function(_ImageOneChanged value)? imageOneChanged,
+    TResult Function(_ImageTwoChanged value)? imageTwoChanged,
+    TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
+    TResult Function(_CreateDoc value)? createDoc,
+    TResult Function(_ResumePendingUploads value)? resumePendingUploads,
+    TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
+    required TResult orElse(),
+  }) {
+    if (updateShippingCosts != null) {
+      return updateShippingCosts(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateShippingCosts implements DocsEvent {
+  const factory _UpdateShippingCosts({required final String shippingCosts}) =
+      _$UpdateShippingCostsImpl;
+
+  String get shippingCosts;
+
+  /// Create a copy of DocsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateShippingCostsImplCopyWith<_$UpdateShippingCostsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1520,6 +1766,7 @@ class _$CreateDocImpl implements _CreateDoc {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -1537,6 +1784,7 @@ class _$CreateDocImpl implements _CreateDoc {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -1554,6 +1802,7 @@ class _$CreateDocImpl implements _CreateDoc {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -1575,6 +1824,7 @@ class _$CreateDocImpl implements _CreateDoc {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -1593,6 +1843,7 @@ class _$CreateDocImpl implements _CreateDoc {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1610,6 +1861,7 @@ class _$CreateDocImpl implements _CreateDoc {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1675,6 +1927,7 @@ class _$ResumePendingUploadsImpl implements _ResumePendingUploads {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -1692,6 +1945,7 @@ class _$ResumePendingUploadsImpl implements _ResumePendingUploads {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -1709,6 +1963,7 @@ class _$ResumePendingUploadsImpl implements _ResumePendingUploads {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -1730,6 +1985,7 @@ class _$ResumePendingUploadsImpl implements _ResumePendingUploads {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -1748,6 +2004,7 @@ class _$ResumePendingUploadsImpl implements _ResumePendingUploads {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1765,6 +2022,7 @@ class _$ResumePendingUploadsImpl implements _ResumePendingUploads {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1832,6 +2090,7 @@ class _$GetUploadStatusForOrderImpl implements _GetUploadStatusForOrder {
     required TResult Function(File? file) imageOneChanged,
     required TResult Function(File? file) imageTwoChanged,
     required TResult Function(String latitude, String longitude) updateLocation,
+    required TResult Function(String shippingCosts) updateShippingCosts,
     required TResult Function() createDoc,
     required TResult Function() resumePendingUploads,
     required TResult Function() getUploadStatusForOrder,
@@ -1849,6 +2108,7 @@ class _$GetUploadStatusForOrderImpl implements _GetUploadStatusForOrder {
     TResult? Function(File? file)? imageOneChanged,
     TResult? Function(File? file)? imageTwoChanged,
     TResult? Function(String latitude, String longitude)? updateLocation,
+    TResult? Function(String shippingCosts)? updateShippingCosts,
     TResult? Function()? createDoc,
     TResult? Function()? resumePendingUploads,
     TResult? Function()? getUploadStatusForOrder,
@@ -1866,6 +2126,7 @@ class _$GetUploadStatusForOrderImpl implements _GetUploadStatusForOrder {
     TResult Function(File? file)? imageOneChanged,
     TResult Function(File? file)? imageTwoChanged,
     TResult Function(String latitude, String longitude)? updateLocation,
+    TResult Function(String shippingCosts)? updateShippingCosts,
     TResult Function()? createDoc,
     TResult Function()? resumePendingUploads,
     TResult Function()? getUploadStatusForOrder,
@@ -1887,6 +2148,7 @@ class _$GetUploadStatusForOrderImpl implements _GetUploadStatusForOrder {
     required TResult Function(_ImageOneChanged value) imageOneChanged,
     required TResult Function(_ImageTwoChanged value) imageTwoChanged,
     required TResult Function(_UpdateLocation value) updateLocation,
+    required TResult Function(_UpdateShippingCosts value) updateShippingCosts,
     required TResult Function(_CreateDoc value) createDoc,
     required TResult Function(_ResumePendingUploads value) resumePendingUploads,
     required TResult Function(_GetUploadStatusForOrder value)
@@ -1905,6 +2167,7 @@ class _$GetUploadStatusForOrderImpl implements _GetUploadStatusForOrder {
     TResult? Function(_ImageOneChanged value)? imageOneChanged,
     TResult? Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult? Function(_UpdateLocation value)? updateLocation,
+    TResult? Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult? Function(_CreateDoc value)? createDoc,
     TResult? Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult? Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,
@@ -1922,6 +2185,7 @@ class _$GetUploadStatusForOrderImpl implements _GetUploadStatusForOrder {
     TResult Function(_ImageOneChanged value)? imageOneChanged,
     TResult Function(_ImageTwoChanged value)? imageTwoChanged,
     TResult Function(_UpdateLocation value)? updateLocation,
+    TResult Function(_UpdateShippingCosts value)? updateShippingCosts,
     TResult Function(_CreateDoc value)? createDoc,
     TResult Function(_ResumePendingUploads value)? resumePendingUploads,
     TResult Function(_GetUploadStatusForOrder value)? getUploadStatusForOrder,

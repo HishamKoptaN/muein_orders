@@ -21,19 +21,14 @@ Future<void> main() async {
     // Initialize Flutter Intl
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';
-
     // Initialize Firebase
     await Firebase.initializeApp();
-
     // Configure dependencies
     await configureDependencies();
-
     // Set up BLoC observer
     Bloc.observer = AppBlocObserver();
-
     // Initialize app dependencies
     await AppInitializer.initialize();
-
     // Clear any existing auth data for testing
     // SharedPrefHelper.clearAllSecuredData();
 

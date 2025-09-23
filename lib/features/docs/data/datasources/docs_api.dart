@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
+import 'package:injectable/injectable.dart' show injectable, factoryMethod;
 import 'package:retrofit/retrofit.dart';
+
 import '../../../../core/constants/api_constants.dart';
 import '../models/docs_res_model.dart';
 
@@ -15,12 +16,11 @@ part 'docs_api.g.dart';
 abstract class DocsApi {
   @factoryMethod
   factory DocsApi(
-    Dio dio, {
-    String? baseUrl,
-  }) = _DocsApi;
-  @GET('/docs/{clientId}')
+    Dio dio,
+  ) = _DocsApi;
+  @GET('/docs/{orderId}')
   Future<DocsResModel?> getClientDocs({
-    @Path('clientId') required int clientId,
+    @Path('orderId') required int orderId,
   });
 
   //! createDoc
@@ -36,6 +36,7 @@ abstract class DocsApi {
     @Part(name: 'image_two') required File imageTwo,
     @Part(name: 'longitude') required String longitude,
     @Part(name: 'latitude') required String latitude,
+    @Part(name: 'shipping_costs') required String shippingCosts,
     @SendProgress() required ProgressCallback? onSendProgress,
   });
 }

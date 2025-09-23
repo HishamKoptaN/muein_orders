@@ -12,10 +12,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get upload_videos => 'Télécharger des vidéos';
 
   @override
-  String get welcometoMubinOrders => 'Bienvenue sur Mubin Orders';
+  String get welcometoMubinOrders => 'Bienvenue à Mobin Talabat';
 
   @override
   String get welcome => 'Accueillir';
+
+  @override
+  String get indevedual => 'individuel';
+
+  @override
+  String get indveduals => 'Vocabulaire';
 
   @override
   String get wearehappytohaveyoujoinourstore =>
@@ -30,16 +36,16 @@ class AppLocalizationsFr extends AppLocalizations {
       'Vous trouverez ici des tâches, des demandes, des alertes et des filtres.';
 
   @override
-  String get documentationWithPphotosAndVideos =>
+  String get documentationWithPhotosAndVideos =>
       'Documentation avec photos et vidéos';
 
   @override
   String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-      'Assurez-vous que les images sont claires, que le nombre d\'exemplaires du Coran et les coûts de la commande sont clairs avant l\'envoi.';
+      'Assurez-vous de la clarté des images, du nombre d\'exemplaires du Saint Coran et du coût de la commande avant l\'envoi.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Nous sommes heureux de vous compter parmi nous !';
+      'Nous sommes heureux que vous nous ayez rejoint !';
 
   @override
   String get get_to_know_the_application_interface =>
@@ -47,48 +53,54 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Vous trouverez ici des tâches, des demandes, des alertes et des filtres';
+      'Vous trouverez ici des tâches, des demandes, des alertes et des filtres.';
 
   @override
   String get documentation_with_photos_and_videos =>
       'Documentation avec photos et vidéos';
 
   @override
-  String get send => 'Envoyer';
+  String get send => 'Envoie';
 
   @override
   String get phone => 'Numéro de téléphone';
 
   @override
-  String get done => 'Fait';
+  String get done => 'fini';
 
   @override
-  String get orders => 'Ordres';
+  String get orders => 'Demandes';
 
   @override
-  String get package => 'Emballer';
+  String get package => 'paquet';
 
   @override
   String get there_are_no_results_for_this_search =>
       'Aucun résultat trouvé pour cette recherche';
 
   @override
-  String get documentations => 'Documentations';
+  String get documentations => 'Documents';
 
   @override
-  String get show_documentations => 'Afficher les documentations';
+  String get show_documentations => 'Voir les documents';
 
   @override
   String get execution_number => 'Numéro d\'exécution';
 
   @override
-  String get add_documentation => 'Ajouter de la documentation';
+  String get add_documentation => 'Ajouter des documents';
 
   @override
-  String get location => 'Emplacement';
+  String get location => 'emplacement';
 
   @override
-  String get count => 'Compter';
+  String get selectLocation => 'Situer';
+
+  @override
+  String get select => 'définir';
+
+  @override
+  String get count => 'nombre';
 
   @override
   String get kinia_name => 'Kenya';
@@ -100,19 +112,22 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tanzania => 'Tanzanie';
 
   @override
-  String get home_title => 'Maison';
+  String get home_title => 'maison';
 
   @override
-  String get add_order => 'Ajouter une commande';
+  String get main => 'majeur';
 
   @override
-  String get order_place => 'Lieu';
+  String get add_order => 'Ajouter une demande';
+
+  @override
+  String get order_place => 'lieu';
 
   @override
   String get order_id => 'ID de commande';
 
   @override
-  String get order_number => 'Numéro de commande';
+  String get order_number => 'numéro de commande';
 
   @override
   String get client_id => 'ID client';
@@ -127,13 +142,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get add_video => 'Ajouter une vidéo';
 
   @override
-  String get add_picure => 'Ajouter une image';
+  String get add_picure => 'Ajouter une photo';
 
   @override
-  String get add => 'Ajouter';
+  String get add => 'Ajouts';
 
   @override
-  String get loading => 'Chargement...';
+  String get loading => 'télécharger...';
 
   @override
   String get changeLanguage => 'Changer de langue';
@@ -148,7 +163,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get emailHint => 'E-mail';
 
   @override
-  String get emailRequired => 'L\'e-mail est obligatoire';
+  String get emailRequired => 'Courriel requis';
 
   @override
   String get phoneNumberHint => 'Numéro de téléphone';
@@ -157,7 +172,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get phoneNumber => 'Numéro de téléphone';
 
   @override
-  String get countryHint => 'Pays';
+  String get countryHint => 'nation';
 
   @override
   String get confirmPasswordHint => 'Confirmez le mot de passe';
@@ -169,28 +184,28 @@ class AppLocalizationsFr extends AppLocalizations {
   String get remember_me => 'Souviens-toi de moi';
 
   @override
-  String get log_out => 'Se déconnecter';
+  String get log_out => 'se déconnecter';
 
   @override
   String get areYouSure => 'Etes-vous sûr de vouloir vous déconnecter ?';
 
   @override
-  String get file_pick_failed => 'Échec de la sélection du fichier';
+  String get file_pick_failed => 'La sélection du fichier a échoué';
 
   @override
-  String get order_saving => 'Sauvegarde de la commande...';
+  String get order_saving => 'Demande d\'enregistrement...';
 
   @override
-  String get order__is_sharing => 'Partage de commande...';
+  String get order__is_sharing => 'Demande de participation...';
 
   @override
-  String get failed => 'Échoué';
+  String get failed => 'échouer';
 
   @override
-  String get or => 'Ou';
+  String get or => 'ou';
 
   @override
-  String get request_time_out => 'La demande a expiré';
+  String get request_time_out => 'La demande a expiré.';
 
   @override
   String get change_language => 'Changer de langue';
@@ -202,19 +217,20 @@ class AppLocalizationsFr extends AppLocalizations {
   String get english => 'Anglais';
 
   @override
-  String get close => 'Fermer';
+  String get close => 'Ferme';
 
   @override
-  String get required => 'Requis';
+  String get required => 'requis';
 
   @override
-  String get order_added_successfully => 'Commande ajoutée avec succès';
+  String get order_added_successfully =>
+      'La demande a été ajoutée avec succès.';
 
   @override
-  String get order_addition_failed => 'L\'ajout de la commande a échoué';
+  String get order_addition_failed => 'La demande d\'ajout a échoué';
 
   @override
-  String get country => 'Pays';
+  String get country => 'nation';
 
   @override
   String get selectCountry => 'Sélectionnez un pays';
@@ -226,33 +242,33 @@ class AppLocalizationsFr extends AppLocalizations {
   String get firstNameRequired => 'Le prénom est obligatoire';
 
   @override
-  String get secondNameRequired => 'Le deuxième prénom est obligatoire';
+  String get secondNameRequired => 'Deuxième prénom requis';
 
   @override
   String get reset_link_sent => 'Lien de réinitialisation envoyé';
 
   @override
   String get enter_valid_email_password =>
-      'Entrez un email et un mot de passe valides';
+      'Entrez une adresse e-mail et un mot de passe valides.';
 
   @override
   String get invalidEmail => 'E-mail invalide';
 
   @override
-  String get phoneRequired => 'Le numéro de téléphone est requis';
+  String get phoneRequired => 'Numéro de téléphone requis';
 
   @override
-  String get passwordRequired => 'Le mot de passe est requis';
+  String get passwordRequired => 'Mot de passe requis';
 
   @override
   String get passwordMinLength =>
-      'Le mot de passe doit comporter au moins 8 caractères';
+      'Le mot de passe doit comporter au moins 8 caractères.';
 
   @override
-  String get confirmPasswordRequired => 'Confirmer le mot de passe est requis';
+  String get confirmPasswordRequired => 'Confirmation du mot de passe requise';
 
   @override
-  String get alreadyHaveAnAccount => 'Vous avez déjà un compte ?';
+  String get alreadyHaveAnAccount => 'Avez-vous déjà un compte?';
 
   @override
   String get confirmYourPassword => 'Confirmez votre mot de passe';
@@ -261,7 +277,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get request_saving => 'Demande d\'enregistrement...';
 
   @override
-  String get order_is_sharing => 'Partage de commande...';
+  String get order_is_sharing => 'Demande de participation...';
 
   @override
   String get successfully => 'Avec succès';
@@ -270,7 +286,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get data_dont_saved => 'Données non enregistrées';
 
   @override
-  String get data_saved => 'Données enregistrées';
+  String get data_saved => 'Données stockées';
 
   @override
   String get order_id_exists => 'L\'ID de commande existe déjà';
@@ -279,19 +295,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get select_files => 'Sélectionner les fichiers';
 
   @override
-  String get camera => 'Caméra';
+  String get camera => 'caméra';
 
   @override
-  String get gallery => 'Galerie';
+  String get gallery => 'Galerie de photos';
 
   @override
-  String get cant_be_embty => 'Ne peut pas être vide';
+  String get cant_be_embty => 'Il ne peut pas être vide.';
 
   @override
   String get please_enter_all_data => 'Veuillez saisir toutes les données';
 
   @override
-  String get ok => 'D\'ACCORD';
+  String get ok => 'Oui';
 
   @override
   String get swahili_kenya => 'Swahili - Kenya';
@@ -306,7 +322,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get retry => 'Réessayer';
 
   @override
-  String get unexpected_error => 'Une erreur inattendue s\'est produite';
+  String get unexpected_error => 'Une erreur inattendue s\'est produite.';
 
   @override
   String get notHaveAccount => 'Vous n\'avez pas de compte ?';
@@ -316,47 +332,50 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get enterYourEmailToResetPassword =>
-      'Entrez votre email pour recevoir le lien de réinitialisation du mot de passe';
+      'Entrez votre email pour recevoir un lien de réinitialisation de mot de passe.';
 
   @override
-  String get follow => 'Suivre';
+  String get follow => 'Il suit';
 
   @override
   String get confirm_password_hint => 'Confirmez le mot de passe';
 
   @override
-  String get instead => 'Plutôt';
+  String get instead => 'au lieu de';
 
   @override
   String get skip => 'Sauter';
 
   @override
-  String get next => 'Suivant';
+  String get next => 'le prochain';
+
+  @override
+  String get not_have_account => 'Vous n\'avez pas de compte ?';
 
   @override
   String get errorLoadingOnboarding =>
-      'Erreur lors du chargement du contenu d\'intégration';
+      'Une erreur s\'est produite lors du chargement du contenu de la directive.';
 
   @override
-  String get onboardingWelcomeTitle => 'Bienvenue sur Mubin Orders';
+  String get onboardingWelcomeTitle => 'Bienvenue à Mobin Talabat';
 
   @override
   String get onboardingWelcomeDescription =>
-      'Votre solution complète de gestion des commandes et de la documentation';
+      'La solution complète pour la gestion des commandes et la documentation';
 
   @override
   String get onboardingTrackingTitle => 'Suivez vos commandes';
 
   @override
   String get onboardingTrackingDescription =>
-      'Suivez vos commandes en temps réel grâce à notre système de suivi intuitif';
+      'Suivez vos commandes en temps réel grâce à notre système de suivi intuitif.';
 
   @override
   String get onboardingDocumentsTitle => 'Gestion des documents';
 
   @override
   String get onboardingDocumentsDescription =>
-      'Stockez et accédez à tous vos documents importants dans un seul endroit sécurisé';
+      'Stockez et accédez à tous vos documents importants dans un seul endroit sécurisé.';
 
   @override
   String get help => 'Aide';
@@ -368,27 +387,32 @@ class AppLocalizationsFr extends AppLocalizations {
   String get createAccount => 'Créer un compte';
 
   @override
-  String get alreadyHaveAccount => 'Vous avez déjà un compte ?';
+  String passwordResetEmailSentTo(Object email) {
+    return 'Un e-mail de réinitialisation de mot de passe a été envoyé à $email.';
+  }
+
+  @override
+  String get alreadyHaveAccount => 'Avez-vous déjà un compte?';
 
   @override
   String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Assurez-vous que les images sont claires et que le nombre de copies du Coran est correct avant l\'envoi';
+      'Assurez-vous de la clarté des images et du nombre correct d\'exemplaires du Saint Coran avant l\'envoi';
 
   @override
-  String get signUp => 'S\'inscrire';
+  String get signUp => 'abonnement';
 
   @override
   String get apPasswordResetLinkHasBeenSentToYourEmail =>
-      'Un lien de réinitialisation du mot de passe a été envoyé à votre adresse e-mail';
+      'Un lien de réinitialisation de mot de passe a été envoyé à votre adresse e-mail.';
 
   @override
   String get signUpTitle => 'Créer un nouveau compte';
 
   @override
-  String get firstName => 'Prénom';
+  String get firstName => 'prénom';
 
   @override
-  String get lastName => 'Nom de famille';
+  String get lastName => 'nom de famille';
 
   @override
   String get fieldRequired => 'Ce champ est obligatoire';
@@ -397,13 +421,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get accountCreated => 'Compte créé avec succès';
 
   @override
-  String get start => 'Commencer';
+  String get start => 'Ça commence';
 
   @override
-  String get errorCreatingAccount => 'Erreur lors de la création du compte';
+  String get errorCreatingAccount => 'Erreur de création de compte';
 
   @override
-  String get password => 'Mot de passe';
+  String get password => 'mot de passe';
 
   @override
   String get forgotPassword => 'Mot de passe oublié?';
@@ -412,42 +436,73 @@ class AppLocalizationsFr extends AppLocalizations {
   String get selectLanguage => 'Sélectionner la langue';
 
   @override
-  String get name => 'Nom';
+  String get name => 'nom';
 
   @override
   String get welcomeLine1 => 'Accueillir';
 
   @override
-  String get welcomeLine2 => 'À';
+  String get welcomeLine2 => 'à';
 
   @override
   String get signIn => 'Se connecter';
 
   @override
-  String get followUp => 'Suivi';
+  String get followUp => 'suivi';
 
   @override
   String get aLinkWillBeSentToYouToResetYourPassword =>
-      'Un lien vous sera envoyé pour réinitialiser votre mot de passe';
+      'Un lien vous sera envoyé pour réinitialiser votre mot de passe.';
 
   @override
   String get onboardingPage1Title => 'Accueillir';
 
   @override
   String get onboardingPage1Description =>
-      'Nous sommes heureux de vous compter parmi nous dans la boutique Mubeen';
+      'Nous sommes heureux de vous compter parmi nous dans notre boutique.';
 
   @override
-  String get onboardingPage2Title => 'Découvrez l\'interface de l\'application';
+  String get onboardingPage2Title => 'Explorez l\'interface de l\'application';
 
   @override
   String get onboardingPage2Description =>
-      'Vous trouverez ici des tâches, des commandes, des alertes et des filtres';
+      'Vous trouverez ici des tâches, des commandes, des alertes et des filtres.';
+
+  @override
+  String get aPasswordResetLinkHasBeenSentToYourEmail =>
+      'Un lien de réinitialisation de mot de passe a été envoyé à votre adresse e-mail.';
 
   @override
   String get onboardingPage3Title => 'Documentation avec photos et vidéos';
 
   @override
   String get onboardingPage3Description =>
-      'Assurez-vous que les images sont claires et que le nombre de copies du Coran est correct avant l\'envoi';
+      'Assurez-vous de la clarté des images et du nombre correct d\'exemplaires du Saint Coran avant l\'envoi';
+
+  @override
+  String get sticker => 'affiche';
+
+  @override
+  String get finished => 'fini';
+
+  @override
+  String get current => 'Actuel';
+
+  @override
+  String get inProgress => 'Actuel';
+
+  @override
+  String get theEnd => 'La fin';
+
+  @override
+  String get noOrders => 'Aucune demande';
+
+  @override
+  String get documented => 'Documenté';
+
+  @override
+  String get order => 'demander';
+
+  @override
+  String get welcomeLine => 'Bienvenue à';
 }

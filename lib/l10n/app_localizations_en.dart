@@ -9,17 +9,23 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get upload_videos => 'Upload Videos';
+  String get upload_videos => 'Download videos';
 
   @override
-  String get welcometoMubinOrders => 'Welcome to Mubin Orders';
+  String get welcometoMubinOrders => 'Welcome to Mobin Talabat';
 
   @override
   String get welcome => 'Welcome';
 
   @override
+  String get indevedual => 'individual';
+
+  @override
+  String get indveduals => 'Vocabulary';
+
+  @override
   String get wearehappytohaveyoujoinourstore =>
-      'We are happy to have you join our store.';
+      'We are glad to have you join our store.';
 
   @override
   String get gettoknowtheapplicationinterface =>
@@ -27,68 +33,74 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Here you will find tasks, requests, alerts, and filters.';
+      'Here you\'ll find tasks, requests, alerts, and filters.';
 
   @override
-  String get documentationWithPphotosAndVideos =>
+  String get documentationWithPhotosAndVideos =>
       'Documentation with photos and videos';
 
   @override
   String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-      'Make sure the images are clear, the number of copies of the Qur’an, and the order costs are clear before sending.';
+      'Ensure the clarity of the images, the number of copies of the Holy Quran, and the cost of the order before sending.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'We are happy to have you join us!';
+      'We are glad you joined us!';
 
   @override
   String get get_to_know_the_application_interface =>
-      'Get to know the app interface';
+      'Get to know the application interface';
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Here you will find tasks, requests, alerts and filters';
+      'Here you will find tasks, requests, alerts, and filters.';
 
   @override
   String get documentation_with_photos_and_videos =>
       'Documentation with photos and videos';
 
   @override
-  String get send => 'Send';
+  String get send => 'Sends';
 
   @override
-  String get phone => 'Phone Number';
+  String get phone => 'Phone number';
 
   @override
-  String get done => 'Done';
+  String get done => 'finished';
 
   @override
-  String get orders => 'Orders';
+  String get orders => 'Requests';
 
   @override
-  String get package => 'Package';
+  String get package => 'pack';
 
   @override
   String get there_are_no_results_for_this_search =>
       'No results found for this search';
 
   @override
-  String get documentations => 'Documentations';
+  String get documentations => 'Documents';
 
   @override
-  String get show_documentations => 'Show Documentations';
+  String get show_documentations => 'View documents';
 
   @override
-  String get execution_number => 'Execution Number';
+  String get execution_number => 'Execution number';
 
   @override
-  String get add_documentation => 'Add Documentation';
+  String get add_documentation => 'Add documents';
 
   @override
-  String get location => 'Location';
+  String get location => 'location';
 
   @override
-  String get count => 'Count';
+  String get selectLocation => 'Locate';
+
+  @override
+  String get select => 'to set';
+
+  @override
+  String get count => 'number';
 
   @override
   String get kinia_name => 'Kenya';
@@ -100,124 +112,128 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tanzania => 'Tanzania';
 
   @override
-  String get home_title => 'Home';
+  String get home_title => 'house';
 
   @override
-  String get add_order => 'Add Order';
+  String get main => 'major';
 
   @override
-  String get order_place => 'Place';
+  String get add_order => 'Add a request';
+
+  @override
+  String get order_place => 'place';
 
   @override
   String get order_id => 'Order ID';
 
   @override
-  String get order_number => 'Order Number';
+  String get order_number => 'order number';
 
   @override
-  String get client_id => 'Client ID';
+  String get client_id => 'Customer ID';
 
   @override
-  String get enter_order_id => 'Enter Order ID';
+  String get enter_order_id => 'Enter order ID';
 
   @override
   String get place_hint => 'Village/Mosque/School';
 
   @override
-  String get add_video => 'Add Video';
+  String get add_video => 'Add video';
 
   @override
-  String get add_picure => 'Add Picture';
+  String get add_picure => 'Add a photo';
 
   @override
-  String get add => 'Add';
+  String get add => 'Adds';
 
   @override
-  String get loading => 'Loading...';
+  String get loading => 'download...';
 
   @override
-  String get changeLanguage => 'Change Language';
+  String get changeLanguage => 'Change language';
 
   @override
-  String get login_text => 'Login';
+  String get login_text => 'Log in';
 
   @override
-  String get login => 'Login';
+  String get login => 'Log in';
 
   @override
   String get emailHint => 'Email';
 
   @override
-  String get emailRequired => 'Email is required';
+  String get emailRequired => 'Email required';
 
   @override
-  String get phoneNumberHint => 'Phone Number';
+  String get phoneNumberHint => 'Phone number';
 
   @override
-  String get phoneNumber => 'Phone Number';
+  String get phoneNumber => 'Phone number';
 
   @override
-  String get countryHint => 'Country';
+  String get countryHint => 'nation';
 
   @override
-  String get confirmPasswordHint => 'Confirm Password';
+  String get confirmPasswordHint => 'Confirm password';
 
   @override
-  String get confirmPassword => 'Confirm Password';
+  String get confirmPassword => 'Confirm password';
 
   @override
-  String get remember_me => 'Remember Me';
+  String get remember_me => 'Remember me';
 
   @override
-  String get log_out => 'Log Out';
+  String get log_out => 'Sign out';
 
   @override
   String get areYouSure => 'Are you sure you want to log out?';
 
   @override
-  String get file_pick_failed => 'File pick failed';
+  String get file_pick_failed => 'File selection failed';
 
   @override
-  String get order_saving => 'Saving order...';
+  String get order_saving => 'Saving request...';
 
   @override
-  String get order__is_sharing => 'Sharing order...';
+  String get order__is_sharing => 'Request for participation...';
 
   @override
-  String get failed => 'Failed';
+  String get failed => 'to fail';
 
   @override
-  String get or => 'Or';
+  String get or => 'or';
 
   @override
-  String get request_time_out => 'Request timed out';
+  String get request_time_out => 'The request has expired.';
 
   @override
-  String get change_language => 'Change Language';
+  String get change_language => 'Change language';
 
   @override
-  String get arabic => 'Arabic';
+  String get arabic => 'Arab';
 
   @override
   String get english => 'English';
 
   @override
-  String get close => 'Close';
+  String get close => 'Closes';
 
   @override
-  String get required => 'Required';
+  String get required => 'required';
 
   @override
-  String get order_added_successfully => 'Order added successfully';
+  String get order_added_successfully =>
+      'The request has been added successfully.';
 
   @override
-  String get order_addition_failed => 'Order addition failed';
+  String get order_addition_failed => 'Request addition failed';
 
   @override
-  String get country => 'Country';
+  String get country => 'nation';
 
   @override
-  String get selectCountry => 'Select Country';
+  String get selectCountry => 'Select country';
 
   @override
   String get passwordsDontMatch => 'Passwords do not match';
@@ -226,31 +242,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get firstNameRequired => 'First name is required';
 
   @override
-  String get secondNameRequired => 'Second name is required';
+  String get secondNameRequired => 'Second name required';
 
   @override
   String get reset_link_sent => 'Reset link sent';
 
   @override
-  String get enter_valid_email_password => 'Enter a valid email and password';
+  String get enter_valid_email_password =>
+      'Enter a valid email address and password.';
 
   @override
-  String get invalidEmail => 'Invalid Email';
+  String get invalidEmail => 'Invalid email';
 
   @override
-  String get phoneRequired => 'Phone number is required';
+  String get phoneRequired => 'Phone number required';
 
   @override
-  String get passwordRequired => 'Password is required';
+  String get passwordRequired => 'Password required';
 
   @override
-  String get passwordMinLength => 'Password must be at least 8 characters';
+  String get passwordMinLength =>
+      'Password must be at least 8 characters long.';
 
   @override
-  String get confirmPasswordRequired => 'Confirm password is required';
+  String get confirmPasswordRequired => 'Password confirmation required';
 
   @override
-  String get alreadyHaveAnAccount => 'Already have an account?';
+  String get alreadyHaveAnAccount => 'Do you already have an account?';
 
   @override
   String get confirmYourPassword => 'Confirm your password';
@@ -259,7 +277,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get request_saving => 'Saving request...';
 
   @override
-  String get order_is_sharing => 'Sharing order...';
+  String get order_is_sharing => 'Request for participation...';
 
   @override
   String get successfully => 'Successfully';
@@ -268,7 +286,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get data_dont_saved => 'Data not saved';
 
   @override
-  String get data_saved => 'Data saved';
+  String get data_saved => 'Stored data';
 
   @override
   String get order_id_exists => 'Order ID already exists';
@@ -277,19 +295,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get select_files => 'Select files';
 
   @override
-  String get camera => 'Camera';
+  String get camera => 'camera';
 
   @override
-  String get gallery => 'Gallery';
+  String get gallery => 'Photo Gallery';
 
   @override
-  String get cant_be_embty => 'Cannot be empty';
+  String get cant_be_embty => 'It cannot be empty.';
 
   @override
   String get please_enter_all_data => 'Please enter all data';
 
   @override
-  String get ok => 'OK';
+  String get ok => 'Yes';
 
   @override
   String get swahili_kenya => 'Swahili - Kenya';
@@ -304,88 +322,97 @@ class AppLocalizationsEn extends AppLocalizations {
   String get retry => 'Retry';
 
   @override
-  String get unexpected_error => 'Unexpected error occurred';
+  String get unexpected_error => 'An unexpected error occurred.';
 
   @override
-  String get notHaveAccount => 'Don\'\'\'\'t have an account?';
+  String get notHaveAccount => 'Don\'t have an account?';
 
   @override
   String get passwordsDoNotMatch => 'Passwords do not match';
 
   @override
   String get enterYourEmailToResetPassword =>
-      'Enter your email to receive password reset link';
+      'Enter your email to receive a password reset link.';
 
   @override
-  String get follow => 'Follow';
+  String get follow => 'He follows';
 
   @override
   String get confirm_password_hint => 'Confirm password';
 
   @override
-  String get instead => 'Instead';
+  String get instead => 'instead of';
 
   @override
   String get skip => 'Skip';
 
   @override
-  String get next => 'Next';
+  String get next => 'the next';
 
   @override
-  String get errorLoadingOnboarding => 'Error loading onboarding content';
+  String get not_have_account => 'Don\'t have an account?';
 
   @override
-  String get onboardingWelcomeTitle => 'Welcome to Mubin Orders';
+  String get errorLoadingOnboarding =>
+      'An error occurred while loading the directive content.';
+
+  @override
+  String get onboardingWelcomeTitle => 'Welcome to Mobin Talabat';
 
   @override
   String get onboardingWelcomeDescription =>
-      'Your complete solution for managing orders and documentation';
+      'The comprehensive solution for order management and documentation';
 
   @override
-  String get onboardingTrackingTitle => 'Track Your Orders';
+  String get onboardingTrackingTitle => 'Track your orders';
 
   @override
   String get onboardingTrackingDescription =>
-      'Monitor your orders in real-time with our intuitive tracking system';
+      'Monitor your orders in real time with our intuitive tracking system.';
 
   @override
-  String get onboardingDocumentsTitle => 'Document Management';
+  String get onboardingDocumentsTitle => 'Document management';
 
   @override
   String get onboardingDocumentsDescription =>
-      'Store and access all your important documents in one secure place';
+      'Store and access all your important documents in one secure place.';
 
   @override
-  String get help => 'Help';
+  String get help => 'Helps';
 
   @override
   String get settings => 'Settings';
 
   @override
-  String get createAccount => 'Create Account';
+  String get createAccount => 'Create an account';
 
   @override
-  String get alreadyHaveAccount => 'Already have an account?';
+  String passwordResetEmailSentTo(Object email) {
+    return 'A password reset email has been sent to $email.';
+  }
+
+  @override
+  String get alreadyHaveAccount => 'Do you already have an account?';
 
   @override
   String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Make sure the images are clear and the number of Qur\'\'\'\'an copies is correct before sending';
+      'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending';
 
   @override
-  String get signUp => 'Sign Up';
+  String get signUp => 'subscription';
 
   @override
   String get apPasswordResetLinkHasBeenSentToYourEmail =>
-      'A password reset link has been sent to your email';
+      'A password reset link has been sent to your email.';
 
   @override
-  String get signUpTitle => 'Create New Account';
+  String get signUpTitle => 'Create a new account';
 
   @override
-  String get firstName => 'First Name';
+  String get firstName => 'first name';
 
   @override
-  String get lastName => 'Last Name';
+  String get lastName => 'last name';
 
   @override
   String get fieldRequired => 'This field is required';
@@ -394,57 +421,88 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountCreated => 'Account created successfully';
 
   @override
-  String get start => 'Start';
+  String get start => 'It begins';
 
   @override
-  String get errorCreatingAccount => 'Error creating account';
+  String get errorCreatingAccount => 'Account creation error';
 
   @override
-  String get password => 'Password';
+  String get password => 'password';
 
   @override
-  String get forgotPassword => 'Forgot Password?';
+  String get forgotPassword => 'Forgot your password?';
 
   @override
-  String get selectLanguage => 'Select Language';
+  String get selectLanguage => 'Select language';
 
   @override
-  String get name => 'Name';
+  String get name => 'name';
 
   @override
   String get welcomeLine1 => 'Welcome';
 
   @override
-  String get welcomeLine2 => 'To';
+  String get welcomeLine2 => 'to';
 
   @override
-  String get signIn => 'Sign In';
+  String get signIn => 'Log in';
 
   @override
-  String get followUp => 'Follow Up';
+  String get followUp => 'tracking';
 
   @override
   String get aLinkWillBeSentToYouToResetYourPassword =>
-      'A link will be sent to you to reset your password';
+      'A link will be sent to you to reset your password.';
 
   @override
   String get onboardingPage1Title => 'Welcome';
 
   @override
   String get onboardingPage1Description =>
-      'We\'\'\'\'re happy to have you join Mubeen Store';
+      'We are pleased to have you join our store.';
 
   @override
-  String get onboardingPage2Title => 'Discover the App Interface';
+  String get onboardingPage2Title => 'Explore the app interface';
 
   @override
   String get onboardingPage2Description =>
-      'Here you\'\'\'\'ll find tasks, orders, alerts, and filters';
+      'Here you will find tasks, commands, alerts, and filters.';
 
   @override
-  String get onboardingPage3Title => 'Documentation with Photos and Videos';
+  String get aPasswordResetLinkHasBeenSentToYourEmail =>
+      'A password reset link has been sent to your email.';
+
+  @override
+  String get onboardingPage3Title => 'Documentation with photos and videos';
 
   @override
   String get onboardingPage3Description =>
-      'Ensure images are clear and the number of Qur\'\'\'\'an copies is correct before sending';
+      'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending';
+
+  @override
+  String get sticker => 'poster';
+
+  @override
+  String get finished => 'finished';
+
+  @override
+  String get current => 'Current';
+
+  @override
+  String get inProgress => 'Current';
+
+  @override
+  String get theEnd => 'The end';
+
+  @override
+  String get noOrders => 'No requests';
+
+  @override
+  String get documented => 'Documented';
+
+  @override
+  String get order => 'to request';
+
+  @override
+  String get welcomeLine => 'Welcome to';
 }

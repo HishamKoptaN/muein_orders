@@ -92,6 +92,7 @@ dependencies:
   #     url: https://github.com/HishamKoptaN/storage_utils.git
   #     ref: main
   shared_preferences: ^2.5.3
+  translator: ^1.0.4+1
 dependency_overrides:
   form_inputs:
     path: G:/packages/form_inputs
@@ -128,6 +129,7 @@ flutter:
     - assets/
     - assets/icons/
     - assets/images/
+    - assets/images/packages/
     - assets/images/onboarding/
     - assets/logos/
     - assets/languages/

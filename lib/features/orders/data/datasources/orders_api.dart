@@ -16,13 +16,15 @@ abstract class OrdersApi {
   factory OrdersApi(
     Dio dio,
   ) = _OrdersApi;
-  // ! Get
+  // ! Get orders for a specific package
   @GET(
-    ApiConstants.orders,
+    '${ApiConstants.orders}/{packageId}',
   )
-  Future<List<OrdersResModel>> getOrders({
+  Future<OrdersResModel> getOrders({
+    @Path('packageId') required int packageId,
     @Query('page') int? page,
     @Query('query') String? query,
+    @Query('is_distribution_photographed') bool? isDistributionPhotographed,
   });
   // ! updateClientField
   @POST(

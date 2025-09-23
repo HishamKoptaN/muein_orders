@@ -18,6 +18,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحباً';
 
   @override
+  String get indevedual => 'فردي';
+
+  @override
+  String get indveduals => 'المفردات';
+
+  @override
   String get wearehappytohaveyoujoinourstore => 'نحن سعداء بانضمامك لمتجرنا.';
 
   @override
@@ -28,7 +34,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'ستجد هنا المهام والطلبات والتنبيهات والمرشحات.';
 
   @override
-  String get documentationWithPphotosAndVideos => 'التوثيق بالصور والفيديوهات';
+  String get documentationWithPhotosAndVideos => 'التوثيق بالصور والفيديوهات';
 
   @override
   String
@@ -63,7 +69,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get orders => 'طلبات';
 
   @override
-  String get package => 'طَرد';
+  String get package => 'حزمة';
 
   @override
   String get there_are_no_results_for_this_search =>
@@ -85,6 +91,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get location => 'موقع';
 
   @override
+  String get selectLocation => 'تحديد الموقع';
+
+  @override
+  String get select => 'تحديد';
+
+  @override
   String get count => 'عدد';
 
   @override
@@ -98,6 +110,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get home_title => 'بيت';
+
+  @override
+  String get main => 'رئيسي';
 
   @override
   String get add_order => 'إضافة طلب';
@@ -331,6 +346,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get next => 'التالي';
 
   @override
+  String get not_have_account => 'ليس لديك حساب؟';
+
+  @override
   String get errorLoadingOnboarding => 'حدث خطأ أثناء تحميل محتوى التوجيه';
 
   @override
@@ -362,6 +380,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get createAccount => 'إنشاء حساب';
+
+  @override
+  String passwordResetEmailSentTo(Object email) {
+    return 'تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور إلى $email';
+  }
 
   @override
   String get alreadyHaveAccount => 'هل لديك حساب بالفعل؟';
@@ -441,9 +464,40 @@ class AppLocalizationsAr extends AppLocalizations {
       'ستجد هنا المهام والأوامر والتنبيهات والمرشحات';
 
   @override
+  String get aPasswordResetLinkHasBeenSentToYourEmail =>
+      'لقد تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني';
+
+  @override
   String get onboardingPage3Title => 'التوثيق بالصور والفيديوهات';
 
   @override
   String get onboardingPage3Description =>
       'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال';
+
+  @override
+  String get sticker => 'الملصق';
+
+  @override
+  String get finished => 'منتهي';
+
+  @override
+  String get current => 'الحالية';
+
+  @override
+  String get inProgress => 'جاري';
+
+  @override
+  String get theEnd => 'المنتهية';
+
+  @override
+  String get noOrders => 'لا يوجد طلبات';
+
+  @override
+  String get documented => 'تم التوثيق';
+
+  @override
+  String get order => 'طلب';
+
+  @override
+  String get welcomeLine => 'مرحباً بكم \nفي';
 }

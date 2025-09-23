@@ -11,7 +11,7 @@ GoRoute createRoute({
 }) {
   // تطبيع اسم المسار
   final normalizedRoute = routeName.replaceAll(RegExp(r'^/+|/+\$'), '');
-  
+
   return GoRoute(
     path: '/$normalizedRoute',
     name: normalizedRoute,

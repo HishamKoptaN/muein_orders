@@ -5,10 +5,13 @@ import 'package:go_router/go_router.dart';
 import '../../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
-import '../../../features/auth/sign_up/present/sign_up_views.dart';
+import '../../../features/auth/sign_up/present/views/sign_up_views.dart';
+import '../../../features/docs/present/views/add_doc_view.dart';
+import '../../../features/home/present/home_view.dart';
 import '../../../features/language/view/select_language.dart';
 import '../../../features/onboarding/present/view/onboarding_view.dart';
 import '../../../features/orders/present/views/orders_view.dart';
+import '../../../features/orders/present/views/pdf/sitcker_pdf_preview_view.dart';
 import '../route_utils.dart';
 
 /// Development mode configuration
@@ -42,8 +45,42 @@ class RouteConfig {
         builder: (context, state) => const SignUpView(),
       ),
       createRoute(
+        routeName: HomeView.routeName,
+        builder: (context, state) => const HomeView(),
+      ),
+      createRoute(
         routeName: OrdersView.routeName,
-        builder: (context, state) => const OrdersView(),
+        builder: (context, state) {
+          final packageId =
+              int.tryParse(state.pathParameters['packageId'] ?? '0') ?? 0;
+          final ordersCount =
+              int.tryParse(state.pathParameters['ordersCount'] ?? '0') ?? 0;
+          return OrdersView(
+            packageId: packageId,
+            ordersCount: ordersCount,
+          );
+        },
+      ),
+      createRoute(
+        routeName: PdfPreviewView.routeName,
+        builder: (context, state) {
+          final printedName = state.pathParameters['printedName'] ?? '0';
+          final executionNum = state.pathParameters['executionNum'] ?? '0';
+          return PdfPreviewView(
+            printedName: printedName,
+            executionNum: executionNum,
+          );
+        },
+      ),
+      createRoute(
+        routeName: AddDocView.routeName,
+        builder: (context, state) {
+          final orderId =
+              int.tryParse(state.pathParameters['orderId'] ?? '0') ?? 0;
+          return AddDocView(
+            orderId: orderId,
+          );
+        },
       ),
     ];
 

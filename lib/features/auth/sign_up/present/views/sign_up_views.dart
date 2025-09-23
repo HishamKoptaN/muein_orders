@@ -5,14 +5,14 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/widgets/app_snackbar.dart';
-import '../../../../core/widgets/custom_circular_progress.dart';
-import '../../../onboarding/present/view/onboarding_view.dart';
-import '../../sign_in/present/views/widgets/sign_in_background.dart';
-import 'bloc/sign_up_bloc.dart';
-import 'views/widgets/sign_in_actions.dart';
-import 'views/widgets/sign_up_form.dart';
-import 'views/widgets/sign_up_header.dart';
+import '../../../../../core/widgets/app_snackbar.dart';
+import '../../../../../core/widgets/custom_circular_progress.dart';
+import '../../../../onboarding/present/view/onboarding_view.dart';
+import '../../../sign_in/present/views/widgets/sign_in_background.dart';
+import '../bloc/sign_up_bloc.dart';
+import 'widgets/sign_in_actions.dart';
+import 'widgets/sign_up_form.dart';
+import 'widgets/sign_up_header.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});

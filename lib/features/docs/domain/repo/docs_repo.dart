@@ -4,7 +4,7 @@ import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart'
 import '../../../../../core/networking/api_result.dart';
 
 abstract class DocsRepo {
-  Future<ApiResult<DocsResEntity?>> getDocs({required int clientId});
+  Future<ApiResult<DocsResEntity?>> getDocs({required int orderId});
   Future<({double lat, double lng})> getCurrentLocation();
   Future<ApiResult<DocEntity?>> createDoc({
     required int orderId,
@@ -14,6 +14,7 @@ abstract class DocsRepo {
     required File imageTwo,
     required String longitude,
     required String latitude,
+    required String shippingCosts,
     required ProgressCallback? onSendProgress,
   });
 }

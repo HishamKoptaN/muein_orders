@@ -1,63 +1,43 @@
-// data/mappers/order_mapper.dart
+import '../../../../core/entities/meta_entity.dart';
+import '../../../../core/mapper/meta_mapper.dart';
 import '../../domain/entities/orders_res_entity.dart';
-import '../../domain/entities/package_entity.dart';
 import '../models/orders_res_model.dart';
 
-extension OrdersResModelMapper on OrdersResModel {
-  OrdersResEntity toEntity() => OrdersResEntity(
-        package: package?.toEntity(),
-        orders: orders?.map((e) => e.toEntity()).toList(),
-      );
+extension OrdersResMapper on OrdersResModel {
+  OrdersResEntity toEntity() {
+    return OrdersResEntity(
+      orders: orders?.map((c) => c.toEntity()).toList() ?? [],
+      meta: meta?.toEntity() ?? const MetaEntity(),
+    );
+  }
 }
+
 extension OrderMapper on Order {
-  OrderEntity toEntity() => OrderEntity(
-        id: id,
-        name: name,
-        printedName: printedName,
-        executionNum: executionNum,
-        orderNum: orderNum,
-        cartonCount: cartonCount,
-        ordersCount: ordersCount,
-        totalAmount: totalAmount,
-        date: date,
-        days: days,
-        email: email,
-        phone: phone,
-        isQuranPrinted: isQuranPrinted,
-        isQuranPhotographed: isQuranPhotographed,
-        isDistributionPhotographed: isDistributionPhotographed,
-        isLocationReceived: isLocationReceived,
-        isFinalReportReady: isFinalReportReady,
-        isReportSent: isReportSent,
-        stickerPrepared: stickerPrepared,
-        videosUploaded: videosUploaded,
-        finalEstimateReady: finalEstimateReady,
-        package: package?.toEntity(),
-      );
-}
-
-extension OrderPackageMapper on OrderPackage {
-  PackageEntity toEntity() => PackageEntity(
-        id: id,
-        name: name,
-        description: description,
-        price: price,
-        image: image,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
-      );
-}
-
-extension OrdersResModelPackageMapper on OrdersResModelPackage {
-  PackageEntity toEntity() => PackageEntity(
-        id: id,
-        name: name,
-        description: description,
-        price: price,
-        image: image,
-        ordersCount: ordersCount,
-        totalAmount: totalAmount,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
-      );
+  OrderEntity toEntity() {
+    return OrderEntity(
+      id: id ?? 0,
+      status: 1,
+      name: name ?? '',
+      printedName: printedName ?? '',
+      executionNum: executionNum ?? '',
+      orderNum: orderNum ?? '',
+      cartonCount: cartonCount ?? 0,
+      ordersCount: ordersCount ?? 0,
+      totalAmount: totalAmount ?? '0',
+      date: date ?? DateTime.now(),
+      phone: phone ?? '',
+      email: email ?? '',
+      isQuranPrinted: isQuranPrinted ?? false,
+      isQuranPhotographed: isQuranPhotographed ?? false,
+      isDistributionPhotographed: isDistributionPhotographed ?? false,
+      isLocationReceived: isLocationReceived ?? false,
+      locationLink: locationLink == true,
+      finalEstimateReady: finalEstimateReady ?? false,
+      isReportSent: isReportSent ?? false,
+      stickerPrepared: stickerPrepared ?? false,
+      createdAt: createdAt ?? '',
+      isFinalReportReady: isFinalReportReady ?? false,
+      videosUploaded: videosUploaded ?? false,
+    );
+  }
 }

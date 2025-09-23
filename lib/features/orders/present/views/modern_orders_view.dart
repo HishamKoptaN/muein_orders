@@ -17,7 +17,7 @@ import 'widgets/shimmer_client_row.dart';
 
 class ModernOrdersView extends StatefulWidget {
   const ModernOrdersView({super.key});
-  static const String routeName = "modern_orders";
+  static const String routeName = "modern-orders";
 
   @override
   State<ModernOrdersView> createState() => _ModernOrdersViewState();
@@ -30,7 +30,7 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
   void initState() {
     super.initState();
     context.read<OrdersBloc>().add(
-          OrdersEvent.getOrders(getMore: false),
+          const OrdersEvent.getOrders(packageId: 1, loadMore: false),
         );
     _scrollController.addListener(_onScroll);
   }
@@ -41,9 +41,13 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
       final bloc = context.read<OrdersBloc>();
       final state = bloc.state;
       state.maybeWhen(
-        loaded: (clients, hasMore, isSearching) {
+        loaded: (
+          clients,
+          hasMore,
+        ) {
           if (hasMore == true) {
-            bloc.add(OrdersEvent.getOrders(getMore: true));
+            bloc.add(
+                const OrdersEvent.getOrders(packageId: 1, loadMore: false));
           }
         },
         orElse: () {},
@@ -70,37 +74,60 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
         ),
         child: BlocBuilder<OrdersBloc, OrdersState>(
           builder: (context, state) => state.maybeWhen(
-              loaded: (clients, hasMore, isSearching) {
-                if (clients?.isEmpty ?? true) {
-                  return _buildEmptyState(isSearching ?? false);
-                }
-                return _buildOrdersList(clients!, t);
-              },
-              loading: () => _buildLoadingState(),
-              failure: (e) => _buildErrorState(e.error ?? ''),
-              orElse: () => const SizedBox(),
-            ),
+            loaded: (clients, hasMore) {
+              if (clients?.isEmpty ?? true) {
+                return _buildEmptyState(false);
+              }
+              return _buildOrdersList(clients!, t);
+            },
+            loading: _buildLoadingState,
+            failure: (e) => _buildErrorState(e.error ?? ''),
+            orElse: () => const SizedBox(),
+          ),
         ),
       ),
     );
   }
 
   PreferredSizeWidget _buildModernAppBar(AppLocalizations t) => AppBar(
-      title: Text(
-        t.orders,
-        style: AppTextStyles.appBarTitle.copyWith(
-          color: Theme.of(context).colorScheme.onPrimary,
+        title: Text(
+          t.orders,
+          style: AppTextStyles.appBarTitle.copyWith(
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
         ),
-      ),
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-      elevation: 0,
-      leading: Builder(
-        builder: (context) {
-          return IconButton(
-            onPressed: () => Scaffold.of(context).openDrawer(),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+        elevation: 0,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              onPressed: () => Scaffold.of(context).openDrawer(),
+              icon: SvgPicture.asset(
+                Assets.icons.menu,
+                width: 24.w,
+                height: 24.h,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.onPrimary,
+                  BlendMode.srcIn,
+                ),
+              ),
+            );
+          },
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // Add search functionality
+            },
+            icon: const Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: () {
+              // Add filter functionality
+            },
             icon: SvgPicture.asset(
-              Assets.icons.menu,
+              Assets.icons.baseCart,
               width: 24.w,
               height: 24.h,
               colorFilter: ColorFilter.mode(
@@ -108,76 +135,54 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
                 BlendMode.srcIn,
               ),
             ),
-          );
-        },
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {
-            // Add search functionality
-          },
-          icon: const Icon(Icons.search),
-        ),
-        IconButton(
-          onPressed: () {
-            // Add filter functionality
-          },
-          icon: SvgPicture.asset(
-            Assets.icons.baseCart,
-            width: 24.w,
-            height: 24.h,
-            colorFilter: ColorFilter.mode(
-              Theme.of(context).colorScheme.onPrimary,
-              BlendMode.srcIn,
-            ),
           ),
-        ),
-        const SizedBox(width: 8),
-      ],
-    );
+          const SizedBox(width: 8),
+        ],
+      );
 
   Widget _buildOrdersList(
-    List<OrdersResEntity> clients,
+    List<OrderEntity> orders,
     AppLocalizations t,
-  ) => RefreshIndicator(
-      onRefresh: () async {
-        context.read<OrdersBloc>().add(
-              OrdersEvent.getOrders(getMore: false),
-            );
-      },
-      color: AppColors.primary,
-      child: ListView.builder(
-        controller: _scrollController,
-        padding: EdgeInsets.symmetric(vertical: 16.h),
-        itemCount: clients.length,
-        itemBuilder: (context, index) {
-          final group = clients[index];
-          final package = group.package;
-          final orders = group.orders ?? [];
-          final packageTitle = '${t.package} : ${package?.name}';
+  ) =>
+      RefreshIndicator(
+        onRefresh: () async {
+          context.read<OrdersBloc>().add(
+                const OrdersEvent.getOrders(packageId: 1, loadMore: false),
+              );
+        },
+        color: AppColors.primary,
+        child: ListView.builder(
+          controller: _scrollController,
+          padding: EdgeInsets.symmetric(vertical: 16.h),
+          itemCount: orders.length,
+          itemBuilder: (context, index) {
+            final order = orders[index];
+            // final package = group.package;
 
-          return Column(
-            children: [
-              // Package Header
-              ModernPackageHeader(
-                packageTitle: packageTitle,
-                orderCount: orders.length,
-              ),
+            return Column(
+              children: [
+                // Package Header
+                ModernPackageHeader(
+                  packageTitle: 'packageTitle',
+                  orderCount: orders.length,
+                ),
 
-              Gap(8.h),
+                Gap(8.h),
 
-              // Orders List
-              ...orders.map((order) => ModernOrderCard(
+                // Orders List
+                ...orders.map(
+                  (order) => ModernOrderCard(
                     order: order,
                     onTap: () => _navigateToOrderDetails(order),
-                  ),),
+                  ),
+                ),
 
-              Gap(16.h),
-            ],
-          );
-        },
-      ),
-    );
+                Gap(16.h),
+              ],
+            );
+          },
+        ),
+      );
 
   Widget _buildEmptyState(bool isSearching) {
     final t = AppLocalizations.of(context)!;
@@ -225,13 +230,13 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
   }
 
   Widget _buildLoadingState() => ListView.builder(
-      padding: EdgeInsets.symmetric(vertical: 16.h),
-      itemCount: 6,
-      itemBuilder: (context, index) => Container(
-        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-        child: ShimmerClientRow(height: 120.h),
-      ),
-    );
+        padding: EdgeInsets.symmetric(vertical: 16.h),
+        itemCount: 6,
+        itemBuilder: (context, index) => Container(
+          margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          child: ShimmerClientRow(height: 120.h),
+        ),
+      );
 
   Widget _buildErrorState(String error) {
     final t = AppLocalizations.of(context)!;
@@ -272,7 +277,7 @@ class _ModernOrdersViewState extends State<ModernOrdersView> {
           ElevatedButton.icon(
             onPressed: () {
               context.read<OrdersBloc>().add(
-                    OrdersEvent.getOrders(getMore: false),
+                    const OrdersEvent.getOrders(packageId: 1, loadMore: false),
                   );
             },
             icon: const Icon(Icons.refresh),

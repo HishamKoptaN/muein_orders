@@ -18,7 +18,7 @@ part 'docs_state.dart';
 
 @Injectable()
 class DocsBloc extends Bloc<DocsEvent, DocsState> {
-  DocsUseCase docsUseCase;
+  final DocsUseCase docsUseCase;
   List<DocEntity>? _allDocs;
   MetaEntity? _meta;
   GenericFormzInput? _orderId;
@@ -28,6 +28,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
   FileFormzInput? _videoTwo;
   GenericFormzInput? _latitude;
   GenericFormzInput? _longitude;
+  GenericFormzInput? _shippingCosts;
   FormzSubmissionStatus? _formzSubmissionStatus;
   final Map<int, ({DocUploadStatus status, String? progress})> _orderDocStatus =
       {};
@@ -126,7 +127,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
               emitCustomLoaded(emit: emit);
               try {
                 emitCustomLoaded(emit: emit);
-                final result = await docsUseCase.createDoc(
+                final resu = await docsUseCase.createDoc(
                   orderId: _orderId!.value,
                   videoOne: _videoOne!.value!,
                   videoTwo: _videoTwo!.value!,
@@ -134,6 +135,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
                   imageTwo: _imageTwo!.value!,
                   longitude: _longitude!.value!,
                   latitude: _latitude!.value!,
+                  shippingCosts: _shippingCosts!.value!,
                   onSendProgress: (
                     sent,
                     total,
@@ -253,6 +255,10 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
             // }
           },
           getUploadStatusForOrder: () {},
+          updateShippingCosts: (String shippingCosts) {
+            _shippingCosts = GenericFormzInput<String>.dirty(shippingCosts);
+            emitCustomLoaded(emit: emit);
+          },
         );
       },
     );

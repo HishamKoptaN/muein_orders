@@ -6,7 +6,6 @@ import '../../../../../core/networking/api_result.dart';
 import '../../domain/repo/docs_repo.dart';
 import 'dart:async';
 import 'package:location/location.dart';
-
 import '../datasources/docs_api.dart';
 import 'package:injectable/injectable.dart' show Injectable;
 import 'package:mubin_orders/core/error/api_error_handler.dart';
@@ -21,9 +20,9 @@ class DocsRepoImpl implements DocsRepo {
     required this.postsApi,
   });
   @override
-  Future<ApiResult<DocsResEntity?>> getDocs({required int clientId}) async {
+  Future<ApiResult<DocsResEntity?>> getDocs({required int orderId}) async {
     try {
-      final res = await postsApi.getClientDocs(clientId: clientId);
+      final res = await postsApi.getClientDocs(orderId: orderId);
       final result = res?.toEntity();
       return ApiResult.success(
         data: result,
@@ -69,6 +68,7 @@ class DocsRepoImpl implements DocsRepo {
     required File imageTwo,
     required String longitude,
     required String latitude,
+    required String shippingCosts,
     required ProgressCallback? onSendProgress,
   }) async {
     try {
@@ -80,6 +80,7 @@ class DocsRepoImpl implements DocsRepo {
         imageTwo: imageTwo,
         longitude: longitude,
         latitude: latitude,
+        shippingCosts: shippingCosts,
         onSendProgress: onSendProgress,
       );
       final result = res.toEntity();

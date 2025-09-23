@@ -5,11 +5,13 @@ class CustomScaffold extends StatelessWidget {
   Widget? drawer;
 
   Widget? body;
+  Color? backgroundColor;
   CustomScaffold({
     super.key,
     this.appBar,
     this.drawer,
     this.body,
+    this.backgroundColor,
   });
 
   @override
@@ -18,8 +20,9 @@ class CustomScaffold extends StatelessWidget {
       child: Scaffold(
         appBar: appBar,
         drawer: drawer,
+        backgroundColor: backgroundColor ?? Colors.white,
         body: Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             right: 15,
             left: 15,
           ),

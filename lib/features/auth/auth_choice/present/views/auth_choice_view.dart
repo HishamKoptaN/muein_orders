@@ -5,7 +5,7 @@ import '../../../../../core/theme/app_colors.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../sign_in/present/views/sign_in_view.dart';
-import '../../../sign_up/present/sign_up_views.dart';
+import '../../../sign_up/present/views/sign_up_views.dart';
 
 class AuthChoiceView extends StatelessWidget {
   const AuthChoiceView({super.key});

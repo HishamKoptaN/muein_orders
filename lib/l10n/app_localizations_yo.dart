@@ -9,13 +9,19 @@ class AppLocalizationsYo extends AppLocalizations {
   AppLocalizationsYo([String locale = 'yo']) : super(locale);
 
   @override
-  String get upload_videos => 'Gbe awọn fidio';
+  String get upload_videos => 'Ṣe igbasilẹ awọn fidio';
 
   @override
-  String get welcometoMubinOrders => 'Kaabọ si Awọn aṣẹ Mubin';
+  String get welcometoMubinOrders => 'Kaabo si Mobin Talabat';
 
   @override
   String get welcome => 'Kaabo';
+
+  @override
+  String get indevedual => 'olukuluku';
+
+  @override
+  String get indveduals => 'Fokabulari';
 
   @override
   String get wearehappytohaveyoujoinourstore =>
@@ -26,26 +32,27 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Nibi iwọ yoo wa awọn iṣẹ-ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
+      'Nibi iwọ yoo wa awọn iṣẹ ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
 
   @override
-  String get documentationWithPphotosAndVideos =>
+  String get documentationWithPhotosAndVideos =>
       'Iwe pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-      'Rii daju pe awọn aworan jẹ kedere, nọmba awọn ẹda ti Al-Qur\'an, ati awọn idiyele aṣẹ jẹ kedere ṣaaju fifiranṣẹ.';
+      'Rii daju wípé awọn aworan, nọmba awọn ẹda ti Al-Qur\'an Mimọ, ati iye owo aṣẹ ṣaaju fifiranṣẹ.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Inu wa dun lati jẹ ki o darapọ mọ wa!';
+      'Inu wa dun pe o darapọ mọ wa!';
 
   @override
-  String get get_to_know_the_application_interface => 'Gba lati mọ app ni wiwo';
+  String get get_to_know_the_application_interface =>
+      'Gba lati mọ ohun elo ni wiwo';
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Nibi iwọ yoo wa awọn iṣẹ-ṣiṣe, awọn ibeere, awọn itaniji ati awọn asẹ';
+      'Nibi iwọ yoo wa awọn iṣẹ-ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
 
   @override
   String get documentation_with_photos_and_videos =>
@@ -58,13 +65,13 @@ class AppLocalizationsYo extends AppLocalizations {
   String get phone => 'Nomba fonu';
 
   @override
-  String get done => 'Ti ṣe';
+  String get done => 'pari';
 
   @override
-  String get orders => 'Awọn ibere';
+  String get orders => 'Awọn ibeere';
 
   @override
-  String get package => 'Package';
+  String get package => 'akopọ';
 
   @override
   String get there_are_no_results_for_this_search =>
@@ -74,19 +81,25 @@ class AppLocalizationsYo extends AppLocalizations {
   String get documentations => 'Awọn iwe aṣẹ';
 
   @override
-  String get show_documentations => 'Ṣe afihan Awọn iwe aṣẹ';
+  String get show_documentations => 'Wo awọn iwe aṣẹ';
 
   @override
   String get execution_number => 'Nọmba ipaniyan';
 
   @override
-  String get add_documentation => 'Fi iwe kun';
+  String get add_documentation => 'Fi awọn iwe aṣẹ kun';
 
   @override
-  String get location => 'Ipo';
+  String get location => 'ipo';
 
   @override
-  String get count => 'Ka';
+  String get selectLocation => 'Wa';
+
+  @override
+  String get select => 'lati ṣeto';
+
+  @override
+  String get count => 'nọmba';
 
   @override
   String get kinia_name => 'Kenya';
@@ -98,19 +111,22 @@ class AppLocalizationsYo extends AppLocalizations {
   String get tanzania => 'Tanzania';
 
   @override
-  String get home_title => 'Ile';
+  String get home_title => 'ile';
 
   @override
-  String get add_order => 'Fi Bere fun';
+  String get main => 'pataki';
 
   @override
-  String get order_place => 'Ibi';
+  String get add_order => 'Fi ibeere kan kun';
+
+  @override
+  String get order_place => 'ibi';
 
   @override
   String get order_id => 'Paṣẹ ID';
 
   @override
-  String get order_number => 'Nọmba ibere';
+  String get order_number => 'ibere nọmba';
 
   @override
   String get client_id => 'ID onibara';
@@ -122,16 +138,16 @@ class AppLocalizationsYo extends AppLocalizations {
   String get place_hint => 'Abule / Mossalassi / Ile-iwe';
 
   @override
-  String get add_video => 'Fi Fidio kun';
+  String get add_video => 'Fi fidio kun';
 
   @override
-  String get add_picure => 'Fi Aworan kun';
+  String get add_picure => 'Fi aworan kun';
 
   @override
-  String get add => 'Fi kun';
+  String get add => 'Awọn afikun';
 
   @override
-  String get loading => 'Nkojọpọ...';
+  String get loading => 'gbaa lati ayelujara...';
 
   @override
   String get changeLanguage => 'Yi ede pada';
@@ -146,7 +162,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get emailHint => 'Imeeli';
 
   @override
-  String get emailRequired => 'Imeeli wa ni ti beere';
+  String get emailRequired => 'Imeeli beere';
 
   @override
   String get phoneNumberHint => 'Nomba fonu';
@@ -155,7 +171,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get phoneNumber => 'Nomba fonu';
 
   @override
-  String get countryHint => 'Orilẹ-ede';
+  String get countryHint => 'orílẹ̀-èdè';
 
   @override
   String get confirmPasswordHint => 'So ni pato orukoabawole re';
@@ -167,7 +183,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get remember_me => 'Ranti mi';
 
   @override
-  String get log_out => 'Jade jade';
+  String get log_out => 'ifowosi jada';
 
   @override
   String get areYouSure => 'Ṣe o da ọ loju pe o fẹ jade bi?';
@@ -176,19 +192,19 @@ class AppLocalizationsYo extends AppLocalizations {
   String get file_pick_failed => 'Yiyan faili kuna';
 
   @override
-  String get order_saving => 'Nfi aṣẹ pamọ...';
+  String get order_saving => 'Nfipamọ ibeere...';
 
   @override
-  String get order__is_sharing => 'Ilana pinpin...';
+  String get order__is_sharing => 'Ibere ​​fun ikopa...';
 
   @override
-  String get failed => 'O kuna';
+  String get failed => 'lati kuna';
 
   @override
-  String get or => 'Tabi';
+  String get or => 'tabi';
 
   @override
-  String get request_time_out => 'Ibere ​​ti pari';
+  String get request_time_out => 'Ibere ​​​​ti pari.';
 
   @override
   String get change_language => 'Yi ede pada';
@@ -200,22 +216,22 @@ class AppLocalizationsYo extends AppLocalizations {
   String get english => 'English';
 
   @override
-  String get close => 'Sunmọ';
+  String get close => 'Tilekun';
 
   @override
-  String get required => 'Ti beere fun';
+  String get required => 'beere';
 
   @override
-  String get order_added_successfully => 'Ti fikun aṣẹ ni aṣeyọri';
+  String get order_added_successfully => 'A ti fi ibeere naa kun ni aṣeyọri.';
 
   @override
-  String get order_addition_failed => 'Afikun ibere kuna';
+  String get order_addition_failed => 'Ibere ​​afikun kuna';
 
   @override
-  String get country => 'Orilẹ-ede';
+  String get country => 'orílẹ̀-èdè';
 
   @override
-  String get selectCountry => 'Yan Orilẹ-ede';
+  String get selectCountry => 'Yan orilẹ-ede';
 
   @override
   String get passwordsDontMatch => 'Awọn ọrọ igbaniwọle ko baramu';
@@ -224,33 +240,33 @@ class AppLocalizationsYo extends AppLocalizations {
   String get firstNameRequired => 'Orukọ akọkọ ni a nilo';
 
   @override
-  String get secondNameRequired => 'Orukọ keji ni a nilo';
+  String get secondNameRequired => 'Orukọ keji nilo';
 
   @override
   String get reset_link_sent => 'Tun ọna asopọ ti firanṣẹ';
 
   @override
   String get enter_valid_email_password =>
-      'Tẹ imeeli to wulo ati ọrọ igbaniwọle sii';
+      'Tẹ adirẹsi imeeli to wulo ati ọrọ igbaniwọle sii.';
 
   @override
   String get invalidEmail => 'Imeeli ti ko tọ';
 
   @override
-  String get phoneRequired => 'Nọmba foonu ti wa ni ti beere';
+  String get phoneRequired => 'Nọmba foonu ti a beere';
 
   @override
   String get passwordRequired => 'Ọrọigbaniwọle nilo';
 
   @override
   String get passwordMinLength =>
-      'Ọrọigbaniwọle gbọdọ jẹ o kere ju awọn ohun kikọ 8';
+      'Ọrọigbaniwọle gbọdọ jẹ o kere ju awọn ohun kikọ 8 gun.';
 
   @override
-  String get confirmPasswordRequired => 'Jẹrisi ọrọ igbaniwọle ti nilo';
+  String get confirmPasswordRequired => 'Imudaniloju ọrọ igbaniwọle nilo';
 
   @override
-  String get alreadyHaveAnAccount => 'Ti ni iroyin tẹlẹ?';
+  String get alreadyHaveAnAccount => 'Ṣe o ti ni akọọlẹ tẹlẹ?';
 
   @override
   String get confirmYourPassword => 'Jẹrisi ọrọ igbaniwọle rẹ';
@@ -259,7 +275,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get request_saving => 'Nfipamọ ibeere...';
 
   @override
-  String get order_is_sharing => 'Ilana pinpin...';
+  String get order_is_sharing => 'Ibere ​​fun ikopa...';
 
   @override
   String get successfully => 'Ni aṣeyọri';
@@ -268,7 +284,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get data_dont_saved => 'Data ko ni ipamọ';
 
   @override
-  String get data_saved => 'Ti fipamọ data';
+  String get data_saved => 'Ti o ti fipamọ data';
 
   @override
   String get order_id_exists => 'ID ibere ti wa tẹlẹ';
@@ -277,19 +293,19 @@ class AppLocalizationsYo extends AppLocalizations {
   String get select_files => 'Yan awọn faili';
 
   @override
-  String get camera => 'Kamẹra';
+  String get camera => 'kamẹra';
 
   @override
-  String get gallery => 'Ile aworan';
+  String get gallery => 'Fọto Gallery';
 
   @override
-  String get cant_be_embty => 'Ko le sofo';
+  String get cant_be_embty => 'Ko le sofo.';
 
   @override
   String get please_enter_all_data => 'Jọwọ tẹ gbogbo data sii';
 
   @override
-  String get ok => 'O DARA';
+  String get ok => 'Bẹẹni';
 
   @override
   String get swahili_kenya => 'Swahili - Kenya';
@@ -304,7 +320,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get retry => 'Tun gbiyanju';
 
   @override
-  String get unexpected_error => 'Aṣiṣe airotẹlẹ waye';
+  String get unexpected_error => 'Aṣiṣe airotẹlẹ waye.';
 
   @override
   String get notHaveAccount => 'Ṣe ko ni akọọlẹ kan?';
@@ -314,75 +330,84 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get enterYourEmailToResetPassword =>
-      'Tẹ imeeli rẹ sii lati gba ọna asopọ atunto ọrọ igbaniwọle wọle';
+      'Tẹ imeeli rẹ sii lati gba ọna asopọ atunto ọrọ igbaniwọle kan.';
 
   @override
-  String get follow => 'Tẹle';
+  String get follow => 'O tẹle';
 
   @override
   String get confirm_password_hint => 'So ni pato orukoabawole re';
 
   @override
-  String get instead => 'Dipo';
+  String get instead => 'dipo';
 
   @override
   String get skip => 'Rekọja';
 
   @override
-  String get next => 'Itele';
+  String get next => 'tókàn';
 
   @override
-  String get errorLoadingOnboarding => 'Aṣiṣe ikojọpọ akoonu lori wiwọ';
+  String get not_have_account => 'Ṣe ko ni akọọlẹ kan?';
 
   @override
-  String get onboardingWelcomeTitle => 'Kaabọ si Awọn aṣẹ Mubin';
+  String get errorLoadingOnboarding =>
+      'Aṣiṣe waye lakoko ikojọpọ akoonu itọsọna naa.';
+
+  @override
+  String get onboardingWelcomeTitle => 'Kaabo si Mobin Talabat';
 
   @override
   String get onboardingWelcomeDescription =>
-      'Ojutu pipe rẹ fun iṣakoso awọn aṣẹ ati iwe';
+      'Ojutu okeerẹ fun iṣakoso aṣẹ ati iwe';
 
   @override
-  String get onboardingTrackingTitle => 'Tọpa Awọn aṣẹ Rẹ';
+  String get onboardingTrackingTitle => 'Tọpa awọn ibere rẹ';
 
   @override
   String get onboardingTrackingDescription =>
-      'Ṣe abojuto awọn aṣẹ rẹ ni akoko gidi pẹlu eto ipasẹ ogbon inu wa';
+      'Ṣe abojuto awọn aṣẹ rẹ ni akoko gidi pẹlu eto ipasẹ ogbon inu wa.';
 
   @override
   String get onboardingDocumentsTitle => 'Isakoso iwe';
 
   @override
   String get onboardingDocumentsDescription =>
-      'Tọju ati wọle si gbogbo awọn iwe aṣẹ pataki rẹ ni ibi aabo kan';
+      'Tọju ati wọle si gbogbo awọn iwe aṣẹ pataki rẹ ni ibi aabo kan.';
 
   @override
-  String get help => 'Egba Mi O';
+  String get help => 'Iranlọwọ';
 
   @override
   String get settings => 'Eto';
 
   @override
-  String get createAccount => 'Se akanti fun ra re';
+  String get createAccount => 'Ṣẹda akọọlẹ kan';
 
   @override
-  String get alreadyHaveAccount => 'Ti ni iroyin tẹlẹ?';
+  String passwordResetEmailSentTo(Object email) {
+    return 'Imeeli atunto ọrọ igbaniwọle ti ti fi ranṣẹ si $email.';
+  }
+
+  @override
+  String get alreadyHaveAccount => 'Ṣe o ti ni akọọlẹ tẹlẹ?';
 
   @override
   String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Rii daju pe awọn aworan jẹ kedere ati pe nọmba awọn ẹda Qur\'\'\'\'an jẹ deede ṣaaju fifiranṣẹ';
+      'Rii daju wípé awọn aworan ati nọmba to pe ti awọn ẹda Al-Qur\'an Mimọ ṣaaju fifiranṣẹ';
 
   @override
-  String get signUp => 'Forukọsilẹ';
+  String get signUp => 'ṣiṣe alabapin';
 
   @override
   String get apPasswordResetLinkHasBeenSentToYourEmail =>
-      'Ọna asopọ atunto ọrọ igbaniwọle ti firanṣẹ si imeeli rẹ';
+      'Ọna asopọ atunto ọrọ igbaniwọle ti firanṣẹ si imeeli rẹ.';
 
   @override
-  String get signUpTitle => 'Ṣẹda Account Tuntun';
+  String get signUpTitle => 'Ṣẹda iroyin titun';
 
   @override
-  String get firstName => 'Orukọ akọkọ';
+  String get firstName => 'orukọ akọkọ';
 
   @override
   String get lastName => 'Oruko idile';
@@ -394,57 +419,88 @@ class AppLocalizationsYo extends AppLocalizations {
   String get accountCreated => 'A ṣẹda akọọlẹ ni aṣeyọri';
 
   @override
-  String get start => 'Bẹrẹ';
+  String get start => 'O bẹrẹ';
 
   @override
-  String get errorCreatingAccount => 'Aṣiṣe ṣiṣẹda iroyin';
+  String get errorCreatingAccount => 'Aṣiṣe ẹda iroyin';
 
   @override
-  String get password => 'Ọrọigbaniwọle';
+  String get password => 'ọrọigbaniwọle';
 
   @override
-  String get forgotPassword => 'Gbagbe ọrọ aṣina bi?';
+  String get forgotPassword => 'Gbagbe oruku abawole re?';
 
   @override
-  String get selectLanguage => 'Yan Ede';
+  String get selectLanguage => 'Yan ede';
 
   @override
-  String get name => 'Oruko';
+  String get name => 'oruko';
 
   @override
   String get welcomeLine1 => 'Kaabo';
 
   @override
-  String get welcomeLine2 => 'Si';
+  String get welcomeLine2 => 'si';
 
   @override
-  String get signIn => 'Wọle';
+  String get signIn => 'Wo ile';
 
   @override
-  String get followUp => 'Ran leti';
+  String get followUp => 'ipasẹ';
 
   @override
   String get aLinkWillBeSentToYouToResetYourPassword =>
-      'Ọna asopọ kan yoo ranṣẹ si ọ lati tun ọrọ igbaniwọle rẹ tunto';
+      'Ọna asopọ kan yoo ranṣẹ si ọ lati tun ọrọ igbaniwọle rẹ tunto.';
 
   @override
   String get onboardingPage1Title => 'Kaabo';
 
   @override
   String get onboardingPage1Description =>
-      'Inu wa dun lati ni ki o darapọ mọ Ile itaja Mubeen';
+      'Inu wa dun lati jẹ ki o darapọ mọ ile itaja wa.';
 
   @override
-  String get onboardingPage2Title => 'Iwari App Interface';
+  String get onboardingPage2Title => 'Ye app ni wiwo';
 
   @override
   String get onboardingPage2Description =>
-      'Nibi iwọ yoo wa awọn iṣẹ ṣiṣe, awọn aṣẹ, awọn titaniji, ati awọn asẹ';
+      'Nibi iwọ yoo wa awọn iṣẹ-ṣiṣe, awọn aṣẹ, awọn itaniji, ati awọn asẹ.';
 
   @override
-  String get onboardingPage3Title => 'Iwe pẹlu Awọn fọto ati awọn fidio';
+  String get aPasswordResetLinkHasBeenSentToYourEmail =>
+      'Ọna asopọ atunto ọrọ igbaniwọle ti firanṣẹ si imeeli rẹ.';
+
+  @override
+  String get onboardingPage3Title => 'Iwe pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get onboardingPage3Description =>
-      'Rii daju pe awọn aworan han kedere ati pe nọmba awọn ẹda Qur\'\'\'\'an jẹ deede ṣaaju fifiranṣẹ';
+      'Rii daju wípé awọn aworan ati nọmba to pe ti awọn ẹda Al-Qur\'an Mimọ ṣaaju fifiranṣẹ';
+
+  @override
+  String get sticker => 'panini';
+
+  @override
+  String get finished => 'pari';
+
+  @override
+  String get current => 'Lọwọlọwọ';
+
+  @override
+  String get inProgress => 'Lọwọlọwọ';
+
+  @override
+  String get theEnd => 'Ipari';
+
+  @override
+  String get noOrders => 'Ko si ibeere';
+
+  @override
+  String get documented => 'Ti ṣe akọsilẹ';
+
+  @override
+  String get order => 'lati beere';
+
+  @override
+  String get welcomeLine => 'Kaabo si';
 }

@@ -1,4 +1,5 @@
 part of 'docs_bloc.dart';
+
 @freezed
 class DocsEvent with _$DocsEvent {
   const factory DocsEvent.getDocs({required int orderId}) = _GetDocs;
@@ -16,12 +17,10 @@ class DocsEvent with _$DocsEvent {
     required String latitude,
     required String longitude,
   }) = _UpdateLocation;
+  const factory DocsEvent.updateShippingCosts({
+    required String shippingCosts,
+  }) = _UpdateShippingCosts;
   const factory DocsEvent.createDoc() = _CreateDoc;
   const factory DocsEvent.resumePendingUploads() = _ResumePendingUploads;
   const factory DocsEvent.getUploadStatusForOrder() = _GetUploadStatusForOrder;
-}
-
-enum FileType {
-  image,
-  video,
 }

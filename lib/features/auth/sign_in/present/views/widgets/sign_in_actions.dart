@@ -5,7 +5,7 @@ import 'package:formz/formz.dart';
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../../l10n/app_localizations.dart';
-import '../../../../sign_up/present/sign_up_views.dart';
+import '../../../../sign_up/present/views/sign_up_views.dart';
 import '../../bloc/sign_in_bloc.dart';
 
 class SignInActions extends StatelessWidget {

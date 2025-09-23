@@ -3,13 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final PreferredSize? bottom;
 
-  const CustomAppBar({super.key, required this.title});
+  const CustomAppBar({super.key, required this.title, this.bottom});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
+      backgroundColor: Colors.white,
       title: Text(
         title,
         style: TextStyle(
@@ -18,6 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
+      bottom: bottom,
       // leading: IconButton(
       //     icon: const Icon(Icons.notifications_none),
       //     onPressed: () {},
@@ -42,5 +45,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

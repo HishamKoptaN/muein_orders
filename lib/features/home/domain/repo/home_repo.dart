@@ -1,6 +1,6 @@
-import 'package:mubin_orders/core/networking/api_result.dart';
-import '../entities/home_summary.dart';
+import '../../../../core/networking/api_result.dart';
+import '../entities/order_type_res_entity.dart';
 
 abstract class HomeRepo {
-  Future<ApiResult<HomeSummary>> getHomeSummary();
+  Future<ApiResult<List<OrderTypeResEntity>>> getSummary();
 }

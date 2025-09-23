@@ -20,7 +20,7 @@ class _DocsApi implements DocsApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<DocsResModel?> getClientDocs({required int clientId}) async {
+  Future<DocsResModel?> getClientDocs({required int orderId}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -29,7 +29,7 @@ class _DocsApi implements DocsApi {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/docs/${clientId}',
+            '/docs/${orderId}',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -56,6 +56,7 @@ class _DocsApi implements DocsApi {
     required File imageTwo,
     required String longitude,
     required String latitude,
+    required String shippingCosts,
     required void Function(int, int)? onSendProgress,
   }) async {
     final _extra = <String, dynamic>{};
@@ -102,6 +103,7 @@ class _DocsApi implements DocsApi {
     );
     _data.fields.add(MapEntry('longitude', longitude));
     _data.fields.add(MapEntry('latitude', latitude));
+    _data.fields.add(MapEntry('shipping_costs', shippingCosts));
     final _options = _setStreamType<Doc>(
       Options(
         method: 'POST',

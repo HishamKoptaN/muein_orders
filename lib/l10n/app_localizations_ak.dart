@@ -9,13 +9,19 @@ class AppLocalizationsAk extends AppLocalizations {
   AppLocalizationsAk([String locale = 'ak']) : super(locale);
 
   @override
-  String get upload_videos => 'Fa Video ahorow gu so';
+  String get upload_videos => 'Twe video ahorow';
 
   @override
-  String get welcometoMubinOrders => 'Yɛma wo akwaaba ba Mubin Orders';
+  String get welcometoMubinOrders => 'Yɛma wo akwaaba ba Mobin Talabat';
 
   @override
   String get welcome => 'Akwaaba';
+
+  @override
+  String get indevedual => 'ankorɛankorɛ';
+
+  @override
+  String get indveduals => 'Asɛmfua';
 
   @override
   String get wearehappytohaveyoujoinourstore =>
@@ -30,65 +36,71 @@ class AppLocalizationsAk extends AppLocalizations {
       'Ɛha na wobɛhunu nnwuma, abisadeɛ, kɔkɔbɔ, ne filters.';
 
   @override
-  String get documentationWithPphotosAndVideos =>
+  String get documentationWithPhotosAndVideos =>
       'Nwoma a wɔde mfonini ne video ahorow ayɛ';
 
   @override
   String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-      'Hwɛ sɛ mfonini ahorow no mu da hɔ, Kur’aan no dodow, ne ɛka a wɔbɔ wɔ nneɛma a wɔkra ho no mu da hɔ ansa na wode amena.';
+      'Hwɛ sɛ mfonini ahorow no mu da hɔ, Kuran Kronkron no dodow, ne ɛka a wɔbɔ wɔ nea wɔkra no ho ansa na wode amena.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Yɛn ani agye sɛ moabɛka yɛn ho!';
+      'Yɛn ani agye sɛ mobɛkaa yɛn ho!';
 
   @override
   String get get_to_know_the_application_interface =>
-      'Hu app no ​​interface no';
+      'Hu application no ntam nkitahodi';
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Ɛha na wobɛhunu nnwuma, abisadeɛ, kɔkɔbɔ ne filters';
+      'Ɛha na wobɛhunu nnwuma, abisadeɛ, kɔkɔbɔ, ne filters.';
 
   @override
   String get documentation_with_photos_and_videos =>
       'Nwoma a wɔde mfonini ne video ahorow ayɛ';
 
   @override
-  String get send => 'Mane';
+  String get send => 'Ɔsoma';
 
   @override
-  String get phone => 'Telefon Nnɔmba';
+  String get phone => 'Telefon nɔma';
 
   @override
-  String get done => 'Mawie';
+  String get done => 'wieeɛ';
 
   @override
-  String get orders => 'Nneɛma a wɔkra';
+  String get orders => 'Abisade ahorow';
 
   @override
-  String get package => 'Boadeɛ';
+  String get package => 'hyehyɛ';
 
   @override
   String get there_are_no_results_for_this_search =>
       'Wonhuu nea efii nhwehwɛmu yi mu bae biara';
 
   @override
-  String get documentations => 'Nwoma a Wɔakyerɛw';
+  String get documentations => 'Nwoma a wɔde kyerɛw';
 
   @override
-  String get show_documentations => 'Kyerɛ Nwoma a Wɔakyerɛw';
+  String get show_documentations => 'Hwɛ nkrataa ahorow';
 
   @override
-  String get execution_number => 'Nnɔmba a Wɔde Kum Nnipa';
+  String get execution_number => 'Nnɔmba a wɔde kum obi';
 
   @override
-  String get add_documentation => 'Fa Nwoma Ka ho';
+  String get add_documentation => 'Fa nkrataa ka ho';
 
   @override
-  String get location => 'Beaeɛ';
+  String get location => 'beaeɛ';
 
   @override
-  String get count => 'Kan';
+  String get selectLocation => 'Hwehwɛ baabi a wowɔ';
+
+  @override
+  String get select => 'sɛ wɔde besi hɔ';
+
+  @override
+  String get count => 'nɔma';
 
   @override
   String get kinia_name => 'Kenya';
@@ -100,43 +112,46 @@ class AppLocalizationsAk extends AppLocalizations {
   String get tanzania => 'Tanzania na ɛwɔ hɔ';
 
   @override
-  String get home_title => 'Fie';
+  String get home_title => 'fie';
 
   @override
-  String get add_order => 'Fa Order ka ho';
+  String get main => 'titire';
 
   @override
-  String get order_place => 'Beaeɛ';
+  String get add_order => 'Fa abisade bi ka ho';
+
+  @override
+  String get order_place => 'beaeɛ';
 
   @override
   String get order_id => 'ID a wɔde kra nneɛma';
 
   @override
-  String get order_number => 'Nnɔmba a Wɔde Kɔma';
+  String get order_number => 'nɔma a wɔde kra nneɛma';
 
   @override
   String get client_id => 'Adetɔfo ID';
 
   @override
-  String get enter_order_id => 'Hyehyɛ Order ID no mu';
+  String get enter_order_id => 'Hyehyɛ order ID no mu';
 
   @override
   String get place_hint => 'Akuraa/Asɔredan/Sukuu';
 
   @override
-  String get add_video => 'Fa Video ka ho';
+  String get add_video => 'Fa video ka ho';
 
   @override
-  String get add_picure => 'Fa Mfonini Ka Ho';
+  String get add_picure => 'Fa mfonini bi ka ho';
 
   @override
-  String get add => 'Fa ka ho';
+  String get add => 'Ɔde ka ho';
 
   @override
-  String get loading => 'Loading...';
+  String get loading => 'twe...';
 
   @override
-  String get changeLanguage => 'Sesa Kasa';
+  String get changeLanguage => 'Sesa kasa';
 
   @override
   String get login_text => 'Kɔ mu';
@@ -148,76 +163,76 @@ class AppLocalizationsAk extends AppLocalizations {
   String get emailHint => 'Email a wɔde mena';
 
   @override
-  String get emailRequired => 'Ɛho hia sɛ wɔde email mena';
+  String get emailRequired => 'Email ho hia';
 
   @override
-  String get phoneNumberHint => 'Telefon Nnɔmba';
+  String get phoneNumberHint => 'Telefon nɔma';
 
   @override
-  String get phoneNumber => 'Telefon Nnɔmba';
+  String get phoneNumber => 'Telefon nɔma';
 
   @override
-  String get countryHint => 'Ɔman';
+  String get countryHint => 'ɔman';
 
   @override
-  String get confirmPasswordHint => 'Si Password no so dua';
+  String get confirmPasswordHint => 'Si password no so dua';
 
   @override
-  String get confirmPassword => 'Si Password no so dua';
+  String get confirmPassword => 'Si password no so dua';
 
   @override
-  String get remember_me => 'Kae Me';
+  String get remember_me => 'Kae me';
 
   @override
-  String get log_out => 'Fi Wo Fi Mu';
+  String get log_out => 'Fa wo nsa hyɛ ase';
 
   @override
   String get areYouSure => 'So wugye di sɛ wopɛ sɛ wufi mu?';
 
   @override
-  String get file_pick_failed => 'Fael a wɔpaw no adi nkogu';
+  String get file_pick_failed => 'Fael a wɔpaw no antumi';
 
   @override
-  String get order_saving => 'Sikakorabea nhyehyɛe...';
+  String get order_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order__is_sharing => 'Kyɛfa nhyehyɛe...';
+  String get order__is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
 
   @override
-  String get failed => 'Dii nkoguo';
+  String get failed => 'sɛ wobedi nkogu';
 
   @override
-  String get or => 'Anaasɛ';
+  String get or => 'anaasɛ';
 
   @override
-  String get request_time_out => 'Abisade no bere atwam';
+  String get request_time_out => 'Abisade no atwam.';
 
   @override
-  String get change_language => 'Sesa Kasa';
+  String get change_language => 'Sesa kasa';
 
   @override
-  String get arabic => 'Arabic kasa';
+  String get arabic => 'Arabfoɔ';
 
   @override
   String get english => 'Borɔfo';
 
   @override
-  String get close => 'To mu';
+  String get close => 'Wɔto mu';
 
   @override
-  String get required => 'Ɛhia';
+  String get required => 'ɛhia';
 
   @override
-  String get order_added_successfully => 'Order de kaa ho yiye';
+  String get order_added_successfully => 'Wɔde abisade no aka ho yiye.';
 
   @override
-  String get order_addition_failed => 'Order a wɔde kaa ho no antumi anyɛ yiye';
+  String get order_addition_failed => 'Abisade a wɔde bɛka ho no antumi';
 
   @override
-  String get country => 'Ɔman';
+  String get country => 'ɔman';
 
   @override
-  String get selectCountry => 'Paw Ɔman';
+  String get selectCountry => 'Paw ɔman';
 
   @override
   String get passwordsDontMatch => 'Passwords nhyia';
@@ -226,32 +241,33 @@ class AppLocalizationsAk extends AppLocalizations {
   String get firstNameRequired => 'Edin a edi kan a wɔhwehwɛ';
 
   @override
-  String get secondNameRequired => 'Edin a ɛto so abien na wɔhwehwɛ';
+  String get secondNameRequired => 'Edin a ɛto so abien a wɔhwehwɛ';
 
   @override
   String get reset_link_sent => 'Reset link a wɔde amena';
 
   @override
-  String get enter_valid_email_password => 'Hyehyɛ email ne password a ɛfata';
+  String get enter_valid_email_password =>
+      'Hyehyɛ email address ne password a ɛfata.';
 
   @override
   String get invalidEmail => 'Email a ɛnteɛ';
 
   @override
-  String get phoneRequired => 'Telefon nɔma na wɔhwehwɛ';
+  String get phoneRequired => 'Telefon nɔma a wɔhwehwɛ';
 
   @override
-  String get passwordRequired => 'Password ho hia';
+  String get passwordRequired => 'Password a wɔhwehwɛ';
 
   @override
   String get passwordMinLength =>
-      'Anyɛ yiye koraa no, ɛsɛ sɛ password no yɛ nkyerɛwde 8';
+      'Anyɛ yiye koraa no, ɛsɛ sɛ password no tenten yɛ nkyerɛwde 8.';
 
   @override
-  String get confirmPasswordRequired => 'Confirm password no ho hia';
+  String get confirmPasswordRequired => 'Password a wɔde si so dua ho hia';
 
   @override
-  String get alreadyHaveAnAccount => 'Wowɔ akontaabu dedaw?';
+  String get alreadyHaveAnAccount => 'So wowɔ akontaabu dedaw?';
 
   @override
   String get confirmYourPassword => 'Si wo password no so dua';
@@ -260,7 +276,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get request_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order_is_sharing => 'Kyɛfa nhyehyɛe...';
+  String get order_is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
 
   @override
   String get successfully => 'Ɛyɛɛ yiye';
@@ -269,7 +285,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get data_dont_saved => 'Data a wɔankora so';
 
   @override
-  String get data_saved => 'Data a wɔakora so';
+  String get data_saved => 'Data a wɔde asie';
 
   @override
   String get order_id_exists => 'Order ID wɔ hɔ dedaw';
@@ -278,19 +294,19 @@ class AppLocalizationsAk extends AppLocalizations {
   String get select_files => 'Paw fael ahorow';
 
   @override
-  String get camera => 'Mfoninitwa afiri';
+  String get camera => 'mfoninitwa afiri';
 
   @override
-  String get gallery => 'Nneɛma a wɔde kyerɛ';
+  String get gallery => 'Mfonini a Wɔde Yɛ Mfonini';
 
   @override
-  String get cant_be_embty => 'Entumi nyɛ nea hwee nni mu';
+  String get cant_be_embty => 'Ɛrentumi nyɛ hunu.';
 
   @override
   String get please_enter_all_data => 'Yɛsrɛ sɛ kyerɛw data nyinaa';
 
   @override
-  String get ok => 'YOO';
+  String get ok => 'Aane';
 
   @override
   String get swahili_kenya => 'Swahili kasa - Kenya kasa';
@@ -305,89 +321,97 @@ class AppLocalizationsAk extends AppLocalizations {
   String get retry => 'San bɔ mmɔden bio';
 
   @override
-  String get unexpected_error => 'Mfomso a na wɔnhwɛ kwan sii';
+  String get unexpected_error => 'Mfomso bi a na wɔnhwɛ kwan sii.';
 
   @override
-  String get notHaveAccount => 'Won\'\'\'\'nnya akontaabu?';
+  String get notHaveAccount => 'Wonni akontaabu biara?';
 
   @override
   String get passwordsDoNotMatch => 'Passwords nhyia';
 
   @override
   String get enterYourEmailToResetPassword =>
-      'Hyehyɛ wo email na woanya password reset link';
+      'Hyehyɛ wo email na woanya password reset link.';
 
   @override
-  String get follow => 'Di akyire';
+  String get follow => 'Ɔdi n’akyi';
 
   @override
   String get confirm_password_hint => 'Si password no so dua';
 
   @override
-  String get instead => 'Sɛ anka';
+  String get instead => 'sɛ anka';
 
   @override
   String get skip => 'Bɔ tra';
 
   @override
-  String get next => 'Deɛ ɛdi hɔ';
+  String get next => 'nea edi hɔ no';
+
+  @override
+  String get not_have_account => 'Wonni akontaabu biara?';
 
   @override
   String get errorLoadingOnboarding =>
-      'Mfomso a ɛwɔ onboarding nsɛm a wɔde rehyɛ mu no mu';
+      'Mfomso bi sii bere a wɔrehyɛ akwankyerɛ no mu nsɛm no mu.';
 
   @override
-  String get onboardingWelcomeTitle => 'Yɛma wo akwaaba ba Mubin Orders';
+  String get onboardingWelcomeTitle => 'Yɛma wo akwaaba ba Mobin Talabat';
 
   @override
   String get onboardingWelcomeDescription =>
-      'Wo ano aduru a edi mũ a wode hwɛ nneɛma a wɔkra ne nkrataa so';
+      'Ano aduru a edi mũ a wɔde hwɛ nneɛma a wɔkra ne nkrataa a wɔkyerɛw so';
 
   @override
-  String get onboardingTrackingTitle => 'Track Wo Orders no akyi';
+  String get onboardingTrackingTitle => 'Di w’ahyɛde ahorow akyi';
 
   @override
   String get onboardingTrackingDescription =>
-      'Hwɛ wo orders wɔ bere ankasa mu denam yɛn intuitive tracking nhyehyɛe no so';
+      'Hwɛ wo orders wɔ bere ankasa mu denam yɛn intuitive tracking nhyehyɛe.';
 
   @override
-  String get onboardingDocumentsTitle => 'Nwoma a Wɔde Di Dwuma';
+  String get onboardingDocumentsTitle => 'Nwoma a wɔde di dwuma';
 
   @override
   String get onboardingDocumentsDescription =>
-      'Fa wo nkrataa a ɛho hia nyinaa sie na kɔ baabiara a ahobammɔ wɔ';
+      'Fa wo nkrataa a ɛho hia nyinaa sie na kɔ baabiara a ahobammɔ wɔ.';
 
   @override
-  String get help => 'Boa';
+  String get help => 'Ɛboa';
 
   @override
   String get settings => 'Nsiesiei a Wɔde Yɛ Adwuma';
 
   @override
-  String get createAccount => 'Yɛ Akontaabu';
+  String get createAccount => 'Yɛ akontaabu';
 
   @override
-  String get alreadyHaveAccount => 'Wowɔ akontaabu dedaw?';
+  String passwordResetEmailSentTo(Object email) {
+    return 'Wɔde password reset email akɔma $email.';
+  }
+
+  @override
+  String get alreadyHaveAccount => 'So wowɔ akontaabu dedaw?';
 
   @override
   String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Hwɛ sɛ mfonini ahorow no mu da hɔ na Kur\'\'\'\'an mfonini dodow no teɛ ansa na wode amena';
+      'Hwɛ sɛ mfonini ahorow no mu da hɔ na Kuran Kronkron no dodow a ɛfata ansa na wode amena';
 
   @override
-  String get signUp => 'Kyerɛw wo din';
+  String get signUp => 'nkrataahyɛ a wɔde kra';
 
   @override
   String get apPasswordResetLinkHasBeenSentToYourEmail =>
-      'Wɔde password reset link bi akɔ wo email so';
+      'Wɔde password reset link bi akɔ wo email so.';
 
   @override
-  String get signUpTitle => 'Yɛ Akontaabu Foforo';
+  String get signUpTitle => 'Yɛ akontaabu foforo';
 
   @override
-  String get firstName => 'Fie din';
+  String get firstName => 'fie din';
 
   @override
-  String get lastName => 'Abusuadin';
+  String get lastName => 'abusuadin';
 
   @override
   String get fieldRequired => 'Saa afuw yi na wɔhwehwɛ';
@@ -396,57 +420,88 @@ class AppLocalizationsAk extends AppLocalizations {
   String get accountCreated => 'Akontaabu a wɔyɛe no yiye';
 
   @override
-  String get start => 'Hyɛ aseɛ';
+  String get start => 'Efi ase';
 
   @override
-  String get errorCreatingAccount => 'Mfomso a ɛba bere a wɔrebɔ akontaabu';
+  String get errorCreatingAccount => 'Mfomso a ɛfa akontaabu a wɔbɔe ho';
 
   @override
-  String get password => 'Paswɛde';
+  String get password => 'paswɛde';
 
   @override
-  String get forgotPassword => 'Wo werɛ afi Password?';
+  String get forgotPassword => 'Wo werɛ afi wo password?';
 
   @override
-  String get selectLanguage => 'Paw Kasa';
+  String get selectLanguage => 'Paw kasa';
 
   @override
-  String get name => 'Din';
+  String get name => 'din';
 
   @override
   String get welcomeLine1 => 'Akwaaba';
 
   @override
-  String get welcomeLine2 => 'Kɔ';
+  String get welcomeLine2 => 'kɔ';
 
   @override
-  String get signIn => 'Hyehyɛ Mu';
+  String get signIn => 'Kɔ mu';
 
   @override
-  String get followUp => 'Di akyire';
+  String get followUp => 'tracking a wɔde di dwuma';
 
   @override
   String get aLinkWillBeSentToYouToResetYourPassword =>
-      'Wɔde link bi bɛmena wo sɛ wobɛsan asiesie wo password no';
+      'Wɔde link bi bɛmena wo sɛ wobɛsan asiesie wo password no.';
 
   @override
   String get onboardingPage1Title => 'Akwaaba';
 
   @override
   String get onboardingPage1Description =>
-      'Yɛn ani agye sɛ yɛakɔka Mubeen Store ho';
+      'Yɛn ani agye sɛ yɛama woabɛka yɛn sotɔɔ no ho.';
 
   @override
-  String get onboardingPage2Title => 'Hwehwɛ App Interface no mu';
+  String get onboardingPage2Title => 'Hwehwɛ app no ​​interface no mu';
 
   @override
   String get onboardingPage2Description =>
-      'Ɛha na wobɛhunu nnwuma, ahyɛdeɛ, kɔkɔbɔ, ne nsusuiɛ';
+      'Ɛha na wobɛhunu nnwuma, ahyɛdeɛ, kɔkɔbɔ, ne filters.';
 
   @override
-  String get onboardingPage3Title => 'Nwoma a Wɔde Mfonini ne Video Ayɛ';
+  String get aPasswordResetLinkHasBeenSentToYourEmail =>
+      'Wɔde password reset link bi akɔ wo email so.';
+
+  @override
+  String get onboardingPage3Title => 'Nwoma a wɔde mfonini ne video ahorow ayɛ';
 
   @override
   String get onboardingPage3Description =>
-      'Hwɛ sɛ mfonini ahorow no mu da hɔ na Kur\'\'\'\'an mfonini dodow no teɛ ansa na wode amena';
+      'Hwɛ sɛ mfonini ahorow no mu da hɔ na Kuran Kronkron no dodow a ɛfata ansa na wode amena';
+
+  @override
+  String get sticker => 'poster a wɔde kyerɛw nsɛm';
+
+  @override
+  String get finished => 'wieeɛ';
+
+  @override
+  String get current => 'Foforɔ';
+
+  @override
+  String get inProgress => 'Foforɔ';
+
+  @override
+  String get theEnd => 'Awiei no';
+
+  @override
+  String get noOrders => 'Adesrɛ biara nni hɔ';
+
+  @override
+  String get documented => 'Wɔakyerɛw ho asɛm';
+
+  @override
+  String get order => 'sɛ wobɛbisa';
+
+  @override
+  String get welcomeLine => 'Yɛma wo akwaaba ba';
 }

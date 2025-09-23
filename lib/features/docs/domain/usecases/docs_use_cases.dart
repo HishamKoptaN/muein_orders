@@ -4,16 +4,16 @@ import 'package:dio/dio.dart';
 import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../repo/docs_repo.dart';
-import 'package:injectable/injectable.dart' show LazySingleton;
+import 'package:injectable/injectable.dart';
 
-@LazySingleton()
+@injectable
 class DocsUseCase {
   final DocsRepo ordersRepo;
   DocsUseCase({
     required this.ordersRepo,
   });
   Future<ApiResult<DocsResEntity?>> getDocs({required int orderId}) async {
-    return await ordersRepo.getDocs(clientId: orderId);
+    return await ordersRepo.getDocs(orderId: orderId);
   }
 
   Future<({double lat, double lng})> getCurrentLocation() {
@@ -28,6 +28,7 @@ class DocsUseCase {
     required File imageTwo,
     required String longitude,
     required String latitude,
+    required String shippingCosts,
     required ProgressCallback? onSendProgress,
   }) async {
     return await ordersRepo.createDoc(
@@ -38,6 +39,7 @@ class DocsUseCase {
       imageTwo: imageTwo,
       longitude: longitude,
       latitude: latitude,
+      shippingCosts: shippingCosts,
       onSendProgress: onSendProgress,
     );
   }
