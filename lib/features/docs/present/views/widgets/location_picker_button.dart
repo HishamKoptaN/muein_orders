@@ -9,27 +9,49 @@ import 'pick_location_view.dart';
 class LocationPickerButton extends StatelessWidget {
   const LocationPickerButton({
     super.key,
+    required this.latitude,
+    required this.longitude,
   });
+  final String? latitude;
+  final String? longitude;
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
+    final hasLocation = latitude != null && longitude != null;
+    final locationText =
+        hasLocation ? '$latitude, $longitude' : t.selectLocation;
     return Row(
       children: [
         Expanded(
           child: Container(
             height: 60,
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.2),
+              color: hasLocation
+                  ? Colors.green.withOpacity(0.1)
+                  : Colors.grey.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(15),
             ),
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              t.selectLocation,
-              style: const TextStyle(
-                fontFamily: 'Almarai',
-                fontSize: 16,
-                color: Color(0xFFBABABA),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    locationText,
+                    style: TextStyle(
+                      fontFamily: 'Almarai',
+                      fontSize: 16,
+                      color:
+                          hasLocation ? Colors.black : const Color(0xFFBABABA),
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ),
+                if (hasLocation)
+                  const Icon(Icons.check_circle, color: Colors.green),
+              ],
             ),
           ),
         ),
@@ -55,8 +77,9 @@ class LocationPickerButton extends StatelessWidget {
           child: Container(
             height: 60,
             width: 95,
-            decoration: const BoxDecoration(
-              color: Color(0xFF013B46),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: const Color(0xFF013B46),
             ),
             alignment: Alignment.center,
             child: Row(

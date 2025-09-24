@@ -52,7 +52,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Hapa utapata kazi, maombi, arifa na vichungi.';
+      'Hapa utapata kazi, maombi, arifa na vichujio.';
 
   @override
   String get documentation_with_photos_and_videos =>
@@ -102,6 +102,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get count => 'nambari';
 
   @override
+  String get noMoreDocs => 'Hakuna nyaraka zingine.';
+
+  @override
   String get kinia_name => 'Kenya';
 
   @override
@@ -114,7 +117,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get home_title => 'nyumba';
 
   @override
-  String get main => 'mkuu';
+  String get main => 'Nyumbani';
 
   @override
   String get add_order => 'Ongeza ombi';
@@ -296,7 +299,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get camera => 'kamera';
 
   @override
-  String get gallery => 'Matunzio ya Picha';
+  String get gallery => 'Maonyesho';
 
   @override
   String get cant_be_embty => 'Haiwezi kuwa tupu.';
@@ -500,6 +503,12 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get order => 'kuomba';
+
+  @override
+  String get expenses => 'gharama';
+
+  @override
+  String get documentingTheRequest => 'Kuandika ombi';
 
   @override
   String get welcomeLine => 'Karibu kwa';

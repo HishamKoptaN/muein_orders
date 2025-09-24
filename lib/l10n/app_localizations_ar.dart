@@ -100,6 +100,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get count => 'عدد';
 
   @override
+  String get noMoreDocs => 'لا يوجد توثيقات أخرى.';
+
+  @override
   String get kinia_name => 'كينيا';
 
   @override
@@ -112,7 +115,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get home_title => 'بيت';
 
   @override
-  String get main => 'رئيسي';
+  String get main => 'الرئيسية';
 
   @override
   String get add_order => 'إضافة طلب';
@@ -142,7 +145,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get add_picure => 'أضف صورة';
 
   @override
-  String get add => 'يضيف';
+  String get add => 'اضافة';
 
   @override
   String get loading => 'تحميل...';
@@ -291,10 +294,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get select_files => 'تحديد الملفات';
 
   @override
-  String get camera => 'آلة تصوير';
+  String get camera => 'الكاميرا';
 
   @override
-  String get gallery => 'معرض الصور';
+  String get gallery => 'المعرض';
 
   @override
   String get cant_be_embty => 'لا يمكن أن يكون فارغا';
@@ -497,6 +500,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get order => 'طلب';
+
+  @override
+  String get expenses => 'مصاريف';
+
+  @override
+  String get documentingTheRequest => 'توثيق الطلب';
 
   @override
   String get welcomeLine => 'مرحباً بكم \nفي';

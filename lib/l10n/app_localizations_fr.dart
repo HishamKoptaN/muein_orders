@@ -103,6 +103,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get count => 'nombre';
 
   @override
+  String get noMoreDocs => 'Il n\'y a pas d\'autres documentations.';
+
+  @override
   String get kinia_name => 'Kenya';
 
   @override
@@ -115,7 +118,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get home_title => 'maison';
 
   @override
-  String get main => 'majeur';
+  String get main => 'Maison';
 
   @override
   String get add_order => 'Ajouter une demande';
@@ -298,7 +301,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get camera => 'caméra';
 
   @override
-  String get gallery => 'Galerie de photos';
+  String get gallery => 'Exposition';
 
   @override
   String get cant_be_embty => 'Il ne peut pas être vide.';
@@ -502,6 +505,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get order => 'demander';
+
+  @override
+  String get expenses => 'dépenses';
+
+  @override
+  String get documentingTheRequest => 'Documenter la demande';
 
   @override
   String get welcomeLine => 'Bienvenue à';

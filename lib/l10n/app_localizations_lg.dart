@@ -102,6 +102,9 @@ class AppLocalizationsLg extends AppLocalizations {
   String get count => 'omuwendo';
 
   @override
+  String get noMoreDocs => 'Tewali biwandiiko birala.';
+
+  @override
   String get kinia_name => 'Kenya';
 
   @override
@@ -114,7 +117,7 @@ class AppLocalizationsLg extends AppLocalizations {
   String get home_title => 'enju';
 
   @override
-  String get main => 'kikukulu';
+  String get main => 'Ewaka';
 
   @override
   String get add_order => 'Okwongerako okusaba';
@@ -296,7 +299,7 @@ class AppLocalizationsLg extends AppLocalizations {
   String get camera => 'kamera';
 
   @override
-  String get gallery => 'Ekifo eky\'ebifaananyi';
+  String get gallery => 'Okwolesa';
 
   @override
   String get cant_be_embty => 'Tekisobola kuba bwereere.';
@@ -501,6 +504,12 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get order => 'okusaba';
+
+  @override
+  String get expenses => 'eby\'ensaasaanya';
+
+  @override
+  String get documentingTheRequest => 'Okuwandiika okusaba';
 
   @override
   String get welcomeLine => 'Mwaniriziddwa mu...';

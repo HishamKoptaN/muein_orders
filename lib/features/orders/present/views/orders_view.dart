@@ -1,4 +1,5 @@
 import '../../../../core/all_imports.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../docs/present/views/add_doc_view.dart';
 import '../../../docs/present/views/docs_view.dart';
@@ -8,12 +9,10 @@ import 'widgets/orders_tabs .dart';
 import 'widgets/shimmer_client_row.dart';
 
 class OrdersView extends StatefulWidget {
-  int packageId = 1;
-  int ordersCount = 38;
+  int packageId;
   OrdersView({
     super.key,
     required this.packageId,
-    required this.ordersCount,
   });
 
   static const String routeName = 'orders';
@@ -79,20 +78,15 @@ class _OrdersViewState extends State<OrdersView>
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
+    return CustomScaffold(
+      appBar: CustomAppBar(
+        title: t.orders,
+      ),
+      body: BlocBuilder<OrdersBloc, OrdersState>(
+        builder: (context, state) {
+          return Column(
             children: [
               const SizedBox(height: 16),
-              Text(
-                t.orders,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onSecondary,
-                    ),
-              ),
               OrdersTabs(
                 onTap: _onTabSelected,
                 t: t,
@@ -105,13 +99,16 @@ class _OrdersViewState extends State<OrdersView>
                     width: 69,
                     height: 18,
                     child: Text(
-                      '${t.order}( ${widget.ordersCount} ) طلب',
+                      '${t.order}( ${state.maybeWhen(
+                        loaded: (orders, hasMore) => orders?.length ?? 0,
+                        orElse: () => '',
+                      )} ) ${t.order}',
                       textAlign: TextAlign.right,
                       style: const TextStyle(
                         fontFamily: 'Almarai',
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
-                        height: 16 / 14, // line-height / font-size
+                        height: 16 / 14,
                         color: Color(0xFF757575),
                       ),
                     ),
@@ -128,19 +125,15 @@ class _OrdersViewState extends State<OrdersView>
                     ) {
                       if (orders!.isEmpty) {
                         return Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              t.noOrders,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSecondary,
-                                  ),
-                            ),
+                          child: Text(
+                            t.noOrders,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                ),
                           ),
                         );
                       }
@@ -167,7 +160,9 @@ class _OrdersViewState extends State<OrdersView>
                                       context,
                                       MaterialPageRoute(
                                         builder: (_) => photographed
-                                            ? DocsView(orderId: order.id ?? 0)
+                                            ? DocsView(
+                                                orderId: order.id ?? 0,
+                                              )
                                             : AddDocView(
                                                 orderId: order.id ?? 0,
                                               ),
@@ -192,7 +187,6 @@ class _OrdersViewState extends State<OrdersView>
                     },
                     orElse: () => const SizedBox(),
                     loading: () => ListView.builder(
-                      padding: const EdgeInsets.only(top: 10),
                       itemCount: 10,
                       itemBuilder: (context, index) => ShimmerClientRow(
                         height: 100.h,
@@ -210,8 +204,8 @@ class _OrdersViewState extends State<OrdersView>
                 ),
               ),
             ],
-          ),
-        ),
+          );
+        },
       ),
     );
   }

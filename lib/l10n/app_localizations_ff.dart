@@ -103,6 +103,9 @@ class AppLocalizationsFf extends AppLocalizations {
   String get count => 'lamba';
 
   @override
+  String get noMoreDocs => 'Alaa binndanɗe goɗɗe.';
+
+  @override
   String get kinia_name => 'Keñiya';
 
   @override
@@ -115,7 +118,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get home_title => 'saare';
 
   @override
-  String get main => 'buri';
+  String get main => 'Saare';
 
   @override
   String get add_order => 'Ɓeydu heen ɗaɓɓaande';
@@ -297,7 +300,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get camera => 'kamera';
 
   @override
-  String get gallery => 'Galle fotooje';
+  String get gallery => 'Sappinol';
 
   @override
   String get cant_be_embty => 'Nde waawaa wonde meere.';
@@ -501,6 +504,12 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get order => 'ngam ɗaɓɓude';
+
+  @override
+  String get expenses => 'majinugo ceede';
+
+  @override
+  String get documentingTheRequest => 'Winnditaade ɗaɓɓaande ndee';
 
   @override
   String get welcomeLine => 'On njaaraama e...';

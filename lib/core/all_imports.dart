@@ -5,3 +5,4 @@ export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:gap/gap.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:url_launcher/url_launcher.dart';
+export 'gloabal_widgets/custom_scaffold.dart';

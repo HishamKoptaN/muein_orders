@@ -1,7 +1,9 @@
 // lib/features/docs/utils/file_picker_utils.dart
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../../../../../l10n/app_localizations.dart';
 
 enum FileType { image, video }
@@ -13,33 +15,42 @@ class FilePickerUtils {
     required BuildContext context,
     required FileType fileType,
   }) async {
+    final t = AppLocalizations.of(context);
     final XFile? picked = await showDialog<XFile>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           content: Text(
-            AppLocalizations.of(context).select_files,
+            t.select_files,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
           actions: [
             _buildIconButton(
               context,
               icon: Icons.camera_alt,
-              label: AppLocalizations.of(context).camera,
+              label: t.camera,
               onPressed: () =>
                   _pickAndPop(context, fileType, ImageSource.camera),
             ),
             _buildIconButton(
               context,
               icon: Icons.photo_library,
-              label: AppLocalizations.of(context).gallery,
-              onPressed: () =>
-                  _pickAndPop(context, fileType, ImageSource.gallery),
+              label: t.gallery,
+              onPressed: () => _pickAndPop(
+                context,
+                fileType,
+                ImageSource.gallery,
+              ),
             ),
           ],
         );
       },
     );
-
     return picked != null ? File(picked.path) : null;
   }
 

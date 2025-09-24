@@ -103,6 +103,9 @@ class AppLocalizationsAk extends AppLocalizations {
   String get count => 'nɔma';
 
   @override
+  String get noMoreDocs => 'Nwoma foforɔ biara nni hɔ.';
+
+  @override
   String get kinia_name => 'Kenya';
 
   @override
@@ -115,10 +118,10 @@ class AppLocalizationsAk extends AppLocalizations {
   String get home_title => 'fie';
 
   @override
-  String get main => 'titire';
+  String get main => 'Fie';
 
   @override
-  String get add_order => 'Fa abisade bi ka ho';
+  String get add_order => 'Fa adesrɛ bi ka ho';
 
   @override
   String get order_place => 'beaeɛ';
@@ -196,7 +199,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get order_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order__is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
+  String get order__is_sharing => 'Abisadeɛ a ɛfa wo ho a wode bɛhyɛ mu...';
 
   @override
   String get failed => 'sɛ wobedi nkogu';
@@ -297,7 +300,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get camera => 'mfoninitwa afiri';
 
   @override
-  String get gallery => 'Mfonini a Wɔde Yɛ Mfonini';
+  String get gallery => 'Adida';
 
   @override
   String get cant_be_embty => 'Ɛrentumi nyɛ hunu.';
@@ -383,7 +386,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get settings => 'Nsiesiei a Wɔde Yɛ Adwuma';
 
   @override
-  String get createAccount => 'Yɛ akontaabu';
+  String get createAccount => 'Yɛ akontaabu bi';
 
   @override
   String passwordResetEmailSentTo(Object email) {
@@ -501,6 +504,12 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get order => 'sɛ wobɛbisa';
+
+  @override
+  String get expenses => 'ɛka';
+
+  @override
+  String get documentingTheRequest => 'Abisade no ho nkrataa a wɔkyerɛw';
 
   @override
   String get welcomeLine => 'Yɛma wo akwaaba ba';

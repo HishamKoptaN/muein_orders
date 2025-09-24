@@ -282,6 +282,12 @@ abstract class AppLocalizations {
   /// **'number'**
   String get count;
 
+  /// No description provided for @noMoreDocs.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no other documentations.'**
+  String get noMoreDocs;
+
   /// No description provided for @kinia_name.
   ///
   /// In en, this message translates to:
@@ -309,7 +315,7 @@ abstract class AppLocalizations {
   /// No description provided for @main.
   ///
   /// In en, this message translates to:
-  /// **'major'**
+  /// **'Home'**
   String get main;
 
   /// No description provided for @add_order.
@@ -669,7 +675,7 @@ abstract class AppLocalizations {
   /// No description provided for @gallery.
   ///
   /// In en, this message translates to:
-  /// **'Photo Gallery'**
+  /// **'Exhibition'**
   String get gallery;
 
   /// No description provided for @cant_be_embty.
@@ -1050,6 +1056,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'to request'**
   String get order;
+
+  /// No description provided for @expenses.
+  ///
+  /// In en, this message translates to:
+  /// **'expenses'**
+  String get expenses;
+
+  /// No description provided for @documentingTheRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Documenting the request'**
+  String get documentingTheRequest;
 
   /// No description provided for @welcomeLine.
   ///

@@ -32,11 +32,11 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Nibi iwọ yoo wa awọn iṣẹ ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
+      'Nibi iwọ yoo wa awọn iṣẹ-ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
 
   @override
   String get documentationWithPhotosAndVideos =>
-      'Iwe pẹlu awọn fọto ati awọn fidio';
+      'Awọn iwe aṣẹ pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
@@ -102,6 +102,9 @@ class AppLocalizationsYo extends AppLocalizations {
   String get count => 'nọmba';
 
   @override
+  String get noMoreDocs => 'Ko si awọn iwe-ipamọ miiran.';
+
+  @override
   String get kinia_name => 'Kenya';
 
   @override
@@ -114,7 +117,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get home_title => 'ile';
 
   @override
-  String get main => 'pataki';
+  String get main => 'Ile';
 
   @override
   String get add_order => 'Fi ibeere kan kun';
@@ -263,7 +266,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ọrọigbaniwọle gbọdọ jẹ o kere ju awọn ohun kikọ 8 gun.';
 
   @override
-  String get confirmPasswordRequired => 'Imudaniloju ọrọ igbaniwọle nilo';
+  String get confirmPasswordRequired => 'Ijẹrisi ọrọ igbaniwọle nilo';
 
   @override
   String get alreadyHaveAnAccount => 'Ṣe o ti ni akọọlẹ tẹlẹ?';
@@ -296,7 +299,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get camera => 'kamẹra';
 
   @override
-  String get gallery => 'Fọto Gallery';
+  String get gallery => 'Afihan';
 
   @override
   String get cant_be_embty => 'Ko le sofo.';
@@ -471,7 +474,8 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ọna asopọ atunto ọrọ igbaniwọle ti firanṣẹ si imeeli rẹ.';
 
   @override
-  String get onboardingPage3Title => 'Iwe pẹlu awọn fọto ati awọn fidio';
+  String get onboardingPage3Title =>
+      'Awọn iwe aṣẹ pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get onboardingPage3Description =>
@@ -500,6 +504,12 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get order => 'lati beere';
+
+  @override
+  String get expenses => 'inawo';
+
+  @override
+  String get documentingTheRequest => 'Ṣiṣe akọsilẹ ibeere naa';
 
   @override
   String get welcomeLine => 'Kaabo si';

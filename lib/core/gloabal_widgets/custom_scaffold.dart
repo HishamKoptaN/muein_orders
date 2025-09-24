@@ -16,12 +16,12 @@ class CustomScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: appBar,
-        drawer: drawer,
-        backgroundColor: backgroundColor ?? Colors.white,
-        body: Padding(
+    return Scaffold(
+      appBar: appBar,
+      drawer: drawer,
+      backgroundColor: backgroundColor ?? Colors.white,
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.only(
             right: 15,
             left: 15,

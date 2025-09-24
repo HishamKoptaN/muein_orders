@@ -9,7 +9,7 @@ import 'widgets/doc_widget.dart';
 class DocsView extends StatefulWidget {
   const DocsView({super.key, required this.orderId});
   final int orderId;
-  static const String routeName = "DocsView";
+  static const String routeName = 'DocsView';
   @override
   State<DocsView> createState() => _DocsViewState();
 }
@@ -45,9 +45,9 @@ class _DocsViewState extends State<DocsView> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    final t = AppLocalizations.of(context)!;
-    return Scaffold(
+    final double height = MediaQuery.of(context).size.height;
+    final t = AppLocalizations.of(context);
+    return CustomScaffold(
       appBar: CustomAppBar(title: t.documentations),
       body: BlocBuilder<DocsBloc, DocsState>(
         builder: (
@@ -65,46 +65,41 @@ class _DocsViewState extends State<DocsView> {
               imageTwo,
               latitude,
               longitude,
+              shippingCost,
               formzSubmissionStatus,
               uploadingProgress,
             ) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                  controller: _scrollController,
-                  itemCount: (docs?.length ?? 0) + 1,
-                  itemBuilder: (
-                    context,
-                    i,
-                  ) {
-                    if (i < docs!.length) {
-                      final order = docs[i];
-                      return AppContainer(
-                        height: height / 3,
-                        child: Card(
-                          semanticContainer: true,
-                          child: DocWidget(
-                            orderEntity: order,
-                          ),
+              return ListView.builder(
+                controller: _scrollController,
+                itemCount: (docs?.length ?? 0) + 1,
+                itemBuilder: (
+                  context,
+                  i,
+                ) {
+                  if (i < docs!.length) {
+                    final order = docs[i];
+                    return AppContainer(
+                      height: height / 3,
+                      child: Card(
+                        semanticContainer: true,
+                        child: DocWidget(
+                          orderEntity: order,
+                        ),
+                      ),
+                    );
+                  } else {
+                    if (hasMore!) {
+                      return const OrderShimmerWidget();
+                    } else if (docs.isNotEmpty && !hasMore) {
+                      return Center(
+                        child: Text(
+                          t.noMoreDocs,
                         ),
                       );
-                    } else {
-                      if (hasMore!) {
-                        return OrderShimmerWidget();
-                      } else if (docs.isNotEmpty && !hasMore) {
-                        return Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'لا يوجد توثيقات أخرى.',
-                            ),
-                          ),
-                        );
-                      }
-                      return CircularProgressIndicator();
                     }
-                  },
-                ),
+                    return const CircularProgressIndicator();
+                  }
+                },
               );
             },
             loading: () {
@@ -114,7 +109,7 @@ class _DocsViewState extends State<DocsView> {
                   context,
                   i,
                 ) {
-                  return OrderShimmerWidget();
+                  return const OrderShimmerWidget();
                 },
               );
             },
@@ -127,7 +122,7 @@ class _DocsViewState extends State<DocsView> {
               );
             },
             orElse: () {
-              return SizedBox();
+              return const SizedBox();
             },
           );
         },
@@ -147,8 +142,8 @@ class GestureDetectorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: AppContainer(
-        child: const Icon(
+      child: const AppContainer(
+        child: Icon(
           Icons.location_on,
         ),
       ),

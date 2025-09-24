@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:formz/formz.dart';
 
 import '../../../../../core/widgets/custom_circular_progress.dart';
 
 class SubmitButton extends StatelessWidget {
-  final bool isSubmitting;
+  final FormzSubmissionStatus formzSubmissionStatus;
   final VoidCallback onPressed;
   final String buttonText;
 
   const SubmitButton({
     super.key,
-    required this.isSubmitting,
+    required this.formzSubmissionStatus,
     required this.onPressed,
     required this.buttonText,
   });
@@ -17,13 +18,15 @@ class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: isSubmitting ? null : onPressed,
+      onPressed: formzSubmissionStatus.isSuccess ? onPressed : null,
       style: ButtonStyle(
-        backgroundColor:
-            isSubmitting ? WidgetStateProperty.all(Colors.grey) : null,
+        backgroundColor: formzSubmissionStatus.isSuccess
+            ? null
+            : WidgetStateProperty.all(Colors.grey),
       ),
-      child: isSubmitting ? const CustomCircularProgress() : Text(buttonText),
+      child: formzSubmissionStatus.isInProgress
+          ? const CustomCircularProgress()
+          : Text(buttonText),
     );
   }
 }
-                     

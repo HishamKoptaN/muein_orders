@@ -15,7 +15,6 @@ import '../../../features/orders/present/views/pdf/sitcker_pdf_preview_view.dart
 import '../route_utils.dart';
 
 /// Development mode configuration
-
 /// Centralized route configuration for the application
 class RouteConfig {
   static List<RouteBase> get routes {
@@ -52,12 +51,12 @@ class RouteConfig {
         routeName: OrdersView.routeName,
         builder: (context, state) {
           final packageId =
-              int.tryParse(state.pathParameters['packageId'] ?? '0') ?? 0;
+              (state.extra as Map<String, dynamic>?)?['packageId'] as int? ?? 0;
           final ordersCount =
-              int.tryParse(state.pathParameters['ordersCount'] ?? '0') ?? 0;
+              (state.extra as Map<String, dynamic>?)?['ordersCount'] as int? ??
+                  0;
           return OrdersView(
             packageId: packageId,
-            ordersCount: ordersCount,
           );
         },
       ),

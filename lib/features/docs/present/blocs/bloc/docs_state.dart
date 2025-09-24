@@ -1,4 +1,3 @@
-
 part of 'docs_bloc.dart';
 
 @freezed
@@ -16,6 +15,7 @@ class DocsState with _$DocsState {
     required FileFormzInput imageTwo,
     required GenericFormzInput latitude,
     required GenericFormzInput longitude,
+    required GenericFormzInput shippingCost,
     required FormzSubmissionStatus formzSubmissionStatus,
     required String? uploadingProgress,
   }) = _Loaded;

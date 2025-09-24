@@ -103,6 +103,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get count => 'number';
 
   @override
+  String get noMoreDocs => 'There are no other documentations.';
+
+  @override
   String get kinia_name => 'Kenya';
 
   @override
@@ -115,7 +118,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home_title => 'house';
 
   @override
-  String get main => 'major';
+  String get main => 'Home';
 
   @override
   String get add_order => 'Add a request';
@@ -298,7 +301,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get camera => 'camera';
 
   @override
-  String get gallery => 'Photo Gallery';
+  String get gallery => 'Exhibition';
 
   @override
   String get cant_be_embty => 'It cannot be empty.';
@@ -502,6 +505,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get order => 'to request';
+
+  @override
+  String get expenses => 'expenses';
+
+  @override
+  String get documentingTheRequest => 'Documenting the request';
 
   @override
   String get welcomeLine => 'Welcome to';

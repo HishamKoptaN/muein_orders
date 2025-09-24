@@ -1,4 +1,6 @@
-import '../all_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatefulWidget {
   /// Creates a customizable text form field that can be used for both regular text and password input.
@@ -43,6 +45,8 @@ class CustomTextFormField extends StatefulWidget {
     this.onFieldSubmitted,
     this.focusNode,
     this.onToggleObscure,
+    this.inputFormatters,
+    this.decoration,
   });
 
   final TextEditingController? controller;
@@ -84,6 +88,8 @@ class CustomTextFormField extends StatefulWidget {
   final ValueChanged<String?>? onFieldSubmitted;
   final VoidCallback? onToggleObscure;
   final FocusNode? focusNode;
+  final List<TextInputFormatter>? inputFormatters;
+  final InputDecoration? decoration;
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
@@ -116,57 +122,68 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         readOnly: widget.readOnly,
         textAlign: TextAlign.right,
         textDirection: TextDirection.rtl,
-        style: theme.textTheme.bodyMedium?.copyWith(
-          color: Colors.white,
-          fontFamily: 'Almarai',
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w400,
-        ),
+        style: widget.style ??
+            theme.textTheme.bodyMedium?.copyWith(
+              color: Colors.white,
+              fontFamily: 'Almarai',
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+            ),
         onFieldSubmitted: widget.onFieldSubmitted,
         focusNode: widget.focusNode,
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          hintStyle: theme.textTheme.bodyMedium?.copyWith(
-            color: Colors.white.withOpacity(0.57),
-            fontFamily: 'Almarai',
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w400,
-          ),
-          labelText: widget.labelText,
-          labelStyle: theme.textTheme.bodyMedium?.copyWith(
-            color: Colors.white,
-            fontFamily: 'Almarai',
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w400,
-          ),
-          errorText: widget.errorText,
-          errorStyle: widget.errorStyle,
-          border: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          errorBorder: InputBorder.none,
-          disabledBorder: InputBorder.none,
-          contentPadding:
-              EdgeInsets.symmetric(horizontal: 24.w, vertical: 18.h),
-          isDense: true,
-          filled: false,
-          prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.isPassword && widget.showPasswordToggle
-              ? IconButton(
-                  icon: Icon(
-                    _obscureText ? Icons.visibility_off : Icons.visibility,
+        inputFormatters: widget.inputFormatters,
+        decoration: widget.decoration ??
+            InputDecoration(
+              hintText: widget.hintText,
+              hintStyle: widget.hintStyle ??
+                  theme.textTheme.bodyMedium?.copyWith(
                     color: Colors.white.withOpacity(0.57),
-                    size: 24.sp,
+                    fontFamily: 'Almarai',
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
                   ),
-                  onPressed: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                    widget.onToggleObscure?.call();
-                  },
-                )
-              : widget.suffixIcon,
-        ),
+              labelText: widget.labelText,
+              labelStyle: widget.labelStyle ??
+                  theme.textTheme.bodyMedium?.copyWith(
+                    color: Colors.white,
+                    fontFamily: 'Almarai',
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+              errorText: widget.errorText,
+              errorStyle: widget.errorStyle ??
+                  theme.textTheme.bodyMedium?.copyWith(
+                    color: Colors.white.withOpacity(0.57),
+                    fontFamily: 'Almarai',
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+              border: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 24.w, vertical: 18.h),
+              isDense: true,
+              filled: false,
+              prefixIcon: widget.prefixIcon,
+              suffixIcon: widget.isPassword && widget.showPasswordToggle
+                  ? IconButton(
+                      icon: Icon(
+                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                        color: Colors.white.withOpacity(0.57),
+                        size: 24.sp,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                        widget.onToggleObscure?.call();
+                      },
+                    )
+                  : widget.suffixIcon,
+            ),
       ),
     );
   }

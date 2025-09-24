@@ -17,7 +17,6 @@ import '../../l10n/app_localizations.dart';
 import '../config/app_config.dart';
 import '../di/dependency_injection.dart';
 import '../routing/app_router.dart';
-
 class MubinOrdersApp extends StatelessWidget {
   const MubinOrdersApp({super.key});
 
@@ -165,7 +164,6 @@ class MubinOrdersApp extends StatelessWidget {
     return [
       // App-specific localization delegate
       AppLocalizations.delegate,
-
       // Built-in Flutter localization delegates
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,

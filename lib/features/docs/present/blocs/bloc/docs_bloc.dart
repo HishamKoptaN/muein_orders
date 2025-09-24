@@ -46,6 +46,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
             imageTwo: FileFormzInput.pure(),
             latitude: GenericFormzInput.pure(),
             longitude: GenericFormzInput.pure(),
+            shippingCost: GenericFormzInput.pure(),
             formzSubmissionStatus: FormzSubmissionStatus.initial,
             uploadingProgress: null,
           ),
@@ -244,6 +245,10 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
             _longitude = GenericFormzInput<String>.dirty(longitude);
             emitCustomLoaded(emit: emit);
           },
+          shippingCostChanged: (String shippingCosts) {
+            _shippingCosts = GenericFormzInput<String>.dirty(shippingCosts);
+            emitCustomLoaded(emit: emit);
+          },
           resumePendingUploads: () async {
             // for (final pending in _pendingUploads) {
             // await add(DocsEvent.orderIdChanged(orderId: pending.orderId));
@@ -255,10 +260,6 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
             // }
           },
           getUploadStatusForOrder: () {},
-          updateShippingCosts: (String shippingCosts) {
-            _shippingCosts = GenericFormzInput<String>.dirty(shippingCosts);
-            emitCustomLoaded(emit: emit);
-          },
         );
       },
     );
@@ -272,6 +273,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
       _videoTwo ?? const FileFormzInput.pure(),
       _imageOne ?? const FileFormzInput.pure(),
       _imageTwo ?? const FileFormzInput.pure(),
+      _shippingCosts ?? const GenericFormzInput.pure(),
     ])
         ? FormzSubmissionStatus.success
         : FormzSubmissionStatus.failure;
@@ -286,6 +288,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
         imageTwo: _imageTwo ?? const FileFormzInput.pure(),
         latitude: _latitude ?? const GenericFormzInput.pure(),
         longitude: _longitude ?? const GenericFormzInput.pure(),
+        shippingCost: _shippingCosts ?? const GenericFormzInput.pure(),
         formzSubmissionStatus:
             _formzSubmissionStatus ?? FormzSubmissionStatus.initial,
         uploadingProgress: _uploadingProgress,
@@ -372,6 +375,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
     _videoTwo = const FileFormzInput.pure();
     _latitude = const GenericFormzInput<String>.pure();
     _longitude = const GenericFormzInput<String>.pure();
+    _shippingCosts = const GenericFormzInput<String>.pure();
     _formzSubmissionStatus = FormzSubmissionStatus.initial;
     _uploadingProgress = null;
   }

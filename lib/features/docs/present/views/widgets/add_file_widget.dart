@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:video_player/video_player.dart';
 
 enum AddDocWidgetType { image, video }
@@ -9,8 +8,6 @@ enum AddDocWidgetType { image, video }
 class AddFileWidget extends StatefulWidget {
   const AddFileWidget({
     super.key,
-    this.icon,
-    this.iconImage,
     required this.text,
     this.onChanged,
     this.validator,
@@ -19,8 +16,6 @@ class AddFileWidget extends StatefulWidget {
     required this.addDocWidgetType,
   });
 
-  final IconData? icon;
-  final String? iconImage;
   final String text;
   final Function(File?)? onChanged;
   final String? Function(String?)? validator;
@@ -81,52 +76,49 @@ class _AddFileWidgetState extends State<AddFileWidget> {
   Widget build(BuildContext context) {
     final hasPreview = widget.initialValue?.isNotEmpty == true;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () async {
-              if (widget.onChanged != null) {
-                widget.onChanged!(null);
-              }
-            },
-            child: Container(
-              height: 160,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(
-                  color: widget.errorText != null
-                      ? Colors.red
-                      : const Color(0xFFF0EFEF),
-                ),
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 4,
-                    color: Colors.black12,
-                    offset: Offset(0, 2),
-                  ),
-                ],
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () async {
+            if (widget.onChanged != null) {
+              widget.onChanged!(null);
+            }
+          },
+          child: Container(
+            height: 160,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(
+                color: widget.errorText != null
+                    ? Colors.red
+                    : const Color(0xFFF0EFEF),
               ),
-              child: hasPreview ? _buildPreview() : _buildPlaceholder(),
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 4,
+                  color: Colors.black12,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: hasPreview ? _buildPreview() : _buildPlaceholder(),
+          ),
+        ),
+        if (widget.errorText != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 4.0, right: 8.0),
+            child: Text(
+              widget.errorText!,
+              style: const TextStyle(
+                color: Colors.red,
+                fontSize: 12,
+                fontFamily: 'Almarai',
+              ),
             ),
           ),
-          if (widget.errorText != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 4.0, right: 8.0),
-              child: Text(
-                widget.errorText!,
-                style: const TextStyle(
-                  color: Colors.red,
-                  fontSize: 12,
-                  fontFamily: 'Almarai',
-                ),
-              ),
-            ),
-        ],
-      ),
+      ],
     );
   }
 
@@ -135,15 +127,20 @@ class _AddFileWidgetState extends State<AddFileWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (widget.iconImage != null)
-            SvgPicture.asset(
-              widget.iconImage!,
+          if (widget.addDocWidgetType == AddDocWidgetType.video)
+            Image.asset(
+              'assets/icons/iconoir_add-media-video.png',
               width: 34,
               height: 34,
             ),
-          if (widget.icon != null)
-            Icon(
-              widget.icon,
+          // SvgPicture.asset(
+          //   'assets/icons/video.svg',
+          //   width: 34,
+          //   height: 34,
+          // ),
+          if (widget.addDocWidgetType == AddDocWidgetType.image)
+            const Icon(
+              Icons.add_photo_alternate_outlined,
               size: 34,
               color: Colors.grey,
             ),

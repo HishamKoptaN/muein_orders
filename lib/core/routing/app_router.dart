@@ -19,7 +19,7 @@ class AppRouter {
     return GoRouter(
       initialLocation: authBloc.state.maybeWhen(
         authenticated: () {
-          return '/${AddDocView.routeName}';
+          return '/${HomeView.routeName}';
         },
         unauthenticated: () {
           return '/${SelectLanguageView.routeName}';

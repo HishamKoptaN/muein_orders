@@ -17,9 +17,9 @@ class DocsEvent with _$DocsEvent {
     required String latitude,
     required String longitude,
   }) = _UpdateLocation;
-  const factory DocsEvent.updateShippingCosts({
-    required String shippingCosts,
-  }) = _UpdateShippingCosts;
+  const factory DocsEvent.shippingCostChanged({
+    required String value,
+  }) = _ShippingCostChanged;
   const factory DocsEvent.createDoc() = _CreateDoc;
   const factory DocsEvent.resumePendingUploads() = _ResumePendingUploads;
   const factory DocsEvent.getUploadStatusForOrder() = _GetUploadStatusForOrder;
