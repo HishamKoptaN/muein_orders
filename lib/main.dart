@@ -39,7 +39,6 @@ void callbackDispatcher() {
           debugPrint('⚠️ لا توجد مستندات معلقة في WorkManager');
           return Future.value(true);
         }
-
         for (final doc in pendingDocs) {
           if (UploadSpeedSettings.enableDetailedLogging) {
             debugPrint(
