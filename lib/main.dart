@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:drift/drift.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +10,72 @@ import 'package:workmanager/workmanager.dart';
 import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
 import 'core/app_observer.dart';
-import 'core/background/background_tasks.dart';
 import 'core/config/app_initializer.dart';
 import 'core/di/dependency_injection.dart';
 import 'features/docs/data/datasources/local/drift/app_database.dart';
+import 'core/config/upload_settings.dart';
+import 'features/docs/domain/usecases/docs_use_cases.dart';
 
+@pragma('vm:entry-point')
+void callbackDispatcher() {
+  Workmanager().executeTask((task, inputData) async {
+    debugPrint('🚀 WorkManager task [$task] started with input: $inputData');
+    debugPrint('📱 WorkManager يعمل في الخلفية!');
+
+    try {
+      await configureDependencies();
+      final db = getIt<AppDatabase>();
+      final docsUseCase = getIt<DocsUseCase>();
+
+      if (task == 'uploadPendingDocs') {
+        debugPrint('📋 بدء مهمة رفع الملفات المعلقة...');
+        final pendingDocs = await (db.select(db.cachedDocs)
+              ..where((tbl) => tbl.uploadStatus.equals('pending')))
+            .get();
+        debugPrint(
+            '📂 تم العثور على ${pendingDocs.length} pending docs في WorkManager');
+
+        if (pendingDocs.isEmpty) {
+          debugPrint('⚠️ لا توجد مستندات معلقة في WorkManager');
+          return Future.value(true);
+        }
+
+        for (final doc in pendingDocs) {
+          if (UploadSpeedSettings.enableDetailedLogging) {
+            debugPrint(
+                '⬆️ رفع doc id=${doc.id} للطلب ${doc.orderId} في WorkManager');
+          }
+
+          // إضافة تأخير بين كل رفع
+          await Future.delayed(Duration(seconds: UploadSpeedSettings.uploadDelaySeconds));
+
+          try {
+            final result = await docsUseCase.createDoc(doc: doc);
+            if (UploadSpeedSettings.enableDetailedLogging) {
+              debugPrint('✅ تم رفع doc id=${doc.id} بنجاح في WorkManager: $result');
+            }
+
+            // إضافة تأخير بعد كل رفع ناجح
+            await Future.delayed(Duration(seconds: UploadSpeedSettings.successDelaySeconds));
+          } catch (e) {
+            debugPrint('❌ خطأ في رفع doc id=${doc.id} في WorkManager: $e');
+          }
+        }
+        debugPrint('✅ انتهت مهمة رفع الملفات المعلقة');
+      } else {
+        debugPrint('⚠️ مهمة غير معروفة: $task');
+      }
+    } catch (e) {
+      debugPrint('❌ خطأ في WorkManager task: $e');
+    }
+    debugPrint('✅ انتهت المهمة [$task]');
+    return Future.value(true);
+  });
+}
 Future<void> main() async {
-  // Initialize Flutter bindings first
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-   try {
+  try {
     await Workmanager().initialize(
       callbackDispatcher,
       isInDebugMode: true,
@@ -30,22 +85,12 @@ Future<void> main() async {
     debugPrint('⚠️ خطأ في تهيئة WorkManager: $e');
     debugPrint('سيتم استخدام الرفع اليدوي بدلاً من الخلفية');
   }
-  startImmediateUpload();
-  // إضافة بيانات اختبارية للتأكد من وجود pending docs
-  await addTestData();
-  // اختبار WorkManager يدوياً
-  await testWorkManager();
-
-  debugPrint('📱 بدء تهيئة WorkManager...');
- 
-
-  debugPrint('📅 تسجيل المهمة الدورية...');
   try {
     await Workmanager().registerPeriodicTask(
       "upload_task",
       "uploadPendingDocs",
       frequency: const Duration(minutes: 15),
-      initialDelay: const Duration(seconds: 10),
+      initialDelay: const Duration(seconds: 30),
       constraints: Constraints(
         networkType: NetworkType.connected,
         requiresBatteryNotLow: false,
@@ -58,9 +103,11 @@ Future<void> main() async {
     debugPrint('⚠️ خطأ في تسجيل المهمة الدورية: $e');
     debugPrint('سيتم الاعتماد على الرفع اليدوي فقط');
   }
-  FlutterError.onError = (FlutterErrorDetails details) {
-    FlutterError.presentError(details);
-  };
+  startImmediateUpload();
+
+  // إضافة تأخير للتأكد من تهيئة جميع الخدمات
+  await Future.delayed(const Duration(seconds: 2));
+
   try {
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';
@@ -72,21 +119,6 @@ Future<void> main() async {
           : HydratedStorageDirectory((await getTemporaryDirectory()).path),
     );
     await AppInitializer.initialize();
-    // final db = AppDatabase();
-    // await db.into(db.cachedDocs).insert(
-    //       CachedDocsCompanion.insert(
-    //         orderId: 2,
-    //         imageOne: const Value("image1.png"),
-    //         imageTwo: const Value("image2.png"),
-    //         videoOne: const Value("video1.mp4"),
-    //         videoTwo: const Value("video2.mp4"),
-    //         latitude: const Value(30.12345),
-    //         longitude: const Value(31.56789),
-    //         shippingCost: const Value(150.75),
-    //         uploadStatus: "uploading",
-    //         uploadProgress: Value(20.0),
-    //       ),
-    //     );
 
     runApp(
       const MubinOrdersApp(),
@@ -111,39 +143,62 @@ void _handleError(Object error, StackTrace stackTrace, String context) {
   );
 }
 
-/// إضافة بيانات اختبارية للتأكد من وجود pending docs
-Future<void> addTestData() async {
+Future<void> startImmediateUpload() async {
   try {
+    debugPrint('🚀 بدء startImmediateUpload...');
     final db = getIt<AppDatabase>();
+    final docsUseCase = getIt<DocsUseCase>();
 
-    // التحقق من وجود بيانات pending
-    final existingDocs = await (db.select(db.cachedDocs)
-          ..where((tbl) => tbl.uploadStatus.equals('pending')))
+    // التحقق من وجود pending docs
+    final pendingDocs = await (db.select(db.cachedDocs)
+          ..where(
+            (tbl) => tbl.uploadStatus.equals(
+              'pending',
+            ),
+          ))
         .get();
 
-    if (existingDocs.isEmpty) {
-      debugPrint('📝 إضافة بيانات اختبارية...');
+    debugPrint(
+      '📂 تم العثور على ${pendingDocs.length} pending docs في startImmediateUpload',
+    );
 
-      // إضافة بيانات اختبارية
-      await db.insertDoc(
-        doc: CachedDocsCompanion.insert(
-          orderId: 2,
-          imageOne: const Value('test_image1.jpg'),
-          imageTwo: const Value('test_image2.jpg'),
-          videoOne: const Value('test_video1.mp4'),
-          videoTwo: const Value('test_video2.mp4'),
-          latitude: const Value(30.0444),
-          longitude: const Value(31.2357),
-          shippingCost: const Value(150.0),
-          uploadStatus: 'pending',
-          uploadProgress: const Value(0.0),
-        ),
-      );
-      debugPrint('✅ تم إضافة بيانات اختبارية بنجاح');
-    } else {
-      debugPrint('📂 موجود ${existingDocs.length} pending docs بالفعل');
+    if (pendingDocs.isEmpty) {
+      debugPrint('⚠️ لا توجد مستندات معلقة للرفع');
+      return;
     }
+
+    if (UploadSpeedSettings.enableDetailedLogging) {
+      debugPrint('⏰ انتظار ${UploadSpeedSettings.initialDelaySeconds} ثواني قبل بدء الرفع...');
+    }
+    await Future.delayed(Duration(seconds: UploadSpeedSettings.initialDelaySeconds));
+
+    for (final doc in pendingDocs) {
+      if (UploadSpeedSettings.enableDetailedLogging) {
+        debugPrint(
+            '⬆️ رفع doc id=${doc.id} للطلب ${doc.orderId} في startImmediateUpload');
+      }
+
+      // إضافة تأخير بين كل رفع
+      await Future.delayed(Duration(seconds: UploadSpeedSettings.uploadDelaySeconds));
+
+      try {
+        final result = await docsUseCase.createDoc(doc: doc);
+        if (UploadSpeedSettings.enableDetailedLogging) {
+          debugPrint('✅ نتيجة رفع doc id=${doc.id}: $result');
+        }
+
+        // إضافة تأخير بعد كل رفع ناجح
+        await Future.delayed(Duration(seconds: UploadSpeedSettings.successDelaySeconds));
+      } catch (e) {
+        debugPrint('❌ خطأ في رفع doc id=${doc.id}: $e');
+      }
+    }
+    debugPrint(
+      '✅ انتهى startImmediateUpload',
+    );
   } catch (e) {
-    debugPrint('❌ خطأ في إضافة البيانات الاختبارية: $e');
+    debugPrint(
+      '❌ خطأ في startImmediateUpload: $e',
+    );
   }
 }

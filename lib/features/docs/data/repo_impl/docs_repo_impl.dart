@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
-
 import '../../../../../core/networking/api_result.dart';
+import '../../../../core/config/upload_settings.dart';
 import '../../../../core/error/api_error_handler.dart';
 import '../../domain/entities/docs_res_entity.dart';
 import '../../domain/repo/docs_repo.dart';
@@ -67,15 +66,38 @@ class DocsRepoImpl implements DocsRepo {
     required CachedDoc doc,
   }) async {
     try {
+      if (UploadSpeedSettings.enableDetailedLogging) {
+        print('📤 بدء رفع doc id=${doc.id} للطلب ${doc.orderId}');
+      }
       await db.update(db.cachedDocs).replace(
             doc.copyWith(
               uploadStatus: 'uploading',
             ),
           );
+      if (UploadSpeedSettings.enableDetailedLogging) {
+        print('📤 تم تحديث حالة doc id=${doc.id} إلى uploading');
+      }
+
       final imageOneFile = fileFromPath(doc.imageOne);
       final imageTwoFile = fileFromPath(doc.imageTwo);
       final videoOneFile = fileFromPath(doc.videoOne);
       final videoTwoFile = fileFromPath(doc.videoTwo);
+
+      if (UploadSpeedSettings.enableDetailedLogging) {
+        print('📤 ملفات الرفع:');
+        print(
+            '  - imageOne: ${imageOneFile?.path ?? 'null'} (${imageOneFile?.lengthSync() ?? 0} bytes)');
+        print(
+            '  - imageTwo: ${imageTwoFile?.path ?? 'null'} (${imageTwoFile?.lengthSync() ?? 0} bytes)');
+        print(
+            '  - videoOne: ${videoOneFile?.path ?? 'null'} (${videoOneFile?.lengthSync() ?? 0} bytes)');
+        print(
+            '  - videoTwo: ${videoTwoFile?.path ?? 'null'} (${videoTwoFile?.lengthSync() ?? 0} bytes)');
+
+        // إضافة تأخير قبل بدء الرفع
+        print('📤 بدء الرفع الفعلي...');
+      }
+
       final res = await postsApi.createDoc(
         orderId: doc.orderId,
         videoOne: videoOneFile,
@@ -87,11 +109,23 @@ class DocsRepoImpl implements DocsRepo {
         shippingCosts: doc.shippingCost.toString(),
         onSendProgress: (sent, total) async {
           final progress = total != 0 ? ((sent / total) * 100).toDouble() : 0.0;
+          if (UploadSpeedSettings.enableDetailedLogging) {
+            print(
+                '📤 تقدم الرفع: ${(progress).toStringAsFixed(1)}% (${sent}/${total} bytes)');
+          }
+
+          // إضافة تأخير بين كل تحديث للتقدم
+          await Future.delayed(Duration(milliseconds: UploadSpeedSettings.progressDelayMs));
+
           await db.update(db.cachedDocs).replace(
                 doc.copyWith(uploadProgress: progress),
               );
         },
       );
+
+      if (UploadSpeedSettings.enableDetailedLogging) {
+        print('📤 تم استلام الرد من API');
+      }
       final result = res.toEntity();
       await db.update(db.cachedDocs).replace(
             doc.copyWith(
@@ -99,10 +133,14 @@ class DocsRepoImpl implements DocsRepo {
               uploadProgress: 100.0,
             ),
           );
+      if (UploadSpeedSettings.enableDetailedLogging) {
+        print('📤 تم تحديث حالة doc id=${doc.id} إلى success');
+      }
       return ApiResult.success(
         data: result,
       );
     } catch (error) {
+      print('📤 خطأ في رفع doc id=${doc.id}: $error');
       await db.update(db.cachedDocs).replace(
             doc.copyWith(uploadStatus: 'failure'),
           );

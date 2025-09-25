@@ -7,8 +7,7 @@ import '../../../../../core/entities/meta_entity.dart';
 import '../../../../../core/error/api_error_model.dart';
 import '../../../domain/entities/docs_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
-import '../../../data/datasources/local/drift/app_database.dart';
-import '../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/background/background_upload_task.dart';
 part 'docs_bloc.freezed.dart';
 part 'docs_event.dart';
 part 'docs_state.dart';
@@ -103,7 +102,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
             );
           },
           checkPendingUploads: () async {
-            await _checkAndUploadPendingDocs();
+            await BackgroundUploadTask.startBackgroundUpload();
           },
         );
       },
@@ -125,28 +124,6 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
     );
   }
 
-  Future<void> _checkAndUploadPendingDocs() async {
-    try {
-      final db = getIt<AppDatabase>();
-      final pendingDocs = await (db.select(db.cachedDocs)
-            ..where((tbl) => tbl.uploadStatus.equals('pending')))
-          .get();
-      if (pendingDocs.isEmpty) return;
-      debugPrint(
-          '📂 تم العثور على ${pendingDocs.length} pending docs في DocsBloc');
-      for (final doc in pendingDocs) {
-        debugPrint('⬆️ رفع doc id=${doc.id} للطلب ${doc.orderId} في DocsBloc');
-        try {
-          await docsUseCase.createDoc(doc: doc);
-          debugPrint('✅ تم رفع doc id=${doc.id} بنجاح في DocsBloc');
-        } catch (e) {
-          debugPrint('❌ خطأ في رفع doc id=${doc.id} في DocsBloc: $e');
-        }
-      }
-    } catch (e) {
-      debugPrint('❌ خطأ في فحص الملفات المعلقة: $e');
-    }
-  }
 
   @override
   Future<void> close() async {

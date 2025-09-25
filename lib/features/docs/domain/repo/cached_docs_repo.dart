@@ -9,12 +9,8 @@ abstract class CachedDocsRepo {
   Future<ApiResult<CachedDocEntity?>> getDoc({required int orderId});
   Future<ApiResult<bool>> deleteDoc({required int orderId});
   Future<ApiResult<void>> updateProgress({
-  required  int docId,
-  required  UploadStatus status,
-  required  double? progress,
+    required int docId,
+    required UploadStatus status,
+    required double? progress,
   });
-  // /// بدء رفع التوثيق في الخلفية
-  // Future<void> startBackgroundUpload(int orderId);
-  // /// الحصول على نسبة تقدم التوثيق المحلي
-  // Future<double> getLocalDocProgress(int orderId);
 }

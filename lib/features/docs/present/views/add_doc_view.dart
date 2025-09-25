@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
@@ -55,10 +56,6 @@ class _AddDocViewState extends State<AddDocView> {
                   ),
                 );
                 NavigationService.goBack(context);
-                // NavigationService.navigateTo(
-                //   context: context,
-                //   routeName: UploadMonitoringView.routeName,
-                // );
               },
               failure: (e) {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -93,12 +90,13 @@ class _AddDocViewState extends State<AddDocView> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         AddDocWidget(
-                          imageOne: imageOne,
-                          imageTwo: imageTwo,
-                          videoOne: videoOne,
-                          videoTwo: videoTwo,
-                          latitude: latitude,
-                          longitude: longitude,
+                          imageOne: imageOne ?? const FileFormzInput.pure(),
+                          imageTwo: imageTwo ?? const FileFormzInput.pure(),
+                          videoOne: videoOne ?? const FileFormzInput.pure(),
+                          videoTwo: videoTwo ?? const FileFormzInput.pure(),
+                          latitude: latitude ?? const GenericFormzInput.pure(),
+                          longitude:
+                              longitude ?? const GenericFormzInput.pure(),
                           shippingCost: shippingCost,
                         ),
                         const SizedBox(height: 15),

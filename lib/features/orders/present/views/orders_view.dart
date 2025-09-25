@@ -178,10 +178,9 @@ class _OrdersViewState extends State<OrdersView>
                               itemCount: orders.length,
                               itemBuilder: (context, index) {
                                 final order = orders[index];
-                                final orderStatus = order.status ?? 1;
                                 return buildOrderCard(
                                   context: context,
-                                  order: order,
+                                  orderEntity: order,
                                   t: t,
                                 );
                               },

@@ -5,10 +5,10 @@ class CachedDocState with _$CachedDocState {
   const factory CachedDocState.loading() = _Loading;
   const factory CachedDocState.loaded({
     required GenericFormzInput<int>? orderId,
-    required FileFormzInput videoOne,
-    required FileFormzInput videoTwo,
-    required FileFormzInput imageOne,
-    required FileFormzInput imageTwo,
+    required FileFormzInput? videoOne,
+    required FileFormzInput? videoTwo,
+    required FileFormzInput? imageOne,
+    required FileFormzInput? imageTwo,
     required GenericFormzInput<double>? latitude,
     required GenericFormzInput<double>? longitude,
     required GenericFormzInput<double>? shippingCost,

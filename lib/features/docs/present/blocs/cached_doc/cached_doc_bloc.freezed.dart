@@ -664,10 +664,10 @@ mixin _$CachedDocState {
     required TResult Function() loading,
     required TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -683,10 +683,10 @@ mixin _$CachedDocState {
     TResult? Function()? loading,
     TResult? Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -702,10 +702,10 @@ mixin _$CachedDocState {
     TResult Function()? loading,
     TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -809,10 +809,10 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -831,10 +831,10 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -853,10 +853,10 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -923,10 +923,10 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   @useResult
   $Res call(
       {GenericFormzInput<int>? orderId,
-      FileFormzInput videoOne,
-      FileFormzInput videoTwo,
-      FileFormzInput imageOne,
-      FileFormzInput imageTwo,
+      FileFormzInput? videoOne,
+      FileFormzInput? videoTwo,
+      FileFormzInput? imageOne,
+      FileFormzInput? imageTwo,
       GenericFormzInput<double>? latitude,
       GenericFormzInput<double>? longitude,
       GenericFormzInput<double>? shippingCost,
@@ -948,10 +948,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? orderId = freezed,
-    Object? videoOne = null,
-    Object? videoTwo = null,
-    Object? imageOne = null,
-    Object? imageTwo = null,
+    Object? videoOne = freezed,
+    Object? videoTwo = freezed,
+    Object? imageOne = freezed,
+    Object? imageTwo = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? shippingCost = freezed,
@@ -963,22 +963,22 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as GenericFormzInput<int>?,
-      videoOne: null == videoOne
+      videoOne: freezed == videoOne
           ? _value.videoOne
           : videoOne // ignore: cast_nullable_to_non_nullable
-              as FileFormzInput,
-      videoTwo: null == videoTwo
+              as FileFormzInput?,
+      videoTwo: freezed == videoTwo
           ? _value.videoTwo
           : videoTwo // ignore: cast_nullable_to_non_nullable
-              as FileFormzInput,
-      imageOne: null == imageOne
+              as FileFormzInput?,
+      imageOne: freezed == imageOne
           ? _value.imageOne
           : imageOne // ignore: cast_nullable_to_non_nullable
-              as FileFormzInput,
-      imageTwo: null == imageTwo
+              as FileFormzInput?,
+      imageTwo: freezed == imageTwo
           ? _value.imageTwo
           : imageTwo // ignore: cast_nullable_to_non_nullable
-              as FileFormzInput,
+              as FileFormzInput?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -1021,13 +1021,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   final GenericFormzInput<int>? orderId;
   @override
-  final FileFormzInput videoOne;
+  final FileFormzInput? videoOne;
   @override
-  final FileFormzInput videoTwo;
+  final FileFormzInput? videoTwo;
   @override
-  final FileFormzInput imageOne;
+  final FileFormzInput? imageOne;
   @override
-  final FileFormzInput imageTwo;
+  final FileFormzInput? imageTwo;
   @override
   final GenericFormzInput<double>? latitude;
   @override
@@ -1098,10 +1098,10 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() loading,
     required TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -1121,10 +1121,10 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? loading,
     TResult? Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -1153,10 +1153,10 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? loading,
     TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -1215,10 +1215,10 @@ class _$LoadedImpl implements _Loaded {
 abstract class _Loaded implements CachedDocState {
   const factory _Loaded(
       {required final GenericFormzInput<int>? orderId,
-      required final FileFormzInput videoOne,
-      required final FileFormzInput videoTwo,
-      required final FileFormzInput imageOne,
-      required final FileFormzInput imageTwo,
+      required final FileFormzInput? videoOne,
+      required final FileFormzInput? videoTwo,
+      required final FileFormzInput? imageOne,
+      required final FileFormzInput? imageTwo,
       required final GenericFormzInput<double>? latitude,
       required final GenericFormzInput<double>? longitude,
       required final GenericFormzInput<double>? shippingCost,
@@ -1226,10 +1226,10 @@ abstract class _Loaded implements CachedDocState {
       required final double? cachedProgress}) = _$LoadedImpl;
 
   GenericFormzInput<int>? get orderId;
-  FileFormzInput get videoOne;
-  FileFormzInput get videoTwo;
-  FileFormzInput get imageOne;
-  FileFormzInput get imageTwo;
+  FileFormzInput? get videoOne;
+  FileFormzInput? get videoTwo;
+  FileFormzInput? get imageOne;
+  FileFormzInput? get imageTwo;
   GenericFormzInput<double>? get latitude;
   GenericFormzInput<double>? get longitude;
   GenericFormzInput<double>? get shippingCost;
@@ -1287,10 +1287,10 @@ class _$SuccessImpl implements _Success {
     required TResult Function() loading,
     required TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -1309,10 +1309,10 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? loading,
     TResult? Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -1331,10 +1331,10 @@ class _$SuccessImpl implements _Success {
     TResult Function()? loading,
     TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -1464,10 +1464,10 @@ class _$FailureImpl implements _Failure {
     required TResult Function() loading,
     required TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -1486,10 +1486,10 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? loading,
     TResult? Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,
@@ -1508,10 +1508,10 @@ class _$FailureImpl implements _Failure {
     TResult Function()? loading,
     TResult Function(
             GenericFormzInput<int>? orderId,
-            FileFormzInput videoOne,
-            FileFormzInput videoTwo,
-            FileFormzInput imageOne,
-            FileFormzInput imageTwo,
+            FileFormzInput? videoOne,
+            FileFormzInput? videoTwo,
+            FileFormzInput? imageOne,
+            FileFormzInput? imageTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
             GenericFormzInput<double>? shippingCost,

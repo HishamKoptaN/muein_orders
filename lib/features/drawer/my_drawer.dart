@@ -68,16 +68,16 @@ class MyDrawer extends StatelessWidget {
                     );
                   },
                 ),
-                buildMenuItem(
-                  icon: FontAwesomeIcons.cloudArrowUp,
-                  title: 'التوثيقات المحلية',
-                  onTap: () {
-                    // NavigationService.navigateTo(
-                    //   context: context,
-                    //   routeName: UploadMonitoringView.routeName,
-                    // );
-                  },
-                ),
+                // buildMenuItem(
+                //   icon: FontAwesomeIcons.cloudArrowUp,
+                //   title: 'التوثيقات المحلية',
+                //   onTap: () {
+                //     // NavigationService.navigateTo(
+                //     //   context: context,
+                //     //   routeName: UploadMonitoringView.routeName,
+                //     // );
+                //   },
+                // ),
                 // عناصر القائمة
                 buildMenuItem(
                   icon: Icons.person_outline,

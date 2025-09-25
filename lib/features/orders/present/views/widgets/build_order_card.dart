@@ -11,17 +11,19 @@ import '../pdf/sitcker_pdf_preview_view.dart';
 
 Widget buildOrderCard({
   required BuildContext context,
-  required OrderEntity? order,
+  required OrderEntity orderEntity,
   required AppLocalizations t,
 }) {
   final db = getIt<AppDatabase>();
   return GestureDetector(
     onTap: () {
-      NavigationService.navigateTo(
-        context: context,
-        routeName: AddDocView.routeName,
-        arguments: {'orderId': order?.id},
-      );
+      if (orderEntity.isDistributionPhotographed == false) {
+        NavigationService.navigateTo(
+          context: context,
+          routeName: AddDocView.routeName,
+          arguments: {'orderId': orderEntity.id},
+        );
+      }
     },
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -55,7 +57,7 @@ Widget buildOrderCard({
                   ],
                 ),
                 Text(
-                  order?.executionNum.toString() ?? '',
+                  orderEntity.executionNum.toString(),
                   style: const TextStyle(
                     fontFamily: 'Almarai',
                     fontSize: 18,
@@ -70,7 +72,7 @@ Widget buildOrderCard({
               height: 200,
               child: Builder(
                 builder: (context) {
-                  if (order?.isDistributionPhotographed == true) {
+                  if (orderEntity.isDistributionPhotographed == true) {
                     return _buildAcceptedWidget(
                       status: t.documented,
                       t: t,
@@ -78,7 +80,7 @@ Widget buildOrderCard({
                     );
                   }
                   return StreamBuilder<List<CachedDoc>>(
-                    stream: db.watchDocs(orderId: order!.id!).distinct(),
+                    stream: db.watchDocs(orderId: orderEntity.id!).distinct(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());
@@ -165,8 +167,8 @@ Widget buildOrderCard({
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => PdfPreviewView(
-                        printedName: order?.printedName ?? 'غير معروف',
-                        executionNum: order?.executionNum ?? 'N/A',
+                        printedName: orderEntity.printedName ?? 'غير معروف',
+                        executionNum: orderEntity.executionNum ?? 'N/A',
                       ),
                     ),
                   );

@@ -1,11 +1,8 @@
-import 'dart:async';
-
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:workmanager/workmanager.dart';
-
 import '../../../../../core/all_imports.dart';
 import '../../../domain/entities/cached_doc_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
@@ -44,30 +41,19 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
             longitude,
             shippingCost,
           ) async {
-            if (orderId != null) {
-              _orderId = orderId;
-            }
-            if (imageOne != null) {
-              _imageOne = imageOne;
-            }
-            if (imageTwo != null) {
-              _imageTwo = imageTwo;
-            }
-            if (videoOne != null) {
-              _videoOne = videoOne;
-            }
-            if (videoTwo != null) {
-              _videoTwo = videoTwo;
-            }
-            if (latitude != null) {
-              _latitude = latitude;
-            }
-            if (longitude != null) {
-              _longitude = longitude;
-            }
-            if (shippingCost != null) {
-              _shippingCosts = shippingCost;
-            }
+            debugPrint('🔄 تحديث البيانات في CachedDocBloc: orderId=${orderId?.value}, shippingCost=${shippingCost?.value}');
+            // الاحتفاظ بالقيم الموجودة وتحديث القيم الجديدة فقط
+            _orderId = orderId ?? _orderId;
+            _imageOne = imageOne ?? _imageOne;
+            _imageTwo = imageTwo ?? _imageTwo;
+            _videoOne = videoOne ?? _videoOne;
+            _videoTwo = videoTwo ?? _videoTwo;
+            _latitude = latitude ?? _latitude;
+            _longitude = longitude ?? _longitude;
+            _shippingCosts = shippingCost ?? _shippingCosts;
+
+            debugPrint('🔄 القيم بعد التحديث: _orderId=${_orderId?.value}, _shippingCosts=${_shippingCosts?.value}');
+
             emitCustomLoaded(
               emit: emit,
             );
@@ -81,7 +67,7 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
               await _docsUseCase.cachedDoc(
                 doc: CachedDocEntity(
                   id: DateTime.now().millisecondsSinceEpoch,
-                  orderId: _orderId!.value!,
+                  orderId: _orderId!.value,
                   imageOne: _imageOne!.value?.path,
                   imageTwo: _imageTwo!.value?.path,
                   videoOne: _videoOne!.value?.path,
@@ -91,11 +77,11 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
                   shippingCost: _shippingCosts!.value,
                 ),
               );
-              Workmanager().registerOneOffTask(
-                "upload_task_${_orderId!.value!}",
-                "uploadDoc",
+              await Workmanager().registerOneOffTask(
+                'upload_task_${_orderId!.value!}',
+                'uploadDoc',
                 inputData: {
-                  "orderId": _orderId!.value,
+                  'orderId': _orderId!.value,
                 },
               );
               emit(const CachedDocState.success());
@@ -125,28 +111,28 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
     required Emitter<CachedDocState> emit,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
-    formzSubmissionStatus ?? (_formzSubmissionStatus = Formz.validate([
-            _orderId ?? const GenericFormzInput.pure(),
-            _videoOne ?? const FileFormzInput.pure(),
-            _videoTwo ?? const FileFormzInput.pure(),
-            _imageOne ?? const FileFormzInput.pure(),
-            _imageTwo ?? const FileFormzInput.pure(),
-            _shippingCosts ?? const GenericFormzInput.pure(),
-          ])
+    formzSubmissionStatus ??
+        (_formzSubmissionStatus = Formz.validate([
+          _orderId ?? const GenericFormzInput.pure(),
+          _videoOne ?? const FileFormzInput.pure(),
+          _videoTwo ?? const FileFormzInput.pure(),
+          _imageOne ?? const FileFormzInput.pure(),
+          _imageTwo ?? const FileFormzInput.pure(),
+          _shippingCosts ?? const GenericFormzInput.pure(),
+        ])
             ? FormzSubmissionStatus.success
             : FormzSubmissionStatus.failure);
     emit(
       CachedDocState.loaded(
-        orderId: _orderId ?? const GenericFormzInput.pure(),
-        videoOne: _videoOne ?? const FileFormzInput.pure(),
-        videoTwo: _videoTwo ?? const FileFormzInput.pure(),
-        imageOne: _imageOne ?? const FileFormzInput.pure(),
-        imageTwo: _imageTwo ?? const FileFormzInput.pure(),
-        latitude: _latitude ?? const GenericFormzInput.pure(),
-        longitude: _longitude ?? const GenericFormzInput.pure(),
-        shippingCost: _shippingCosts ?? const GenericFormzInput.pure(),
-        formzSubmissionStatus:
-            _formzSubmissionStatus ?? FormzSubmissionStatus.initial,
+        orderId: _orderId,
+        videoOne: _videoOne,
+        videoTwo: _videoTwo,
+        imageOne: _imageOne,
+        imageTwo: _imageTwo,
+        latitude: _latitude,
+        longitude: _longitude,
+        shippingCost: _shippingCosts,
+        formzSubmissionStatus: _formzSubmissionStatus ?? FormzSubmissionStatus.initial,
         cachedProgress: _localDocProgress,
       ),
     );

@@ -56,7 +56,6 @@ import '../../features/docs/domain/repo/docs_repo.dart' as _i672;
 import '../../features/docs/domain/usecases/docs_use_cases.dart' as _i689;
 import '../../features/docs/present/blocs/cached_doc/cached_doc_bloc.dart'
     as _i467;
-import '../../features/docs/present/blocs/docs_bloc/docs_bloc.dart' as _i617;
 import '../../features/home/data/datasources/home_api.dart' as _i11;
 import '../../features/home/data/repo_impl/home_repo_impl.dart' as _i886;
 import '../../features/home/domain/repo/home_repo.dart' as _i280;
@@ -79,6 +78,12 @@ import '../../features/orders/data/repo_impl/orders_repo_impl.dart' as _i450;
 import '../../features/orders/domain/repo/orders_repo.dart' as _i808;
 import '../../features/orders/domain/usecases/orders_use_cases.dart' as _i802;
 import '../../features/orders/present/bloc/orders_bloc.dart' as _i189;
+import '../../features/profile/data/datasources/profile_api.dart' as _i191;
+import '../../features/profile/data/repo/profile_repo_impl.dart' as _i256;
+import '../../features/profile/domain/repo/profile_repo.dart' as _i364;
+import '../../features/profile/domain/use_cases/get_profile_use_case.dart'
+    as _i110;
+import '../../features/profile/present/bloc/profile_bloc.dart' as _i475;
 import '../../features/theme/blocs/theme_bloc.dart' as _i307;
 import '../networking/network_info.dart' as _i303;
 import 'api_module.dart' as _i804;
@@ -130,6 +135,8 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i303.NetworkInfo>(() =>
       _i303.NetworkInfoImpl(connectionChecker: gh<_i161.InternetConnection>()));
+  gh.lazySingleton<_i364.ProfileRepo>(
+      () => _i256.ProfileRepoImpl(gh<_i191.ProfileApi>()));
   gh.factory<_i967.NotificationsRepo>(
       () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()));
   gh.lazySingleton<_i46.CachedDocsRepo>(
@@ -148,6 +155,8 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i552.SignUpApi>(),
         gh<_i804.TokenStorage>(),
       ));
+  gh.factory<_i110.GetProfileUseCase>(
+      () => _i110.GetProfileUseCase(gh<_i364.ProfileRepo>()));
   gh.factory<_i808.OrdersRepo>(
       () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()));
   gh.factory<_i672.DocsRepo>(() => _i430.DocsRepoImpl(
@@ -160,6 +169,8 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i781.NotificationsBloc>(
       () => _i781.NotificationsBloc(gh<_i139.NotificationsUseCases>()));
+  gh.factory<_i475.ProfileBloc>(
+      () => _i475.ProfileBloc(gh<_i110.GetProfileUseCase>()));
   gh.lazySingleton<_i251.SignUpUseCases>(
       () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()));
   gh.lazySingleton<_i280.HomeRepo>(
@@ -194,8 +205,6 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i481.HomeBloc>(
       () => _i481.HomeBloc(homeUseCases: gh<_i583.HomeUseCases>()));
-  gh.lazySingleton<_i617.DocsBloc>(
-      () => _i617.DocsBloc(docsUseCase: gh<_i689.DocsUseCase>()));
   gh.lazySingleton<_i941.SignInUseCases>(() => _i941.SignInUseCases(
         gh<_i305.SignInRepo>(),
         gh<_i59.FirebaseAuth>(),

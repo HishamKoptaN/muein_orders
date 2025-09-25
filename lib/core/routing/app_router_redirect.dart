@@ -29,13 +29,23 @@ class AppRouterRedirect {
         return null; // Stay on current route while loading
       },
       unauthenticated: () {
-        if (public.contains(location) || location.isEmpty) {
+        // إذا كان المستخدم غير مصدق عليه
+        if (location == SelectLanguageView.routeName) {
+          return null; // ابق في صفحة اختيار اللغة
+        }
+        if (public.contains(location)) {
           return null; // Allow access to public routes
         }
+        // إذا كان في مسار خاص، اذهب إلى صفحة اختيار اللغة
         return '/${SelectLanguageView.routeName}';
       },
       authenticated: () {
-        if (public.contains(location) || location.isEmpty) {
+        // إذا كان المستخدم مصدق عليه
+        if (location == HomeView.routeName) {
+          return null; // ابق في الصفحة الرئيسية
+        }
+        if (public.contains(location)) {
+          // إذا كان في مسار عام، اذهب إلى الصفحة الرئيسية
           return '/${HomeView.routeName}';
         }
         return null; // Allow access to private routes
