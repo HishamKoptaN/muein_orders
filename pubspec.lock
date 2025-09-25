@@ -813,9 +813,11 @@ packages:
   form_inputs:
     dependency: "direct main"
     description:
-      path: "G:/packages/form_inputs"
-      relative: false
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: "383ade6c9f315d464ff7ceb58192fb0ecd512481"
+      url: "https://github.com/HishamKoptaN/form_inputs.git"
+    source: git
     version: "0.0.1"
   formz:
     dependency: "direct main"

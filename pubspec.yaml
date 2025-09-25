@@ -97,9 +97,6 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.29
   percent_indicator: ^4.2.5
   # ffmpeg_kit_flutter_full_gpl: ^6.0.3
-dependency_overrides:
-  form_inputs:
-    path: G:/packages/form_inputs
 dev_dependencies:
   flutter_test:
     sdk: flutter
