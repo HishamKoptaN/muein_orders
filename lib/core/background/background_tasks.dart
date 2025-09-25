@@ -29,7 +29,6 @@ Future<void> testWorkManager() async {
   debugPrint('🧪 اختبار WorkManager يدوياً...');
   final db = getIt<AppDatabase>();
   final docsUseCase = getIt<DocsUseCase>();
-
   final pendingDocs = await (db.select(db.cachedDocs)
         ..where((tbl) => tbl.uploadStatus.equals('pending')))
       .get();

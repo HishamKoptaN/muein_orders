@@ -511,7 +511,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get expenses => 'inawo';
 
   @override
-  String get documentingTheRequest => 'Ṣe iwe ibeere naa';
+  String get documentingTheRequest => 'Ṣiṣe akọsilẹ ibeere naa';
 
   @override
   String get documentationProgress => 'Ilọsiwaju iwe';
@@ -554,7 +554,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get uploadingDescription => 'Ikojọpọ bayi';
 
   @override
-  String get completedDescription => 'Ti gbejade ni aṣeyọri';
+  String get completedDescription => 'Ti kojọpọ ni aṣeyọri';
 
   @override
   String get failedDescription => 'Kuna lati po si';

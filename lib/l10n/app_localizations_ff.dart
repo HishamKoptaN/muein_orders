@@ -552,7 +552,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get pendingDescription => 'Ina ɗaminii ƴettude';
 
   @override
-  String get uploadingDescription => 'Ina ƴetta jooni';
+  String get uploadingDescription => 'Ina nelda jooni';
 
   @override
   String get completedDescription => 'Neldaama no moƴƴi';

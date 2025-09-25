@@ -58,6 +58,8 @@ class _DocsViewState extends State<DocsView> {
             loaded: (
               docs,
               hasMore,
+              backgroundMonitoringActive,
+              backgroundMonitoringInactive,
             ) {
               return ListView.builder(
                 controller: _scrollController,

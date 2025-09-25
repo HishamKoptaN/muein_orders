@@ -1,27 +1,27 @@
-import 'package:form_inputs/form_inputs.dart';
+import 'dart:async';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:injectable/injectable.dart' show lazySingleton;
 
 import '../../../../../core/all_imports.dart';
 import '../../../../../core/entities/meta_entity.dart';
 import '../../../../../core/error/api_error_model.dart';
-import '../../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../domain/entities/docs_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
-
+import '../../../data/datasources/local/drift/app_database.dart';
+import '../../../../../core/di/dependency_injection.dart';
 part 'docs_bloc.freezed.dart';
 part 'docs_event.dart';
 part 'docs_state.dart';
 
-@lazySingleton
 class DocsBloc extends Bloc<DocsEvent, DocsState> {
   final DocsUseCase docsUseCase;
   List<DocEntity>? _allDocs;
   MetaEntity? _meta;
-  GenericFormzInput? _orderId;
-
-  final Map<int, ({DocUploadStatus status, String? progress})> _orderDocStatus =
-      {};
+  bool _backgroundMonitoringActive = false;
+  bool _backgroundMonitoringInactive = false;
+  Timer? _backgroundTimer;
+  bool _isMonitoringActive = false;
+  static const Duration _checkInterval = Duration(minutes: 5);
 
   DocsBloc({
     required this.docsUseCase,
@@ -79,10 +79,83 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
           retryUpload: (docId) async {
             final res = await docsUseCase.retryUpload(docId: docId);
           },
+          startBackgroundMonitoring: () async {
+            if (_isMonitoringActive) return;
+
+            _isMonitoringActive = true;
+            _backgroundMonitoringActive = true;
+            emit(
+              const DocsState.loaded(),
+            );
+
+            _startPeriodicCheck();
+          },
+          stopBackgroundMonitoring: () async {
+            if (!_isMonitoringActive) return;
+
+            _isMonitoringActive = false;
+            _backgroundTimer?.cancel();
+            _backgroundTimer = null;
+            emit(
+              const DocsState.loaded(
+                backgroundMonitoringInactive: true,
+              ),
+            );
+          },
+          checkPendingUploads: () async {
+            await _checkAndUploadPendingDocs();
+          },
         );
       },
     );
   }
+
+  // بدء الفحص الدوري
+  void _startPeriodicCheck() {
+    _backgroundTimer?.cancel();
+    _backgroundTimer = Timer.periodic(
+      _checkInterval,
+      (timer) {
+        if (_isMonitoringActive) {
+          add(const DocsEvent.checkPendingUploads());
+        } else {
+          timer.cancel();
+        }
+      },
+    );
+  }
+
+  Future<void> _checkAndUploadPendingDocs() async {
+    try {
+      final db = getIt<AppDatabase>();
+      final pendingDocs = await (db.select(db.cachedDocs)
+            ..where((tbl) => tbl.uploadStatus.equals('pending')))
+          .get();
+      if (pendingDocs.isEmpty) return;
+      debugPrint(
+          '📂 تم العثور على ${pendingDocs.length} pending docs في DocsBloc');
+      for (final doc in pendingDocs) {
+        debugPrint('⬆️ رفع doc id=${doc.id} للطلب ${doc.orderId} في DocsBloc');
+        try {
+          await docsUseCase.createDoc(doc: doc);
+          debugPrint('✅ تم رفع doc id=${doc.id} بنجاح في DocsBloc');
+        } catch (e) {
+          debugPrint('❌ خطأ في رفع doc id=${doc.id} في DocsBloc: $e');
+        }
+      }
+    } catch (e) {
+      debugPrint('❌ خطأ في فحص الملفات المعلقة: $e');
+    }
+  }
+
+  @override
+  Future<void> close() async {
+    _backgroundTimer?.cancel();
+    _backgroundTimer = null;
+    _isMonitoringActive = false;
+    super.close();
+  }
+
   void emitCustomLoaded({
     required Emitter<DocsState> emit,
   }) {
@@ -90,6 +163,8 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
       DocsState.loaded(
         docs: _allDocs ?? [],
         hasMore: _meta?.hasNextPage ?? false,
+        backgroundMonitoringInactive: _backgroundMonitoringInactive,
+        backgroundMonitoringActive: _backgroundMonitoringActive,
       ),
     );
   }

@@ -31,10 +31,8 @@ Future<void> main() async {
     debugPrint('سيتم استخدام الرفع اليدوي بدلاً من الخلفية');
   }
   startImmediateUpload();
-
   // إضافة بيانات اختبارية للتأكد من وجود pending docs
   await addTestData();
-
   // اختبار WorkManager يدوياً
   await testWorkManager();
 

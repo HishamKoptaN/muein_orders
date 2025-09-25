@@ -199,7 +199,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get order_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order__is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
+  String get order__is_sharing => 'Abisadeɛ a ɛfa wo ho a wode bɛhyɛ mu...';
 
   @override
   String get failed => 'sɛ wobedi nkogu';
@@ -282,7 +282,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get request_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order_is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
+  String get order_is_sharing => 'Abisadeɛ a ɛfa wo ho a wode bɛhyɛ mu...';
 
   @override
   String get successfully => 'Ɛyɛɛ yiye';
