@@ -52,9 +52,6 @@ class RouteConfig {
         builder: (context, state) {
           final packageId =
               (state.extra as Map<String, dynamic>?)?['packageId'] as int? ?? 0;
-          final ordersCount =
-              (state.extra as Map<String, dynamic>?)?['ordersCount'] as int? ??
-                  0;
           return OrdersView(
             packageId: packageId,
           );
@@ -74,13 +71,24 @@ class RouteConfig {
       createRoute(
         routeName: AddDocView.routeName,
         builder: (context, state) {
-          final orderId =
-              int.tryParse(state.pathParameters['orderId'] ?? '0') ?? 0;
+          final args = state.extra as Map<String, dynamic>?;
+          final orderId = args?['orderId'] as int?;
+
+          // التحقق من صحة orderId
+          if (orderId == null || orderId == 0) {
+            debugPrint('Invalid orderId: $orderId, using default value 0');
+            // يمكن إظهار رسالة خطأ أو إعادة توجيه
+          }
+
           return AddDocView(
-            orderId: orderId,
+            orderId: orderId ?? 0,
           );
         },
       ),
+      // createRoute(
+      //   routeName: UploadMonitoringView.routeName,
+      //   builder: (context, state) => const UploadMonitoringView(),
+      // ),
     ];
 
     // Debug print all available routes

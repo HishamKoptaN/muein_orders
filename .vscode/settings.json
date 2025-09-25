@@ -137,5 +137,8 @@
     "adb logcat*",
     "ls",
     "grep"
+  ],
+  "cSpell.words": [
+    "prefs"
   ]
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../../l10n/app_localizations.dart';
-import '../../blocs/bloc/docs_bloc.dart';
+import '../../blocs/cached_doc/cached_doc_bloc.dart';
 import 'pick_location_view.dart';
 
 class LocationPickerButton extends StatelessWidget {
@@ -12,14 +13,15 @@ class LocationPickerButton extends StatelessWidget {
     required this.latitude,
     required this.longitude,
   });
-  final String? latitude;
-  final String? longitude;
+  final GenericFormzInput<double>? latitude;
+  final GenericFormzInput<double>? longitude;
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-    final hasLocation = latitude != null && longitude != null;
-    final locationText =
-        hasLocation ? '$latitude, $longitude' : t.selectLocation;
+    final hasLocation = latitude?.value != null && longitude?.value != null;
+    final locationText = hasLocation
+        ? '${latitude?.value}, ${longitude?.value}'
+        : t.selectLocation;
     return Row(
       children: [
         Expanded(
@@ -66,10 +68,10 @@ class LocationPickerButton extends StatelessWidget {
             if (result != null) {
               final lat = result.latitude.toString();
               final lng = result.longitude.toString();
-              context.read<DocsBloc>().add(
-                    DocsEvent.updateLocation(
-                      latitude: lat,
-                      longitude: lng,
+              context.read<CachedDocBloc>().add(
+                    CachedDocEvent.updateData(
+                      latitude: GenericFormzInput.dirty(double.parse(lat)),
+                      longitude: GenericFormzInput.dirty(double.parse(lng)),
                     ),
                   );
             }

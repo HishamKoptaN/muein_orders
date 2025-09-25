@@ -56,7 +56,19 @@ class SharedPrefHelper {
     debugPrint('SharedPrefHelper : get Int List with key : $key ');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final favorites = prefs.getStringList(key);
-    return favorites?.map(int.parse).toList() ?? [];
+
+    if (favorites == null) return [];
+
+    final result = <int>[];
+    for (final item in favorites) {
+      final parsed = int.tryParse(item);
+      if (parsed != null) {
+        result.add(parsed);
+      } else {
+        debugPrint('Invalid number format in shared preferences: $item');
+      }
+    }
+    return result;
   }
 
   //! تحديث القائمة

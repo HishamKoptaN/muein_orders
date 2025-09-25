@@ -121,7 +121,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get main => 'Fie';
 
   @override
-  String get add_order => 'Fa adesrɛ bi ka ho';
+  String get add_order => 'Fa abisade bi ka ho';
 
   @override
   String get order_place => 'beaeɛ';
@@ -148,7 +148,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get add_picure => 'Fa mfonini bi ka ho';
 
   @override
-  String get add => 'Ɔde ka ho';
+  String get add => 'nkabom';
 
   @override
   String get loading => 'twe...';
@@ -199,7 +199,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get order_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order__is_sharing => 'Abisadeɛ a ɛfa wo ho a wode bɛhyɛ mu...';
+  String get order__is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
 
   @override
   String get failed => 'sɛ wobedi nkogu';
@@ -215,6 +215,9 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get arabic => 'Arabfoɔ';
+
+  @override
+  String get success => 'nkunimdie';
 
   @override
   String get english => 'Borɔfo';
@@ -510,6 +513,64 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get documentingTheRequest => 'Abisade no ho nkrataa a wɔkyerɛw';
+
+  @override
+  String get documentationProgress => 'Nkɔso a ɛwɔ nkrataakyerɛw mu';
+
+  @override
+  String get notDocumented => 'Ɛnyɛ nea wɔagye atom';
+
+  @override
+  String get pending => 'a wɔde sɛn hɔ';
+
+  @override
+  String get uploading => 'Wɔde reto so';
+
+  @override
+  String get completed => 'wie';
+
+  @override
+  String get error => 'mfomsoɔ';
+
+  @override
+  String get retryFailedUploads => 'San bɔ mmɔden bio';
+
+  @override
+  String get retryFailedUploadsDescription =>
+      'So wopɛ sɛ wosan bɔ mmɔden sɛ wode abisade ahorow a entumi nyɛ yiye nyinaa bɛto so?';
+
+  @override
+  String get unknown => 'nnim';
+
+  @override
+  String get startUpload => 'Fi ase fa upload gu so';
+
+  @override
+  String get cancel => 'a wɔtwa mu';
+
+  @override
+  String get pendingDescription => 'Wɔretwɛn sɛ wɔde bɛto so';
+
+  @override
+  String get uploadingDescription => 'Uploading mprempren';
+
+  @override
+  String get completedDescription => 'Wɔde too so yiye';
+
+  @override
+  String get failedDescription => 'Wɔantumi ankɔ so ankɔ so';
+
+  @override
+  String get unknownDescription => 'nnim';
+
+  @override
+  String get cancelAllUploads => 'Twa nneɛma a wode akɔ so nyinaa mu';
+
+  @override
+  String get stopMonitoring => 'Gyae sɛ wobɛhwɛ nneɛma so';
+
+  @override
+  String get language => 'kasa no';
 
   @override
   String get welcomeLine => 'Yɛma wo akwaaba ba';

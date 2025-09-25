@@ -2,8 +2,8 @@ import '../../../../core/all_imports.dart';
 import '../../../../core/widgets/app_container.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../blocs/bloc/docs_bloc.dart';
-import 'build_shimmer_order_placeholder.dart';
+import '../blocs/docs_bloc/docs_bloc.dart';
+import 'shimmer_widgets.dart/build_shimmer_order_placeholder.dart';
 import 'widgets/doc_widget.dart';
 
 class DocsView extends StatefulWidget {
@@ -58,16 +58,6 @@ class _DocsViewState extends State<DocsView> {
             loaded: (
               docs,
               hasMore,
-              orderId,
-              videoOne,
-              videoTwo,
-              imageOne,
-              imageTwo,
-              latitude,
-              longitude,
-              shippingCost,
-              formzSubmissionStatus,
-              uploadingProgress,
             ) {
               return ListView.builder(
                 controller: _scrollController,
@@ -111,14 +101,6 @@ class _DocsViewState extends State<DocsView> {
                 ) {
                   return const OrderShimmerWidget();
                 },
-              );
-            },
-            getDocsfailure: (e) {
-              return Center(
-                child: Text(
-                  e.error ?? '',
-                  textAlign: TextAlign.center,
-                ),
               );
             },
             orElse: () {

@@ -147,7 +147,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get add_picure => 'Ongeza picha';
 
   @override
-  String get add => 'Anaongeza';
+  String get add => 'nyongeza';
 
   @override
   String get loading => 'pakua...';
@@ -214,6 +214,9 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get arabic => 'Mwarabu';
+
+  @override
+  String get success => 'mafanikio';
 
   @override
   String get english => 'Kiingereza';
@@ -509,6 +512,64 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get documentingTheRequest => 'Kuandika ombi';
+
+  @override
+  String get documentationProgress => 'Maendeleo ya hati';
+
+  @override
+  String get notDocumented => 'Haijathibitishwa';
+
+  @override
+  String get pending => 'kunyongwa';
+
+  @override
+  String get uploading => 'Inapakia';
+
+  @override
+  String get completed => 'kamili';
+
+  @override
+  String get error => 'kosa';
+
+  @override
+  String get retryFailedUploads => 'Jaribu tena';
+
+  @override
+  String get retryFailedUploadsDescription =>
+      'Je, ungependa kujaribu tena kupakia maombi yote ambayo hayajafaulu?';
+
+  @override
+  String get unknown => 'haijulikani';
+
+  @override
+  String get startUpload => 'Anza kupakia';
+
+  @override
+  String get cancel => 'kughairiwa';
+
+  @override
+  String get pendingDescription => 'Inasubiri kupakiwa';
+
+  @override
+  String get uploadingDescription => 'Inapakia sasa';
+
+  @override
+  String get completedDescription => 'Imepakiwa';
+
+  @override
+  String get failedDescription => 'Imeshindwa kupakia';
+
+  @override
+  String get unknownDescription => 'haijulikani';
+
+  @override
+  String get cancelAllUploads => 'Ghairi upakiaji wote';
+
+  @override
+  String get stopMonitoring => 'Acha ufuatiliaji';
+
+  @override
+  String get language => 'lugha';
 
   @override
   String get welcomeLine => 'Karibu kwa';

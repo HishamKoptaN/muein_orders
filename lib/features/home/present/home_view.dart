@@ -3,7 +3,6 @@ import 'package:translator/translator.dart';
 
 import '../../../core/all_imports.dart';
 import '../../../core/extensions/locale_extensions.dart';
-import '../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../core/routing/navigation_service.dart';
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../../gen/assets.gen.dart';
@@ -53,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
                 horizontal: 9,
               ),
               child: SvgPicture.asset(
-                Assets.icons.menu,
+                'assets/icons/menu.svg',  
                 fit: BoxFit.contain,
                 width: 45,
                 height: 45,

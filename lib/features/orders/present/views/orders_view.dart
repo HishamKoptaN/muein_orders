@@ -1,8 +1,8 @@
+import 'dart:async';
+
 import '../../../../core/all_imports.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../docs/present/views/add_doc_view.dart';
-import '../../../docs/present/views/docs_view.dart';
 import '../bloc/orders_bloc.dart';
 import 'widgets/build_order_card.dart';
 import 'widgets/orders_tabs .dart';
@@ -16,7 +16,6 @@ class OrdersView extends StatefulWidget {
   });
 
   static const String routeName = 'orders';
-  static const String path = '/$routeName/:packageId';
   @override
   State<OrdersView> createState() => _OrdersViewState();
 }
@@ -24,11 +23,27 @@ class OrdersView extends StatefulWidget {
 class _OrdersViewState extends State<OrdersView>
     with SingleTickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
+  Timer? _progressTimer;
   int selectedTab = 1;
-  void _onTabSelected(int tabIndex) {
-    setState(() {
-      selectedTab = tabIndex;
-    });
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // تحديث التقدم فوراً عند العودة إلى الصفحة
+    _updateProgress();
+  }
+
+  void _updateProgress() {
+    if (mounted) {
+      setState(() {
+        // سيتم تحديث الواجهة لعرض التقدم المحدث
+      });
+    }
+  }
+
+  void _onTabSelected(int index) {
+    setState(() => selectedTab = index);
+    // إعادة تحميل الطلبات عند تغيير التبويب
     context.read<OrdersBloc>().add(
           OrdersEvent.getOrders(
             packageId: widget.packageId,
@@ -50,6 +65,14 @@ class _OrdersViewState extends State<OrdersView>
           ),
         );
     _scrollController.addListener(_onScroll);
+    _progressTimer = Timer.periodic(
+      const Duration(seconds: 2),
+      (timer) {
+        if (mounted) {
+          setState(() {});
+        }
+      },
+    );
   }
 
   void _onScroll() {
@@ -73,6 +96,13 @@ class _OrdersViewState extends State<OrdersView>
         },
       );
     }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _progressTimer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -149,35 +179,10 @@ class _OrdersViewState extends State<OrdersView>
                               itemBuilder: (context, index) {
                                 final order = orders[index];
                                 final orderStatus = order.status ?? 1;
-                                final isCompleted = orderStatus == 2;
                                 return buildOrderCard(
-                                  order: order,
-                                  onTap: () {
-                                    final photographed =
-                                        order.isDistributionPhotographed ??
-                                            false;
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => photographed
-                                            ? DocsView(
-                                                orderId: order.id ?? 0,
-                                              )
-                                            : AddDocView(
-                                                orderId: order.id ?? 0,
-                                              ),
-                                      ),
-                                    );
-                                  },
-                                  status:
-                                      order.isDistributionPhotographed == true
-                                          ? t.documented
-                                          : t.inProgress,
-                                  statusColor: isCompleted
-                                      ? const Color(0xFF0062B7)
-                                      : Colors.orange,
-                                  t: t,
                                   context: context,
+                                  order: order,
+                                  t: t,
                                 );
                               },
                             ),

@@ -41,34 +41,58 @@ class _AddFileWidgetState extends State<AddFileWidget> {
   void didUpdateWidget(AddFileWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.initialValue != oldWidget.initialValue) {
+      _disposeVideoController();
       _initializePreview();
     }
   }
 
-  void _initializePreview() {
+  void _disposeVideoController() {
+    _videoController?.removeListener(() {});
+    _videoController?.dispose();
+    _videoController = null;
+  }
+
+  void _initializePreview() async {
     if (widget.initialValue?.isNotEmpty == true) {
       final file = File(widget.initialValue!);
-      if (file.path.toLowerCase().endsWith('.mp4') ||
-          file.path.toLowerCase().endsWith('.mov')) {
-        _isVideo = true;
-        _videoController = VideoPlayerController.file(file)
-          ..initialize().then((_) {
-            setState(() {});
-            _videoController?.setLooping(true);
-          });
+      if (file.existsSync()) {
+        if (file.path.toLowerCase().endsWith('.mp4') ||
+            file.path.toLowerCase().endsWith('.mov')) {
+          _isVideo = true;
+          try {
+            _videoController = VideoPlayerController.file(file)
+              ..initialize().then((_) {
+                if (mounted) {
+                  setState(() {
+                    // لا نحتاج إلى التكرار التلقائي لتجنب مشاكل الأداء
+                    // _videoController?.setLooping(true);
+                  });
+                }
+              }).catchError((error) {
+                debugPrint('خطأ في تحميل الفيديو: $error');
+                _isVideo = false;
+                if (mounted) setState(() {});
+              });
+          } catch (e) {
+            debugPrint('خطأ في إنشاء متحكم الفيديو: $e');
+            _isVideo = false;
+          }
+        } else {
+          _isVideo = false;
+        }
       } else {
+        _disposeVideoController();
         _isVideo = false;
       }
     } else {
-      _videoController?.dispose();
-      _videoController = null;
+      _disposeVideoController();
       _isVideo = false;
     }
   }
 
   @override
   void dispose() {
-    _videoController?.dispose();
+    _disposeVideoController();
     super.dispose();
   }
 
@@ -160,34 +184,37 @@ class _AddFileWidgetState extends State<AddFileWidget> {
 
   Widget _buildPreview() {
     if (_isVideo && _videoController?.value.isInitialized == true) {
-      return Stack(
-        fit: StackFit.expand,
-        children: [
-          AspectRatio(
-            aspectRatio: _videoController!.value.aspectRatio,
-            child: VideoPlayer(_videoController!),
-          ),
-          Center(
-            child: IconButton(
-              icon: Icon(
-                _videoController!.value.isPlaying
-                    ? Icons.pause
-                    : Icons.play_arrow,
-                color: Colors.white,
-                size: 50,
-              ),
-              onPressed: () {
-                setState(
-                  () {
-                    _videoController!.value.isPlaying
-                        ? _videoController!.pause()
-                        : _videoController!.play();
-                  },
-                );
-              },
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            AspectRatio(
+              aspectRatio: _videoController!.value.aspectRatio,
+              child: VideoPlayer(_videoController!),
             ),
-          ),
-        ],
+            Center(
+              child: IconButton(
+                icon: Icon(
+                  _videoController!.value.isPlaying
+                      ? Icons.pause
+                      : Icons.play_arrow,
+                  color: Colors.white,
+                  size: 50,
+                ),
+                onPressed: () {
+                  setState(
+                    () {
+                      _videoController!.value.isPlaying
+                          ? _videoController!.pause()
+                          : _videoController!.play();
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       );
     } else if (widget.initialValue != null) {
       return ClipRRect(

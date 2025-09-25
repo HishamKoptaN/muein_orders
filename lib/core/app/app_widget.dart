@@ -8,7 +8,8 @@ import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/forgot_password/present/bloc/forgot_pass_bloc.dart';
 import '../../features/auth/sign_in/present/bloc/sign_in_bloc.dart';
 import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart';
-import '../../features/docs/present/blocs/bloc/docs_bloc.dart';
+import '../../features/docs/present/blocs/cached_doc/cached_doc_bloc.dart';
+import '../../features/docs/present/blocs/docs_bloc/docs_bloc.dart';
 import '../../features/home/present/bloc/home_bloc.dart';
 import '../../features/language/bloc/language_bloc.dart';
 import '../../features/orders/present/bloc/orders_bloc.dart';
@@ -17,6 +18,7 @@ import '../../l10n/app_localizations.dart';
 import '../config/app_config.dart';
 import '../di/dependency_injection.dart';
 import '../routing/app_router.dart';
+
 class MubinOrdersApp extends StatelessWidget {
   const MubinOrdersApp({super.key});
 
@@ -35,6 +37,11 @@ class MubinOrdersApp extends StatelessWidget {
         BlocProvider<HomeBloc>(create: (_) => getIt<HomeBloc>()),
         BlocProvider<OrdersBloc>(create: (_) => getIt<OrdersBloc>()),
         BlocProvider<DocsBloc>(create: (_) => getIt<DocsBloc>()),
+        BlocProvider<CachedDocBloc>(create: (_) => getIt<CachedDocBloc>()),
+        // BlocProvider<UploadTaskBloc>(create: (_) => getIt<UploadTaskBloc>()),
+        // BlocProvider<UploadProgressTrackingBloc>(
+        //   create: (_) => getIt<UploadProgressTrackingBloc>(),
+        // ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(393, 852),
@@ -189,8 +196,6 @@ class MubinOrdersApp extends StatelessWidget {
   }
 }
 
-/// Delegate مخصص للغات الغير مدعومة رسمياً في Flutter.
-/// هنا مجرد dummy delegate بيخلي Flutter ما يرميش التحذير.
 class FallbackLocalizationDelegate
     extends LocalizationsDelegate<WidgetsLocalizations> {
   const FallbackLocalizationDelegate();

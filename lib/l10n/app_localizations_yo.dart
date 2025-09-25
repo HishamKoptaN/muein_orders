@@ -32,11 +32,11 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Nibi iwọ yoo wa awọn iṣẹ-ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
+      'Nibi iwọ yoo wa awọn iṣẹ ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
 
   @override
   String get documentationWithPhotosAndVideos =>
-      'Awọn iwe aṣẹ pẹlu awọn fọto ati awọn fidio';
+      'Iwe pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
@@ -147,7 +147,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get add_picure => 'Fi aworan kun';
 
   @override
-  String get add => 'Awọn afikun';
+  String get add => 'afikun';
 
   @override
   String get loading => 'gbaa lati ayelujara...';
@@ -216,6 +216,9 @@ class AppLocalizationsYo extends AppLocalizations {
   String get arabic => 'Larubawa';
 
   @override
+  String get success => 'aseyori';
+
+  @override
   String get english => 'English';
 
   @override
@@ -266,7 +269,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ọrọigbaniwọle gbọdọ jẹ o kere ju awọn ohun kikọ 8 gun.';
 
   @override
-  String get confirmPasswordRequired => 'Ijẹrisi ọrọ igbaniwọle nilo';
+  String get confirmPasswordRequired => 'Imudaniloju ọrọ igbaniwọle nilo';
 
   @override
   String get alreadyHaveAnAccount => 'Ṣe o ti ni akọọlẹ tẹlẹ?';
@@ -474,8 +477,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ọna asopọ atunto ọrọ igbaniwọle ti firanṣẹ si imeeli rẹ.';
 
   @override
-  String get onboardingPage3Title =>
-      'Awọn iwe aṣẹ pẹlu awọn fọto ati awọn fidio';
+  String get onboardingPage3Title => 'Iwe pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get onboardingPage3Description =>
@@ -509,7 +511,65 @@ class AppLocalizationsYo extends AppLocalizations {
   String get expenses => 'inawo';
 
   @override
-  String get documentingTheRequest => 'Ṣiṣe akọsilẹ ibeere naa';
+  String get documentingTheRequest => 'Ṣe iwe ibeere naa';
+
+  @override
+  String get documentationProgress => 'Ilọsiwaju iwe';
+
+  @override
+  String get notDocumented => 'Ko ṣe idaniloju';
+
+  @override
+  String get pending => 'adiye';
+
+  @override
+  String get uploading => 'Ikojọpọ';
+
+  @override
+  String get completed => 'pari';
+
+  @override
+  String get error => 'asise';
+
+  @override
+  String get retryFailedUploads => 'Tun gbiyanju';
+
+  @override
+  String get retryFailedUploadsDescription =>
+      'Ṣe o fẹ tun gbiyanju ikojọpọ gbogbo awọn ibeere ti o kuna?';
+
+  @override
+  String get unknown => 'aimọ';
+
+  @override
+  String get startUpload => 'Bẹrẹ ikojọpọ';
+
+  @override
+  String get cancel => 'ifagile';
+
+  @override
+  String get pendingDescription => 'Nduro lati gbejade';
+
+  @override
+  String get uploadingDescription => 'Ikojọpọ bayi';
+
+  @override
+  String get completedDescription => 'Ti gbejade ni aṣeyọri';
+
+  @override
+  String get failedDescription => 'Kuna lati po si';
+
+  @override
+  String get unknownDescription => 'aimọ';
+
+  @override
+  String get cancelAllUploads => 'Fagilee gbogbo awọn ìrùsókè';
+
+  @override
+  String get stopMonitoring => 'Duro ibojuwo';
+
+  @override
+  String get language => 'ede naa';
 
   @override
   String get welcomeLine => 'Kaabo si';

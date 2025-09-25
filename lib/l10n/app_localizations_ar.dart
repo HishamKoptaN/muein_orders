@@ -214,6 +214,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get arabic => 'عربي';
 
   @override
+  String get success => 'نجاح';
+
+  @override
   String get english => 'إنجليزي';
 
   @override
@@ -506,6 +509,64 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get documentingTheRequest => 'توثيق الطلب';
+
+  @override
+  String get documentationProgress => 'تقدم التوثيق';
+
+  @override
+  String get notDocumented => 'لم يتم التوثيق';
+
+  @override
+  String get pending => 'معلق';
+
+  @override
+  String get uploading => 'يتم الرفع';
+
+  @override
+  String get completed => 'مكتمل';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get retryFailedUploads => 'إعادة المحاولة';
+
+  @override
+  String get retryFailedUploadsDescription =>
+      'هل تريد إعادة محاولة رفع جميع الطلبات الفاشلة؟';
+
+  @override
+  String get unknown => 'غير معروف';
+
+  @override
+  String get startUpload => 'بدء الرفع';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get pendingDescription => 'في انتظار الرفع';
+
+  @override
+  String get uploadingDescription => 'يتم الرفع الآن';
+
+  @override
+  String get completedDescription => 'تم الرفع بنجاح';
+
+  @override
+  String get failedDescription => 'فشل في الرفع';
+
+  @override
+  String get unknownDescription => 'غير معروف';
+
+  @override
+  String get cancelAllUploads => 'إلغاء جميع الرفع';
+
+  @override
+  String get stopMonitoring => 'إيقاف المراقبة';
+
+  @override
+  String get language => 'اللغة';
 
   @override
   String get welcomeLine => 'مرحباً بكم \nفي';

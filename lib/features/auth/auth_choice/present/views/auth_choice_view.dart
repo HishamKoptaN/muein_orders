@@ -12,7 +12,7 @@ class AuthChoiceView extends StatelessWidget {
   static const String routeName = 'auth-choice';
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
+    final t = AppLocalizations.of(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
@@ -31,7 +31,7 @@ class AuthChoiceView extends StatelessWidget {
             right: 0,
             child: Center(
               child: Image.asset(
-                Assets.logos.secondLogoPng.path,
+                'assets/logos/second_logo.png',
                 width: size.width * 0.6,
                 fit: BoxFit.contain,
               ),

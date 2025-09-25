@@ -375,7 +375,7 @@ abstract class AppLocalizations {
   /// No description provided for @add.
   ///
   /// In en, this message translates to:
-  /// **'Adds'**
+  /// **'addition'**
   String get add;
 
   /// No description provided for @loading.
@@ -509,6 +509,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Arab'**
   String get arabic;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'success'**
+  String get success;
 
   /// No description provided for @english.
   ///
@@ -1068,6 +1074,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Documenting the request'**
   String get documentingTheRequest;
+
+  /// No description provided for @documentationProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Documentation progress'**
+  String get documentationProgress;
+
+  /// No description provided for @notDocumented.
+  ///
+  /// In en, this message translates to:
+  /// **'Not verified'**
+  String get notDocumented;
+
+  /// No description provided for @pending.
+  ///
+  /// In en, this message translates to:
+  /// **'hanging'**
+  String get pending;
+
+  /// No description provided for @uploading.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading'**
+  String get uploading;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'complete'**
+  String get completed;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'mistake'**
+  String get error;
+
+  /// No description provided for @retryFailedUploads.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retryFailedUploads;
+
+  /// No description provided for @retryFailedUploadsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to retry uploading all failed requests?'**
+  String get retryFailedUploadsDescription;
+
+  /// No description provided for @unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'unknown'**
+  String get unknown;
+
+  /// No description provided for @startUpload.
+  ///
+  /// In en, this message translates to:
+  /// **'Start uploading'**
+  String get startUpload;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'cancellation'**
+  String get cancel;
+
+  /// No description provided for @pendingDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting to be uploaded'**
+  String get pendingDescription;
+
+  /// No description provided for @uploadingDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading now'**
+  String get uploadingDescription;
+
+  /// No description provided for @completedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploaded successfully'**
+  String get completedDescription;
+
+  /// No description provided for @failedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to upload'**
+  String get failedDescription;
+
+  /// No description provided for @unknownDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'unknown'**
+  String get unknownDescription;
+
+  /// No description provided for @cancelAllUploads.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel all uploads'**
+  String get cancelAllUploads;
+
+  /// No description provided for @stopMonitoring.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop monitoring'**
+  String get stopMonitoring;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'the language'**
+  String get language;
 
   /// No description provided for @welcomeLine.
   ///

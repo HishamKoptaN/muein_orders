@@ -148,7 +148,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get add_picure => 'Add a photo';
 
   @override
-  String get add => 'Adds';
+  String get add => 'addition';
 
   @override
   String get loading => 'download...';
@@ -215,6 +215,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get arabic => 'Arab';
+
+  @override
+  String get success => 'success';
 
   @override
   String get english => 'English';
@@ -511,6 +514,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get documentingTheRequest => 'Documenting the request';
+
+  @override
+  String get documentationProgress => 'Documentation progress';
+
+  @override
+  String get notDocumented => 'Not verified';
+
+  @override
+  String get pending => 'hanging';
+
+  @override
+  String get uploading => 'Uploading';
+
+  @override
+  String get completed => 'complete';
+
+  @override
+  String get error => 'mistake';
+
+  @override
+  String get retryFailedUploads => 'Retry';
+
+  @override
+  String get retryFailedUploadsDescription =>
+      'Do you want to retry uploading all failed requests?';
+
+  @override
+  String get unknown => 'unknown';
+
+  @override
+  String get startUpload => 'Start uploading';
+
+  @override
+  String get cancel => 'cancellation';
+
+  @override
+  String get pendingDescription => 'Waiting to be uploaded';
+
+  @override
+  String get uploadingDescription => 'Uploading now';
+
+  @override
+  String get completedDescription => 'Uploaded successfully';
+
+  @override
+  String get failedDescription => 'Failed to upload';
+
+  @override
+  String get unknownDescription => 'unknown';
+
+  @override
+  String get cancelAllUploads => 'Cancel all uploads';
+
+  @override
+  String get stopMonitoring => 'Stop monitoring';
+
+  @override
+  String get language => 'the language';
 
   @override
   String get welcomeLine => 'Welcome to';

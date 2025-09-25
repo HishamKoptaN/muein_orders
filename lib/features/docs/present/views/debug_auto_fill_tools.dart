@@ -5,9 +5,9 @@ import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:path_provider/path_provider.dart';
-
-import '../blocs/bloc/docs_bloc.dart';
+import '../blocs/cached_doc/cached_doc_bloc.dart';
 
 class DebugAutoFillDoc extends StatefulWidget {
   final Widget child;
@@ -21,6 +21,7 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
   int _tapCount = 0;
   Timer? _tapTimer;
   late final FakeVideoGenerator _videoGenerator;
+  bool _isGeneratingVideos = false; // منع التوليد المتزامن
 
   @override
   void initState() {
@@ -54,15 +55,17 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
 
   Future<void> _fillAllFields(BuildContext context) async {
     debugPrint('🚀 Running Debug AutoFill for Docs with BLoC...');
-    final bloc = context.read<DocsBloc>();
+    final bloc = context.read<CachedDocBloc>();
     // ملء المصاريف
-    bloc.add(const DocsEvent.shippingCostChanged(value: '150'));
+    bloc.add(const CachedDocEvent.updateData(
+      orderId: GenericFormzInput.dirty(1),
+    ));
 
     // ملء الموقع
     bloc.add(
-      const DocsEvent.updateLocation(
-        latitude: '30.0444',
-        longitude: '31.2357',
+      const CachedDocEvent.updateData(
+        latitude: GenericFormzInput.dirty(30.0444),
+        longitude: GenericFormzInput.dirty(31.2357),
       ),
     );
     // ملء الصور والفيديوهات بملفات وهمية
@@ -77,62 +80,78 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
     debugPrint('✅ AutoFill Docs Done (via BLoC)');
   }
 
-  Future<void> _addDummyFiles(DocsBloc bloc) async {
+  Future<void> _addDummyFiles(CachedDocBloc bloc) async {
     debugPrint(
       '🎬 Generating fake images and videos using FakeVideoGenerator...',
     );
 
-    // إنشاء ملفات مؤقتة للصور والفيديوهات
-    final tempDir = await getTemporaryDirectory();
-
-    // توليد فيديوهين وهميين
-    final videoFile1 = await _videoGenerator.createMp4FromFrames();
-    final videoFile2 = await _videoGenerator.createMp4FromFrames();
-
-    if (videoFile1 != null) {
-      debugPrint('✅ Generated fake video 1: ${videoFile1.path}');
-    } else {
-      debugPrint('⚠️ Failed to generate fake video 1');
-    }
-    if (videoFile2 != null) {
-      debugPrint('✅ Generated fake video 2: ${videoFile2.path}');
-    } else {
-      debugPrint('⚠️ Failed to generate fake video 2');
+    // منع التوليد المتزامن
+    if (_isGeneratingVideos) {
+      debugPrint('⚠️ فيديوهات قيد التوليد بالفعل، جاري الانتظار...');
+      return;
     }
 
-    // توليد صورتين وهميتين
-    final imageFile1 = await _videoGenerator.generateFakeImage();
-    final imageFile2 = await _videoGenerator.generateFakeImage();
+    _isGeneratingVideos = true;
 
-    if (imageFile1 != null) {
-      debugPrint('✅ Generated fake image 1: ${imageFile1.path}');
-    } else {
-      debugPrint('⚠️ Failed to generate fake image 1');
-    }
-    if (imageFile2 != null) {
-      debugPrint('✅ Generated fake image 2: ${imageFile2.path}');
-    } else {
-      debugPrint('⚠️ Failed to generate fake image 2');
-    }
+    try {
+      // إنشاء ملفات مؤقتة للصور والفيديوهات
+      final tempDir = await getTemporaryDirectory();
 
-    // إضافة الملفات إلى البلوك
-    if (imageFile1 != null) {
-      bloc.add(DocsEvent.imageOneChanged(file: imageFile1));
-    }
-    if (imageFile2 != null) {
-      bloc.add(DocsEvent.imageTwoChanged(file: imageFile2));
-    }
+      // توليد فيديوهين وهميين
+      final videoFile1 = await _videoGenerator.createMp4FromFrames();
+      final videoFile2 = await _videoGenerator.createMp4FromFrames();
 
-    if (videoFile1 != null) {
-      bloc.add(DocsEvent.videoOneChanged(file: videoFile1));
-    }
-    if (videoFile2 != null) {
-      bloc.add(DocsEvent.videoTwoChanged(file: videoFile2));
-    }
+      if (videoFile1 != null) {
+        debugPrint('✅ Generated fake video 1: ${videoFile1.path}');
+      } else {
+        debugPrint('⚠️ Failed to generate fake video 1');
+      }
+      if (videoFile2 != null) {
+        debugPrint('✅ Generated fake video 2: ${videoFile2.path}');
+      } else {
+        debugPrint('⚠️ Failed to generate fake video 2');
+      }
 
-    debugPrint(
-      '📁 Generated fake files using FakeVideoGenerator (with error handling)',
-    );
+      // توليد صورتين وهميتين
+      final imageFile1 = await _videoGenerator.generateFakeImage();
+      final imageFile2 = await _videoGenerator.generateFakeImage();
+
+      if (imageFile1 != null) {
+        debugPrint('✅ Generated fake image 1: ${imageFile1.path}');
+      } else {
+        debugPrint('⚠️ Failed to generate fake image 1');
+      }
+      if (imageFile2 != null) {
+        debugPrint('✅ Generated fake image 2: ${imageFile2.path}');
+      } else {
+        debugPrint('⚠️ Failed to generate fake image 2');
+      }
+
+      // إضافة الملفات إلى البلوك
+      if (imageFile1 != null) {
+        bloc.add(CachedDocEvent.updateData(
+            imageOne: FileFormzInput.dirty(imageFile1)));
+      }
+      if (imageFile2 != null) {
+        bloc.add(CachedDocEvent.updateData(
+            imageTwo: FileFormzInput.dirty(imageFile2)));
+      }
+
+      if (videoFile1 != null) {
+        bloc.add(CachedDocEvent.updateData(
+            videoOne: FileFormzInput.dirty(videoFile1)));
+      }
+      if (videoFile2 != null) {
+        bloc.add(CachedDocEvent.updateData(
+            videoTwo: FileFormzInput.dirty(videoFile2)));
+      }
+
+      debugPrint(
+        '📁 Generated fake files using FakeVideoGenerator (with error handling)',
+      );
+    } finally {
+      _isGeneratingVideos = false;
+    }
   }
 
   @override
@@ -215,37 +234,70 @@ class FakeVideoGenerator {
     return frames;
   }
 
-  /// إنشاء فيديو وهمي بسيط
-  /// إنشاء فيديو وهمي صالح باستخدام ffmpeg_kit
+  /// إنشاء فيديو وهمي صالح باستخدام ffmpeg_kit مع تحسينات الأداء
   Future<File?> createMp4FromFrames() async {
     try {
       final dir = await getTemporaryDirectory();
 
       // توليد إطارات PNG أولاً
       final frames = await _generateFrames();
-      if (frames.isEmpty) return null;
+      if (frames.isEmpty) {
+        debugPrint('❌ لا توجد إطارات لإنشاء الفيديو');
+        return null;
+      }
 
       // مسار الفيديو النهائي
       final outputPath =
           '${dir.path}/fake_video_${DateTime.now().millisecondsSinceEpoch}.mp4';
 
-      // أمر ffmpeg لتجميع الإطارات في فيديو mp4
-      final cmd =
-          '-y -r $fps -i "${dir.path}/frame_%03d.png" -c:v libx264 -pix_fmt yuv420p "$outputPath"';
+      // أمر ffmpeg محسّن لإنشاء فيديو صالح
+      final cmd = '-y -r $fps -i "${dir.path}/frame_%03d.png" '
+          '-c:v libx264 -preset ultrafast -crf 28 -pix_fmt yuv420p '
+          '-vf "scale=640:480:force_original_aspect_ratio=decrease,pad=640:480:(ow-iw)/2:(oh-ih)/2" '
+          '-movflags +faststart -avoid_negative_ts make_zero '
+          '"$outputPath"';
+
+      debugPrint('🎬 تنفيذ أمر FFmpeg: $cmd');
 
       final session = await FFmpegKit.execute(cmd);
       final returnCode = await session.getReturnCode();
+      final logs = await session.getAllLogsAsString();
+
+      debugPrint('📊 FFmpeg return code: $returnCode');
+      if (logs?.isNotEmpty ?? false) {
+        debugPrint('📋 FFmpeg logs: $logs');
+      }
 
       if (returnCode != null && returnCode.isValueSuccess()) {
-        debugPrint('✅ Created real fake video: $outputPath');
-        return File(outputPath);
+        final outputFile = File(outputPath);
+        if (await outputFile.exists()) {
+          final fileSize = await outputFile.length();
+          debugPrint(
+              '✅ تم إنشاء فيديو صالح: $outputPath (حجم: ${fileSize} بايت)');
+
+          // تنظيف الإطارات المؤقتة بعد إنشاء الفيديو
+          for (final frame in frames) {
+            try {
+              if (await frame.exists()) {
+                await frame.delete();
+              }
+            } catch (e) {
+              debugPrint('تحذير: فشل في حذف الإطار المؤقت: ${frame.path}');
+            }
+          }
+
+          return outputFile;
+        } else {
+          debugPrint('❌ ملف الفيديو غير موجود رغم نجاح FFmpeg');
+          return null;
+        }
       } else {
-        final log = await session.getAllLogsAsString();
-        debugPrint('❌ FFmpeg failed: $log');
+        debugPrint('❌ فشل FFmpeg: $logs');
         return null;
       }
-    } catch (e) {
-      debugPrint('❌ Error creating video: $e');
+    } catch (e, stackTrace) {
+      debugPrint('❌ خطأ في إنشاء الفيديو: $e');
+      debugPrint('Stack trace: $stackTrace');
       return null;
     }
   }

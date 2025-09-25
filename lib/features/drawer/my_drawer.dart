@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/gloabal_widgets/settings_tab.dart';
-import '../../core/widgets/LanguageSwitchButton.dart';
+
+import '../../core/routing/navigation_service.dart';
 import '../../l10n/app_localizations.dart';
 import '../auth/sign_in/present/views/sign_in_view.dart';
+import '../language/view/select_language.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -17,25 +17,82 @@ class MyDrawer extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    final t = AppLocalizations.of(context)!;
+    final t = AppLocalizations.of(context);
     return SafeArea(
       child: Drawer(
-        width: 225.w,
-        child: SizedBox(
-          height: 70,
-          child: SingleChildScrollView(
+        width: 225,
+        backgroundColor: Colors.white,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              spacing: 16.h,
               children: [
-                Gap(
-                  25.h,
-                ),
+                // Gap(
+                //   25.h,
+                // ),
                 // ThemeSwitcherTile(),
-                LanguageSwitchButton(),
-                SettingsTabWidget(
+                // const CircleAvatar(
+                //   radius: 34,
+                //   backgroundImage: AssetImage('assets/profile.jpg'), // ضع صورتك
+                // ),
+                // const SizedBox(height: 12),
+                // const Text(
+                //   'ماريا الضبع',
+                //   style: TextStyle(
+                //     fontFamily: 'Almarai',
+                //     fontWeight: FontWeight.bold,
+                //     fontSize: 16,
+                //     color: Color(0xFF0F0F0F),
+                //   ),
+                // ),
+                // const SizedBox(height: 4),
+                // const Text(
+                //   '8340985',
+                //   style: TextStyle(
+                //     fontFamily: 'Inter',
+                //     fontSize: 14,
+                //     color: Color(0xFF6C7072),
+                //   ),
+                // ),
+                // const Divider(color: Color(0xFFE2E4E6)),
+                const SizedBox(height: 25),
+                buildMenuItem(
+                  icon: FontAwesomeIcons.language,
+                  title: t.language,
+                  onTap: () {
+                    NavigationService.navigateTo(
+                      context: context,
+                      routeName: SelectLanguageView.routeName,
+                    );
+                  },
+                ),
+                buildMenuItem(
+                  icon: FontAwesomeIcons.cloudArrowUp,
+                  title: 'التوثيقات المحلية',
+                  onTap: () {
+                    // NavigationService.navigateTo(
+                    //   context: context,
+                    //   routeName: UploadMonitoringView.routeName,
+                    // );
+                  },
+                ),
+                // عناصر القائمة
+                buildMenuItem(
+                  icon: Icons.person_outline,
+                  title: 'المستخدم',
+                  onTap: () {
+                    // NavigationService.navigateTo(
+                    //   context: context,
+                    //   routeName: UploadMonitoringView.routeName,
+                    // );
+                  },
+                ),
+                buildMenuItem(
                   title: t.log_out,
-                  icon: FontAwesomeIcons.signOut,
-                  onTap: () => {
+                  icon: FontAwesomeIcons.arrowRightFromBracket,
+                  onTap: () {
                     showDialog(
                       context: context,
                       builder: (context) {
@@ -81,7 +138,7 @@ class MyDrawer extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 40,
                                     width: 1,
                                   ),
@@ -104,7 +161,7 @@ class MyDrawer extends StatelessWidget {
                           ),
                         );
                       },
-                    ),
+                    );
                   },
                 ),
               ],
@@ -114,27 +171,29 @@ class MyDrawer extends StatelessWidget {
       ),
     );
   }
-}
 
-class MyListTile extends StatelessWidget {
-  IconData? icon;
-  final String text;
-  final void Function()? onTap;
-
-  MyListTile({super.key, this.icon, required this.text, this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(
-            text,
+  Widget buildMenuItem({
+    required IconData icon,
+    required String title,
+    required void Function()? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Icon(icon, size: 28, color: const Color(0xFF6C7072)),
+          const SizedBox(width: 25),
+          Text(
+            title,
+            style: const TextStyle(
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+              fontSize: 18,
+              color: Color(0xFF0F0F0F),
+            ),
           ),
-          onTap: onTap,
-        ),
-        const Divider(),
-      ],
+        ],
+      ),
     );
   }
 }

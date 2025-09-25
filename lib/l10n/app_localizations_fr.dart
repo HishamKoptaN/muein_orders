@@ -29,7 +29,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get gettoknowtheapplicationinterface =>
-      'Découvrez l\'interface de l\'application';
+      'Découvrez l\'\'interface de l\'\'application';
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
@@ -41,7 +41,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-      'Assurez-vous de la clarté des images, du nombre d\'exemplaires du Saint Coran et du coût de la commande avant l\'envoi.';
+      'Assurez-vous de la clarté des images, du nombre d\'\'exemplaires du Saint Coran et du coût de la commande avant l\'\'envoi.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
@@ -49,7 +49,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get get_to_know_the_application_interface =>
-      'Découvrez l\'interface de l\'application';
+      'Découvrez l\'\'interface de l\'\'application';
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
@@ -85,7 +85,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get show_documentations => 'Voir les documents';
 
   @override
-  String get execution_number => 'Numéro d\'exécution';
+  String get execution_number => 'Numéro d\'\'exécution';
 
   @override
   String get add_documentation => 'Ajouter des documents';
@@ -103,7 +103,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get count => 'nombre';
 
   @override
-  String get noMoreDocs => 'Il n\'y a pas d\'autres documentations.';
+  String get noMoreDocs => 'Il n\'\'y a pas d\'\'autres documentations.';
 
   @override
   String get kinia_name => 'Kenya';
@@ -136,7 +136,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get client_id => 'ID client';
 
   @override
-  String get enter_order_id => 'Entrez l\'ID de commande';
+  String get enter_order_id => 'Entrez l\'\'ID de commande';
 
   @override
   String get place_hint => 'Village/Mosquée/École';
@@ -148,7 +148,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get add_picure => 'Ajouter une photo';
 
   @override
-  String get add => 'Ajouts';
+  String get add => 'ajout';
 
   @override
   String get loading => 'télécharger...';
@@ -196,7 +196,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get file_pick_failed => 'La sélection du fichier a échoué';
 
   @override
-  String get order_saving => 'Demande d\'enregistrement...';
+  String get order_saving => 'Demande d\'\'enregistrement...';
 
   @override
   String get order__is_sharing => 'Demande de participation...';
@@ -217,6 +217,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get arabic => 'arabe';
 
   @override
+  String get success => 'succès';
+
+  @override
   String get english => 'Anglais';
 
   @override
@@ -230,7 +233,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'La demande a été ajoutée avec succès.';
 
   @override
-  String get order_addition_failed => 'La demande d\'ajout a échoué';
+  String get order_addition_failed => 'La demande d\'\'ajout a échoué';
 
   @override
   String get country => 'nation';
@@ -277,7 +280,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get confirmYourPassword => 'Confirmez votre mot de passe';
 
   @override
-  String get request_saving => 'Demande d\'enregistrement...';
+  String get request_saving => 'Demande d\'\'enregistrement...';
 
   @override
   String get order_is_sharing => 'Demande de participation...';
@@ -292,7 +295,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get data_saved => 'Données stockées';
 
   @override
-  String get order_id_exists => 'L\'ID de commande existe déjà';
+  String get order_id_exists => 'L\'\'ID de commande existe déjà';
 
   @override
   String get select_files => 'Sélectionner les fichiers';
@@ -325,10 +328,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get retry => 'Réessayer';
 
   @override
-  String get unexpected_error => 'Une erreur inattendue s\'est produite.';
+  String get unexpected_error => 'Une erreur inattendue s\'\'est produite.';
 
   @override
-  String get notHaveAccount => 'Vous n\'avez pas de compte ?';
+  String get notHaveAccount => 'Vous n\'\'avez pas de compte ?';
 
   @override
   String get passwordsDoNotMatch => 'Les mots de passe ne correspondent pas';
@@ -353,11 +356,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get next => 'le prochain';
 
   @override
-  String get not_have_account => 'Vous n\'avez pas de compte ?';
+  String get not_have_account => 'Vous n\'\'avez pas de compte ?';
 
   @override
   String get errorLoadingOnboarding =>
-      'Une erreur s\'est produite lors du chargement du contenu de la directive.';
+      'Une erreur s\'\'est produite lors du chargement du contenu de la directive.';
 
   @override
   String get onboardingWelcomeTitle => 'Bienvenue à Mobin Talabat';
@@ -399,7 +402,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Assurez-vous de la clarté des images et du nombre correct d\'exemplaires du Saint Coran avant l\'envoi';
+      'Assurez-vous de la clarté des images et du nombre correct d\'\'exemplaires du Saint Coran avant l\'\'envoi';
 
   @override
   String get signUp => 'abonnement';
@@ -465,7 +468,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Nous sommes heureux de vous compter parmi nous dans notre boutique.';
 
   @override
-  String get onboardingPage2Title => 'Explorez l\'interface de l\'application';
+  String get onboardingPage2Title =>
+      'Explorez l\'\'interface de l\'\'application';
 
   @override
   String get onboardingPage2Description =>
@@ -480,7 +484,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingPage3Description =>
-      'Assurez-vous de la clarté des images et du nombre correct d\'exemplaires du Saint Coran avant l\'envoi';
+      'Assurez-vous de la clarté des images et du nombre correct d\'\'exemplaires du Saint Coran avant l\'\'envoi';
 
   @override
   String get sticker => 'affiche';
@@ -511,6 +515,64 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get documentingTheRequest => 'Documenter la demande';
+
+  @override
+  String get documentationProgress => 'Progression de la documentation';
+
+  @override
+  String get notDocumented => 'Non vérifié';
+
+  @override
+  String get pending => 'suspendu';
+
+  @override
+  String get uploading => 'Téléchargement';
+
+  @override
+  String get completed => 'complet';
+
+  @override
+  String get error => 'erreur';
+
+  @override
+  String get retryFailedUploads => 'Réessayer';
+
+  @override
+  String get retryFailedUploadsDescription =>
+      'Voulez-vous réessayer de télécharger toutes les demandes ayant échoué ?';
+
+  @override
+  String get unknown => 'inconnu';
+
+  @override
+  String get startUpload => 'Commencer le téléchargement';
+
+  @override
+  String get cancel => 'annulation';
+
+  @override
+  String get pendingDescription => 'En attente de téléchargement';
+
+  @override
+  String get uploadingDescription => 'Téléchargement en cours';
+
+  @override
+  String get completedDescription => 'Téléchargé avec succès';
+
+  @override
+  String get failedDescription => 'Échec du téléchargement';
+
+  @override
+  String get unknownDescription => 'inconnu';
+
+  @override
+  String get cancelAllUploads => 'Annuler tous les téléchargements';
+
+  @override
+  String get stopMonitoring => 'Arrêter la surveillance';
+
+  @override
+  String get language => 'Langue';
 
   @override
   String get welcomeLine => 'Bienvenue à';

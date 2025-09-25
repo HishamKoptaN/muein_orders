@@ -11,8 +11,7 @@ class DocsResEntity with _$DocsResEntity {
     @JsonKey(name: 'meta') MetaEntity? meta,
   }) = _DocsResEntity;
 
-  factory DocsResEntity.fromJson(Map<String, dynamic> json) =>
-      _$DocsResEntityFromJson(json);
+  factory DocsResEntity.fromJson(Map<String, dynamic> json) => _$DocsResEntityFromJson(json);
 }
 
 @freezed

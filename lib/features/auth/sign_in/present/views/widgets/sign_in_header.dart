@@ -12,7 +12,7 @@ class SignInHeader extends StatelessWidget {
       children: [
         const SizedBox(height: 148),
         Image.asset(
-          Assets.logos.mubinLogo.path,
+          'assets/logos/mubin_logo.png',
           width: 272,
           height: 137,
           color: AppColors.brandMint,

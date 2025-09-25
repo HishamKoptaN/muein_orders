@@ -1,20 +1,13 @@
-import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:mubin_orders/features/docs/domain/entities/docs_res_entity.dart';
 import '../../../../../core/networking/api_result.dart';
+import '../../data/datasources/local/drift/app_database.dart';
+import '../entities/docs_res_entity.dart';
 
 abstract class DocsRepo {
   Future<ApiResult<DocsResEntity?>> getDocs({required int orderId});
   Future<({double lat, double lng})> getCurrentLocation();
   Future<ApiResult<DocEntity?>> createDoc({
-    required int orderId,
-    required File videoOne,
-    required File videoTwo,
-    required File imageOne,
-    required File imageTwo,
-    required String longitude,
-    required String latitude,
-    required String shippingCosts,
-    required ProgressCallback? onSendProgress,
+    required CachedDoc doc,
   });
+  Future<ApiResult<void>> startUpload({required int orderId});
+  Future<ApiResult<void>> retryUpload({required int docId});
 }

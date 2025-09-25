@@ -148,7 +148,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get add_picure => 'Ɓeydu heen foto';
 
   @override
-  String get add => 'Ɓeydi';
+  String get add => 'ɓesdugo';
 
   @override
   String get loading => 'hoosugo do internaati...';
@@ -215,6 +215,9 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get arabic => 'Arab';
+
+  @override
+  String get success => 'jallorgal';
 
   @override
   String get english => 'Inglisia';
@@ -510,6 +513,64 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get documentingTheRequest => 'Winnditaade ɗaɓɓaande ndee';
+
+  @override
+  String get documentationProgress => 'Yahrugol yeeso binnditagol';
+
+  @override
+  String get notDocumented => 'Hoolkisaaka';
+
+  @override
+  String get pending => 'fawii';
+
+  @override
+  String get uploading => 'Neldude';
+
+  @override
+  String get completed => 'timminugo';
+
+  @override
+  String get error => 'aybe';
+
+  @override
+  String get retryFailedUploads => 'Enndu kadi';
+
+  @override
+  String get retryFailedUploadsDescription =>
+      'Aɗa yiɗi ƴeewtaade neldude denndaangal ɗaɓɓaaɗe ɗe njaɓaaka?';
+
+  @override
+  String get unknown => 'aanda';
+
+  @override
+  String get startUpload => 'Fuɗɗoo neldude';
+
+  @override
+  String get cancel => 'ustude';
+
+  @override
+  String get pendingDescription => 'Ina ɗaminii ƴettude';
+
+  @override
+  String get uploadingDescription => 'Ina ƴetta jooni';
+
+  @override
+  String get completedDescription => 'Neldaama no moƴƴi';
+
+  @override
+  String get failedDescription => 'Waawaa neldude';
+
+  @override
+  String get unknownDescription => 'aanda';
+
+  @override
+  String get cancelAllUploads => 'Woppu kala ko neldaa';
+
+  @override
+  String get stopMonitoring => 'Woppu ƴeewndo';
+
+  @override
+  String get language => 'ɗemngal ngal';
 
   @override
   String get welcomeLine => 'On njaaraama e...';

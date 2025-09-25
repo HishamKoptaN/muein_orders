@@ -147,7 +147,7 @@ class AppLocalizationsLg extends AppLocalizations {
   String get add_picure => 'Yongera ku kifaananyi';
 
   @override
-  String get add => 'Agattako nti';
+  String get add => 'okwongerako';
 
   @override
   String get loading => 'okufuna...';
@@ -214,6 +214,9 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get arabic => 'Omuwalabu';
+
+  @override
+  String get success => 'okuyita';
 
   @override
   String get english => 'Olungereeza';
@@ -509,7 +512,66 @@ class AppLocalizationsLg extends AppLocalizations {
   String get expenses => 'eby\'ensaasaanya';
 
   @override
-  String get documentingTheRequest => 'Okuwandiika okusaba';
+  String get documentingTheRequest => 'Wandiika okusaba';
+
+  @override
+  String get documentationProgress => 'Enkulaakulana mu biwandiiko';
+
+  @override
+  String get notDocumented => 'Tekikakasibwa';
+
+  @override
+  String get pending => 'okuwanika';
+
+  @override
+  String get uploading => 'Okuteeka ku mukutu';
+
+  @override
+  String get completed => 'okumaliriza';
+
+  @override
+  String get error => 'ensobi';
+
+  @override
+  String get retryFailedUploads => 'Ddamu gezaako';
+
+  @override
+  String get retryFailedUploadsDescription =>
+      'Oyagala okuddamu okugezaako okuteeka okusaba kwonna okulemereddwa?';
+
+  @override
+  String get unknown => 'ekitamanyikiddwa';
+
+  @override
+  String get startUpload => 'Tandika okuteeka ku mukutu';
+
+  @override
+  String get cancel => 'okusazaamu';
+
+  @override
+  String get pendingDescription => 'Alinze okuteekebwa ku mukutu';
+
+  @override
+  String get uploadingDescription => 'Okuteeka ku mukutu kati';
+
+  @override
+  String get completedDescription =>
+      'Eteekeddwa ku mukutu gwa yintaneeti obulungi';
+
+  @override
+  String get failedDescription => 'Eremereddwa okuteeka ku mukutu';
+
+  @override
+  String get unknownDescription => 'ekitamanyikiddwa';
+
+  @override
+  String get cancelAllUploads => 'Sazaamu byonna ebiteekeddwa ku mukutu';
+
+  @override
+  String get stopMonitoring => 'Mulekere awo okulondoola';
+
+  @override
+  String get language => 'olulimi';
 
   @override
   String get welcomeLine => 'Mwaniriziddwa mu...';

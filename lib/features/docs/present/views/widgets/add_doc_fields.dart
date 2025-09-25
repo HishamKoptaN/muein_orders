@@ -6,7 +6,7 @@ import 'package:form_inputs/form_inputs.dart';
 
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../blocs/bloc/docs_bloc.dart';
+import '../../blocs/cached_doc/cached_doc_bloc.dart';
 import 'add_file_widget.dart';
 import 'file_picker_utils.dart';
 import 'location_picker_button.dart';
@@ -26,9 +26,9 @@ class AddDocWidget extends StatelessWidget {
   final FileFormzInput videoTwo;
   final FileFormzInput imageOne;
   final FileFormzInput imageTwo;
-  final GenericFormzInput latitude;
-  final GenericFormzInput longitude;
-  final GenericFormzInput shippingCost;
+  final GenericFormzInput<double>? latitude;
+  final GenericFormzInput<double>? longitude;
+  final GenericFormzInput<double>? shippingCost;
 
   static const String routeName = 'DocWidget';
   @override
@@ -50,9 +50,9 @@ class AddDocWidget extends StatelessWidget {
               fileType: FileType.image,
             );
             if (file != null) {
-              context.read<DocsBloc>().add(
-                    DocsEvent.imageOneChanged(
-                      file: file,
+              context.read<CachedDocBloc>().add(
+                    CachedDocEvent.updateData(
+                      imageOne: FileFormzInput.dirty(file),
                     ),
                   );
             }
@@ -71,9 +71,9 @@ class AddDocWidget extends StatelessWidget {
               fileType: FileType.image,
             );
             if (file != null) {
-              context.read<DocsBloc>().add(
-                    DocsEvent.imageTwoChanged(
-                      file: file,
+              context.read<CachedDocBloc>().add(
+                    CachedDocEvent.updateData(
+                      imageTwo: FileFormzInput.dirty(file),
                     ),
                   );
             }
@@ -90,9 +90,9 @@ class AddDocWidget extends StatelessWidget {
               fileType: FileType.video,
             );
             if (file != null) {
-              context.read<DocsBloc>().add(
-                    DocsEvent.videoOneChanged(
-                      file: file,
+              context.read<CachedDocBloc>().add(
+                    CachedDocEvent.updateData(
+                      videoOne: FileFormzInput.dirty(file),
                     ),
                   );
             }
@@ -109,9 +109,9 @@ class AddDocWidget extends StatelessWidget {
               fileType: FileType.video,
             );
             if (file != null) {
-              context.read<DocsBloc>().add(
-                    DocsEvent.videoTwoChanged(
-                      file: file,
+              context.read<CachedDocBloc>().add(
+                    CachedDocEvent.updateData(
+                      videoTwo: FileFormzInput.dirty(file),
                     ),
                   );
             }
@@ -119,8 +119,8 @@ class AddDocWidget extends StatelessWidget {
           validator: (_) => videoTwo.isNotValid ? videoTwo.errorMessage : null,
         ),
         LocationPickerButton(
-          latitude: latitude.value,
-          longitude: longitude.value,
+          latitude: latitude,
+          longitude: longitude,
         ),
         Container(
           decoration: BoxDecoration(
@@ -128,7 +128,7 @@ class AddDocWidget extends StatelessWidget {
             // color: Colors.grey.withOpacity(0.2),
           ),
           child: CustomTextFormField(
-            initialValue: shippingCost.value,
+            initialValue: shippingCost?.value?.toString(),
             width: double.infinity,
             keyboardType: TextInputType.number,
             labelText: t.expenses,
@@ -164,14 +164,14 @@ class AddDocWidget extends StatelessWidget {
               FilteringTextInputFormatter.digitsOnly,
             ],
             onChanged: (v) {
-              context.read<DocsBloc>().add(
-                    DocsEvent.shippingCostChanged(
-                      value: v,
+              context.read<CachedDocBloc>().add(
+                    CachedDocEvent.updateData(
+                      shippingCost: GenericFormzInput.dirty(double.parse(v)),
                     ),
                   );
             },
             validator: (_) =>
-                shippingCost.isNotValid ? shippingCost.errorMessage : null,
+                shippingCost?.isNotValid == true ? shippingCost?.errorMessage : null,
           ),
         ),
       ],

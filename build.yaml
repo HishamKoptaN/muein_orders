@@ -2,6 +2,7 @@ targets:
   $default:
     sources:
       include:
+        - $package$
         - lib/**
         - lib/core/routing/navigation_service.dart
         - lib/core/routing/route_utils.dart

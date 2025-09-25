@@ -8,7 +8,6 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/database/shared_pref_helper.dart';
 import '../../../../../core/database/shared_pref_keys.dart';
 import '../../../../../core/error/api_error_model.dart';
-import '../../../../../core/services/firebase_messaging_service.dart';
 import '../../domain/entities/signup_req_entity.dart';
 import '../../domain/use_cases/sign_up_use_cases.dart';
 
@@ -19,7 +18,6 @@ part 'sign_up_state.dart';
 @LazySingleton()
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final SignUpUseCases signUpUseCases;
-  final FirebaseMessagingService firebaseMessagingService;
   // Initialize with default values to prevent null errors
   GenericFormzInput _name = const GenericFormzInput.pure();
   PhoneNumberInput _phone = const PhoneNumberInput.pure();
@@ -30,7 +28,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   GenericFormzInput _obscurePassword = const GenericFormzInput.pure();
   SignUpBloc({
     required this.signUpUseCases,
-    required this.firebaseMessagingService,
   }) : super(
           const SignUpState.loaded(
             name: GenericFormzInput.pure(),
@@ -56,8 +53,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               );
 
               // Get FCM token
-              final fcmToken =
-                  await firebaseMessagingService.getFCMToken() ?? '';
+              final fcmToken = '';
 
               // Create sign up request
               final signUpReq = SignUpReqEntity(

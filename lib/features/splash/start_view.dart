@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/routing/navigation_service.dart';
-import '../../gen/assets.gen.dart';
 import '../../l10n/app_localizations.dart';
 import '../language/view/select_language.dart';
 
@@ -13,14 +12,14 @@ class StartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
+    final t = AppLocalizations.of(context);
     return Scaffold(
       body: Stack(
         children: [
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              Assets.images.startBack.path,
+              'assets/images/start_back.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -57,7 +56,7 @@ class StartView extends StatelessWidget {
                         ),
                         const SizedBox(height: 32),
                         Image.asset(
-                          Assets.logos.secondLogoPng.path,
+                          'assets/logos/second_logo.png',
                         ),
                       ],
                     ),
@@ -81,7 +80,7 @@ class StartView extends StatelessWidget {
                             );
                           },
                           icon: SvgPicture.asset(
-                            Assets.icons.iconoirLanguage,
+                            'assets/icons/iconoir_language.svg',
                             width: 24,
                             height: 24,
                             colorFilter: const ColorFilter.mode(
