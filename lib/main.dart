@@ -20,7 +20,16 @@ Future<void> main() async {
   // Initialize Flutter bindings first
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  debugPrint('🔧 تم تهيئة Dependencies');
+   try {
+    await Workmanager().initialize(
+      callbackDispatcher,
+      isInDebugMode: true,
+    );
+    debugPrint('✅ تم تهيئة WorkManager بنجاح');
+  } catch (e) {
+    debugPrint('⚠️ خطأ في تهيئة WorkManager: $e');
+    debugPrint('سيتم استخدام الرفع اليدوي بدلاً من الخلفية');
+  }
   startImmediateUpload();
 
   // إضافة بيانات اختبارية للتأكد من وجود pending docs
@@ -30,26 +39,27 @@ Future<void> main() async {
   await testWorkManager();
 
   debugPrint('📱 بدء تهيئة WorkManager...');
-  await Workmanager().initialize(
-    callbackDispatcher,
-    isInDebugMode: true,
-  );
-  debugPrint('✅ تم تهيئة WorkManager');
+ 
 
   debugPrint('📅 تسجيل المهمة الدورية...');
-  await Workmanager().registerPeriodicTask(
-    "upload_task",
-    "uploadPendingDocs",
-    frequency: const Duration(minutes: 15),
-    initialDelay: const Duration(seconds: 10),
-    constraints: Constraints(
-      networkType: NetworkType.connected,
-      requiresBatteryNotLow: false,
-      requiresCharging: false,
-      requiresDeviceIdle: false,
-    ),
-  );
-  debugPrint('✅ تم تسجيل المهمة الدورية');
+  try {
+    await Workmanager().registerPeriodicTask(
+      "upload_task",
+      "uploadPendingDocs",
+      frequency: const Duration(minutes: 15),
+      initialDelay: const Duration(seconds: 10),
+      constraints: Constraints(
+        networkType: NetworkType.connected,
+        requiresBatteryNotLow: false,
+        requiresCharging: false,
+        requiresDeviceIdle: false,
+      ),
+    );
+    debugPrint('✅ تم تسجيل المهمة الدورية');
+  } catch (e) {
+    debugPrint('⚠️ خطأ في تسجيل المهمة الدورية: $e');
+    debugPrint('سيتم الاعتماد على الرفع اليدوي فقط');
+  }
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.presentError(details);
   };
@@ -119,7 +129,7 @@ Future<void> addTestData() async {
       // إضافة بيانات اختبارية
       await db.insertDoc(
         doc: CachedDocsCompanion.insert(
-          orderId: 1,
+          orderId: 2,
           imageOne: const Value('test_image1.jpg'),
           imageTwo: const Value('test_image2.jpg'),
           videoOne: const Value('test_video1.mp4'),
@@ -131,7 +141,6 @@ Future<void> addTestData() async {
           uploadProgress: const Value(0.0),
         ),
       );
-
       debugPrint('✅ تم إضافة بيانات اختبارية بنجاح');
     } else {
       debugPrint('📂 موجود ${existingDocs.length} pending docs بالفعل');
