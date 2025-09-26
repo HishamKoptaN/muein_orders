@@ -1187,6 +1187,12 @@ abstract class AppLocalizations {
   /// **'the language'**
   String get language;
 
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
   /// No description provided for @welcomeLine.
   ///
   /// In en, this message translates to:

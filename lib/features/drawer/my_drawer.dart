@@ -1,13 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/routing/navigation_service.dart';
 import '../../l10n/app_localizations.dart';
+import '../auth/auth/present/bloc/auth_bloc.dart';
 import '../auth/sign_in/present/views/sign_in_view.dart';
 import '../language/view/select_language.dart';
+import '../profile/present/views/profile_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -68,25 +71,14 @@ class MyDrawer extends StatelessWidget {
                     );
                   },
                 ),
-                // buildMenuItem(
-                //   icon: FontAwesomeIcons.cloudArrowUp,
-                //   title: 'التوثيقات المحلية',
-                //   onTap: () {
-                //     // NavigationService.navigateTo(
-                //     //   context: context,
-                //     //   routeName: UploadMonitoringView.routeName,
-                //     // );
-                //   },
-                // ),
-                // عناصر القائمة
                 buildMenuItem(
                   icon: Icons.person_outline,
-                  title: 'المستخدم',
+                  title: t.profile,
                   onTap: () {
-                    // NavigationService.navigateTo(
-                    //   context: context,
-                    //   routeName: UploadMonitoringView.routeName,
-                    // );
+                    NavigationService.navigateTo(
+                      context: context,
+                      routeName: ProfileScreen.routeName,
+                    );
                   },
                 ),
                 buildMenuItem(
@@ -122,10 +114,9 @@ class MyDrawer extends StatelessWidget {
                                   Expanded(
                                     child: TextButton(
                                       onPressed: () async {
-                                        await FirebaseAuth.instance.signOut();
-                                        // context
-                                        //     .read<AuthBloc>()
-                                        //     .add(const AuthEvent.clearToken());
+                                        context
+                                            .read<AuthBloc>()
+                                            .add(const AuthEvent.signedOut());
                                         if (context.mounted) {
                                           context.goNamed(SignInView.routeName);
                                         }

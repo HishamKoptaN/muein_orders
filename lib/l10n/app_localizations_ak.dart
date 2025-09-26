@@ -389,7 +389,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get settings => 'Nsiesiei a Wɔde Yɛ Adwuma';
 
   @override
-  String get createAccount => 'Yɛ akontaabu bi';
+  String get createAccount => 'Yɛ akontaabu';
 
   @override
   String passwordResetEmailSentTo(Object email) {
@@ -571,6 +571,9 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get language => 'kasa no';
+
+  @override
+  String get profile => 'Ho asɛm';
 
   @override
   String get welcomeLine => 'Yɛma wo akwaaba ba';

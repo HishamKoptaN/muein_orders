@@ -52,7 +52,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Hapa utapata kazi, maombi, arifa na vichungi.';
+      'Hapa utapata kazi, maombi, arifa na vichujio.';
 
   @override
   String get documentation_with_photos_and_videos =>
@@ -570,6 +570,9 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get language => 'lugha';
+
+  @override
+  String get profile => 'Wasifu';
 
   @override
   String get welcomeLine => 'Karibu kwa';

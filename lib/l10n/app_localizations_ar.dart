@@ -569,5 +569,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get language => 'اللغة';
 
   @override
+  String get profile => 'الملف الشخصي';
+
+  @override
   String get welcomeLine => 'مرحباً بكم \nفي';
 }

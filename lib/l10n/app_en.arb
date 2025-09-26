@@ -21,8 +21,8 @@
   "orders": "Requests",
   "package": "pack",
   "there_are_no_results_for_this_search": "No results found for this search",
-  "@@context": "Mubin Orders Application - English Localization",
   "documentations": "Documents",
+  "@@context": "Mubin Orders Application - English Localization",
   "show_documentations": "View documents",
   "execution_number": "Execution number",
   "add_documentation": "Add documents",
@@ -181,5 +181,6 @@
   "cancelAllUploads": "Cancel all uploads",
   "stopMonitoring": "Stop monitoring",
   "language": "the language",
+  "profile": "Profile",
   "welcomeLine": "Welcome to"
 }

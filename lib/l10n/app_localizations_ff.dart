@@ -573,5 +573,8 @@ class AppLocalizationsFf extends AppLocalizations {
   String get language => 'ɗemngal ngal';
 
   @override
+  String get profile => 'Sappinol';
+
+  @override
   String get welcomeLine => 'On njaaraama e...';
 }

@@ -293,7 +293,7 @@ class AppLocalizationsLg extends AppLocalizations {
   String get data_saved => 'Data eterekeddwa';
 
   @override
-  String get order_id_exists => 'Order ID yaliwo dda';
+  String get order_id_exists => 'Order ID yabaddewo dda';
 
   @override
   String get select_files => 'Londa fayiro';
@@ -572,6 +572,9 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get language => 'olulimi';
+
+  @override
+  String get profile => 'Ebikukwatako';
 
   @override
   String get welcomeLine => 'Mwaniriziddwa mu...';

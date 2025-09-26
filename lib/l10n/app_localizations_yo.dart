@@ -572,5 +572,8 @@ class AppLocalizationsYo extends AppLocalizations {
   String get language => 'ede naa';
 
   @override
+  String get profile => 'Profaili';
+
+  @override
   String get welcomeLine => 'Kaabo si';
 }

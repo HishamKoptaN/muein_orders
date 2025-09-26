@@ -574,5 +574,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get language => 'the language';
 
   @override
+  String get profile => 'Profile';
+
+  @override
   String get welcomeLine => 'Welcome to';
 }
