@@ -9,7 +9,11 @@ class AuthUseCase {
   AuthUseCase({
     required this.authRepo,
   });
-  Future<ApiResult<void>?> check() async {
+  Future<ApiResult<bool>?> check() async {
     return await authRepo.check();
+  }
+
+  Future<ApiResult<void>> signOut() async {
+    return await authRepo.signOut();
   }
 }

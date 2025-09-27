@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../../../core/routing/navigation_service.dart';
+import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../sign_up/present/views/sign_up_views.dart';
@@ -17,7 +18,7 @@ class SignInActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
+    final t = AppLocalizations.of(context);
     return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) => Column(
         children: [
@@ -32,28 +33,14 @@ class SignInActions extends StatelessWidget {
                       )
                   : null,
               style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.resolveWith(
-                  (states) => const Color(0xFF83BEA8),
-                ),
-                shape: WidgetStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                ),
-                elevation: WidgetStateProperty.all(0),
+                backgroundColor: formzSubmissionStatus.isInProgressOrSuccess
+                    ? WidgetStateProperty.all(AppColors.primary)
+                    : WidgetStateProperty.all(Colors.grey),
               ),
               child: formzSubmissionStatus.isInProgress
                   ? const CustomCircularProgress()
                   : Text(
                       t.login,
-                      style: TextStyle(
-                        fontFamily: 'Almarai',
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                        color: formzSubmissionStatus.isSuccess
-                            ? Colors.white
-                            : Colors.grey,
-                      ),
                     ),
             ),
           ),

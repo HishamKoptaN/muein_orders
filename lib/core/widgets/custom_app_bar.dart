@@ -22,9 +22,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       backgroundColor: Colors.white,
-      foregroundColor: Colors.black, // لون النص والأيقونات أسود
-      iconTheme: const IconThemeData(
-          color: Colors.black), // لون أيقونات الـ AppBar أسود
+      foregroundColor: Colors.black,
+      iconTheme: const IconThemeData(color: Colors.black),
       automaticallyImplyLeading: automaticallyImplyLeading,
       title: Text(
         title,
@@ -35,28 +34,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       bottom: bottom,
-      leading: leading, // استخدم الـ leading المخصص إذا تم تمريره
+      leading: leading,
       actions: actions,
-      // leading: IconButton(
-      //     icon: const Icon(Icons.notifications_none),
-      //     onPressed: () {},
-      //   ),
-      // actions: [
-      //   BlocBuilder<ThemeCubit, ThemeMode>(
-      //     builder: (context, themeMode) {
-      //       return Padding(
-      //         padding: const EdgeInsets.symmetric(horizontal: 8),
-      //         child: Switch(
-      //           value: themeMode == ThemeMode.dark,
-      //           onChanged: (val) {
-      //             context.read<ThemeCubit>().toggleTheme(val);
-      //           },
-      //         ),
-      //       );
-      //     },
-      //   ),
-      //   LanguageSwitchButton(),
-      // ],
     );
   }
 

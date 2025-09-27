@@ -38,7 +38,7 @@ class ForgotPassBloc extends Bloc<ForgotPassEvent, ForgotPassState> {
                 formzSubmissionStatus: FormzSubmissionStatus.inProgress,
               ),
             );
-            final res = await sendPassResetEmailUseCase.call(
+            final res = await sendPassResetEmailUseCase.sendPassResetEmail(
               email: email!.value,
             );
             await res.when(

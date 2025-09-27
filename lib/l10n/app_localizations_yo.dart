@@ -21,6 +21,9 @@ class AppLocalizationsYo extends AppLocalizations {
   String get indevedual => 'olukuluku';
 
   @override
+  String get instructions => 'Awọn ilana';
+
+  @override
   String get indveduals => 'Fokabulari';
 
   @override
@@ -32,7 +35,7 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Nibi iwọ yoo wa awọn iṣẹ ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
+      'Nibi iwọ yoo wa awọn iṣẹ-ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
 
   @override
   String get documentationWithPhotosAndVideos =>
@@ -44,7 +47,7 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Inu wa dun pe o darapọ mọ wa!';
+      'Inu wa dun lati jẹ ki o darapọ mọ ile itaja wa.';
 
   @override
   String get get_to_know_the_application_interface =>
@@ -59,7 +62,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'Iwe pẹlu awọn fọto ati awọn fidio';
 
   @override
-  String get send => 'Firanṣẹ';
+  String get send => 'firanṣẹ';
 
   @override
   String get phone => 'Nomba fonu';
@@ -100,6 +103,9 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get count => 'nọmba';
+
+  @override
+  String get registerAnAccount => 'Forukọsilẹ iroyin';
 
   @override
   String get noMoreDocs => 'Ko si awọn iwe-ipamọ miiran.';
@@ -348,7 +354,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get instead => 'dipo';
 
   @override
-  String get skip => 'Rekọja';
+  String get skip => 'fo';
 
   @override
   String get next => 'tókàn';
@@ -425,7 +431,10 @@ class AppLocalizationsYo extends AppLocalizations {
   String get accountCreated => 'A ṣẹda akọọlẹ ni aṣeyọri';
 
   @override
-  String get start => 'O bẹrẹ';
+  String get start => 'rara';
+
+  @override
+  String get email => 'imeeli';
 
   @override
   String get errorCreatingAccount => 'Aṣiṣe ẹda iroyin';
@@ -477,7 +486,8 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ọna asopọ atunto ọrọ igbaniwọle ti firanṣẹ si imeeli rẹ.';
 
   @override
-  String get onboardingPage3Title => 'Iwe pẹlu awọn fọto ati awọn fidio';
+  String get onboardingPage3Title =>
+      'Awọn iwe aṣẹ pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get onboardingPage3Description =>
@@ -554,7 +564,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get uploadingDescription => 'Ikojọpọ bayi';
 
   @override
-  String get completedDescription => 'Ti kojọpọ ni aṣeyọri';
+  String get completedDescription => 'Ti gbejade ni aṣeyọri';
 
   @override
   String get failedDescription => 'Kuna lati po si';

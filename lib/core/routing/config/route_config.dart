@@ -20,8 +20,8 @@ class RouteConfig {
   static List<RouteBase> get routes {
     final routes = [
       createRoute(
-        routeName: OnBoardingView.routeName,
-        builder: (context, state) => const OnBoardingView(),
+        routeName: InstructionsView.routeName,
+        builder: (context, state) => const InstructionsView(),
       ),
       createRoute(
         routeName: SelectLanguageView.routeName,
@@ -79,7 +79,6 @@ class RouteConfig {
             debugPrint('Invalid orderId: $orderId, using default value 0');
             // يمكن إظهار رسالة خطأ أو إعادة توجيه
           }
-
           return AddDocView(
             orderId: orderId ?? 0,
           );

@@ -8,8 +8,7 @@ part 'sign_up_res_model.g.dart';
 @freezed
 abstract class SignUpResModel with _$SignUpResModel {
   const factory SignUpResModel({
-    @JsonKey(name: 'token') String? token,
-    @JsonKey(name: 'role') String? role,
+    @JsonKey(name: 'token')required String token,
   }) = _SignUpResModel;
   factory SignUpResModel.fromJson(Map<String, dynamic> json) =>
       _$SignUpResModelFromJson(json);
@@ -17,14 +16,12 @@ abstract class SignUpResModel with _$SignUpResModel {
 
 extension SignUpResModelX on SignUpResModel {
   SignUpResEntity toEntity() => SignUpResEntity(
-        token: token!,
-        role: role!,
+        token: token,
       );
 }
 
 extension SignUpResEntityX on SignUpResEntity {
   SignUpResModel toModel() => SignUpResModel(
         token: token,
-        role: role,
       );
 }

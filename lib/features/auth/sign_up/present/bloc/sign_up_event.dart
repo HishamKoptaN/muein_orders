@@ -7,9 +7,8 @@ class SignUpEvent with _$SignUpEvent {
     EmailInput? email,
     PhoneNumberInput? phone,
     PasswordInput? password,
-    ConfirmPasswordInput? confirmPassword,
-    GenericFormzInput? obscurePassword,
-    FormzSubmissionStatus? formzSubmissionStatus,
+    PasswordInput? confirmPassword,
+    bool? obscurePassword,
   }) = _DataChanged;
   const factory SignUpEvent.signUp() = _SignUp;
 }

@@ -20,8 +20,8 @@ SignUpResModel _$SignUpResModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignUpResModel {
-  String get token => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
+  @JsonKey(name: 'token')
+  String? get token => throw _privateConstructorUsedError;
 
   /// Serializes this SignUpResModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $SignUpResModelCopyWith<$Res> {
           SignUpResModel value, $Res Function(SignUpResModel) then) =
       _$SignUpResModelCopyWithImpl<$Res, SignUpResModel>;
   @useResult
-  $Res call({String token, String role});
+  $Res call({@JsonKey(name: 'token') String? token});
 }
 
 /// @nodoc
@@ -57,18 +57,13 @@ class _$SignUpResModelCopyWithImpl<$Res, $Val extends SignUpResModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
-    Object? role = null,
+    Object? token = freezed,
   }) {
     return _then(_value.copyWith(
-      token: null == token
+      token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +76,7 @@ abstract class _$$SignUpResModelImplCopyWith<$Res>
       __$$SignUpResModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token, String role});
+  $Res call({@JsonKey(name: 'token') String? token});
 }
 
 /// @nodoc
@@ -97,18 +92,13 @@ class __$$SignUpResModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
-    Object? role = null,
+    Object? token = freezed,
   }) {
     return _then(_$SignUpResModelImpl(
-      token: null == token
+      token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -116,19 +106,18 @@ class __$$SignUpResModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignUpResModelImpl implements _SignUpResModel {
-  const _$SignUpResModelImpl({required this.token, required this.role});
+  const _$SignUpResModelImpl({@JsonKey(name: 'token') this.token});
 
   factory _$SignUpResModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignUpResModelImplFromJson(json);
 
   @override
-  final String token;
-  @override
-  final String role;
+  @JsonKey(name: 'token')
+  final String? token;
 
   @override
   String toString() {
-    return 'SignUpResModel(token: $token, role: $role)';
+    return 'SignUpResModel(token: $token)';
   }
 
   @override
@@ -136,13 +125,12 @@ class _$SignUpResModelImpl implements _SignUpResModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignUpResModelImpl &&
-            (identical(other.token, token) || other.token == token) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, token, role);
+  int get hashCode => Object.hash(runtimeType, token);
 
   /// Create a copy of SignUpResModel
   /// with the given fields replaced by the non-null parameter values.
@@ -162,17 +150,15 @@ class _$SignUpResModelImpl implements _SignUpResModel {
 }
 
 abstract class _SignUpResModel implements SignUpResModel {
-  const factory _SignUpResModel(
-      {required final String token,
-      required final String role}) = _$SignUpResModelImpl;
+  const factory _SignUpResModel({@JsonKey(name: 'token') final String? token}) =
+      _$SignUpResModelImpl;
 
   factory _SignUpResModel.fromJson(Map<String, dynamic> json) =
       _$SignUpResModelImpl.fromJson;
 
   @override
-  String get token;
-  @override
-  String get role;
+  @JsonKey(name: 'token')
+  String? get token;
 
   /// Create a copy of SignUpResModel
   /// with the given fields replaced by the non-null parameter values.

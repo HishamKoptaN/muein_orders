@@ -21,7 +21,6 @@ SignUpResEntity _$SignUpResEntityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SignUpResEntity {
   String get token => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
 
   /// Serializes this SignUpResEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +38,7 @@ abstract class $SignUpResEntityCopyWith<$Res> {
           SignUpResEntity value, $Res Function(SignUpResEntity) then) =
       _$SignUpResEntityCopyWithImpl<$Res, SignUpResEntity>;
   @useResult
-  $Res call({String token, String role});
+  $Res call({String token});
 }
 
 /// @nodoc
@@ -58,16 +57,11 @@ class _$SignUpResEntityCopyWithImpl<$Res, $Val extends SignUpResEntity>
   @override
   $Res call({
     Object? token = null,
-    Object? role = null,
   }) {
     return _then(_value.copyWith(
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -81,7 +75,7 @@ abstract class _$$SignUpResEntityImplCopyWith<$Res>
       __$$SignUpResEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token, String role});
+  $Res call({String token});
 }
 
 /// @nodoc
@@ -98,16 +92,11 @@ class __$$SignUpResEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? token = null,
-    Object? role = null,
   }) {
     return _then(_$SignUpResEntityImpl(
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -116,20 +105,17 @@ class __$$SignUpResEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SignUpResEntityImpl implements _SignUpResEntity {
-  const _$SignUpResEntityImpl({required this.token, this.role = 'user'});
+  const _$SignUpResEntityImpl({required this.token});
 
   factory _$SignUpResEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignUpResEntityImplFromJson(json);
 
   @override
   final String token;
-  @override
-  @JsonKey()
-  final String role;
 
   @override
   String toString() {
-    return 'SignUpResEntity(token: $token, role: $role)';
+    return 'SignUpResEntity(token: $token)';
   }
 
   @override
@@ -137,13 +123,12 @@ class _$SignUpResEntityImpl implements _SignUpResEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignUpResEntityImpl &&
-            (identical(other.token, token) || other.token == token) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, token, role);
+  int get hashCode => Object.hash(runtimeType, token);
 
   /// Create a copy of SignUpResEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -163,16 +148,14 @@ class _$SignUpResEntityImpl implements _SignUpResEntity {
 }
 
 abstract class _SignUpResEntity implements SignUpResEntity {
-  const factory _SignUpResEntity(
-      {required final String token, final String role}) = _$SignUpResEntityImpl;
+  const factory _SignUpResEntity({required final String token}) =
+      _$SignUpResEntityImpl;
 
   factory _SignUpResEntity.fromJson(Map<String, dynamic> json) =
       _$SignUpResEntityImpl.fromJson;
 
   @override
   String get token;
-  @override
-  String get role;
 
   /// Create a copy of SignUpResEntity
   /// with the given fields replaced by the non-null parameter values.

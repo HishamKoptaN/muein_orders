@@ -98,18 +98,21 @@ Widget buildOrderCard({
                           text: '📌 لا يوجد توثيق بعد',
                         );
                       }
+                      // إضافة تحديث إجباري للـ UI
                       return ListView.builder(
-                        key: ValueKey(docs.length), // 👈 المفتاح هنا مهم
+                        key: ValueKey(
+                          'docs_${docs.length}_${docs.fold(0.0, (sum, doc) => sum + (doc.uploadProgress))}',
+                        ),
                         itemCount: docs.length,
                         itemBuilder: (context, index) {
                           final doc = docs[index];
                           switch (doc.uploadStatus) {
-                            case UploadStatus.pending:
+                            case 'pending':
                               return _buildMessage(
                                 key: ValueKey('pending_$index'),
                                 text: '⏳ في الانتظار',
                               );
-                            case UploadStatus.uploading:
+                            case 'uploading':
                               return Column(
                                 key: ValueKey('uploading_$index'),
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,24 +120,25 @@ Widget buildOrderCard({
                                 children: [
                                   _buildMessage(
                                     key: ValueKey('uploading_$index'),
-                                    text: 'جاري رفع طلب ${doc.orderId}',
+                                    text: 'جاري رفع التوثيق ${doc.orderId}',
                                   ),
                                   LinearProgressIndicator(
                                     value: doc.uploadProgress / 100,
+                                    minHeight: 4,
                                   ),
                                   _buildMessage(
                                     key: ValueKey('progress_$index'),
                                     text: 'الحالة: ${doc.uploadStatus}, '
-                                        'Progress: ${doc.uploadProgress}%',
+                                        'Progress: ${doc.uploadProgress.toStringAsFixed(1)}%',
                                   ),
                                 ],
                               );
-                            case UploadStatus.success:
+                            case 'success':
                               return _buildMessage(
                                 key: ValueKey('success_$index'),
                                 text: '✅ تم الرفع بنجاح',
                               );
-                            case UploadStatus.failure:
+                            case 'failure':
                               return _buildMessage(
                                 key: ValueKey('failure_$index'),
                                 text: '❌ فشل الرفع',

@@ -815,7 +815,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "383ade6c9f315d464ff7ceb58192fb0ecd512481"
+      resolved-ref: bc8ff1a203510031926f500a64e766cc64f6f2d1
       url: "https://github.com/HishamKoptaN/form_inputs.git"
     source: git
     version: "0.0.1"

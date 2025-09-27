@@ -5,8 +5,6 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/database/shared_pref_helper.dart';
-import '../../../../../core/database/shared_pref_keys.dart';
 import '../../../../../core/error/api_error_model.dart';
 import '../../domain/entities/signup_req_entity.dart';
 import '../../domain/use_cases/sign_up_use_cases.dart';
@@ -18,27 +16,27 @@ part 'sign_up_state.dart';
 @LazySingleton()
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final SignUpUseCases signUpUseCases;
-  // Initialize with default values to prevent null errors
-  GenericFormzInput _name = const GenericFormzInput.pure();
-  PhoneNumberInput _phone = const PhoneNumberInput.pure();
-  EmailInput _email = const EmailInput.pure();
-  PasswordInput _password = const PasswordInput.pure();
-  ConfirmPasswordInput _confirmPassword =
-      const ConfirmPasswordInput.pure(password: '');
-  GenericFormzInput _obscurePassword = const GenericFormzInput.pure();
+  GenericFormzInput? _name;
+  PhoneNumberInput? _phone;
+  EmailInput? _email;
+  PasswordInput? _password;
+  PasswordInput? _confirmPassword;
+  bool? _obscurePassword;
   SignUpBloc({
     required this.signUpUseCases,
   }) : super(
           const SignUpState.loaded(
-            name: GenericFormzInput.pure(),
-            email: EmailInput.pure(),
-            phone: PhoneNumberInput.pure(),
-            password: PasswordInput.pure(),
-            confirmPassword: ConfirmPasswordInput.pure(
+            name: GenericFormzInput.dirty(''),
+            email: EmailInput.dirty(''),
+            phone: PhoneNumberInput.dirty(''),
+            password: PasswordInput.dirty(''),
+            confirmPassword: PasswordInput.dirty(''),
+            obscurePassword: true,
+            formzSubmissionStatus: FormzSubmissionStatus.initial,
+            confirmPasswordInput: ConfirmPasswordInput.dirty(
+              value: '',
               password: '',
             ),
-            obscurePassword: GenericFormzInput.pure(),
-            formzSubmissionStatus: FormzSubmissionStatus.initial,
           ),
         ) {
     on<SignUpEvent>(
@@ -46,44 +44,30 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         await event.when(
           signUp: () async {
             try {
-              // Update UI to show loading state
               emitCustomLoaded(
                 emit: emit,
                 formzSubmissionStatus: FormzSubmissionStatus.inProgress,
               );
-
-              // Get FCM token
-              final fcmToken = '';
-
-              // Create sign up request
+              const fcmToken = '';
               final signUpReq = SignUpReqEntity(
-                name: _name.value,
-                phone: _phone.value,
-                email: _email.value,
-                password: _password.value,
+                name: _name!.value,
+                phone: _phone!.value,
+                email: _email!.value,
+                password: _password!.value,
                 fcmToken: fcmToken,
               );
-
-              // Call sign up use case
               final result = await signUpUseCases.signUp(
                 signUpReq: signUpReq,
               );
-
-              // Handle the result
               await result.when(
-                success: (res) async {
-                  if (res?.token != null) {
-                    // Log the received token in the requested format
-                    debugPrint('[log] 📌 تم استلام id_token: ${res!.token}');
-                    // Emit success state
-                    emit(const SignUpState.success());
-                  } else {
-                    debugPrint('[log] ❌ لم يتم استلام التوكن في الرد');
-                    throw Exception('No token received from server');
-                  }
+                success: (_) async {
+                  emit(const SignUpState.success());
                 },
                 failure: (apiErrorModel) {
-                  emitCustomFailure(emit: emit, apiErrorModel: apiErrorModel);
+                  emitCustomFailure(
+                    emit: emit,
+                    apiErrorModel: apiErrorModel,
+                  );
                 },
               );
             } catch (e, stackTrace) {
@@ -95,7 +79,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
                 ),
               );
             } finally {
-              // Always ensure we're in a valid state after operation
               emitCustomLoaded(emit: emit);
             }
           },
@@ -106,26 +89,13 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             password,
             confirmPassword,
             obscurePassword,
-            formStatus,
-          ) {
-            if (name != null) {
-              _name = name;
-            }
-            if (email != null) {
-              _email = email;
-            }
-            if (phone != null) {
-              _phone = phone;
-            }
-            if (password != null) {
-              _password = password;
-            }
-            if (confirmPassword != null) {
-              _confirmPassword = confirmPassword;
-            }
-            if (obscurePassword != null) {
-              _obscurePassword = obscurePassword;
-            }
+                    ) {
+            _name = name ?? _name;
+            _email = email ?? _email;
+            _phone = phone ?? _phone;
+            _password = password ?? _password;
+            _confirmPassword = confirmPassword ?? _confirmPassword;
+            _obscurePassword = obscurePassword ?? _obscurePassword;
             emitCustomLoaded(
               emit: emit,
             );
@@ -138,30 +108,35 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     required Emitter<SignUpState> emit,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
-    try {
-      emit(
-        SignUpState.loaded(
-          name: _name,
-          email: _email,
-          phone: _phone,
-          password: _password,
-          confirmPassword: _confirmPassword,
-          obscurePassword: _obscurePassword,
-          formzSubmissionStatus: formzSubmissionStatus ??
-              (Formz.validate([_email])
-                  ? FormzSubmissionStatus.success
-                  : FormzSubmissionStatus.failure),
+    emit(
+      SignUpState.loaded(
+        name: _name!,
+        email: _email!,
+        phone: _phone!,
+        password: _password!,
+        confirmPassword: _confirmPassword!,
+        confirmPasswordInput: ConfirmPasswordInput.dirty(
+          value: _confirmPassword!.value,
+          password: _password!.value,
         ),
-      );
-    } catch (e, stackTrace) {
-      // Log the error and emit a failure state
-      debugPrint('Error in emitCustomLoaded: $e\n$stackTrace');
-      emit(
-        const SignUpState.failure(
-          error: 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى',
-        ),
-      );
-    }
+        obscurePassword: _obscurePassword ?? true,
+        formzSubmissionStatus: formzSubmissionStatus ??
+            (Formz.validate(
+              [
+                _name!,
+                _email!,
+                _phone!,
+                _password!,
+                ConfirmPasswordInput.dirty(
+                  value: _password!.value,
+                  password: _confirmPassword!.value,
+                ),
+              ],
+            )
+                ? FormzSubmissionStatus.success
+                : FormzSubmissionStatus.failure),
+      ),
+    );
   }
 
   void emitCustomFailure({

@@ -21,6 +21,9 @@ class AppLocalizationsAk extends AppLocalizations {
   String get indevedual => 'ankorɛankorɛ';
 
   @override
+  String get instructions => 'Akwankyerɛ';
+
+  @override
   String get indveduals => 'Asɛmfua';
 
   @override
@@ -45,7 +48,7 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Yɛn ani agye sɛ mobɛkaa yɛn ho!';
+      'Yɛn ani agye sɛ yɛama woabɛka yɛn sotɔɔ no ho.';
 
   @override
   String get get_to_know_the_application_interface =>
@@ -60,7 +63,7 @@ class AppLocalizationsAk extends AppLocalizations {
       'Nwoma a wɔde mfonini ne video ahorow ayɛ';
 
   @override
-  String get send => 'Ɔsoma';
+  String get send => 'mane';
 
   @override
   String get phone => 'Telefon nɔma';
@@ -101,6 +104,9 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get count => 'nɔma';
+
+  @override
+  String get registerAnAccount => 'Kyerɛw wo akontaabu bi din';
 
   @override
   String get noMoreDocs => 'Nwoma foforɔ biara nni hɔ.';
@@ -282,7 +288,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get request_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order_is_sharing => 'Abisadeɛ a ɛfa wo ho a wode bɛhyɛ mu...';
+  String get order_is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
 
   @override
   String get successfully => 'Ɛyɛɛ yiye';
@@ -349,7 +355,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get instead => 'sɛ anka';
 
   @override
-  String get skip => 'Bɔ tra';
+  String get skip => 'bɔ tra';
 
   @override
   String get next => 'nea edi hɔ no';
@@ -426,7 +432,10 @@ class AppLocalizationsAk extends AppLocalizations {
   String get accountCreated => 'Akontaabu a wɔyɛe no yiye';
 
   @override
-  String get start => 'Efi ase';
+  String get start => 'da';
+
+  @override
+  String get email => 'e-mail a wɔde mena';
 
   @override
   String get errorCreatingAccount => 'Mfomso a ɛfa akontaabu a wɔbɔe ho';
@@ -543,7 +552,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get unknown => 'nnim';
 
   @override
-  String get startUpload => 'Fi ase fa upload gu so';
+  String get startUpload => 'Fi ase fa to so';
 
   @override
   String get cancel => 'a wɔtwa mu';

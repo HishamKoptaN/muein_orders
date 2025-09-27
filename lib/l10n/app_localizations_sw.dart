@@ -21,6 +21,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get indevedual => 'mtu binafsi';
 
   @override
+  String get instructions => 'Maagizo';
+
+  @override
   String get indveduals => 'Msamiati';
 
   @override
@@ -44,7 +47,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Tunafurahi kwamba umejiunga nasi!';
+      'Tunafurahi kuwa na wewe kujiunga na duka letu.';
 
   @override
   String get get_to_know_the_application_interface =>
@@ -52,14 +55,14 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Hapa utapata kazi, maombi, arifa na vichujio.';
+      'Hapa utapata kazi, maombi, arifa na vichungi.';
 
   @override
   String get documentation_with_photos_and_videos =>
       'Nyaraka zilizo na picha na video';
 
   @override
-  String get send => 'Inatuma';
+  String get send => 'kutuma';
 
   @override
   String get phone => 'Nambari ya simu';
@@ -100,6 +103,9 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get count => 'nambari';
+
+  @override
+  String get registerAnAccount => 'Sajili akaunti';
 
   @override
   String get noMoreDocs => 'Hakuna nyaraka zingine.';
@@ -348,7 +354,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get instead => 'badala ya';
 
   @override
-  String get skip => 'Ruka';
+  String get skip => 'ruka';
 
   @override
   String get next => 'ijayo';
@@ -425,7 +431,10 @@ class AppLocalizationsSw extends AppLocalizations {
   String get accountCreated => 'Akaunti imeundwa';
 
   @override
-  String get start => 'Inaanza';
+  String get start => 'kamwe';
+
+  @override
+  String get email => 'barua pepe';
 
   @override
   String get errorCreatingAccount => 'Hitilafu ya kuunda akaunti';
@@ -511,7 +520,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get expenses => 'gharama';
 
   @override
-  String get documentingTheRequest => 'Kuandika ombi';
+  String get documentingTheRequest => 'Andika ombi';
 
   @override
   String get documentationProgress => 'Maendeleo ya hati';

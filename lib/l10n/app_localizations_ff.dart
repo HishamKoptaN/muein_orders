@@ -21,6 +21,9 @@ class AppLocalizationsFf extends AppLocalizations {
   String get indevedual => 'goodo';
 
   @override
+  String get instructions => 'Matinolji';
+
+  @override
   String get indveduals => 'Ngewte';
 
   @override
@@ -45,7 +48,7 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Min mbeltiima no feewi nde njokkondir-ɗaa e amen!';
+      'Min mbeltiima no feewi nde naati e defterdu amen.';
 
   @override
   String get get_to_know_the_application_interface =>
@@ -60,7 +63,7 @@ class AppLocalizationsFf extends AppLocalizations {
       'Dokimaaji e fotooji e wideyooji';
 
   @override
-  String get send => 'Neldata';
+  String get send => 'neldugo';
 
   @override
   String get phone => 'Limoore telefoŋ';
@@ -76,7 +79,7 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get there_are_no_results_for_this_search =>
-      'Alaa ko heɓaa e ndee njiylawu';
+      'Alaa njeñtudi yiytaa e ndee njiylawu';
 
   @override
   String get documentations => 'Kaayitaaji';
@@ -101,6 +104,9 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get count => 'lamba';
+
+  @override
+  String get registerAnAccount => 'Winndito konte';
 
   @override
   String get noMoreDocs => 'Alaa binndanɗe goɗɗe.';
@@ -254,7 +260,7 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get enter_valid_email_password =>
-      'Winndu adres imeel e konngol kuutorgol moƴƴol.';
+      'Winndu adrees imeel e konngol kuutorteengol.';
 
   @override
   String get invalidEmail => 'Imeel mo moƴƴaani';
@@ -349,7 +355,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get instead => 'do';
 
   @override
-  String get skip => 'Juwugo';
+  String get skip => 'juwugo';
 
   @override
   String get next => 'ko arata';
@@ -426,7 +432,10 @@ class AppLocalizationsFf extends AppLocalizations {
   String get accountCreated => 'Konte ɗee sosaa ko no moƴƴi';
 
   @override
-  String get start => 'Ina fuɗɗoo';
+  String get start => 'meeday';
+
+  @override
+  String get email => 'iimeel';
 
   @override
   String get errorCreatingAccount => 'Juumre sosde konte';

@@ -5,17 +5,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/database/shared_pref_helper.dart';
-import '../../../../core/database/shared_pref_keys.dart';
-import '../../../../core/di/api_module.dart';
-import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/error/api_error_model.dart';
-import '../../../../core/networking/api_result.dart';
-import '../domain/entities/sign_up_res_entity.dart';
-import '../domain/entities/signup_req_entity.dart';
-import '../domain/repo/sign_up_repo.dart';
-import 'data_sources/sign_up_api.dart';
-import 'models/sign_up_req_model.dart';
+import '../../../../../core/database/shared_pref_helper.dart';
+import '../../../../../core/database/shared_pref_keys.dart';
+import '../../../../../core/di/api_module.dart';
+import '../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/error/api_error_model.dart';
+import '../../../../../core/networking/api_result.dart';
+import '../../domain/entities/sign_up_res_entity.dart';
+import '../../domain/entities/signup_req_entity.dart';
+import '../../domain/repo/sign_up_repo.dart';
+import '../data_sources/sign_up_api.dart';
+import '../models/sign_up_req_model.dart';
 
 @LazySingleton(as: SignUpRepo)
 class SignUpRepoImpl implements SignUpRepo {
@@ -25,7 +25,7 @@ class SignUpRepoImpl implements SignUpRepo {
   SignUpRepoImpl(this._api, this.tokenStorage);
 
   @override
-  Future<ApiResult<SignUpResEntity>> signUp({
+  Future<ApiResult<void>> signUp({
     required SignUpReqEntity signUpReq,
   }) async {
     // 1. First, create user in Firebase Authentication
@@ -67,19 +67,18 @@ class SignUpRepoImpl implements SignUpRepo {
         ),
       );
       // Store the JWT token in SharedPreferences
-      await SharedPrefHelper.setSecuredString(
-        key: SharedPrefKeys.jwtToken,
-        value: res.token,
-      );
+      if (res.token != null) {
+        await SharedPrefHelper.setSecuredString(
+          key: SharedPrefKeys.jwtToken,
+          value: res.token!,
+        );
+      }
       await getIt<AuthInterceptor>().updateToken();
       return ApiResult.success(
-        data: SignUpResEntity(
-          token: res.token,
-        ),
+        data: null,
       );
     } on FirebaseAuthException catch (e) {
       log('Firebase Auth Error: ${e.message}');
-      // Clean up Firebase user if it was created
       if (userCredential?.user != null) {
         await userCredential!.user!.delete();
       }

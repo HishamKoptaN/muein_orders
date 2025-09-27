@@ -101,14 +101,11 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
     Locale('en'),
-    Locale('lg', 'UG'),
-    Locale('sw', 'KE'),
-    Locale('sw', 'TZ'),
-    Locale('sw'),
     Locale('ak'),
     Locale('ff'),
-    Locale('lg'),
-    Locale('yo')
+    Locale('yo'),
+    Locale('sw'),
+    Locale('lg')
   ];
 
   /// No description provided for @upload_videos.
@@ -134,6 +131,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'individual'**
   String get indevedual;
+
+  /// No description provided for @instructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Instructions'**
+  String get instructions;
 
   /// No description provided for @indveduals.
   ///
@@ -175,7 +178,7 @@ abstract class AppLocalizations {
   /// No description provided for @we_are_happy_to_have_you_join_our_store.
   ///
   /// In en, this message translates to:
-  /// **'We are glad you joined us!'**
+  /// **'We are happy to have you join our store.'**
   String get we_are_happy_to_have_you_join_our_store;
 
   /// No description provided for @get_to_know_the_application_interface.
@@ -199,7 +202,7 @@ abstract class AppLocalizations {
   /// No description provided for @send.
   ///
   /// In en, this message translates to:
-  /// **'Sends'**
+  /// **'send'**
   String get send;
 
   /// No description provided for @phone.
@@ -279,6 +282,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'number'**
   String get count;
+
+  /// No description provided for @registerAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Register an account'**
+  String get registerAnAccount;
 
   /// No description provided for @noMoreDocs.
   ///
@@ -769,7 +778,7 @@ abstract class AppLocalizations {
   /// No description provided for @skip.
   ///
   /// In en, this message translates to:
-  /// **'Skip'**
+  /// **'skip'**
   String get skip;
 
   /// No description provided for @next.
@@ -908,8 +917,14 @@ abstract class AppLocalizations {
   /// No description provided for @start.
   ///
   /// In en, this message translates to:
-  /// **'It begins'**
+  /// **'never'**
   String get start;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'e-mail'**
+  String get email;
 
   /// No description provided for @errorCreatingAccount.
   ///

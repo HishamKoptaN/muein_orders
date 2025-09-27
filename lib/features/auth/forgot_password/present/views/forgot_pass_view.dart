@@ -1,10 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:form_inputs/form_inputs/email_input.dart';
 import 'package:formz/formz.dart';
 
+import '../../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../../core/routing/navigation_service.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../l10n/app_localizations.dart';
@@ -16,26 +20,12 @@ class ForgotPassView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-            ),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          title: Text(
-            t.forgotPassword,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+    final t = AppLocalizations.of(context);
+    return DebugAutoFill(
+      child: CustomScaffold(
+        backgroundColor: const Color(0xFF003A46),
+        appBar: CustomAppBar(
+          title: t.forgotPassword,
         ),
         body: BlocConsumer<ForgotPassBloc, ForgotPassState>(
           listener: (context, state) {
@@ -130,16 +120,17 @@ class ForgotPassView extends StatelessWidget {
                               fontFamily: 'Almarai',
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w400,
-                              fontSize: 13,
-                              height: 15 / 13,
+                              fontSize: 12,
+                              height: 3,
                               color: Colors.white,
                             ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
                       const SizedBox(height: 24),
                       SizedBox(
-                        width: 332,
                         height: 60,
                         child: ElevatedButton(
                           onPressed: !formzSubmissionStatus.isInProgress
@@ -151,29 +142,15 @@ class ForgotPassView extends StatelessWidget {
                                 }
                               : null,
                           style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.resolveWith(
-                              (states) => const Color(0xFF83BEA8),
-                            ),
-                            shape: WidgetStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            elevation: WidgetStateProperty.all(0),
+                            backgroundColor:
+                                formzSubmissionStatus.isInProgressOrSuccess
+                                    ? WidgetStateProperty.all(AppColors.primary)
+                                    : WidgetStateProperty.all(Colors.grey),
                           ),
                           child: formzSubmissionStatus.isInProgress
                               ? const CustomCircularProgress()
                               : Text(
                                   t.send,
-                                  style: TextStyle(
-                                    fontFamily: 'Almarai',
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w700,
-                                    color: email.value.isNotEmpty &&
-                                            email.value.contains('@')
-                                        ? Colors.white
-                                        : Colors.grey,
-                                  ),
                                 ),
                         ),
                       ),
@@ -189,6 +166,74 @@ class ForgotPassView extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class DebugAutoFill extends StatefulWidget {
+  final Widget child;
+  const DebugAutoFill({super.key, required this.child});
+
+  @override
+  State<DebugAutoFill> createState() => _DebugAutoFillState();
+}
+
+class _DebugAutoFillState extends State<DebugAutoFill> {
+  int _tapCount = 0;
+  DateTime? _lastTap;
+
+  void _handleTap(BuildContext context) {
+    final now = DateTime.now();
+
+    if (_lastTap != null &&
+        now.difference(_lastTap!) > const Duration(seconds: 1)) {
+      _tapCount = 0;
+    }
+
+    _lastTap = now;
+    _tapCount++;
+    debugPrint('Tap detected! Count: $_tapCount');
+
+    if (_tapCount >= 3) {
+      debugPrint('✅ Triple tap detected! Running login scenario...');
+      _tapCount = 0;
+      _runLoginScenario(context);
+    }
+  }
+
+  void _runLoginScenario(BuildContext context) {
+    debugPrint('🚀 Running Debug Autofill Login with BLoC...');
+
+    const testEmails = [
+      'heshamkoptan@gmail.com',
+      'heshamkoptan@gmail.com',
+      'heshamkoptan@gmail.com',
+    ];
+
+    final testEmail = testEmails[0];
+    debugPrint('📧 Using test email: $testEmail');
+    debugPrint(
+        '🔗 Authorized domains: mubin-c2b92.firebaseapp.com, mubin-c2b92.web.app');
+    debugPrint('✅ These domains are already authorized in Firebase Console');
+
+    context.read<ForgotPassBloc>()
+      ..add(ForgotPassEvent.dataChanged(
+        email: EmailInput.dirty(testEmail),
+      ))
+      ..add(const ForgotPassEvent.sendPassResetEmail());
+
+    debugPrint('✅ Autofill Login Done (via BLoC)');
+    debugPrint('🔍 Check your email at: $testEmail');
+    debugPrint('⚠️ Make sure this email is authorized in Firebase Console');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (kReleaseMode) return widget.child;
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () => _handleTap(context),
+      child: widget.child,
     );
   }
 }

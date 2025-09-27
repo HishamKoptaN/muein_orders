@@ -21,6 +21,9 @@ class AppLocalizationsLg extends AppLocalizations {
   String get indevedual => 'omuntu ssekinnomu';
 
   @override
+  String get instructions => 'Ebiragiro';
+
+  @override
   String get indveduals => 'Ebigambo bwoluzungu';
 
   @override
@@ -44,7 +47,7 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Tuli basanyufu nti watwegattako!';
+      'Tuli basanyufu okuba nti weegasse ku dduuka lyaffe.';
 
   @override
   String get get_to_know_the_application_interface =>
@@ -59,7 +62,7 @@ class AppLocalizationsLg extends AppLocalizations {
       'Ebiwandiiko nga mulimu ebifaananyi ne vidiyo';
 
   @override
-  String get send => 'Asindika';
+  String get send => 'okutuma';
 
   @override
   String get phone => 'Ennamba y’essimu';
@@ -100,6 +103,9 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get count => 'omuwendo';
+
+  @override
+  String get registerAnAccount => 'Wandiisa akawunti';
 
   @override
   String get noMoreDocs => 'Tewali biwandiiko birala.';
@@ -348,7 +354,7 @@ class AppLocalizationsLg extends AppLocalizations {
   String get instead => 'mukifo kya';
 
   @override
-  String get skip => 'Okubuuka';
+  String get skip => 'okubuuka';
 
   @override
   String get next => 'ekiddako';
@@ -425,7 +431,10 @@ class AppLocalizationsLg extends AppLocalizations {
   String get accountCreated => 'Akawunti yatondeddwa bulungi';
 
   @override
-  String get start => 'Kitandika';
+  String get start => 'obutasoboka';
+
+  @override
+  String get email => 'e-mail';
 
   @override
   String get errorCreatingAccount => 'Ensobi mu kutondawo akawunti';

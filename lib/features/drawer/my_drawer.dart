@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,11 +5,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/routing/navigation_service.dart';
+import '../../core/theme/app_colors.dart';
 import '../../l10n/app_localizations.dart';
 import '../auth/auth/present/bloc/auth_bloc.dart';
 import '../auth/sign_in/present/views/sign_in_view.dart';
 import '../language/view/select_language.dart';
-import '../profile/present/views/profile_screen.dart';
+import '../onboarding/present/view/onboarding_view.dart';
+import '../profile/present/views/profile_view.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -62,6 +63,16 @@ class MyDrawer extends StatelessWidget {
                 // const Divider(color: Color(0xFFE2E4E6)),
                 const SizedBox(height: 25),
                 buildMenuItem(
+                  icon: Icons.person_outline,
+                  title: t.profile,
+                  onTap: () {
+                    NavigationService.navigateTo(
+                      context: context,
+                      routeName: ProfileView.routeName,
+                    );
+                  },
+                ),
+                buildMenuItem(
                   icon: FontAwesomeIcons.language,
                   title: t.language,
                   onTap: () {
@@ -72,12 +83,12 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
                 buildMenuItem(
-                  icon: Icons.person_outline,
-                  title: t.profile,
+                  icon: Icons.info,
+                  title: t.instructions,
                   onTap: () {
                     NavigationService.navigateTo(
                       context: context,
-                      routeName: ProfileScreen.routeName,
+                      routeName: InstructionsView.routeName,
                     );
                   },
                 ),
@@ -89,12 +100,15 @@ class MyDrawer extends StatelessWidget {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
+                          backgroundColor: AppColors.white,
+                          surfaceTintColor: AppColors.white,
                           title: Center(
                             child: Text(
                               t.log_out,
-                              style: const TextStyle(
-                                color: Colors.blue,
+                              style: TextStyle(
+                                color: AppColors.primary,
                                 fontWeight: FontWeight.bold,
+                                fontSize: 20.sp,
                               ),
                             ),
                           ),
@@ -104,15 +118,35 @@ class MyDrawer extends StatelessWidget {
                               Text(
                                 t.areYouSure,
                                 textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: AppColors.textPrimary,
+                                  fontSize: 16.sp,
+                                ),
                               ),
-                              const SizedBox(height: 20),
-                              const Divider(thickness: 1),
+                              SizedBox(height: 20.h),
+                              const Divider(
+                                thickness: 1,
+                                color: AppColors.border,
+                              ),
+                              SizedBox(height: 20.h),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Expanded(
                                     child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: AppColors.primary,
+                                        foregroundColor: AppColors.onPrimary,
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 16.w,
+                                          vertical: 12.h,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.r),
+                                        ),
+                                      ),
                                       onPressed: () async {
                                         context
                                             .read<AuthBloc>()
@@ -123,25 +157,36 @@ class MyDrawer extends StatelessWidget {
                                       },
                                       child: Text(
                                         t.log_out,
-                                        style: const TextStyle(
-                                          color: Colors.blue,
+                                        style: TextStyle(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 40,
-                                    width: 1,
-                                  ),
+                                  SizedBox(width: 16.w),
                                   Expanded(
                                     child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: AppColors.grey100,
+                                        foregroundColor: AppColors.textPrimary,
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 16.w,
+                                          vertical: 12.h,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.r),
+                                        ),
+                                      ),
                                       onPressed: () {
                                         Navigator.pop(context);
                                       },
                                       child: Text(
                                         t.close,
-                                        style: const TextStyle(
-                                          color: Colors.black,
+                                        style: TextStyle(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ),

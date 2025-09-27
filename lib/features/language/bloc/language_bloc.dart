@@ -15,28 +15,16 @@ class LanguageBloc extends HydratedBloc<LanguageEvent, LanguageState> {
       (event, emit) async {
         await event.map(
           changeLanguage: (e) async {
-            emit(
-              const LanguageState.loading(),
-            );
+            emit(const LanguageState.loading());
             final locale = Locale(
               e.languageCode,
               e.countryCode ?? '',
             );
-            emit(
-              LanguageState.loaded(
-                currentLocale: locale,
-              ),
-            );
+            emit(LanguageState.loaded(currentLocale: locale));
           },
           resetToSystem: (_) async {
             emit(const LanguageState.loading());
-            emit(
-              const LanguageState.loaded(
-                currentLocale: Locale(
-                  'ar',
-                ),
-              ),
-            );
+            emit(const LanguageState.loaded(currentLocale: Locale('ar')));
           },
         );
       },

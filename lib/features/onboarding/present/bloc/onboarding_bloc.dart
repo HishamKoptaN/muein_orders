@@ -8,69 +8,58 @@ part 'onboarding_bloc.freezed.dart';
 part 'onboarding_event.dart';
 part 'onboarding_state.dart';
 
-@singleton
+@injectable
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   final int totalPages = 3;
 
   OnboardingBloc() : super(const OnboardingState.loading()) {
-    on<OnboardingEvent>((event, emit) async {
-      await event.whenOrNull(
-        checkOnboardingStatus: () => _onStartOnboarding(emit),
-        pageChanged: (index) => _onPageChanged(index, emit),
-        nextPage: () => _onNextPage(emit),
-        skipOnboarding: () => _onSkipOnboarding(emit),
-      );
-    });
-  }
-
-  Future<void> _onStartOnboarding(Emitter<OnboardingState> emit) async {
-    final pages = _getOnboardingPages();
-    emit(
-      OnboardingState.onboardingNotCompleted(
-        pages: pages,
-        currentPageIndex: 0,
-        isLastPage: pages.length == 1,
-      ),
-    );
-  }
-
-  void _onPageChanged(int index, Emitter<OnboardingState> emit) {
-    state.maybeWhen(
-      onboardingNotCompleted: (pages, _, __) {
-        emit(
-          OnboardingState.onboardingNotCompleted(
-            pages: pages,
-            currentPageIndex: index,
-            isLastPage: index == pages.length - 1,
-          ),
+    on<OnboardingEvent>(
+      (event, emit) async {
+        await event.whenOrNull(
+          checkOnboardingStatus: () {
+            final pages = _getOnboardingPages();
+            emit(
+              OnboardingState.onboardingNotCompleted(
+                pages: pages,
+                currentPageIndex: 0,
+                isLastPage: pages.length == 1,
+              ),
+            );
+          },
+          pageChanged: (i) {
+            state.whenOrNull(
+              onboardingNotCompleted: (pages, _, __) {
+                emit(
+                  OnboardingState.onboardingNotCompleted(
+                    pages: pages,
+                    currentPageIndex: i,
+                    isLastPage: i == pages.length - 1,
+                  ),
+                );
+              },
+            );
+          },
+          nextPage: () {
+            state.whenOrNull(
+              onboardingNotCompleted: (pages, currentIndex, _) {
+                final nextIndex = currentIndex + 1;
+                if (nextIndex < pages.length) {
+                  emit(
+                    OnboardingState.onboardingNotCompleted(
+                      pages: pages,
+                      currentPageIndex: nextIndex,
+                      isLastPage: nextIndex == pages.length - 1,
+                    ),
+                  );
+                } else {
+                  emit(const OnboardingState.onboardingCompleted());
+                }
+              },
+            );
+          },
         );
       },
-      orElse: () {},
     );
-  }
-
-  void _onNextPage(Emitter<OnboardingState> emit) {
-    state.maybeWhen(
-      onboardingNotCompleted: (pages, currentIndex, _) {
-        final nextIndex = currentIndex + 1;
-        if (nextIndex < pages.length) {
-          emit(
-            OnboardingState.onboardingNotCompleted(
-              pages: pages,
-              currentPageIndex: nextIndex,
-              isLastPage: nextIndex == pages.length - 1,
-            ),
-          );
-        } else {
-          emit(const OnboardingState.onboardingCompleted());
-        }
-      },
-      orElse: () {},
-    );
-  }
-
-  void _onSkipOnboarding(Emitter<OnboardingState> emit) {
-    emit(const OnboardingState.onboardingCompleted());
   }
 
   List<OnboardingPageEntity> _getOnboardingPages() {

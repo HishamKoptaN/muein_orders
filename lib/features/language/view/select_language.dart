@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../core/routing/navigation_service.dart';
+import '../../../core/widgets/custom_app_bar.dart';
 import '../../auth/auth_choice/present/views/auth_choice_view.dart';
 import '../bloc/language_bloc.dart';
 
@@ -32,10 +34,14 @@ class SelectLanguageView extends StatelessWidget {
       {'name': 'Yorùbá', 'code': 'yo'}, // اليوروبا عامة
       {'name': 'Luganda', 'code': 'lg'}, // اللوغندية عامة
     ];
-
     final t = AppLocalizations.of(context);
-    return Scaffold(
+    return CustomScaffold(
       backgroundColor: const Color(0xFF003A45),
+      appBar: Navigator.canPop(context)
+          ? CustomAppBar(
+              title: t.changeLanguage,
+            )
+          : null,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -144,32 +150,33 @@ class SelectLanguageView extends StatelessWidget {
                                   );
                                 }),
                                 const SizedBox(height: 20),
-                                ElevatedButton(
-                                  key: const Key('follow'),
-                                  onPressed: () {
-                                    NavigationService.navigateTo(
-                                      context: context,
-                                      routeName: AuthChoiceView.routeName,
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF83BEA8),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                if (!Navigator.canPop(context))
+                                  ElevatedButton(
+                                    key: const Key('follow'),
+                                    onPressed: () {
+                                      NavigationService.navigateTo(
+                                        context: context,
+                                        routeName: AuthChoiceView.routeName,
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFF83BEA8),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 16,
+                                      ),
                                     ),
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 16,
+                                    child: Text(
+                                      t.followUp,
+                                      style: const TextStyle(
+                                        fontSize: 17,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
-                                  child: Text(
-                                    t.followUp,
-                                    style: const TextStyle(
-                                      fontSize: 17,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
                                 const SizedBox(height: 20),
                               ],
                             );

@@ -1,6 +1,5 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:translator/translator.dart';
-
 import '../../../core/all_imports.dart';
 import '../../../core/extensions/locale_extensions.dart';
 import '../../../core/routing/navigation_service.dart';
@@ -41,90 +40,93 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-    return CustomScaffold(
-      appBar: CustomAppBar(
-        title: t.main,
-        leading: Builder(
-          builder: (context) => GestureDetector(
-            onTap: () => Scaffold.of(context).openDrawer(),
-            child: Padding(
+    return GestureDetector(
+      onTap: () {},
+      child: CustomScaffold(
+        appBar: CustomAppBar(
+          title: t.main,
+          leading: Builder(
+            builder: (context) => GestureDetector(
+              onTap: () => Scaffold.of(context).openDrawer(),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 9,
+                ),
+                child: SvgPicture.asset(
+                  'assets/icons/menu.svg',
+                  fit: BoxFit.contain,
+                  width: 45,
+                  height: 45,
+                ),
+              ),
+            ),
+          ),
+          actions: [
+            Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 9,
+                horizontal: 15,
               ),
               child: SvgPicture.asset(
-                'assets/icons/menu.svg',  
+                Assets.icons.baseCart,
                 fit: BoxFit.contain,
                 width: 45,
                 height: 45,
               ),
             ),
-          ),
+          ],
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
+        drawer: const MyDrawer(),
+        body: Column(
+          children: [
+            const SizedBox(height: 16),
+            Expanded(
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    loaded: (
+                      orderTypeResEntity,
+                    ) {
+                      return GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+                          childAspectRatio: 1.5,
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        itemCount: orderTypeResEntity.length,
+                        itemBuilder: (
+                          context,
+                          index,
+                        ) {
+                          final orderType = orderTypeResEntity[index];
+                          return FutureBuilder<String>(
+                            future: _getTranslatedText(
+                              orderType.package?.type?.name ?? '',
+                            ),
+                            builder: (context, snapshot) {
+                              return _buildOrderCard(
+                                packageId: orderType.package?.id ?? 0,
+                                image: orderType.package?.image ?? '',
+                                title: orderType.package?.quantity == 0
+                                    ? "${snapshot.data ?? orderType.package?.type?.name ?? ''}"
+                                    : "${snapshot.data ?? orderType.package?.type?.name ?? ''} ${orderType.package?.quantity ?? ''}",
+                                count: '${orderType.ordersCount.toString()} ',
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                    orElse: () => const SizedBox(),
+                  );
+                },
+              ),
             ),
-            child: SvgPicture.asset(
-              Assets.icons.baseCart,
-              fit: BoxFit.contain,
-              width: 45,
-              height: 45,
-            ),
-          ),
-        ],
-      ),
-      drawer: const MyDrawer(),
-      body: Column(
-        children: [
-          const SizedBox(height: 16),
-          Expanded(
-            child: BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  loaded: (
-                    orderTypeResEntity,
-                  ) {
-                    return GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        mainAxisSpacing: 16,
-                        crossAxisSpacing: 16,
-                        childAspectRatio: 1.5,
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      itemCount: orderTypeResEntity.length,
-                      itemBuilder: (
-                        context,
-                        index,
-                      ) {
-                        final orderType = orderTypeResEntity[index];
-                        return FutureBuilder<String>(
-                          future: _getTranslatedText(
-                            orderType.package?.type?.name ?? '',
-                          ),
-                          builder: (context, snapshot) {
-                            return _buildOrderCard(
-                              packageId: orderType.package?.id ?? 0,
-                              image: orderType.package?.image ?? '',
-                              title: orderType.package?.quantity == 0
-                                  ? "${snapshot.data ?? orderType.package?.type?.name ?? ''}"
-                                  : "${snapshot.data ?? orderType.package?.type?.name ?? ''} ${orderType.package?.quantity ?? ''}",
-                              count: '${orderType.ordersCount.toString()} ',
-                            );
-                          },
-                        );
-                      },
-                    );
-                  },
-                  orElse: () => const SizedBox(),
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 16),
-        ],
+            const SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }

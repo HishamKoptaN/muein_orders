@@ -4,7 +4,7 @@ import 'package:form_inputs/form_inputs.dart';
 import '../../../../../core/all_imports.dart';
 import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/custom_circular_progress.dart';
-import '../../../../orders/present/views/orders_view.dart';
+import '../../../../home/present/home_view.dart';
 import '../bloc/sign_in_bloc.dart';
 import 'widgets/sign_in_actions.dart';
 import 'widgets/sign_in_background.dart';
@@ -20,6 +20,14 @@ class SignInView extends StatelessWidget {
       child: BlocConsumer<SignInBloc, SignInState>(
         listener: (context, state) {
           state.whenOrNull(
+            success: () {
+              if (context.mounted) {
+                NavigationService.navigateAndRemoveUntil(
+                  context: context,
+                  routeName: HomeView.routeName,
+                );
+              }
+            },
             failure: (failure) {
               ScaffoldMessenger.of(
                 context,
@@ -30,18 +38,6 @@ class SignInView extends StatelessWidget {
                   ),
                 ),
               );
-            },
-            success: () {
-              // First pop any dialogs or keyboards
-              if (context.mounted) {
-                Navigator.of(context, rootNavigator: true)
-                    .popUntil((route) => route.isFirst);
-                // Then navigate to the start view
-                NavigationService.navigateAndRemoveUntil(
-                  context: context,
-                  routeName: OrdersView.routeName,
-                );
-              }
             },
           );
         },

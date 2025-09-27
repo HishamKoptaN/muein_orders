@@ -3,32 +3,52 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/entities/profile_entity.dart';
-import '../../domain/use_cases/get_profile_use_case.dart';
+import '../../domain/entities/update_profile_req_entity.dart';
+import '../../domain/use_cases/use_cases.dart';
 
+part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
-part 'profile_bloc.freezed.dart';
 
 @injectable
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  final GetProfileUseCase _getProfileUseCase;
+  final ProfileUseCases _profileUseCases;
 
-  ProfileBloc(this._getProfileUseCase) : super(const ProfileState.initial()) {
-    on<ProfileEvent>((event, emit) async {
-      await event.when(
-        getProfile: () => _onGetProfile(emit),
-      );
-    });
-  }
-
-  Future<void> _onGetProfile(Emitter<ProfileState> emit) async {
-    emit(const ProfileState.loading());
-
-    final result = await _getProfileUseCase.call();
-
-    result.when(
-      success: (profile) => emit(ProfileState.loaded(profile: profile!)),
-      failure: (error) => emit(ProfileState.error(message: error.message ?? 'حدث خطأ غير متوقع')),
+  ProfileBloc(this._profileUseCases)
+      : super(
+          const ProfileState.loading(),
+        ) {
+    on<ProfileEvent>(
+      (event, emit) async {
+        await event.when(
+          getProfile: () async {
+            emit(const ProfileState.loading());
+            final result = await _profileUseCases.getProfile();
+            result.when(
+              success: (profile) =>
+                  emit(ProfileState.loaded(profile: profile!)),
+              failure: (error) => emit(
+                ProfileState.error(
+                    message: error.message ?? 'حدث خطأ غير متوقع'),
+              ),
+            );
+          },
+          updateProfile: () async {
+            emit(const ProfileState.loading());
+            final result = await _profileUseCases.updateProfile(
+              updateProfileReqEntity: const UpdateProfileReqEntity(),
+            );
+            result.when(
+              success: (profile) =>
+                  emit(ProfileState.loaded(profile: profile!)),
+              failure: (error) => emit(
+                ProfileState.error(
+                    message: error.message ?? 'حدث خطأ غير متوقع'),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

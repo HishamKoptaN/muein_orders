@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-import 'package:go_router/go_router.dart';
 
+import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/app_snackbar.dart';
 import '../../../../../core/widgets/custom_circular_progress.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../../onboarding/present/view/onboarding_view.dart';
 import '../../../sign_in/present/views/widgets/sign_in_background.dart';
 import '../bloc/sign_up_bloc.dart';
-import 'widgets/sign_in_actions.dart';
+import 'widgets/sign_up_actions.dart';
 import 'widgets/sign_up_form.dart';
 import 'widgets/sign_up_header.dart';
 
@@ -20,7 +21,8 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DebugIntegrationRunner(
+    final t = AppLocalizations.of(context);
+    return DebugAutoFill(
       child: Scaffold(
         backgroundColor: const Color(0xFF003A46),
         body: BlocConsumer<SignUpBloc, SignUpState>(
@@ -35,7 +37,18 @@ class SignUpView extends StatelessWidget {
                 );
               },
               success: () {
-                context.goNamed(OnBoardingView.routeName);
+                AppSnackBar.show(
+                  context: context,
+                  title: 'Error',
+                  message: t.success,
+                  type: AppSnackBarType.success,
+                );
+                if (context.mounted) {
+                  NavigationService.navigateAndRemoveUntil(
+                    context: context,
+                    routeName: InstructionsView.routeName,
+                  );
+                }
               },
             );
           },
@@ -47,6 +60,7 @@ class SignUpView extends StatelessWidget {
                 phone,
                 password,
                 confirmPassword,
+                confirmPasswordInput,
                 obscurePassword,
                 formzSubmissionStatus,
               ) {
@@ -66,6 +80,7 @@ class SignUpView extends StatelessWidget {
                               email: email,
                               password: password,
                               confirmPassword: confirmPassword,
+                              confirmPasswordInput: confirmPasswordInput,
                               obscurePassword: obscurePassword,
                               formzSubmissionStatus: formzSubmissionStatus,
                             ),
@@ -95,6 +110,7 @@ class _SignUpBody extends StatelessWidget {
     required this.email,
     required this.password,
     required this.confirmPassword,
+    required this.confirmPasswordInput,
     required this.obscurePassword,
     required this.formzSubmissionStatus,
   });
@@ -103,8 +119,9 @@ class _SignUpBody extends StatelessWidget {
   final PhoneNumberInput phone;
   final EmailInput email;
   final PasswordInput password;
-  final ConfirmPasswordInput confirmPassword;
-  final GenericFormzInput obscurePassword;
+  final PasswordInput confirmPassword;
+  final ConfirmPasswordInput confirmPasswordInput;
+  final bool obscurePassword;
   final FormzSubmissionStatus formzSubmissionStatus;
 
   @override
@@ -125,6 +142,7 @@ class _SignUpBody extends StatelessWidget {
               password: password,
               confirmPassword: confirmPassword,
               obscurePassword: obscurePassword,
+              confirmPasswordInput: confirmPasswordInput,
             ),
             const SizedBox(height: 24),
             SignUpActions(
@@ -138,112 +156,57 @@ class _SignUpBody extends StatelessWidget {
   }
 }
 
-class DebugIntegrationRunner extends StatefulWidget {
+class DebugAutoFill extends StatefulWidget {
   final Widget child;
-
-  const DebugIntegrationRunner({super.key, required this.child});
+  const DebugAutoFill({super.key, required this.child});
 
   @override
-  State<DebugIntegrationRunner> createState() => _DebugIntegrationRunnerState();
+  State<DebugAutoFill> createState() => _DebugAutoFillState();
 }
 
-class _DebugIntegrationRunnerState extends State<DebugIntegrationRunner> {
+class _DebugAutoFillState extends State<DebugAutoFill> {
   int _tapCount = 0;
   DateTime? _lastTap;
 
-  void _handleTap() {
+  void _handleTap(BuildContext context) {
     final now = DateTime.now();
-    if (_lastTap == null ||
+    if (_lastTap != null &&
         now.difference(_lastTap!) > const Duration(seconds: 1)) {
       _tapCount = 0;
     }
     _lastTap = now;
     _tapCount++;
-
-    if (_tapCount == 3) {
+    debugPrint('Tap detected! Count: $_tapCount');
+    if (_tapCount >= 3) {
+      debugPrint('✅ Triple tap detected! Running login scenario...');
       _tapCount = 0;
-      _runSignUpScenario();
+      _runLoginScenario(context);
     }
   }
 
-  Future<void> _runSignUpScenario() async {
-    debugPrint('🚀 Running Sign Up Scenario...');
-
-    try {
-      // نستخدم GlobalKey علشان نلاقي الـ form fields
-      final nameField = findInputByKey('name_field');
-      final emailField = findInputByKey('email_field');
-      final phoneField = findInputByKey('phone_field');
-      final passwordField = findInputByKey('password_field');
-      final confirmPasswordField = findInputByKey('confirm_password_field');
-      final signUpButton = findButtonByKey('signUp_button');
-
-      nameField?.controller?.text = 'Attach User';
-      emailField?.controller?.text = 'attach@example.com';
-      phoneField?.controller?.text = '0100000000';
-      passwordField?.controller?.text = 'password';
-      confirmPasswordField?.controller?.text = 'password';
-
-      // Simulate pressing Sign Up button
-      signUpButton?.onPressed?.call();
-
-      debugPrint('✅ Sign Up Scenario finished successfully');
-    } catch (e, st) {
-      debugPrint('❌ Error in scenario: $e\n$st');
-    }
-  }
-  /// Helper: يبحث عن TextFormField/CustomTextFormField بالـ Key
-  _InputElement? findInputByKey(String key) {
-    final element = findElementByKey(key);
-    if (element == null) return null;
-    TextEditingController? controller;
-    if (element.widget is TextFormField) {
-      controller = (element.widget as TextFormField).controller;
-    } else if (element.widget is TextField) {
-      controller = (element.widget as TextField).controller;
-    } else {
-      debugPrint("⚠️ Widget with key '$key' is not a TextField/TextFormField");
-    }
-    return _InputElement(controller);
-  }
-
-  /// Helper: يبحث عن ElevatedButton بالـ Key
-  ElevatedButton? findButtonByKey(String key) {
-    final element = findElementByKey(key);
-    if (element == null) return null;
-
-    if (element.widget is ElevatedButton) {
-      return element.widget as ElevatedButton;
-    }
-    debugPrint("⚠️ Widget with key '$key' is not an ElevatedButton");
-    return null;
-  }
-  /// Helper عام
-  Element? findElementByKey(String valueKey) {
-    Element? result;
-    void finder(Element element) {
-      if (element.widget.key == Key(valueKey)) {
-        result = element;
-      }
-      element.visitChildren(finder);
-    }
-
-    WidgetsBinding.instance.rootElement?.visitChildren(finder);
-    return result;
+  void _runLoginScenario(BuildContext context) {
+    debugPrint('🚀 Running Debug AutoFill Login with BLoC...');
+    context.read<SignUpBloc>().add(
+              const SignUpEvent.dataChanged(
+                email: EmailInput.dirty('heshamkoptan@gmail.com'),
+                name: GenericFormzInput.dirty('hisham'),
+                phone: PhoneNumberInput.dirty('4567894566123'),
+                password: PasswordInput.dirty('password'),
+                confirmPassword: PasswordInput.dirty('Password123@'),
+              ),
+            )
+        // ..add(const SignUpEvent.signUp())
+        ;
+    debugPrint('✅ AutoFill Login Done (via BLoC)');
   }
 
   @override
   Widget build(BuildContext context) {
-    if (kReleaseMode) return widget.child; 
+    if (kReleaseMode) return widget.child;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onTap: _handleTap,
+      onTap: () => _handleTap(context),
       child: widget.child,
     );
   }
-}
-
-class _InputElement {
-  final TextEditingController? controller;
-  _InputElement(this.controller);
 }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/forgot_password/present/bloc/forgot_pass_bloc.dart';
 import '../../features/auth/sign_in/present/bloc/sign_in_bloc.dart';
@@ -78,16 +79,16 @@ class MubinOrdersApp extends StatelessWidget {
                               loaded: (themeMode) => themeMode,
                               orElse: () => ThemeMode.system,
                             ),
-                            locale: languageState.maybeWhen(
-                              loaded: (locale) => locale,
-                              orElse: () => const Locale('ar'),
-                            ),
+                            locale: const Locale('ar'),
+                            //   languageState.maybeWhen(
+                            // loaded: (locale) => locale,
+                            // orElse: () => const Locale('ar'),
+                            // ),
                             localizationsDelegates:
                                 _buildLocalizationDelegates(),
                             supportedLocales: getSupportedLocales(),
                             localeResolutionCallback:
                                 (locale, supportedLocales) {
-                              // If the user's device locale is supported, use it
                               if (locale != null) {
                                 for (final supportedLocale
                                     in supportedLocales) {
@@ -97,8 +98,7 @@ class MubinOrdersApp extends StatelessWidget {
                                   }
                                 }
                               }
-                              // Otherwise, use the first supported locale (Arabic)
-                              return supportedLocales.first;
+                              return const Locale('en');
                             },
                             routerConfig: AppRouter.create(
                               authBloc: context.read<AuthBloc>(),
@@ -169,15 +169,12 @@ class MubinOrdersApp extends StatelessWidget {
 
   static List<LocalizationsDelegate<dynamic>> _buildLocalizationDelegates() {
     return [
-      // App-specific localization delegate
       AppLocalizations.delegate,
-      // Built-in Flutter localization delegates
       GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,
-
-      // Fallback for unsupported languages
-      const FallbackLocalizationDelegate(),
+      GlobalWidgetsLocalizations.delegate,
+      DefaultMaterialLocalizations.delegate, // fallback للـ Material
+      DefaultWidgetsLocalizations.delegate, // fallback للـ Widgets
     ];
   }
 
@@ -186,8 +183,8 @@ class MubinOrdersApp extends StatelessWidget {
     return const [
       Locale('ar'),
       Locale('en'),
-      Locale('sw'),
       Locale('fr'),
+      Locale('sw'),
       Locale('ak'),
       Locale('ff'),
       Locale('yo'),
@@ -205,6 +202,10 @@ class FallbackLocalizationDelegate
     Locale('lg', 'UG'), // Luganda (Uganda)
     Locale('sw', 'KE'), // Swahili (Kenya)
     Locale('sw', 'TZ'), // Swahili (Tanzania)
+    Locale('yo', 'NG'), // Yoruba (Nigeria)
+    Locale('ff', 'MR'), // Fulfulde (Mauritania)
+    Locale('ak', 'GH'), // Akan (Ghana)
+    Locale('fr', 'CI'), // French (Côte d'Ivoire)
   ];
 
   @override

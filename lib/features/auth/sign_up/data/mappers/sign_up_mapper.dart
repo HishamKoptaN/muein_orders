@@ -14,7 +14,6 @@ extension SignUpReqMapper on SignUpReqEntity {
 
 extension SignUpResMapper on SignUpResModel {
   SignUpResEntity toEntity() => SignUpResEntity(
-        token: token,
-        role: role,
+        token: token!,
       );
 }

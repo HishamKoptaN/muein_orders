@@ -21,6 +21,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get indevedual => 'individual';
 
   @override
+  String get instructions => 'Instructions';
+
+  @override
   String get indveduals => 'Vocabulary';
 
   @override
@@ -45,7 +48,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'We are glad you joined us!';
+      'We are happy to have you join our store.';
 
   @override
   String get get_to_know_the_application_interface =>
@@ -60,7 +63,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Documentation with photos and videos';
 
   @override
-  String get send => 'Sends';
+  String get send => 'send';
 
   @override
   String get phone => 'Phone number';
@@ -101,6 +104,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get count => 'number';
+
+  @override
+  String get registerAnAccount => 'Register an account';
 
   @override
   String get noMoreDocs => 'There are no other documentations.';
@@ -350,7 +356,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get instead => 'instead of';
 
   @override
-  String get skip => 'Skip';
+  String get skip => 'skip';
 
   @override
   String get next => 'the next';
@@ -427,7 +433,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountCreated => 'Account created successfully';
 
   @override
-  String get start => 'It begins';
+  String get start => 'never';
+
+  @override
+  String get email => 'e-mail';
 
   @override
   String get errorCreatingAccount => 'Account creation error';

@@ -8,6 +8,8 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../../core/di/dependency_injection.dart';
+import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/use_cases/sign_in_use_cases.dart';
 
 part 'sign_in_bloc.freezed.dart';
@@ -20,8 +22,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   EmailInput? _email;
   PasswordInput? _password;
   GenericFormzInput? _obscurePassword;
-  SignInBloc({required this.signInUseCases})
-      : super(
+  SignInBloc({
+    required this.signInUseCases,
+  }) : super(
           const SignInState.loaded(
             email: EmailInput.pure(),
             password: PasswordInput.pure(),
@@ -37,23 +40,24 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             _password = e.password ?? _password;
             _obscurePassword = e.obscurePassword ?? _obscurePassword;
             _emitCustomLoaded(
-              emit,
+              emit: emit,
             );
           },
           signInWithCredentialsPressed: (_) async =>
               await _onSignInWithCredentialsPressed(
-            emit,
+            emit: emit,
           ),
         );
       },
     );
   }
 
-  Future<void> _onSignInWithCredentialsPressed(
-    Emitter<SignInState> emit,
-  ) async {
+  Future<void> _onSignInWithCredentialsPressed({
+    required Emitter<SignInState> emit,
+  }) async {
     _emitCustomLoaded(
-      emit,
+      emit: emit,
+      formzSubmissionStatus: FormzSubmissionStatus.inProgress,
     );
     final result = await signInUseCases.signInWithEmailAndPassword(
       email: _email!.value,
@@ -63,11 +67,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       success: (
         data,
       ) {
+        getIt<AuthBloc>().add(const AuthEvent.emitAuthenticated());
+        Future.delayed(const Duration(seconds: 3));
         emit(
           const SignInState.success(),
         );
         _emitCustomLoaded(
-          emit,
+          emit: emit,
         );
       },
       failure: (
@@ -79,24 +85,28 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           ),
         );
         _emitCustomLoaded(
-          emit,
+          emit: emit,
         );
       },
     );
   }
 
-  void _emitCustomLoaded(
-    Emitter<SignInState> emit,
-  ) {
+  void _emitCustomLoaded({
+    required Emitter<SignInState> emit,
+    FormzSubmissionStatus? formzSubmissionStatus,
+  }) {
     emit(
       SignInState.loaded(
         email: _email ?? const EmailInput.pure(),
         password: _password ?? const PasswordInput.pure(),
         obscurePassword: _obscurePassword ?? const GenericFormzInput.pure(),
-        formzSubmissionStatus:
-            Formz.validate([_email ?? const EmailInput.pure()])
+        formzSubmissionStatus: formzSubmissionStatus ??
+            (Formz.validate([
+              _email ?? const EmailInput.pure(),
+              _password ?? const PasswordInput.pure()
+            ])
                 ? FormzSubmissionStatus.success
-                : FormzSubmissionStatus.failure,
+                : FormzSubmissionStatus.failure),
       ),
     );
   }

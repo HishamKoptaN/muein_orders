@@ -21,6 +21,7 @@ mixin _$AuthEvent {
     required TResult Function() check,
     required TResult Function() signedOut,
     required TResult Function() forceRefresh,
+    required TResult Function() emitAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$AuthEvent {
     TResult? Function()? check,
     TResult? Function()? signedOut,
     TResult? Function()? forceRefresh,
+    TResult? Function()? emitAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$AuthEvent {
     TResult Function()? check,
     TResult Function()? signedOut,
     TResult Function()? forceRefresh,
+    TResult Function()? emitAuthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$AuthEvent {
     required TResult Function(_Check value) check,
     required TResult Function(_SignedOut value) signedOut,
     required TResult Function(_ForceRefresh value) forceRefresh,
+    required TResult Function(_EmitAuthenticated value) emitAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$AuthEvent {
     TResult? Function(_Check value)? check,
     TResult? Function(_SignedOut value)? signedOut,
     TResult? Function(_ForceRefresh value)? forceRefresh,
+    TResult? Function(_EmitAuthenticated value)? emitAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$AuthEvent {
     TResult Function(_Check value)? check,
     TResult Function(_SignedOut value)? signedOut,
     TResult Function(_ForceRefresh value)? forceRefresh,
+    TResult Function(_EmitAuthenticated value)? emitAuthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,6 +132,7 @@ class _$CheckImpl implements _Check {
     required TResult Function() check,
     required TResult Function() signedOut,
     required TResult Function() forceRefresh,
+    required TResult Function() emitAuthenticated,
   }) {
     return check();
   }
@@ -136,6 +143,7 @@ class _$CheckImpl implements _Check {
     TResult? Function()? check,
     TResult? Function()? signedOut,
     TResult? Function()? forceRefresh,
+    TResult? Function()? emitAuthenticated,
   }) {
     return check?.call();
   }
@@ -146,6 +154,7 @@ class _$CheckImpl implements _Check {
     TResult Function()? check,
     TResult Function()? signedOut,
     TResult Function()? forceRefresh,
+    TResult Function()? emitAuthenticated,
     required TResult orElse(),
   }) {
     if (check != null) {
@@ -160,6 +169,7 @@ class _$CheckImpl implements _Check {
     required TResult Function(_Check value) check,
     required TResult Function(_SignedOut value) signedOut,
     required TResult Function(_ForceRefresh value) forceRefresh,
+    required TResult Function(_EmitAuthenticated value) emitAuthenticated,
   }) {
     return check(this);
   }
@@ -170,6 +180,7 @@ class _$CheckImpl implements _Check {
     TResult? Function(_Check value)? check,
     TResult? Function(_SignedOut value)? signedOut,
     TResult? Function(_ForceRefresh value)? forceRefresh,
+    TResult? Function(_EmitAuthenticated value)? emitAuthenticated,
   }) {
     return check?.call(this);
   }
@@ -180,6 +191,7 @@ class _$CheckImpl implements _Check {
     TResult Function(_Check value)? check,
     TResult Function(_SignedOut value)? signedOut,
     TResult Function(_ForceRefresh value)? forceRefresh,
+    TResult Function(_EmitAuthenticated value)? emitAuthenticated,
     required TResult orElse(),
   }) {
     if (check != null) {
@@ -237,6 +249,7 @@ class _$SignedOutImpl implements _SignedOut {
     required TResult Function() check,
     required TResult Function() signedOut,
     required TResult Function() forceRefresh,
+    required TResult Function() emitAuthenticated,
   }) {
     return signedOut();
   }
@@ -247,6 +260,7 @@ class _$SignedOutImpl implements _SignedOut {
     TResult? Function()? check,
     TResult? Function()? signedOut,
     TResult? Function()? forceRefresh,
+    TResult? Function()? emitAuthenticated,
   }) {
     return signedOut?.call();
   }
@@ -257,6 +271,7 @@ class _$SignedOutImpl implements _SignedOut {
     TResult Function()? check,
     TResult Function()? signedOut,
     TResult Function()? forceRefresh,
+    TResult Function()? emitAuthenticated,
     required TResult orElse(),
   }) {
     if (signedOut != null) {
@@ -271,6 +286,7 @@ class _$SignedOutImpl implements _SignedOut {
     required TResult Function(_Check value) check,
     required TResult Function(_SignedOut value) signedOut,
     required TResult Function(_ForceRefresh value) forceRefresh,
+    required TResult Function(_EmitAuthenticated value) emitAuthenticated,
   }) {
     return signedOut(this);
   }
@@ -281,6 +297,7 @@ class _$SignedOutImpl implements _SignedOut {
     TResult? Function(_Check value)? check,
     TResult? Function(_SignedOut value)? signedOut,
     TResult? Function(_ForceRefresh value)? forceRefresh,
+    TResult? Function(_EmitAuthenticated value)? emitAuthenticated,
   }) {
     return signedOut?.call(this);
   }
@@ -291,6 +308,7 @@ class _$SignedOutImpl implements _SignedOut {
     TResult Function(_Check value)? check,
     TResult Function(_SignedOut value)? signedOut,
     TResult Function(_ForceRefresh value)? forceRefresh,
+    TResult Function(_EmitAuthenticated value)? emitAuthenticated,
     required TResult orElse(),
   }) {
     if (signedOut != null) {
@@ -348,6 +366,7 @@ class _$ForceRefreshImpl implements _ForceRefresh {
     required TResult Function() check,
     required TResult Function() signedOut,
     required TResult Function() forceRefresh,
+    required TResult Function() emitAuthenticated,
   }) {
     return forceRefresh();
   }
@@ -358,6 +377,7 @@ class _$ForceRefreshImpl implements _ForceRefresh {
     TResult? Function()? check,
     TResult? Function()? signedOut,
     TResult? Function()? forceRefresh,
+    TResult? Function()? emitAuthenticated,
   }) {
     return forceRefresh?.call();
   }
@@ -368,6 +388,7 @@ class _$ForceRefreshImpl implements _ForceRefresh {
     TResult Function()? check,
     TResult Function()? signedOut,
     TResult Function()? forceRefresh,
+    TResult Function()? emitAuthenticated,
     required TResult orElse(),
   }) {
     if (forceRefresh != null) {
@@ -382,6 +403,7 @@ class _$ForceRefreshImpl implements _ForceRefresh {
     required TResult Function(_Check value) check,
     required TResult Function(_SignedOut value) signedOut,
     required TResult Function(_ForceRefresh value) forceRefresh,
+    required TResult Function(_EmitAuthenticated value) emitAuthenticated,
   }) {
     return forceRefresh(this);
   }
@@ -392,6 +414,7 @@ class _$ForceRefreshImpl implements _ForceRefresh {
     TResult? Function(_Check value)? check,
     TResult? Function(_SignedOut value)? signedOut,
     TResult? Function(_ForceRefresh value)? forceRefresh,
+    TResult? Function(_EmitAuthenticated value)? emitAuthenticated,
   }) {
     return forceRefresh?.call(this);
   }
@@ -402,6 +425,7 @@ class _$ForceRefreshImpl implements _ForceRefresh {
     TResult Function(_Check value)? check,
     TResult Function(_SignedOut value)? signedOut,
     TResult Function(_ForceRefresh value)? forceRefresh,
+    TResult Function(_EmitAuthenticated value)? emitAuthenticated,
     required TResult orElse(),
   }) {
     if (forceRefresh != null) {
@@ -413,6 +437,123 @@ class _$ForceRefreshImpl implements _ForceRefresh {
 
 abstract class _ForceRefresh implements AuthEvent {
   const factory _ForceRefresh() = _$ForceRefreshImpl;
+}
+
+/// @nodoc
+abstract class _$$EmitAuthenticatedImplCopyWith<$Res> {
+  factory _$$EmitAuthenticatedImplCopyWith(_$EmitAuthenticatedImpl value,
+          $Res Function(_$EmitAuthenticatedImpl) then) =
+      __$$EmitAuthenticatedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmitAuthenticatedImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$EmitAuthenticatedImpl>
+    implements _$$EmitAuthenticatedImplCopyWith<$Res> {
+  __$$EmitAuthenticatedImplCopyWithImpl(_$EmitAuthenticatedImpl _value,
+      $Res Function(_$EmitAuthenticatedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$EmitAuthenticatedImpl implements _EmitAuthenticated {
+  const _$EmitAuthenticatedImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.emitAuthenticated()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmitAuthenticatedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() check,
+    required TResult Function() signedOut,
+    required TResult Function() forceRefresh,
+    required TResult Function() emitAuthenticated,
+  }) {
+    return emitAuthenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? check,
+    TResult? Function()? signedOut,
+    TResult? Function()? forceRefresh,
+    TResult? Function()? emitAuthenticated,
+  }) {
+    return emitAuthenticated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? check,
+    TResult Function()? signedOut,
+    TResult Function()? forceRefresh,
+    TResult Function()? emitAuthenticated,
+    required TResult orElse(),
+  }) {
+    if (emitAuthenticated != null) {
+      return emitAuthenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Check value) check,
+    required TResult Function(_SignedOut value) signedOut,
+    required TResult Function(_ForceRefresh value) forceRefresh,
+    required TResult Function(_EmitAuthenticated value) emitAuthenticated,
+  }) {
+    return emitAuthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Check value)? check,
+    TResult? Function(_SignedOut value)? signedOut,
+    TResult? Function(_ForceRefresh value)? forceRefresh,
+    TResult? Function(_EmitAuthenticated value)? emitAuthenticated,
+  }) {
+    return emitAuthenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Check value)? check,
+    TResult Function(_SignedOut value)? signedOut,
+    TResult Function(_ForceRefresh value)? forceRefresh,
+    TResult Function(_EmitAuthenticated value)? emitAuthenticated,
+    required TResult orElse(),
+  }) {
+    if (emitAuthenticated != null) {
+      return emitAuthenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmitAuthenticated implements AuthEvent {
+  const factory _EmitAuthenticated() = _$EmitAuthenticatedImpl;
 }
 
 /// @nodoc

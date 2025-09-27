@@ -23,9 +23,8 @@ mixin _$SignUpEvent {
             EmailInput? email,
             PhoneNumberInput? phone,
             PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)
+            PasswordInput? confirmPassword,
+            bool? obscurePassword)
         dataChanged,
     required TResult Function() signUp,
   }) =>
@@ -37,9 +36,8 @@ mixin _$SignUpEvent {
             EmailInput? email,
             PhoneNumberInput? phone,
             PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)?
+            PasswordInput? confirmPassword,
+            bool? obscurePassword)?
         dataChanged,
     TResult? Function()? signUp,
   }) =>
@@ -51,9 +49,8 @@ mixin _$SignUpEvent {
             EmailInput? email,
             PhoneNumberInput? phone,
             PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)?
+            PasswordInput? confirmPassword,
+            bool? obscurePassword)?
         dataChanged,
     TResult Function()? signUp,
     required TResult orElse(),
@@ -112,9 +109,8 @@ abstract class _$$DataChangedImplCopyWith<$Res> {
       EmailInput? email,
       PhoneNumberInput? phone,
       PasswordInput? password,
-      ConfirmPasswordInput? confirmPassword,
-      GenericFormzInput<dynamic>? obscurePassword,
-      FormzSubmissionStatus? formzSubmissionStatus});
+      PasswordInput? confirmPassword,
+      bool? obscurePassword});
 }
 
 /// @nodoc
@@ -136,7 +132,6 @@ class __$$DataChangedImplCopyWithImpl<$Res>
     Object? password = freezed,
     Object? confirmPassword = freezed,
     Object? obscurePassword = freezed,
-    Object? formzSubmissionStatus = freezed,
   }) {
     return _then(_$DataChangedImpl(
       name: freezed == name
@@ -158,15 +153,11 @@ class __$$DataChangedImplCopyWithImpl<$Res>
       confirmPassword: freezed == confirmPassword
           ? _value.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as ConfirmPasswordInput?,
+              as PasswordInput?,
       obscurePassword: freezed == obscurePassword
           ? _value.obscurePassword
           : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>?,
-      formzSubmissionStatus: freezed == formzSubmissionStatus
-          ? _value.formzSubmissionStatus
-          : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
-              as FormzSubmissionStatus?,
+              as bool?,
     ));
   }
 }
@@ -180,8 +171,7 @@ class _$DataChangedImpl with DiagnosticableTreeMixin implements _DataChanged {
       this.phone,
       this.password,
       this.confirmPassword,
-      this.obscurePassword,
-      this.formzSubmissionStatus});
+      this.obscurePassword});
 
   @override
   final GenericFormzInput<dynamic>? name;
@@ -192,15 +182,13 @@ class _$DataChangedImpl with DiagnosticableTreeMixin implements _DataChanged {
   @override
   final PasswordInput? password;
   @override
-  final ConfirmPasswordInput? confirmPassword;
+  final PasswordInput? confirmPassword;
   @override
-  final GenericFormzInput<dynamic>? obscurePassword;
-  @override
-  final FormzSubmissionStatus? formzSubmissionStatus;
+  final bool? obscurePassword;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpEvent.dataChanged(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+    return 'SignUpEvent.dataChanged(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword)';
   }
 
   @override
@@ -213,9 +201,7 @@ class _$DataChangedImpl with DiagnosticableTreeMixin implements _DataChanged {
       ..add(DiagnosticsProperty('phone', phone))
       ..add(DiagnosticsProperty('password', password))
       ..add(DiagnosticsProperty('confirmPassword', confirmPassword))
-      ..add(DiagnosticsProperty('obscurePassword', obscurePassword))
-      ..add(
-          DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
+      ..add(DiagnosticsProperty('obscurePassword', obscurePassword));
   }
 
   @override
@@ -231,14 +217,12 @@ class _$DataChangedImpl with DiagnosticableTreeMixin implements _DataChanged {
             (identical(other.confirmPassword, confirmPassword) ||
                 other.confirmPassword == confirmPassword) &&
             (identical(other.obscurePassword, obscurePassword) ||
-                other.obscurePassword == obscurePassword) &&
-            (identical(other.formzSubmissionStatus, formzSubmissionStatus) ||
-                other.formzSubmissionStatus == formzSubmissionStatus));
+                other.obscurePassword == obscurePassword));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, name, email, phone, password,
-      confirmPassword, obscurePassword, formzSubmissionStatus);
+      confirmPassword, obscurePassword);
 
   /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -256,14 +240,13 @@ class _$DataChangedImpl with DiagnosticableTreeMixin implements _DataChanged {
             EmailInput? email,
             PhoneNumberInput? phone,
             PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)
+            PasswordInput? confirmPassword,
+            bool? obscurePassword)
         dataChanged,
     required TResult Function() signUp,
   }) {
-    return dataChanged(name, email, phone, password, confirmPassword,
-        obscurePassword, formzSubmissionStatus);
+    return dataChanged(
+        name, email, phone, password, confirmPassword, obscurePassword);
   }
 
   @override
@@ -274,14 +257,13 @@ class _$DataChangedImpl with DiagnosticableTreeMixin implements _DataChanged {
             EmailInput? email,
             PhoneNumberInput? phone,
             PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)?
+            PasswordInput? confirmPassword,
+            bool? obscurePassword)?
         dataChanged,
     TResult? Function()? signUp,
   }) {
-    return dataChanged?.call(name, email, phone, password, confirmPassword,
-        obscurePassword, formzSubmissionStatus);
+    return dataChanged?.call(
+        name, email, phone, password, confirmPassword, obscurePassword);
   }
 
   @override
@@ -292,16 +274,15 @@ class _$DataChangedImpl with DiagnosticableTreeMixin implements _DataChanged {
             EmailInput? email,
             PhoneNumberInput? phone,
             PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)?
+            PasswordInput? confirmPassword,
+            bool? obscurePassword)?
         dataChanged,
     TResult Function()? signUp,
     required TResult orElse(),
   }) {
     if (dataChanged != null) {
-      return dataChanged(name, email, phone, password, confirmPassword,
-          obscurePassword, formzSubmissionStatus);
+      return dataChanged(
+          name, email, phone, password, confirmPassword, obscurePassword);
     }
     return orElse();
   }
@@ -344,17 +325,15 @@ abstract class _DataChanged implements SignUpEvent {
       final EmailInput? email,
       final PhoneNumberInput? phone,
       final PasswordInput? password,
-      final ConfirmPasswordInput? confirmPassword,
-      final GenericFormzInput<dynamic>? obscurePassword,
-      final FormzSubmissionStatus? formzSubmissionStatus}) = _$DataChangedImpl;
+      final PasswordInput? confirmPassword,
+      final bool? obscurePassword}) = _$DataChangedImpl;
 
   GenericFormzInput<dynamic>? get name;
   EmailInput? get email;
   PhoneNumberInput? get phone;
   PasswordInput? get password;
-  ConfirmPasswordInput? get confirmPassword;
-  GenericFormzInput<dynamic>? get obscurePassword;
-  FormzSubmissionStatus? get formzSubmissionStatus;
+  PasswordInput? get confirmPassword;
+  bool? get obscurePassword;
 
   /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -415,9 +394,8 @@ class _$SignUpImpl with DiagnosticableTreeMixin implements _SignUp {
             EmailInput? email,
             PhoneNumberInput? phone,
             PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)
+            PasswordInput? confirmPassword,
+            bool? obscurePassword)
         dataChanged,
     required TResult Function() signUp,
   }) {
@@ -432,9 +410,8 @@ class _$SignUpImpl with DiagnosticableTreeMixin implements _SignUp {
             EmailInput? email,
             PhoneNumberInput? phone,
             PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)?
+            PasswordInput? confirmPassword,
+            bool? obscurePassword)?
         dataChanged,
     TResult? Function()? signUp,
   }) {
@@ -449,9 +426,8 @@ class _$SignUpImpl with DiagnosticableTreeMixin implements _SignUp {
             EmailInput? email,
             PhoneNumberInput? phone,
             PasswordInput? password,
-            ConfirmPasswordInput? confirmPassword,
-            GenericFormzInput<dynamic>? obscurePassword,
-            FormzSubmissionStatus? formzSubmissionStatus)?
+            PasswordInput? confirmPassword,
+            bool? obscurePassword)?
         dataChanged,
     TResult Function()? signUp,
     required TResult orElse(),
@@ -511,8 +487,9 @@ mixin _$SignUpState {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
     required TResult Function(String error) failure,
@@ -529,8 +506,9 @@ mixin _$SignUpState {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult? Function(String error)? failure,
@@ -547,8 +525,9 @@ mixin _$SignUpState {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult Function(String error)? failure,
@@ -665,8 +644,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
     required TResult Function(String error) failure,
@@ -686,8 +666,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult? Function(String error)? failure,
@@ -707,8 +688,9 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult Function(String error)? failure,
@@ -824,8 +806,9 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
     required TResult Function(String error) failure,
@@ -845,8 +828,9 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult? Function(String error)? failure,
@@ -866,8 +850,9 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult Function(String error)? failure,
@@ -985,8 +970,9 @@ class _$SettingsLoadingImpl
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
     required TResult Function(String error) failure,
@@ -1006,8 +992,9 @@ class _$SettingsLoadingImpl
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult? Function(String error)? failure,
@@ -1027,8 +1014,9 @@ class _$SettingsLoadingImpl
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult Function(String error)? failure,
@@ -1144,8 +1132,9 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
     required TResult Function(String error) failure,
@@ -1165,8 +1154,9 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult? Function(String error)? failure,
@@ -1186,8 +1176,9 @@ class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult Function(String error)? failure,
@@ -1258,8 +1249,9 @@ abstract class _$$LoadedImplCopyWith<$Res> {
       EmailInput email,
       PhoneNumberInput phone,
       PasswordInput password,
-      ConfirmPasswordInput confirmPassword,
-      GenericFormzInput<dynamic> obscurePassword,
+      PasswordInput confirmPassword,
+      ConfirmPasswordInput confirmPasswordInput,
+      bool obscurePassword,
       FormzSubmissionStatus formzSubmissionStatus});
 }
 
@@ -1281,6 +1273,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? phone = null,
     Object? password = null,
     Object? confirmPassword = null,
+    Object? confirmPasswordInput = null,
     Object? obscurePassword = null,
     Object? formzSubmissionStatus = null,
   }) {
@@ -1304,11 +1297,15 @@ class __$$LoadedImplCopyWithImpl<$Res>
       confirmPassword: null == confirmPassword
           ? _value.confirmPassword
           : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as PasswordInput,
+      confirmPasswordInput: null == confirmPasswordInput
+          ? _value.confirmPasswordInput
+          : confirmPasswordInput // ignore: cast_nullable_to_non_nullable
               as ConfirmPasswordInput,
       obscurePassword: null == obscurePassword
           ? _value.obscurePassword
           : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>,
+              as bool,
       formzSubmissionStatus: null == formzSubmissionStatus
           ? _value.formzSubmissionStatus
           : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
@@ -1326,7 +1323,8 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
       required this.phone,
       required this.password,
       required this.confirmPassword,
-      required this.obscurePassword,
+      required this.confirmPasswordInput,
+      this.obscurePassword = true,
       required this.formzSubmissionStatus});
 
   @override
@@ -1338,15 +1336,18 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   @override
   final PasswordInput password;
   @override
-  final ConfirmPasswordInput confirmPassword;
+  final PasswordInput confirmPassword;
   @override
-  final GenericFormzInput<dynamic> obscurePassword;
+  final ConfirmPasswordInput confirmPasswordInput;
+  @override
+  @JsonKey()
+  final bool obscurePassword;
   @override
   final FormzSubmissionStatus formzSubmissionStatus;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpState.loaded(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+    return 'SignUpState.loaded(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, confirmPasswordInput: $confirmPasswordInput, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
   }
 
   @override
@@ -1359,6 +1360,7 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
       ..add(DiagnosticsProperty('phone', phone))
       ..add(DiagnosticsProperty('password', password))
       ..add(DiagnosticsProperty('confirmPassword', confirmPassword))
+      ..add(DiagnosticsProperty('confirmPasswordInput', confirmPasswordInput))
       ..add(DiagnosticsProperty('obscurePassword', obscurePassword))
       ..add(
           DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
@@ -1376,6 +1378,8 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
                 other.password == password) &&
             (identical(other.confirmPassword, confirmPassword) ||
                 other.confirmPassword == confirmPassword) &&
+            (identical(other.confirmPasswordInput, confirmPasswordInput) ||
+                other.confirmPasswordInput == confirmPasswordInput) &&
             (identical(other.obscurePassword, obscurePassword) ||
                 other.obscurePassword == obscurePassword) &&
             (identical(other.formzSubmissionStatus, formzSubmissionStatus) ||
@@ -1383,8 +1387,16 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, email, phone, password,
-      confirmPassword, obscurePassword, formzSubmissionStatus);
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      email,
+      phone,
+      password,
+      confirmPassword,
+      confirmPasswordInput,
+      obscurePassword,
+      formzSubmissionStatus);
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -1406,14 +1418,15 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
     required TResult Function(String error) failure,
   }) {
     return loaded(name, email, phone, password, confirmPassword,
-        obscurePassword, formzSubmissionStatus);
+        confirmPasswordInput, obscurePassword, formzSubmissionStatus);
   }
 
   @override
@@ -1428,14 +1441,15 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult? Function(String error)? failure,
   }) {
     return loaded?.call(name, email, phone, password, confirmPassword,
-        obscurePassword, formzSubmissionStatus);
+        confirmPasswordInput, obscurePassword, formzSubmissionStatus);
   }
 
   @override
@@ -1450,8 +1464,9 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult Function(String error)? failure,
@@ -1459,7 +1474,7 @@ class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   }) {
     if (loaded != null) {
       return loaded(name, email, phone, password, confirmPassword,
-          obscurePassword, formzSubmissionStatus);
+          confirmPasswordInput, obscurePassword, formzSubmissionStatus);
     }
     return orElse();
   }
@@ -1514,8 +1529,9 @@ abstract class _Loaded implements SignUpState {
           required final EmailInput email,
           required final PhoneNumberInput phone,
           required final PasswordInput password,
-          required final ConfirmPasswordInput confirmPassword,
-          required final GenericFormzInput<dynamic> obscurePassword,
+          required final PasswordInput confirmPassword,
+          required final ConfirmPasswordInput confirmPasswordInput,
+          final bool obscurePassword,
           required final FormzSubmissionStatus formzSubmissionStatus}) =
       _$LoadedImpl;
 
@@ -1523,8 +1539,9 @@ abstract class _Loaded implements SignUpState {
   EmailInput get email;
   PhoneNumberInput get phone;
   PasswordInput get password;
-  ConfirmPasswordInput get confirmPassword;
-  GenericFormzInput<dynamic> get obscurePassword;
+  PasswordInput get confirmPassword;
+  ConfirmPasswordInput get confirmPasswordInput;
+  bool get obscurePassword;
   FormzSubmissionStatus get formzSubmissionStatus;
 
   /// Create a copy of SignUpState
@@ -1619,8 +1636,9 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)
         loaded,
     required TResult Function(String error) failure,
@@ -1640,8 +1658,9 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult? Function(String error)? failure,
@@ -1661,8 +1680,9 @@ class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
             EmailInput email,
             PhoneNumberInput phone,
             PasswordInput password,
-            ConfirmPasswordInput confirmPassword,
-            GenericFormzInput<dynamic> obscurePassword,
+            PasswordInput confirmPassword,
+            ConfirmPasswordInput confirmPasswordInput,
+            bool obscurePassword,
             FormzSubmissionStatus formzSubmissionStatus)?
         loaded,
     TResult Function(String error)? failure,

@@ -20,6 +20,7 @@ class DebugRouterObserver extends NavigatorObserver {
   @override
   void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     debugPrint(
-        'Route replaced from ${oldRoute?.settings.name} to ${newRoute?.settings.name}');
+      'Route replaced from ${oldRoute?.settings.name} to ${newRoute?.settings.name}',
+    );
   }
 }

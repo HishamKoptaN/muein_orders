@@ -5,18 +5,22 @@ import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../../features/home/present/home_view.dart';
 import '../../features/language/view/select_language.dart';
-import '../../features/orders/present/views/orders_view.dart';
 import 'app_routes.dart';
 
 class AppRouterRedirect {
-  static const Set<String> public = {
+  // مسارات مسموحة للجميع (مصادق أو غير مصادق)
+  static const Set<String> alwaysAccessible = {
     AppRoutes.selectLanguage,
-    AppRoutes.onboarding,
+  };
+
+  // مسارات عامة بس للي مش عامل تسجيل دخول
+  static const Set<String> public = {
     AppRoutes.authChoice,
     AppRoutes.signIn,
     AppRoutes.signUp,
     AppRoutes.forgotPass,
   };
+
   static String? handleRedirect(
     BuildContext context,
     GoRouterState goRouterState,
@@ -24,35 +28,29 @@ class AppRouterRedirect {
   ) {
     final path = goRouterState.uri.path;
     final location = path.startsWith('/') ? path.substring(1) : path;
+
     return authBloc.state.when(
-      loading: () {
-        return null; // Stay on current route while loading
+      loading: () => null,
+      authenticated: () {
+        if (location == HomeView.routeName ||
+            alwaysAccessible.contains(location)) {
+          return null; // ابق في الصفحة الرئيسية أو المسارات المشتركة
+        }
+        if (public.contains(location)) {
+          return '/${HomeView.routeName}'; // لو حاول يروح لمسار عام → رجّعه للـ Home
+        }
+        return null; // باقي المسارات الخاصة مسموحة
       },
       unauthenticated: () {
-        // إذا كان المستخدم غير مصدق عليه
-        if (location == SelectLanguageView.routeName) {
-          return null; // ابق في صفحة اختيار اللغة
+        if (alwaysAccessible.contains(location)) {
+          return null; // ابق في التعليمات أو اختيار اللغة
         }
         if (public.contains(location)) {
-          return null; // Allow access to public routes
+          return null; // باقي المسارات العامة مسموحة
         }
-        // إذا كان في مسار خاص، اذهب إلى صفحة اختيار اللغة
-        return '/${SelectLanguageView.routeName}';
+        return '/${SelectLanguageView.routeName}'; // أي حاجة تانية → رجّعه للغة
       },
-      authenticated: () {
-        // إذا كان المستخدم مصدق عليه
-        if (location == HomeView.routeName) {
-          return null; // ابق في الصفحة الرئيسية
-        }
-        if (public.contains(location)) {
-          // إذا كان في مسار عام، اذهب إلى الصفحة الرئيسية
-          return '/${HomeView.routeName}';
-        }
-        return null; // Allow access to private routes
-      },
-      failure: (_) {
-        return '/${AuthChoiceView.routeName}';
-      },
+      failure: (_) => '/${AuthChoiceView.routeName}',
     );
   }
 }

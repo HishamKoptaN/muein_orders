@@ -10,12 +10,10 @@ _$SignUpResEntityImpl _$$SignUpResEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$SignUpResEntityImpl(
       token: json['token'] as String,
-      role: json['role'] as String? ?? 'user',
     );
 
 Map<String, dynamic> _$$SignUpResEntityImplToJson(
         _$SignUpResEntityImpl instance) =>
     <String, dynamic>{
       'token': instance.token,
-      'role': instance.role,
     };

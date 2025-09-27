@@ -11,8 +11,9 @@ class SignUpState with _$SignUpState {
     required EmailInput email,
     required PhoneNumberInput phone,
     required PasswordInput password,
-    required ConfirmPasswordInput confirmPassword,
-    required GenericFormzInput obscurePassword,
+    required PasswordInput confirmPassword,
+    required ConfirmPasswordInput confirmPasswordInput,
+    @Default(true) bool obscurePassword,
     required FormzSubmissionStatus formzSubmissionStatus,
   }) = _Loaded;
   const factory SignUpState.failure({required String error}) = _Failure;

@@ -2,10 +2,11 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:workmanager/workmanager.dart';
+
 import '../../../../../core/all_imports.dart';
 import '../../../domain/entities/cached_doc_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
+
 part 'cached_doc_bloc.freezed.dart';
 part 'cached_doc_event.dart';
 part 'cached_doc_state.dart';
@@ -41,7 +42,8 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
             longitude,
             shippingCost,
           ) async {
-            debugPrint('🔄 تحديث البيانات في CachedDocBloc: orderId=${orderId?.value}, shippingCost=${shippingCost?.value}');
+            debugPrint(
+                '🔄 تحديث البيانات في CachedDocBloc: orderId=${orderId?.value}, shippingCost=${shippingCost?.value}');
             // الاحتفاظ بالقيم الموجودة وتحديث القيم الجديدة فقط
             _orderId = orderId ?? _orderId;
             _imageOne = imageOne ?? _imageOne;
@@ -52,7 +54,8 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
             _longitude = longitude ?? _longitude;
             _shippingCosts = shippingCost ?? _shippingCosts;
 
-            debugPrint('🔄 القيم بعد التحديث: _orderId=${_orderId?.value}, _shippingCosts=${_shippingCosts?.value}');
+            debugPrint(
+                '🔄 القيم بعد التحديث: _orderId=${_orderId?.value}, _shippingCosts=${_shippingCosts?.value}');
 
             emitCustomLoaded(
               emit: emit,
@@ -76,13 +79,6 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
                   longitude: _longitude!.value,
                   shippingCost: _shippingCosts!.value,
                 ),
-              );
-              await Workmanager().registerOneOffTask(
-                'upload_task_${_orderId!.value!}',
-                'uploadDoc',
-                inputData: {
-                  'orderId': _orderId!.value,
-                },
               );
               emit(const CachedDocState.success());
             } catch (e) {
@@ -132,7 +128,8 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
         latitude: _latitude,
         longitude: _longitude,
         shippingCost: _shippingCosts,
-        formzSubmissionStatus: _formzSubmissionStatus ?? FormzSubmissionStatus.initial,
+        formzSubmissionStatus:
+            _formzSubmissionStatus ?? FormzSubmissionStatus.initial,
         cachedProgress: _localDocProgress,
       ),
     );

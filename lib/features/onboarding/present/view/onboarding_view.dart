@@ -2,27 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/di/dependency_injection.dart';
+import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../orders/present/views/orders_view.dart';
+import '../../../home/present/home_view.dart';
 import '../bloc/onboarding_bloc.dart';
 import 'widgets/onboarding_page.dart';
 
-class OnBoardingView extends StatefulWidget {
-  const OnBoardingView({super.key});
-  static const String routeName = 'onboarding';
+class InstructionsView extends StatefulWidget {
+  const InstructionsView({super.key});
+  static const String routeName = 'instructions';
 
   @override
-  State<OnBoardingView> createState() => _OnBoardingViewState();
+  State<InstructionsView> createState() => _InstructionsViewState();
 }
 
-class _OnBoardingViewState extends State<OnBoardingView> {
+class _InstructionsViewState extends State<InstructionsView> {
   final PageController _pageController = PageController();
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -32,21 +30,29 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
-
-    return Scaffold(
+    final t = AppLocalizations.of(context);
+    return CustomScaffold(
+      backgroundColor: const Color(0xFF003A46),
+      appBar: Navigator.canPop(context)
+          ? CustomAppBar(
+              title: t.instructions,
+            )
+          : null,
       body: BlocProvider(
         create: (context) => getIt<OnboardingBloc>()
           ..add(const OnboardingEvent.checkOnboardingStatus()),
         child: BlocConsumer<OnboardingBloc, OnboardingState>(
           listener: (context, state) {
             state.whenOrNull(
-              onboardingCompleted: () {
-                // Navigate to orders screen
-                NavigationService.navigateAndRemoveUntil(
-                  context: context,
-                  routeName: OrdersView.routeName,
-                );
+              onboardingNotCompleted: (pages, currentPageIndex, isLastPage) {
+                if (_pageController.hasClients &&
+                    _pageController.page?.round() != currentPageIndex) {
+                  _pageController.animateToPage(
+                    currentPageIndex,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                }
               },
             );
           },
@@ -59,7 +65,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               ) {
                 return Stack(
                   children: [
-                    // PageView
                     PageView.builder(
                       controller: _pageController,
                       onPageChanged: (int index) {
@@ -78,28 +83,27 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         );
                       },
                     ),
-
-                    // Skip Button
                     Positioned(
                       top: MediaQuery.of(context).padding.top + 16,
                       right: 16,
-                      child: TextButton(
-                        onPressed: () {
-                          context.read<OnboardingBloc>().add(
-                                const OnboardingEvent.skipOnboarding(),
-                              );
-                        },
-                        child: Text(
-                          t.skip,
-                          style: TextStyle(
-                            color: AppColors.primary,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
+                      child: Navigator.canPop(context)
+                          ? const SizedBox.shrink()
+                          : TextButton(
+                              onPressed: () {
+                                NavigationService.navigateAndRemoveUntil(
+                                  context: context,
+                                  routeName: HomeView.routeName,
+                                );
+                              },
+                              child: Text(
+                                t.skip,
+                                style: TextStyle(
+                                  color: AppColors.primary,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
                     ),
-
-                    // Page Indicators
                     Positioned(
                       bottom: MediaQuery.of(context).padding.bottom + 100,
                       left: 0,
@@ -123,17 +127,22 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         ),
                       ),
                     ),
-
-                    // Next/Get Started Button
                     Positioned(
                       left: 24,
                       right: 24,
                       bottom: MediaQuery.of(context).padding.bottom + 32,
                       child: ElevatedButton(
                         onPressed: () {
-                          context.read<OnboardingBloc>().add(
-                                const OnboardingEvent.nextPage(),
-                              );
+                          if (isLastPage) {
+                            NavigationService.navigateAndRemoveUntil(
+                              context: context,
+                              routeName: HomeView.routeName,
+                            );
+                          } else {
+                            context.read<OnboardingBloc>().add(
+                                  const OnboardingEvent.nextPage(),
+                                );
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,

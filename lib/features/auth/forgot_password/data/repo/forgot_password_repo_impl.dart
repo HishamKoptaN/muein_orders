@@ -16,7 +16,9 @@ class ForgotPasswordRepositoryImpl implements ForgotPassRepo {
     required String email,
   }) async {
     try {
-      await _auth.sendPasswordResetEmail(email: email);
+      await _auth.sendPasswordResetEmail(
+        email: email,
+      );
       return const ApiResult.success(data: null);
     } on FirebaseAuthException catch (e) {
       return ApiResult.failure(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../../../core/routing/navigation_service.dart';
+import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../sign_in/present/views/sign_in_view.dart';
@@ -17,12 +19,12 @@ class SignUpActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
+    final t = AppLocalizations.of(context);
     return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) => Column(
         children: [
           SizedBox(
-            width: 332,
+            width: 332.w,
             height: 60,
             child: ElevatedButton(
               key: const Key('signUp_button'),
@@ -32,27 +34,19 @@ class SignUpActions extends StatelessWidget {
                       )
                   : null,
               style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.resolveWith(
-                  (states) => const Color(0xFF83BEA8),
-                ),
-                shape: WidgetStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                ),
-                elevation: WidgetStateProperty.all(0),
+                backgroundColor: formzSubmissionStatus.isInProgressOrSuccess
+                    ? WidgetStateProperty.all(AppColors.primary)
+                    : WidgetStateProperty.all(Colors.grey),
               ),
               child: formzSubmissionStatus.isInProgress
                   ? const CustomCircularProgress()
                   : Text(
                       t.signUp,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Almarai',
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
-                        color: formzSubmissionStatus.isSuccess
-                            ? Colors.white
-                            : Colors.grey,
+                        // color: Colors.white,
                       ),
                     ),
             ),

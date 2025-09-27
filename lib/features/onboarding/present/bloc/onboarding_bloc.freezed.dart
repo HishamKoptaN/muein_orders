@@ -19,28 +19,22 @@ mixin _$OnboardingEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkOnboardingStatus,
-    required TResult Function() completeOnboarding,
     required TResult Function(int index) pageChanged,
     required TResult Function() nextPage,
-    required TResult Function() skipOnboarding,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkOnboardingStatus,
-    TResult? Function()? completeOnboarding,
     TResult? Function(int index)? pageChanged,
     TResult? Function()? nextPage,
-    TResult? Function()? skipOnboarding,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkOnboardingStatus,
-    TResult Function()? completeOnboarding,
     TResult Function(int index)? pageChanged,
     TResult Function()? nextPage,
-    TResult Function()? skipOnboarding,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,28 +42,22 @@ mixin _$OnboardingEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(CheckOnboardingStatus value)
         checkOnboardingStatus,
-    required TResult Function(CompleteOnboarding value) completeOnboarding,
     required TResult Function(PageChanged value) pageChanged,
     required TResult Function(NextPage value) nextPage,
-    required TResult Function(SkipOnboarding value) skipOnboarding,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult? Function(CompleteOnboarding value)? completeOnboarding,
     TResult? Function(PageChanged value)? pageChanged,
     TResult? Function(NextPage value)? nextPage,
-    TResult? Function(SkipOnboarding value)? skipOnboarding,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult Function(CompleteOnboarding value)? completeOnboarding,
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(NextPage value)? nextPage,
-    TResult Function(SkipOnboarding value)? skipOnboarding,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,10 +128,8 @@ class _$CheckOnboardingStatusImpl implements CheckOnboardingStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkOnboardingStatus,
-    required TResult Function() completeOnboarding,
     required TResult Function(int index) pageChanged,
     required TResult Function() nextPage,
-    required TResult Function() skipOnboarding,
   }) {
     return checkOnboardingStatus();
   }
@@ -152,10 +138,8 @@ class _$CheckOnboardingStatusImpl implements CheckOnboardingStatus {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkOnboardingStatus,
-    TResult? Function()? completeOnboarding,
     TResult? Function(int index)? pageChanged,
     TResult? Function()? nextPage,
-    TResult? Function()? skipOnboarding,
   }) {
     return checkOnboardingStatus?.call();
   }
@@ -164,10 +148,8 @@ class _$CheckOnboardingStatusImpl implements CheckOnboardingStatus {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkOnboardingStatus,
-    TResult Function()? completeOnboarding,
     TResult Function(int index)? pageChanged,
     TResult Function()? nextPage,
-    TResult Function()? skipOnboarding,
     required TResult orElse(),
   }) {
     if (checkOnboardingStatus != null) {
@@ -181,10 +163,8 @@ class _$CheckOnboardingStatusImpl implements CheckOnboardingStatus {
   TResult map<TResult extends Object?>({
     required TResult Function(CheckOnboardingStatus value)
         checkOnboardingStatus,
-    required TResult Function(CompleteOnboarding value) completeOnboarding,
     required TResult Function(PageChanged value) pageChanged,
     required TResult Function(NextPage value) nextPage,
-    required TResult Function(SkipOnboarding value) skipOnboarding,
   }) {
     return checkOnboardingStatus(this);
   }
@@ -193,10 +173,8 @@ class _$CheckOnboardingStatusImpl implements CheckOnboardingStatus {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult? Function(CompleteOnboarding value)? completeOnboarding,
     TResult? Function(PageChanged value)? pageChanged,
     TResult? Function(NextPage value)? nextPage,
-    TResult? Function(SkipOnboarding value)? skipOnboarding,
   }) {
     return checkOnboardingStatus?.call(this);
   }
@@ -205,10 +183,8 @@ class _$CheckOnboardingStatusImpl implements CheckOnboardingStatus {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult Function(CompleteOnboarding value)? completeOnboarding,
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(NextPage value)? nextPage,
-    TResult Function(SkipOnboarding value)? skipOnboarding,
     required TResult orElse(),
   }) {
     if (checkOnboardingStatus != null) {
@@ -220,130 +196,6 @@ class _$CheckOnboardingStatusImpl implements CheckOnboardingStatus {
 
 abstract class CheckOnboardingStatus implements OnboardingEvent {
   const factory CheckOnboardingStatus() = _$CheckOnboardingStatusImpl;
-}
-
-/// @nodoc
-abstract class _$$CompleteOnboardingImplCopyWith<$Res> {
-  factory _$$CompleteOnboardingImplCopyWith(_$CompleteOnboardingImpl value,
-          $Res Function(_$CompleteOnboardingImpl) then) =
-      __$$CompleteOnboardingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$CompleteOnboardingImplCopyWithImpl<$Res>
-    extends _$OnboardingEventCopyWithImpl<$Res, _$CompleteOnboardingImpl>
-    implements _$$CompleteOnboardingImplCopyWith<$Res> {
-  __$$CompleteOnboardingImplCopyWithImpl(_$CompleteOnboardingImpl _value,
-      $Res Function(_$CompleteOnboardingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OnboardingEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$CompleteOnboardingImpl implements CompleteOnboarding {
-  const _$CompleteOnboardingImpl();
-
-  @override
-  String toString() {
-    return 'OnboardingEvent.completeOnboarding()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CompleteOnboardingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() checkOnboardingStatus,
-    required TResult Function() completeOnboarding,
-    required TResult Function(int index) pageChanged,
-    required TResult Function() nextPage,
-    required TResult Function() skipOnboarding,
-  }) {
-    return completeOnboarding();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkOnboardingStatus,
-    TResult? Function()? completeOnboarding,
-    TResult? Function(int index)? pageChanged,
-    TResult? Function()? nextPage,
-    TResult? Function()? skipOnboarding,
-  }) {
-    return completeOnboarding?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkOnboardingStatus,
-    TResult Function()? completeOnboarding,
-    TResult Function(int index)? pageChanged,
-    TResult Function()? nextPage,
-    TResult Function()? skipOnboarding,
-    required TResult orElse(),
-  }) {
-    if (completeOnboarding != null) {
-      return completeOnboarding();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CheckOnboardingStatus value)
-        checkOnboardingStatus,
-    required TResult Function(CompleteOnboarding value) completeOnboarding,
-    required TResult Function(PageChanged value) pageChanged,
-    required TResult Function(NextPage value) nextPage,
-    required TResult Function(SkipOnboarding value) skipOnboarding,
-  }) {
-    return completeOnboarding(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult? Function(CompleteOnboarding value)? completeOnboarding,
-    TResult? Function(PageChanged value)? pageChanged,
-    TResult? Function(NextPage value)? nextPage,
-    TResult? Function(SkipOnboarding value)? skipOnboarding,
-  }) {
-    return completeOnboarding?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult Function(CompleteOnboarding value)? completeOnboarding,
-    TResult Function(PageChanged value)? pageChanged,
-    TResult Function(NextPage value)? nextPage,
-    TResult Function(SkipOnboarding value)? skipOnboarding,
-    required TResult orElse(),
-  }) {
-    if (completeOnboarding != null) {
-      return completeOnboarding(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CompleteOnboarding implements OnboardingEvent {
-  const factory CompleteOnboarding() = _$CompleteOnboardingImpl;
 }
 
 /// @nodoc
@@ -415,10 +267,8 @@ class _$PageChangedImpl implements PageChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkOnboardingStatus,
-    required TResult Function() completeOnboarding,
     required TResult Function(int index) pageChanged,
     required TResult Function() nextPage,
-    required TResult Function() skipOnboarding,
   }) {
     return pageChanged(index);
   }
@@ -427,10 +277,8 @@ class _$PageChangedImpl implements PageChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkOnboardingStatus,
-    TResult? Function()? completeOnboarding,
     TResult? Function(int index)? pageChanged,
     TResult? Function()? nextPage,
-    TResult? Function()? skipOnboarding,
   }) {
     return pageChanged?.call(index);
   }
@@ -439,10 +287,8 @@ class _$PageChangedImpl implements PageChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkOnboardingStatus,
-    TResult Function()? completeOnboarding,
     TResult Function(int index)? pageChanged,
     TResult Function()? nextPage,
-    TResult Function()? skipOnboarding,
     required TResult orElse(),
   }) {
     if (pageChanged != null) {
@@ -456,10 +302,8 @@ class _$PageChangedImpl implements PageChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(CheckOnboardingStatus value)
         checkOnboardingStatus,
-    required TResult Function(CompleteOnboarding value) completeOnboarding,
     required TResult Function(PageChanged value) pageChanged,
     required TResult Function(NextPage value) nextPage,
-    required TResult Function(SkipOnboarding value) skipOnboarding,
   }) {
     return pageChanged(this);
   }
@@ -468,10 +312,8 @@ class _$PageChangedImpl implements PageChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult? Function(CompleteOnboarding value)? completeOnboarding,
     TResult? Function(PageChanged value)? pageChanged,
     TResult? Function(NextPage value)? nextPage,
-    TResult? Function(SkipOnboarding value)? skipOnboarding,
   }) {
     return pageChanged?.call(this);
   }
@@ -480,10 +322,8 @@ class _$PageChangedImpl implements PageChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult Function(CompleteOnboarding value)? completeOnboarding,
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(NextPage value)? nextPage,
-    TResult Function(SkipOnboarding value)? skipOnboarding,
     required TResult orElse(),
   }) {
     if (pageChanged != null) {
@@ -547,10 +387,8 @@ class _$NextPageImpl implements NextPage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkOnboardingStatus,
-    required TResult Function() completeOnboarding,
     required TResult Function(int index) pageChanged,
     required TResult Function() nextPage,
-    required TResult Function() skipOnboarding,
   }) {
     return nextPage();
   }
@@ -559,10 +397,8 @@ class _$NextPageImpl implements NextPage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkOnboardingStatus,
-    TResult? Function()? completeOnboarding,
     TResult? Function(int index)? pageChanged,
     TResult? Function()? nextPage,
-    TResult? Function()? skipOnboarding,
   }) {
     return nextPage?.call();
   }
@@ -571,10 +407,8 @@ class _$NextPageImpl implements NextPage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkOnboardingStatus,
-    TResult Function()? completeOnboarding,
     TResult Function(int index)? pageChanged,
     TResult Function()? nextPage,
-    TResult Function()? skipOnboarding,
     required TResult orElse(),
   }) {
     if (nextPage != null) {
@@ -588,10 +422,8 @@ class _$NextPageImpl implements NextPage {
   TResult map<TResult extends Object?>({
     required TResult Function(CheckOnboardingStatus value)
         checkOnboardingStatus,
-    required TResult Function(CompleteOnboarding value) completeOnboarding,
     required TResult Function(PageChanged value) pageChanged,
     required TResult Function(NextPage value) nextPage,
-    required TResult Function(SkipOnboarding value) skipOnboarding,
   }) {
     return nextPage(this);
   }
@@ -600,10 +432,8 @@ class _$NextPageImpl implements NextPage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult? Function(CompleteOnboarding value)? completeOnboarding,
     TResult? Function(PageChanged value)? pageChanged,
     TResult? Function(NextPage value)? nextPage,
-    TResult? Function(SkipOnboarding value)? skipOnboarding,
   }) {
     return nextPage?.call(this);
   }
@@ -612,10 +442,8 @@ class _$NextPageImpl implements NextPage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult Function(CompleteOnboarding value)? completeOnboarding,
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(NextPage value)? nextPage,
-    TResult Function(SkipOnboarding value)? skipOnboarding,
     required TResult orElse(),
   }) {
     if (nextPage != null) {
@@ -627,130 +455,6 @@ class _$NextPageImpl implements NextPage {
 
 abstract class NextPage implements OnboardingEvent {
   const factory NextPage() = _$NextPageImpl;
-}
-
-/// @nodoc
-abstract class _$$SkipOnboardingImplCopyWith<$Res> {
-  factory _$$SkipOnboardingImplCopyWith(_$SkipOnboardingImpl value,
-          $Res Function(_$SkipOnboardingImpl) then) =
-      __$$SkipOnboardingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SkipOnboardingImplCopyWithImpl<$Res>
-    extends _$OnboardingEventCopyWithImpl<$Res, _$SkipOnboardingImpl>
-    implements _$$SkipOnboardingImplCopyWith<$Res> {
-  __$$SkipOnboardingImplCopyWithImpl(
-      _$SkipOnboardingImpl _value, $Res Function(_$SkipOnboardingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OnboardingEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SkipOnboardingImpl implements SkipOnboarding {
-  const _$SkipOnboardingImpl();
-
-  @override
-  String toString() {
-    return 'OnboardingEvent.skipOnboarding()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SkipOnboardingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() checkOnboardingStatus,
-    required TResult Function() completeOnboarding,
-    required TResult Function(int index) pageChanged,
-    required TResult Function() nextPage,
-    required TResult Function() skipOnboarding,
-  }) {
-    return skipOnboarding();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkOnboardingStatus,
-    TResult? Function()? completeOnboarding,
-    TResult? Function(int index)? pageChanged,
-    TResult? Function()? nextPage,
-    TResult? Function()? skipOnboarding,
-  }) {
-    return skipOnboarding?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkOnboardingStatus,
-    TResult Function()? completeOnboarding,
-    TResult Function(int index)? pageChanged,
-    TResult Function()? nextPage,
-    TResult Function()? skipOnboarding,
-    required TResult orElse(),
-  }) {
-    if (skipOnboarding != null) {
-      return skipOnboarding();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CheckOnboardingStatus value)
-        checkOnboardingStatus,
-    required TResult Function(CompleteOnboarding value) completeOnboarding,
-    required TResult Function(PageChanged value) pageChanged,
-    required TResult Function(NextPage value) nextPage,
-    required TResult Function(SkipOnboarding value) skipOnboarding,
-  }) {
-    return skipOnboarding(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult? Function(CompleteOnboarding value)? completeOnboarding,
-    TResult? Function(PageChanged value)? pageChanged,
-    TResult? Function(NextPage value)? nextPage,
-    TResult? Function(SkipOnboarding value)? skipOnboarding,
-  }) {
-    return skipOnboarding?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CheckOnboardingStatus value)? checkOnboardingStatus,
-    TResult Function(CompleteOnboarding value)? completeOnboarding,
-    TResult Function(PageChanged value)? pageChanged,
-    TResult Function(NextPage value)? nextPage,
-    TResult Function(SkipOnboarding value)? skipOnboarding,
-    required TResult orElse(),
-  }) {
-    if (skipOnboarding != null) {
-      return skipOnboarding(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SkipOnboarding implements OnboardingEvent {
-  const factory SkipOnboarding() = _$SkipOnboardingImpl;
 }
 
 /// @nodoc

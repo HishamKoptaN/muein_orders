@@ -45,14 +45,15 @@ class _ProfileApi implements ProfileApi {
   }
 
   @override
-  Future<ProfileModel> updateProfile(Map<String, dynamic> profileData) async {
+  Future<ProfileModel> updateProfile({
+    required UpdateProfileReqEntity updateProfileReqEntity,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(profileData);
+    final _data = updateProfileReqEntity;
     final _options = _setStreamType<ProfileModel>(
-      Options(method: 'PUT', headers: _headers, extra: _extra)
+      Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
             '/profile',

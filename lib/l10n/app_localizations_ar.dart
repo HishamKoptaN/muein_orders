@@ -21,6 +21,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get indevedual => 'فردي';
 
   @override
+  String get instructions => 'التعليمات';
+
+  @override
   String get indveduals => 'المفردات';
 
   @override
@@ -43,7 +46,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'نحن سعداء بانضمامك إلينا!';
+      'سعيدين بانضمامك إلى متجر مبين';
 
   @override
   String get get_to_know_the_application_interface => 'تعرف على واجهة التطبيق';
@@ -57,7 +60,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'التوثيق بالصور والفيديوهات';
 
   @override
-  String get send => 'يرسل';
+  String get send => 'أرسال';
 
   @override
   String get phone => 'رقم التليفون';
@@ -98,6 +101,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get count => 'عدد';
+
+  @override
+  String get registerAnAccount => 'تسجيل حساب';
 
   @override
   String get noMoreDocs => 'لا يوجد توثيقات أخرى.';
@@ -346,7 +352,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get instead => 'بدلاً من';
 
   @override
-  String get skip => 'يتخطى';
+  String get skip => 'تخطى';
 
   @override
   String get next => 'التالي';
@@ -423,7 +429,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get accountCreated => 'تم إنشاء الحساب بنجاح';
 
   @override
-  String get start => 'يبدأ';
+  String get start => 'ابدأ';
+
+  @override
+  String get email => 'البريد الإلكتروني';
 
   @override
   String get errorCreatingAccount => 'خطأ في إنشاء الحساب';

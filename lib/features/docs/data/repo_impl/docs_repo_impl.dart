@@ -109,17 +109,20 @@ class DocsRepoImpl implements DocsRepo {
         shippingCosts: doc.shippingCost.toString(),
         onSendProgress: (sent, total) async {
           final progress = total != 0 ? ((sent / total) * 100).toDouble() : 0.0;
+
+          // تحديث قاعدة البيانات أولاً
+          await db.update(db.cachedDocs).replace(
+                doc.copyWith(uploadProgress: progress),
+              );
+
+          // ثم طباعة الـ logs
           if (UploadSpeedSettings.enableDetailedLogging) {
             print(
                 '📤 تقدم الرفع: ${(progress).toStringAsFixed(1)}% (${sent}/${total} bytes)');
           }
 
-          // إضافة تأخير بين كل تحديث للتقدم
-          await Future.delayed(Duration(milliseconds: UploadSpeedSettings.progressDelayMs));
-
-          await db.update(db.cachedDocs).replace(
-                doc.copyWith(uploadProgress: progress),
-              );
+          // إضافة تأخير بسيط فقط لتجنب التحديثات السريعة جداً
+          await Future.delayed(Duration(milliseconds: 100));
         },
       );
 

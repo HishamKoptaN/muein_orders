@@ -9,7 +9,7 @@ import '../../features/splash/start_view.dart';
 
 class AppRoutes {
   static const start = StartView.routeName;
-  static const onboarding = OnBoardingView.routeName;
+  static const instructions = InstructionsView.routeName;
   static const selectLanguage = SelectLanguageView.routeName;
   static const authChoice = AuthChoiceView.routeName;
   static const signIn = SignInView.routeName;

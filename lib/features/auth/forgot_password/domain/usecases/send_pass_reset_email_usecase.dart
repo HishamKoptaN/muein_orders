@@ -8,7 +8,7 @@ class SendPassResetEmailUseCase {
   final ForgotPassRepo repo;
   SendPassResetEmailUseCase(this.repo);
 
-  Future<ApiResult<void>> call({required String email}) async {
+  Future<ApiResult<void>> sendPassResetEmail({required String email}) async {
     return await repo.sendPassResetEmail(email: email);
   }
 }

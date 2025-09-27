@@ -54,7 +54,6 @@ dependencies:
   file_picker: ^10.3.3
   image_picker: ^1.1.0
   video_player: ^2.9.1
-
   # Utils
   internet_connection_checker_plus: ^2.7.0
   http_parser: ^4.0.2
@@ -69,10 +68,8 @@ dependencies:
   share_plus: ^10.1.2
   sqflite: ^2.3.3
   url_launcher: ^6.3.0
-
   # Background Services
   workmanager: ^0.9.0+3
-  # background_fetch: ^1.3.7
   # Routing
   go_router: ^14.3.0
   # Splash
@@ -86,17 +83,12 @@ dependencies:
     git:
       url: https://github.com/HishamKoptaN/form_inputs.git
       ref: main
-  # storage_utils:
-  #   git:
-  #     url: https://github.com/HishamKoptaN/storage_utils.git
-  #     ref: main
   shared_preferences: ^2.5.3
   translator: ^1.0.4+1
   drift: ^2.28.2
   drift_sqflite: ^2.0.1
   sqlite3_flutter_libs: ^0.5.29
   percent_indicator: ^4.2.5
-  # ffmpeg_kit_flutter_full_gpl: ^6.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
