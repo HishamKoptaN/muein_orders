@@ -1,10 +1,10 @@
 import 'dart:developer' as developer;
 
-import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../../core/database/shared_pref_helper.dart';
 import '../../../../../core/database/shared_pref_keys.dart';
 import '../../../../../core/di/api_module.dart';
@@ -74,7 +74,7 @@ class SignInRepoImpl implements SignInRepo {
         );
       }
 
-      // Store the JWT token in SharedPreferences
+      // Store the JWT token in SharedPreferencesAsync
       await SharedPrefHelper.setSecuredString(
         key: SharedPrefKeys.jwtToken,
         value: res.token,

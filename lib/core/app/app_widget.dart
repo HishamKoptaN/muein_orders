@@ -14,6 +14,7 @@ import '../../features/docs/present/blocs/docs_bloc/docs_bloc.dart';
 import '../../features/home/present/bloc/home_bloc.dart';
 import '../../features/language/bloc/language_bloc.dart';
 import '../../features/orders/present/bloc/orders_bloc.dart';
+import '../../features/profile/present/bloc/profile_bloc.dart';
 import '../../features/theme/blocs/theme_bloc.dart';
 import '../../l10n/app_localizations.dart';
 import '../config/app_config.dart';
@@ -39,10 +40,7 @@ class MubinOrdersApp extends StatelessWidget {
         BlocProvider<OrdersBloc>(create: (_) => getIt<OrdersBloc>()),
         BlocProvider<DocsBloc>(create: (_) => getIt<DocsBloc>()),
         BlocProvider<CachedDocBloc>(create: (_) => getIt<CachedDocBloc>()),
-        // BlocProvider<UploadTaskBloc>(create: (_) => getIt<UploadTaskBloc>()),
-        // BlocProvider<UploadProgressTrackingBloc>(
-        //   create: (_) => getIt<UploadProgressTrackingBloc>(),
-        // ),
+        BlocProvider<ProfileBloc>(create: (_) => getIt<ProfileBloc>()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(393, 852),
@@ -60,7 +58,6 @@ class MubinOrdersApp extends StatelessWidget {
                       authState.maybeWhen(
                         loading: () {},
                         orElse: () {
-                          FlutterNativeSplash.remove();
                         },
                       );
                     },
@@ -79,11 +76,12 @@ class MubinOrdersApp extends StatelessWidget {
                               loaded: (themeMode) => themeMode,
                               orElse: () => ThemeMode.system,
                             ),
-                            locale: const Locale('ar'),
-                            //   languageState.maybeWhen(
-                            // loaded: (locale) => locale,
-                            // orElse: () => const Locale('ar'),
-                            // ),
+                            locale: 
+                            // const Locale('ar'),
+                              languageState.maybeWhen(
+                            loaded: (locale) => locale,
+                            orElse: () => const Locale('ar'),
+                            ),
                             localizationsDelegates:
                                 _buildLocalizationDelegates(),
                             supportedLocales: getSupportedLocales(),

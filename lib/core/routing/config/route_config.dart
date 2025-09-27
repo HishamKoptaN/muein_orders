@@ -12,6 +12,7 @@ import '../../../features/language/view/select_language.dart';
 import '../../../features/onboarding/present/view/onboarding_view.dart';
 import '../../../features/orders/present/views/orders_view.dart';
 import '../../../features/orders/present/views/pdf/sitcker_pdf_preview_view.dart';
+import '../../../features/profile/present/views/profile_view.dart';
 import '../route_utils.dart';
 
 /// Development mode configuration
@@ -83,6 +84,10 @@ class RouteConfig {
             orderId: orderId ?? 0,
           );
         },
+      ),
+      createRoute(
+        routeName: ProfileView.routeName,
+        builder: (context, state) => const ProfileView(),
       ),
       // createRoute(
       //   routeName: UploadMonitoringView.routeName,

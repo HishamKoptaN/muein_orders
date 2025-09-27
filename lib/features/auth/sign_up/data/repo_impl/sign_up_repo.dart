@@ -11,7 +11,6 @@ import '../../../../../core/di/api_module.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/error/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../domain/entities/sign_up_res_entity.dart';
 import '../../domain/entities/signup_req_entity.dart';
 import '../../domain/repo/sign_up_repo.dart';
 import '../data_sources/sign_up_api.dart';
@@ -66,7 +65,7 @@ class SignUpRepoImpl implements SignUpRepo {
           fcmToken: signUpReq.fcmToken ?? fcmToken,
         ),
       );
-      // Store the JWT token in SharedPreferences
+      // Store the JWT token in SharedPreferencesAsync
       if (res.token != null) {
         await SharedPrefHelper.setSecuredString(
           key: SharedPrefKeys.jwtToken,
@@ -74,7 +73,7 @@ class SignUpRepoImpl implements SignUpRepo {
         );
       }
       await getIt<AuthInterceptor>().updateToken();
-      return ApiResult.success(
+      return const ApiResult.success(
         data: null,
       );
     } on FirebaseAuthException catch (e) {

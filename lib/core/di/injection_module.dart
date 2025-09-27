@@ -21,9 +21,10 @@ abstract class InjectionModule {
   @lazySingleton
   FirebaseMessaging get firebaseMessaging => FirebaseMessaging.instance;
 
-  // SharedPreferences
+  // SharedPreferencesAsync
   @preResolve
-  Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
+  Future<SharedPreferencesAsync> get prefs async =>
+      await SharedPreferencesAsync();
 
   // Secure storage
   @lazySingleton

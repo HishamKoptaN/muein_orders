@@ -26,11 +26,6 @@ android {
     namespace = "com.mubin.app.orders"
     compileSdk = 36
     ndkVersion "27.0.12077973"
-
-    // ------ flavors تم إزالتها مؤقتًا لتفادي مشاكل البناء ------
-    // ملاحظة: لو كان لديك موارد/شفرة ضمن src/dev أو src/staging تأكد
-    // أنها لا تعتمد على الـ flavors أو انقلها للمصدر الرئيسي (src/main).
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -41,11 +36,11 @@ android {
     defaultConfig {
         applicationId = "com.mubin.app.orders"
         minSdkVersion flutter.minSdkVersion
-        targetSdk = 35
+        targetSdk 35
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
-        // اضفنا اسم التطبيق الافتراضي بدل resValue لكل flavor
         resValue "string", "app_name", "Mubin Orders"
+        multiDexEnabled true
     }
     signingConfigs {
         release {
@@ -53,13 +48,17 @@ android {
     }
     buildTypes {
         release {
-            signingConfig = signingConfigs.debug
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
     implementation "androidx.work:work-runtime:2.9.0"
+    
 }
 
 flutter {

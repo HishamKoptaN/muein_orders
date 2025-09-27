@@ -6,28 +6,28 @@ class SharedPrefHelper {
   //! private constructor as I don't want to allow creating an instance of this class itself.
   SharedPrefHelper._();
 
-  //! Removes a value from SharedPreferences with given [key].
+  //! Removes a value from SharedPreferencesAsync with given [key].
   static Future<void> removeData({required String key}) async {
     debugPrint('SharedPrefHelper : data with key : $key has been removed');
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
+    final SharedPreferencesAsync sharedPreferences =
+        await SharedPreferencesAsync();
     await sharedPreferences.remove(key);
   }
 
-  //! Removes all keys and values in the SharedPreferences
+  //! Removes all keys and values in the SharedPreferencesAsync
   static Future<void> clearAllData() async {
     debugPrint('SharedPrefHelper : all data has been cleared');
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
+    final SharedPreferencesAsync sharedPreferences =
+        await SharedPreferencesAsync();
     await sharedPreferences.clear();
   }
 
-  //! Saves a [value] with a [key] in the SharedPreferences.
+  //! Saves a [value] with a [key] in the SharedPreferencesAsync.
   static Future<void> setData({
     required String key,
     required dynamic value,
   }) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferencesAsync prefs = await SharedPreferencesAsync();
     debugPrint(
       'SharedPrefHelper : setData with key : $key and value : $value',
     );
@@ -54,20 +54,18 @@ class SharedPrefHelper {
     required String key,
   }) async {
     debugPrint('SharedPrefHelper : get Int List with key : $key ');
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferencesAsync prefs = await SharedPreferencesAsync();
     final favorites = prefs.getStringList(key);
 
-    if (favorites == null) return [];
-
     final result = <int>[];
-    for (final item in favorites) {
-      final parsed = int.tryParse(item);
-      if (parsed != null) {
-        result.add(parsed);
-      } else {
-        debugPrint('Invalid number format in shared preferences: $item');
-      }
-    }
+    // for (final item in favorites) {
+    //   final parsed = int.tryParse(item);
+    //   if (parsed != null) {
+    //     result.add(parsed);
+    //   } else {
+    //     debugPrint('Invalid number format in shared preferences: $item');
+    //   }
+    // }
     return result;
   }
 
@@ -80,7 +78,7 @@ class SharedPrefHelper {
     debugPrint(
       'SharedPrefHelper : updateList with key : $key and value : $value',
     );
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferencesAsync();
     final list = await getIntList(key: key);
     if (add && !list.contains(value)) {
       debugPrint('SharedPrefHelper : add ');
@@ -99,48 +97,48 @@ class SharedPrefHelper {
     );
   }
 
-  //! Gets a bool value from SharedPreferences with given [key].
+  //! Gets a bool value from SharedPreferencesAsync with given [key].
   static Future<bool> getBool({
     required String key,
   }) async {
     debugPrint('SharedPrefHelper : getBool with key : $key');
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    return sharedPreferences.getBool(key) ?? false;
+    final SharedPreferencesAsync sharedPreferences =
+        await SharedPreferencesAsync();
+    return await sharedPreferences.getBool(key) ?? false;
   }
 
-  //!Gets a double value from SharedPreferences with given [key].
+  //!Gets a double value from SharedPreferencesAsync with given [key].
   static Future<double> getDouble({
     required String key,
   }) async {
     debugPrint('SharedPrefHelper : getDouble with key : $key');
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    return sharedPreferences.getDouble(key) ?? 0.0;
+    final SharedPreferencesAsync sharedPreferences =
+        await SharedPreferencesAsync();
+    return await sharedPreferences.getDouble(key) ?? 0.0;
   }
 
-  //!Gets an int value from SharedPreferences with given [key].
+  //!Gets an int value from SharedPreferencesAsync with given [key].
   static Future<int?> getInt({
     required String key,
   }) async {
     debugPrint(
       'SharedPrefHelper : getInt with key : $key',
     );
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
+    final SharedPreferencesAsync sharedPreferences =
+        await SharedPreferencesAsync();
     return sharedPreferences.getInt(key);
   }
 
-  //! Gets an String value from SharedPreferences with given [key].
+  //! Gets an String value from SharedPreferencesAsync with given [key].
   static Future<String?> getString({
     required String key,
   }) async {
     debugPrint(
       'SharedPrefHelper : getString with key : $key',
     );
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    final String? value = sharedPreferences.getString(key);
+    final SharedPreferencesAsync sharedPreferences =
+        await SharedPreferencesAsync();
+    final String? value = await sharedPreferences.getString(key);
     return value;
   }
 

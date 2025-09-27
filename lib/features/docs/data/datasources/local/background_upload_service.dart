@@ -172,7 +172,7 @@
 //   /// Mark upload as completed
 //   static Future<void> _markUploadCompleted(int docId) async {
 //     // Save completion status to shared preferences
-//     final prefs = await SharedPreferences.getInstance();
+//     final prefs = await SharedPreferencesAsync.getInstance();
 //     await prefs.setBool('upload_completed_$docId', true);
 //     await prefs.setString('upload_completed_at_$docId', DateTime.now().toIso8601String());
 
@@ -181,20 +181,20 @@
 
 //   /// Check if upload is completed
 //   static Future<bool> isUploadCompleted(int docId) async {
-//     final prefs = await SharedPreferences.getInstance();
+//     final prefs = await SharedPreferencesAsync.getInstance();
 //     return prefs.getBool('upload_completed_$docId') ?? false;
 //   }
 
 //   /// Get upload completion time
 //   static Future<DateTime?> getUploadCompletionTime(int docId) async {
-//     final prefs = await SharedPreferences.getInstance();
+//     final prefs = await SharedPreferencesAsync.getInstance();
 //     final timeStr = prefs.getString('upload_completed_at_$docId');
 //     return timeStr != null ? DateTime.parse(timeStr) : null;
 //   }
 
 //   /// Clean up completed uploads older than specified days
 //   static Future<void> cleanupOldCompletedUploads({int olderThanDays = 7}) async {
-//     final prefs = await SharedPreferences.getInstance();
+//     final prefs = await SharedPreferencesAsync.getInstance();
 //     final cutoffDate = DateTime.now().subtract(Duration(days: olderThanDays));
 
 //     // Get all completed upload keys
