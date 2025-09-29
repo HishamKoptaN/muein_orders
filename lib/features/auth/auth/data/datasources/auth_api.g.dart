@@ -10,7 +10,7 @@ part of 'auth_api.dart';
 
 class _AuthApi implements AuthApi {
   _AuthApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://mapi.live90.fr/auth/';
+    baseUrl ??= 'https://hotpink-gnu-383634.hostingersite.com/mapi/auth/';
   }
 
   final Dio _dio;

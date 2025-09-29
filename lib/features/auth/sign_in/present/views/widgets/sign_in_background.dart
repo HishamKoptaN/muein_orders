@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:mubin_orders/gen/assets.gen.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../gen/assets.gen.dart';
 
 class SignInBackground extends StatelessWidget {
   final Widget child;
@@ -17,7 +17,7 @@ class SignInBackground extends StatelessWidget {
           image: AssetImage(Assets.images.rectangle10.path),
           alignment: Alignment.topLeft,
           fit: BoxFit.none,
-          colorFilter: ColorFilter.mode(
+          colorFilter: const ColorFilter.mode(
             AppColors.brandMint,
             BlendMode.srcIn,
           ),

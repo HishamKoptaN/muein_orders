@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import '../constants/api_constants.dart';
+import '../config/app_config.dart';
 import '../database/shared_pref_helper.dart';
 import '../database/shared_pref_keys.dart';
 
@@ -20,7 +20,7 @@ abstract class ApiModule {
   ) {
     final dio = Dio(
       BaseOptions(
-        baseUrl: ApiConstants.baseUrl,
+        baseUrl: AppConfig.baseUrl,
         connectTimeout: const Duration(
           seconds: 30,
         ),

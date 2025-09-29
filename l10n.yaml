@@ -6,5 +6,4 @@ preferred-supported-locales: ['ar', 'en', 'ak', 'ff', 'yo', 'sw']
 untranslated-messages-file: desiredFileName.txt
 use-escaping: true
 nullable-getter: false
-synthetic-package: false
 use-escalation: true

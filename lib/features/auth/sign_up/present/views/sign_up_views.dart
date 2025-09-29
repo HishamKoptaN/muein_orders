@@ -28,6 +28,12 @@ class SignUpView extends StatelessWidget {
         body: BlocConsumer<SignUpBloc, SignUpState>(
           listener: (context, state) async {
             await state.whenOrNull(
+              success: () {
+                NavigationService.navigateAndRemoveUntil(
+                  context: context,
+                  routeName: InstructionsView.routeName,
+                );
+              },
               failure: (failure) {
                 AppSnackBar.show(
                   context: context,
@@ -35,20 +41,6 @@ class SignUpView extends StatelessWidget {
                   message: failure,
                   type: AppSnackBarType.error,
                 );
-              },
-              success: () {
-                AppSnackBar.show(
-                  context: context,
-                  title: 'Error',
-                  message: t.success,
-                  type: AppSnackBarType.success,
-                );
-                if (context.mounted) {
-                  NavigationService.navigateAndRemoveUntil(
-                    context: context,
-                    routeName: InstructionsView.routeName,
-                  );
-                }
               },
             );
           },

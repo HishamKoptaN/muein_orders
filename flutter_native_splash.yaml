@@ -1,18 +1,25 @@
-#! flutter pub run flutter_native_splash:create --path=flutter_native_splash.yaml
+# Flutter Native Splash Configuration
+# لتشغيل: flutter pub run flutter_native_splash:create --path=flutter_native_splash.yaml
+
 flutter_native_splash:
-  color: "#003A45"              # لون احتياطي
-  color_dark: "#003A45"        # نفس اللون للوضع الداكن
+  # الألوان الأساسية
+  color: "#003A45"
+  color_dark: "#003A45"
+
+  # صورة الخلفية
   background_image: assets/images/splash.png
 
-  # محاذاة وملء
+  # إعدادات المحاذاة والملء
   android_gravity: fill
   ios_content_mode: scaleAspectFill
   web_image_mode: cover
 
-  # Android 12: استخدم لون فقط (بدون صورة) لتفادي ظهور شاشة سوداء
+  # إعدادات Android 12+ (لون فقط لتجنب الشاشة السوداء)
   android_12:
     color: "#003A45"
     color_dark: "#003A45"
+
+  # تفعيل جميع المنصات
   android: true
   ios: true
   web: true

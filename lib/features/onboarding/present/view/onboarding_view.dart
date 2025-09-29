@@ -39,12 +39,15 @@ class _InstructionsViewState extends State<InstructionsView> {
             )
           : null,
       body: BlocProvider(
-        create: (context) => getIt<OnboardingBloc>()
-          ..add(const OnboardingEvent.checkOnboardingStatus()),
+        create: (context) => getIt<OnboardingBloc>(),
         child: BlocConsumer<OnboardingBloc, OnboardingState>(
           listener: (context, state) {
             state.whenOrNull(
-              onboardingNotCompleted: (pages, currentPageIndex, isLastPage) {
+              loaded: (
+                pages,
+                currentPageIndex,
+                isLastPage,
+              ) {
                 if (_pageController.hasClients &&
                     _pageController.page?.round() != currentPageIndex) {
                   _pageController.animateToPage(
@@ -58,7 +61,7 @@ class _InstructionsViewState extends State<InstructionsView> {
           },
           builder: (context, state) {
             return state.maybeWhen(
-              onboardingNotCompleted: (
+              loaded: (
                 pages,
                 currentPageIndex,
                 isLastPage,
@@ -67,9 +70,9 @@ class _InstructionsViewState extends State<InstructionsView> {
                   children: [
                     PageView.builder(
                       controller: _pageController,
-                      onPageChanged: (int index) {
+                      onPageChanged: (i) {
                         context.read<OnboardingBloc>().add(
-                              OnboardingEvent.pageChanged(index),
+                              OnboardingEvent.pageChanged(pageIndex: i),
                             );
                       },
                       itemCount: pages.length,
@@ -79,7 +82,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                           title: t.byKey(page.titleKey),
                           description: t.byKey(page.descriptionKey),
                           imagePath: page.imagePath,
-                          isLastPage: index == pages.length - 1,
+                          isLastPage: isLastPage,
                         );
                       },
                     ),
@@ -112,14 +115,14 @@ class _InstructionsViewState extends State<InstructionsView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
                           pages.length,
-                          (index) => AnimatedContainer(
+                          (i) => AnimatedContainer(
                             duration: const Duration(milliseconds: 300),
                             margin: const EdgeInsets.symmetric(horizontal: 4),
-                            width: currentPageIndex == index ? 24 : 8,
+                            width: currentPageIndex == i ? 24 : 8,
                             height: 8,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              color: currentPageIndex == index
+                              color: currentPageIndex == i
                                   ? AppColors.primary
                                   : Colors.grey[300],
                             ),
@@ -140,7 +143,9 @@ class _InstructionsViewState extends State<InstructionsView> {
                             );
                           } else {
                             context.read<OnboardingBloc>().add(
-                                  const OnboardingEvent.nextPage(),
+                                  OnboardingEvent.pageChanged(
+                                    pageIndex: currentPageIndex + 1,
+                                  ),
                                 );
                           }
                         },
@@ -172,9 +177,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                     Text(errorMessage),
                     const SizedBox(height: 16),
                     ElevatedButton(
-                      onPressed: () => context.read<OnboardingBloc>().add(
-                            const OnboardingEvent.checkOnboardingStatus(),
-                          ),
+                      onPressed: () {},
                       child: Text(t.retry),
                     ),
                   ],

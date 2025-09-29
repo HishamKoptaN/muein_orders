@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../domain/usecases/auth_use_casees.dart';
+
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -17,12 +19,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (event, emit) async {
         await event.when(
           check: () async {
-            emit(const AuthState.loading());
             final res = await _authUseCase.check();
             res?.when(
               success: (data) {
                 if (data == true) {
-                  emit(const AuthState.authenticated());
+                  emit(AuthState.authenticated(redirect: true));
                 } else {
                   emit(const AuthState.unauthenticated());
                 }
@@ -33,12 +34,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             );
           },
           forceRefresh: () async {
-            emit(const AuthState.loading());
             final res = await _authUseCase.check();
             res?.when(
               success: (data) {
                 if (data == true) {
-                  emit(const AuthState.authenticated());
+                  emit(const AuthState.authenticated(redirect: true));
                 } else {
                   emit(const AuthState.unauthenticated());
                 }
@@ -47,7 +47,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             );
           },
           emitAuthenticated: () async {
-            emit(const AuthState.authenticated());
+            emit(
+              const AuthState.authenticated(redirect: false),
+            );
           },
           signedOut: () async {
             final res = await _authUseCase.signOut();

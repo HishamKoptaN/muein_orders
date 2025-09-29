@@ -73,7 +73,6 @@ class SignInRepoImpl implements SignInRepo {
           ),
         );
       }
-
       // Store the JWT token in SharedPreferencesAsync
       await SharedPrefHelper.setSecuredString(
         key: SharedPrefKeys.jwtToken,

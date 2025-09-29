@@ -1,6 +1,8 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
+  enable-experiment:
+    - null-aware-elements
   plugins:
     - custom_lint
   exclude:

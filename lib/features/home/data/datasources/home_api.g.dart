@@ -10,7 +10,7 @@ part of 'home_api.dart';
 
 class _HomeApi implements HomeApi {
   _HomeApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://mapi.live90.fr/api/';
+    baseUrl ??= 'https://hotpink-gnu-383634.hostingersite.com/mapi/api/';
   }
 
   final Dio _dio;

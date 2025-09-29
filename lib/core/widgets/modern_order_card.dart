@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:mubin_orders/core/theme/app_colors.dart';
 
 import '../../features/orders/domain/entities/orders_res_entity.dart';
 import '../../l10n/app_localizations.dart';
+import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
 
 class ModernOrderCard extends StatelessWidget {
@@ -19,7 +19,7 @@ class ModernOrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
+    final t = AppLocalizations.of(context);
     final statusColor = _getStatusColor((order.status ?? '').toString());
     final statusIcon = _getStatusIcon((order.status ?? '').toString());
     final isPhotographed = order.isDistributionPhotographed ?? false;
@@ -128,13 +128,13 @@ class ModernOrderCard extends StatelessWidget {
                           _buildDetailItem(
                             icon: Icons.location_on_outlined,
                             label: t.location,
-                            value: order.locationLink?.toString() ?? "---",
+                            value: order.locationLink?.toString() ?? '---',
                           ),
                           Gap(16.w),
                           _buildDetailItem(
                             icon: Icons.numbers_outlined,
                             label: t.order_id,
-                            value: order.id?.toString() ?? "---",
+                            value: order.id?.toString() ?? '---',
                           ),
                         ],
                       ),

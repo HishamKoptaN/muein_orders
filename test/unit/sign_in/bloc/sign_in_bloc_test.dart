@@ -4,10 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mock.dart';
-import 'package:mubin_orders/core/error/api_error_model.dart';
-import 'package:mubin_orders/features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart';
-import 'package:mubin_orders/features/auth/sign_in/presentation/bloc/sign_in_bloc.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:mubinorders/core/error/api_error_model.dart';
+import 'package:mubinorders/features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart';
+import 'package:mubinorders/features/auth/sign_in/presentation/bloc/sign_in_bloc.dart';
 
 import 'sign_in_bloc_test.mocks.dart';
 
@@ -67,7 +67,8 @@ void main() {
       blocTest<SignInBloc, SignInState>(
         'emits state with updated rememberMe',
         build: () => signInBloc,
-        act: (bloc) => bloc.add(const SignInEvent.rememberMeChanged(tRememberMe)),
+        act: (bloc) =>
+            bloc.add(const SignInEvent.rememberMeChanged(tRememberMe)),
         expect: () => [
           const SignInState(rememberMe: tRememberMe),
         ],
@@ -89,11 +90,13 @@ void main() {
       blocTest<SignInBloc, SignInState>(
         'emits [loading, success] when sign in is successful',
         build: () {
-          when(() => mockSignInUseCases.signInWithEmailAndPassword(
-                email: tEmail,
-                password: tPassword,
-                rememberMe: tRememberMe,
-              )).thenAnswer((_) async => Right(mockUserCredential));
+          when(
+            () => mockSignInUseCases.signInWithEmailAndPassword(
+              email: tEmail,
+              password: tPassword,
+              rememberMe: tRememberMe,
+            ),
+          ).thenAnswer((_) async => Right(mockUserCredential));
           return signInBloc;
         },
         act: (bloc) => bloc
@@ -130,12 +133,16 @@ void main() {
       blocTest<SignInBloc, SignInState>(
         'emits [loading, failure] when sign in fails',
         build: () {
-          when(() => mockSignInUseCases.signInWithEmailAndPassword(
-                email: tEmail,
-                password: tPassword,
-                rememberMe: tRememberMe,
-              )).thenAnswer((_) async =>
-                  const Left(ApiErrorModel(message: 'Invalid credentials')));
+          when(
+            () => mockSignInUseCases.signInWithEmailAndPassword(
+              email: tEmail,
+              password: tPassword,
+              rememberMe: tRememberMe,
+            ),
+          ).thenAnswer(
+            (_) async =>
+                const Left(ApiErrorModel(message: 'Invalid credentials')),
+          );
           return signInBloc;
         },
         act: (bloc) => bloc

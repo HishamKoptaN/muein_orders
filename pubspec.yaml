@@ -1,5 +1,5 @@
-name: mubin_orders
-description: "mubin_orders"
+name: mubinorders
+description: تطبيق مبين للطلبات
 publish_to: "none"
 version: 1.3.0+4
 environment:
@@ -9,81 +9,92 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  # Core
-  freezed_annotation: ^2.4.1
-  json_annotation: ^4.9.0
-  retrofit: ^4.0.3
-  injectable: ^2.4.2
-  dio: ^5.7.0
-  get_it: ^8.0.3
-  # Firebase & Auth
-  firebase_core: ^4.1.1
-  firebase_auth: ^6.0.2
-  firebase_messaging: ^16.0.2
-  google_sign_in: ^6.2.1
-  sign_in_with_apple: ^6.1.0
-  # State Management
-  flutter_bloc: ^9.0.0
-  hydrated_bloc: ^10.0.0
-  equatable: ^2.0.5
-  formz: ^0.8.0
-  bloc: ^9.0.0
-  # UI
+  adaptive_theme: ^3.7.0
   cached_network_image: ^3.3.1
-  cached_video_player_plus: ^4.0.4
+  cached_video_player_plus: ^3.0.3
   camera: ^0.11.1
   chewie: ^1.8.1
+  country_flags: ^3.2.0
+  country_picker: ^2.0.27
+  cupertino_icons: ^1.0.6
+  delightful_toast: ^1.1.0
+  dio: ^5.8.0+1
+  equatable: ^2.0.5
+  fancy_shimmer_image: ^2.0.3
+  file_picker: ^8.3.7
+  firebase_auth: ^5.4.2
+  firebase_core: ^3.11.0
+  flutter_bloc: ^9.0.0
+  flutter_localization: ^0.3.1
   flutter_screenutil: ^5.9.3
   flutter_secure_storage: ^9.2.4
   flutter_svg: ^2.0.17
   fluttertoast: ^8.2.12
   font_awesome_flutter: ^10.7.0
+  formz: ^0.8.0
   gap: ^3.0.1
+  geolocator: ^13.0.2
+  get: ^4.6.6
+  get_it: ^8.0.3
   google_fonts: ^6.2.1
+  google_maps_flutter: ^2.10.0
+  http: ^1.2.2
+  hydrated_bloc: ^10.0.0
+  image_picker: ^1.1.0
+  internet_connection_checker_plus: ^2.2.0
+  intl: any
+  json_annotation: ^4.9.0
+  location: ^8.0.0
+  material_dialogs: ^1.1.4
+  motion_toast: ^2.11.0
+  path: ^1.9.0
+  path_provider: ^2.1.3
+  pdf: ^3.11.3
+  permission_handler: ^11.3.1
+  pretty_dio_logger: ^1.4.0
+  printing: ^5.14.2
+  provider: ^6.1.2
+  retrofit: ^4.0.3
   salomon_bottom_bar: ^3.3.2
+  share_plus: ^10.1.4
+  shared_preferences: ^2.2.3
   shimmer: ^3.0.0
   shimmer_effect: ^1.0.4
   simple_circular_progress_bar: ^1.0.2
-
+  sqflite: ^2.3.3
+  url_launcher: ^6.2.6
+  video_player: ^2.8.6
+  video_player_win: ^3.1.1  
+  # Core
+  freezed_annotation: ^2.4.1
+  injectable: ^2.4.2
+  # Firebase & Auth
+  firebase_messaging: ^15.1.6
+  # State Management
+  bloc: ^9.0.0
+  # UI
+  connectivity_plus: ^5.0.2
+  
+  
   # Location & Maps
-  geolocator: ^11.1.0
-  location: ^8.0.0
-  google_maps_flutter: ^2.10.0
-
   # File & Media
-  file_picker: ^10.3.3
-  image_picker: ^1.1.0
-  video_player: ^2.9.1
   # Utils
-  internet_connection_checker_plus: ^2.7.0
   http_parser: ^4.0.2
-  path: ^1.9.0
-  path_provider: ^2.1.3
-  pretty_dio_logger: ^1.4.0
   logger: ^2.6.0
   ffmpeg_kit_flutter_new: ^3.2.0
-  printing: ^5.14.2
-  pdf: ^3.11.3
-  permission_handler: ^12.0.1
-  share_plus: ^10.1.2
-  sqflite: ^2.3.3
-  url_launcher: ^6.3.0
+  # share_plus: ^12.0.0
   # Background Services
   workmanager: ^0.9.0+3
   # Routing
-  go_router: ^14.3.0
+  go_router: ^16.2.4
   # Splash
-  flutter_native_splash: ^2.4.1
   # Localization
-  flutter_localization: ^0.3.1
   flutter_localized_locales: ^2.0.0
-  intl: ^0.20.1
   # Custom packages
   form_inputs:
     git:
       url: https://github.com/HishamKoptaN/form_inputs.git
       ref: main
-  shared_preferences: ^2.5.3
   translator: ^1.0.4+1
   drift: ^2.28.2
   drift_sqflite: ^2.0.1
@@ -92,16 +103,16 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.4.9
-  freezed: ^2.4.9
-  json_serializable: ^6.8.0
-  retrofit_generator: ^9.0.0
+  build_runner: ^2.4.6
+  freezed: ^2.5.2
+  json_serializable: ^6.7.1
+  retrofit_generator: ^9.7.0
   injectable_generator: ^2.4.4
   flutter_launcher_icons: ^0.14.1
   flutter_native_splash: ^2.4.0
   mocktail: ^1.0.4
   mocktail_image_network: ^1.0.0
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   change_app_package_name: ^1.1.0
   integration_test:
     sdk: flutter

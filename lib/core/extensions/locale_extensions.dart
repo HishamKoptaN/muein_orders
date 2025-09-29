@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mubin_orders/features/language/bloc/language_bloc.dart';
+
+import '../../features/language/bloc/language_bloc.dart';
 
 extension LocaleExtension on BuildContext {
   /// الحصول على اللغة الحالية من الـ language state

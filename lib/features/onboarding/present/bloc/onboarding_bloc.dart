@@ -11,50 +11,27 @@ part 'onboarding_state.dart';
 @injectable
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   final int totalPages = 3;
+  final List<OnboardingPageEntity> pages;
 
-  OnboardingBloc() : super(const OnboardingState.loading()) {
+  OnboardingBloc()
+      : pages = _getOnboardingPages(),
+        super(
+          OnboardingState.loaded(
+            pages: _getOnboardingPages(),
+            currentPageIndex: 0,
+            isLastPage: false,
+          ),
+        ) {
     on<OnboardingEvent>(
       (event, emit) async {
         await event.whenOrNull(
-          checkOnboardingStatus: () {
-            final pages = _getOnboardingPages();
+          pageChanged: (pageIndex) {
             emit(
-              OnboardingState.onboardingNotCompleted(
+              OnboardingState.loaded(
                 pages: pages,
-                currentPageIndex: 0,
-                isLastPage: pages.length == 1,
+                currentPageIndex: pageIndex,
+                isLastPage: pageIndex == pages.length - 1,
               ),
-            );
-          },
-          pageChanged: (i) {
-            state.whenOrNull(
-              onboardingNotCompleted: (pages, _, __) {
-                emit(
-                  OnboardingState.onboardingNotCompleted(
-                    pages: pages,
-                    currentPageIndex: i,
-                    isLastPage: i == pages.length - 1,
-                  ),
-                );
-              },
-            );
-          },
-          nextPage: () {
-            state.whenOrNull(
-              onboardingNotCompleted: (pages, currentIndex, _) {
-                final nextIndex = currentIndex + 1;
-                if (nextIndex < pages.length) {
-                  emit(
-                    OnboardingState.onboardingNotCompleted(
-                      pages: pages,
-                      currentPageIndex: nextIndex,
-                      isLastPage: nextIndex == pages.length - 1,
-                    ),
-                  );
-                } else {
-                  emit(const OnboardingState.onboardingCompleted());
-                }
-              },
             );
           },
         );
@@ -62,19 +39,19 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     );
   }
 
-  List<OnboardingPageEntity> _getOnboardingPages() {
-    return [
-      const OnboardingPageEntity(
+  static List<OnboardingPageEntity> _getOnboardingPages() {
+    return const [
+      OnboardingPageEntity(
         titleKey: 'welcome',
         descriptionKey: 'we_are_happy_to_have_you_join_our_store',
         imagePath: 'assets/images/onboarding/onboarding1.png',
       ),
-      const OnboardingPageEntity(
+      OnboardingPageEntity(
         titleKey: 'get_to_know_the_application_interface',
         descriptionKey: 'here_you_will_find_tasks_requests_alerts_and_filters',
         imagePath: 'assets/images/onboarding/onboarding2.png',
       ),
-      const OnboardingPageEntity(
+      OnboardingPageEntity(
         titleKey: 'documentation_with_photos_and_videos',
         descriptionKey: 'make_sure_the_images_are_clear_and_correct',
         imagePath: 'assets/images/onboarding/onboarding3.png',

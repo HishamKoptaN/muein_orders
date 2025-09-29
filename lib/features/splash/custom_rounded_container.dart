@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:mubin_orders/core/all_imports.dart';
+
+import '../../core/all_imports.dart';
 
 /// A customizable container with rounded corners and shadow
 class CustomRoundedContainer extends StatelessWidget {
   /// The widget below this widget in the tree
   final Widget? child;
-  
+
   /// The width of the container
   final double? width;
-  
+
   /// The height of the container
   final double? height;
-  
+
   /// The background color of the container
   final Color backgroundColor;
-  
+
   /// The radius of the container's corners
   final double borderRadius;
-  
+
   /// Empty space to inscribe inside the container
   final EdgeInsetsGeometry? padding;
-  
+
   /// Empty space to surround the container
   final EdgeInsetsGeometry? margin;
 

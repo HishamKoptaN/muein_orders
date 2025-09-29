@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
-import '../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../../features/home/present/home_view.dart';
 import '../../features/language/view/select_language.dart';
+import '../../features/onboarding/present/view/onboarding_view.dart';
+import '../../features/orders/present/views/orders_view.dart';
 import 'app_routes.dart';
 
 class AppRouterRedirect {
@@ -20,7 +21,12 @@ class AppRouterRedirect {
     AppRoutes.signUp,
     AppRoutes.forgotPass,
   };
-
+  // مسارات خاصة بالمستخدمين المصادقين
+  static const Set<String> authenticatedOnly = {
+    HomeView.routeName,
+    OrdersView.routeName,
+    InstructionsView.routeName,
+  };
   static String? handleRedirect(
     BuildContext context,
     GoRouterState goRouterState,
@@ -28,29 +34,23 @@ class AppRouterRedirect {
   ) {
     final path = goRouterState.uri.path;
     final location = path.startsWith('/') ? path.substring(1) : path;
-
-    return authBloc.state.when(
-      loading: () => null,
-      authenticated: () {
-        if (location == HomeView.routeName ||
+    return authBloc.state.whenOrNull(
+      authenticated: (redirect) {
+        if (authenticatedOnly.contains(location) ||
             alwaysAccessible.contains(location)) {
-          return null; // ابق في الصفحة الرئيسية أو المسارات المشتركة
+          return null;
         }
-        if (public.contains(location)) {
-          return '/${HomeView.routeName}'; // لو حاول يروح لمسار عام → رجّعه للـ Home
+        if (!redirect) {
+          return '/${InstructionsView.routeName}';
         }
-        return null; // باقي المسارات الخاصة مسموحة
+        return '/${HomeView.routeName}';
       },
       unauthenticated: () {
-        if (alwaysAccessible.contains(location)) {
-          return null; // ابق في التعليمات أو اختيار اللغة
+        if (alwaysAccessible.contains(location) || public.contains(location)) {
+          return null;
         }
-        if (public.contains(location)) {
-          return null; // باقي المسارات العامة مسموحة
-        }
-        return '/${SelectLanguageView.routeName}'; // أي حاجة تانية → رجّعه للغة
+        return '/${SelectLanguageView.routeName}';
       },
-      failure: (_) => '/${AuthChoiceView.routeName}',
     );
   }
 }

@@ -118,30 +118,22 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => injectionModule.secureStorage);
   gh.lazySingleton<_i65.AppDatabase>(() => _i65.AppDatabase());
-  gh.singleton<_i804.AuthInterceptor>(
-      () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()));
+  gh.lazySingleton<_i46.CachedDocsRepo>(
+      () => _i98.LocalDocsRepoImpl(gh<_i65.AppDatabase>()));
   gh.lazySingleton<_i614.ForgotPassRepo>(
       () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()));
+  gh.singleton<_i804.AuthInterceptor>(
+      () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()));
+  gh.factory<_i629.SendPassResetEmailUseCase>(
+      () => _i629.SendPassResetEmailUseCase(gh<_i614.ForgotPassRepo>()));
+  gh.factory<_i303.NetworkInfo>(() =>
+      _i303.NetworkInfoImpl(connectionChecker: gh<_i161.InternetConnection>()));
+  gh.factory<_i154.ForgotPassBloc>(
+      () => _i154.ForgotPassBloc(gh<_i629.SendPassResetEmailUseCase>()));
   gh.singleton<_i361.Dio>(() => apiModule.dio(
         gh<_i804.AuthInterceptor>(),
         gh<_i804.LoggingInterceptor>(),
       ));
-  gh.factory<_i629.SendPassResetEmailUseCase>(
-      () => _i629.SendPassResetEmailUseCase(gh<_i614.ForgotPassRepo>()));
-  gh.factory<_i352.NotificationsApi>(() => _i352.NotificationsApi(
-        gh<_i361.Dio>(),
-        baseUrl: gh<String>(),
-      ));
-  gh.factory<_i303.NetworkInfo>(() =>
-      _i303.NetworkInfoImpl(connectionChecker: gh<_i161.InternetConnection>()));
-  gh.factory<_i967.NotificationsRepo>(
-      () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()));
-  gh.lazySingleton<_i46.CachedDocsRepo>(
-      () => _i98.LocalDocsRepoImpl(gh<_i65.AppDatabase>()));
-  gh.factory<_i154.ForgotPassBloc>(
-      () => _i154.ForgotPassBloc(gh<_i629.SendPassResetEmailUseCase>()));
-  gh.factory<_i139.NotificationsUseCases>(
-      () => _i139.NotificationsUseCases(gh<_i967.NotificationsRepo>()));
   gh.lazySingleton<_i552.SignUpApi>(() => _i552.SignUpApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i191.ProfileApi>(() => _i191.ProfileApi(gh<_i361.Dio>()));
   gh.factory<_i976.AuthApi>(() => _i976.AuthApi(gh<_i361.Dio>()));
@@ -149,28 +141,19 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i977.DocsApi>(() => _i977.DocsApi(gh<_i361.Dio>()));
   gh.factory<_i11.HomeApi>(() => _i11.HomeApi(gh<_i361.Dio>()));
   gh.factory<_i165.OrdersApi>(() => _i165.OrdersApi(gh<_i361.Dio>()));
-  gh.factory<_i808.OrdersRepo>(
-      () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()));
-  gh.factory<_i672.DocsRepo>(() => _i430.DocsRepoImpl(
-        postsApi: gh<_i977.DocsApi>(),
-        db: gh<_i65.AppDatabase>(),
+  gh.lazySingleton<_i871.SignUpRepo>(() => _i17.SignUpRepoImpl(
+        gh<_i552.SignUpApi>(),
+        gh<_i804.TokenStorage>(),
       ));
   gh.lazySingleton<_i610.AuthRepo>(() => _i246.AuthRepoImpl(
         gh<_i59.FirebaseAuth>(),
         gh<_i976.AuthApi>(),
       ));
-  gh.factory<_i781.NotificationsBloc>(
-      () => _i781.NotificationsBloc(gh<_i139.NotificationsUseCases>()));
   gh.lazySingleton<_i364.ProfileRepo>(
       () => _i256.ProfileRepoImpl(gh<_i191.ProfileApi>()));
-  gh.lazySingleton<_i280.HomeRepo>(
-      () => _i886.HomeRepoImpl(gh<_i11.HomeApi>()));
-  gh.lazySingleton<_i151.AuthUseCase>(
-      () => _i151.AuthUseCase(authRepo: gh<_i610.AuthRepo>()));
-  gh.factory<_i99.AuthBloc>(() => _i99.AuthBloc(gh<_i151.AuthUseCase>()));
-  gh.lazySingleton<_i871.SignUpRepo>(() => _i17.SignUpRepoImpl(
-        gh<_i552.SignUpApi>(),
-        gh<_i804.TokenStorage>(),
+  gh.factory<_i352.NotificationsApi>(() => _i352.NotificationsApi(
+        gh<_i361.Dio>(),
+        baseUrl: gh<String>(),
       ));
   gh.lazySingleton<_i305.SignInRepo>(() => _i218.SignInRepoImpl(
         gh<_i59.FirebaseAuth>(),
@@ -178,36 +161,53 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i804.SignInApi>(),
         gh<_i804.TokenStorage>(),
       ));
-  gh.factory<_i583.HomeUseCases>(
-      () => _i583.HomeUseCases(gh<_i280.HomeRepo>()));
-  gh.factory<_i802.OrdersUseCases>(
-      () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()));
-  gh.lazySingleton<_i689.DocsUseCase>(() => _i689.DocsUseCase(
-        ordersRepo: gh<_i672.DocsRepo>(),
-        cachedDocsRepo: gh<_i46.CachedDocsRepo>(),
-      ));
   gh.factory<_i291.ProfileUseCases>(
       () => _i291.ProfileUseCases(gh<_i364.ProfileRepo>()));
-  gh.factory<_i475.ProfileBloc>(
-      () => _i475.ProfileBloc(gh<_i291.ProfileUseCases>()));
-  gh.factory<_i467.CachedDocBloc>(
-      () => _i467.CachedDocBloc(gh<_i689.DocsUseCase>()));
-  gh.factory<_i189.OrdersBloc>(() => _i189.OrdersBloc(
-        gh<_i802.OrdersUseCases>(),
-        gh<_i46.CachedDocsRepo>(),
-      ));
-  gh.factory<_i481.HomeBloc>(
-      () => _i481.HomeBloc(homeUseCases: gh<_i583.HomeUseCases>()));
-  gh.lazySingleton<_i251.SignUpUseCases>(
-      () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()));
+  gh.factory<_i967.NotificationsRepo>(
+      () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()));
   gh.lazySingleton<_i941.SignInUseCases>(() => _i941.SignInUseCases(
         gh<_i305.SignInRepo>(),
         gh<_i59.FirebaseAuth>(),
       ));
+  gh.lazySingleton<_i151.AuthUseCase>(
+      () => _i151.AuthUseCase(authRepo: gh<_i610.AuthRepo>()));
+  gh.lazySingleton<_i665.SignInBloc>(
+      () => _i665.SignInBloc(signInUseCases: gh<_i941.SignInUseCases>()));
+  gh.lazySingleton<_i280.HomeRepo>(
+      () => _i886.HomeRepoImpl(gh<_i11.HomeApi>()));
+  gh.factory<_i583.HomeUseCases>(
+      () => _i583.HomeUseCases(gh<_i280.HomeRepo>()));
+  gh.factory<_i99.AuthBloc>(() => _i99.AuthBloc(gh<_i151.AuthUseCase>()));
+  gh.factory<_i672.DocsRepo>(() => _i430.DocsRepoImpl(
+        postsApi: gh<_i977.DocsApi>(),
+        db: gh<_i65.AppDatabase>(),
+      ));
+  gh.lazySingleton<_i251.SignUpUseCases>(
+      () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()));
+  gh.factory<_i808.OrdersRepo>(
+      () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()));
+  gh.factory<_i802.OrdersUseCases>(
+      () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()));
+  gh.factory<_i475.ProfileBloc>(
+      () => _i475.ProfileBloc(gh<_i291.ProfileUseCases>()));
+  gh.lazySingleton<_i689.DocsUseCase>(() => _i689.DocsUseCase(
+        ordersRepo: gh<_i672.DocsRepo>(),
+        cachedDocsRepo: gh<_i46.CachedDocsRepo>(),
+      ));
+  gh.factory<_i139.NotificationsUseCases>(
+      () => _i139.NotificationsUseCases(gh<_i967.NotificationsRepo>()));
+  gh.factory<_i467.CachedDocBloc>(
+      () => _i467.CachedDocBloc(gh<_i689.DocsUseCase>()));
+  gh.factory<_i481.HomeBloc>(
+      () => _i481.HomeBloc(homeUseCases: gh<_i583.HomeUseCases>()));
+  gh.factory<_i189.OrdersBloc>(() => _i189.OrdersBloc(
+        gh<_i802.OrdersUseCases>(),
+        gh<_i46.CachedDocsRepo>(),
+      ));
   gh.lazySingleton<_i226.SignUpBloc>(
       () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()));
-  gh.factory<_i665.SignInBloc>(
-      () => _i665.SignInBloc(signInUseCases: gh<_i941.SignInUseCases>()));
+  gh.factory<_i781.NotificationsBloc>(
+      () => _i781.NotificationsBloc(gh<_i139.NotificationsUseCases>()));
   return getIt;
 }
 

@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -51,7 +42,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB6YfewQ8X0wgcICWXedlSVbLrVx0xm8b0',
-    appId: '1:14728606104:android:0da3adc4387f0567bc3bed',
+    appId: '1:14728606104:android:f0a45ac312e53e3cbc3bed',
     messagingSenderId: '14728606104',
     projectId: 'mubin-c2b92',
     storageBucket: 'mubin-c2b92.firebasestorage.app',
@@ -59,11 +50,42 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBfnmLx6hjXf8Amx3p4iXqDgqM1XAgUB-4',
-    appId: '1:14728606104:ios:ec0c0a1804c76065bc3bed',
+    appId: '1:14728606104:ios:300f20f02c3915fdbc3bed',
     messagingSenderId: '14728606104',
     projectId: 'mubin-c2b92',
     storageBucket: 'mubin-c2b92.firebasestorage.app',
     iosClientId: '14728606104-37tsaqu7tejmb5pqb5ssl8kgblitbgv5.apps.googleusercontent.com',
     iosBundleId: 'com.mubin.app.mubinOrders',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAPv67PyGsQecynSaGX3B46WuZajERQSIY',
+    appId: '1:14728606104:web:58cc313390a0510dbc3bed',
+    messagingSenderId: '14728606104',
+    projectId: 'mubin-c2b92',
+    authDomain: 'mubin-c2b92.firebaseapp.com',
+    storageBucket: 'mubin-c2b92.firebasestorage.app',
+    measurementId: 'G-GYERSLWL89',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBfnmLx6hjXf8Amx3p4iXqDgqM1XAgUB-4',
+    appId: '1:14728606104:ios:7ffaa8051b1811d0bc3bed',
+    messagingSenderId: '14728606104',
+    projectId: 'mubin-c2b92',
+    storageBucket: 'mubin-c2b92.firebasestorage.app',
+    iosClientId: '14728606104-qmjf8asfuf9mh65unhk85p6uf4o6in42.apps.googleusercontent.com',
+    iosBundleId: 'com.mubin.app.orders',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyAPv67PyGsQecynSaGX3B46WuZajERQSIY',
+    appId: '1:14728606104:web:a70abdb9a73f1c69bc3bed',
+    messagingSenderId: '14728606104',
+    projectId: 'mubin-c2b92',
+    authDomain: 'mubin-c2b92.firebaseapp.com',
+    storageBucket: 'mubin-c2b92.firebasestorage.app',
+    measurementId: 'G-TJ2TQBQ3P7',
+  );
+
 }

@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/profile_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
 import '../../domain/use_cases/use_cases.dart';

@@ -1,6 +1,6 @@
-import 'package:mubin_orders/core/all_imports.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../../core/all_imports.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../domain/entities/docs_res_entity.dart';
 import 'image_preview.dart';
@@ -12,17 +12,18 @@ class DocWidget extends StatelessWidget {
     required this.orderEntity,
   });
   final DocEntity? orderEntity;
-  static const String routeName = "DocWidget";
+  static const String routeName = 'DocWidget';
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
+    final t = AppLocalizations.of(context);
     return GestureDetector(
       onTap: () async {
         final lat = orderEntity?.latitude;
         final lng = orderEntity?.longitude;
         if (lat != null && lng != null) {
           final uri = Uri.parse(
-              "https://www.google.com/maps/search/?api=1&query=$lat,$lng");
+            'https://www.google.com/maps/search/?api=1&query=$lat,$lng',
+          );
           if (await canLaunchUrl(uri)) {
             await launchUrl(uri, mode: LaunchMode.externalApplication);
           } else {}
@@ -135,7 +136,7 @@ class DocWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

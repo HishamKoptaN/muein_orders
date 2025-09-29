@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mubin_orders/features/language/view/select_language.dart'
-    show SelectLanguageView;
 
+import '../../features/language/view/select_language.dart'
+    show SelectLanguageView;
 
 class LanguageIconButton extends StatelessWidget {
   const LanguageIconButton({super.key});

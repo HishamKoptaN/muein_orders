@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../../../../core/config/app_config.dart';
 import '../../../../../core/constants/api_constants.dart';
 import '../models/auth_res_model.dart';
 
@@ -9,7 +10,7 @@ part 'auth_api.g.dart';
 
 @injectable
 @RestApi(
-  baseUrl: ApiConstants.apiAuthBaseUrl,
+  baseUrl: AppConfig.apiAuthBaseUrl,
 )
 abstract class AuthApi {
   @factoryMethod

@@ -5,9 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mubin_orders/core/error/api_error_model.dart';
-import 'package:mubin_orders/features/auth/sign_in/domain/repo/sign_in_repo.dart';
-import 'package:mubin_orders/features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart';
+import 'package:mubinorders/core/error/api_error_model.dart';
+import 'package:mubinorders/features/auth/sign_in/domain/repo/sign_in_repo.dart';
+import 'package:mubinorders/features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart';
 
 import 'sign_in_use_cases_test.mocks.dart';
 
@@ -56,7 +56,7 @@ void main() {
           email: anyNamed('email'),
           password: anyNamed('password'),
           rememberMe: anyNamed('rememberMe'),
-        )).thenAnswer((_) async => Right(mockUserCredential));
+        ),).thenAnswer((_) async => Right(mockUserCredential));
 
         // act
         final result = await signInUseCases.signInWithEmailAndPassword(
@@ -71,7 +71,7 @@ void main() {
           email: tEmail,
           password: tPassword,
           rememberMe: tRememberMe,
-        ));
+        ),);
         verifyNoMoreInteractions(mockRepository);
       },
     );
@@ -85,7 +85,7 @@ void main() {
           email: anyNamed('email'),
           password: anyNamed('password'),
           rememberMe: anyNamed('rememberMe'),
-        )).thenAnswer((_) async => const Left(error));
+        ),).thenAnswer((_) async => const Left(error));
 
         // act
         final result = await signInUseCases.signInWithEmailAndPassword(
@@ -100,7 +100,7 @@ void main() {
           email: tEmail,
           password: 'wrong_password',
           rememberMe: tRememberMe,
-        ));
+        ),);
         verifyNoMoreInteractions(mockRepository);
       },
     );

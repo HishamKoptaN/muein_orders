@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mubin_orders/features/auth/sign_in/data/models/remember_me_preferences.dart';
+import 'package:mubinorders/features/auth/sign_in/data/models/remember_me_preferences.dart';
 
 class MockFlutterSecureStorage extends Mock implements FlutterSecureStorage {}
 

@@ -2,9 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/forgot_password/present/bloc/forgot_pass_bloc.dart';
 import '../../features/auth/sign_in/present/bloc/sign_in_bloc.dart';
@@ -20,6 +18,7 @@ import '../../l10n/app_localizations.dart';
 import '../config/app_config.dart';
 import '../di/dependency_injection.dart';
 import '../routing/app_router.dart';
+import 'global_variable.dart';
 
 class MubinOrdersApp extends StatelessWidget {
   const MubinOrdersApp({super.key});
@@ -28,9 +27,11 @@ class MubinOrdersApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(
-          create: (_) => getIt<AuthBloc>()..add(const AuthEvent.check()),
-        ),
+        BlocProvider<AuthBloc>(create: (_) {
+          final bloc = getIt<AuthBloc>()..add(const AuthEvent.check());
+          GlobalVariable.authBloc = bloc;
+          return bloc;
+        }),
         BlocProvider<SignInBloc>(create: (_) => getIt<SignInBloc>()),
         BlocProvider<SignUpBloc>(create: (_) => getIt<SignUpBloc>()),
         BlocProvider<ForgotPassBloc>(create: (_) => getIt<ForgotPassBloc>()),
@@ -53,14 +54,7 @@ class MubinOrdersApp extends StatelessWidget {
                 builder: (context, themeState) {
                   const buttonSize = Size(332, 60);
                   const primaryBtnColor = Color(0xFF83BEA8);
-                  return BlocConsumer<AuthBloc, AuthState>(
-                    listener: (context, authState) {
-                      authState.maybeWhen(
-                        loading: () {},
-                        orElse: () {
-                        },
-                      );
-                    },
+                  return BlocBuilder<AuthBloc, AuthState>(
                     builder: (context, authState) {
                       return authState.maybeWhen(
                         loading: () {
@@ -76,11 +70,11 @@ class MubinOrdersApp extends StatelessWidget {
                               loaded: (themeMode) => themeMode,
                               orElse: () => ThemeMode.system,
                             ),
-                            locale: 
-                            // const Locale('ar'),
-                              languageState.maybeWhen(
-                            loaded: (locale) => locale,
-                            orElse: () => const Locale('ar'),
+                            locale:
+                                // const Locale('ar'),
+                                languageState.maybeWhen(
+                              loaded: (locale) => locale,
+                              orElse: () => const Locale('ar'),
                             ),
                             localizationsDelegates:
                                 _buildLocalizationDelegates(),
@@ -98,9 +92,7 @@ class MubinOrdersApp extends StatelessWidget {
                               }
                               return const Locale('en');
                             },
-                            routerConfig: AppRouter.create(
-                              authBloc: context.read<AuthBloc>(),
-                            ),
+                            routerConfig: AppRouter.create(context),
                           );
                         },
                       );

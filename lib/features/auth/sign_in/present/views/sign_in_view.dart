@@ -1,10 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:form_inputs/form_inputs.dart';
-
 import '../../../../../core/all_imports.dart';
 import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/custom_circular_progress.dart';
-import '../../../../home/present/home_view.dart';
+import '../../../../onboarding/present/view/onboarding_view.dart';
 import '../bloc/sign_in_bloc.dart';
 import 'widgets/sign_in_actions.dart';
 import 'widgets/sign_in_background.dart';
@@ -21,12 +20,10 @@ class SignInView extends StatelessWidget {
         listener: (context, state) {
           state.whenOrNull(
             success: () {
-              if (context.mounted) {
-                NavigationService.navigateAndRemoveUntil(
-                  context: context,
-                  routeName: HomeView.routeName,
-                );
-              }
+              NavigationService.navigateAndRemoveUntil(
+                context: context,
+                routeName: InstructionsView.routeName,
+              );
             },
             failure: (failure) {
               ScaffoldMessenger.of(

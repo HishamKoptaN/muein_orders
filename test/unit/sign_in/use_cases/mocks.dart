@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:mubin_orders/features/auth/sign_in/domain/repo/sign_in_repo.dart';
+import 'package:mubinorders/features/auth/sign_in/domain/repo/sign_in_repo.dart';
 
 // Mock for SignInRepository
 class MockSignInRepository extends Mock implements SignInRepo {}

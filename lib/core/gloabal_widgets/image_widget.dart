@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:mubin_orders/core/all_imports.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../all_imports.dart';
 
 class ImageWidget extends StatelessWidget {
   String imageUrl;
@@ -8,7 +9,7 @@ class ImageWidget extends StatelessWidget {
     super.key,
     required this.imageUrl,
   });
-  static const String routeName = "ImageView";
+  static const String routeName = 'ImageView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

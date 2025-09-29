@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:mubin_orders/features/auth/sign_in/domain/repo/sign_in_repo.dart';
-import 'package:mubin_orders/features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart';
+import 'package:mubinorders/features/auth/sign_in/domain/repo/sign_in_repo.dart';
+import 'package:mubinorders/features/auth/sign_in/domain/use_cases/sign_in_use_cases.dart';
 
 class MockUserCredential extends Mock implements UserCredential {}
 class MockUser extends Mock implements User {}
@@ -30,7 +30,7 @@ void main() {
       email: email,
       password: password,
       rememberMe: rememberMe,
-    )).thenAnswer((_) async => Right(mockUserCredential));
+    ),).thenAnswer((_) async => Right(mockUserCredential));
 
     // Act
     await signInUseCases.signInWithEmailAndPassword(
@@ -44,7 +44,7 @@ void main() {
       email: email,
       password: password,
       rememberMe: rememberMe,
-    )).called(1);
+    ),).called(1);
   });
 
   test('signInWithGoogle should call repository', () async {

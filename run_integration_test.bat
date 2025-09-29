@@ -11,7 +11,7 @@ echo Checking connected devices...
 flutter devices
 
 REM تشغيل الاختبار على أي جهاز أندرويد متصل
-flutter test integration_test\sign_up_test.dart --flavor integration -d android
+flutter test integration_test\sign_up_test.dart -d android
 
 echo.
 echo ======= Test Finished =======

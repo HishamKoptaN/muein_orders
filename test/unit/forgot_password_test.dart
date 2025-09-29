@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mubin_orders/features/auth/forgot_password/domain/repositories/forgot_password_repository.dart';
-import 'package:mubin_orders/features/auth/forgot_password/domain/usecases/send_password_reset_email_usecase.dart';
+import 'package:mubinorders/features/auth/forgot_password/domain/repositories/forgot_password_repository.dart';
+import 'package:mubinorders/features/auth/forgot_password/domain/usecases/send_password_reset_email_usecase.dart';
 
 class MockForgotPasswordRepository extends Mock
     implements ForgotPasswordRepository {}

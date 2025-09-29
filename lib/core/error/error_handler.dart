@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mubin_orders/l10n/app_localizations.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import 'firebase_errors.dart';
 
 class AppErrorHandler {
@@ -12,40 +12,40 @@ class AppErrorHandler {
       debugPrint('Error: $error');
       debugPrint('Stack trace: $stackTrace');
     }
-    
+
     // Log to crash analytics in production
     if (kReleaseMode) {
       // TODO: Integrate with Firebase Crashlytics or similar service
       _logToCrashlytics(error, stackTrace);
     }
   }
-  
+
   static void _logToCrashlytics(dynamic error, StackTrace? stackTrace) {
     // Implementation for crash reporting
     // FirebaseCrashlytics.instance.recordError(error, stackTrace);
   }
-  
+
   /// Gets a user-friendly error message from any type of error
   static String getErrorMessage(dynamic error) {
     if (error is DioException) {
       return _handleDioError(error);
     }
-    
+
     if (error is FirebaseAuthException) {
       return FirebaseErrorHandler.getAuthErrorMessage(error.code);
     }
-    
+
     if (error is String) {
       return error;
     }
-    
+
     if (error is Exception) {
       return _handleGenericException(error);
     }
-    
+
     return 'حدث خطأ غير متوقع';
   }
-  
+
   static String _handleDioError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
@@ -64,7 +64,7 @@ class AppErrorHandler {
         return 'خطأ في الشبكة';
     }
   }
-  
+
   static String _handleHttpError(int? statusCode) {
     switch (statusCode) {
       case 400:
@@ -83,23 +83,23 @@ class AppErrorHandler {
         return 'خطأ في الخادم ($statusCode)';
     }
   }
-  
+
   static String _handleGenericException(Exception error) {
     if (error is FormatException) {
       return 'تنسيق البيانات غير صالح';
     }
-    
+
     if (error is TypeError) {
       return 'خطأ في نوع البيانات';
     }
-    
+
     if (error is NoSuchMethodError) {
       return 'عملية غير مدعومة';
     }
-    
+
     // Log the error for debugging
     debugPrint('Unhandled error: $error');
-    
+
     return 'حدث خطأ غير متوقع';
   }
 }
@@ -107,13 +107,13 @@ class AppErrorHandler {
 class ErrorWidget extends StatelessWidget {
   final String message;
   final VoidCallback? onRetry;
-  
+
   const ErrorWidget({
     super.key,
     required this.message,
     this.onRetry,
   });
-  
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -140,7 +140,7 @@ class ErrorWidget extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: onRetry,
-                child: Text(AppLocalizations.of(context)!.retry),
+                child: Text(AppLocalizations.of(context).retry),
               ),
             ],
           ],

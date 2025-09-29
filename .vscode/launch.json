@@ -6,7 +6,7 @@
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart",
-      "args": ["--flavor", "development"],
+      "args": [],
       "env": {
         "FLUTTER_WEB_USE_SKIA": "true"
       }
@@ -17,7 +17,7 @@
       "request": "launch",
       "program": "lib/main.dart",
       "flutterMode": "profile",
-      "args": ["--flavor", "production"]
+      "args": []
     },
     {
       "name": "Flutter (Release)",
@@ -25,7 +25,7 @@
       "request": "launch",
       "program": "lib/main.dart",
       "flutterMode": "release",
-      "args": ["--flavor", "production"]
+      "args": []
     },
     {
       "name": "Flutter Web (Debug)",

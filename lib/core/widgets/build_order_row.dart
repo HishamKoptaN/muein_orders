@@ -1,5 +1,4 @@
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mubin_orders/gen/assets.gen.dart';
 
 import '../../../../core/all_imports.dart';
 import '../../../../core/widgets/widget_column_header.dart';
@@ -51,7 +50,7 @@ Widget buildOrderRow({
                 );
               },
               child: SvgPicture.asset(
-                "Assets.icons.pdf",
+                'Assets.icons.pdf',
                 fit: BoxFit.contain,
               ),
             ),
@@ -60,13 +59,13 @@ Widget buildOrderRow({
             flex: 2,
             child: Visibility(
               visible: order.isDistributionPhotographed == true,
-              child: Center(
+              child: const Center(
                 child: Icon(
                   Icons.check_circle,
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     ),

@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart' show injectable, factoryMethod;
 import 'package:retrofit/retrofit.dart';
+import '../../../../core/config/app_config.dart';
 import '../../../../core/constants/api_constants.dart';
 import '../models/notification_model.dart';
 
 part 'notifications_api.g.dart';
 
 @RestApi(
-  baseUrl: ApiConstants.apiBaseUrl,
+  baseUrl: AppConfig.apiBaseUrl,
 )
 @injectable
 abstract class NotificationsApi {

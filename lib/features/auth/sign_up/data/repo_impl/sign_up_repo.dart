@@ -65,6 +65,7 @@ class SignUpRepoImpl implements SignUpRepo {
           fcmToken: signUpReq.fcmToken ?? fcmToken,
         ),
       );
+
       // Store the JWT token in SharedPreferencesAsync
       if (res.token != null) {
         await SharedPrefHelper.setSecuredString(
