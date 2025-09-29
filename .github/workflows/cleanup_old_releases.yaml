@@ -2,7 +2,7 @@ name: Cleanup Old Firebase Releases
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   delete_old_releases:
