@@ -199,7 +199,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get areYouSure => 'So wugye di sɛ wopɛ sɛ wufi mu?';
 
   @override
-  String get file_pick_failed => 'Fael a wɔpaw no antumi';
+  String get file_pick_failed => 'Fael a wɔpaw no antumi anyɛ yiye';
 
   @override
   String get order_saving => 'Sikakorabea abisade...';
@@ -288,7 +288,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get request_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order_is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
+  String get order_is_sharing => 'Abisadeɛ a ɛfa wo ho a wode bɛhyɛ mu...';
 
   @override
   String get successfully => 'Ɛyɛɛ yiye';
@@ -395,7 +395,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get settings => 'Nsiesiei a Wɔde Yɛ Adwuma';
 
   @override
-  String get createAccount => 'Yɛ akontaabu';
+  String get createAccount => 'Yɛ akontaabu bi';
 
   @override
   String passwordResetEmailSentTo(Object email) {
@@ -556,6 +556,12 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get cancel => 'a wɔtwa mu';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get editProfile => 'Sesa profile no';
 
   @override
   String get pendingDescription => 'Wɔretwɛn sɛ wɔde bɛto so';

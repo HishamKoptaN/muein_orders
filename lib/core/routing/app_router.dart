@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/auth/auth/present/bloc/auth_bloc.dart';
+
 import '../../features/home/present/home_view.dart';
 import '../../features/language/view/select_language.dart';
 import '../../features/onboarding/present/view/onboarding_view.dart';
@@ -13,9 +11,8 @@ import 'error_page.dart';
 import 'go_router_refresh.dart';
 
 class AppRouter {
-  static GoRouter create(BuildContext context) {
-    final authBloc = BlocProvider.of<AuthBloc>(context);
-
+  static GoRouter create() {
+    final authBloc = GlobalVariable.authBloc;
     return GoRouter(
       navigatorKey: GlobalVariable.navState,
       debugLogDiagnostics: true,
@@ -24,7 +21,7 @@ class AppRouter {
       initialLocation: authBloc.state.whenOrNull(
         authenticated: (redirect) {
           if (kDebugMode) {
-            return '/${InstructionsView.routeName}';
+            return '/${HomeView.routeName}';
           }
           if (!redirect) {
             return '/${InstructionsView.routeName}';

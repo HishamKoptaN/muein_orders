@@ -558,6 +558,12 @@ class AppLocalizationsLg extends AppLocalizations {
   String get cancel => 'okusazaamu';
 
   @override
+  String get save => 'Save';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
   String get pendingDescription => 'Alinze okuteekebwa ku mukutu';
 
   @override

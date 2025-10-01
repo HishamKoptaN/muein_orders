@@ -136,7 +136,6 @@ flutter:
     - assets/images/packages/
     - assets/images/onboarding/
     - assets/logos/
-    - assets/test/
     - assets/languages/
   fonts:
     - family: "Tajawal"

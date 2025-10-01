@@ -149,8 +149,6 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i59.FirebaseAuth>(),
         gh<_i976.AuthApi>(),
       ));
-  gh.lazySingleton<_i364.ProfileRepo>(
-      () => _i256.ProfileRepoImpl(gh<_i191.ProfileApi>()));
   gh.factory<_i352.NotificationsApi>(() => _i352.NotificationsApi(
         gh<_i361.Dio>(),
         baseUrl: gh<String>(),
@@ -161,8 +159,6 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i804.SignInApi>(),
         gh<_i804.TokenStorage>(),
       ));
-  gh.factory<_i291.ProfileUseCases>(
-      () => _i291.ProfileUseCases(gh<_i364.ProfileRepo>()));
   gh.factory<_i967.NotificationsRepo>(
       () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()));
   gh.lazySingleton<_i941.SignInUseCases>(() => _i941.SignInUseCases(
@@ -184,18 +180,22 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.lazySingleton<_i251.SignUpUseCases>(
       () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()));
+  gh.lazySingleton<_i364.ProfileRepo>(() => _i256.ProfileRepoImpl(
+        gh<_i191.ProfileApi>(),
+        gh<_i59.FirebaseAuth>(),
+      ));
   gh.factory<_i808.OrdersRepo>(
       () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()));
   gh.factory<_i802.OrdersUseCases>(
       () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()));
-  gh.factory<_i475.ProfileBloc>(
-      () => _i475.ProfileBloc(gh<_i291.ProfileUseCases>()));
   gh.lazySingleton<_i689.DocsUseCase>(() => _i689.DocsUseCase(
         ordersRepo: gh<_i672.DocsRepo>(),
         cachedDocsRepo: gh<_i46.CachedDocsRepo>(),
       ));
   gh.factory<_i139.NotificationsUseCases>(
       () => _i139.NotificationsUseCases(gh<_i967.NotificationsRepo>()));
+  gh.factory<_i291.ProfileUseCases>(
+      () => _i291.ProfileUseCases(gh<_i364.ProfileRepo>()));
   gh.factory<_i467.CachedDocBloc>(
       () => _i467.CachedDocBloc(gh<_i689.DocsUseCase>()));
   gh.factory<_i481.HomeBloc>(
@@ -208,6 +208,8 @@ Future<_i174.GetIt> $initGetIt(
       () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()));
   gh.factory<_i781.NotificationsBloc>(
       () => _i781.NotificationsBloc(gh<_i139.NotificationsUseCases>()));
+  gh.lazySingleton<_i475.ProfileBloc>(
+      () => _i475.ProfileBloc(gh<_i291.ProfileUseCases>()));
   return getIt;
 }
 

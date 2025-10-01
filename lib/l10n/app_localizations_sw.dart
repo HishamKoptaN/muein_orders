@@ -62,7 +62,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'Nyaraka zilizo na picha na video';
 
   @override
-  String get send => 'kutuma';
+  String get send => 'tuma';
 
   @override
   String get phone => 'Nambari ya simu';
@@ -520,7 +520,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get expenses => 'gharama';
 
   @override
-  String get documentingTheRequest => 'Andika ombi';
+  String get documentingTheRequest => 'Kuandika ombi';
 
   @override
   String get documentationProgress => 'Maendeleo ya hati';
@@ -555,6 +555,12 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get cancel => 'kughairiwa';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get editProfile => 'Hariri wasifu';
 
   @override
   String get pendingDescription => 'Inasubiri kupakiwa';

@@ -92,7 +92,7 @@ class MubinOrdersApp extends StatelessWidget {
                               }
                               return const Locale('en');
                             },
-                            routerConfig: AppRouter.create(context),
+                            routerConfig: AppRouter.create(),
                           );
                         },
                       );

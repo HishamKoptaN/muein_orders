@@ -554,6 +554,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cancel => 'إلغاء';
 
   @override
+  String get save => 'حفظ';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
   String get pendingDescription => 'في انتظار الرفع';
 
   @override

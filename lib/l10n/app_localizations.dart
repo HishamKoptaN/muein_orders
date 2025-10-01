@@ -1085,7 +1085,7 @@ abstract class AppLocalizations {
   /// No description provided for @documentingTheRequest.
   ///
   /// In en, this message translates to:
-  /// **'Documenting the request'**
+  /// **'Document the request'**
   String get documentingTheRequest;
 
   /// No description provided for @documentationProgress.
@@ -1153,6 +1153,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'cancellation'**
   String get cancel;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get editProfile;
 
   /// No description provided for @pendingDescription.
   ///

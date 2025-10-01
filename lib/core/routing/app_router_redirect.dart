@@ -2,30 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
+import '../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
+import '../../features/auth/sign_in/present/views/sign_in_view.dart';
+import '../../features/auth/sign_up/present/views/sign_up_views.dart';
 import '../../features/home/present/home_view.dart';
 import '../../features/language/view/select_language.dart';
 import '../../features/onboarding/present/view/onboarding_view.dart';
 import '../../features/orders/present/views/orders_view.dart';
-import 'app_routes.dart';
+import '../../features/profile/present/views/profile_view.dart';
 
 class AppRouterRedirect {
   // مسارات مسموحة للجميع (مصادق أو غير مصادق)
   static const Set<String> alwaysAccessible = {
-    AppRoutes.selectLanguage,
+    SelectLanguageView.routeName,
   };
 
   // مسارات عامة بس للي مش عامل تسجيل دخول
   static const Set<String> public = {
-    AppRoutes.authChoice,
-    AppRoutes.signIn,
-    AppRoutes.signUp,
-    AppRoutes.forgotPass,
+    SignInView.routeName,
+    SignUpView.routeName,
+    ForgotPassView.routeName,
   };
   // مسارات خاصة بالمستخدمين المصادقين
   static const Set<String> authenticatedOnly = {
     HomeView.routeName,
     OrdersView.routeName,
     InstructionsView.routeName,
+    ProfileView.routeName,
   };
   static String? handleRedirect(
     BuildContext context,

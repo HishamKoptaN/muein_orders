@@ -558,13 +558,19 @@ class AppLocalizationsYo extends AppLocalizations {
   String get cancel => 'ifagile';
 
   @override
+  String get save => 'Save';
+
+  @override
+  String get editProfile => 'Ṣatunkọ profaili';
+
+  @override
   String get pendingDescription => 'Nduro lati gbejade';
 
   @override
   String get uploadingDescription => 'Ikojọpọ bayi';
 
   @override
-  String get completedDescription => 'Ti gbejade ni aṣeyọri';
+  String get completedDescription => 'Ti kojọpọ ni aṣeyọri';
 
   @override
   String get failedDescription => 'Kuna lati po si';

@@ -47,6 +47,7 @@ class CustomTextFormField extends StatefulWidget {
     this.onToggleObscure,
     this.inputFormatters,
     this.decoration,
+    this.enabled = true,
   });
 
   final TextEditingController? controller;
@@ -62,7 +63,7 @@ class CustomTextFormField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final ValueChanged<String?>? onSaved;
   final FormFieldValidator<String>? validator;
-  final bool readOnly;
+  final bool? readOnly;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final EdgeInsetsGeometry? contentPadding;
@@ -90,6 +91,7 @@ class CustomTextFormField extends StatefulWidget {
   final FocusNode? focusNode;
   final List<TextInputFormatter>? inputFormatters;
   final InputDecoration? decoration;
+  final bool enabled;
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
@@ -111,7 +113,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       ),
       child: TextFormField(
         controller: widget.controller,
-        initialValue: widget.initialValue,
+        initialValue: widget.controller == null ? widget.initialValue : null,
         keyboardType: widget.keyboardType ?? widget.textInputType,
         textInputAction: widget.textInputAction,
         obscureText: widget.isPassword ? _obscureText : widget.obscureText,
@@ -119,7 +121,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
         validator: widget.validator,
-        readOnly: widget.readOnly,
+        readOnly: widget.readOnly ?? false,
+        enabled: widget.enabled,
         textAlign: TextAlign.right,
         textDirection: TextDirection.rtl,
         style: widget.style ??

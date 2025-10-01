@@ -1,5 +1,7 @@
+// ignore: unused_import
+import 'core/database/shared_pref_helper.dart';
+import 'core/config/app_initializer.dart';
 import 'dart:async';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +15,6 @@ import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
 import 'core/app_observer.dart';
 import 'core/background/manual_uploader.dart';
-import 'core/config/app_initializer.dart';
-import 'core/database/shared_pref_helper.dart';
 import 'core/di/dependency_injection.dart';
 import 'firebase_options.dart';
 
@@ -29,7 +29,6 @@ Future<void> main() async {
     debugPrint('$st');
   }
   await configureDependencies();
-  // debugPrint('🚀 تشغيل التطبيق - بدء الرفع اليدوي المتكرر كل دقيقة');
   startManualRepeatingUpload();
   try {
     await findSystemLocale();
@@ -42,17 +41,26 @@ Future<void> main() async {
     );
     await AppInitializer.initialize();
     FlutterNativeSplash.remove();
-    // await SharedPrefHelper.clearAllData();
-    // await SharedPrefHelper.clearAllSecuredData();
+    if (kDebugMode) {
+      // await SharedPrefHelper.clearAllData();
+      // await SharedPrefHelper.clearAllSecuredData();
+    }
     runApp(
       const MubinOrdersApp(),
     );
   } catch (error, stackTrace) {
-    _handleError(error, stackTrace, 'app initialization');
+    _handleError(
+      error: error,
+      stackTrace: stackTrace,
+      context: 'app initialization',
+    );
   }
 }
-
-void _handleError(Object error, StackTrace stackTrace, String context) {
+void _handleError({
+  required Object error,
+  required StackTrace stackTrace,
+  required String context,
+}) {
   debugPrint('🔥 Error ($context): $error');
   debugPrint('$stackTrace');
   runApp(
@@ -61,7 +69,9 @@ void _handleError(Object error, StackTrace stackTrace, String context) {
         exception: error,
         stack: stackTrace,
         library: 'app',
-        context: ErrorDescription(context),
+        context: ErrorDescription(
+          context,
+        ),
       ),
     ),
   );

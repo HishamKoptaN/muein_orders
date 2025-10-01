@@ -260,7 +260,7 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get enter_valid_email_password =>
-      'Winndu adrees imeel e konngol kuutorteengol.';
+      'Winndu adres imeel e konngol kuutorgol moƴƴol.';
 
   @override
   String get invalidEmail => 'Imeel mo moƴƴaani';
@@ -556,6 +556,12 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get cancel => 'ustude';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get editProfile => 'Waylu nate';
 
   @override
   String get pendingDescription => 'Ina ɗaminii ƴettude';

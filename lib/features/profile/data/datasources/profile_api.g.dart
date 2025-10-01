@@ -9,7 +9,9 @@ part of 'profile_api.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _ProfileApi implements ProfileApi {
-  _ProfileApi(this._dio, {this.baseUrl, this.errorLogger});
+  _ProfileApi(this._dio, {this.baseUrl, this.errorLogger}) {
+    baseUrl ??= 'https://hotpink-gnu-383634.hostingersite.com/mapi/api/';
+  }
 
   final Dio _dio;
 
@@ -18,12 +20,12 @@ class _ProfileApi implements ProfileApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ProfileModel> getProfile() async {
+  Future<ProfileResModel> getProfile() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ProfileModel>(
+    final _options = _setStreamType<ProfileResModel>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -34,9 +36,9 @@ class _ProfileApi implements ProfileApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ProfileModel _value;
+    late ProfileResModel _value;
     try {
-      _value = ProfileModel.fromJson(_result.data!);
+      _value = ProfileResModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -45,15 +47,40 @@ class _ProfileApi implements ProfileApi {
   }
 
   @override
-  Future<ProfileModel> updateProfile({
-    required UpdateProfileReqEntity updateProfileReqEntity,
-  }) async {
+  Future<ProfileResModel> updateProfile(
+    File? image,
+    String? name,
+    String? phone,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = updateProfileReqEntity;
-    final _options = _setStreamType<ProfileModel>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+    final _data = FormData();
+    if (image != null) {
+      _data.files.add(
+        MapEntry(
+          'image',
+          MultipartFile.fromFileSync(
+            image.path,
+            filename: image.path.split(Platform.pathSeparator).last,
+          ),
+        ),
+      );
+    }
+    if (name != null) {
+      _data.fields.add(MapEntry('name', name));
+    }
+    if (phone != null) {
+      _data.fields.add(MapEntry('phone', phone));
+    }
+    final _options = _setStreamType<ProfileResModel>(
+      Options(
+        method: 'POST',
+        headers: _headers,
+        extra: _extra,
+        contentType: 'multipart/form-data',
+      )
           .compose(
             _dio.options,
             '/profile',
@@ -63,9 +90,9 @@ class _ProfileApi implements ProfileApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ProfileModel _value;
+    late ProfileResModel _value;
     try {
-      _value = ProfileModel.fromJson(_result.data!);
+      _value = ProfileResModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

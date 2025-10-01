@@ -77,7 +77,6 @@ class DocsRepoImpl implements DocsRepo {
       if (UploadSpeedSettings.enableDetailedLogging) {
         print('📤 تم تحديث حالة doc id=${doc.id} إلى uploading');
       }
-
       final imageOneFile = fileFromPath(doc.imageOne);
       final imageTwoFile = fileFromPath(doc.imageTwo);
       final videoOneFile = fileFromPath(doc.videoOne);

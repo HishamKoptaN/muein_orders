@@ -1,23 +1,35 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../core/error/app_error_handler.dart';
 import '../../../../core/networking/api_result.dart';
-import '../../domain/entities/profile_entity.dart';
+import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
 import '../../domain/repo/profile_repo.dart';
 import '../datasources/profile_api.dart';
+import '../mappers/update_profile_mapper.dart';
 import '../models/profile_model_mapper.dart';
 
 @LazySingleton(as: ProfileRepo)
 class ProfileRepoImpl implements ProfileRepo {
   final ProfileApi _profileApi;
+  final FirebaseAuth _firebaseAuth;
 
-  const ProfileRepoImpl(this._profileApi);
+  const ProfileRepoImpl(this._profileApi, this._firebaseAuth);
 
   @override
-  Future<ApiResult<ProfileEntity>> getProfile() async {
+  Future<ApiResult<ProfileResEntity>> getProfile() async {
     try {
       final result = await _profileApi.getProfile();
-      return ApiResult.success(data: result.toEntity());
+
+      // الحصول على الإيميل من Firebase
+      final firebaseUser = _firebaseAuth.currentUser;
+      final email = firebaseUser?.email;
+
+      // دمج البيانات من API مع الإيميل من Firebase
+      final profileEntity = result.toEntity().copyWith(email: email ?? '');
+
+      return ApiResult.success(data: profileEntity);
     } catch (e, st) {
       return ApiResult.failure(
         apiErrorModel: AppErrorHandler.toApiError(e, st),
@@ -26,13 +38,22 @@ class ProfileRepoImpl implements ProfileRepo {
   }
 
   @override
-  Future<ApiResult<ProfileEntity>> updateProfile(
-      {required UpdateProfileReqEntity updateProfileReqEntity}) async {
+  Future<ApiResult<ProfileResEntity>> updateProfile({
+    required UpdateProfileReqEntity updateProfileReqEntity,
+  }) async {
     try {
+      final model = updateProfileReqEntity.toModel();
       final result = await _profileApi.updateProfile(
-        updateProfileReqEntity: updateProfileReqEntity,
+        model.image,
+        model.name,
+        model.phone,
       );
-      return ApiResult.success(data: result.toEntity());
+      // الحصول على الإيميل من Firebase بعد التحديث
+      final firebaseUser = _firebaseAuth.currentUser;
+      final email = firebaseUser?.email;
+      // دمج البيانات من API مع الإيميل من Firebase
+      final profileEntity = result.toEntity().copyWith(email: email ?? '');
+      return ApiResult.success(data: profileEntity);
     } catch (e, st) {
       return ApiResult.failure(
         apiErrorModel: AppErrorHandler.toApiError(e, st),

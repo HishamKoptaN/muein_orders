@@ -522,7 +522,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get expenses => 'expenses';
 
   @override
-  String get documentingTheRequest => 'Documenting the request';
+  String get documentingTheRequest => 'Document the request';
 
   @override
   String get documentationProgress => 'Documentation progress';
@@ -557,6 +557,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'cancellation';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get editProfile => 'Edit profile';
 
   @override
   String get pendingDescription => 'Waiting to be uploaded';

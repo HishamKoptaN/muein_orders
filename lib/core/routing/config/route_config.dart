@@ -89,13 +89,7 @@ class RouteConfig {
         routeName: ProfileView.routeName,
         builder: (context, state) => const ProfileView(),
       ),
-      // createRoute(
-      //   routeName: UploadMonitoringView.routeName,
-      //   builder: (context, state) => const UploadMonitoringView(),
-      // ),
     ];
-
-    // Debug print all available routes
     if (kDebugMode) {
       debugPrint('\n===== AVAILABLE ROUTES =====');
       void printRoutes(List<RouteBase> routes, [String prefix = '']) {
@@ -112,24 +106,9 @@ class RouteConfig {
       printRoutes(routes);
       debugPrint('==========================\n');
     }
-
     return routes;
   }
 
-  /// Returns the initial location based on the app state and environment
-  /// This is used to determine the first route when the app starts
-  /// In debug mode, it will go to the sign-in screen for easier development
-  static String get initialLocation {
-    if (kDebugMode) {
-      debugPrint('Initial route set to: /${AuthChoiceView.routeName}');
-      return '/${AuthChoiceView.routeName}';
-    }
-    // For release mode
-    debugPrint('Initial route set to: /${AuthChoiceView.routeName}');
-    return '/${AuthChoiceView.routeName}';
-  }
-
-  /// Returns the error page builder
   static Page<dynamic> errorPageBuilder(
     BuildContext context,
     GoRouterState state,

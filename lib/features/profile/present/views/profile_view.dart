@@ -1,131 +1,294 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:io';
 
-import '../../../../core/gloabal_widgets/custom_scaffold.dart';
+import 'package:form_inputs/form_inputs/generic_formz_input.dart';
+import 'package:formz/formz.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../../../../core/all_imports.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_circular_progress.dart';
+import '../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../core/widgets/error_content.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../domain/entities/profile_entity.dart';
 import '../bloc/profile_bloc.dart';
+import 'widgets/profile_widgets.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
-
   static const String routeName = 'profile';
-
   @override
   State<ProfileView> createState() => _ProfileViewState();
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  late TextEditingController _nameController;
+  late TextEditingController _phoneController;
+
   @override
   void initState() {
     super.initState();
+    _nameController = TextEditingController();
+    _phoneController = TextEditingController();
     context.read<ProfileBloc>().add(const ProfileEvent.getProfile());
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _onEditImageTap() async {
+    final File? pickedImage = await pickImageFromGallery();
+    if (pickedImage != null) {
+      context.read<ProfileBloc>().add(
+            ProfileEvent.dataChanged(
+              image: GenericFormzInput<File>.dirty(pickedImage),
+            ),
+          );
+    }
+  }
+
+  Future<File?> pickImageFromGallery() async {
+    try {
+      final ImagePicker picker = ImagePicker();
+      final XFile? pickedFile = await picker.pickImage(
+        source: ImageSource.gallery,
+        maxHeight: 800,
+        maxWidth: 800,
+        imageQuality: 85,
+      );
+
+      if (pickedFile != null) {
+        return File(pickedFile.path);
+      }
+      return null;
+    } catch (e) {
+      // يمكن إضافة معالجة للأخطاء هنا إذا لزم الأمر
+      return null;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     return CustomScaffold(
-      appBar: CustomAppBar(
-        title: t.profile,
-      ),
+      appBar: CustomAppBar(title: t.profile),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
-          return state.when(
-            loaded: (profile) => _ProfileContent(profile: profile, t: t),
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (message) => Center(
-              child: Column(
+          return state.maybeWhen(
+            loaded: (
+              profile,
+              isEditingProfile,
+              formzSubmissionStatus,
+            ) {
+              _nameController.text = profile.name!;
+              _phoneController.text = profile.phone!;
+              return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.error, size: 64, color: Colors.red),
-                  const SizedBox(height: 16),
-                  Text(message),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<ProfileBloc>()
-                          .add(const ProfileEvent.getProfile());
-                    },
-                    child: Text(t.retry),
+                  buildProfileAvatar(
+                    image: profile.image!,
+                    isEditing: isEditingProfile,
+                    selectedImage: profile.selectedImage,
+                    onEditImageTap: isEditingProfile ? _onEditImageTap : null,
                   ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CustomTextFormField(
+                        prefixIcon: Icon(
+                          Icons.person,
+                          color: AppColors.brandMint,
+                          size: 35.sp,
+                        ),
+                        controller: _nameController,
+                        enabled: isEditingProfile,
+                        readOnly: !isEditingProfile,
+                        onChanged: (v) {
+                          _nameController.text = v;
+                          ProfileEvent.dataChanged(
+                            name: GenericFormzInput<String>.dirty(v),
+                          );
+                        },
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 8,
+                        ),
+                        style: AppTextStyles.bodyMedium.copyWith(
+                          color: Colors.black,
+                        ),
+                      ),
+                      buildDivider(),
+                      CustomTextFormField(
+                        initialValue: profile.email,
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: AppColors.brandMint,
+                          size: 35.sp,
+                        ),
+                        enabled: false,
+                        readOnly: true,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 8,
+                        ),
+                        style: AppTextStyles.bodyMedium.copyWith(
+                          color:
+                              isEditingProfile ? Colors.black54 : Colors.black,
+                        ),
+                      ),
+                      buildDivider(),
+                      CustomTextFormField(
+                        controller: _phoneController,
+                        prefixIcon: Icon(
+                          Icons.phone,
+                          color: AppColors.brandMint,
+                          size: 35.sp,
+                        ),
+                        enabled: isEditingProfile,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 8,
+                        ),
+                        style: AppTextStyles.bodyMedium.copyWith(
+                          color: Colors.black,
+                        ),
+                      ),
+                      buildDivider(),
+                      CustomTextFormField(
+                        initialValue: profile.balance!.currentBalance,
+                        prefixIcon: Icon(
+                          Icons.account_balance_wallet,
+                          color: AppColors.brandMint,
+                          size: 35.sp,
+                        ),
+                        enabled: true,
+                        style: AppTextStyles.bodyMedium.copyWith(
+                          color:
+                              isEditingProfile ? Colors.black54 : Colors.black,
+                        ),
+                      ),
+                      buildDivider(),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  const SizedBox.shrink(),
+                  if (!isEditingProfile)
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          context.read<ProfileBloc>().add(
+                                const ProfileEvent.startEditing(),
+                              );
+                        },
+                        icon: Icon(Icons.edit, size: 24.sp),
+                        label: Text(t.editProfile),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.brandMint,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 20,
+                            horizontal: 24,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (isEditingProfile)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              context.read<ProfileBloc>().add(
+                                    const ProfileEvent.cancelEditing(),
+                                  );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  AppColors.outline.withValues(alpha: 0.3),
+                              foregroundColor: AppColors.onSurface,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                                horizontal: 24,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            child: Text(
+                              t.cancel,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              context.read<ProfileBloc>().add(
+                                    const ProfileEvent.updateProfile(),
+                                  );
+                            },
+                            label: formzSubmissionStatus.isInProgress
+                                ? const CustomCircularProgress()
+                                : Text(
+                                    t.save,
+                                  ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.brandMint,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                                horizontal: 24,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                 ],
-              ),
-            ),
+              );
+            },
+            loading: () {
+              return const Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    AppColors.brandMint,
+                  ),
+                ),
+              );
+            },
+            failure: (message) {
+              return ErrorContent(
+                message: message,
+                onRetry: () => context.read<ProfileBloc>().add(
+                      const ProfileEvent.getProfile(),
+                    ),
+                retryText: t.retry,
+              );
+            },
+            orElse: () => const SizedBox(),
           );
         },
-      ),
-    );
-  }
-}
-
-class _ProfileContent extends StatelessWidget {
-  final ProfileEntity profile;
-  final AppLocalizations t;
-  const _ProfileContent({
-    required this.profile,
-    required this.t,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Profile Avatar
-          Center(
-            child: CircleAvatar(
-              radius: 50,
-              // backgroundImage:
-              //     profile.avatar != null ? NetworkImage(profile.avatar!) : null,
-              child: profile.avatar == null
-                  ? Text(
-                      profile.name.isNotEmpty
-                          ? profile.name[0].toUpperCase()
-                          : 'U',
-                      style: const TextStyle(fontSize: 32),
-                    )
-                  : null,
-            ),
-          ),
-          const SizedBox(height: 24),
-          // Profile Information
-          _buildInfoCard(
-            icon: Icons.person,
-            title: t.name,
-            value: profile.name,
-          ),
-          _buildInfoCard(
-            icon: Icons.email,
-            title: t.email,
-            value: profile.email,
-          ),
-          if (profile.phone != null)
-            _buildInfoCard(
-              icon: Icons.phone,
-              title: t.phone,
-              value: profile.phone!,
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildInfoCard({
-    required IconData icon,
-    required String title,
-    required String value,
-  }) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: ListTile(
-        leading: Icon(icon, color: Colors.black),
-        title: Text(title),
-        subtitle: Text(value),
       ),
     );
   }

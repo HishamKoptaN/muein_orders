@@ -175,6 +175,8 @@
   "unknown": "غير معروف",
   "startUpload": "بدء الرفع",
   "cancel": "إلغاء",
+  "save": "حفظ",
+  "editProfile": "تعديل الملف الشخصي",
   "pendingDescription": "في انتظار الرفع",
   "uploadingDescription": "يتم الرفع الآن",
   "completedDescription": "تم الرفع بنجاح",
