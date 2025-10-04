@@ -19,8 +19,9 @@ class OrderTypeResModel with _$OrderTypeResModel {
 class Package with _$Package {
   const factory Package({
     @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'quantity') int? quantity,
     @JsonKey(name: 'image') String? image,
+    @JsonKey(name: 'quantity') int? quantity,
+    @JsonKey(name: 'docs_count') int? docsCount,
     @JsonKey(name: 'type') Type? type,
   }) = _Package;
 
@@ -33,6 +34,7 @@ class Type with _$Type {
   const factory Type({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'distributed_type') String? distributedType,
   }) = _Type;
 
   factory Type.fromJson(Map<String, dynamic> json) => _$TypeFromJson(json);

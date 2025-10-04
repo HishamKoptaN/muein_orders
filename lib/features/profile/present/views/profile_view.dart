@@ -125,7 +125,7 @@ class _ProfileViewState extends State<ProfileView> {
                           horizontal: 8,
                           vertical: 8,
                         ),
-                        style: AppTextStyles.bodyMedium.copyWith(
+                        style: AppTextStyles.bodyLarge.copyWith(
                           color: Colors.black,
                         ),
                       ),
@@ -143,7 +143,7 @@ class _ProfileViewState extends State<ProfileView> {
                           horizontal: 8,
                           vertical: 8,
                         ),
-                        style: AppTextStyles.bodyMedium.copyWith(
+                        style: AppTextStyles.bodyLarge.copyWith(
                           color:
                               isEditingProfile ? Colors.black54 : Colors.black,
                         ),
@@ -161,7 +161,7 @@ class _ProfileViewState extends State<ProfileView> {
                           horizontal: 8,
                           vertical: 8,
                         ),
-                        style: AppTextStyles.bodyMedium.copyWith(
+                        style: AppTextStyles.bodyLarge.copyWith(
                           color: Colors.black,
                         ),
                       ),
@@ -196,7 +196,10 @@ class _ProfileViewState extends State<ProfileView> {
                               );
                         },
                         icon: Icon(Icons.edit, size: 24.sp),
-                        label: Text(t.editProfile),
+                        label: Text(
+                          t.editProfile,
+                          style: AppTextStyles.bodyLarge.copyWith(),
+                        ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.brandMint,
                           foregroundColor: Colors.white,

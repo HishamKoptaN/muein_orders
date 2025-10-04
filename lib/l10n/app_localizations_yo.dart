@@ -174,10 +174,10 @@ class AppLocalizationsYo extends AppLocalizations {
   String get emailRequired => 'Imeeli beere';
 
   @override
-  String get phoneNumberHint => 'Nomba fonu';
+  String get phoneNumberHint => 'nomba fonu';
 
   @override
-  String get phoneNumber => 'Nomba fonu';
+  String get phoneNumber => 'nomba fonu';
 
   @override
   String get countryHint => 'orílẹ̀-èdè';
@@ -220,6 +220,9 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get arabic => 'Larubawa';
+
+  @override
+  String get addDocumentation => 'Fi iwe kun';
 
   @override
   String get success => 'aseyori';
@@ -360,6 +363,9 @@ class AppLocalizationsYo extends AppLocalizations {
   String get next => 'tókàn';
 
   @override
+  String get documentationAndReviewIsUnderway => 'Iwe ati labẹ awotẹlẹ';
+
+  @override
   String get not_have_account => 'Ṣe ko ni akọọlẹ kan?';
 
   @override
@@ -409,6 +415,18 @@ class AppLocalizationsYo extends AppLocalizations {
       'Rii daju wípé awọn aworan ati nọmba to pe ti awọn ẹda Al-Qur\'an Mimọ ṣaaju fifiranṣẹ';
 
   @override
+  String get failure => 'lati kuna';
+
+  @override
+  String get accepted => 'Ti fọwọsi';
+
+  @override
+  String get approval => 'Ti fọwọsi';
+
+  @override
+  String get itHasNotBeenDocumentedUntilNow => 'Ko tii jẹri';
+
+  @override
   String get signUp => 'ṣiṣe alabapin';
 
   @override
@@ -449,7 +467,10 @@ class AppLocalizationsYo extends AppLocalizations {
   String get selectLanguage => 'Yan ede';
 
   @override
-  String get name => 'oruko';
+  String get numberOfRequests => 'Nọmba awọn ibeere';
+
+  @override
+  String get name => 'orukọ';
 
   @override
   String get welcomeLine1 => 'Kaabo';
@@ -486,8 +507,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ọna asopọ atunto ọrọ igbaniwọle ti firanṣẹ si imeeli rẹ.';
 
   @override
-  String get onboardingPage3Title =>
-      'Awọn iwe aṣẹ pẹlu awọn fọto ati awọn fidio';
+  String get onboardingPage3Title => 'Iwe pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get onboardingPage3Description =>
@@ -558,7 +578,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get cancel => 'ifagile';
 
   @override
-  String get save => 'Save';
+  String get save => 'fipamọ';
 
   @override
   String get editProfile => 'Ṣatunkọ profaili';
@@ -570,7 +590,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get uploadingDescription => 'Ikojọpọ bayi';
 
   @override
-  String get completedDescription => 'Ti kojọpọ ni aṣeyọri';
+  String get completedDescription => 'Ti gbejade ni aṣeyọri';
 
   @override
   String get failedDescription => 'Kuna lati po si';

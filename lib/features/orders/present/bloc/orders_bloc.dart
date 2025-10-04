@@ -3,11 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/error/api_error_model.dart';
-import '../../../docs/domain/entities/cached_doc_entity.dart';
 import '../../../docs/domain/repo/cached_docs_repo.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/usecases/orders_use_cases.dart';
-
 part 'orders_bloc.freezed.dart';
 part 'orders_event.dart';
 part 'orders_state.dart';

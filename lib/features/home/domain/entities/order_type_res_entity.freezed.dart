@@ -223,10 +223,12 @@ abstract class _OrderTypeResEntity implements OrderTypeResEntity {
 mixin _$PackageEntity {
   @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'quantity')
-  int? get quantity => throw _privateConstructorUsedError;
   @JsonKey(name: 'image')
   String? get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quantity')
+  int? get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'docs_count')
+  int? get docsCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'type')
   TypeEntity? get type => throw _privateConstructorUsedError;
 
@@ -245,8 +247,9 @@ abstract class $PackageEntityCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'quantity') int? quantity,
+      @JsonKey(name: 'docs_count') int? docsCount,
       @JsonKey(name: 'type') TypeEntity? type});
 
   $TypeEntityCopyWith<$Res>? get type;
@@ -268,8 +271,9 @@ class _$PackageEntityCopyWithImpl<$Res, $Val extends PackageEntity>
   @override
   $Res call({
     Object? id = freezed,
-    Object? quantity = freezed,
     Object? image = freezed,
+    Object? quantity = freezed,
+    Object? docsCount = freezed,
     Object? type = freezed,
   }) {
     return _then(_value.copyWith(
@@ -277,14 +281,18 @@ class _$PackageEntityCopyWithImpl<$Res, $Val extends PackageEntity>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      docsCount: freezed == docsCount
+          ? _value.docsCount
+          : docsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -317,8 +325,9 @@ abstract class _$$PackageEntityImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'quantity') int? quantity,
+      @JsonKey(name: 'docs_count') int? docsCount,
       @JsonKey(name: 'type') TypeEntity? type});
 
   @override
@@ -339,8 +348,9 @@ class __$$PackageEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? quantity = freezed,
     Object? image = freezed,
+    Object? quantity = freezed,
+    Object? docsCount = freezed,
     Object? type = freezed,
   }) {
     return _then(_$PackageEntityImpl(
@@ -348,14 +358,18 @@ class __$$PackageEntityImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      docsCount: freezed == docsCount
+          ? _value.docsCount
+          : docsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -369,26 +383,30 @@ class __$$PackageEntityImplCopyWithImpl<$Res>
 class _$PackageEntityImpl implements _PackageEntity {
   const _$PackageEntityImpl(
       {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'quantity') this.quantity,
       @JsonKey(name: 'image') this.image,
+      @JsonKey(name: 'quantity') this.quantity,
+      @JsonKey(name: 'docs_count') this.docsCount,
       @JsonKey(name: 'type') this.type});
 
   @override
   @JsonKey(name: 'id')
   final int? id;
   @override
+  @JsonKey(name: 'image')
+  final String? image;
+  @override
   @JsonKey(name: 'quantity')
   final int? quantity;
   @override
-  @JsonKey(name: 'image')
-  final String? image;
+  @JsonKey(name: 'docs_count')
+  final int? docsCount;
   @override
   @JsonKey(name: 'type')
   final TypeEntity? type;
 
   @override
   String toString() {
-    return 'PackageEntity(id: $id, quantity: $quantity, image: $image, type: $type)';
+    return 'PackageEntity(id: $id, image: $image, quantity: $quantity, docsCount: $docsCount, type: $type)';
   }
 
   @override
@@ -397,14 +415,17 @@ class _$PackageEntityImpl implements _PackageEntity {
         (other.runtimeType == runtimeType &&
             other is _$PackageEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
-            (identical(other.image, image) || other.image == image) &&
+            (identical(other.docsCount, docsCount) ||
+                other.docsCount == docsCount) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, quantity, image, type);
+  int get hashCode =>
+      Object.hash(runtimeType, id, image, quantity, docsCount, type);
 
   /// Create a copy of PackageEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -418,19 +439,23 @@ class _$PackageEntityImpl implements _PackageEntity {
 abstract class _PackageEntity implements PackageEntity {
   const factory _PackageEntity(
       {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'quantity') final int? quantity,
       @JsonKey(name: 'image') final String? image,
+      @JsonKey(name: 'quantity') final int? quantity,
+      @JsonKey(name: 'docs_count') final int? docsCount,
       @JsonKey(name: 'type') final TypeEntity? type}) = _$PackageEntityImpl;
 
   @override
   @JsonKey(name: 'id')
   int? get id;
   @override
+  @JsonKey(name: 'image')
+  String? get image;
+  @override
   @JsonKey(name: 'quantity')
   int? get quantity;
   @override
-  @JsonKey(name: 'image')
-  String? get image;
+  @JsonKey(name: 'docs_count')
+  int? get docsCount;
   @override
   @JsonKey(name: 'type')
   TypeEntity? get type;
@@ -449,6 +474,8 @@ mixin _$TypeEntity {
   int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'distributed_type')
+  String? get distributedType => throw _privateConstructorUsedError;
 
   /// Create a copy of TypeEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -464,7 +491,9 @@ abstract class $TypeEntityCopyWith<$Res> {
       _$TypeEntityCopyWithImpl<$Res, TypeEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'name') String? name});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'distributed_type') String? distributedType});
 }
 
 /// @nodoc
@@ -484,6 +513,7 @@ class _$TypeEntityCopyWithImpl<$Res, $Val extends TypeEntity>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? distributedType = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -493,6 +523,10 @@ class _$TypeEntityCopyWithImpl<$Res, $Val extends TypeEntity>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      distributedType: freezed == distributedType
+          ? _value.distributedType
+          : distributedType // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -507,7 +541,9 @@ abstract class _$$TypeEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'name') String? name});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'distributed_type') String? distributedType});
 }
 
 /// @nodoc
@@ -525,6 +561,7 @@ class __$$TypeEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? distributedType = freezed,
   }) {
     return _then(_$TypeEntityImpl(
       id: freezed == id
@@ -535,6 +572,10 @@ class __$$TypeEntityImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      distributedType: freezed == distributedType
+          ? _value.distributedType
+          : distributedType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -543,7 +584,9 @@ class __$$TypeEntityImplCopyWithImpl<$Res>
 
 class _$TypeEntityImpl implements _TypeEntity {
   const _$TypeEntityImpl(
-      {@JsonKey(name: 'id') this.id, @JsonKey(name: 'name') this.name});
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'distributed_type') this.distributedType});
 
   @override
   @JsonKey(name: 'id')
@@ -551,10 +594,13 @@ class _$TypeEntityImpl implements _TypeEntity {
   @override
   @JsonKey(name: 'name')
   final String? name;
+  @override
+  @JsonKey(name: 'distributed_type')
+  final String? distributedType;
 
   @override
   String toString() {
-    return 'TypeEntity(id: $id, name: $name)';
+    return 'TypeEntity(id: $id, name: $name, distributedType: $distributedType)';
   }
 
   @override
@@ -563,11 +609,13 @@ class _$TypeEntityImpl implements _TypeEntity {
         (other.runtimeType == runtimeType &&
             other is _$TypeEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.distributedType, distributedType) ||
+                other.distributedType == distributedType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, distributedType);
 
   /// Create a copy of TypeEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -580,8 +628,10 @@ class _$TypeEntityImpl implements _TypeEntity {
 
 abstract class _TypeEntity implements TypeEntity {
   const factory _TypeEntity(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'name') final String? name}) = _$TypeEntityImpl;
+          {@JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'distributed_type') final String? distributedType}) =
+      _$TypeEntityImpl;
 
   @override
   @JsonKey(name: 'id')
@@ -589,6 +639,9 @@ abstract class _TypeEntity implements TypeEntity {
   @override
   @JsonKey(name: 'name')
   String? get name;
+  @override
+  @JsonKey(name: 'distributed_type')
+  String? get distributedType;
 
   /// Create a copy of TypeEntity
   /// with the given fields replaced by the non-null parameter values.

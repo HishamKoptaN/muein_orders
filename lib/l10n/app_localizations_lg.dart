@@ -174,10 +174,10 @@ class AppLocalizationsLg extends AppLocalizations {
   String get emailRequired => 'Email yeetaagibwa';
 
   @override
-  String get phoneNumberHint => 'Ennamba y’essimu';
+  String get phoneNumberHint => 'ennamba y’essimu';
 
   @override
-  String get phoneNumber => 'Ennamba y’essimu';
+  String get phoneNumber => 'ennamba y’essimu';
 
   @override
   String get countryHint => 'eggwanga';
@@ -220,6 +220,9 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get arabic => 'Omuwalabu';
+
+  @override
+  String get addDocumentation => 'Okwongerako ebiwandiiko';
 
   @override
   String get success => 'okuyita';
@@ -360,6 +363,10 @@ class AppLocalizationsLg extends AppLocalizations {
   String get next => 'ekiddako';
 
   @override
+  String get documentationAndReviewIsUnderway =>
+      'Ebiwandiiko era nga byekenneenyezebwa';
+
+  @override
   String get not_have_account => 'Tolina akawunti?';
 
   @override
@@ -409,6 +416,18 @@ class AppLocalizationsLg extends AppLocalizations {
       'Kakasa nti ebifaananyi bitegeerekeka bulungi n’omuwendo omutuufu ogwa kkopi za Quran Entukuvu nga tonnasindika';
 
   @override
+  String get failure => 'okulemererwa';
+
+  @override
+  String get accepted => 'Okukkiriza';
+
+  @override
+  String get approval => 'Okukkiriza';
+
+  @override
+  String get itHasNotBeenDocumentedUntilNow => 'Tekinnaba kukakasibwa';
+
+  @override
   String get signUp => 'okuwandiika';
 
   @override
@@ -447,6 +466,9 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get selectLanguage => 'Londa olulimi';
+
+  @override
+  String get numberOfRequests => 'Omuwendo gw’okusaba';
 
   @override
   String get name => 'erinnya';
@@ -558,7 +580,7 @@ class AppLocalizationsLg extends AppLocalizations {
   String get cancel => 'okusazaamu';
 
   @override
-  String get save => 'Save';
+  String get save => 'okununula';
 
   @override
   String get editProfile => 'Edit profile';

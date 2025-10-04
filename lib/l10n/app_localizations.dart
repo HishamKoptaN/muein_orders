@@ -424,13 +424,13 @@ abstract class AppLocalizations {
   /// No description provided for @phoneNumberHint.
   ///
   /// In en, this message translates to:
-  /// **'Phone number'**
+  /// **'phone number'**
   String get phoneNumberHint;
 
   /// No description provided for @phoneNumber.
   ///
   /// In en, this message translates to:
-  /// **'Phone number'**
+  /// **'phone number'**
   String get phoneNumber;
 
   /// No description provided for @countryHint.
@@ -516,6 +516,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Arab'**
   String get arabic;
+
+  /// No description provided for @addDocumentation.
+  ///
+  /// In en, this message translates to:
+  /// **'Add documentation'**
+  String get addDocumentation;
 
   /// No description provided for @success.
   ///
@@ -787,6 +793,12 @@ abstract class AppLocalizations {
   /// **'the next'**
   String get next;
 
+  /// No description provided for @documentationAndReviewIsUnderway.
+  ///
+  /// In en, this message translates to:
+  /// **'Documented and under review'**
+  String get documentationAndReviewIsUnderway;
+
   /// No description provided for @not_have_account.
   ///
   /// In en, this message translates to:
@@ -872,6 +884,30 @@ abstract class AppLocalizations {
   String
       get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
 
+  /// No description provided for @failure.
+  ///
+  /// In en, this message translates to:
+  /// **'to fail'**
+  String get failure;
+
+  /// No description provided for @accepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get accepted;
+
+  /// No description provided for @approval.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get approval;
+
+  /// No description provided for @itHasNotBeenDocumentedUntilNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not yet verified'**
+  String get itHasNotBeenDocumentedUntilNow;
+
   /// No description provided for @signUp.
   ///
   /// In en, this message translates to:
@@ -950,10 +986,16 @@ abstract class AppLocalizations {
   /// **'Select language'**
   String get selectLanguage;
 
+  /// No description provided for @numberOfRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of requests'**
+  String get numberOfRequests;
+
   /// No description provided for @name.
   ///
   /// In en, this message translates to:
-  /// **'name'**
+  /// **'the name'**
   String get name;
 
   /// No description provided for @welcomeLine1.
@@ -1085,7 +1127,7 @@ abstract class AppLocalizations {
   /// No description provided for @documentingTheRequest.
   ///
   /// In en, this message translates to:
-  /// **'Document the request'**
+  /// **'Documenting the request'**
   String get documentingTheRequest;
 
   /// No description provided for @documentationProgress.
@@ -1157,7 +1199,7 @@ abstract class AppLocalizations {
   /// No description provided for @save.
   ///
   /// In en, this message translates to:
-  /// **'Save'**
+  /// **'save'**
   String get save;
 
   /// No description provided for @editProfile.

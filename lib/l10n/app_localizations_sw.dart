@@ -174,10 +174,10 @@ class AppLocalizationsSw extends AppLocalizations {
   String get emailRequired => 'Barua pepe inahitajika';
 
   @override
-  String get phoneNumberHint => 'Nambari ya simu';
+  String get phoneNumberHint => 'nambari ya simu';
 
   @override
-  String get phoneNumber => 'Nambari ya simu';
+  String get phoneNumber => 'nambari ya simu';
 
   @override
   String get countryHint => 'taifa';
@@ -220,6 +220,9 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get arabic => 'Mwarabu';
+
+  @override
+  String get addDocumentation => 'Ongeza nyaraka';
 
   @override
   String get success => 'mafanikio';
@@ -360,6 +363,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get next => 'ijayo';
 
   @override
+  String get documentationAndReviewIsUnderway => 'Imeandikwa na inakaguliwa';
+
+  @override
   String get not_have_account => 'Je, huna akaunti?';
 
   @override
@@ -371,7 +377,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get onboardingWelcomeDescription =>
-      'Suluhisho la kina la usimamizi wa agizo na nyaraka';
+      'Suluhisho la kina la usimamizi wa agizo na hati';
 
   @override
   String get onboardingTrackingTitle => 'Fuatilia maagizo yako';
@@ -407,6 +413,18 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
       'Hakikisha uwazi wa picha na idadi sahihi ya nakala za Kurani Tukufu kabla ya kutuma';
+
+  @override
+  String get failure => 'kushindwa';
+
+  @override
+  String get accepted => 'Imeidhinishwa';
+
+  @override
+  String get approval => 'Imeidhinishwa';
+
+  @override
+  String get itHasNotBeenDocumentedUntilNow => 'Bado haijathibitishwa';
 
   @override
   String get signUp => 'usajili';
@@ -447,6 +465,9 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get selectLanguage => 'Chagua lugha';
+
+  @override
+  String get numberOfRequests => 'Idadi ya maombi';
 
   @override
   String get name => 'jina';
@@ -557,7 +578,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get cancel => 'kughairiwa';
 
   @override
-  String get save => 'Save';
+  String get save => 'kuokoa';
 
   @override
   String get editProfile => 'Hariri wasifu';

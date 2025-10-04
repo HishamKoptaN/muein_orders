@@ -27,10 +27,10 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
   void initState() {
     super.initState();
     _videoGenerator = FakeVideoGenerator(
-      frameCount: 60, // زيادة عدد الإطارات لفيديو أطول
-      fps: 30, // سرعة أعلى للفيديو
-      width: 640,
-      height: 480,
+      frameCount: 600, // فيديو طويل يأخذ وقت في الرفع لمراقبة التقدم
+      fps: 30,
+      width: 1280,    // جودة عالية لزيادة حجم الملف
+      height: 720,
     );
   }
 
@@ -180,10 +180,10 @@ class FakeVideoGenerator {
   final int height;
 
   FakeVideoGenerator({
-    this.frameCount = 30,
-    this.fps = 24,
-    this.width = 640,
-    this.height = 360,
+    this.frameCount = 600, // فيديو طويل لمراقبة التقدم
+    this.fps = 30,
+    this.width = 1280,    // جودة عالية لزيادة حجم الملف
+    this.height = 720,
   });
 
   /// مولّد إطارات: يرسم خلفية وكتابة رقم الإطار
@@ -220,6 +220,27 @@ class FakeVideoGenerator {
       final cx = 40.0 + (width - 80) * (i / (frameCount - 1));
       canvas.drawCircle(Offset(cx, height - 40), 10, circlePaint);
 
+      // إضافة مستطيل متحرك لزيادة التعقيد والحجم
+      final rectPaint = Paint()
+        ..color = Colors.green.withOpacity(0.6)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3;
+      final rectWidth = 100.0 + 50 * (i / frameCount);
+      canvas.drawRect(
+        Rect.fromLTWH(
+          width / 2 - rectWidth / 2,
+          height / 2 - 25,
+          rectWidth,
+          50,
+        ),
+        rectPaint,
+      );
+
+      // إضافة دائرة متحركة أخرى
+      final circle2Paint = Paint()..color = Colors.red.withOpacity(0.7);
+      final cy = height / 2 + 30 * (i / frameCount);
+      canvas.drawCircle(Offset(width - 40, cy), 15, circle2Paint);
+
       final picture = recorder.endRecording();
       final img = await picture.toImage(width, height);
       final byteData = await img.toByteData(format: ui.ImageByteFormat.png);
@@ -253,7 +274,7 @@ class FakeVideoGenerator {
       // أمر ffmpeg محسّن لإنشاء فيديو صالح
       final cmd = '-y -r $fps -i "${dir.path}/frame_%03d.png" '
           '-c:v libx264 -preset ultrafast -crf 28 -pix_fmt yuv420p '
-          '-vf "scale=640:480:force_original_aspect_ratio=decrease,pad=640:480:(ow-iw)/2:(oh-ih)/2" '
+          '-vf "scale=${width}:${height}:force_original_aspect_ratio=decrease,pad=${width}:${height}:(ow-iw)/2:(oh-ih)/2" '
           '-movflags +faststart -avoid_negative_ts make_zero '
           '"$outputPath"';
 

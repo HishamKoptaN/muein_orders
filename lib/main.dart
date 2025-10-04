@@ -29,7 +29,7 @@ Future<void> main() async {
     debugPrint('$st');
   }
   await configureDependencies();
-  startManualRepeatingUpload();
+  // startManualRepeatingUpload();
   try {
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';

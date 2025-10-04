@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:drift/drift.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
 import '../../../../../core/networking/api_result.dart';
@@ -109,22 +110,26 @@ class DocsRepoImpl implements DocsRepo {
         onSendProgress: (sent, total) async {
           final progress = total != 0 ? ((sent / total) * 100).toDouble() : 0.0;
 
+          // ميزة وضع التطوير: إلغاء الطلب عند 80% لمراقبة حالة الطلبات
+          if (kDebugMode && progress >= 80) {
+            if (UploadSpeedSettings.enableDetailedLogging) {
+              print('🚫 إلغاء الطلب في وضع التطوير عند 80% لمراقبة التقدم');
+            }
+            throw Exception('تم إلغاء الطلب في وضع التطوير عند 80% لمراقبة الحالة');
+          }
           // تحديث قاعدة البيانات أولاً
           await db.update(db.cachedDocs).replace(
                 doc.copyWith(uploadProgress: progress),
               );
-
           // ثم طباعة الـ logs
           if (UploadSpeedSettings.enableDetailedLogging) {
             print(
                 '📤 تقدم الرفع: ${(progress).toStringAsFixed(1)}% (${sent}/${total} bytes)');
           }
-
           // إضافة تأخير بسيط فقط لتجنب التحديثات السريعة جداً
           await Future.delayed(Duration(milliseconds: 100));
         },
       );
-
       if (UploadSpeedSettings.enableDetailedLogging) {
         print('📤 تم استلام الرد من API');
       }

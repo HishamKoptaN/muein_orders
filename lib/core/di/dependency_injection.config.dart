@@ -82,7 +82,6 @@ import '../../features/profile/data/datasources/profile_api.dart' as _i191;
 import '../../features/profile/data/repo/profile_repo_impl.dart' as _i256;
 import '../../features/profile/domain/repo/profile_repo.dart' as _i364;
 import '../../features/profile/domain/use_cases/use_cases.dart' as _i291;
-import '../../features/profile/present/bloc/profile_bloc.dart' as _i475;
 import '../../features/theme/blocs/theme_bloc.dart' as _i307;
 import '../networking/network_info.dart' as _i303;
 import 'api_module.dart' as _i804;
@@ -208,8 +207,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()));
   gh.factory<_i781.NotificationsBloc>(
       () => _i781.NotificationsBloc(gh<_i139.NotificationsUseCases>()));
-  gh.lazySingleton<_i475.ProfileBloc>(
-      () => _i475.ProfileBloc(gh<_i291.ProfileUseCases>()));
   return getIt;
 }
 

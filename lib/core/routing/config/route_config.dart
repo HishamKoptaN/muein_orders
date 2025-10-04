@@ -6,8 +6,9 @@ import '../../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../../features/auth/sign_up/present/views/sign_up_views.dart';
-import '../../../features/docs/present/views/add_doc_view.dart';
-import '../../../features/home/present/home_view.dart';
+import '../../../features/docs/present/views/add_cached_doc_view.dart';
+import '../../../features/home/domain/entities/order_type_res_entity.dart';
+import '../../../features/home/present/view/home_view.dart';
 import '../../../features/language/view/select_language.dart';
 import '../../../features/onboarding/present/view/onboarding_view.dart';
 import '../../../features/orders/present/views/orders_view.dart';
@@ -51,10 +52,9 @@ class RouteConfig {
       createRoute(
         routeName: OrdersView.routeName,
         builder: (context, state) {
-          final packageId =
-              (state.extra as Map<String, dynamic>?)?['packageId'] as int? ?? 0;
+          final package = state.extra as PackageEntity;
           return OrdersView(
-            packageId: packageId,
+            package: package,
           );
         },
       ),
@@ -70,17 +70,14 @@ class RouteConfig {
         },
       ),
       createRoute(
-        routeName: AddDocView.routeName,
+        routeName: AddCachedDocView.routeName,
         builder: (context, state) {
           final args = state.extra as Map<String, dynamic>?;
           final orderId = args?['orderId'] as int?;
-
-          // التحقق من صحة orderId
           if (orderId == null || orderId == 0) {
             debugPrint('Invalid orderId: $orderId, using default value 0');
-            // يمكن إظهار رسالة خطأ أو إعادة توجيه
           }
-          return AddDocView(
+          return AddCachedDocView(
             orderId: orderId ?? 0,
           );
         },

@@ -1,6 +1,6 @@
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../../core/all_imports.dart';
+import '../../../../../../core/all_imports.dart';
 
 class ShimmerClientRow extends StatelessWidget {
   const ShimmerClientRow({super.key, required this.height});

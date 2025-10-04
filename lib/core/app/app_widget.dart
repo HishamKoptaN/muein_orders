@@ -27,11 +27,13 @@ class MubinOrdersApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(create: (_) {
-          final bloc = getIt<AuthBloc>()..add(const AuthEvent.check());
-          GlobalVariable.authBloc = bloc;
-          return bloc;
-        }),
+        BlocProvider<AuthBloc>(
+          create: (_) {
+            final bloc = getIt<AuthBloc>()..add(const AuthEvent.check());
+            GlobalVariable.authBloc = bloc;
+            return bloc;
+          },
+        ),
         BlocProvider<SignInBloc>(create: (_) => getIt<SignInBloc>()),
         BlocProvider<SignUpBloc>(create: (_) => getIt<SignUpBloc>()),
         BlocProvider<ForgotPassBloc>(create: (_) => getIt<ForgotPassBloc>()),

@@ -1,27 +1,30 @@
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:drift/drift.dart' hide Column;
 
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/routing/navigation_service.dart';
-import '../../../../../features/docs/present/views/add_doc_view.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../docs/data/datasources/local/drift/app_database.dart';
-import '../../../../docs/domain/entities/cached_doc_entity.dart';
 import '../../../domain/entities/orders_res_entity.dart';
-import '../pdf/sitcker_pdf_preview_view.dart';
+import 'order_action_buttons.dart';
+import 'order_documentation_status.dart';
 
 Widget buildOrderCard({
   required BuildContext context,
   required OrderEntity orderEntity,
+  required int orderDocsCount,
   required AppLocalizations t,
 }) {
   final db = getIt<AppDatabase>();
   return GestureDetector(
     onTap: () {
-      if (orderEntity.isDistributionPhotographed == false) {
-        NavigationService.navigateTo(
+      if (kDebugMode) {
+        _showTestMenu(
           context: context,
-          routeName: AddDocView.routeName,
-          arguments: {'orderId': orderEntity.id},
+          orderEntity: orderEntity,
+          db: db,
         );
       }
     },
@@ -44,272 +47,227 @@ Widget buildOrderCard({
           ],
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Row(
-                  children: [
-                    SizedBox(width: 6),
-                  ],
-                ),
-                Text(
-                  orderEntity.executionNum.toString(),
-                  style: const TextStyle(
-                    fontFamily: 'Almarai',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF323232),
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Row(
+                    children: [
+                      SizedBox(width: 6),
+                    ],
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 15),
-            SizedBox(
-              height: 200,
-              child: Builder(
-                builder: (context) {
-                  if (orderEntity.isDistributionPhotographed == true) {
-                    return _buildAcceptedWidget(
-                      status: t.documented,
-                      t: t,
-                      statusColor: const Color(0xFF0062B7),
-                    );
-                  }
-                  return StreamBuilder<List<CachedDoc>>(
-                    stream: db.watchDocs(orderId: orderEntity.id!).distinct(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                      if (snapshot.hasError) {
-                        return _buildMessage(
-                          key: const Key('error'),
-                          text: '❌ خطأ: ${snapshot.error}',
-                        );
-                      }
-                      final docs = snapshot.data ?? [];
-                      if (docs.isEmpty) {
-                        return _buildMessage(
-                          key: const Key('no_docs'),
-                          text: '📌 لا يوجد توثيق بعد',
-                        );
-                      }
-                      // إضافة تحديث إجباري للـ UI
-                      return ListView.builder(
-                        key: ValueKey(
-                          'docs_${docs.length}_${docs.fold(0.0, (sum, doc) => sum + (doc.uploadProgress))}',
-                        ),
-                        itemCount: docs.length,
-                        itemBuilder: (context, index) {
-                          final doc = docs[index];
-                          switch (doc.uploadStatus) {
-                            case 'pending':
-                              return _buildMessage(
-                                key: ValueKey('pending_$index'),
-                                text: '⏳ في الانتظار',
-                              );
-                            case 'uploading':
-                              return Column(
-                                key: ValueKey('uploading_$index'),
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  _buildMessage(
-                                    key: ValueKey('uploading_$index'),
-                                    text: 'جاري رفع التوثيق ${doc.orderId}',
-                                  ),
-                                  LinearProgressIndicator(
-                                    value: doc.uploadProgress / 100,
-                                    minHeight: 4,
-                                  ),
-                                  _buildMessage(
-                                    key: ValueKey('progress_$index'),
-                                    text: 'الحالة: ${doc.uploadStatus}, '
-                                        'Progress: ${doc.uploadProgress.toStringAsFixed(1)}%',
-                                  ),
-                                ],
-                              );
-                            case 'success':
-                              return _buildMessage(
-                                key: ValueKey('success_$index'),
-                                text: '✅ تم الرفع بنجاح',
-                              );
-                            case 'failure':
-                              return _buildMessage(
-                                key: ValueKey('failure_$index'),
-                                text: '❌ فشل الرفع',
-                              );
-                            default:
-                              return _buildMessage(
-                                key: ValueKey('default_$index'),
-                                text: 'بانتظار التوثيق...',
-                              );
-                          }
-                        },
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-            // OrderDocProgress(
-            //   orderId: order!.id!,
-            //   localDocsRepo: context.read<CachedDocsRepo>(),
-            // ),
-            // if (progress == 100) _buildDocumentedWidget(t),
-            // if (progress == null || progress == 0) _buildNotDocumentedWidget(t),
-            // if (progress != null && progress > 0 && progress < 100)
-            //   _buildProgressIndicator(progress, t),
-            const SizedBox(height: 8),
-            Center(
-              child: OutlinedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => PdfPreviewView(
-                        printedName: orderEntity.printedName ?? 'غير معروف',
-                        executionNum: orderEntity.executionNum ?? 'N/A',
-                      ),
+                  Text(
+                    orderEntity.executionNum.toString(),
+                    style: const TextStyle(
+                      fontFamily: 'Almarai',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF323232),
                     ),
-                  );
-                },
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Color(0xFF0062B7)),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
                   ),
-                ),
-                child: Text(
-                  t.sticker,
-                  style: const TextStyle(
-                    color: Color(0xFF0062B7),
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+                ],
               ),
-            ),
-            const SizedBox(height: 16),
-          ],
+              const SizedBox(height: 15),
+              buildOrderDocumentationStatus(
+                context: context,
+                orderEntity: orderEntity,
+                t: t,
+              ),
+              const SizedBox(height: 8),
+              buildOrderActionButtons(
+                orderEntity: orderEntity,
+                orderDocsCount: orderDocsCount,
+                t: t,
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
     ),
   );
 }
 
-Widget _buildMessage({required Key key, required String text}) {
-  return Text(
-    text,
-    style: const TextStyle(color: Color(0xFF757575)),
-  );
-}
-
-// Widget لعرض نسبة تقدم التوثيق
-Widget _buildProgressIndicator(double progress, AppLocalizations t) {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-    decoration: BoxDecoration(
-      color: const Color(0xFFF8F9FA),
-      borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: const Color(0xFFE9ECEF)),
-    ),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Icon(
-          Icons.upload_file,
-          size: 16,
-          color: Color(0xFF0062B7),
-        ),
-        const SizedBox(width: 6),
-        Text(
-          '${t.documentationProgress}: ${progress.toStringAsFixed(0)}%',
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF0062B7),
-            fontFamily: 'Almarai',
-          ),
-        ),
-        const SizedBox(width: 8),
-        SizedBox(
-          width: 60,
-          height: 4,
-          child: LinearProgressIndicator(
-            value: progress / 100,
-            backgroundColor: const Color(0xFFE9ECEF),
-            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF0062B7)),
-            borderRadius: BorderRadius.circular(2),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildErrorWidget(AppLocalizations t) {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-    decoration: BoxDecoration(
-      color: const Color(0xFFFFF3E0),
-      borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: const Color(0xFFFFCC02)),
-    ),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Icon(
-          Icons.warning_amber_rounded,
-          size: 16,
-          color: Color(0xFFFFA726),
-        ),
-        const SizedBox(width: 6),
-        Text(
-          t.notDocumented,
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFFFFA726),
-            fontFamily: 'Almarai',
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildAcceptedWidget({
-  required String status,
-  required AppLocalizations t,
-  required Color statusColor,
+void _showTestMenu({
+  required BuildContext context,
+  required OrderEntity orderEntity,
+  required AppDatabase db,
 }) {
-  return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-    decoration: BoxDecoration(
-      color: const Color(0xFFFFF3E0),
-      borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: const Color(0xFFFFCC02)),
-    ),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          status,
-          style: TextStyle(fontSize: 15, color: statusColor),
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'اختبار الطلب',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 16),
+            ListTile(
+              leading: const Icon(Icons.sync),
+              title: const Text('تغيير حالة الطلب'),
+              onTap: () {
+                Navigator.pop(context);
+                _changeOrderStatus(
+                  context: context,
+                  orderEntity: orderEntity,
+                  db: db,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.trending_up),
+              title: const Text('تغيير نسبة التقدم'),
+              onTap: () {
+                Navigator.pop(context);
+                _changeUploadProgress(
+                  context: context,
+                  orderEntity: orderEntity,
+                  db: db,
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.refresh),
+              title: const Text('إعادة تعيين العداد'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
-        const SizedBox(width: 6),
-        Container(
-          width: 13,
-          height: 13,
-          decoration: BoxDecoration(
-            color: statusColor,
-            shape: BoxShape.circle,
-          ),
+      );
+    },
+  );
+}
+
+void _changeOrderStatus(
+    {required BuildContext context,
+    required OrderEntity orderEntity,
+    required AppDatabase db}) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('تغيير حالة الطلب'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: const Text('معلق'),
+              onTap: () {
+                Navigator.pop(context);
+                _updateOrderStatus(
+                  db: db,
+                  orderId: orderEntity.id ?? 0,
+                  status: 'pending',
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('قيد التنفيذ'),
+              onTap: () {
+                Navigator.pop(context);
+                _updateOrderStatus(
+                  db: db,
+                  orderId: orderEntity.id ?? 0,
+                  status: 'uploading',
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('مكتمل'),
+              onTap: () {
+                Navigator.pop(context);
+                _updateOrderStatus(
+                  db: db,
+                  orderId: orderEntity.id ?? 0,
+                  status: 'success',
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('فاشل'),
+              onTap: () {
+                Navigator.pop(context);
+                _updateOrderStatus(
+                  db: db,
+                  orderId: orderEntity.id ?? 0,
+                  status: 'failure',
+                );
+              },
+            ),
+          ],
         ),
-      ],
+      );
+    },
+  );
+}
+
+void _changeUploadProgress(
+    {required BuildContext context,
+    required OrderEntity orderEntity,
+    required AppDatabase db}) {
+  final random = Random();
+  final progress = random.nextInt(100);
+
+  _updateUploadProgress(
+    db: db,
+    orderId: orderEntity.id ?? 0,
+    progress: progress,
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text('تم تغيير نسبة التقدم إلى: $progress%'),
+      duration: const Duration(seconds: 2),
     ),
   );
+}
+
+Future<void> _updateOrderStatus({
+  required AppDatabase db,
+  required int orderId,
+  required String status,
+}) async {
+  try {
+    await db.deleteDoc(orderId: orderId);
+    final newDoc = CachedDocsCompanion(
+      orderId: Value(orderId),
+      uploadStatus: Value(status),
+      uploadProgress: const Value(0),
+    );
+
+    await db.insertDoc(doc: newDoc);
+  } catch (e) {
+    debugPrint('خطأ في تحديث حالة الطلب: $e');
+  }
+}
+
+Future<void> _updateUploadProgress(
+    {required AppDatabase db,
+    required int orderId,
+    required int progress}) async {
+  try {
+    await db.deleteDoc(orderId: orderId);
+    final newDoc = CachedDocsCompanion(
+      orderId: Value(orderId),
+      uploadStatus: const Value('uploading'),
+      uploadProgress: Value(progress.toDouble()),
+    );
+
+    await db.insertDoc(doc: newDoc);
+  } catch (e) {
+    debugPrint('خطأ في تحديث نسبة التقدم: $e');
+  }
 }

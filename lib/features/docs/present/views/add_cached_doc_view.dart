@@ -13,18 +13,18 @@ import 'debug_auto_fill_tools.dart';
 import 'widgets/add_doc_fields.dart';
 import 'widgets/submit_button.dart';
 
-class AddDocView extends StatefulWidget {
-  const AddDocView({
+class AddCachedDocView extends StatefulWidget {
+  const AddCachedDocView({
     super.key,
     required this.orderId,
   });
-  static const String routeName = 'add-doc';
+  static const String routeName = 'add-cached-doc';
   final int orderId;
   @override
-  State<AddDocView> createState() => _AddDocViewState();
+  State<AddCachedDocView> createState() => _AddCachedDocViewState();
 }
 
-class _AddDocViewState extends State<AddDocView> {
+class _AddCachedDocViewState extends State<AddCachedDocView> {
   final ImagePicker imagePicker = ImagePicker();
   @override
   void initState() {

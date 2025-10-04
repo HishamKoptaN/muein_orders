@@ -15,8 +15,9 @@ class OrderTypeResEntity with _$OrderTypeResEntity {
 class PackageEntity with _$PackageEntity {
   const factory PackageEntity({
     @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'quantity') int? quantity,
     @JsonKey(name: 'image') String? image,
+    @JsonKey(name: 'quantity') int? quantity,
+    @JsonKey(name: 'docs_count') int? docsCount,
     @JsonKey(name: 'type') TypeEntity? type,
   }) = _PackageEntity;
 }
@@ -26,5 +27,6 @@ class TypeEntity with _$TypeEntity {
   const factory TypeEntity({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'distributed_type') String? distributedType,
   }) = _TypeEntity;
 }

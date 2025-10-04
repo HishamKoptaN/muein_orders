@@ -36,6 +36,12 @@ class AppDatabase extends _$AppDatabase {
     return (select(cachedDocs)..where((t) => t.orderId.equals(orderId)))
         .watch();
   }
+
+  Future<int> getDocsCount({required int orderId}) {
+    return (select(cachedDocs)..where((t) => t.orderId.equals(orderId)))
+        .get()
+        .then((docs) => docs.length);
+  }
 }
 
 LazyDatabase _openConnection() {

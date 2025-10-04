@@ -22,5 +22,6 @@ extension TypeModelMapper on Type {
   TypeEntity toEntity() => TypeEntity(
         id: id,
         name: name,
+        distributedType: distributedType,
       );
 }

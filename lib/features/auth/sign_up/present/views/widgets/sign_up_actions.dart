@@ -41,7 +41,7 @@ class SignUpActions extends StatelessWidget {
               child: formzSubmissionStatus.isInProgress
                   ? const CustomCircularProgress()
                   : Text(
-                      t.signUp,
+                      t.registerAnAccount,
                       style: const TextStyle(
                         fontFamily: 'Almarai',
                         fontSize: 17,

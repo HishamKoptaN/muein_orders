@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/widgets/custom_circular_progress.dart';
@@ -64,7 +63,7 @@ class SignInActions extends StatelessWidget {
                   );
                 },
                 child: Text(
-                  t.signUp,
+                  t.registerAnAccount,
                   style: const TextStyle(
                     fontFamily: 'Almarai',
                     fontSize: 14,

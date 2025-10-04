@@ -248,10 +248,12 @@ Package _$PackageFromJson(Map<String, dynamic> json) {
 mixin _$Package {
   @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'quantity')
-  int? get quantity => throw _privateConstructorUsedError;
   @JsonKey(name: 'image')
   String? get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'quantity')
+  int? get quantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'docs_count')
+  int? get docsCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'type')
   Type? get type => throw _privateConstructorUsedError;
 
@@ -271,8 +273,9 @@ abstract class $PackageCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'quantity') int? quantity,
+      @JsonKey(name: 'docs_count') int? docsCount,
       @JsonKey(name: 'type') Type? type});
 
   $TypeCopyWith<$Res>? get type;
@@ -294,8 +297,9 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
   @override
   $Res call({
     Object? id = freezed,
-    Object? quantity = freezed,
     Object? image = freezed,
+    Object? quantity = freezed,
+    Object? docsCount = freezed,
     Object? type = freezed,
   }) {
     return _then(_value.copyWith(
@@ -303,14 +307,18 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      docsCount: freezed == docsCount
+          ? _value.docsCount
+          : docsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -342,8 +350,9 @@ abstract class _$$PackageImplCopyWith<$Res> implements $PackageCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'image') String? image,
+      @JsonKey(name: 'quantity') int? quantity,
+      @JsonKey(name: 'docs_count') int? docsCount,
       @JsonKey(name: 'type') Type? type});
 
   @override
@@ -364,8 +373,9 @@ class __$$PackageImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? quantity = freezed,
     Object? image = freezed,
+    Object? quantity = freezed,
+    Object? docsCount = freezed,
     Object? type = freezed,
   }) {
     return _then(_$PackageImpl(
@@ -373,14 +383,18 @@ class __$$PackageImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      quantity: freezed == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      docsCount: freezed == docsCount
+          ? _value.docsCount
+          : docsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -394,8 +408,9 @@ class __$$PackageImplCopyWithImpl<$Res>
 class _$PackageImpl implements _Package {
   const _$PackageImpl(
       {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'quantity') this.quantity,
       @JsonKey(name: 'image') this.image,
+      @JsonKey(name: 'quantity') this.quantity,
+      @JsonKey(name: 'docs_count') this.docsCount,
       @JsonKey(name: 'type') this.type});
 
   factory _$PackageImpl.fromJson(Map<String, dynamic> json) =>
@@ -405,18 +420,21 @@ class _$PackageImpl implements _Package {
   @JsonKey(name: 'id')
   final int? id;
   @override
+  @JsonKey(name: 'image')
+  final String? image;
+  @override
   @JsonKey(name: 'quantity')
   final int? quantity;
   @override
-  @JsonKey(name: 'image')
-  final String? image;
+  @JsonKey(name: 'docs_count')
+  final int? docsCount;
   @override
   @JsonKey(name: 'type')
   final Type? type;
 
   @override
   String toString() {
-    return 'Package(id: $id, quantity: $quantity, image: $image, type: $type)';
+    return 'Package(id: $id, image: $image, quantity: $quantity, docsCount: $docsCount, type: $type)';
   }
 
   @override
@@ -425,15 +443,18 @@ class _$PackageImpl implements _Package {
         (other.runtimeType == runtimeType &&
             other is _$PackageImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
-            (identical(other.image, image) || other.image == image) &&
+            (identical(other.docsCount, docsCount) ||
+                other.docsCount == docsCount) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, quantity, image, type);
+  int get hashCode =>
+      Object.hash(runtimeType, id, image, quantity, docsCount, type);
 
   /// Create a copy of Package
   /// with the given fields replaced by the non-null parameter values.
@@ -454,8 +475,9 @@ class _$PackageImpl implements _Package {
 abstract class _Package implements Package {
   const factory _Package(
       {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'quantity') final int? quantity,
       @JsonKey(name: 'image') final String? image,
+      @JsonKey(name: 'quantity') final int? quantity,
+      @JsonKey(name: 'docs_count') final int? docsCount,
       @JsonKey(name: 'type') final Type? type}) = _$PackageImpl;
 
   factory _Package.fromJson(Map<String, dynamic> json) = _$PackageImpl.fromJson;
@@ -464,11 +486,14 @@ abstract class _Package implements Package {
   @JsonKey(name: 'id')
   int? get id;
   @override
+  @JsonKey(name: 'image')
+  String? get image;
+  @override
   @JsonKey(name: 'quantity')
   int? get quantity;
   @override
-  @JsonKey(name: 'image')
-  String? get image;
+  @JsonKey(name: 'docs_count')
+  int? get docsCount;
   @override
   @JsonKey(name: 'type')
   Type? get type;
@@ -491,6 +516,8 @@ mixin _$Type {
   int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'distributed_type')
+  String? get distributedType => throw _privateConstructorUsedError;
 
   /// Serializes this Type to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -507,7 +534,9 @@ abstract class $TypeCopyWith<$Res> {
       _$TypeCopyWithImpl<$Res, Type>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'name') String? name});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'distributed_type') String? distributedType});
 }
 
 /// @nodoc
@@ -527,6 +556,7 @@ class _$TypeCopyWithImpl<$Res, $Val extends Type>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? distributedType = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -536,6 +566,10 @@ class _$TypeCopyWithImpl<$Res, $Val extends Type>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      distributedType: freezed == distributedType
+          ? _value.distributedType
+          : distributedType // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -549,7 +583,9 @@ abstract class _$$TypeImplCopyWith<$Res> implements $TypeCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'name') String? name});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'distributed_type') String? distributedType});
 }
 
 /// @nodoc
@@ -566,6 +602,7 @@ class __$$TypeImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? distributedType = freezed,
   }) {
     return _then(_$TypeImpl(
       id: freezed == id
@@ -576,6 +613,10 @@ class __$$TypeImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      distributedType: freezed == distributedType
+          ? _value.distributedType
+          : distributedType // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -584,7 +625,9 @@ class __$$TypeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TypeImpl implements _Type {
   const _$TypeImpl(
-      {@JsonKey(name: 'id') this.id, @JsonKey(name: 'name') this.name});
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'distributed_type') this.distributedType});
 
   factory _$TypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$TypeImplFromJson(json);
@@ -595,10 +638,13 @@ class _$TypeImpl implements _Type {
   @override
   @JsonKey(name: 'name')
   final String? name;
+  @override
+  @JsonKey(name: 'distributed_type')
+  final String? distributedType;
 
   @override
   String toString() {
-    return 'Type(id: $id, name: $name)';
+    return 'Type(id: $id, name: $name, distributedType: $distributedType)';
   }
 
   @override
@@ -607,12 +653,14 @@ class _$TypeImpl implements _Type {
         (other.runtimeType == runtimeType &&
             other is _$TypeImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.distributedType, distributedType) ||
+                other.distributedType == distributedType));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, distributedType);
 
   /// Create a copy of Type
   /// with the given fields replaced by the non-null parameter values.
@@ -632,8 +680,10 @@ class _$TypeImpl implements _Type {
 
 abstract class _Type implements Type {
   const factory _Type(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'name') final String? name}) = _$TypeImpl;
+          {@JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'distributed_type') final String? distributedType}) =
+      _$TypeImpl;
 
   factory _Type.fromJson(Map<String, dynamic> json) = _$TypeImpl.fromJson;
 
@@ -643,6 +693,9 @@ abstract class _Type implements Type {
   @override
   @JsonKey(name: 'name')
   String? get name;
+  @override
+  @JsonKey(name: 'distributed_type')
+  String? get distributedType;
 
   /// Create a copy of Type
   /// with the given fields replaced by the non-null parameter values.

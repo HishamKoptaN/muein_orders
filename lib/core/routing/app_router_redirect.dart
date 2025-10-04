@@ -5,7 +5,8 @@ import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_views.dart';
-import '../../features/home/present/home_view.dart';
+import '../../features/docs/present/views/add_cached_doc_view.dart';
+import '../../features/home/present/view/home_view.dart';
 import '../../features/language/view/select_language.dart';
 import '../../features/onboarding/present/view/onboarding_view.dart';
 import '../../features/orders/present/views/orders_view.dart';
@@ -29,6 +30,7 @@ class AppRouterRedirect {
     OrdersView.routeName,
     InstructionsView.routeName,
     ProfileView.routeName,
+    AddCachedDocView.routeName,
   };
   static String? handleRedirect(
     BuildContext context,

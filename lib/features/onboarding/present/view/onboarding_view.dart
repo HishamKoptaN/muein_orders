@@ -7,7 +7,7 @@ import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../home/present/home_view.dart';
+import '../../../home/present/view/home_view.dart';
 import '../bloc/onboarding_bloc.dart';
 import 'widgets/onboarding_page.dart';
 

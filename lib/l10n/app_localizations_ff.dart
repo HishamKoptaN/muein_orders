@@ -175,10 +175,10 @@ class AppLocalizationsFf extends AppLocalizations {
   String get emailRequired => 'Imeel ina ɗaɓɓiree';
 
   @override
-  String get phoneNumberHint => 'Limoore telefoŋ';
+  String get phoneNumberHint => 'limoore telefoŋ';
 
   @override
-  String get phoneNumber => 'Limoore telefoŋ';
+  String get phoneNumber => 'limoore telefoŋ';
 
   @override
   String get countryHint => 'ngenndi';
@@ -221,6 +221,9 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get arabic => 'Arab';
+
+  @override
+  String get addDocumentation => 'Ɓeydu heen binndanɗe';
 
   @override
   String get success => 'jallorgal';
@@ -361,6 +364,9 @@ class AppLocalizationsFf extends AppLocalizations {
   String get next => 'ko arata';
 
   @override
+  String get documentationAndReviewIsUnderway => 'Binnditagol e nder ƴeewndo';
+
+  @override
   String get not_have_account => 'A alaa konte?';
 
   @override
@@ -410,6 +416,18 @@ class AppLocalizationsFf extends AppLocalizations {
       'Yenaneede laaɓal natal ngal e limoore laaɓtunde e nder Qur’aana tedduɗo oo hade maa neldude';
 
   @override
+  String get failure => 'ngam waasde';
+
+  @override
+  String get accepted => 'Jaɓɓi';
+
+  @override
+  String get approval => 'Jaɓɓi';
+
+  @override
+  String get itHasNotBeenDocumentedUntilNow => 'Hoolkisaaka tawo';
+
+  @override
   String get signUp => 'abonmaaji';
 
   @override
@@ -450,7 +468,10 @@ class AppLocalizationsFf extends AppLocalizations {
   String get selectLanguage => 'Suɓo ɗemngal';
 
   @override
-  String get name => 'inde';
+  String get numberOfRequests => 'Limre ɗaɓɓaande';
+
+  @override
+  String get name => 'innde nde';
 
   @override
   String get welcomeLine1 => 'Jabbama';
@@ -558,7 +579,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get cancel => 'ustude';
 
   @override
-  String get save => 'Save';
+  String get save => 'hisugo';
 
   @override
   String get editProfile => 'Waylu nate';

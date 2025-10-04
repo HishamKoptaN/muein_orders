@@ -166,16 +166,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login => 'تسجيل الدخول';
 
   @override
-  String get emailHint => 'بريد إلكتروني';
+  String get emailHint => 'البريد إلكتروني';
 
   @override
   String get emailRequired => 'البريد الإلكتروني مطلوب';
 
   @override
-  String get phoneNumberHint => 'رقم التليفون';
+  String get phoneNumberHint => 'رقم الهاتف';
 
   @override
-  String get phoneNumber => 'رقم التليفون';
+  String get phoneNumber => 'رقم الهاتف';
 
   @override
   String get countryHint => 'دولة';
@@ -218,6 +218,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get arabic => 'عربي';
+
+  @override
+  String get addDocumentation => 'إضافة توثيق';
 
   @override
   String get success => 'نجاح';
@@ -358,6 +361,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get next => 'التالي';
 
   @override
+  String get documentationAndReviewIsUnderway => 'تم التوثيق وجاري المراجعه';
+
+  @override
   String get not_have_account => 'ليس لديك حساب؟';
 
   @override
@@ -407,6 +413,18 @@ class AppLocalizationsAr extends AppLocalizations {
           'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال';
 
   @override
+  String get failure => 'فشل';
+
+  @override
+  String get accepted => 'تم الموافقة';
+
+  @override
+  String get approval => 'تم الاعتماد';
+
+  @override
+  String get itHasNotBeenDocumentedUntilNow => 'لم يتم التوثيق حتى الآن';
+
+  @override
   String get signUp => 'اشتراك';
 
   @override
@@ -447,7 +465,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get selectLanguage => 'اختر اللغة';
 
   @override
-  String get name => 'اسم';
+  String get numberOfRequests => 'عدد الطلبات';
+
+  @override
+  String get name => 'الاسم';
 
   @override
   String get welcomeLine1 => 'مرحباً';

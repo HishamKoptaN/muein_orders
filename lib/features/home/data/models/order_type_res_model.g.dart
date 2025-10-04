@@ -28,8 +28,9 @@ Map<String, dynamic> _$$OrderTypeResModelImplToJson(
 _$PackageImpl _$$PackageImplFromJson(Map<String, dynamic> json) =>
     _$PackageImpl(
       id: (json['id'] as num?)?.toInt(),
-      quantity: (json['quantity'] as num?)?.toInt(),
       image: json['image'] as String?,
+      quantity: (json['quantity'] as num?)?.toInt(),
+      docsCount: (json['docs_count'] as num?)?.toInt(),
       type: json['type'] == null
           ? null
           : Type.fromJson(json['type'] as Map<String, dynamic>),
@@ -38,18 +39,21 @@ _$PackageImpl _$$PackageImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$PackageImplToJson(_$PackageImpl instance) =>
     <String, dynamic>{
       if (instance.id case final value?) 'id': value,
-      if (instance.quantity case final value?) 'quantity': value,
       if (instance.image case final value?) 'image': value,
+      if (instance.quantity case final value?) 'quantity': value,
+      if (instance.docsCount case final value?) 'docs_count': value,
       if (instance.type?.toJson() case final value?) 'type': value,
     };
 
 _$TypeImpl _$$TypeImplFromJson(Map<String, dynamic> json) => _$TypeImpl(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
+      distributedType: json['distributed_type'] as String?,
     );
 
 Map<String, dynamic> _$$TypeImplToJson(_$TypeImpl instance) =>
     <String, dynamic>{
       if (instance.id case final value?) 'id': value,
       if (instance.name case final value?) 'name': value,
+      if (instance.distributedType case final value?) 'distributed_type': value,
     };

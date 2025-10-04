@@ -175,10 +175,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailRequired => 'Email required';
 
   @override
-  String get phoneNumberHint => 'Phone number';
+  String get phoneNumberHint => 'phone number';
 
   @override
-  String get phoneNumber => 'Phone number';
+  String get phoneNumber => 'phone number';
 
   @override
   String get countryHint => 'nation';
@@ -221,6 +221,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get arabic => 'Arab';
+
+  @override
+  String get addDocumentation => 'Add documentation';
 
   @override
   String get success => 'success';
@@ -362,6 +365,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get next => 'the next';
 
   @override
+  String get documentationAndReviewIsUnderway => 'Documented and under review';
+
+  @override
   String get not_have_account => 'Don\'t have an account?';
 
   @override
@@ -411,6 +417,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending';
 
   @override
+  String get failure => 'to fail';
+
+  @override
+  String get accepted => 'Approved';
+
+  @override
+  String get approval => 'Approved';
+
+  @override
+  String get itHasNotBeenDocumentedUntilNow => 'Not yet verified';
+
+  @override
   String get signUp => 'subscription';
 
   @override
@@ -451,7 +469,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectLanguage => 'Select language';
 
   @override
-  String get name => 'name';
+  String get numberOfRequests => 'Number of requests';
+
+  @override
+  String get name => 'the name';
 
   @override
   String get welcomeLine1 => 'Welcome';
@@ -522,7 +543,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get expenses => 'expenses';
 
   @override
-  String get documentingTheRequest => 'Document the request';
+  String get documentingTheRequest => 'Documenting the request';
 
   @override
   String get documentationProgress => 'Documentation progress';
@@ -559,7 +580,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel => 'cancellation';
 
   @override
-  String get save => 'Save';
+  String get save => 'save';
 
   @override
   String get editProfile => 'Edit profile';

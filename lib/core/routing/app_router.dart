@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/home/present/home_view.dart';
+import '../../features/auth/sign_in/present/views/sign_in_view.dart';
+import '../../features/home/present/view/home_view.dart';
 import '../../features/language/view/select_language.dart';
 import '../../features/onboarding/present/view/onboarding_view.dart';
 import '../app/global_variable.dart';
@@ -29,7 +30,7 @@ class AppRouter {
           return '/${HomeView.routeName}';
         },
         unauthenticated: () {
-          return '/${SelectLanguageView.routeName}';
+          return '/${SignInView.routeName}';
         },
       ),
       redirect: (context, state) {

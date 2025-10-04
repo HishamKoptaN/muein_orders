@@ -175,10 +175,10 @@ class AppLocalizationsAk extends AppLocalizations {
   String get emailRequired => 'Email ho hia';
 
   @override
-  String get phoneNumberHint => 'Telefon nɔma';
+  String get phoneNumberHint => 'telefon nɔma';
 
   @override
-  String get phoneNumber => 'Telefon nɔma';
+  String get phoneNumber => 'telefon nɔma';
 
   @override
   String get countryHint => 'ɔman';
@@ -199,7 +199,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get areYouSure => 'So wugye di sɛ wopɛ sɛ wufi mu?';
 
   @override
-  String get file_pick_failed => 'Fael a wɔpaw no antumi anyɛ yiye';
+  String get file_pick_failed => 'Fael a wɔpaw no antumi';
 
   @override
   String get order_saving => 'Sikakorabea abisade...';
@@ -221,6 +221,9 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get arabic => 'Arabfoɔ';
+
+  @override
+  String get addDocumentation => 'Fa nkrataa ka ho';
 
   @override
   String get success => 'nkunimdie';
@@ -361,6 +364,10 @@ class AppLocalizationsAk extends AppLocalizations {
   String get next => 'nea edi hɔ no';
 
   @override
+  String get documentationAndReviewIsUnderway =>
+      'Wɔakyerɛw ato hɔ na wɔrehwɛ mu';
+
+  @override
   String get not_have_account => 'Wonni akontaabu biara?';
 
   @override
@@ -410,6 +417,18 @@ class AppLocalizationsAk extends AppLocalizations {
       'Hwɛ sɛ mfonini ahorow no mu da hɔ na Kuran Kronkron no dodow a ɛfata ansa na wode amena';
 
   @override
+  String get failure => 'sɛ wobedi nkogu';
+
+  @override
+  String get accepted => 'Agye atom';
+
+  @override
+  String get approval => 'Agye atom';
+
+  @override
+  String get itHasNotBeenDocumentedUntilNow => 'Wɔnnya nhuu sɛ ɛyɛ nokware';
+
+  @override
   String get signUp => 'nkrataahyɛ a wɔde kra';
 
   @override
@@ -450,7 +469,10 @@ class AppLocalizationsAk extends AppLocalizations {
   String get selectLanguage => 'Paw kasa';
 
   @override
-  String get name => 'din';
+  String get numberOfRequests => 'Nnipa dodow a wɔsrɛɛ';
+
+  @override
+  String get name => 'edin no';
 
   @override
   String get welcomeLine1 => 'Akwaaba';
@@ -521,7 +543,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get expenses => 'ɛka';
 
   @override
-  String get documentingTheRequest => 'Abisade no ho nkrataa a wɔkyerɛw';
+  String get documentingTheRequest => 'Kyerɛw abisade no to hɔ';
 
   @override
   String get documentationProgress => 'Nkɔso a ɛwɔ nkrataakyerɛw mu';
@@ -552,13 +574,13 @@ class AppLocalizationsAk extends AppLocalizations {
   String get unknown => 'nnim';
 
   @override
-  String get startUpload => 'Fi ase fa to so';
+  String get startUpload => 'Fi ase fa upload gu so';
 
   @override
   String get cancel => 'a wɔtwa mu';
 
   @override
-  String get save => 'Save';
+  String get save => 'kora';
 
   @override
   String get editProfile => 'Sesa profile no';
