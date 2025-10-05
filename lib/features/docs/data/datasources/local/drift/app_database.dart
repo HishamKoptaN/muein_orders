@@ -32,22 +32,27 @@ class AppDatabase extends _$AppDatabase {
     return (delete(cachedDocs)..where((t) => t.orderId.equals(orderId))).go();
   }
 
+  Stream<List<CachedDoc>> watchAllDocs() {
+    return select(cachedDocs).watch();
+  }
+
   Stream<List<CachedDoc>> watchDocs({required int orderId}) {
     return (select(cachedDocs)..where((t) => t.orderId.equals(orderId)))
         .watch();
   }
 
-  Future<int> getDocsCount({required int orderId}) {
-    return (select(cachedDocs)..where((t) => t.orderId.equals(orderId)))
-        .get()
-        .then((docs) => docs.length);
+  Stream<int> watchUploadingDocsCount() {
+    return (select(cachedDocs)
+          ..where((t) => t.uploadStatus.equals('uploading')))
+        .watch()
+        .map((docs) => docs.length);
   }
-}
 
-LazyDatabase _openConnection() {
-  return LazyDatabase(() async {
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dir.path, 'app_db.sqlite'));
-    return NativeDatabase(file);
-  });
+  static LazyDatabase _openConnection() {
+    return LazyDatabase(() async {
+      final dir = await getApplicationDocumentsDirectory();
+      final file = File(p.join(dir.path, 'app_db.sqlite'));
+      return NativeDatabase(file);
+    });
+  }
 }

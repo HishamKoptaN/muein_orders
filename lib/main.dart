@@ -1,5 +1,5 @@
-// ignore: unused_import
-import 'core/database/shared_pref_helper.dart';
+import 'core/app/app_widget.dart';
+import 'core/background/workmanager_initializer.dart';
 import 'core/config/app_initializer.dart';
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,15 +11,14 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl_standalone.dart';
 import 'package:path_provider/path_provider.dart';
-import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
 import 'core/app_observer.dart';
-import 'core/background/manual_uploader.dart';
 import 'core/di/dependency_injection.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
@@ -29,7 +28,10 @@ Future<void> main() async {
     debugPrint('$st');
   }
   await configureDependencies();
-  // startManualRepeatingUpload();
+  final workManager = getIt<WorkManagerInitializer>();
+  await workManager.initialize();
+  await workManager.registerSystemUploadTask(); 
+  await workManager.startRealtimeUploads();
   try {
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';
@@ -56,6 +58,7 @@ Future<void> main() async {
     );
   }
 }
+
 void _handleError({
   required Object error,
   required StackTrace stackTrace,

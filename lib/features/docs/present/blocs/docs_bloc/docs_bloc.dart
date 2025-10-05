@@ -7,7 +7,6 @@ import '../../../../../core/entities/meta_entity.dart';
 import '../../../../../core/error/api_error_model.dart';
 import '../../../domain/entities/docs_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
-import '../../../../../core/background/background_upload_task.dart';
 part 'docs_bloc.freezed.dart';
 part 'docs_event.dart';
 part 'docs_state.dart';
@@ -36,29 +35,29 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
           getDocs: (orderId) async {
             try {
               final res = await docsUseCase.getDocs(orderId: orderId);
-              // await res.when(
-              //   success: (
-              //     res,
-              //   ) async {
-              //     _allDocs = [..._allDocs ?? [], ...res?.docs ?? []];
-              //     _meta = res?.meta ?? const MetaEntity();
-              //     emitCustomLoaded(
-              //       emit: emit,
-              //     );
-              //   },
-              //   failure: (
-              //     apiErrorModel,
-              //   ) async {
-              //     emit(
-              //       DocsState.getDocsfailure(
-              //         apiErrorModel: apiErrorModel,
-              //       ),
-              //     );
-              //     emitCustomLoaded(
-              //       emit: emit,
-              //     );
-              //   },
-              // );
+              await res.when(
+                success: (
+                  res,
+                ) async {
+                  _allDocs = [..._allDocs ?? [], ...res?.docs ?? []];
+                  _meta = res?.meta ?? const MetaEntity();
+                  emitCustomLoaded(
+                    emit: emit,
+                  );
+                },
+                failure: (
+                  apiErrorModel,
+                ) async {
+                  emit(
+                    DocsState.failure(
+                      apiErrorModel: apiErrorModel,
+                    ),
+                  );
+                  emitCustomLoaded(
+                    emit: emit,
+                  );
+                },
+              );
             } catch (e) {
               emit(
                 DocsState.failure(
@@ -102,7 +101,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
             );
           },
           checkPendingUploads: () async {
-            await BackgroundUploadTask.startBackgroundUpload();
+            // await BackgroundUploadTask.startBackgroundUpload();
           },
         );
       },

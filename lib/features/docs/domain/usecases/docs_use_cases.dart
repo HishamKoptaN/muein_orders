@@ -12,25 +12,24 @@ import '../../data/datasources/local/drift/app_database.dart';
 
 @lazySingleton
 class DocsUseCase {
-  final DocsRepo ordersRepo;
+  final DocsRepo docsRepo;
   final CachedDocsRepo cachedDocsRepo;
   DocsUseCase({
-    required this.ordersRepo,
+    required this.docsRepo,
     required this.cachedDocsRepo,
   });
   Future<ApiResult<DocsResEntity?>> getDocs({required int orderId}) async {
-    return await ordersRepo.getDocs(orderId: orderId);
+    return await docsRepo.getDocs(orderId: orderId);
   }
 
-  Future<({double lat, double lng})> getCurrentLocation() {
-    return ordersRepo.getCurrentLocation();
-  }
 
   Future<ApiResult<DocEntity?>> createDoc({
     required CachedDoc doc,
+    required Function onSendProgress,
   }) async {
-    return await ordersRepo.createDoc(
+    return await docsRepo.createDoc(
       doc: doc,
+      onSendProgress: onSendProgress,
     );
   }
 
@@ -41,29 +40,14 @@ class DocsUseCase {
   }
 
   Future<ApiResult<void>> startUpload({required int orderId}) async {
-    return await ordersRepo.startUpload(orderId: orderId);
+    return await docsRepo.startUpload(orderId: orderId);
   }
 
   Future<ApiResult<void>> retryUpload({required int docId}) async {
-    return await ordersRepo.retryUpload(docId: docId);
+    return await docsRepo.retryUpload(docId: docId);
   }
-  // /// بدء رفع التوثيق في الخلفية
-  // Future<void> startBackgroundUpload(int orderId) async {
-  //   // التحقق من صحة orderId
-  //   if (orderId <= 0) {
-  //     throw ArgumentError('معرف الطلب غير صحيح: $orderId');
-  //   }
 
-  //   await ordersRepo.startBackgroundUpload(orderId);
-  // }
-
-  // /// الحصول على نسبة تقدم التوثيق المحلي
-  // Future<double> getLocalDocProgress(int orderId) async {
-  //   // التحقق من صحة orderId
-  //   if (orderId <= 0) {
-  //     throw ArgumentError('معرف الطلب غير صحيح: $orderId');
-  //   }
-
-  //   return await ordersRepo.getLocalDocProgress(orderId);
-  // }
+  Stream<List<CachedDocEntity>> watchUploadingDocs() {
+    return cachedDocsRepo.watchUploadingDocs();
+  }
 }

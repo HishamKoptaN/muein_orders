@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
-import 'package:location/location.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/config/upload_settings.dart';
 import '../../../../core/error/api_error_handler.dart';
@@ -16,8 +16,9 @@ import '../mapper/docs_mapper.dart';
 @Injectable(as: DocsRepo)
 class DocsRepoImpl implements DocsRepo {
   final DocsApi postsApi;
-  final Location location = Location();
   final AppDatabase db;
+  final FlutterLocalNotificationsPlugin _notifications = FlutterLocalNotificationsPlugin();
+
   DocsRepoImpl({
     required this.postsApi,
     required this.db,
@@ -39,34 +40,46 @@ class DocsRepoImpl implements DocsRepo {
     }
   }
 
-  @override
-  Future<({double lat, double lng})> getCurrentLocation() async {
-    bool serviceEnabled = await location.serviceEnabled();
-    if (!serviceEnabled) {
-      serviceEnabled = await location.requestService();
-      if (!serviceEnabled) throw Exception('Location service disabled');
-    }
+  /// تهيئة الإشعارات
+  Future<void> _initializeNotifications() async {
+    const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const initSettings = InitializationSettings(android: androidInit);
+    await _notifications.initialize(initSettings);
+  }
 
-    PermissionStatus permissionGranted = await location.hasPermission();
-    if (permissionGranted == PermissionStatus.denied) {
-      permissionGranted = await location.requestPermission();
-      if (permissionGranted != PermissionStatus.granted) {
-        throw Exception('Location permission not granted');
-      }
-    }
-
-    final locationData = await location.getLocation();
-    return (
-      lat: locationData.latitude!,
-      lng: locationData.longitude!,
+  /// إظهار إشعار التقدم
+  Future<void> _showProgressNotification(CachedDoc doc, double progress) async {
+    final androidDetails = AndroidNotificationDetails(
+      'upload_channel',
+      'رفع الملفات',
+      channelDescription: 'عرض تقدم الرفع',
+      importance: Importance.low,
+      priority: Priority.low,
+      showProgress: true,
+      maxProgress: 100,
+      progress: progress.toInt(),
+      onlyAlertOnce: true,
+      ongoing: true,
+      playSound: false,
+    );
+    await _notifications.show(
+      doc.id ?? 0,
+      'رفع التوثيق',
+      'جاري رفع طلب ${doc.orderId} (${progress.toInt()}%)',
+      NotificationDetails(android: androidDetails),
     );
   }
+
 
   @override
   Future<ApiResult<DocEntity?>> createDoc({
     required CachedDoc doc,
+    required Function onSendProgress,
   }) async {
     try {
+      // تهيئة الإشعارات
+      await _initializeNotifications();
+
       if (UploadSpeedSettings.enableDetailedLogging) {
         print('📤 بدء رفع doc id=${doc.id} للطلب ${doc.orderId}');
       }
@@ -82,7 +95,6 @@ class DocsRepoImpl implements DocsRepo {
       final imageTwoFile = fileFromPath(doc.imageTwo);
       final videoOneFile = fileFromPath(doc.videoOne);
       final videoTwoFile = fileFromPath(doc.videoTwo);
-
       if (UploadSpeedSettings.enableDetailedLogging) {
         print('📤 ملفات الرفع:');
         print(
@@ -121,6 +133,8 @@ class DocsRepoImpl implements DocsRepo {
           await db.update(db.cachedDocs).replace(
                 doc.copyWith(uploadProgress: progress),
               );
+          // إظهار إشعار التقدم
+          await _showProgressNotification(doc, progress);
           // ثم طباعة الـ logs
           if (UploadSpeedSettings.enableDetailedLogging) {
             print(

@@ -1,7 +1,7 @@
-// core/di/injection_module.dart
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -13,7 +13,9 @@ abstract class InjectionModule {
   @lazySingleton
   InternetConnection get connectionChecker =>
       InternetConnection.createInstance();
-
+  @lazySingleton
+  FlutterLocalNotificationsPlugin get notificationsPlugin =>
+      FlutterLocalNotificationsPlugin();
   // Firebase services
   @lazySingleton
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;

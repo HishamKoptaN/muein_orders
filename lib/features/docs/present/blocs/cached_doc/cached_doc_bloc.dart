@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/all_imports.dart';
+import '../../../../../core/services/notification_manager.dart';
 import '../../../domain/entities/cached_doc_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
 
@@ -24,14 +27,30 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
   GenericFormzInput<double>? _shippingCosts;
   FormzSubmissionStatus? _formzSubmissionStatus;
   double? _localDocProgress;
+  // final NotificationManager notificationManager;
+  StreamSubscription? _subscription;
   CachedDocBloc(
     this._docsUseCase,
+    // this.notificationManager,
   ) : super(
           const CachedDocState.loading(),
         ) {
     on<CachedDocEvent>(
       (event, emit) async {
         await event.whenOrNull(
+          // started: () {
+          //   _subscription = _docsUseCase.watchUploadingDocs().listen((docs) {
+          //     add(CachedDocEvent.docsUpdated(docs));
+          //   });
+          // },
+          // docsUpdated: (docs) async {
+          //   for (final doc in event.docs) {
+          //     await notificationManager.updateProgressNotification(doc);
+          //     emitCustomLoaded(
+          //       emit: emit,
+          //     );
+          //   }
+          // },
           updateData: (
             orderId,
             imageOne,
@@ -42,9 +61,6 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
             longitude,
             shippingCost,
           ) async {
-            debugPrint(
-                '🔄 تحديث البيانات في CachedDocBloc: orderId=${orderId?.value}, shippingCost=${shippingCost?.value}');
-            // الاحتفاظ بالقيم الموجودة وتحديث القيم الجديدة فقط
             _orderId = orderId ?? _orderId;
             _imageOne = imageOne ?? _imageOne;
             _imageTwo = imageTwo ?? _imageTwo;
@@ -53,10 +69,6 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
             _latitude = latitude ?? _latitude;
             _longitude = longitude ?? _longitude;
             _shippingCosts = shippingCost ?? _shippingCosts;
-
-            debugPrint(
-                '🔄 القيم بعد التحديث: _orderId=${_orderId?.value}, _shippingCosts=${_shippingCosts?.value}');
-
             emitCustomLoaded(
               emit: emit,
             );
@@ -133,5 +145,11 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
         cachedProgress: _localDocProgress,
       ),
     );
+  }
+
+  @override
+  Future<void> close() {
+    _subscription?.cancel();
+    return super.close();
   }
 }

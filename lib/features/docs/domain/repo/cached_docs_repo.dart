@@ -2,6 +2,8 @@ import '../../../../core/networking/api_result.dart';
 import '../entities/cached_doc_entity.dart';
 
 abstract class CachedDocsRepo {
+  Future<({double lat, double lng})> getCurrentLocation();
+
   Future<ApiResult<void>> cachedDoc({
     required CachedDocEntity doc,
   });
@@ -13,4 +15,5 @@ abstract class CachedDocsRepo {
     required UploadStatus status,
     required double? progress,
   });
+  Stream<List<CachedDocEntity>> watchUploadingDocs();
 }

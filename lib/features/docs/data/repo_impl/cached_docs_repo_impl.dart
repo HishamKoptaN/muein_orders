@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:location/location.dart';
 import '../../../../core/error/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/cached_doc_entity.dart';
@@ -11,10 +11,34 @@ import '../datasources/local/drift/app_database.dart';
 import '../datasources/local/drift/mappers.dart';
 
 @LazySingleton(as: CachedDocsRepo)
-class LocalDocsRepoImpl implements CachedDocsRepo {
+class CachedDocsRepoImpl implements CachedDocsRepo {
   final AppDatabase _db;
+  final Location location = Location();
 
-  LocalDocsRepoImpl(this._db);
+  CachedDocsRepoImpl(this._db);
+
+  @override
+  Future<({double lat, double lng})> getCurrentLocation() async {
+    bool serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) throw Exception('Location service disabled');
+    }
+
+    PermissionStatus permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        throw Exception('Location permission not granted');
+      }
+    }
+
+    final locationData = await location.getLocation();
+    return (
+      lat: locationData.latitude!,
+      lng: locationData.longitude!,
+    );
+  }
 
   @override
   Future<ApiResult<void>> cachedDoc({required CachedDocEntity doc}) async {
@@ -95,5 +119,13 @@ class LocalDocsRepoImpl implements CachedDocsRepo {
         apiErrorModel: ApiErrorModel(message: e.toString()),
       );
     }
+  }
+
+  @override
+  Stream<List<CachedDocEntity>> watchUploadingDocs() {
+    return (_db.select(_db.cachedDocs)
+          ..where((tbl) => tbl.uploadStatus.equals('uploading')))
+        .watch()
+        .map((rows) => rows.map((e) => e.toEntity()).toList());
   }
 }

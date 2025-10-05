@@ -12,6 +12,8 @@
 import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:firebase_messaging/firebase_messaging.dart' as _i892;
+import 'package:flutter_local_notifications/flutter_local_notifications.dart'
+    as _i163;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -49,8 +51,8 @@ import '../../features/docs/data/datasources/local/drift/app_database.dart'
     as _i65;
 import '../../features/docs/data/datasources/remote_data_sr/docs_api.dart'
     as _i977;
+import '../../features/docs/data/repo_impl/cached_docs_repo_impl.dart' as _i913;
 import '../../features/docs/data/repo_impl/docs_repo_impl.dart' as _i430;
-import '../../features/docs/data/repo_impl/local_docs_repo_impl.dart' as _i98;
 import '../../features/docs/domain/repo/cached_docs_repo.dart' as _i46;
 import '../../features/docs/domain/repo/docs_repo.dart' as _i672;
 import '../../features/docs/domain/usecases/docs_use_cases.dart' as _i689;
@@ -83,7 +85,9 @@ import '../../features/profile/data/repo/profile_repo_impl.dart' as _i256;
 import '../../features/profile/domain/repo/profile_repo.dart' as _i364;
 import '../../features/profile/domain/use_cases/use_cases.dart' as _i291;
 import '../../features/theme/blocs/theme_bloc.dart' as _i307;
+import '../background/workmanager_initializer.dart' as _i996;
 import '../networking/network_info.dart' as _i303;
+import '../services/notification_manager.dart' as _i105;
 import 'api_module.dart' as _i804;
 import 'injection_module.dart' as _i212;
 
@@ -108,9 +112,13 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i708.OnboardingBloc>(() => _i708.OnboardingBloc());
   gh.factory<_i307.ThemeBloc>(() => _i307.ThemeBloc());
   gh.singleton<_i804.LoggingInterceptor>(() => _i804.LoggingInterceptor());
+  gh.lazySingleton<_i996.WorkManagerInitializer>(
+      () => _i996.WorkManagerInitializer());
   gh.lazySingleton<_i804.TokenStorage>(() => _i804.TokenStorage());
   gh.lazySingleton<_i161.InternetConnection>(
       () => injectionModule.connectionChecker);
+  gh.lazySingleton<_i163.FlutterLocalNotificationsPlugin>(
+      () => injectionModule.notificationsPlugin);
   gh.lazySingleton<_i59.FirebaseAuth>(() => injectionModule.firebaseAuth);
   gh.lazySingleton<_i892.FirebaseMessaging>(
       () => injectionModule.firebaseMessaging);
@@ -118,9 +126,11 @@ Future<_i174.GetIt> $initGetIt(
       () => injectionModule.secureStorage);
   gh.lazySingleton<_i65.AppDatabase>(() => _i65.AppDatabase());
   gh.lazySingleton<_i46.CachedDocsRepo>(
-      () => _i98.LocalDocsRepoImpl(gh<_i65.AppDatabase>()));
+      () => _i913.CachedDocsRepoImpl(gh<_i65.AppDatabase>()));
   gh.lazySingleton<_i614.ForgotPassRepo>(
       () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()));
+  gh.lazySingleton<_i105.NotificationManager>(() =>
+      _i105.NotificationManager(gh<_i163.FlutterLocalNotificationsPlugin>()));
   gh.singleton<_i804.AuthInterceptor>(
       () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()));
   gh.factory<_i629.SendPassResetEmailUseCase>(
@@ -188,7 +198,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i802.OrdersUseCases>(
       () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()));
   gh.lazySingleton<_i689.DocsUseCase>(() => _i689.DocsUseCase(
-        ordersRepo: gh<_i672.DocsRepo>(),
+        docsRepo: gh<_i672.DocsRepo>(),
         cachedDocsRepo: gh<_i46.CachedDocsRepo>(),
       ));
   gh.factory<_i139.NotificationsUseCases>(

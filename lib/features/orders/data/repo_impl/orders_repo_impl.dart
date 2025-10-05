@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/error/api_error_handler.dart';
 import '../../../../core/mapper/meta_mapper.dart';
+import '../../../docs/domain/entities/cached_doc_entity.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/repo/orders_repo.dart';
 import '../datasources/orders_api.dart';
@@ -98,4 +99,5 @@ class OrdersRepoImpl implements OrdersRepo {
       );
     }
   }
+
 }

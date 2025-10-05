@@ -5,6 +5,7 @@ import '../../../../core/all_imports.dart';
 import '../../../../core/extensions/locale_extensions.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/notification_icon.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../drawer/my_drawer.dart';
