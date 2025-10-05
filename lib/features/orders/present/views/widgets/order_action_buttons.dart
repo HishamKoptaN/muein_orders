@@ -6,19 +6,20 @@ import '../../../../../l10n/app_localizations.dart';
 import '../../../../docs/data/datasources/local/drift/app_database.dart';
 import '../../../../docs/present/views/add_cached_doc_view.dart';
 import '../../../domain/entities/orders_res_entity.dart';
+import '../../../../home/domain/entities/order_type_res_entity.dart';
 import '../pdf/sitcker_pdf_preview_view.dart';
 
 Widget buildOrderActionButtons({
   required OrderEntity orderEntity,
   required int orderDocsCount,
   required AppLocalizations t,
+  required PackageEntity package,
 }) {
   return Center(
     child: FutureBuilder<int>(
       future: getIt<AppDatabase>().getAllDocs().then(
-            (allDocs) => allDocs
-                .where((doc) => doc.orderId == orderEntity.id)
-                .length,
+            (allDocs) =>
+                allDocs.where((doc) => doc.orderId == orderEntity.id).length,
           ),
       builder: (context, snapshot) {
         final currentDocsCount = snapshot.data ?? 0;
@@ -35,14 +36,15 @@ Widget buildOrderActionButtons({
                       routeName: AddCachedDocView.routeName,
                       arguments: {
                         'orderId': orderEntity.id,
+                        'package': package,
                       },
                     );
                   },
                   icon: const Icon(
-                    Icons.add_photo_alternate,
+                    Icons.add,
                     color: Colors.white,
                   ),
-                  label: Text(t.addDocumentation ?? 'إضافة توثيق'),
+                  label: Text(t.addDocumentation),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
@@ -64,8 +66,7 @@ Widget buildOrderActionButtons({
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => PdfPreviewView(
-                        printedName:
-                            orderEntity.printedName ?? 'غير معروف',
+                        printedName: orderEntity.printedName ?? 'غير معروف',
                         executionNum: orderEntity.executionNum ?? 'N/A',
                       ),
                     ),

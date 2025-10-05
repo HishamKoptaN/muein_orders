@@ -7,7 +7,7 @@ part 'language_bloc.freezed.dart';
 part 'language_event.dart';
 part 'language_state.dart';
 
-@injectable
+@singleton
 class LanguageBloc extends HydratedBloc<LanguageEvent, LanguageState> {
   LanguageBloc()
       : super(const LanguageState.loaded(currentLocale: Locale('ar'))) {

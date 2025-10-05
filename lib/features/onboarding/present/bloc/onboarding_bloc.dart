@@ -8,7 +8,7 @@ part 'onboarding_bloc.freezed.dart';
 part 'onboarding_event.dart';
 part 'onboarding_state.dart';
 
-@injectable
+@singleton
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   final int totalPages = 3;
   final List<OnboardingPageEntity> pages;

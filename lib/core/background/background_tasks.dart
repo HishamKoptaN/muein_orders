@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import '../../features/docs/data/datasources/local/drift/app_database.dart';
 import '../../features/docs/domain/usecases/docs_use_cases.dart';
@@ -8,13 +9,40 @@ Future<void> startUploadDocs() async {
   try {
     final db = getIt<AppDatabase>();
     final docsUseCase = getIt<DocsUseCase>();
+    final statuses = [
+      'pending',
+      'uploading',
+    ];
 
-    final pendingDocs = await (db.select(db.cachedDocs)
-          ..where((tbl) => tbl.uploadStatus.equals('pending')))
-        .get();
+    final query = db.select(db.cachedDocs)
+      ..where(
+        (tbl) {
+          Expression<bool>? condition;
+
+          for (final status in statuses) {
+            final expr = tbl.uploadStatus.equals(status);
+            condition = condition == null ? expr : condition | expr;
+          }
+
+          return condition!;
+        },
+      );
+
+    final pendingDocs = await query.get();
     if (pendingDocs.isEmpty) {
+      debugPrint('ℹ️ لا توجد توثيقات بحاجة للرفع في الوقت الحالي.');
       return;
     }
+
+    debugPrint(
+        '📋 تم العثور على ${pendingDocs.length} توثيقة في انتظار الرفع:');
+    for (var doc in pendingDocs) {
+      debugPrint(
+          '  • الطلب ${doc.orderId} - الحالة: ${doc.uploadStatus} - التقدم: ${doc.uploadProgress}%');
+    }
+
+    debugPrint(
+        '⏰ انتظار ${UploadSpeedSettings.initialDelaySeconds} ثانية قبل بدء الرفع...');
 
     await Future.delayed(
       const Duration(seconds: UploadSpeedSettings.initialDelaySeconds),
@@ -22,21 +50,18 @@ Future<void> startUploadDocs() async {
 
     for (int i = 0; i < pendingDocs.length; i++) {
       final doc = pendingDocs[i];
-      debugPrint('🚀 بدء رفع الطلب ${doc.orderId}');
-
       try {
+        debugPrint('🚀 بدء رفع الطلب ${doc.orderId}...');
+
         await docsUseCase.createDoc(
           doc: doc,
-          onSendProgress: (sent, total) async {
-            final progress =
-                total > 0 ? ((sent / total) * 100).toDouble() : 0.0;
-            // الإشعارات الآن مدمجة في الـ repository نفسه
-          },
         );
 
         debugPrint('✅ تم رفع الطلب ${doc.orderId} بنجاح');
 
         if (i < pendingDocs.length - 1) {
+          debugPrint(
+              '⏰ انتظار ${UploadSpeedSettings.successDelaySeconds} ثانية قبل الطلب التالي...');
           await Future.delayed(
             const Duration(seconds: UploadSpeedSettings.successDelaySeconds),
           );
@@ -45,6 +70,8 @@ Future<void> startUploadDocs() async {
         debugPrint('❌ خطأ أثناء رفع الطلب ${doc.orderId}: $e');
       }
     }
+
+    debugPrint('🎉 انتهت عملية الرفع لجميع الطلبات');
   } catch (e) {
     debugPrint('⚠️ خطأ عام في startUploadDocs: $e');
   }

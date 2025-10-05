@@ -10,7 +10,7 @@ part 'forgot_pass_bloc.freezed.dart';
 part 'forgot_pass_event.dart';
 part 'forgot_pass_state.dart';
 
-@injectable
+@lazySingleton
 class ForgotPassBloc extends Bloc<ForgotPassEvent, ForgotPassState> {
   final SendPassResetEmailUseCase sendPassResetEmailUseCase;
   EmailInput? email;

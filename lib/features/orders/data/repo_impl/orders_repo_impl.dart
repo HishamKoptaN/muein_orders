@@ -1,11 +1,8 @@
 import 'dart:developer' as developer;
-
 import 'package:injectable/injectable.dart';
-
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/error/api_error_handler.dart';
 import '../../../../core/mapper/meta_mapper.dart';
-import '../../../docs/domain/entities/cached_doc_entity.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/repo/orders_repo.dart';
 import '../datasources/orders_api.dart';
@@ -21,7 +18,6 @@ class OrdersRepoImpl implements OrdersRepo {
   );
   OrdersResEntity? _cachedResOrders;
 
-  @override
   @override
   Future<ApiResult<OrdersResEntity?>> getOrders({
     required int packageId,
@@ -83,13 +79,9 @@ class OrdersRepoImpl implements OrdersRepo {
         clientId: clientId,
         isQuranPhotographed: isQuranPhotographed,
       );
-      final result = res.toEntity();
+      res.toEntity();
       return const ApiResult.success(
         data: null,
-        // data: OrdersResEntity(
-        //   orders: [result],
-        //   meta: res.meta?.toEntity(),
-        // ),
       );
     } catch (error) {
       return ApiResult.failure(
@@ -99,5 +91,4 @@ class OrdersRepoImpl implements OrdersRepo {
       );
     }
   }
-
 }

@@ -63,6 +63,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get send => 'أرسال';
 
   @override
+  String get uploadingDocument => 'رفع التوثيق';
+
+  @override
+  String get documentationIsBeingUploaded => 'جاري رفع التوثيق';
+
+  @override
   String get phone => 'رقم التليفون';
 
   @override
@@ -382,6 +388,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get onboardingTrackingDescription =>
       'قم بمراقبة طلباتك في الوقت الفعلي باستخدام نظام التتبع البديهي لدينا';
+
+  @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'لا تقم بحذف ملفات الصور والفيديو المخزنة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة';
 
   @override
   String get onboardingDocumentsTitle => 'إدارة المستندات';

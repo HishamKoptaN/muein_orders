@@ -1,12 +1,15 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../config/app_config.dart';
+import '../config/upload_settings.dart';
 import '../database/shared_pref_helper.dart';
 import '../database/shared_pref_keys.dart';
+import '../networking/slow_upload_interceptor.dart';
 
 @module
 abstract class ApiModule {
@@ -46,6 +49,14 @@ abstract class ApiModule {
         ),
       ],
     );
+    if (kDebugMode) {
+      dio.interceptors.add(
+        SlowUploadInterceptor(
+          bytesPerSecond: 64,
+          chunkSize: 1024,
+        ),
+      );
+    }
     return dio;
   }
 }

@@ -74,11 +74,13 @@ class RouteConfig {
         builder: (context, state) {
           final args = state.extra as Map<String, dynamic>?;
           final orderId = args?['orderId'] as int?;
+          final package = args?['package'] as PackageEntity?;
           if (orderId == null || orderId == 0) {
             debugPrint('Invalid orderId: $orderId, using default value 0');
           }
           return AddCachedDocView(
             orderId: orderId ?? 0,
+            package: package ?? const PackageEntity(),
           );
         },
       ),

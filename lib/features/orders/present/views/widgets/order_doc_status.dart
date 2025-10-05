@@ -16,10 +16,11 @@ UploadStatus _stringToUploadStatus({
   );
 }
 
-Widget buildOrderDocumentationStatus({
+Widget buildOrderDocStatus({
   required BuildContext context,
   required OrderEntity orderEntity,
   required AppLocalizations t,
+  VoidCallback? onRetry,
 }) {
   return Directionality(
     textDirection: Localizations.localeOf(context).languageCode == 'ar'
@@ -103,10 +104,28 @@ Widget buildOrderDocumentationStatus({
                         status: UploadStatus.success,
                       );
                     case UploadStatus.failure:
-                      return _buildMessage(
+                      return Row(
                         key: ValueKey('failure_$index'),
-                        text: t.failure,
-                        status: UploadStatus.failure,
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          _buildMessage(
+                            key: ValueKey('failure_$index'),
+                            text: t.failure,
+                            status: UploadStatus.failure,
+                          ),
+                          const SizedBox(width: 8),
+                          IconButton(
+                            key: ValueKey('retry_$index'),
+                            onPressed: onRetry ?? () {},
+                            icon: const Icon(
+                              Icons.refresh,
+                              color: Color(0xFFD8091E),
+                              size: 20,
+                            ),
+                            tooltip: 'إعادة المحاولة',
+                          ),
+                        ],
                       );
                   }
                 },

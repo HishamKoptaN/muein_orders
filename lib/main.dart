@@ -10,7 +10,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl_standalone.dart';
-import 'package:path_provider/path_provider.dart';
 import 'core/app/error_handler.dart';
 import 'core/app_observer.dart';
 import 'core/di/dependency_injection.dart';
@@ -18,32 +17,29 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    }
   } catch (e, st) {
     debugPrint('🔥 Firebase init error: $e');
     debugPrint('$st');
   }
+  await AppInitializer.initialize();
   await configureDependencies();
   final workManager = getIt<WorkManagerInitializer>();
   await workManager.initialize();
-  await workManager.registerSystemUploadTask(); 
-  await workManager.startRealtimeUploads();
+  await workManager.registerSystemUploadTask();
+  await Future.microtask(workManager.startPendingUploads);
+
   try {
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';
-    Bloc.observer = AppBlocObserver();
-    HydratedBloc.storage = await HydratedStorage.build(
-      storageDirectory: kIsWeb
-          ? HydratedStorageDirectory.web
-          : HydratedStorageDirectory((await getTemporaryDirectory()).path),
-    );
-    await AppInitializer.initialize();
     FlutterNativeSplash.remove();
     if (kDebugMode) {
+      Bloc.observer = AppBlocObserver();
       // await SharedPrefHelper.clearAllData();
       // await SharedPrefHelper.clearAllSecuredData();
     }

@@ -16,72 +16,44 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DocsEvent {
+  int get orderId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int orderId) getDocs,
-    required TResult Function(int orderId) startUpload,
-    required TResult Function(int docId) retryUpload,
-    required TResult Function() startBackgroundMonitoring,
-    required TResult Function() stopBackgroundMonitoring,
-    required TResult Function() checkPendingUploads,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int orderId)? getDocs,
-    TResult? Function(int orderId)? startUpload,
-    TResult? Function(int docId)? retryUpload,
-    TResult? Function()? startBackgroundMonitoring,
-    TResult? Function()? stopBackgroundMonitoring,
-    TResult? Function()? checkPendingUploads,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int orderId)? getDocs,
-    TResult Function(int orderId)? startUpload,
-    TResult Function(int docId)? retryUpload,
-    TResult Function()? startBackgroundMonitoring,
-    TResult Function()? stopBackgroundMonitoring,
-    TResult Function()? checkPendingUploads,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetDocs value) getDocs,
-    required TResult Function(_StartUpload value) startUpload,
-    required TResult Function(_RetryUpload value) retryUpload,
-    required TResult Function(_StartBackgroundMonitoring value)
-        startBackgroundMonitoring,
-    required TResult Function(_StopBackgroundMonitoring value)
-        stopBackgroundMonitoring,
-    required TResult Function(_CheckPendingUploads value) checkPendingUploads,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetDocs value)? getDocs,
-    TResult? Function(_StartUpload value)? startUpload,
-    TResult? Function(_RetryUpload value)? retryUpload,
-    TResult? Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult? Function(_StopBackgroundMonitoring value)?
-        stopBackgroundMonitoring,
-    TResult? Function(_CheckPendingUploads value)? checkPendingUploads,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetDocs value)? getDocs,
-    TResult Function(_StartUpload value)? startUpload,
-    TResult Function(_RetryUpload value)? retryUpload,
-    TResult Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult Function(_StopBackgroundMonitoring value)? stopBackgroundMonitoring,
-    TResult Function(_CheckPendingUploads value)? checkPendingUploads,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  /// Create a copy of DocsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $DocsEventCopyWith<DocsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -89,6 +61,8 @@ mixin _$DocsEvent {
 abstract class $DocsEventCopyWith<$Res> {
   factory $DocsEventCopyWith(DocsEvent value, $Res Function(DocsEvent) then) =
       _$DocsEventCopyWithImpl<$Res, DocsEvent>;
+  @useResult
+  $Res call({int orderId});
 }
 
 /// @nodoc
@@ -103,13 +77,27 @@ class _$DocsEventCopyWithImpl<$Res, $Val extends DocsEvent>
 
   /// Create a copy of DocsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? orderId = null,
+  }) {
+    return _then(_value.copyWith(
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$GetDocsImplCopyWith<$Res> {
+abstract class _$$GetDocsImplCopyWith<$Res>
+    implements $DocsEventCopyWith<$Res> {
   factory _$$GetDocsImplCopyWith(
           _$GetDocsImpl value, $Res Function(_$GetDocsImpl) then) =
       __$$GetDocsImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({int orderId});
 }
@@ -174,11 +162,6 @@ class _$GetDocsImpl implements _GetDocs {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int orderId) getDocs,
-    required TResult Function(int orderId) startUpload,
-    required TResult Function(int docId) retryUpload,
-    required TResult Function() startBackgroundMonitoring,
-    required TResult Function() stopBackgroundMonitoring,
-    required TResult Function() checkPendingUploads,
   }) {
     return getDocs(orderId);
   }
@@ -187,11 +170,6 @@ class _$GetDocsImpl implements _GetDocs {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int orderId)? getDocs,
-    TResult? Function(int orderId)? startUpload,
-    TResult? Function(int docId)? retryUpload,
-    TResult? Function()? startBackgroundMonitoring,
-    TResult? Function()? stopBackgroundMonitoring,
-    TResult? Function()? checkPendingUploads,
   }) {
     return getDocs?.call(orderId);
   }
@@ -200,11 +178,6 @@ class _$GetDocsImpl implements _GetDocs {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int orderId)? getDocs,
-    TResult Function(int orderId)? startUpload,
-    TResult Function(int docId)? retryUpload,
-    TResult Function()? startBackgroundMonitoring,
-    TResult Function()? stopBackgroundMonitoring,
-    TResult Function()? checkPendingUploads,
     required TResult orElse(),
   }) {
     if (getDocs != null) {
@@ -217,13 +190,6 @@ class _$GetDocsImpl implements _GetDocs {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetDocs value) getDocs,
-    required TResult Function(_StartUpload value) startUpload,
-    required TResult Function(_RetryUpload value) retryUpload,
-    required TResult Function(_StartBackgroundMonitoring value)
-        startBackgroundMonitoring,
-    required TResult Function(_StopBackgroundMonitoring value)
-        stopBackgroundMonitoring,
-    required TResult Function(_CheckPendingUploads value) checkPendingUploads,
   }) {
     return getDocs(this);
   }
@@ -232,13 +198,6 @@ class _$GetDocsImpl implements _GetDocs {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetDocs value)? getDocs,
-    TResult? Function(_StartUpload value)? startUpload,
-    TResult? Function(_RetryUpload value)? retryUpload,
-    TResult? Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult? Function(_StopBackgroundMonitoring value)?
-        stopBackgroundMonitoring,
-    TResult? Function(_CheckPendingUploads value)? checkPendingUploads,
   }) {
     return getDocs?.call(this);
   }
@@ -247,12 +206,6 @@ class _$GetDocsImpl implements _GetDocs {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetDocs value)? getDocs,
-    TResult Function(_StartUpload value)? startUpload,
-    TResult Function(_RetryUpload value)? retryUpload,
-    TResult Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult Function(_StopBackgroundMonitoring value)? stopBackgroundMonitoring,
-    TResult Function(_CheckPendingUploads value)? checkPendingUploads,
     required TResult orElse(),
   }) {
     if (getDocs != null) {
@@ -265,760 +218,15 @@ class _$GetDocsImpl implements _GetDocs {
 abstract class _GetDocs implements DocsEvent {
   const factory _GetDocs({required final int orderId}) = _$GetDocsImpl;
 
+  @override
   int get orderId;
 
   /// Create a copy of DocsEvent
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetDocsImplCopyWith<_$GetDocsImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$StartUploadImplCopyWith<$Res> {
-  factory _$$StartUploadImplCopyWith(
-          _$StartUploadImpl value, $Res Function(_$StartUploadImpl) then) =
-      __$$StartUploadImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int orderId});
-}
-
-/// @nodoc
-class __$$StartUploadImplCopyWithImpl<$Res>
-    extends _$DocsEventCopyWithImpl<$Res, _$StartUploadImpl>
-    implements _$$StartUploadImplCopyWith<$Res> {
-  __$$StartUploadImplCopyWithImpl(
-      _$StartUploadImpl _value, $Res Function(_$StartUploadImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? orderId = null,
-  }) {
-    return _then(_$StartUploadImpl(
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$StartUploadImpl implements _StartUpload {
-  const _$StartUploadImpl({required this.orderId});
-
-  @override
-  final int orderId;
-
-  @override
-  String toString() {
-    return 'DocsEvent.startUpload(orderId: $orderId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StartUploadImpl &&
-            (identical(other.orderId, orderId) || other.orderId == orderId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, orderId);
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StartUploadImplCopyWith<_$StartUploadImpl> get copyWith =>
-      __$$StartUploadImplCopyWithImpl<_$StartUploadImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int orderId) getDocs,
-    required TResult Function(int orderId) startUpload,
-    required TResult Function(int docId) retryUpload,
-    required TResult Function() startBackgroundMonitoring,
-    required TResult Function() stopBackgroundMonitoring,
-    required TResult Function() checkPendingUploads,
-  }) {
-    return startUpload(orderId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int orderId)? getDocs,
-    TResult? Function(int orderId)? startUpload,
-    TResult? Function(int docId)? retryUpload,
-    TResult? Function()? startBackgroundMonitoring,
-    TResult? Function()? stopBackgroundMonitoring,
-    TResult? Function()? checkPendingUploads,
-  }) {
-    return startUpload?.call(orderId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int orderId)? getDocs,
-    TResult Function(int orderId)? startUpload,
-    TResult Function(int docId)? retryUpload,
-    TResult Function()? startBackgroundMonitoring,
-    TResult Function()? stopBackgroundMonitoring,
-    TResult Function()? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (startUpload != null) {
-      return startUpload(orderId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetDocs value) getDocs,
-    required TResult Function(_StartUpload value) startUpload,
-    required TResult Function(_RetryUpload value) retryUpload,
-    required TResult Function(_StartBackgroundMonitoring value)
-        startBackgroundMonitoring,
-    required TResult Function(_StopBackgroundMonitoring value)
-        stopBackgroundMonitoring,
-    required TResult Function(_CheckPendingUploads value) checkPendingUploads,
-  }) {
-    return startUpload(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetDocs value)? getDocs,
-    TResult? Function(_StartUpload value)? startUpload,
-    TResult? Function(_RetryUpload value)? retryUpload,
-    TResult? Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult? Function(_StopBackgroundMonitoring value)?
-        stopBackgroundMonitoring,
-    TResult? Function(_CheckPendingUploads value)? checkPendingUploads,
-  }) {
-    return startUpload?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetDocs value)? getDocs,
-    TResult Function(_StartUpload value)? startUpload,
-    TResult Function(_RetryUpload value)? retryUpload,
-    TResult Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult Function(_StopBackgroundMonitoring value)? stopBackgroundMonitoring,
-    TResult Function(_CheckPendingUploads value)? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (startUpload != null) {
-      return startUpload(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StartUpload implements DocsEvent {
-  const factory _StartUpload({required final int orderId}) = _$StartUploadImpl;
-
-  int get orderId;
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StartUploadImplCopyWith<_$StartUploadImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$RetryUploadImplCopyWith<$Res> {
-  factory _$$RetryUploadImplCopyWith(
-          _$RetryUploadImpl value, $Res Function(_$RetryUploadImpl) then) =
-      __$$RetryUploadImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int docId});
-}
-
-/// @nodoc
-class __$$RetryUploadImplCopyWithImpl<$Res>
-    extends _$DocsEventCopyWithImpl<$Res, _$RetryUploadImpl>
-    implements _$$RetryUploadImplCopyWith<$Res> {
-  __$$RetryUploadImplCopyWithImpl(
-      _$RetryUploadImpl _value, $Res Function(_$RetryUploadImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? docId = null,
-  }) {
-    return _then(_$RetryUploadImpl(
-      docId: null == docId
-          ? _value.docId
-          : docId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$RetryUploadImpl implements _RetryUpload {
-  const _$RetryUploadImpl({required this.docId});
-
-  @override
-  final int docId;
-
-  @override
-  String toString() {
-    return 'DocsEvent.retryUpload(docId: $docId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RetryUploadImpl &&
-            (identical(other.docId, docId) || other.docId == docId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, docId);
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RetryUploadImplCopyWith<_$RetryUploadImpl> get copyWith =>
-      __$$RetryUploadImplCopyWithImpl<_$RetryUploadImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int orderId) getDocs,
-    required TResult Function(int orderId) startUpload,
-    required TResult Function(int docId) retryUpload,
-    required TResult Function() startBackgroundMonitoring,
-    required TResult Function() stopBackgroundMonitoring,
-    required TResult Function() checkPendingUploads,
-  }) {
-    return retryUpload(docId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int orderId)? getDocs,
-    TResult? Function(int orderId)? startUpload,
-    TResult? Function(int docId)? retryUpload,
-    TResult? Function()? startBackgroundMonitoring,
-    TResult? Function()? stopBackgroundMonitoring,
-    TResult? Function()? checkPendingUploads,
-  }) {
-    return retryUpload?.call(docId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int orderId)? getDocs,
-    TResult Function(int orderId)? startUpload,
-    TResult Function(int docId)? retryUpload,
-    TResult Function()? startBackgroundMonitoring,
-    TResult Function()? stopBackgroundMonitoring,
-    TResult Function()? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (retryUpload != null) {
-      return retryUpload(docId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetDocs value) getDocs,
-    required TResult Function(_StartUpload value) startUpload,
-    required TResult Function(_RetryUpload value) retryUpload,
-    required TResult Function(_StartBackgroundMonitoring value)
-        startBackgroundMonitoring,
-    required TResult Function(_StopBackgroundMonitoring value)
-        stopBackgroundMonitoring,
-    required TResult Function(_CheckPendingUploads value) checkPendingUploads,
-  }) {
-    return retryUpload(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetDocs value)? getDocs,
-    TResult? Function(_StartUpload value)? startUpload,
-    TResult? Function(_RetryUpload value)? retryUpload,
-    TResult? Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult? Function(_StopBackgroundMonitoring value)?
-        stopBackgroundMonitoring,
-    TResult? Function(_CheckPendingUploads value)? checkPendingUploads,
-  }) {
-    return retryUpload?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetDocs value)? getDocs,
-    TResult Function(_StartUpload value)? startUpload,
-    TResult Function(_RetryUpload value)? retryUpload,
-    TResult Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult Function(_StopBackgroundMonitoring value)? stopBackgroundMonitoring,
-    TResult Function(_CheckPendingUploads value)? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (retryUpload != null) {
-      return retryUpload(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RetryUpload implements DocsEvent {
-  const factory _RetryUpload({required final int docId}) = _$RetryUploadImpl;
-
-  int get docId;
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RetryUploadImplCopyWith<_$RetryUploadImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$StartBackgroundMonitoringImplCopyWith<$Res> {
-  factory _$$StartBackgroundMonitoringImplCopyWith(
-          _$StartBackgroundMonitoringImpl value,
-          $Res Function(_$StartBackgroundMonitoringImpl) then) =
-      __$$StartBackgroundMonitoringImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StartBackgroundMonitoringImplCopyWithImpl<$Res>
-    extends _$DocsEventCopyWithImpl<$Res, _$StartBackgroundMonitoringImpl>
-    implements _$$StartBackgroundMonitoringImplCopyWith<$Res> {
-  __$$StartBackgroundMonitoringImplCopyWithImpl(
-      _$StartBackgroundMonitoringImpl _value,
-      $Res Function(_$StartBackgroundMonitoringImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$StartBackgroundMonitoringImpl implements _StartBackgroundMonitoring {
-  const _$StartBackgroundMonitoringImpl();
-
-  @override
-  String toString() {
-    return 'DocsEvent.startBackgroundMonitoring()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StartBackgroundMonitoringImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int orderId) getDocs,
-    required TResult Function(int orderId) startUpload,
-    required TResult Function(int docId) retryUpload,
-    required TResult Function() startBackgroundMonitoring,
-    required TResult Function() stopBackgroundMonitoring,
-    required TResult Function() checkPendingUploads,
-  }) {
-    return startBackgroundMonitoring();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int orderId)? getDocs,
-    TResult? Function(int orderId)? startUpload,
-    TResult? Function(int docId)? retryUpload,
-    TResult? Function()? startBackgroundMonitoring,
-    TResult? Function()? stopBackgroundMonitoring,
-    TResult? Function()? checkPendingUploads,
-  }) {
-    return startBackgroundMonitoring?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int orderId)? getDocs,
-    TResult Function(int orderId)? startUpload,
-    TResult Function(int docId)? retryUpload,
-    TResult Function()? startBackgroundMonitoring,
-    TResult Function()? stopBackgroundMonitoring,
-    TResult Function()? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (startBackgroundMonitoring != null) {
-      return startBackgroundMonitoring();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetDocs value) getDocs,
-    required TResult Function(_StartUpload value) startUpload,
-    required TResult Function(_RetryUpload value) retryUpload,
-    required TResult Function(_StartBackgroundMonitoring value)
-        startBackgroundMonitoring,
-    required TResult Function(_StopBackgroundMonitoring value)
-        stopBackgroundMonitoring,
-    required TResult Function(_CheckPendingUploads value) checkPendingUploads,
-  }) {
-    return startBackgroundMonitoring(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetDocs value)? getDocs,
-    TResult? Function(_StartUpload value)? startUpload,
-    TResult? Function(_RetryUpload value)? retryUpload,
-    TResult? Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult? Function(_StopBackgroundMonitoring value)?
-        stopBackgroundMonitoring,
-    TResult? Function(_CheckPendingUploads value)? checkPendingUploads,
-  }) {
-    return startBackgroundMonitoring?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetDocs value)? getDocs,
-    TResult Function(_StartUpload value)? startUpload,
-    TResult Function(_RetryUpload value)? retryUpload,
-    TResult Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult Function(_StopBackgroundMonitoring value)? stopBackgroundMonitoring,
-    TResult Function(_CheckPendingUploads value)? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (startBackgroundMonitoring != null) {
-      return startBackgroundMonitoring(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StartBackgroundMonitoring implements DocsEvent {
-  const factory _StartBackgroundMonitoring() = _$StartBackgroundMonitoringImpl;
-}
-
-/// @nodoc
-abstract class _$$StopBackgroundMonitoringImplCopyWith<$Res> {
-  factory _$$StopBackgroundMonitoringImplCopyWith(
-          _$StopBackgroundMonitoringImpl value,
-          $Res Function(_$StopBackgroundMonitoringImpl) then) =
-      __$$StopBackgroundMonitoringImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$StopBackgroundMonitoringImplCopyWithImpl<$Res>
-    extends _$DocsEventCopyWithImpl<$Res, _$StopBackgroundMonitoringImpl>
-    implements _$$StopBackgroundMonitoringImplCopyWith<$Res> {
-  __$$StopBackgroundMonitoringImplCopyWithImpl(
-      _$StopBackgroundMonitoringImpl _value,
-      $Res Function(_$StopBackgroundMonitoringImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$StopBackgroundMonitoringImpl implements _StopBackgroundMonitoring {
-  const _$StopBackgroundMonitoringImpl();
-
-  @override
-  String toString() {
-    return 'DocsEvent.stopBackgroundMonitoring()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StopBackgroundMonitoringImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int orderId) getDocs,
-    required TResult Function(int orderId) startUpload,
-    required TResult Function(int docId) retryUpload,
-    required TResult Function() startBackgroundMonitoring,
-    required TResult Function() stopBackgroundMonitoring,
-    required TResult Function() checkPendingUploads,
-  }) {
-    return stopBackgroundMonitoring();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int orderId)? getDocs,
-    TResult? Function(int orderId)? startUpload,
-    TResult? Function(int docId)? retryUpload,
-    TResult? Function()? startBackgroundMonitoring,
-    TResult? Function()? stopBackgroundMonitoring,
-    TResult? Function()? checkPendingUploads,
-  }) {
-    return stopBackgroundMonitoring?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int orderId)? getDocs,
-    TResult Function(int orderId)? startUpload,
-    TResult Function(int docId)? retryUpload,
-    TResult Function()? startBackgroundMonitoring,
-    TResult Function()? stopBackgroundMonitoring,
-    TResult Function()? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (stopBackgroundMonitoring != null) {
-      return stopBackgroundMonitoring();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetDocs value) getDocs,
-    required TResult Function(_StartUpload value) startUpload,
-    required TResult Function(_RetryUpload value) retryUpload,
-    required TResult Function(_StartBackgroundMonitoring value)
-        startBackgroundMonitoring,
-    required TResult Function(_StopBackgroundMonitoring value)
-        stopBackgroundMonitoring,
-    required TResult Function(_CheckPendingUploads value) checkPendingUploads,
-  }) {
-    return stopBackgroundMonitoring(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetDocs value)? getDocs,
-    TResult? Function(_StartUpload value)? startUpload,
-    TResult? Function(_RetryUpload value)? retryUpload,
-    TResult? Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult? Function(_StopBackgroundMonitoring value)?
-        stopBackgroundMonitoring,
-    TResult? Function(_CheckPendingUploads value)? checkPendingUploads,
-  }) {
-    return stopBackgroundMonitoring?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetDocs value)? getDocs,
-    TResult Function(_StartUpload value)? startUpload,
-    TResult Function(_RetryUpload value)? retryUpload,
-    TResult Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult Function(_StopBackgroundMonitoring value)? stopBackgroundMonitoring,
-    TResult Function(_CheckPendingUploads value)? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (stopBackgroundMonitoring != null) {
-      return stopBackgroundMonitoring(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _StopBackgroundMonitoring implements DocsEvent {
-  const factory _StopBackgroundMonitoring() = _$StopBackgroundMonitoringImpl;
-}
-
-/// @nodoc
-abstract class _$$CheckPendingUploadsImplCopyWith<$Res> {
-  factory _$$CheckPendingUploadsImplCopyWith(_$CheckPendingUploadsImpl value,
-          $Res Function(_$CheckPendingUploadsImpl) then) =
-      __$$CheckPendingUploadsImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$CheckPendingUploadsImplCopyWithImpl<$Res>
-    extends _$DocsEventCopyWithImpl<$Res, _$CheckPendingUploadsImpl>
-    implements _$$CheckPendingUploadsImplCopyWith<$Res> {
-  __$$CheckPendingUploadsImplCopyWithImpl(_$CheckPendingUploadsImpl _value,
-      $Res Function(_$CheckPendingUploadsImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$CheckPendingUploadsImpl implements _CheckPendingUploads {
-  const _$CheckPendingUploadsImpl();
-
-  @override
-  String toString() {
-    return 'DocsEvent.checkPendingUploads()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CheckPendingUploadsImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int orderId) getDocs,
-    required TResult Function(int orderId) startUpload,
-    required TResult Function(int docId) retryUpload,
-    required TResult Function() startBackgroundMonitoring,
-    required TResult Function() stopBackgroundMonitoring,
-    required TResult Function() checkPendingUploads,
-  }) {
-    return checkPendingUploads();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int orderId)? getDocs,
-    TResult? Function(int orderId)? startUpload,
-    TResult? Function(int docId)? retryUpload,
-    TResult? Function()? startBackgroundMonitoring,
-    TResult? Function()? stopBackgroundMonitoring,
-    TResult? Function()? checkPendingUploads,
-  }) {
-    return checkPendingUploads?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int orderId)? getDocs,
-    TResult Function(int orderId)? startUpload,
-    TResult Function(int docId)? retryUpload,
-    TResult Function()? startBackgroundMonitoring,
-    TResult Function()? stopBackgroundMonitoring,
-    TResult Function()? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (checkPendingUploads != null) {
-      return checkPendingUploads();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetDocs value) getDocs,
-    required TResult Function(_StartUpload value) startUpload,
-    required TResult Function(_RetryUpload value) retryUpload,
-    required TResult Function(_StartBackgroundMonitoring value)
-        startBackgroundMonitoring,
-    required TResult Function(_StopBackgroundMonitoring value)
-        stopBackgroundMonitoring,
-    required TResult Function(_CheckPendingUploads value) checkPendingUploads,
-  }) {
-    return checkPendingUploads(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetDocs value)? getDocs,
-    TResult? Function(_StartUpload value)? startUpload,
-    TResult? Function(_RetryUpload value)? retryUpload,
-    TResult? Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult? Function(_StopBackgroundMonitoring value)?
-        stopBackgroundMonitoring,
-    TResult? Function(_CheckPendingUploads value)? checkPendingUploads,
-  }) {
-    return checkPendingUploads?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetDocs value)? getDocs,
-    TResult Function(_StartUpload value)? startUpload,
-    TResult Function(_RetryUpload value)? retryUpload,
-    TResult Function(_StartBackgroundMonitoring value)?
-        startBackgroundMonitoring,
-    TResult Function(_StopBackgroundMonitoring value)? stopBackgroundMonitoring,
-    TResult Function(_CheckPendingUploads value)? checkPendingUploads,
-    required TResult orElse(),
-  }) {
-    if (checkPendingUploads != null) {
-      return checkPendingUploads(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CheckPendingUploads implements DocsEvent {
-  const factory _CheckPendingUploads() = _$CheckPendingUploadsImpl;
 }
 
 /// @nodoc
@@ -1027,12 +235,7 @@ mixin _$DocsState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)
-        loaded,
+    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -1040,12 +243,7 @@ mixin _$DocsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -1053,12 +251,7 @@ mixin _$DocsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) =>
@@ -1153,12 +346,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)
-        loaded,
+    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return loading();
@@ -1169,12 +357,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return loading?.call();
@@ -1185,12 +368,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -1285,12 +463,7 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)
-        loaded,
+    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return success();
@@ -1301,12 +474,7 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return success?.call();
@@ -1317,12 +485,7 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -1380,11 +543,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {List<DocEntity>? docs,
-      bool? hasMore,
-      bool? backgroundMonitoringActive,
-      bool? backgroundMonitoringInactive});
+  $Res call({List<DocEntity>? docs, bool? hasMore});
 }
 
 /// @nodoc
@@ -1402,8 +561,6 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? docs = freezed,
     Object? hasMore = freezed,
-    Object? backgroundMonitoringActive = freezed,
-    Object? backgroundMonitoringInactive = freezed,
   }) {
     return _then(_$LoadedImpl(
       docs: freezed == docs
@@ -1414,14 +571,6 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
               as bool?,
-      backgroundMonitoringActive: freezed == backgroundMonitoringActive
-          ? _value.backgroundMonitoringActive
-          : backgroundMonitoringActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      backgroundMonitoringInactive: freezed == backgroundMonitoringInactive
-          ? _value.backgroundMonitoringInactive
-          : backgroundMonitoringInactive // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -1430,10 +579,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
-      {final List<DocEntity>? docs = const [],
-      this.hasMore = false,
-      this.backgroundMonitoringActive = false,
-      this.backgroundMonitoringInactive = false})
+      {final List<DocEntity>? docs = const [], this.hasMore = false})
       : _docs = docs;
 
   final List<DocEntity>? _docs;
@@ -1450,16 +596,10 @@ class _$LoadedImpl implements _Loaded {
   @override
   @JsonKey()
   final bool? hasMore;
-  @override
-  @JsonKey()
-  final bool? backgroundMonitoringActive;
-  @override
-  @JsonKey()
-  final bool? backgroundMonitoringInactive;
 
   @override
   String toString() {
-    return 'DocsState.loaded(docs: $docs, hasMore: $hasMore, backgroundMonitoringActive: $backgroundMonitoringActive, backgroundMonitoringInactive: $backgroundMonitoringInactive)';
+    return 'DocsState.loaded(docs: $docs, hasMore: $hasMore)';
   }
 
   @override
@@ -1468,24 +608,12 @@ class _$LoadedImpl implements _Loaded {
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
             const DeepCollectionEquality().equals(other._docs, _docs) &&
-            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
-            (identical(other.backgroundMonitoringActive,
-                    backgroundMonitoringActive) ||
-                other.backgroundMonitoringActive ==
-                    backgroundMonitoringActive) &&
-            (identical(other.backgroundMonitoringInactive,
-                    backgroundMonitoringInactive) ||
-                other.backgroundMonitoringInactive ==
-                    backgroundMonitoringInactive));
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_docs),
-      hasMore,
-      backgroundMonitoringActive,
-      backgroundMonitoringInactive);
+      runtimeType, const DeepCollectionEquality().hash(_docs), hasMore);
 
   /// Create a copy of DocsState
   /// with the given fields replaced by the non-null parameter values.
@@ -1500,16 +628,10 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)
-        loaded,
+    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return loaded(docs, hasMore, backgroundMonitoringActive,
-        backgroundMonitoringInactive);
+    return loaded(docs, hasMore);
   }
 
   @override
@@ -1517,16 +639,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return loaded?.call(docs, hasMore, backgroundMonitoringActive,
-        backgroundMonitoringInactive);
+    return loaded?.call(docs, hasMore);
   }
 
   @override
@@ -1534,18 +650,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(docs, hasMore, backgroundMonitoringActive,
-          backgroundMonitoringInactive);
+      return loaded(docs, hasMore);
     }
     return orElse();
   }
@@ -1589,16 +699,11 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements DocsState {
-  const factory _Loaded(
-      {final List<DocEntity>? docs,
-      final bool? hasMore,
-      final bool? backgroundMonitoringActive,
-      final bool? backgroundMonitoringInactive}) = _$LoadedImpl;
+  const factory _Loaded({final List<DocEntity>? docs, final bool? hasMore}) =
+      _$LoadedImpl;
 
   List<DocEntity>? get docs;
   bool? get hasMore;
-  bool? get backgroundMonitoringActive;
-  bool? get backgroundMonitoringInactive;
 
   /// Create a copy of DocsState
   /// with the given fields replaced by the non-null parameter values.
@@ -1678,12 +783,7 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)
-        loaded,
+    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return failure(apiErrorModel);
@@ -1694,12 +794,7 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return failure?.call(apiErrorModel);
@@ -1710,12 +805,7 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            List<DocEntity>? docs,
-            bool? hasMore,
-            bool? backgroundMonitoringActive,
-            bool? backgroundMonitoringInactive)?
-        loaded,
+    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {

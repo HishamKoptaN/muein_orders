@@ -27,7 +27,8 @@ mixin _$CachedDocEvent {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)
         updateData,
     required TResult Function() cachedDoc,
   }) =>
@@ -43,7 +44,8 @@ mixin _$CachedDocEvent {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)?
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)?
         updateData,
     TResult? Function()? cachedDoc,
   }) =>
@@ -59,7 +61,8 @@ mixin _$CachedDocEvent {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)?
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)?
         updateData,
     TResult Function()? cachedDoc,
     required TResult orElse(),
@@ -160,7 +163,8 @@ class _$InitializeImpl implements _Initialize {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)
         updateData,
     required TResult Function() cachedDoc,
   }) {
@@ -179,7 +183,8 @@ class _$InitializeImpl implements _Initialize {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)?
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)?
         updateData,
     TResult? Function()? cachedDoc,
   }) {
@@ -198,7 +203,8 @@ class _$InitializeImpl implements _Initialize {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)?
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)?
         updateData,
     TResult Function()? cachedDoc,
     required TResult orElse(),
@@ -262,7 +268,10 @@ abstract class _$$UpdateDataImplCopyWith<$Res> {
       FileFormzInput? videoTwo,
       GenericFormzInput<double>? latitude,
       GenericFormzInput<double>? longitude,
-      GenericFormzInput<double>? shippingCost});
+      GenericFormzInput<double>? shippingCost,
+      PackageEntity? package});
+
+  $PackageEntityCopyWith<$Res>? get package;
 }
 
 /// @nodoc
@@ -286,6 +295,7 @@ class __$$UpdateDataImplCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? shippingCost = freezed,
+    Object? package = freezed,
   }) {
     return _then(_$UpdateDataImpl(
       orderId: freezed == orderId
@@ -320,7 +330,25 @@ class __$$UpdateDataImplCopyWithImpl<$Res>
           ? _value.shippingCost
           : shippingCost // ignore: cast_nullable_to_non_nullable
               as GenericFormzInput<double>?,
+      package: freezed == package
+          ? _value.package
+          : package // ignore: cast_nullable_to_non_nullable
+              as PackageEntity?,
     ));
+  }
+
+  /// Create a copy of CachedDocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PackageEntityCopyWith<$Res>? get package {
+    if (_value.package == null) {
+      return null;
+    }
+
+    return $PackageEntityCopyWith<$Res>(_value.package!, (value) {
+      return _then(_value.copyWith(package: value));
+    });
   }
 }
 
@@ -335,7 +363,8 @@ class _$UpdateDataImpl implements _UpdateData {
       this.videoTwo,
       this.latitude,
       this.longitude,
-      this.shippingCost});
+      this.shippingCost,
+      this.package});
 
   @override
   final GenericFormzInput<int>? orderId;
@@ -353,10 +382,12 @@ class _$UpdateDataImpl implements _UpdateData {
   final GenericFormzInput<double>? longitude;
   @override
   final GenericFormzInput<double>? shippingCost;
+  @override
+  final PackageEntity? package;
 
   @override
   String toString() {
-    return 'CachedDocEvent.updateData(orderId: $orderId, imageOne: $imageOne, imageTwo: $imageTwo, videoOne: $videoOne, videoTwo: $videoTwo, latitude: $latitude, longitude: $longitude, shippingCost: $shippingCost)';
+    return 'CachedDocEvent.updateData(orderId: $orderId, imageOne: $imageOne, imageTwo: $imageTwo, videoOne: $videoOne, videoTwo: $videoTwo, latitude: $latitude, longitude: $longitude, shippingCost: $shippingCost, package: $package)';
   }
 
   @override
@@ -378,12 +409,13 @@ class _$UpdateDataImpl implements _UpdateData {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.shippingCost, shippingCost) ||
-                other.shippingCost == shippingCost));
+                other.shippingCost == shippingCost) &&
+            (identical(other.package, package) || other.package == package));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, orderId, imageOne, imageTwo,
-      videoOne, videoTwo, latitude, longitude, shippingCost);
+      videoOne, videoTwo, latitude, longitude, shippingCost, package);
 
   /// Create a copy of CachedDocEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -405,12 +437,13 @@ class _$UpdateDataImpl implements _UpdateData {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)
         updateData,
     required TResult Function() cachedDoc,
   }) {
     return updateData(orderId, imageOne, imageTwo, videoOne, videoTwo, latitude,
-        longitude, shippingCost);
+        longitude, shippingCost, package);
   }
 
   @override
@@ -425,12 +458,13 @@ class _$UpdateDataImpl implements _UpdateData {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)?
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)?
         updateData,
     TResult? Function()? cachedDoc,
   }) {
     return updateData?.call(orderId, imageOne, imageTwo, videoOne, videoTwo,
-        latitude, longitude, shippingCost);
+        latitude, longitude, shippingCost, package);
   }
 
   @override
@@ -445,14 +479,15 @@ class _$UpdateDataImpl implements _UpdateData {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)?
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)?
         updateData,
     TResult Function()? cachedDoc,
     required TResult orElse(),
   }) {
     if (updateData != null) {
       return updateData(orderId, imageOne, imageTwo, videoOne, videoTwo,
-          latitude, longitude, shippingCost);
+          latitude, longitude, shippingCost, package);
     }
     return orElse();
   }
@@ -501,7 +536,8 @@ abstract class _UpdateData implements CachedDocEvent {
       final FileFormzInput? videoTwo,
       final GenericFormzInput<double>? latitude,
       final GenericFormzInput<double>? longitude,
-      final GenericFormzInput<double>? shippingCost}) = _$UpdateDataImpl;
+      final GenericFormzInput<double>? shippingCost,
+      final PackageEntity? package}) = _$UpdateDataImpl;
 
   GenericFormzInput<int>? get orderId;
   FileFormzInput? get imageOne;
@@ -511,6 +547,7 @@ abstract class _UpdateData implements CachedDocEvent {
   GenericFormzInput<double>? get latitude;
   GenericFormzInput<double>? get longitude;
   GenericFormzInput<double>? get shippingCost;
+  PackageEntity? get package;
 
   /// Create a copy of CachedDocEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -569,7 +606,8 @@ class _$CachedDocImpl implements _CachedDoc {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)
         updateData,
     required TResult Function() cachedDoc,
   }) {
@@ -588,7 +626,8 @@ class _$CachedDocImpl implements _CachedDoc {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)?
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)?
         updateData,
     TResult? Function()? cachedDoc,
   }) {
@@ -607,7 +646,8 @@ class _$CachedDocImpl implements _CachedDoc {
             FileFormzInput? videoTwo,
             GenericFormzInput<double>? latitude,
             GenericFormzInput<double>? longitude,
-            GenericFormzInput<double>? shippingCost)?
+            GenericFormzInput<double>? shippingCost,
+            PackageEntity? package)?
         updateData,
     TResult Function()? cachedDoc,
     required TResult orElse(),

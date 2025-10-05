@@ -4,17 +4,16 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../../core/all_imports.dart';
 import '../../../../../core/services/notification_manager.dart';
 import '../../../domain/entities/cached_doc_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
-
+import '../../../../home/domain/entities/order_type_res_entity.dart';
 part 'cached_doc_bloc.freezed.dart';
 part 'cached_doc_event.dart';
 part 'cached_doc_state.dart';
 
-@injectable
+@singleton
 class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
   final DocsUseCase _docsUseCase;
   GenericFormzInput<int>? _orderId;
@@ -27,6 +26,7 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
   GenericFormzInput<double>? _shippingCosts;
   FormzSubmissionStatus? _formzSubmissionStatus;
   double? _localDocProgress;
+  PackageEntity? _package;
   // final NotificationManager notificationManager;
   StreamSubscription? _subscription;
   CachedDocBloc(
@@ -38,19 +38,6 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
     on<CachedDocEvent>(
       (event, emit) async {
         await event.whenOrNull(
-          // started: () {
-          //   _subscription = _docsUseCase.watchUploadingDocs().listen((docs) {
-          //     add(CachedDocEvent.docsUpdated(docs));
-          //   });
-          // },
-          // docsUpdated: (docs) async {
-          //   for (final doc in event.docs) {
-          //     await notificationManager.updateProgressNotification(doc);
-          //     emitCustomLoaded(
-          //       emit: emit,
-          //     );
-          //   }
-          // },
           updateData: (
             orderId,
             imageOne,
@@ -60,6 +47,7 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
             latitude,
             longitude,
             shippingCost,
+            package,
           ) async {
             _orderId = orderId ?? _orderId;
             _imageOne = imageOne ?? _imageOne;
@@ -69,6 +57,7 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
             _latitude = latitude ?? _latitude;
             _longitude = longitude ?? _longitude;
             _shippingCosts = shippingCost ?? _shippingCosts;
+            _package = package ?? _package;
             emitCustomLoaded(
               emit: emit,
             );
@@ -119,17 +108,30 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
     required Emitter<CachedDocState> emit,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
-    formzSubmissionStatus ??
-        (_formzSubmissionStatus = Formz.validate([
-          _orderId ?? const GenericFormzInput.pure(),
-          _videoOne ?? const FileFormzInput.pure(),
-          _videoTwo ?? const FileFormzInput.pure(),
-          _imageOne ?? const FileFormzInput.pure(),
-          _imageTwo ?? const FileFormzInput.pure(),
-          _shippingCosts ?? const GenericFormzInput.pure(),
-        ])
-            ? FormzSubmissionStatus.success
-            : FormzSubmissionStatus.failure);
+    // تحقق من صحة الحقول مع استثناء الإحداثيات للحزم المفردة (نوع 4)
+    final fieldsToValidate = <FormzInput<dynamic, dynamic>>[
+      _orderId ?? const GenericFormzInput.pure(),
+      _videoOne ?? const FileFormzInput.pure(),
+      _videoTwo ?? const FileFormzInput.pure(),
+      _imageOne ?? const FileFormzInput.pure(),
+      _imageTwo ?? const FileFormzInput.pure(),
+      _shippingCosts ?? const GenericFormzInput.pure(),
+    ];
+
+    // إضافة الإحداثيات فقط إذا لم تكن الحزمة مفردة (نوع 4)
+    if (_package?.type?.id != 4) {
+      fieldsToValidate.addAll([
+        _latitude ?? const GenericFormzInput.pure(),
+        _longitude ?? const GenericFormzInput.pure(),
+      ]);
+    }
+
+    formzSubmissionStatus ??= Formz.validate(fieldsToValidate)
+        ? FormzSubmissionStatus.success
+        : FormzSubmissionStatus.failure;
+
+    _formzSubmissionStatus = formzSubmissionStatus;
+
     emit(
       CachedDocState.loaded(
         orderId: _orderId,
@@ -140,8 +142,7 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
         latitude: _latitude,
         longitude: _longitude,
         shippingCost: _shippingCosts,
-        formzSubmissionStatus:
-            _formzSubmissionStatus ?? FormzSubmissionStatus.initial,
+        formzSubmissionStatus: _formzSubmissionStatus ?? FormzSubmissionStatus.initial,
         cachedProgress: _localDocProgress,
       ),
     );

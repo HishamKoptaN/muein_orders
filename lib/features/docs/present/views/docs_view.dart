@@ -39,7 +39,6 @@ class _DocsViewState extends State<DocsView> {
   @override
   void dispose() {
     _scrollController.removeListener(_onScroll);
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -58,8 +57,6 @@ class _DocsViewState extends State<DocsView> {
             loaded: (
               docs,
               hasMore,
-              backgroundMonitoringActive,
-              backgroundMonitoringInactive,
             ) {
               return ListView.builder(
                 controller: _scrollController,

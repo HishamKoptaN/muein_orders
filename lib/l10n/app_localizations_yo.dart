@@ -43,7 +43,7 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-      'Rii daju wípé awọn aworan, nọmba awọn ẹda ti Al-Qur\'an Mimọ, ati iye owo aṣẹ ṣaaju fifiranṣẹ.';
+      'Rii daju wípé awọn aworan, nọmba awọn ẹda ti Al-Qur\'\'an Mimọ, ati iye owo aṣẹ ṣaaju fifiranṣẹ.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
@@ -63,6 +63,12 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get send => 'firanṣẹ';
+
+  @override
+  String get uploadingDocument => 'Àwọn ìwé ìrùsókè';
+
+  @override
+  String get documentationIsBeingUploaded => 'Awọn iwe aṣẹ ti wa ni ikojọpọ';
 
   @override
   String get phone => 'Nomba fonu';
@@ -387,6 +393,10 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ṣe abojuto awọn aṣẹ rẹ ni akoko gidi pẹlu eto ipasẹ ogbon inu wa.';
 
   @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Ma ṣe paarẹ fọto ti agbegbe ti o fipamọ ati awọn faili fidio ti a lo lati ṣe igbasilẹ ohun elo kan titi ti iṣakoso yoo fi fọwọsi wọn.';
+
+  @override
   String get onboardingDocumentsTitle => 'Isakoso iwe';
 
   @override
@@ -412,7 +422,7 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Rii daju wípé awọn aworan ati nọmba to pe ti awọn ẹda Al-Qur\'an Mimọ ṣaaju fifiranṣẹ';
+      'Rii daju wípé awọn aworan ati nọmba to pe ti awọn ẹda Al-Qur\'\'an Mimọ ṣaaju fifiranṣẹ';
 
   @override
   String get failure => 'lati kuna';
@@ -507,11 +517,12 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ọna asopọ atunto ọrọ igbaniwọle ti firanṣẹ si imeeli rẹ.';
 
   @override
-  String get onboardingPage3Title => 'Iwe pẹlu awọn fọto ati awọn fidio';
+  String get onboardingPage3Title =>
+      'Awọn iwe aṣẹ pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get onboardingPage3Description =>
-      'Rii daju wípé awọn aworan ati nọmba to pe ti awọn ẹda Al-Qur\'an Mimọ ṣaaju fifiranṣẹ';
+      'Rii daju wípé awọn aworan ati nọmba to pe ti awọn ẹda Al-Qur\'\'an Mimọ ṣaaju fifiranṣẹ';
 
   @override
   String get sticker => 'panini';

@@ -1,12 +1,16 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:drift/drift.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../core/networking/api_result.dart';
+import '../../../../core/app/global_variable.dart';
 import '../../../../core/config/upload_settings.dart';
 import '../../../../core/error/api_error_handler.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/docs_res_entity.dart';
 import '../../domain/repo/docs_repo.dart';
 import '../datasources/local/drift/app_database.dart';
@@ -17,7 +21,8 @@ import '../mapper/docs_mapper.dart';
 class DocsRepoImpl implements DocsRepo {
   final DocsApi postsApi;
   final AppDatabase db;
-  final FlutterLocalNotificationsPlugin _notifications = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _notifications =
+      FlutterLocalNotificationsPlugin();
 
   DocsRepoImpl({
     required this.postsApi,
@@ -40,74 +45,62 @@ class DocsRepoImpl implements DocsRepo {
     }
   }
 
-  /// تهيئة الإشعارات
   Future<void> _initializeNotifications() async {
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
     const initSettings = InitializationSettings(android: androidInit);
     await _notifications.initialize(initSettings);
   }
 
-  /// إظهار إشعار التقدم
-  Future<void> _showProgressNotification(CachedDoc doc, double progress) async {
+  Future<void> _showProgressNotification({
+    required CachedDoc doc,
+    required double progress,
+  }) async {
+    final t = AppLocalizations.of(GlobalVariable.navState.currentContext!);
+    final clampedProgress = progress.clamp(0, 100).toInt();
+    final title = t.uploadingDocument;
+    final body = t.documentationIsBeingUploaded;
+    final style = BigTextStyleInformation(
+      '$body\n${clampedProgress.toString()}%',
+      htmlFormatBigText: false,
+    );
     final androidDetails = AndroidNotificationDetails(
       'upload_channel',
-      'رفع الملفات',
+      t.uploadingDocument,
       channelDescription: 'عرض تقدم الرفع',
       importance: Importance.low,
       priority: Priority.low,
       showProgress: true,
       maxProgress: 100,
-      progress: progress.toInt(),
+      progress: clampedProgress,
       onlyAlertOnce: true,
       ongoing: true,
       playSound: false,
+      styleInformation: style,
     );
     await _notifications.show(
-      doc.id ?? 0,
-      'رفع التوثيق',
-      'جاري رفع طلب ${doc.orderId} (${progress.toInt()}%)',
+      doc.id,
+      title,
+      '$body',
       NotificationDetails(android: androidDetails),
     );
   }
-
-
   @override
   Future<ApiResult<DocEntity?>> createDoc({
     required CachedDoc doc,
-    required Function onSendProgress,
   }) async {
     try {
-      // تهيئة الإشعارات
       await _initializeNotifications();
-
-      if (UploadSpeedSettings.enableDetailedLogging) {
-        print('📤 بدء رفع doc id=${doc.id} للطلب ${doc.orderId}');
-      }
       await db.update(db.cachedDocs).replace(
             doc.copyWith(
               uploadStatus: 'uploading',
             ),
           );
-      if (UploadSpeedSettings.enableDetailedLogging) {
-        print('📤 تم تحديث حالة doc id=${doc.id} إلى uploading');
-      }
       final imageOneFile = fileFromPath(doc.imageOne);
       final imageTwoFile = fileFromPath(doc.imageTwo);
       final videoOneFile = fileFromPath(doc.videoOne);
       final videoTwoFile = fileFromPath(doc.videoTwo);
       if (UploadSpeedSettings.enableDetailedLogging) {
-        print('📤 ملفات الرفع:');
-        print(
-            '  - imageOne: ${imageOneFile?.path ?? 'null'} (${imageOneFile?.lengthSync() ?? 0} bytes)');
-        print(
-            '  - imageTwo: ${imageTwoFile?.path ?? 'null'} (${imageTwoFile?.lengthSync() ?? 0} bytes)');
-        print(
-            '  - videoOne: ${videoOneFile?.path ?? 'null'} (${videoOneFile?.lengthSync() ?? 0} bytes)');
-        print(
-            '  - videoTwo: ${videoTwoFile?.path ?? 'null'} (${videoTwoFile?.lengthSync() ?? 0} bytes)');
-
-        // إضافة تأخير قبل بدء الرفع
-        print('📤 بدء الرفع الفعلي...');
+        print('📤 ملفات الرفع جاهزة لبدء العملية');
       }
 
       final res = await postsApi.createDoc(
@@ -121,32 +114,29 @@ class DocsRepoImpl implements DocsRepo {
         shippingCosts: doc.shippingCost.toString(),
         onSendProgress: (sent, total) async {
           final progress = total != 0 ? ((sent / total) * 100).toDouble() : 0.0;
-
-          // ميزة وضع التطوير: إلغاء الطلب عند 80% لمراقبة حالة الطلبات
-          if (kDebugMode && progress >= 80) {
-            if (UploadSpeedSettings.enableDetailedLogging) {
-              print('🚫 إلغاء الطلب في وضع التطوير عند 80% لمراقبة التقدم');
-            }
-            throw Exception('تم إلغاء الطلب في وضع التطوير عند 80% لمراقبة الحالة');
+          if (kDebugMode &&
+              progress >= UploadSpeedSettings.debugCancelPercentage) {
+            throw Exception(
+              'تم إلغاء الطلب في وضع التطوير عند ${UploadSpeedSettings.debugCancelPercentage}% لمراقبة الحالة',
+            );
           }
-          // تحديث قاعدة البيانات أولاً
           await db.update(db.cachedDocs).replace(
-                doc.copyWith(uploadProgress: progress),
+                doc.copyWith(
+                  uploadStatus: 'uploading',
+                  uploadProgress: progress,
+                ),
               );
-          // إظهار إشعار التقدم
-          await _showProgressNotification(doc, progress);
-          // ثم طباعة الـ logs
+          await _showProgressNotification(
+            doc: doc,
+            progress: progress,
+          );
           if (UploadSpeedSettings.enableDetailedLogging) {
             print(
-                '📤 تقدم الرفع: ${(progress).toStringAsFixed(1)}% (${sent}/${total} bytes)');
+              '📤 تقدم الرفع: ${progress.toStringAsFixed(1)}% ($sent/$total bytes) - ${doc.orderId}',
+            );
           }
-          // إضافة تأخير بسيط فقط لتجنب التحديثات السريعة جداً
-          await Future.delayed(Duration(milliseconds: 100));
         },
       );
-      if (UploadSpeedSettings.enableDetailedLogging) {
-        print('📤 تم استلام الرد من API');
-      }
       final result = res.toEntity();
       await db.update(db.cachedDocs).replace(
             doc.copyWith(
@@ -154,14 +144,10 @@ class DocsRepoImpl implements DocsRepo {
               uploadProgress: 100.0,
             ),
           );
-      if (UploadSpeedSettings.enableDetailedLogging) {
-        print('📤 تم تحديث حالة doc id=${doc.id} إلى success');
-      }
       return ApiResult.success(
         data: result,
       );
     } catch (error) {
-      print('📤 خطأ في رفع doc id=${doc.id}: $error');
       await db.update(db.cachedDocs).replace(
             doc.copyWith(uploadStatus: 'failure'),
           );
@@ -194,7 +180,8 @@ class DocsRepoImpl implements DocsRepo {
             final progress =
                 total != 0 ? ((count / total) * 100).toDouble() : 0.0;
             db.update(db.cachedDocs).replace(
-                  doc.copyWith(uploadProgress: progress),
+                  doc.copyWith(
+                      uploadStatus: 'uploading', uploadProgress: progress,),
                 );
           },
         );
@@ -202,7 +189,7 @@ class DocsRepoImpl implements DocsRepo {
       return const ApiResult.success(data: null);
     } catch (error) {
       return ApiResult.failure(
-          apiErrorModel: ApiErrorHandler.handle(error: error));
+          apiErrorModel: ApiErrorHandler.handle(error: error),);
     }
   }
 
@@ -228,11 +215,21 @@ class DocsRepoImpl implements DocsRepo {
           db.update(db.cachedDocs).replace(
                 doc.copyWith(uploadProgress: progress),
               );
+
+          // إضافة نفس التأخير البطيء للمراقبة في retryUpload
+          // نستخدم Timer بدلاً من await داخل الـ callback
+          if (UploadSpeedSettings.enableSimulatedProgress) {
+            Future.delayed(
+                const Duration(
+                    milliseconds: UploadSpeedSettings.progressSimulationSpeed,),
+                () {},);
+          }
+          Future.delayed(
+              const Duration(milliseconds: UploadSpeedSettings.progressDelayMs),
+              () {},);
         },
       );
-      return const ApiResult.success(
-        data: null,
-      );
+      return const ApiResult.success(data: null);
     } catch (e) {
       return ApiResult.failure(
         apiErrorModel: ApiErrorHandler.handle(

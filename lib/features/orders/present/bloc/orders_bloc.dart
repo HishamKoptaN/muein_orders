@@ -9,8 +9,7 @@ import '../../domain/usecases/orders_use_cases.dart';
 part 'orders_bloc.freezed.dart';
 part 'orders_event.dart';
 part 'orders_state.dart';
-
-@injectable
+@singleton
 class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
   final OrdersUseCases ordersUseCases;
   final CachedDocsRepo localRepo;

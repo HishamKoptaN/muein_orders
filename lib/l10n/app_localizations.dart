@@ -159,7 +159,7 @@ abstract class AppLocalizations {
   /// No description provided for @hereyouwillfindtasksrequestsalertsandfilters.
   ///
   /// In en, this message translates to:
-  /// **'Here you\'\'ll find tasks, requests, alerts, and filters.'**
+  /// **'Here you\'\'\'\'ll find tasks, requests, alerts, and filters.'**
   String get hereyouwillfindtasksrequestsalertsandfilters;
 
   /// No description provided for @documentationWithPhotosAndVideos.
@@ -204,6 +204,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'send'**
   String get send;
+
+  /// No description provided for @uploadingDocument.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload documentation'**
+  String get uploadingDocument;
+
+  /// No description provided for @documentationIsBeingUploaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Documentation is being uploaded'**
+  String get documentationIsBeingUploaded;
 
   /// No description provided for @phone.
   ///
@@ -748,7 +760,7 @@ abstract class AppLocalizations {
   /// No description provided for @notHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Don\'\'t have an account?'**
+  /// **'Don\'\'\'\'t have an account?'**
   String get notHaveAccount;
 
   /// No description provided for @passwordsDoNotMatch.
@@ -802,7 +814,7 @@ abstract class AppLocalizations {
   /// No description provided for @not_have_account.
   ///
   /// In en, this message translates to:
-  /// **'Don\'\'t have an account?'**
+  /// **'Don\'\'\'\'t have an account?'**
   String get not_have_account;
 
   /// No description provided for @errorLoadingOnboarding.
@@ -834,6 +846,13 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Monitor your orders in real time with our intuitive tracking system.'**
   String get onboardingTrackingDescription;
+
+  /// No description provided for @do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not delete locally stored photo and video files used to document an application until they are approved by the administration.'**
+  String
+      get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration;
 
   /// No description provided for @onboardingDocumentsTitle.
   ///

@@ -66,6 +66,12 @@ class AppLocalizationsFf extends AppLocalizations {
   String get send => 'neldugo';
 
   @override
+  String get uploadingDocument => 'Neldu binndanɗe';
+
+  @override
+  String get documentationIsBeingUploaded => 'Dokimaaji ina njuɓɓinee';
+
+  @override
   String get phone => 'Limoore telefoŋ';
 
   @override
@@ -388,6 +394,10 @@ class AppLocalizationsFf extends AppLocalizations {
       'Yiylo jamirooje maa e sahaa tigi-rigi e njuɓɓudi men rewindaade.';
 
   @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Hoto momtu piille fotooje e wideyooji kuutorteeɗe ngam winndude ɗaɓɓaande haa nde njuɓɓudi ndii jaɓi ɗum.';
+
+  @override
   String get onboardingDocumentsTitle => 'Njuɓɓudi binndanɗe';
 
   @override
@@ -542,7 +552,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get expenses => 'majinugo ceede';
 
   @override
-  String get documentingTheRequest => 'Winnditaade ɗaɓɓaande ndee';
+  String get documentingTheRequest => 'Winndu ɗaɓɓaande ndee';
 
   @override
   String get documentationProgress => 'Yahrugol yeeso binnditagol';

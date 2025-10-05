@@ -62,7 +62,13 @@ class AppLocalizationsSw extends AppLocalizations {
       'Nyaraka zilizo na picha na video';
 
   @override
-  String get send => 'tuma';
+  String get send => 'kutuma';
+
+  @override
+  String get uploadingDocument => 'Pakia nyaraka';
+
+  @override
+  String get documentationIsBeingUploaded => 'Hati zinapakiwa';
 
   @override
   String get phone => 'Nambari ya simu';
@@ -377,7 +383,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get onboardingWelcomeDescription =>
-      'Suluhisho la kina la usimamizi wa agizo na hati';
+      'Suluhisho la kina la usimamizi wa agizo na nyaraka';
 
   @override
   String get onboardingTrackingTitle => 'Fuatilia maagizo yako';
@@ -385,6 +391,10 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get onboardingTrackingDescription =>
       'Fuatilia maagizo yako kwa wakati halisi na mfumo wetu wa ufuatiliaji wa angavu.';
+
+  @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Usifute faili za picha na video zilizohifadhiwa ndani zinazotumiwa kurekodi maombi hadi ziidhinishwe na wasimamizi.';
 
   @override
   String get onboardingDocumentsTitle => 'Usimamizi wa hati';
@@ -541,7 +551,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get expenses => 'gharama';
 
   @override
-  String get documentingTheRequest => 'Kuandika ombi';
+  String get documentingTheRequest => 'Andika ombi';
 
   @override
   String get documentationProgress => 'Maendeleo ya hati';

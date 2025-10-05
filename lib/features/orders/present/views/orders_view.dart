@@ -105,14 +105,14 @@ class _OrdersViewState extends State<OrdersView> {
                     width: 69,
                     height: 18,
                     child: Text(
-                      '${t.order}( ${state.maybeWhen(
+                      '${t.orders} ( ${state.maybeWhen(
                         loaded: (orders, hasMore) {
-                          orders?.length.toString() ?? '';
+                          return orders?.length.toString() ?? '0';
                         },
                         orElse: () {
-                          return '';
+                          return '0';
                         },
-                      )} ) ${t.order}',
+                      )} )',
                       textAlign: TextAlign.right,
                       style: const TextStyle(
                         fontFamily: 'Almarai',
@@ -187,6 +187,7 @@ class _OrdersViewState extends State<OrdersView> {
                                       orderEntity: order ?? const OrderEntity(),
                                       orderDocsCount:
                                           widget.package.docsCount ?? 1,
+                                      package: widget.package,
                                     );
                                   },
                                 ),

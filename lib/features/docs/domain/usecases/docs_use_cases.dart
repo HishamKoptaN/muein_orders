@@ -25,11 +25,9 @@ class DocsUseCase {
 
   Future<ApiResult<DocEntity?>> createDoc({
     required CachedDoc doc,
-    required Function onSendProgress,
   }) async {
     return await docsRepo.createDoc(
       doc: doc,
-      onSendProgress: onSendProgress,
     );
   }
 

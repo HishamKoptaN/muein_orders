@@ -6,6 +6,7 @@ import 'package:form_inputs/form_inputs.dart';
 
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../home/domain/entities/order_type_res_entity.dart';
 import '../../blocs/cached_doc/cached_doc_bloc.dart';
 import 'add_file_widget.dart';
 import 'file_picker_utils.dart';
@@ -21,6 +22,7 @@ class AddDocWidget extends StatelessWidget {
     required this.latitude,
     required this.longitude,
     required this.shippingCost,
+    required this.package,
   });
   final FileFormzInput videoOne;
   final FileFormzInput videoTwo;
@@ -29,6 +31,7 @@ class AddDocWidget extends StatelessWidget {
   final GenericFormzInput<double>? latitude;
   final GenericFormzInput<double>? longitude;
   final GenericFormzInput<double>? shippingCost;
+  final PackageEntity package;
 
   static const String routeName = 'DocWidget';
   @override
@@ -118,10 +121,14 @@ class AddDocWidget extends StatelessWidget {
           },
           validator: (_) => videoTwo.isNotValid ? videoTwo.errorMessage : null,
         ),
-        LocationPickerButton(
-          latitude: latitude,
-          longitude: longitude,
-        ),
+        // إخفاء حقل الموقع للحزم المفردة (نوع 4)
+        if (package.type?.id != 4) ...[
+          LocationPickerButton(
+            latitude: latitude,
+            longitude: longitude,
+            package: package,
+          ),
+        ],
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -133,33 +140,28 @@ class AddDocWidget extends StatelessWidget {
             keyboardType: TextInputType.number,
             labelText: t.expenses,
             hintText: t.expenses,
-            decoration: InputDecoration(
-              labelText: t.expenses,
-              hintText: t.expenses,
-              labelStyle: const TextStyle(
-                fontFamily: 'Almarai',
-                fontSize: 16,
-                color: Color(0xFFBABABA),
-              ),
-              hintStyle: const TextStyle(
-                fontFamily: 'Almarai',
-                fontSize: 16,
-                color: Color(0xFFBABABA),
-              ),
-              border: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-              filled: true,
-              fillColor: Colors.grey.withOpacity(0.2),
+            labelStyle: const TextStyle(
+              fontFamily: 'Almarai',
+              fontSize: 16,
+              color: Color(0xFFBABABA),
             ),
+            hintStyle: const TextStyle(
+              fontFamily: 'Almarai',
+              fontSize: 16,
+              color: Color(0xFFBABABA),
+            ),
+            border: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+            filled: true,
+            fillColor: Colors.grey.withOpacity(0.2),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Colors.black,
-                  fontFamily: 'Almarai',
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w400,
-                ),
+              color: Colors.black,
+              fontFamily: 'Almarai',
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+            ),
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly,
             ],
@@ -167,6 +169,7 @@ class AddDocWidget extends StatelessWidget {
               context.read<CachedDocBloc>().add(
                     CachedDocEvent.updateData(
                       shippingCost: GenericFormzInput.dirty(double.parse(v)),
+                      package: package,
                     ),
                   );
             },

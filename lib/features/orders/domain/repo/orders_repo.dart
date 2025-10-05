@@ -1,5 +1,4 @@
 import '../../../../../core/networking/api_result.dart';
-import '../../../docs/domain/entities/cached_doc_entity.dart';
 import '../entities/orders_res_entity.dart';
 
 abstract class OrdersRepo {

@@ -36,7 +36,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Here you\'ll find tasks, requests, alerts, and filters.';
+      'Here you\'\'ll find tasks, requests, alerts, and filters.';
 
   @override
   String get documentationWithPhotosAndVideos =>
@@ -64,6 +64,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get send => 'send';
+
+  @override
+  String get uploadingDocument => 'Upload documentation';
+
+  @override
+  String get documentationIsBeingUploaded => 'Documentation is being uploaded';
 
   @override
   String get phone => 'Phone number';
@@ -340,7 +346,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unexpected_error => 'An unexpected error occurred.';
 
   @override
-  String get notHaveAccount => 'Don\'t have an account?';
+  String get notHaveAccount => 'Don\'\'t have an account?';
 
   @override
   String get passwordsDoNotMatch => 'Passwords do not match';
@@ -368,7 +374,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get documentationAndReviewIsUnderway => 'Documented and under review';
 
   @override
-  String get not_have_account => 'Don\'t have an account?';
+  String get not_have_account => 'Don\'\'t have an account?';
 
   @override
   String get errorLoadingOnboarding =>
@@ -387,6 +393,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onboardingTrackingDescription =>
       'Monitor your orders in real time with our intuitive tracking system.';
+
+  @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Do not delete locally stored photo and video files used to document an application until they are approved by the administration.';
 
   @override
   String get onboardingDocumentsTitle => 'Document management';

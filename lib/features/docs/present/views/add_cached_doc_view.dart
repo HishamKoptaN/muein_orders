@@ -8,6 +8,7 @@ import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../home/domain/entities/order_type_res_entity.dart';
 import '../blocs/cached_doc/cached_doc_bloc.dart';
 import 'debug_auto_fill_tools.dart';
 import 'widgets/add_doc_fields.dart';
@@ -17,9 +18,12 @@ class AddCachedDocView extends StatefulWidget {
   const AddCachedDocView({
     super.key,
     required this.orderId,
+    required this.package,
   });
   static const String routeName = 'add-cached-doc';
   final int orderId;
+  final PackageEntity package;
+
   @override
   State<AddCachedDocView> createState() => _AddCachedDocViewState();
 }
@@ -32,6 +36,7 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
     context.read<CachedDocBloc>().add(
           CachedDocEvent.updateData(
             orderId: GenericFormzInput.dirty(widget.orderId),
+            package: widget.package,
           ),
         );
   }
@@ -98,6 +103,7 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                           longitude:
                               longitude ?? const GenericFormzInput.pure(),
                           shippingCost: shippingCost,
+                          package: widget.package,
                         ),
                         const SizedBox(height: 15),
                         SubmitButton(

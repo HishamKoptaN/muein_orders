@@ -10,7 +10,7 @@ part 'home_bloc.freezed.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
-@injectable
+@singleton
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeUseCases homeUseCases;
 

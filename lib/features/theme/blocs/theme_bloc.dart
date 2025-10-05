@@ -7,29 +7,45 @@ part 'theme_bloc.freezed.dart';
 part 'theme_event.dart';
 part 'theme_state.dart';
 
-@injectable
+@singleton
 class ThemeBloc extends HydratedBloc<ThemeEvent, ThemeState> {
   @factoryMethod
   ThemeBloc() : super(const ThemeState.loading()) {
-    on<ThemeEvent>((event, emit) {
-      event.map(
-        toggleTheme: (_) {
-          emit(
-            state.maybeWhen(
-              orElse: () => const ThemeState.loading(),
-              loaded: (themeMode) => themeMode == ThemeMode.light
-                  ? const ThemeState.loaded(themeMode: ThemeMode.dark)
-                  : const ThemeState.loaded(themeMode: ThemeMode.light),
+    on<ThemeEvent>(
+      (event, emit) {
+        event.map(
+          toggleTheme: (_) {
+            emit(
+              state.maybeWhen(
+                orElse: () => const ThemeState.loading(),
+                loaded: (themeMode) => themeMode == ThemeMode.light
+                    ? const ThemeState.loaded(
+                        themeMode: ThemeMode.dark,
+                      )
+                    : const ThemeState.loaded(
+                        themeMode: ThemeMode.light,
+                      ),
+              ),
+            );
+          },
+          setLight: (_) => emit(
+            const ThemeState.loaded(
+              themeMode: ThemeMode.light,
             ),
-          );
-        },
-        setLight: (_) =>
-            emit(const ThemeState.loaded(themeMode: ThemeMode.light)),
-        setDark: (_) =>
-            emit(const ThemeState.loaded(themeMode: ThemeMode.dark)),
-        setMode: (v) => emit(ThemeState.loaded(themeMode: v.mode)),
-      );
-    });
+          ),
+          setDark: (_) => emit(
+            const ThemeState.loaded(
+              themeMode: ThemeMode.dark,
+            ),
+          ),
+          setMode: (v) => emit(
+            ThemeState.loaded(
+              themeMode: v.mode,
+            ),
+          ),
+        );
+      },
+    );
   }
   @override
   ThemeState? fromJson(Map<String, dynamic> json) {
@@ -48,9 +64,9 @@ class ThemeBloc extends HydratedBloc<ThemeEvent, ThemeState> {
 
   @override
   Map<String, dynamic>? toJson(ThemeState state) => {
-    'mode': state.maybeWhen(
-      orElse: () => 'system',
-      loaded: (themeMode) => themeMode.name,
-    ),
-  };
+        'mode': state.maybeWhen(
+          orElse: () => 'system',
+          loaded: (themeMode) => themeMode.name,
+        ),
+      };
 }

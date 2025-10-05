@@ -6,7 +6,6 @@ abstract class DocsRepo {
   Future<ApiResult<DocsResEntity?>> getDocs({required int orderId});
   Future<ApiResult<DocEntity?>> createDoc({
     required CachedDoc doc,
-    required Function onSendProgress,
   });
   Future<ApiResult<void>> startUpload({required int orderId});
   Future<ApiResult<void>> retryUpload({required int docId});

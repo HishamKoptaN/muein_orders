@@ -14,9 +14,8 @@ part 'notifications_api.g.dart';
 abstract class NotificationsApi {
   @factoryMethod
   factory NotificationsApi(
-    Dio dio, {
-    String? baseUrl,
-  }) = _NotificationsApi;
+    Dio dio,
+  ) = _NotificationsApi;
 
   // Get notifications
   @GET(ApiConstants.notifications)

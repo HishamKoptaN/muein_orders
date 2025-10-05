@@ -6,20 +6,19 @@ import '../../core/performance/performance_manager.dart';
 
 class AppInitializer {
   static Future<void> initialize() async {
-    // تهيئة HydratedBloc storage
-    if (!kIsWeb) {
-      final storageDirectory = await getApplicationDocumentsDirectory();
+    if (kIsWeb) {
+      // 🌐 للويب
       HydratedBloc.storage = await HydratedStorage.build(
-        storageDirectory: HydratedStorageDirectory(storageDirectory.path),
+        storageDirectory: HydratedStorageDirectory.web,
       );
     } else {
-      // للويب، استخدم تخزين بسيط في الذاكرة
+      // 📱 للموبايل
+      final dir = await getApplicationDocumentsDirectory();
       HydratedBloc.storage = await HydratedStorage.build(
-        storageDirectory: HydratedStorageDirectory('mubin_orders'),
+        storageDirectory: HydratedStorageDirectory(dir.path),
       );
     }
-
-    // تهيئة تحسينات الأداء
+    // ⚙️ تهيئة تحسينات الأداء
     await PerformanceManager.initialize();
   }
 }

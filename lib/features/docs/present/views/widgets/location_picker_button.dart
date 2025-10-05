@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../../l10n/app_localizations.dart';
 import '../../blocs/cached_doc/cached_doc_bloc.dart';
+import '../../../../home/domain/entities/order_type_res_entity.dart';
 import 'pick_location_view.dart';
 
 class LocationPickerButton extends StatelessWidget {
@@ -12,9 +13,11 @@ class LocationPickerButton extends StatelessWidget {
     super.key,
     required this.latitude,
     required this.longitude,
+    required this.package,
   });
   final GenericFormzInput<double>? latitude;
   final GenericFormzInput<double>? longitude;
+  final PackageEntity package;
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
@@ -72,6 +75,7 @@ class LocationPickerButton extends StatelessWidget {
                     CachedDocEvent.updateData(
                       latitude: GenericFormzInput.dirty(double.parse(lat)),
                       longitude: GenericFormzInput.dirty(double.parse(lng)),
+                      package: package,
                     ),
                   );
             }

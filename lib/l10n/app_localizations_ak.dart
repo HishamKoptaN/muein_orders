@@ -66,6 +66,13 @@ class AppLocalizationsAk extends AppLocalizations {
   String get send => 'mane';
 
   @override
+  String get uploadingDocument => 'Fa nkrataa a wɔde kyerɛw nsɛm gu so';
+
+  @override
+  String get documentationIsBeingUploaded =>
+      'Wɔde nkrataa a wɔde kyerɛw nneɛma rekɔ so';
+
+  @override
   String get phone => 'Telefon nɔma';
 
   @override
@@ -389,6 +396,10 @@ class AppLocalizationsAk extends AppLocalizations {
       'Hwɛ wo orders wɔ bere ankasa mu denam yɛn intuitive tracking nhyehyɛe.';
 
   @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Mpopa mfonini ne video fael a wɔde asie wɔ wo mpɔtam hɔ a wɔde kyerɛw application bi kosi sɛ adwumayɛfo no bɛpene so.';
+
+  @override
   String get onboardingDocumentsTitle => 'Nwoma a wɔde di dwuma';
 
   @override
@@ -543,7 +554,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get expenses => 'ɛka';
 
   @override
-  String get documentingTheRequest => 'Kyerɛw abisade no to hɔ';
+  String get documentingTheRequest => 'Abisade no ho nkrataa a wɔkyerɛw';
 
   @override
   String get documentationProgress => 'Nkɔso a ɛwɔ nkrataakyerɛw mu';

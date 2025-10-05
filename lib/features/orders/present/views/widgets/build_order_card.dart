@@ -1,21 +1,24 @@
 import 'dart:math';
-
+import 'package:drift/drift.dart' hide Column;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:drift/drift.dart' hide Column;
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../../../docs/data/datasources/local/drift/app_database.dart';
+import '../../../../docs/data/datasources/local/drift/app_database.dart'
+    show AppDatabase, CachedDocsCompanion;
+import '../../../../docs/domain/usecases/docs_use_cases.dart';
+import '../../../../home/domain/entities/order_type_res_entity.dart';
 import '../../../domain/entities/orders_res_entity.dart';
 import 'order_action_buttons.dart';
-import 'order_documentation_status.dart';
+import 'order_doc_status.dart';
 
 Widget buildOrderCard({
   required BuildContext context,
   required OrderEntity orderEntity,
   required int orderDocsCount,
   required AppLocalizations t,
+  required PackageEntity package,
 }) {
   final db = getIt<AppDatabase>();
   return GestureDetector(
@@ -72,16 +75,53 @@ Widget buildOrderCard({
                 ],
               ),
               const SizedBox(height: 15),
-              buildOrderDocumentationStatus(
+              buildOrderDocStatus(
                 context: context,
                 orderEntity: orderEntity,
                 t: t,
+                onRetry: () async {
+                  try {
+                    final docsUseCase = getIt<DocsUseCase>();
+                    // البحث عن المستندات الفاشلة لهذا الطلب
+                    final db = getIt<AppDatabase>();
+                    final failedDocs = await (db.select(db.cachedDocs)
+                          ..where((tbl) =>
+                              tbl.orderId.equals(orderEntity.id ?? 0) &
+                              tbl.uploadStatus.equals('failure')))
+                        .get();
+
+                    if (failedDocs.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content:
+                                Text('لا توجد مستندات فاشلة لإعادة المحاولة')),
+                      );
+                      return;
+                    }
+
+                    // إعادة محاولة رفع جميع المستندات الفاشلة
+                    for (var doc in failedDocs) {
+                      await docsUseCase.retryUpload(docId: doc.id);
+                    }
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text(
+                              'تم بدء إعادة المحاولة لـ ${failedDocs.length} مستند')),
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('خطأ في إعادة المحاولة: $e')),
+                    );
+                  }
+                },
               ),
               const SizedBox(height: 8),
               buildOrderActionButtons(
                 orderEntity: orderEntity,
                 orderDocsCount: orderDocsCount,
                 t: t,
+                package: package,
               ),
               const SizedBox(height: 16),
             ],
@@ -139,9 +179,14 @@ void _showTestMenu({
             ),
             ListTile(
               leading: const Icon(Icons.refresh),
-              title: const Text('إعادة تعيين العداد'),
+              title: const Text('مسح التوثيقات المحلية للطلب'),
               onTap: () {
                 Navigator.pop(context);
+                _clearOrderDocs(
+                  context: context,
+                  orderEntity: orderEntity,
+                  db: db,
+                );
               },
             ),
           ],
@@ -149,6 +194,20 @@ void _showTestMenu({
       );
     },
   );
+}
+
+void _clearOrderDocs(
+    {required BuildContext context,
+    required OrderEntity orderEntity,
+    required AppDatabase db}) async {
+  final allDocs = await (db.select(db.cachedDocs)
+        ..where((tbl) => tbl.orderId.equals(orderEntity.id ?? 0)))
+      .get();
+  for (var doc in allDocs) {
+    await db.deleteDoc(
+      orderId: orderEntity.id ?? 0,
+    );
+  }
 }
 
 void _changeOrderStatus(

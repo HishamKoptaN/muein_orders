@@ -7,7 +7,7 @@ import '../../domain/usecases/notifications_use_cases.dart';
 import 'notifications_event.dart';
 import 'notifications_state.dart';
 
-@injectable
+@singleton
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   final NotificationsUseCases useCases;
   final List<AppNotification> _notifications = [];

@@ -107,10 +107,8 @@ class PerformanceManager {
       // Clear image cache
       PaintingBinding.instance.imageCache.clear();
       PaintingBinding.instance.imageCache.clearLiveImages();
-
       // Clear other caches as needed
       // SharedPreferencesAsync cache, network cache, etc.
-
       if (kDebugMode) {
         debugPrint('All caches cleared');
       }
