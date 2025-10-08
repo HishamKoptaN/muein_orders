@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
+import '../../features/docs/present/views/add_cached_doc_view.dart';
 import '../../features/home/present/view/home_view.dart';
-import '../../features/language/view/select_language.dart';
 import '../../features/onboarding/present/view/onboarding_view.dart';
 import '../app/global_variable.dart';
 import 'app_router_redirect.dart';
@@ -18,11 +18,12 @@ class AppRouter {
       navigatorKey: GlobalVariable.navState,
       debugLogDiagnostics: true,
       routes: RouteConfig.routes,
-      refreshListenable: GoRouterRefreshStream(authBloc.stream),
+      refreshListenable:
+          kDebugMode ? null : GoRouterRefreshStream(authBloc.stream),
       initialLocation: authBloc.state.whenOrNull(
         authenticated: (redirect) {
           if (kDebugMode) {
-            return '/${HomeView.routeName}';
+            return '/${InstructionsView.routeName}';
           }
           if (!redirect) {
             return '/${InstructionsView.routeName}';

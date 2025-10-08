@@ -5,7 +5,6 @@ import '../../../../core/all_imports.dart';
 import '../../../../core/extensions/locale_extensions.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
-import '../../../../core/widgets/notification_icon.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../drawer/my_drawer.dart';
@@ -203,15 +202,17 @@ class _HomeViewState extends State<HomeView> {
                         Gap(
                           5.w,
                         ),
-                        Text(
-                          '${orderTypeResEntity.package?.quantity ?? ''}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Jost',
+                        if (orderTypeResEntity.package?.quantity != null &&
+                            orderTypeResEntity.package!.quantity! > 0)
+                          Text(
+                            '${orderTypeResEntity.package?.quantity ?? ''}',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'Jost',
+                            ),
                           ),
-                        ),
                         Gap(
                           5.w,
                         ),

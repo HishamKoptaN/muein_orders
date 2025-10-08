@@ -35,7 +35,7 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Wano ojja kusanga emirimu, okusaba, okulabula, n\'\'okusengejja.';
+      'Wano ojja kusanga emirimu, okusaba, okulabula, n\'okusengejja.';
 
   @override
   String get documentationWithPhotosAndVideos =>
@@ -55,7 +55,7 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Wano ojja kusanga emirimu, okusaba, okulabula, n\'\'okusengejja.';
+      'Wano ojja kusanga emirimu, okusaba, okulabula, n\'okusengejja.';
 
   @override
   String get documentation_with_photos_and_videos =>
@@ -138,7 +138,7 @@ class AppLocalizationsLg extends AppLocalizations {
   String get order_place => 'ekifo';
 
   @override
-  String get order_id => 'ID y\'\'okulagira';
+  String get order_id => 'ID y\'okulagira';
 
   @override
   String get order_number => 'ennamba y’okulagira';
@@ -189,10 +189,10 @@ class AppLocalizationsLg extends AppLocalizations {
   String get countryHint => 'eggwanga';
 
   @override
-  String get confirmPasswordHint => 'Kakasa ekigambo ky\'\'okuyingira';
+  String get confirmPasswordHint => 'Kakasa ekigambo ky\'okuyingira';
 
   @override
-  String get confirmPassword => 'Kakasa ekigambo ky\'\'okuyingira';
+  String get confirmPassword => 'Kakasa ekigambo ky\'okuyingira';
 
   @override
   String get remember_me => 'Nzijukira';
@@ -268,7 +268,7 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get enter_valid_email_password =>
-      'Yingiza endagiriro ya email entuufu n\'\'ekigambo ky\'\'okuyingira.';
+      'Yingiza endagiriro ya email entuufu n\'ekigambo ky\'okuyingira.';
 
   @override
   String get invalidEmail => 'Email etali ntuufu';
@@ -290,7 +290,7 @@ class AppLocalizationsLg extends AppLocalizations {
   String get alreadyHaveAnAccount => 'Olina dda akawunti?';
 
   @override
-  String get confirmYourPassword => 'Kakasa ekigambo kyo eky\'\'okuyingira';
+  String get confirmYourPassword => 'Kakasa ekigambo kyo eky\'okuyingira';
 
   @override
   String get request_saving => 'Okusaba okutereka...';
@@ -351,13 +351,13 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get enterYourEmailToResetPassword =>
-      'Yingiza email yo okufuna link y\'\'okuzzaawo password.';
+      'Yingiza email yo okufuna link y\'okuzzaawo password.';
 
   @override
   String get follow => 'Agoberera';
 
   @override
-  String get confirm_password_hint => 'Kakasa ekigambo ky\'\'okuyingira';
+  String get confirm_password_hint => 'Kakasa ekigambo ky\'okuyingira';
 
   @override
   String get instead => 'mukifo kya';
@@ -391,11 +391,15 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get onboardingTrackingDescription =>
-      'Londoola orders zo mu kiseera ekituufu n\'\'enkola yaffe ey\'\'okulondoola ennyangu.';
+      'Londoola orders zo mu kiseera ekituufu n\'enkola yaffe ey\'okulondoola ennyangu.';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Tosazaamu fayiro z’ebifaananyi ne vidiyo eziterekeddwa mu kitundu ezikozesebwa okuwandiika enkola okutuusa nga zikkiriziddwa abaddukanya emirimu.';
+
+  @override
+  String get doNotDeleteTheDocumentationFiles =>
+      'Tosazaamu fayiro z\'ebiwandiiko.';
 
   @override
   String get onboardingDocumentsTitle => 'Enzirukanya y’ebiwandiiko';
@@ -403,6 +407,10 @@ class AppLocalizationsLg extends AppLocalizations {
   @override
   String get onboardingDocumentsDescription =>
       'Teeka era oyingire ebiwandiiko byo byonna ebikulu mu kifo kimu ekikuumibwa.';
+
+  @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Tosazaamu fayiro z’ebifaananyi ne vidiyo eziterekeddwa mu kitundu ezikozesebwa okuwandiika enkola okutuusa nga zikkiriziddwa abaddukanya emirimu.';
 
   @override
   String get help => 'Ayamba';
@@ -415,7 +423,7 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String passwordResetEmailSentTo(Object email) {
-    return 'Email y\'\'okuzzaawo ekigambo ky\'\'okuyingira esindikiddwa ku $email.';
+    return 'Email y\'okuzzaawo ekigambo ky\'okuyingira esindikiddwa ku $email.';
   }
 
   @override
@@ -507,11 +515,11 @@ class AppLocalizationsLg extends AppLocalizations {
       'Tuli basanyufu okuba nti weegasse ku dduuka lyaffe.';
 
   @override
-  String get onboardingPage2Title => 'Zuula enkola ya app';
+  String get onboardingPage2Title => 'Yeekenneenya enkola ya app';
 
   @override
   String get onboardingPage2Description =>
-      'Wano ojja kusanga emirimu, ebiragiro, okulabula, n’ebisengejja.';
+      'Wano ojja kusanga emirimu, ebiragiro, okulabula, n’okusengejja.';
 
   @override
   String get aPasswordResetLinkHasBeenSentToYourEmail =>
@@ -550,10 +558,10 @@ class AppLocalizationsLg extends AppLocalizations {
   String get order => 'okusaba';
 
   @override
-  String get expenses => 'eby\'\'ensaasaanya';
+  String get expenses => 'eby\'ensaasaanya';
 
   @override
-  String get documentingTheRequest => 'Okuwandiika okusaba';
+  String get documentingTheRequest => 'Wandiika okusaba';
 
   @override
   String get documentationProgress => 'Enkulaakulana mu biwandiiko';

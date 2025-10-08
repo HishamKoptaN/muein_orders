@@ -137,6 +137,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         inputFormatters: widget.inputFormatters,
         decoration: widget.decoration ??
             InputDecoration(
+              fillColor: widget.fillColor,
+              filled: widget.filled,
               hintText: widget.hintText,
               hintStyle: widget.hintStyle ??
                   theme.textTheme.bodyMedium?.copyWith(
@@ -161,15 +163,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                   ),
-              border: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              errorBorder: InputBorder.none,
+              border:widget.border?? InputBorder.none,
+              enabledBorder:widget.enabledBorder?? InputBorder.none,
+              focusedBorder:widget.focusedBorder ??InputBorder.none,
+              errorBorder:widget.errorBorder?? InputBorder.none,
               disabledBorder: InputBorder.none,
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 24.w, vertical: 18.h),
               isDense: true,
-              filled: false,
               prefixIcon: widget.prefixIcon,
               suffixIcon: widget.isPassword && widget.showPasswordToggle
                   ? IconButton(

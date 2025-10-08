@@ -85,7 +85,7 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get there_are_no_results_for_this_search =>
-      'Alaa njeñtudi yiytaa e ndee njiylawu';
+      'Alaa ko heɓaa e ndee njiylawu';
 
   @override
   String get documentations => 'Kaayitaaji';
@@ -394,8 +394,12 @@ class AppLocalizationsFf extends AppLocalizations {
       'Yiylo jamirooje maa e sahaa tigi-rigi e njuɓɓudi men rewindaade.';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Hoto momtu piille fotooje e wideyooji kuutorteeɗe ngam winndude ɗaɓɓaande haa nde njuɓɓudi ndii jaɓi ɗum.';
+
+  @override
+  String get doNotDeleteTheDocumentationFiles =>
+      'Hoto momtu piille binndanɗe ɗee.';
 
   @override
   String get onboardingDocumentsTitle => 'Njuɓɓudi binndanɗe';
@@ -403,6 +407,10 @@ class AppLocalizationsFf extends AppLocalizations {
   @override
   String get onboardingDocumentsDescription =>
       'Siftor e naatde e denndaangal binndanɗe maa teeŋtuɗe e nokku gooto kisal.';
+
+  @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Hoto momtu piille fotooje e wideyooji kuutorteeɗe ngam winndude ɗaɓɓaande haa nde njuɓɓudi ndii jaɓi ɗum.';
 
   @override
   String get help => 'Ina wallita';

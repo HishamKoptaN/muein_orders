@@ -37,28 +37,25 @@ class OnboardingWidget extends StatelessWidget {
             // Title
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: AppColors.primary,
+                color: AppColors.white,
                 height: 1.5,
               ),
               textAlign: TextAlign.center,
             ),
-
             const SizedBox(height: 16),
-
             // Description
             Text(
               description,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
-                color: Colors.grey[700],
+                color: AppColors.white,
                 height: 1.6,
               ),
               textAlign: TextAlign.center,
             ),
-
             const Spacer(),
           ],
         ),

@@ -5,8 +5,8 @@ import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../docs/data/datasources/local/drift/app_database.dart';
 import '../../../../docs/present/views/add_cached_doc_view.dart';
-import '../../../domain/entities/orders_res_entity.dart';
 import '../../../../home/domain/entities/order_type_res_entity.dart';
+import '../../../domain/entities/orders_res_entity.dart';
 import '../pdf/sitcker_pdf_preview_view.dart';
 
 Widget buildOrderActionButtons({
@@ -29,7 +29,7 @@ Widget buildOrderActionButtons({
           children: [
             if (canAddMoreDocs)
               Expanded(
-                child: ElevatedButton.icon(
+                child: OutlinedButton.icon(
                   onPressed: () {
                     NavigationService.navigateTo(
                       context: context,
@@ -40,27 +40,33 @@ Widget buildOrderActionButtons({
                       },
                     );
                   },
+                  label: Text(
+                    t.addDocumentation,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                   icon: const Icon(
                     Icons.add,
                     color: Colors.white,
                   ),
-                  label: Text(t.addDocumentation),
-                  style: ElevatedButton.styleFrom(
+                  style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
+                    // side: const BorderSide(color: Color(0xFF0062B7)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     padding: const EdgeInsets.symmetric(
                       vertical: 12,
                       horizontal: 16,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                 ),
               ),
             if (canAddMoreDocs) const SizedBox(width: 12),
             Expanded(
-              flex: canAddMoreDocs ? 1 : 2,
               child: OutlinedButton(
                 onPressed: () {
                   Navigator.of(context).push(

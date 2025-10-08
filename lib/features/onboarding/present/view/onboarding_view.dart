@@ -207,6 +207,10 @@ extension LocalizationHelper on AppLocalizations {
         return documentation_with_photos_and_videos;
       case 'make_sure_the_images_are_clear_and_correct':
         return make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
+      case 'doNotDeleteTheDocumentationFiles':
+        return doNotDeleteTheDocumentationFiles;
+      case 'doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration':
+        return doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration;
       default:
         return key;
     }

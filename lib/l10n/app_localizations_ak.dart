@@ -396,8 +396,12 @@ class AppLocalizationsAk extends AppLocalizations {
       'Hwɛ wo orders wɔ bere ankasa mu denam yɛn intuitive tracking nhyehyɛe.';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Mpopa mfonini ne video fael a wɔde asie wɔ wo mpɔtam hɔ a wɔde kyerɛw application bi kosi sɛ adwumayɛfo no bɛpene so.';
+
+  @override
+  String get doNotDeleteTheDocumentationFiles =>
+      'Mpopa nkrataa fael ahorow no.';
 
   @override
   String get onboardingDocumentsTitle => 'Nwoma a wɔde di dwuma';
@@ -405,6 +409,10 @@ class AppLocalizationsAk extends AppLocalizations {
   @override
   String get onboardingDocumentsDescription =>
       'Fa wo nkrataa a ɛho hia nyinaa sie na kɔ baabiara a ahobammɔ wɔ.';
+
+  @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Mpopa mfonini ne video fael a wɔde asie wɔ wo mpɔtam hɔ a wɔde kyerɛw application bi kosi sɛ adwumayɛfo no bɛpene so.';
 
   @override
   String get help => 'Ɛboa';

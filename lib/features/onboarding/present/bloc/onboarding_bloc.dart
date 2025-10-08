@@ -10,7 +10,7 @@ part 'onboarding_state.dart';
 
 @singleton
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
-  final int totalPages = 3;
+  final int totalPages = 4;
   final List<OnboardingPageEntity> pages;
 
   OnboardingBloc()
@@ -55,6 +55,11 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         titleKey: 'documentation_with_photos_and_videos',
         descriptionKey: 'make_sure_the_images_are_clear_and_correct',
         imagePath: 'assets/images/onboarding/onboarding3.png',
+      ),
+      OnboardingPageEntity(
+        titleKey: 'doNotDeleteTheDocumentationFiles',
+        descriptionKey: 'doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration',
+        imagePath: 'assets/images/onboarding/onboarding4.png',
       ),
     ];
   }

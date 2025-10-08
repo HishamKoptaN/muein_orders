@@ -393,8 +393,11 @@ class AppLocalizationsSw extends AppLocalizations {
       'Fuatilia maagizo yako kwa wakati halisi na mfumo wetu wa ufuatiliaji wa angavu.';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Usifute faili za picha na video zilizohifadhiwa ndani zinazotumiwa kurekodi maombi hadi ziidhinishwe na wasimamizi.';
+
+  @override
+  String get doNotDeleteTheDocumentationFiles => 'Usifute faili za hati.';
 
   @override
   String get onboardingDocumentsTitle => 'Usimamizi wa hati';
@@ -402,6 +405,10 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get onboardingDocumentsDescription =>
       'Hifadhi na ufikie hati zako zote muhimu katika sehemu moja salama.';
+
+  @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Usifute faili za picha na video zilizohifadhiwa ndani zinazotumiwa kurekodi maombi hadi ziidhinishwe na wasimamizi.';
 
   @override
   String get help => 'Husaidia';
@@ -551,7 +558,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get expenses => 'gharama';
 
   @override
-  String get documentingTheRequest => 'Andika ombi';
+  String get documentingTheRequest => 'Kuandika ombi';
 
   @override
   String get documentationProgress => 'Maendeleo ya hati';

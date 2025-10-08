@@ -129,53 +129,69 @@ class AddDocWidget extends StatelessWidget {
             package: package,
           ),
         ],
-        Container(
-          decoration: BoxDecoration(
+        CustomTextFormField(
+          initialValue: shippingCost?.value?.toString(),
+          width: double.infinity,
+          height: 60.h,
+          keyboardType: TextInputType.number,
+          hintText: t.expenses,
+          hintStyle: const TextStyle(
+            fontFamily: 'Almarai',
+            fontSize: 16,
+            color: Color(0xFFBABABA),
+          ),
+          border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            // color: Colors.grey.withOpacity(0.2),
+            borderSide: BorderSide(
+              color: Colors.grey.withOpacity(0.2),
+            ),
           ),
-          child: CustomTextFormField(
-            initialValue: shippingCost?.value?.toString(),
-            width: double.infinity,
-            keyboardType: TextInputType.number,
-            labelText: t.expenses,
-            hintText: t.expenses,
-            labelStyle: const TextStyle(
-              fontFamily: 'Almarai',
-              fontSize: 16,
-              color: Color(0xFFBABABA),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              color: Colors.grey.withOpacity(0.2),
             ),
-            hintStyle: const TextStyle(
-              fontFamily: 'Almarai',
-              fontSize: 16,
-              color: Color(0xFFBABABA),
-            ),
-            border: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-            filled: true,
-            fillColor: Colors.grey.withOpacity(0.2),
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Colors.black,
-              fontFamily: 'Almarai',
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w400,
-            ),
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            onChanged: (v) {
-              context.read<CachedDocBloc>().add(
-                    CachedDocEvent.updateData(
-                      shippingCost: GenericFormzInput.dirty(double.parse(v)),
-                      package: package,
-                    ),
-                  );
-            },
-            validator: (_) =>
-                shippingCost?.isNotValid == true ? shippingCost?.errorMessage : null,
           ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              color: Colors.grey.withOpacity(0.2),
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              color: Colors.grey.withOpacity(0.2),
+            ),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide(
+              color: Colors.grey.withOpacity(0.2),
+            ),
+          ),
+          filled: true,
+          fillColor: Colors.grey.withOpacity(0.2),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Colors.black,
+                fontFamily: 'Almarai',
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w400,
+              ),
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+          ],
+          onChanged: (v) {
+            context.read<CachedDocBloc>().add(
+                  CachedDocEvent.updateData(
+                    shippingCost: GenericFormzInput.dirty(double.parse(v)),
+                    package: package,
+                  ),
+                );
+          },
+          validator: (_) => shippingCost?.isNotValid == true
+              ? shippingCost?.errorMessage
+              : null,
         ),
       ],
     );

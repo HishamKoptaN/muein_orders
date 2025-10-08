@@ -1,6 +1,3 @@
-import 'core/app/app_widget.dart';
-import 'core/background/workmanager_initializer.dart';
-import 'core/config/app_initializer.dart';
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -8,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:intl/intl.dart' as intl;
-import 'package:intl/intl_standalone.dart';
+import 'package:intl/intl.dart' as intl;import 'package:intl/intl_standalone.dart';
+import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
 import 'core/app_observer.dart';
+import 'core/background/workmanager_initializer.dart';
+import 'core/config/app_initializer.dart';
 import 'core/di/dependency_injection.dart';
 import 'firebase_options.dart';
 

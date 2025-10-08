@@ -390,8 +390,11 @@ class AppLocalizationsAr extends AppLocalizations {
       'قم بمراقبة طلباتك في الوقت الفعلي باستخدام نظام التتبع البديهي لدينا';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'لا تقم بحذف ملفات الصور والفيديو المخزنة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة';
+
+  @override
+  String get doNotDeleteTheDocumentationFiles => 'لا تقم بحذف ملفات التوثيق';
 
   @override
   String get onboardingDocumentsTitle => 'إدارة المستندات';
@@ -399,6 +402,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get onboardingDocumentsDescription =>
       'قم بتخزين جميع مستنداتك المهمة والوصول إليها في مكان واحد آمن';
+
+  @override
+  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
+      'Do not delete locally stored photo and video files used to document an application until they are approved by the administration.';
 
   @override
   String get help => 'يساعد';
