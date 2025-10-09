@@ -44,6 +44,7 @@ analyzer:
     # 🟢 إضافي: تجاهل التحذير الغلط مع Freezed
     non_abstract_class_inherits_abstract_member: ignore
     invalid_annotation_target: ignore
+    avoid_classes_with_only_static_members: ignore
 
 linter:
   rules:

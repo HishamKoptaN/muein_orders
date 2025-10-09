@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:formz/formz.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../../core/all_imports.dart';
+import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/custom_app_bar.dart';

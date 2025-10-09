@@ -1,0 +1,10 @@
+{
+  "scripts": [
+    {
+      "name": "L10n Sync & Translate",
+      "script": "dart run tool/post_get.dart",
+      "description": "مزامنة وترجمة ملفات الترجمة تلقائيًا",
+      "group": "post_get"
+    }
+  ]
+}

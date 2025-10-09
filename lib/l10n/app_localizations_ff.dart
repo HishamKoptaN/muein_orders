@@ -85,7 +85,7 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get there_are_no_results_for_this_search =>
-      'Alaa ko heɓaa e ndee njiylawu';
+      'Alaa njeñtudi yiytaa e ndee njiylawu';
 
   @override
   String get documentations => 'Kaayitaaji';
@@ -409,10 +409,6 @@ class AppLocalizationsFf extends AppLocalizations {
       'Siftor e naatde e denndaangal binndanɗe maa teeŋtuɗe e nokku gooto kisal.';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
-      'Hoto momtu piille fotooje e wideyooji kuutorteeɗe ngam winndude ɗaɓɓaande haa nde njuɓɓudi ndii jaɓi ɗum.';
-
-  @override
   String get help => 'Ina wallita';
 
   @override
@@ -560,7 +556,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get expenses => 'majinugo ceede';
 
   @override
-  String get documentingTheRequest => 'Winndu ɗaɓɓaande ndee';
+  String get documentingTheRequest => 'Winnditaade ɗaɓɓaande ndee';
 
   @override
   String get documentationProgress => 'Yahrugol yeeso binnditagol';
@@ -628,6 +624,9 @@ class AppLocalizationsFf extends AppLocalizations {
 
   @override
   String get profile => 'Sappinol';
+
+  @override
+  String get test_key => 'Kuutorgal jarribo kesal';
 
   @override
   String get welcomeLine => 'On njaaraama e...';

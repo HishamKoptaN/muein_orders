@@ -65,31 +65,17 @@ dependencies:
   url_launcher: ^6.2.6
   video_player: ^2.8.6
   video_player_win: ^3.1.1  
-  # Core
   freezed_annotation: ^2.4.1
   injectable: ^2.4.2
-  # Firebase & Auth
   firebase_messaging: ^15.1.6
-  # State Management
   bloc: ^9.0.0
-  # UI
   connectivity_plus: ^5.0.2
-  
-  
-  # Location & Maps
-  # File & Media
-  # Utils
   http_parser: ^4.0.2
   logger: ^2.6.0
   ffmpeg_kit_flutter_new: ^3.2.0
-  # share_plus: ^12.0.0
   badges: ^3.1.2
-  # Routing
   go_router: ^16.2.4
-  # Splash
-  # Localization
   flutter_localized_locales: ^2.0.0
-  # Custom packages
   form_inputs:
     git:
       url: https://github.com/HishamKoptaN/form_inputs.git

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/utils/stream_utils.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../../../docs/data/datasources/local/drift/app_database.dart';
-import '../../../../docs/domain/entities/cached_doc_entity.dart';
+import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
+import '../../../../cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../domain/entities/orders_res_entity.dart';
 
 UploadStatus _stringToUploadStatus({

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../features/docs/data/datasources/local/drift/app_database.dart';
-import '../../../features/docs/data/mappers/cached_doc_mapper.dart';
-import '../../../features/docs/domain/entities/cached_doc_entity.dart';
+import '../../../features/cached_docs/data/datasources/local/drift/app_database.dart';
+import '../../../features/cached_docs/data/mappers/cached_doc_mapper.dart';
+import '../../../features/cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../di/dependency_injection.dart';
 import '../../widgets/custom_app_bar.dart';

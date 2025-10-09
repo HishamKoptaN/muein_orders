@@ -1,17 +1,16 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart' show injectable, factoryMethod;
+import 'package:injectable/injectable.dart' show lazySingleton, factoryMethod;
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../../core/config/app_config.dart';
 import '../../../../../core/config/app_config.dart';
 import '../../../../../core/constants/api_constants.dart';
 import '../../models/docs_res_model.dart';
 
 part 'docs_api.g.dart';
 
-@injectable
+@lazySingleton
 @RestApi(
   baseUrl: AppConfig.apiBaseUrl,
 )

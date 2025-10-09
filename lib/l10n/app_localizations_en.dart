@@ -410,10 +410,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Store and access all your important documents in one secure place.';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
-      'Do not delete locally stored photo and video files used to document an application until they are approved by the administration.';
-
-  @override
   String get help => 'Helps';
 
   @override
@@ -561,7 +557,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get expenses => 'expenses';
 
   @override
-  String get documentingTheRequest => 'Documenting the request';
+  String get documentingTheRequest => 'Document the request';
 
   @override
   String get documentationProgress => 'Documentation progress';
@@ -629,6 +625,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get test_key => 'New test key';
 
   @override
   String get welcomeLine => 'Welcome to';

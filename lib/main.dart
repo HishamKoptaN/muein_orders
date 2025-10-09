@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:intl/intl.dart' as intl;import 'package:intl/intl_standalone.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:intl/intl_standalone.dart';
 import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
 import 'core/app_observer.dart';
@@ -26,19 +27,18 @@ Future<void> main() async {
     debugPrint('🔥 Firebase init error: $e');
     debugPrint('$st');
   }
+  Bloc.observer = AppBlocObserver();
   await AppInitializer.initialize();
   await configureDependencies();
   final workManager = getIt<WorkManagerInitializer>();
   await workManager.initialize();
   await workManager.registerSystemUploadTask();
   await Future.microtask(workManager.startPendingUploads);
-
   try {
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';
     FlutterNativeSplash.remove();
     if (kDebugMode) {
-      Bloc.observer = AppBlocObserver();
       // await SharedPrefHelper.clearAllData();
       // await SharedPrefHelper.clearAllSecuredData();
     }
@@ -53,7 +53,6 @@ Future<void> main() async {
     );
   }
 }
-
 void _handleError({
   required Object error,
   required StackTrace stackTrace,

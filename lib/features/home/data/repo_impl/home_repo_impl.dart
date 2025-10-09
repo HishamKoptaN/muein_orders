@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/error/api_error_model.dart';
+import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/order_type_res_entity.dart';
 import '../../domain/repo/home_repo.dart';

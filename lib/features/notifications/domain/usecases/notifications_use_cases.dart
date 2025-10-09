@@ -3,7 +3,7 @@ import '../entities/notification_entity.dart';
 import '../repo/notifications_repo.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@singleton
 class NotificationsUseCases {
   final NotificationsRepo notificationsRepo;
   NotificationsUseCases(this.notificationsRepo);

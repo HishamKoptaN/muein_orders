@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../../core/error/api_error_model.dart';
+import '../../../../core/errors/api_error_model.dart';
 import '../../domain/entities/notification_entity.dart';
 part 'notifications_state.freezed.dart';
 

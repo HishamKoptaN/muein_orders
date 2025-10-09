@@ -9,7 +9,7 @@ import '../../../../../core/database/shared_pref_helper.dart';
 import '../../../../../core/database/shared_pref_keys.dart';
 import '../../../../../core/di/api_module.dart';
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/error/api_error_model.dart';
+import '../../../../../core/errors/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../domain/entities/signup_req_entity.dart';
 import '../../domain/repo/sign_up_repo.dart';

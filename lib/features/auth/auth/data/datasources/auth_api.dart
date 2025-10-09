@@ -8,7 +8,7 @@ import '../models/auth_res_model.dart';
 
 part 'auth_api.g.dart';
 
-@injectable
+@singleton
 @RestApi(
   baseUrl: AppConfig.apiAuthBaseUrl,
 )

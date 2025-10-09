@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/error/api_error_model.dart';
+import '../../../../core/errors/api_error_model.dart';
 import '../../domain/entities/order_type_res_entity.dart';
 import '../../domain/usecases/home_use_cases.dart';
 

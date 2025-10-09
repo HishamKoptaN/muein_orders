@@ -1,7 +1,6 @@
 {
   "@@locale": "lg",
   "upload_videos": "Wano wefunire obutambi",
-  "WelcometoMubinOrders": "Mwaniriziddwa ku Mobin Talabat",
   "welcometoMubinOrders": "Mwaniriziddwa ku Mobin Talabat",
   "welcome": "Kaale",
   "indevedual": "omuntu ssekinnomu",
@@ -26,7 +25,6 @@
   "there_are_no_results_for_this_search": "Tewali bivudde mu kunoonyereza kuno",
   "documentations": "Ebiwandiiko",
   "show_documentations": "Laba ebiwandiiko",
-  "documentationWithPphotosAndVideos": "Ebiwandiiko nga mulimu ebifaananyi ne vidiyo",
   "execution_number": "Ennamba y’okuttibwa",
   "add_documentation": "Okwongerako ebiwandiiko",
   "location": "ekifo",
@@ -76,7 +74,6 @@
   "success": "okuyita",
   "english": "Olungereeza",
   "close": "Aggalawo",
-  "DocumentationWithPphotosAndVideos": "Ebiwandiiko nga mulimu ebifaananyi ne vidiyo",
   "required": "-etaagisa",
   "order_added_successfully": "Okusaba kuno kwongeddwako bulungi.",
   "order_addition_failed": "Okusaba okwongerako kulemereddwa",
@@ -115,7 +112,6 @@
   "passwordsDoNotMatch": "Ebigambo by’okuyingira tebikwatagana",
   "enterYourEmailToResetPassword": "Yingiza email yo okufuna link y''okuzzaawo password.",
   "follow": "Agoberera",
-  "add_documentations_view": "",
   "confirm_password_hint": "Kakasa ekigambo ky''okuyingira",
   "instead": "mukifo kya",
   "skip": "okubuuka",
@@ -135,7 +131,6 @@
   "settings": "Enteekateeka",
   "createAccount": "Tonda akawunti",
   "passwordResetEmailSentTo": "Email y''okuzzaawo ekigambo ky''okuyingira esindikiddwa ku {email}.",
-  "do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration": "Tosazaamu fayiro z’ebifaananyi ne vidiyo eziterekeddwa mu kitundu ezikozesebwa okuwandiika enkola okutuusa nga zikkiriziddwa abaddukanya emirimu.",
   "alreadyHaveAccount": "Olina dda akawunti?",
   "make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending": "Kakasa nti ebifaananyi bitegeerekeka bulungi n’omuwendo omutuufu ogwa kkopi za Quran Entukuvu nga tonnasindika",
   "failure": "okulemererwa",
@@ -198,11 +193,9 @@
   "failedDescription": "Eremereddwa okuteeka ku mukutu",
   "unknownDescription": "ekitamanyikiddwa",
   "cancelAllUploads": "Sazaamu byonna ebiteekeddwa ku mukutu",
-  "documentations_view": "",
   "stopMonitoring": "Mulekere awo okulondoola",
   "language": "olulimi",
   "profile": "Ebikukwatako",
-  "welcomeLine": "Mwaniriziddwa mu...",
-  "orders_view": "",
-  "ApasswordResetLinkHasBeenSentToYourEmail": "Enkolagana y’okuzzaawo ekigambo ky’okuyingira (password reset link) esindikiddwa ku email yo."
+  "test_key": "Ekisumuluzo ekipya eky''okugezesa",
+  "welcomeLine": "Mwaniriziddwa mu..."
 }

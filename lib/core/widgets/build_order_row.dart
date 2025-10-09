@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../../core/all_imports.dart';
 import '../../../../core/widgets/widget_column_header.dart';
 import '../../features/orders/domain/entities/orders_res_entity.dart';
 import '../../features/orders/present/views/pdf/sitcker_pdf_preview_view.dart';

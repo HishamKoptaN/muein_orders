@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/app/global_variable.dart';
-import '../../../../../core/error/api_error_model.dart';
+import '../../../../../core/errors/api_error_model.dart';
 import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/entities/signup_req_entity.dart';
 import '../../domain/use_cases/sign_up_use_cases.dart';

@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../../../../core/all_imports.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../domain/entities/docs_res_entity.dart';
 import 'image_preview.dart';

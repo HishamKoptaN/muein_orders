@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/all_imports.dart';
 
 /// A customizable container with rounded corners and shadow
 class CustomRoundedContainer extends StatelessWidget {

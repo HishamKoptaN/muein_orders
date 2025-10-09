@@ -1,4 +1,4 @@
-import '../../../../../core/error/api_error_model.dart' show ApiErrorModel;
+import '../../../../../core/errors/api_error_model.dart' show ApiErrorModel;
 import '../../../../../core/models/user_data.dart';
 import '../../../../../core/networking/api_result.dart';
 

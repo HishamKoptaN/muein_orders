@@ -212,7 +212,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get order_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order__is_sharing => 'Abisadeɛ a ɛfa wo ho a wode bɛhyɛ mu...';
+  String get order__is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
 
   @override
   String get failed => 'sɛ wobedi nkogu';
@@ -298,7 +298,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get request_saving => 'Sikakorabea abisade...';
 
   @override
-  String get order_is_sharing => 'Abisadeɛ a ɛfa wo ho a wode bɛhyɛ mu...';
+  String get order_is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
 
   @override
   String get successfully => 'Ɛyɛɛ yiye';
@@ -393,7 +393,7 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get onboardingTrackingDescription =>
-      'Hwɛ wo orders wɔ bere ankasa mu denam yɛn intuitive tracking nhyehyɛe.';
+      'Monitor wo orders wɔ bere ankasa mu denam yɛn intuitive tracking nhyehyɛe.';
 
   @override
   String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
@@ -409,10 +409,6 @@ class AppLocalizationsAk extends AppLocalizations {
   @override
   String get onboardingDocumentsDescription =>
       'Fa wo nkrataa a ɛho hia nyinaa sie na kɔ baabiara a ahobammɔ wɔ.';
-
-  @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
-      'Mpopa mfonini ne video fael a wɔde asie wɔ wo mpɔtam hɔ a wɔde kyerɛw application bi kosi sɛ adwumayɛfo no bɛpene so.';
 
   @override
   String get help => 'Ɛboa';
@@ -630,6 +626,9 @@ class AppLocalizationsAk extends AppLocalizations {
 
   @override
   String get profile => 'Ho asɛm';
+
+  @override
+  String get test_key => 'Sɔhwɛ safoa foforo';
 
   @override
   String get welcomeLine => 'Yɛma wo akwaaba ba';

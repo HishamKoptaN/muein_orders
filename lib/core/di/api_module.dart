@@ -49,14 +49,14 @@ abstract class ApiModule {
         ),
       ],
     );
-    if (kDebugMode) {
-      dio.interceptors.add(
-        SlowUploadInterceptor(
-          bytesPerSecond: 64,
-          chunkSize: 1024,
-        ),
-      );
-    }
+    // if (kDebugMode) {
+    dio.interceptors.add(
+      SlowUploadInterceptor(
+        bytesPerSecond: 64,
+        chunkSize: 1024,
+      ),
+    );
+    // }
     return dio;
   }
 }

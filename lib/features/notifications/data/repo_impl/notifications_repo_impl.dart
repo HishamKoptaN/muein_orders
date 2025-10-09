@@ -1,12 +1,12 @@
 import 'package:injectable/injectable.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../../../core/error/api_error_handler.dart';
+import '../../../../core/errors/api_error_handler.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../../domain/repo/notifications_repo.dart';
 import '../datasources/notifications_api.dart';
 import '../mappers/notification_mapper.dart';
 
-@Injectable(
+@Singleton(
   as: NotificationsRepo,
 )
 class NotificationsRepoImpl implements NotificationsRepo {

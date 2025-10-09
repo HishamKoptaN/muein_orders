@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../repo/forgot_pass_repo.dart';
 
-@injectable
+@lazySingleton
 class SendPassResetEmailUseCase {
   final ForgotPassRepo repo;
   SendPassResetEmailUseCase(this.repo);

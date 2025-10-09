@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../../../docs/data/datasources/local/drift/app_database.dart'
+import '../../../../cached_docs/data/datasources/local/drift/app_database.dart'
     show AppDatabase, CachedDocsCompanion;
 import '../../../../docs/domain/usecases/docs_use_cases.dart';
 import '../../../../home/domain/entities/order_type_res_entity.dart';

@@ -5,7 +5,7 @@ import '../entities/profile_res_entity.dart';
 import '../entities/update_profile_req_entity.dart';
 import '../repo/profile_repo.dart';
 
-@injectable
+@singleton
 class ProfileUseCases {
   final ProfileRepo _profileRepo;
 

@@ -9,7 +9,7 @@ import '../models/token_res_model.dart';
 
 part 'sign_in_api.g.dart';
 
-@injectable
+@lazySingleton
 @RestApi(
   baseUrl: AppConfig.apiAuthBaseUrl,
 )

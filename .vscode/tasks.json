@@ -2,6 +2,11 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Run l10n sync after pub get",
+      "type": "shell",
+      "command": "dart run tool/manage_l10n.dart"
+    },
+    {
       "label": "Flutter: Clean",
       "type": "shell",
       "command": "flutter",

@@ -409,10 +409,6 @@ class AppLocalizationsLg extends AppLocalizations {
       'Teeka era oyingire ebiwandiiko byo byonna ebikulu mu kifo kimu ekikuumibwa.';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
-      'Tosazaamu fayiro z’ebifaananyi ne vidiyo eziterekeddwa mu kitundu ezikozesebwa okuwandiika enkola okutuusa nga zikkiriziddwa abaddukanya emirimu.';
-
-  @override
   String get help => 'Ayamba';
 
   @override
@@ -630,6 +626,9 @@ class AppLocalizationsLg extends AppLocalizations {
 
   @override
   String get profile => 'Ebikukwatako';
+
+  @override
+  String get test_key => 'Ekisumuluzo ekipya eky\'okugezesa';
 
   @override
   String get welcomeLine => 'Mwaniriziddwa mu...';

@@ -1,8 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:translator/translator.dart';
 
-import '../../../../core/all_imports.dart';
 import '../../../../core/extensions/locale_extensions.dart';
+import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../gen/assets.gen.dart';
@@ -47,10 +51,11 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
+    final t = Localizations.of<AppLocalizations>(context, AppLocalizations);
     return CustomScaffold(
+      backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        title: t.main,
+        title: t?.main ?? 'Home',
         leading: Builder(
           builder: (context) => GestureDetector(
             onTap: () => Scaffold.of(context).openDrawer(),
@@ -108,7 +113,7 @@ class _HomeViewState extends State<HomeView> {
                       ) {
                         final orderType = orderTypeResEntity[index];
                         return _buildOrderCard(
-                          t: t,
+                          t: t!,
                           orderTypeResEntity: orderType,
                           title: orderType.package?.type?.name ?? '',
                         );
@@ -165,10 +170,9 @@ class _HomeViewState extends State<HomeView> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 175.w,
                 height: 70.h,
                 margin: const EdgeInsets.only(bottom: 16),
-                padding: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.35),
                   borderRadius: BorderRadius.circular(15),
@@ -203,7 +207,7 @@ class _HomeViewState extends State<HomeView> {
                           5.w,
                         ),
                         if (orderTypeResEntity.package?.quantity != null &&
-                            orderTypeResEntity.package!.quantity! > 0)
+                            (orderTypeResEntity.package?.quantity ?? 0) > 0)
                           Text(
                             '${orderTypeResEntity.package?.quantity ?? ''}',
                             style: TextStyle(
@@ -273,6 +277,11 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+}
+
+class _FallbackLocalizations {
+  String get main => 'Home';
+  String get numberOfRequests => 'Number of requests';
 }
 
 Future<String> translateText(

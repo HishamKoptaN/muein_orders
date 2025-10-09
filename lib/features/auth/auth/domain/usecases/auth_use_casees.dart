@@ -1,9 +1,9 @@
-import 'package:injectable/injectable.dart' show LazySingleton;
+import 'package:injectable/injectable.dart';
 
 import '../../../../../core/networking/api_result.dart';
 import '../repo/auth_repo.dart';
 
-@LazySingleton()
+@singleton
 class AuthUseCase {
   final AuthRepo authRepo;
   AuthUseCase({

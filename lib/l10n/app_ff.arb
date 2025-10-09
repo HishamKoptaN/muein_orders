@@ -1,7 +1,6 @@
 {
   "@@locale": "ff",
   "upload_videos": "Sokkitde wideyooji",
-  "WelcometoMubinOrders": "A jaɓɓaama e Mobin Talabat",
   "welcometoMubinOrders": "A jaɓɓaama e Mobin Talabat",
   "welcome": "Jabbama",
   "indevedual": "goodo",
@@ -23,10 +22,9 @@
   "done": "timmi",
   "orders": "Ɗaɓɓaaɗe",
   "package": "moftugo",
-  "there_are_no_results_for_this_search": "Alaa ko heɓaa e ndee njiylawu",
+  "there_are_no_results_for_this_search": "Alaa njeñtudi yiytaa e ndee njiylawu",
   "documentations": "Kaayitaaji",
   "show_documentations": "Yiylo binndanɗe",
-  "documentationWithPphotosAndVideos": "Dokimaaji e fotooji e wideyooji",
   "execution_number": "Limre njuɓɓudi",
   "add_documentation": "Ɓeydu heen binndanɗe",
   "location": "wakere",
@@ -78,7 +76,6 @@
   "close": "Uddita",
   "required": "emmi",
   "order_added_successfully": "Ɗaɓɓaande ndee ɓeydaama no moƴƴi.",
-  "DocumentationWithPphotosAndVideos": "Dokimaaji e fotooji e wideyooji",
   "order_addition_failed": "Ɗaɓɓaande ɓeydugol ndee dañaani",
   "country": "ngenndi",
   "selectCountry": "Suɓo leydi",
@@ -132,7 +129,6 @@
   "onboardingDocumentsDescription": "Siftor e naatde e denndaangal binndanɗe maa teeŋtuɗe e nokku gooto kisal.",
   "help": "Ina wallita",
   "settings": "Dottaaɗe",
-  "do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration": "Hoto momtu piille fotooje e wideyooji kuutorteeɗe ngam winndude ɗaɓɓaande haa nde njuɓɓudi ndii jaɓi ɗum.",
   "createAccount": "Sos konte",
   "passwordResetEmailSentTo": "Imeel mbayliigu konngol neldaama to {email}.",
   "alreadyHaveAccount": "Mbele aɗa jogii konte jooni?",
@@ -177,7 +173,7 @@
   "documented": "Binnditagol",
   "order": "ngam ɗaɓɓude",
   "expenses": "majinugo ceede",
-  "documentingTheRequest": "Winndu ɗaɓɓaande ndee",
+  "documentingTheRequest": "Winnditaade ɗaɓɓaande ndee",
   "documentationProgress": "Yahrugol yeeso binnditagol",
   "notDocumented": "Hoolkisaaka",
   "pending": "fawii",
@@ -200,6 +196,6 @@
   "stopMonitoring": "Woppu ƴeewndo",
   "language": "ɗemngal ngal",
   "profile": "Sappinol",
-  "welcomeLine": "On njaaraama e...",
-  "ApasswordResetLinkHasBeenSentToYourEmail": "Jokkorde mbayliigu konngol neldaama e iimeel maa."
+  "test_key": "Kuutorgal jarribo kesal",
+  "welcomeLine": "On njaaraama e..."
 }

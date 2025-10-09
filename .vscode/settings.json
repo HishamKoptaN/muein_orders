@@ -4,7 +4,8 @@
 
   // C++ Configuration
   "C_Cpp.errorSquiggles": "enabled",
-
+  "dart.runPubGetOnPubspecChanges": true,
+  "dart.postPubGetCommands": ["Run l10n sync after pub get"],
   // Flutter & Dart Settings
   "dart.flutterSdkPath": null,
   "dart.checkForSdkUpdates": true,

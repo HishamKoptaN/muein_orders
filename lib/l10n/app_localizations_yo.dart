@@ -35,7 +35,7 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Nibi iwọ yoo wa awọn iṣẹ-ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
+      'Nibi iwọ yoo wa awọn iṣẹ ṣiṣe, awọn ibeere, awọn itaniji, ati awọn asẹ.';
 
   @override
   String get documentationWithPhotosAndVideos =>
@@ -408,10 +408,6 @@ class AppLocalizationsYo extends AppLocalizations {
       'Tọju ati wọle si gbogbo awọn iwe aṣẹ pataki rẹ ni ibi aabo kan.';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
-      'Ma ṣe paarẹ fọto ti agbegbe ti o fipamọ ati awọn faili fidio ti a lo lati ṣe igbasilẹ ohun elo kan titi ti iṣakoso yoo fi fọwọsi wọn.';
-
-  @override
   String get help => 'Iranlọwọ';
 
   @override
@@ -525,7 +521,8 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ọna asopọ atunto ọrọ igbaniwọle ti firanṣẹ si imeeli rẹ.';
 
   @override
-  String get onboardingPage3Title => 'Iwe pẹlu awọn fọto ati awọn fidio';
+  String get onboardingPage3Title =>
+      'Awọn iwe aṣẹ pẹlu awọn fọto ati awọn fidio';
 
   @override
   String get onboardingPage3Description =>
@@ -627,6 +624,9 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get profile => 'Profaili';
+
+  @override
+  String get test_key => 'Bọtini idanwo tuntun';
 
   @override
   String get welcomeLine => 'Kaabo si';

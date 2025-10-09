@@ -42,3 +42,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Localization temp files (flutter_arb_translator artifacts)
+lib/l10n/*.json

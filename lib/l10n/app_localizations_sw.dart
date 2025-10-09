@@ -62,7 +62,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'Nyaraka zilizo na picha na video';
 
   @override
-  String get send => 'kutuma';
+  String get send => 'tuma';
 
   @override
   String get uploadingDocument => 'Pakia nyaraka';
@@ -407,10 +407,6 @@ class AppLocalizationsSw extends AppLocalizations {
       'Hifadhi na ufikie hati zako zote muhimu katika sehemu moja salama.';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
-      'Usifute faili za picha na video zilizohifadhiwa ndani zinazotumiwa kurekodi maombi hadi ziidhinishwe na wasimamizi.';
-
-  @override
   String get help => 'Husaidia';
 
   @override
@@ -626,6 +622,9 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get profile => 'Wasifu';
+
+  @override
+  String get test_key => 'Ufunguo mpya wa jaribio';
 
   @override
   String get welcomeLine => 'Karibu kwa';

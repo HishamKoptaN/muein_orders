@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
-import '../../features/docs/data/datasources/local/drift/app_database.dart';
+import '../../features/cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../features/docs/domain/usecases/docs_use_cases.dart';
 import '../config/upload_settings.dart';
 import '../di/dependency_injection.dart';

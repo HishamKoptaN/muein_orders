@@ -9,15 +9,15 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/app/global_variable.dart';
 import '../../../../core/config/upload_settings.dart';
-import '../../../../core/error/api_error_handler.dart';
+import '../../../../core/errors/api_error_handler.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/docs_res_entity.dart';
 import '../../domain/repo/docs_repo.dart';
-import '../datasources/local/drift/app_database.dart';
+import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../datasources/remote_data_sr/docs_api.dart';
 import '../mapper/docs_mapper.dart';
 
-@Injectable(as: DocsRepo)
+@LazySingleton(as: DocsRepo)
 class DocsRepoImpl implements DocsRepo {
   final DocsApi postsApi;
   final AppDatabase db;

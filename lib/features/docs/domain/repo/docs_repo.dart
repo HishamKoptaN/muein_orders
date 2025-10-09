@@ -1,5 +1,5 @@
 import '../../../../../core/networking/api_result.dart';
-import '../../data/datasources/local/drift/app_database.dart';
+import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../entities/docs_res_entity.dart';
 
 abstract class DocsRepo {

@@ -1,4 +1,5 @@
-import '../../../../../core/all_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/orders_bloc.dart';
 
 class SearchTextWidget extends StatefulWidget {

@@ -9,6 +9,7 @@ import 'app_localizations_ak.dart';
 import 'app_localizations_ar.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_ff.dart';
+import 'app_localizations_fr.dart';
 import 'app_localizations_lg.dart';
 import 'app_localizations_sw.dart';
 import 'app_localizations_yo.dart';
@@ -105,6 +106,7 @@ abstract class AppLocalizations {
     Locale('ff'),
     Locale('yo'),
     Locale('sw'),
+    Locale('fr'),
     Locale('lg')
   ];
 
@@ -872,13 +874,6 @@ abstract class AppLocalizations {
   /// **'Store and access all your important documents in one secure place.'**
   String get onboardingDocumentsDescription;
 
-  /// No description provided for @do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration.
-  ///
-  /// In en, this message translates to:
-  /// **'Do not delete locally stored photo and video files used to document an application until they are approved by the administration.'**
-  String
-      get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration;
-
   /// No description provided for @help.
   ///
   /// In en, this message translates to:
@@ -1159,7 +1154,7 @@ abstract class AppLocalizations {
   /// No description provided for @documentingTheRequest.
   ///
   /// In en, this message translates to:
-  /// **'Documenting the request'**
+  /// **'Document the request'**
   String get documentingTheRequest;
 
   /// No description provided for @documentationProgress.
@@ -1294,6 +1289,12 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get profile;
 
+  /// No description provided for @test_key.
+  ///
+  /// In en, this message translates to:
+  /// **'New test key'**
+  String get test_key;
+
   /// No description provided for @welcomeLine.
   ///
   /// In en, this message translates to:
@@ -1316,6 +1317,7 @@ class _AppLocalizationsDelegate
         'ar',
         'en',
         'ff',
+        'fr',
         'lg',
         'sw',
         'yo'
@@ -1336,6 +1338,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEn();
     case 'ff':
       return AppLocalizationsFf();
+    case 'fr':
+      return AppLocalizationsFr();
     case 'lg':
       return AppLocalizationsLg();
     case 'sw':

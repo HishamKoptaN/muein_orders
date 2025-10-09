@@ -3,8 +3,8 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/database/shared_pref_helper.dart';
 import '../../../../../core/database/shared_pref_keys.dart';
-import '../../../../../core/error/api_error_model.dart';
-import '../../../../../core/error/error_handler.dart';
+import '../../../../../core/errors/api_error_model.dart';
+import '../../../../../core/errors/error_handler.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../domain/repo/auth_repo.dart';
 import '../datasources/auth_api.dart';

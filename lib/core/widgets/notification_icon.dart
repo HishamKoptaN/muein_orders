@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:badges/badges.dart' as badges;
-import '../../../features/docs/data/datasources/local/drift/app_database.dart';
+import '../../features/cached_docs/data/datasources/local/drift/app_database.dart';
 import '../di/dependency_injection.dart';
 import '../present/views/notifications_view.dart';
 import '../services/notification_manager.dart';

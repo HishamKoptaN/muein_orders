@@ -9,15 +9,15 @@ import '../../auth/auth_choice/present/views/auth_choice_view.dart';
 import '../bloc/language_bloc.dart';
 
 // قائمة اللغات المتاحة في التطبيق
-
+// العربية
+// الانجليزية
+// الفرنسية
 // كيينا
 // تنزانيا
 // الكاميرون
 // غانا
 // غينيا
 // بنين
-// العربية
-// الانجليزية
 class SelectLanguageView extends StatelessWidget {
   const SelectLanguageView({super.key});
   static const String routeName = 'select-language';

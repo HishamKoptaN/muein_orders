@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/error/api_error_model.dart';
+import '../../../../../core/errors/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../domain/repo/forgot_pass_repo.dart';
 

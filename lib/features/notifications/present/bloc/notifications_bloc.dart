@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/error/api_error_model.dart';
+import '../../../../core/errors/api_error_model.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../../domain/usecases/notifications_use_cases.dart';
 import 'notifications_event.dart';

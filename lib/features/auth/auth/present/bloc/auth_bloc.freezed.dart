@@ -561,7 +561,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(bool redirect) authenticated,
+    required TResult Function() authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String message) failure,
   }) =>
@@ -569,7 +569,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(bool redirect)? authenticated,
+    TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String message)? failure,
   }) =>
@@ -577,7 +577,7 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(bool redirect)? authenticated,
+    TResult Function()? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -672,7 +672,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(bool redirect) authenticated,
+    required TResult Function() authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String message) failure,
   }) {
@@ -683,7 +683,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(bool redirect)? authenticated,
+    TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String message)? failure,
   }) {
@@ -694,7 +694,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(bool redirect)? authenticated,
+    TResult Function()? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -752,8 +752,6 @@ abstract class _$$AuthenticatedImplCopyWith<$Res> {
   factory _$$AuthenticatedImplCopyWith(
           _$AuthenticatedImpl value, $Res Function(_$AuthenticatedImpl) then) =
       __$$AuthenticatedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool redirect});
 }
 
 /// @nodoc
@@ -766,86 +764,60 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? redirect = null,
-  }) {
-    return _then(_$AuthenticatedImpl(
-      redirect: null == redirect
-          ? _value.redirect
-          : redirect // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$AuthenticatedImpl implements _Authenticated {
-  const _$AuthenticatedImpl({required this.redirect});
-
-  @override
-  final bool redirect;
+  const _$AuthenticatedImpl();
 
   @override
   String toString() {
-    return 'AuthState.authenticated(redirect: $redirect)';
+    return 'AuthState.authenticated()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthenticatedImpl &&
-            (identical(other.redirect, redirect) ||
-                other.redirect == redirect));
+        (other.runtimeType == runtimeType && other is _$AuthenticatedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, redirect);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
-      __$$AuthenticatedImplCopyWithImpl<_$AuthenticatedImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(bool redirect) authenticated,
+    required TResult Function() authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String message) failure,
   }) {
-    return authenticated(redirect);
+    return authenticated();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(bool redirect)? authenticated,
+    TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String message)? failure,
   }) {
-    return authenticated?.call(redirect);
+    return authenticated?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(bool redirect)? authenticated,
+    TResult Function()? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated(redirect);
+      return authenticated();
     }
     return orElse();
   }
@@ -889,16 +861,7 @@ class _$AuthenticatedImpl implements _Authenticated {
 }
 
 abstract class _Authenticated implements AuthState {
-  const factory _Authenticated({required final bool redirect}) =
-      _$AuthenticatedImpl;
-
-  bool get redirect;
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Authenticated() = _$AuthenticatedImpl;
 }
 
 /// @nodoc
@@ -943,7 +906,7 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(bool redirect) authenticated,
+    required TResult Function() authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String message) failure,
   }) {
@@ -954,7 +917,7 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(bool redirect)? authenticated,
+    TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String message)? failure,
   }) {
@@ -965,7 +928,7 @@ class _$UnauthenticatedImpl implements _Unauthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(bool redirect)? authenticated,
+    TResult Function()? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -1087,7 +1050,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(bool redirect) authenticated,
+    required TResult Function() authenticated,
     required TResult Function() unauthenticated,
     required TResult Function(String message) failure,
   }) {
@@ -1098,7 +1061,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(bool redirect)? authenticated,
+    TResult? Function()? authenticated,
     TResult? Function()? unauthenticated,
     TResult? Function(String message)? failure,
   }) {
@@ -1109,7 +1072,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(bool redirect)? authenticated,
+    TResult Function()? authenticated,
     TResult Function()? unauthenticated,
     TResult Function(String message)? failure,
     required TResult orElse(),

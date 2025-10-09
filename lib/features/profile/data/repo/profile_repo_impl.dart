@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/error/app_error_handler.dart';
+import '../../../../core/errors/app_error_handler.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';

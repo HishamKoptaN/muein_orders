@@ -1,14 +1,14 @@
 import 'dart:developer' as developer;
 import 'package:injectable/injectable.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../../../core/error/api_error_handler.dart';
+import '../../../../core/errors/api_error_handler.dart';
 import '../../../../core/mapper/meta_mapper.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/repo/orders_repo.dart';
 import '../datasources/orders_api.dart';
 import '../mappers/orders_res_mapper.dart';
 
-@Injectable(
+@Singleton(
   as: OrdersRepo,
 )
 class OrdersRepoImpl implements OrdersRepo {

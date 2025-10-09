@@ -4,7 +4,7 @@ import '../../../../core/networking/api_result.dart';
 import '../entities/order_type_res_entity.dart';
 import '../repo/home_repo.dart';
 
-@injectable
+@singleton
 class HomeUseCases {
   final HomeRepo homeRepo;
   HomeUseCases(

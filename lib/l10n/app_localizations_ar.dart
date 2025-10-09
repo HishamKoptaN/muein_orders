@@ -404,10 +404,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'قم بتخزين جميع مستنداتك المهمة والوصول إليها في مكان واحد آمن';
 
   @override
-  String get do_not_delete_the_locally_stored_photo_and_video_files_used_to_document_an_application_until_they_are_approved_by_the_administration =>
-      'Do not delete locally stored photo and video files used to document an application until they are approved by the administration.';
-
-  @override
   String get help => 'يساعد';
 
   @override
@@ -623,6 +619,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
+
+  @override
+  String get test_key => 'New test key';
 
   @override
   String get welcomeLine => 'مرحباً بكم \nفي';

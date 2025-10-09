@@ -4,7 +4,7 @@ import '../../../../../core/networking/api_result.dart';
 import '../entities/orders_res_entity.dart';
 import '../repo/orders_repo.dart';
 
-@injectable
+@singleton
 class OrdersUseCases {
   final OrdersRepo ordersRepo;
   OrdersUseCases(

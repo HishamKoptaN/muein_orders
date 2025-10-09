@@ -8,7 +8,7 @@ import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/app_snackbar.dart';
 import '../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../../../onboarding/present/view/onboarding_view.dart';
+import '../../../../instructions/present/view/instructions_view.dart';
 import '../../../sign_in/present/views/widgets/sign_in_background.dart';
 import '../bloc/sign_up_bloc.dart';
 import 'widgets/sign_up_actions.dart';

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart' show injectable, factoryMethod;
+import 'package:injectable/injectable.dart' show factoryMethod, injectable, singleton;
 import 'package:retrofit/retrofit.dart';
 import '../../../../core/config/app_config.dart';
 import '../../../../core/constants/api_constants.dart';
@@ -10,7 +10,7 @@ part 'notifications_api.g.dart';
 @RestApi(
   baseUrl: AppConfig.apiBaseUrl,
 )
-@injectable
+@singleton
 abstract class NotificationsApi {
   @factoryMethod
   factory NotificationsApi(

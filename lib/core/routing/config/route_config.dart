@@ -1,16 +1,15 @@
-import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
+import '../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../../features/auth/sign_up/present/views/sign_up_views.dart';
-import '../../../features/docs/present/views/add_cached_doc_view.dart';
+import '../../../features/cached_docs/present/view/add_cached_doc_view.dart';
 import '../../../features/home/domain/entities/order_type_res_entity.dart';
 import '../../../features/home/present/view/home_view.dart';
+import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/language/view/select_language.dart';
-import '../../../features/onboarding/present/view/onboarding_view.dart';
 import '../../../features/orders/present/views/orders_view.dart';
 import '../../../features/orders/present/views/pdf/sitcker_pdf_preview_view.dart';
 import '../../../features/profile/present/views/profile_view.dart';
@@ -21,6 +20,10 @@ import '../route_utils.dart';
 class RouteConfig {
   static List<RouteBase> get routes {
     final routes = [
+      createRoute(
+        routeName: AuthView.routeName,
+        builder: (context, state) => const AuthView(),
+      ),
       createRoute(
         routeName: InstructionsView.routeName,
         builder: (context, state) => const InstructionsView(),
@@ -89,22 +92,6 @@ class RouteConfig {
         builder: (context, state) => const ProfileView(),
       ),
     ];
-    if (kDebugMode) {
-      debugPrint('\n===== AVAILABLE ROUTES =====');
-      void printRoutes(List<RouteBase> routes, [String prefix = '']) {
-        for (final route in routes) {
-          if (route is GoRoute) {
-            debugPrint('$prefix${route.name} -> ${route.path}');
-            if (route.routes.isNotEmpty) {
-              printRoutes(route.routes, '$prefix  ');
-            }
-          }
-        }
-      }
-
-      printRoutes(routes);
-      debugPrint('==========================\n');
-    }
     return routes;
   }
 

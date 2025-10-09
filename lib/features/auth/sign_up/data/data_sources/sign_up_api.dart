@@ -13,7 +13,6 @@ part 'sign_up_api.g.dart';
   baseUrl: AppConfig.apiAuthBaseUrl,
 )
 @lazySingleton
-@injectable
 abstract class SignUpApi {
   @factoryMethod
   factory SignUpApi(Dio dio) = _SignUpApi;

@@ -10,7 +10,7 @@ import '../../l10n/app_localizations.dart';
 import '../auth/auth/present/bloc/auth_bloc.dart';
 import '../auth/sign_in/present/views/sign_in_view.dart';
 import '../language/view/select_language.dart';
-import '../onboarding/present/view/onboarding_view.dart';
+import '../instructions/present/view/instructions_view.dart';
 import '../profile/present/views/profile_view.dart';
 
 class MyDrawer extends StatelessWidget {

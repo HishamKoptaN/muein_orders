@@ -1,9 +1,8 @@
-import 'dart:async';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/all_imports.dart';
 import '../../../../../core/entities/meta_entity.dart';
-import '../../../../../core/error/api_error_model.dart';
+import '../../../../../core/errors/api_error_model.dart';
 import '../../../domain/entities/docs_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
 part 'docs_bloc.freezed.dart';

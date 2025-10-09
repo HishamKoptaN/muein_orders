@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart' show injectable, factoryMethod;
+import 'package:injectable/injectable.dart' show factoryMethod, injectable, singleton;
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/config/app_config.dart';
@@ -8,7 +8,7 @@ import '../models/orders_res_model.dart';
 
 part 'orders_api.g.dart';
 
-@injectable
+@singleton
 @RestApi(
   baseUrl: AppConfig.apiBaseUrl,
 )
