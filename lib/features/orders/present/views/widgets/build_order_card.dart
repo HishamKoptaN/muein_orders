@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:drift/drift.dart' hide Column;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,17 +19,13 @@ Widget buildOrderCard({
   required OrderEntity orderEntity,
   required int orderDocsCount,
   required AppLocalizations t,
-  required PackageEntity package,
+  required ProductTypeEntity package,
 }) {
   final db = getIt<AppDatabase>();
   return GestureDetector(
     onTap: () {
       if (kDebugMode) {
-        _showTestMenu(
-          context: context,
-          orderEntity: orderEntity,
-          db: db,
-        );
+        _showTestMenu(context: context, orderEntity: orderEntity, db: db);
       }
     },
     child: Padding(
@@ -42,10 +39,7 @@ Widget buildOrderCard({
             BoxShadow(
               color: Colors.black12,
               blurRadius: 4,
-              offset: Offset(
-                0,
-                2,
-              ),
+              offset: Offset(0, 2),
             ),
           ],
           borderRadius: BorderRadius.circular(15),
@@ -58,13 +52,9 @@ Widget buildOrderCard({
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Row(
-                    children: [
-                      SizedBox(width: 6),
-                    ],
-                  ),
+                  const Row(children: [SizedBox(width: 6)]),
                   Text(
-                    orderEntity.executionNum.toString(),
+                    '#${orderEntity.id.toString()}',
                     style: const TextStyle(
                       fontFamily: 'Almarai',
                       fontSize: 18,
@@ -82,32 +72,36 @@ Widget buildOrderCard({
                 onRetry: () async {
                   try {
                     final docsUseCase = getIt<DocsUseCase>();
-                    // البحث عن المستندات الفاشلة لهذا الطلب
                     final db = getIt<AppDatabase>();
-                    final failedDocs = await (db.select(db.cachedDocs)
-                          ..where((tbl) =>
-                              tbl.orderId.equals(orderEntity.id ?? 0) &
-                              tbl.uploadStatus.equals('failure')))
-                        .get();
+                    final failedDocs =
+                        await (db.select(db.cachedDocs)..where(
+                              (tbl) =>
+                                  tbl.orderId.equals(orderEntity.id ?? 0) &
+                                  tbl.uploadStatus.equals('failure'),
+                            ))
+                            .get();
 
                     if (failedDocs.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content:
-                                Text('لا توجد مستندات فاشلة لإعادة المحاولة')),
+                        const SnackBar(
+                          content: Text(
+                            'لا توجد مستندات فاشلة لإعادة المحاولة',
+                          ),
+                        ),
                       );
                       return;
                     }
 
-                    // إعادة محاولة رفع جميع المستندات الفاشلة
-                    for (var doc in failedDocs) {
+                    for (final doc in failedDocs) {
                       await docsUseCase.retryUpload(docId: doc.id);
                     }
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                          content: Text(
-                              'تم بدء إعادة المحاولة لـ ${failedDocs.length} مستند')),
+                        content: Text(
+                          'تم بدء إعادة المحاولة لـ ${failedDocs.length} مستند',
+                        ),
+                      ),
                     );
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -121,7 +115,7 @@ Widget buildOrderCard({
                 orderEntity: orderEntity,
                 orderDocsCount: orderDocsCount,
                 t: t,
-                package: package,
+                productType: package,
               ),
               const SizedBox(height: 16),
             ],
@@ -147,10 +141,7 @@ void _showTestMenu({
           children: [
             const Text(
               'اختبار الطلب',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             ListTile(
@@ -196,24 +187,24 @@ void _showTestMenu({
   );
 }
 
-void _clearOrderDocs(
-    {required BuildContext context,
-    required OrderEntity orderEntity,
-    required AppDatabase db}) async {
-  final allDocs = await (db.select(db.cachedDocs)
-        ..where((tbl) => tbl.orderId.equals(orderEntity.id ?? 0)))
-      .get();
-  for (var doc in allDocs) {
-    await db.deleteDoc(
-      orderId: orderEntity.id ?? 0,
-    );
+Future<void> _clearOrderDocs({
+  required BuildContext context,
+  required OrderEntity orderEntity,
+  required AppDatabase db,
+}) async {
+  final allDocs = await (db.select(
+    db.cachedDocs,
+  )..where((tbl) => tbl.orderId.equals(orderEntity.id ?? 0))).get();
+  for (final doc in allDocs) {
+    await db.deleteDoc(orderId: orderEntity.id ?? 0);
   }
 }
 
-void _changeOrderStatus(
-    {required BuildContext context,
-    required OrderEntity orderEntity,
-    required AppDatabase db}) {
+void _changeOrderStatus({
+  required BuildContext context,
+  required OrderEntity orderEntity,
+  required AppDatabase db,
+}) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -273,10 +264,11 @@ void _changeOrderStatus(
   );
 }
 
-void _changeUploadProgress(
-    {required BuildContext context,
-    required OrderEntity orderEntity,
-    required AppDatabase db}) {
+void _changeUploadProgress({
+  required BuildContext context,
+  required OrderEntity orderEntity,
+  required AppDatabase db,
+}) {
   final random = Random();
   final progress = random.nextInt(100);
 
@@ -313,10 +305,11 @@ Future<void> _updateOrderStatus({
   }
 }
 
-Future<void> _updateUploadProgress(
-    {required AppDatabase db,
-    required int orderId,
-    required int progress}) async {
+Future<void> _updateUploadProgress({
+  required AppDatabase db,
+  required int orderId,
+  required int progress,
+}) async {
   try {
     await db.deleteDoc(orderId: orderId);
     final newDoc = CachedDocsCompanion(

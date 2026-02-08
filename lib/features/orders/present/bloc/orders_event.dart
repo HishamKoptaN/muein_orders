@@ -1,7 +1,7 @@
 part of 'orders_bloc.dart';
 
 @freezed
-class OrdersEvent with _$OrdersEvent {
+abstract class OrdersEvent with _$OrdersEvent {
   const factory OrdersEvent.getOrders({
     required int packageId,
     required bool loadMore,

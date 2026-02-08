@@ -1,21 +1,16 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../config/app_config.dart';
-import '../config/upload_settings.dart';
 import '../database/shared_pref_helper.dart';
 import '../database/shared_pref_keys.dart';
 import '../networking/slow_upload_interceptor.dart';
 
 @module
 abstract class ApiModule {
-  ApiModule() {
-    log('ApiModule has been initialized! 🚀');
-  }
   @singleton
   Dio dio(
     AuthInterceptor authInterceptor,
@@ -24,37 +19,26 @@ abstract class ApiModule {
     final dio = Dio(
       BaseOptions(
         baseUrl: AppConfig.baseUrl,
-        connectTimeout: const Duration(
-          seconds: 30,
-        ),
-        receiveTimeout: const Duration(
-          seconds: 30,
-        ),
+        connectTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 30),
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
       ),
     );
-    dio.interceptors.addAll(
-      [
-        authInterceptor,
-        LogInterceptor(
-          responseBody: true,
-        ),
-        PrettyDioLogger(
-          requestBody: true,
-          requestHeader: true,
-          responseHeader: true,
-        ),
-      ],
-    );
+    dio.interceptors.addAll([
+      authInterceptor,
+      LogInterceptor(responseBody: true),
+      PrettyDioLogger(
+        requestBody: true,
+        requestHeader: true,
+        responseHeader: true,
+      ),
+    ]);
     // if (kDebugMode) {
     dio.interceptors.add(
-      SlowUploadInterceptor(
-        bytesPerSecond: 64,
-        chunkSize: 1024,
-      ),
+      SlowUploadInterceptor(bytesPerSecond: 64, chunkSize: 1024),
     );
     // }
     return dio;
@@ -65,9 +49,7 @@ abstract class ApiModule {
 class AuthInterceptor extends Interceptor {
   final TokenStorage tokenStorage;
   String? _currentToken;
-  AuthInterceptor(
-    this.tokenStorage,
-  );
+  AuthInterceptor(this.tokenStorage);
   Future<void> updateToken() async {
     _currentToken = await tokenStorage.getToken();
   }
@@ -84,7 +66,6 @@ class AuthInterceptor extends Interceptor {
       }
       super.onRequest(options, handler);
     } catch (e) {
-      log('AuthInterceptor Error: $e');
       super.onRequest(options, handler);
     }
   }
@@ -94,40 +75,22 @@ class AuthInterceptor extends Interceptor {
 class LoggingInterceptor extends Interceptor {
   //! onRequest
   @override
-  void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) {
-    log(
-      'Request[${options.method}] => PATH: ${options.path}',
-    );
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    log('Request[${options.method}] => PATH: ${options.path}');
     super.onRequest(options, handler);
   }
 
   //! onRequest
   @override
-  void onResponse(
-    Response response,
-    ResponseInterceptorHandler handler,
-  ) {
-    log(
-      'Response[${response.statusCode}]: ${response.data}',
-    );
-    super.onResponse(
-      response,
-      handler,
-    );
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    log('Response[${response.statusCode}]: ${response.data}');
+    super.onResponse(response, handler);
   }
 
   //! onError
   @override
-  void onError(
-    DioException err,
-    ErrorInterceptorHandler handler,
-  ) {
-    log(
-      'Error[${err.response?.statusCode}]: ${err.message}',
-    );
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    log('Error[${err.response?.statusCode}]: ${err.message}');
     super.onError(err, handler);
   }
 }

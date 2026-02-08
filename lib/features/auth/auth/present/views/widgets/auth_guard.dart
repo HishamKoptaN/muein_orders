@@ -32,12 +32,7 @@
 //           loading: () {},
 //           failure: (message) {
 //             // Show error message if there's an authentication error
-//             ScaffoldMessenger.of(context).showSnackBar(
-//               SnackBar(
-//                 content: Text(message),
-//                 backgroundColor: Colors.red,
-//               ),
-//             );
+//             context.showErrorSnackBar(title: 'Error', message: message);
 //             // Optionally navigate to login on error
 //             NavigationService.go(
 //                 context: context, routeName: SignInView.routeName);

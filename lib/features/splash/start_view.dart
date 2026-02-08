@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/routing/navigation_service.dart';
+import '../../core/widgets/buttons/custom_icon_tn.dart';
 import '../../l10n/app_localizations.dart';
 import '../language/view/select_language.dart';
 
@@ -16,17 +17,17 @@ class StartView extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
             child: Image.asset(
               'assets/images/start_back.png',
               fit: BoxFit.cover,
             ),
           ),
-          // Content
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 15.0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -55,24 +56,19 @@ class StartView extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 32),
-                        Image.asset(
-                          'assets/logos/second_logo.png',
-                        ),
+                        Image.asset('assets/logos/second_logo.png'),
                       ],
                     ),
                   ),
                 ),
                 const Spacer(),
-                // Buttons
                 Padding(
                   padding: const EdgeInsets.only(bottom: 49.0),
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Column(
                       children: [
-                        // Language Selection Button
-                        ElevatedButton.icon(
-                          key: const Key('selectLanguage'),
+                        CustomTextIconBtnWidget(
                           onPressed: () {
                             NavigationService.navigateTo(
                               context: context,
@@ -88,15 +84,8 @@ class StartView extends StatelessWidget {
                               BlendMode.srcIn,
                             ),
                           ),
-                          label: Text(
-                            t.selectLanguage,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          text: t.selectLanguage,
                         ),
-                        const SizedBox(height: 16),
                       ],
                     ),
                   ),

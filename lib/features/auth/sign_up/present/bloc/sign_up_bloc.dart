@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/app/global_variable.dart';
 import '../../../../../core/errors/api_error_model.dart';
+import '../../../../../core/networking/api_result.dart';
 import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/entities/signup_req_entity.dart';
 import '../../domain/use_cases/sign_up_use_cases.dart';
@@ -24,90 +25,75 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   PasswordInput? _password;
   PasswordInput? _confirmPassword;
   bool? _obscurePassword;
-  SignUpBloc({
-    required this.signUpUseCases,
-  }) : super(
-          const SignUpState.loaded(
-            name: GenericFormzInput.dirty(''),
-            email: EmailInput.dirty(''),
-            phone: PhoneNumberInput.dirty(''),
-            password: PasswordInput.dirty(''),
-            confirmPassword: PasswordInput.dirty(''),
-            obscurePassword: true,
-            formzSubmissionStatus: FormzSubmissionStatus.initial,
-            confirmPasswordInput: ConfirmPasswordInput.dirty(
-              value: '',
-              password: '',
-            ),
+  SignUpBloc({required this.signUpUseCases})
+    : super(
+        const SignUpState.loaded(
+          name: GenericFormzInput.dirty(''),
+          email: EmailInput.dirty(''),
+          phone: PhoneNumberInput.dirty(''),
+          password: PasswordInput.dirty(''),
+          confirmPassword: PasswordInput.dirty(''),
+          obscurePassword: true,
+          formzSubmissionStatus: FormzSubmissionStatus.initial,
+          confirmPasswordInput: ConfirmPasswordInput.dirty(
+            value: '',
+            password: '',
           ),
-        ) {
-    on<SignUpEvent>(
-      (event, emit) async {
-        await event.when(
-          signUp: () async {
-            try {
-              emitCustomLoaded(
-                emit: emit,
-                formzSubmissionStatus: FormzSubmissionStatus.inProgress,
-              );
-              const fcmToken = '';
-              final signUpReq = SignUpReqEntity(
-                name: _name!.value,
-                phone: _phone!.value,
-                email: _email!.value,
-                password: _password!.value,
-                fcmToken: fcmToken,
-              );
-              final result = await signUpUseCases.signUp(
-                signUpReq: signUpReq,
-              );
-              await result.when(
-                success: (_) async {
-                  GlobalVariable.authBloc
-                      .add(const AuthEvent.emitAuthenticated());
-
-                  emit(const SignUpState.success());
-                },
-                failure: (apiErrorModel) {
-                  emitCustomFailure(
-                    emit: emit,
-                    apiErrorModel: apiErrorModel,
-                  );
-                },
-              );
-            } catch (e, stackTrace) {
-              debugPrint('Error during sign up: $e\n$stackTrace');
-              emitCustomFailure(
-                emit: emit,
-                apiErrorModel: const ApiErrorModel(
-                  error: 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى',
-                ),
-              );
-            } finally {
-              emitCustomLoaded(emit: emit);
-            }
-          },
-          dataChanged: (
-            name,
-            email,
-            phone,
-            password,
-            confirmPassword,
-            obscurePassword,
-          ) {
-            _name = name ?? _name;
-            _email = email ?? _email;
-            _phone = phone ?? _phone;
-            _password = password ?? _password;
-            _confirmPassword = confirmPassword ?? _confirmPassword;
-            _obscurePassword = obscurePassword ?? _obscurePassword;
+        ),
+      ) {
+    on<SignUpEvent>((event, emit) async {
+      await event.when(
+        signUp: () async {
+          try {
             emitCustomLoaded(
               emit: emit,
+              formzSubmissionStatus: FormzSubmissionStatus.inProgress,
             );
-          },
-        );
-      },
-    );
+            const fcmToken = '';
+            final signUpReq = SignUpReqEntity(
+              name: _name!.value,
+              phone: _phone!.value,
+              email: _email!.value,
+              password: _password!.value,
+              fcmToken: fcmToken,
+            );
+            final result = await signUpUseCases.signUp(signUpReq: signUpReq);
+            await result.when(
+              success: (_) async {
+                GlobalVariable.authBloc.add(
+                  const AuthEvent.emitAuthenticated(),
+                );
+
+                emit(const SignUpState.success());
+              },
+              failure: (apiErrorModel) {
+                emitCustomFailure(emit: emit, apiErrorModel: apiErrorModel);
+              },
+            );
+          } catch (e, stackTrace) {
+            debugPrint('Error during sign up: $e\n$stackTrace');
+            emitCustomFailure(
+              emit: emit,
+              apiErrorModel: const ApiErrorModel(
+                error: 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى',
+              ),
+            );
+          } finally {
+            emitCustomLoaded(emit: emit);
+          }
+        },
+        dataChanged:
+            (name, email, phone, password, confirmPassword, obscurePassword) {
+              _name = name ?? _name;
+              _email = email ?? _email;
+              _phone = phone ?? _phone;
+              _password = password ?? _password;
+              _confirmPassword = confirmPassword ?? _confirmPassword;
+              _obscurePassword = obscurePassword ?? _obscurePassword;
+              emitCustomLoaded(emit: emit);
+            },
+      );
+    });
   }
   void emitCustomLoaded({
     required Emitter<SignUpState> emit,
@@ -125,19 +111,18 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           password: _password!.value,
         ),
         obscurePassword: _obscurePassword ?? true,
-        formzSubmissionStatus: formzSubmissionStatus ??
-            (Formz.validate(
-              [
-                _name!,
-                _email!,
-                _phone!,
-                _password!,
-                ConfirmPasswordInput.dirty(
-                  value: _password!.value,
-                  password: _confirmPassword!.value,
-                ),
-              ],
-            )
+        formzSubmissionStatus:
+            formzSubmissionStatus ??
+            (Formz.validate([
+                  _name!,
+                  _email!,
+                  _phone!,
+                  _password!,
+                  ConfirmPasswordInput.dirty(
+                    value: _password!.value,
+                    password: _confirmPassword!.value,
+                  ),
+                ])
                 ? FormzSubmissionStatus.success
                 : FormzSubmissionStatus.failure),
       ),

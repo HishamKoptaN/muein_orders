@@ -1,25 +1,18 @@
-# Flutter Native Splash Configuration
-# لتشغيل: flutter pub run flutter_native_splash:create --path=flutter_native_splash.yaml
+
+#! dart pub run flutter_native_splash:create --path=flutter_native_splash.yaml
 
 flutter_native_splash:
-  # الألوان الأساسية
-  color: "#003A45"
-  color_dark: "#003A45"
-
-  # صورة الخلفية
-  background_image: assets/images/splash.png
-
-  # إعدادات المحاذاة والملء
-  android_gravity: fill
-  ios_content_mode: scaleAspectFill
-  web_image_mode: cover
-
-  # إعدادات Android 12+ (لون فقط لتجنب الشاشة السوداء)
+  color: "#003A46"
+  color_dark: "#003A46"
+  background_image: assets/icons/solid_color.png
+  background_image_dark: assets/icons/solid_color.png
+  image: assets/logos/logo_solid.png
+  android_gravity: center
+  ios_content_mode: center
   android_12:
-    color: "#003A45"
-    color_dark: "#003A45"
-
-  # تفعيل جميع المنصات
+    color: "#003A46"
+    color_dark: "#003A46"
+    image: assets/logos/logo_android_12.png
+    icon_background_color: "#003A46"
   android: true
   ios: true
-  web: true

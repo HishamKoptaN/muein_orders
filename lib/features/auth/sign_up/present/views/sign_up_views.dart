@@ -5,8 +5,8 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../../core/routing/navigation_service.dart';
-import '../../../../../core/widgets/app_snackbar.dart';
-import '../../../../../core/widgets/custom_circular_progress.dart';
+import '../../../../../core/widgets/feedback/app_snackbar.dart';
+import '../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../instructions/present/view/instructions_view.dart';
 import '../../../sign_in/present/views/widgets/sign_in_background.dart';
@@ -46,46 +46,45 @@ class SignUpView extends StatelessWidget {
           },
           builder: (context, state) {
             return state.maybeWhen(
-              loaded: (
-                name,
-                email,
-                phone,
-                password,
-                confirmPassword,
-                confirmPasswordInput,
-                obscurePassword,
-                formzSubmissionStatus,
-              ) {
-                return LayoutBuilder(
-                  builder: (context, constraints) {
-                    return SingleChildScrollView(
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: constraints.maxHeight,
-                          minWidth: constraints.maxWidth,
-                        ),
-                        child: IntrinsicHeight(
-                          child: SignInBackground(
-                            child: _SignUpBody(
-                              name: name,
-                              phone: phone,
-                              email: email,
-                              password: password,
-                              confirmPassword: confirmPassword,
-                              confirmPasswordInput: confirmPasswordInput,
-                              obscurePassword: obscurePassword,
-                              formzSubmissionStatus: formzSubmissionStatus,
+              loaded:
+                  (
+                    name,
+                    email,
+                    phone,
+                    password,
+                    confirmPassword,
+                    confirmPasswordInput,
+                    obscurePassword,
+                    formzSubmissionStatus,
+                  ) {
+                    return LayoutBuilder(
+                      builder: (context, constraints) {
+                        return SingleChildScrollView(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: constraints.maxHeight,
+                              minWidth: constraints.maxWidth,
+                            ),
+                            child: IntrinsicHeight(
+                              child: SignInBackground(
+                                child: _SignUpBody(
+                                  name: name,
+                                  phone: phone,
+                                  email: email,
+                                  password: password,
+                                  confirmPassword: confirmPassword,
+                                  confirmPasswordInput: confirmPasswordInput,
+                                  obscurePassword: obscurePassword,
+                                  formzSubmissionStatus: formzSubmissionStatus,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     );
                   },
-                );
-              },
-              loading: () => const Center(
-                child: CustomCircularProgress(),
-              ),
+              loading: () => const Center(child: CustomCircularProgress()),
               orElse: () => const SizedBox.shrink(),
             );
           },
@@ -124,7 +123,6 @@ class _SignUpBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // const SizedBox(height: 50),
             const SignUpHeader(),
             const SizedBox(height: 26),
             SignUpForm(
@@ -137,9 +135,7 @@ class _SignUpBody extends StatelessWidget {
               confirmPasswordInput: confirmPasswordInput,
             ),
             const SizedBox(height: 24),
-            SignUpActions(
-              formzSubmissionStatus: formzSubmissionStatus,
-            ),
+            SignUpActions(formzSubmissionStatus: formzSubmissionStatus),
             const SizedBox(height: 24),
           ],
         ),
@@ -179,16 +175,16 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
   void _runLoginScenario(BuildContext context) {
     debugPrint('🚀 Running Debug AutoFill Login with BLoC...');
     context.read<SignUpBloc>().add(
-              const SignUpEvent.dataChanged(
-                email: EmailInput.dirty('heshamkoptan@gmail.com'),
-                name: GenericFormzInput.dirty('hisham'),
-                phone: PhoneNumberInput.dirty('4567894566123'),
-                password: PasswordInput.dirty('password'),
-                confirmPassword: PasswordInput.dirty('Password123@'),
-              ),
-            )
-        // ..add(const SignUpEvent.signUp())
-        ;
+      const SignUpEvent.dataChanged(
+        email: EmailInput.dirty('heshamkoptan@gmail.com'),
+        name: GenericFormzInput.dirty('hisham'),
+        phone: PhoneNumberInput.dirty('4567894566123'),
+        password: PasswordInput.dirty('password'),
+        confirmPassword: PasswordInput.dirty('Password123@'),
+      ),
+    )
+    // ..add(const SignUpEvent.signUp())
+    ;
     debugPrint('✅ AutoFill Login Done (via BLoC)');
   }
 

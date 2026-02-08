@@ -6,11 +6,10 @@ import 'package:form_inputs/form_inputs/email_input.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../../core/gloabal_widgets/custom_scaffold.dart';
-import '../../../../../core/routing/navigation_service.dart';
-import '../../../../../core/theme/app_colors.dart';
-import '../../../../../core/widgets/custom_app_bar.dart';
-import '../../../../../core/widgets/custom_circular_progress.dart';
-import '../../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../../core/widgets/buttons/custom_button.dart';
+import '../../../../../core/widgets/feedback/app_snackbar.dart';
+import '../../../../../core/widgets/forms/auth_text_form_field.dart';
+import '../../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../bloc/forgot_pass_bloc.dart';
 
@@ -24,52 +23,24 @@ class ForgotPassView extends StatelessWidget {
     return DebugAutoFill(
       child: CustomScaffold(
         backgroundColor: const Color(0xFF003A46),
-        appBar: CustomAppBar(
-          title: t.forgotPassword,
-        ),
+        appBar: CustomAppBar(title: t.forgotPassword),
         body: BlocConsumer<ForgotPassBloc, ForgotPassState>(
           listener: (context, state) {
             state.whenOrNull(
               success: () {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          t.apPasswordResetLinkHasBeenSentToYourEmail,
-                        ),
-                        duration: const Duration(seconds: 2),
-                        behavior: SnackBarBehavior.floating,
-                        action: SnackBarAction(
-                          label: t.ok,
-                          onPressed:
-                              ScaffoldMessenger.of(context).hideCurrentSnackBar,
-                        ),
-                      ),
-                    )
-                    .closed
-                    .then(
-                  (_) {
-                    NavigationService.goBack(context);
-                  },
+                context.showSuccessSnackBar(
+                  title: t.success,
+                  message: t.apPasswordResetLinkHasBeenSentToYourEmail,
                 );
               },
               failure: (error) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      error,
-                    ),
-                  ),
-                );
+                context.showErrorSnackBar(title: t.error, message: error);
               },
             );
           },
           builder: (context, state) {
             return state.maybeWhen(
-              loaded: (
-                email,
-                formzSubmissionStatus,
-              ) {
+              loaded: (email, formzSubmissionStatus) {
                 return Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -77,21 +48,16 @@ class ForgotPassView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(height: 30),
-                      CustomTextFormField(
+                      CustomAuthTextFormField(
                         initialValue: email.value,
                         keyboardType: TextInputType.emailAddress,
                         labelText: t.emailHint,
-                        suffixIcon: const Icon(
-                          Icons.mail,
-                        ),
                         onChanged: (value) {
                           context.read<ForgotPassBloc>().add(
-                                ForgotPassEvent.dataChanged(
-                                  email: EmailInput.dirty(
-                                    value,
-                                  ),
-                                ),
-                              );
+                            ForgotPassEvent.dataChanged(
+                              email: EmailInput.dirty(value),
+                            ),
+                          );
                         },
                         validator: (val) {
                           if (val == null || val.isEmpty) {
@@ -130,37 +96,22 @@ class ForgotPassView extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 24),
-                      SizedBox(
-                        height: 60,
-                        child: ElevatedButton(
-                          onPressed: !formzSubmissionStatus.isInProgress
-                              ? () {
-                                  context.read<ForgotPassBloc>().add(
-                                        const ForgotPassEvent
-                                            .sendPassResetEmail(),
-                                      );
-                                }
-                              : null,
-                          style: ButtonStyle(
-                            backgroundColor:
-                                formzSubmissionStatus.isInProgressOrSuccess
-                                    ? WidgetStateProperty.all(AppColors.primary)
-                                    : WidgetStateProperty.all(Colors.grey),
-                          ),
-                          child: formzSubmissionStatus.isInProgress
-                              ? const CustomCircularProgress()
-                              : Text(
-                                  t.send,
-                                ),
-                        ),
+                      CustomBtnWidget(
+                        text: t.send,
+                        formzSubmissionStatus: formzSubmissionStatus,
+                        onPressed: () {
+                          if (formzSubmissionStatus.isSuccess) {
+                            context.read<ForgotPassBloc>().add(
+                              const ForgotPassEvent.sendPassResetEmail(),
+                            );
+                          }
+                        },
                       ),
                     ],
                   ),
                 );
               },
-              loading: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
+              loading: () => const Center(child: CircularProgressIndicator()),
               orElse: () => const SizedBox.shrink(),
             );
           },
@@ -211,15 +162,9 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
     ];
 
     final testEmail = testEmails[0];
-    debugPrint('📧 Using test email: $testEmail');
-    debugPrint(
-        '🔗 Authorized domains: mubin-c2b92.firebaseapp.com, mubin-c2b92.web.app');
-    debugPrint('✅ These domains are already authorized in Firebase Console');
 
     context.read<ForgotPassBloc>()
-      ..add(ForgotPassEvent.dataChanged(
-        email: EmailInput.dirty(testEmail),
-      ))
+      ..add(ForgotPassEvent.dataChanged(email: EmailInput.dirty(testEmail)))
       ..add(const ForgotPassEvent.sendPassResetEmail());
 
     debugPrint('✅ Autofill Login Done (via BLoC)');

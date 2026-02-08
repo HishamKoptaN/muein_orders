@@ -1,7 +1,7 @@
 part of 'sign_up_bloc.dart';
 
 @freezed
-class SignUpEvent with _$SignUpEvent {
+abstract class SignUpEvent with _$SignUpEvent {
   const factory SignUpEvent.dataChanged({
     GenericFormzInput? name,
     EmailInput? email,

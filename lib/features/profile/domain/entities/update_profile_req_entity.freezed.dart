@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,175 +9,269 @@ part of 'update_profile_req_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$UpdateProfileReqEntity {
-  File? get image => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
 
-  /// Create a copy of UpdateProfileReqEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $UpdateProfileReqEntityCopyWith<UpdateProfileReqEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+ GenericFormzInput<File>? get image; GenericFormzInput<String>? get name; PhoneNumberInput? get phone;
+/// Create a copy of UpdateProfileReqEntity
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UpdateProfileReqEntityCopyWith<UpdateProfileReqEntity> get copyWith => _$UpdateProfileReqEntityCopyWithImpl<UpdateProfileReqEntity>(this as UpdateProfileReqEntity, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileReqEntity&&(identical(other.image, image) || other.image == image)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,image,name,phone);
+
+@override
+String toString() {
+  return 'UpdateProfileReqEntity(image: $image, name: $name, phone: $phone)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $UpdateProfileReqEntityCopyWith<$Res> {
-  factory $UpdateProfileReqEntityCopyWith(UpdateProfileReqEntity value,
-          $Res Function(UpdateProfileReqEntity) then) =
-      _$UpdateProfileReqEntityCopyWithImpl<$Res, UpdateProfileReqEntity>;
-  @useResult
-  $Res call({File? image, String? name, String? phone});
-}
+abstract mixin class $UpdateProfileReqEntityCopyWith<$Res>  {
+  factory $UpdateProfileReqEntityCopyWith(UpdateProfileReqEntity value, $Res Function(UpdateProfileReqEntity) _then) = _$UpdateProfileReqEntityCopyWithImpl;
+@useResult
+$Res call({
+ GenericFormzInput<File>? image, GenericFormzInput<String>? name, PhoneNumberInput? phone
+});
 
+
+
+
+}
 /// @nodoc
-class _$UpdateProfileReqEntityCopyWithImpl<$Res,
-        $Val extends UpdateProfileReqEntity>
+class _$UpdateProfileReqEntityCopyWithImpl<$Res>
     implements $UpdateProfileReqEntityCopyWith<$Res> {
-  _$UpdateProfileReqEntityCopyWithImpl(this._value, this._then);
+  _$UpdateProfileReqEntityCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UpdateProfileReqEntity _self;
+  final $Res Function(UpdateProfileReqEntity) _then;
 
-  /// Create a copy of UpdateProfileReqEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? image = freezed,
-    Object? name = freezed,
-    Object? phone = freezed,
-  }) {
-    return _then(_value.copyWith(
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as File?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of UpdateProfileReqEntity
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? image = freezed,Object? name = freezed,Object? phone = freezed,}) {
+  return _then(_self.copyWith(
+image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<File>?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<String>?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as PhoneNumberInput?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [UpdateProfileReqEntity].
+extension UpdateProfileReqEntityPatterns on UpdateProfileReqEntity {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UpdateProfileReqEntity value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _UpdateProfileReqEntity() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UpdateProfileReqEntity value)  $default,){
+final _that = this;
+switch (_that) {
+case _UpdateProfileReqEntity():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UpdateProfileReqEntity value)?  $default,){
+final _that = this;
+switch (_that) {
+case _UpdateProfileReqEntity() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormzInput<File>? image,  GenericFormzInput<String>? name,  PhoneNumberInput? phone)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _UpdateProfileReqEntity() when $default != null:
+return $default(_that.image,_that.name,_that.phone);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormzInput<File>? image,  GenericFormzInput<String>? name,  PhoneNumberInput? phone)  $default,) {final _that = this;
+switch (_that) {
+case _UpdateProfileReqEntity():
+return $default(_that.image,_that.name,_that.phone);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormzInput<File>? image,  GenericFormzInput<String>? name,  PhoneNumberInput? phone)?  $default,) {final _that = this;
+switch (_that) {
+case _UpdateProfileReqEntity() when $default != null:
+return $default(_that.image,_that.name,_that.phone);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$UpdateProfileReqEntityImplCopyWith<$Res>
-    implements $UpdateProfileReqEntityCopyWith<$Res> {
-  factory _$$UpdateProfileReqEntityImplCopyWith(
-          _$UpdateProfileReqEntityImpl value,
-          $Res Function(_$UpdateProfileReqEntityImpl) then) =
-      __$$UpdateProfileReqEntityImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({File? image, String? name, String? phone});
+
+
+class _UpdateProfileReqEntity implements UpdateProfileReqEntity {
+  const _UpdateProfileReqEntity({this.image, this.name, this.phone});
+  
+
+@override final  GenericFormzInput<File>? image;
+@override final  GenericFormzInput<String>? name;
+@override final  PhoneNumberInput? phone;
+
+/// Create a copy of UpdateProfileReqEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UpdateProfileReqEntityCopyWith<_UpdateProfileReqEntity> get copyWith => __$UpdateProfileReqEntityCopyWithImpl<_UpdateProfileReqEntity>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileReqEntity&&(identical(other.image, image) || other.image == image)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,image,name,phone);
+
+@override
+String toString() {
+  return 'UpdateProfileReqEntity(image: $image, name: $name, phone: $phone)';
+}
+
+
 }
 
 /// @nodoc
-class __$$UpdateProfileReqEntityImplCopyWithImpl<$Res>
-    extends _$UpdateProfileReqEntityCopyWithImpl<$Res,
-        _$UpdateProfileReqEntityImpl>
-    implements _$$UpdateProfileReqEntityImplCopyWith<$Res> {
-  __$$UpdateProfileReqEntityImplCopyWithImpl(
-      _$UpdateProfileReqEntityImpl _value,
-      $Res Function(_$UpdateProfileReqEntityImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$UpdateProfileReqEntityCopyWith<$Res> implements $UpdateProfileReqEntityCopyWith<$Res> {
+  factory _$UpdateProfileReqEntityCopyWith(_UpdateProfileReqEntity value, $Res Function(_UpdateProfileReqEntity) _then) = __$UpdateProfileReqEntityCopyWithImpl;
+@override @useResult
+$Res call({
+ GenericFormzInput<File>? image, GenericFormzInput<String>? name, PhoneNumberInput? phone
+});
 
-  /// Create a copy of UpdateProfileReqEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? image = freezed,
-    Object? name = freezed,
-    Object? phone = freezed,
-  }) {
-    return _then(_$UpdateProfileReqEntityImpl(
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as File?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$UpdateProfileReqEntityCopyWithImpl<$Res>
+    implements _$UpdateProfileReqEntityCopyWith<$Res> {
+  __$UpdateProfileReqEntityCopyWithImpl(this._self, this._then);
 
-class _$UpdateProfileReqEntityImpl implements _UpdateProfileReqEntity {
-  const _$UpdateProfileReqEntityImpl({this.image, this.name, this.phone});
+  final _UpdateProfileReqEntity _self;
+  final $Res Function(_UpdateProfileReqEntity) _then;
 
-  @override
-  final File? image;
-  @override
-  final String? name;
-  @override
-  final String? phone;
-
-  @override
-  String toString() {
-    return 'UpdateProfileReqEntity(image: $image, name: $name, phone: $phone)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateProfileReqEntityImpl &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.phone, phone) || other.phone == phone));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, image, name, phone);
-
-  /// Create a copy of UpdateProfileReqEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UpdateProfileReqEntityImplCopyWith<_$UpdateProfileReqEntityImpl>
-      get copyWith => __$$UpdateProfileReqEntityImplCopyWithImpl<
-          _$UpdateProfileReqEntityImpl>(this, _$identity);
+/// Create a copy of UpdateProfileReqEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? image = freezed,Object? name = freezed,Object? phone = freezed,}) {
+  return _then(_UpdateProfileReqEntity(
+image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<File>?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<String>?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as PhoneNumberInput?,
+  ));
 }
 
-abstract class _UpdateProfileReqEntity implements UpdateProfileReqEntity {
-  const factory _UpdateProfileReqEntity(
-      {final File? image,
-      final String? name,
-      final String? phone}) = _$UpdateProfileReqEntityImpl;
 
-  @override
-  File? get image;
-  @override
-  String? get name;
-  @override
-  String? get phone;
-
-  /// Create a copy of UpdateProfileReqEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateProfileReqEntityImplCopyWith<_$UpdateProfileReqEntityImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
+
+// dart format on

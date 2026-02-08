@@ -1,15 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../core/models/meta.dart';
+import '../../../../core/models/meta_model.dart';
 
 part 'orders_res_model.freezed.dart';
 part 'orders_res_model.g.dart';
 
 @freezed
-class OrdersResModel with _$OrdersResModel {
+abstract class OrdersResModel with _$OrdersResModel {
   const factory OrdersResModel({
     @JsonKey(name: 'orders') List<Order>? orders,
-    @JsonKey(name: 'meta') Meta? meta,
+    @JsonKey(name: 'meta') MetaModel? meta,
   }) = _OrdersResModel;
 
   factory OrdersResModel.fromJson(Map<String, dynamic> json) =>
@@ -17,36 +17,19 @@ class OrdersResModel with _$OrdersResModel {
 }
 
 @freezed
-class Order with _$Order {
+abstract class Order with _$Order {
   const factory Order({
     @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'status') bool? status,
-    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'printed_name') String? printedName,
-    @JsonKey(name: 'execution_num') String? executionNum,
-    @JsonKey(name: 'order_num') String? orderNum,
     @JsonKey(name: 'docs') List<dynamic>? docs,
-    @JsonKey(name: 'package') Package? package,
     @JsonKey(name: 'distribution_country')
     DistributionCountry? distributionCountry,
-    @JsonKey(name: 'carton_count') int? cartonCount,
-    @JsonKey(name: 'orders_count') int? ordersCount,
-    @JsonKey(name: 'total_amount') String? totalAmount,
     @JsonKey(name: 'date') DateTime? date,
     @JsonKey(name: 'days') int? days,
-    @JsonKey(name: 'email') String? email,
-    @JsonKey(name: 'phone') String? phone,
-    @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
     @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
     @JsonKey(name: 'is_distribution_photographed')
     bool? isDistributionPhotographed,
-    @JsonKey(name: 'is_location_received') bool? isLocationReceived,
-    @JsonKey(name: 'location_link') bool? locationLink,
-    @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
-    @JsonKey(name: 'is_report_sent') bool? isReportSent,
     @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
-    @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
-    @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady,
     @JsonKey(name: 'created_at') String? createdAt,
   }) = _Order;
 
@@ -54,7 +37,7 @@ class Order with _$Order {
 }
 
 @freezed
-class DistributionCountry with _$DistributionCountry {
+abstract class DistributionCountry with _$DistributionCountry {
   const factory DistributionCountry({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'code') String? code,
@@ -65,7 +48,7 @@ class DistributionCountry with _$DistributionCountry {
 }
 
 @freezed
-class Package with _$Package {
+abstract class Package with _$Package {
   const factory Package({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'type') dynamic type,

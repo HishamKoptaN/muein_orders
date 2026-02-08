@@ -12,7 +12,7 @@ class AppLocalizationsAk extends AppLocalizations {
   String get upload_videos => 'Twe video ahorow';
 
   @override
-  String get welcometoMubinOrders => 'Yɛma wo akwaaba ba Mobin Talabat';
+  String get welcometoMueinOrders => 'Yɛma wo akwaaba ba Mobin Talabat';
 
   @override
   String get welcome => 'Akwaaba';
@@ -43,7 +43,8 @@ class AppLocalizationsAk extends AppLocalizations {
       'Nwoma a wɔde mfonini ne video ahorow ayɛ';
 
   @override
-  String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
+  String
+  get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
       'Hwɛ sɛ mfonini ahorow no mu da hɔ, Kuran Kronkron no dodow, ne ɛka a wɔbɔ wɔ nea wɔkra no ho ansa na wode amena.';
 
   @override
@@ -396,7 +397,8 @@ class AppLocalizationsAk extends AppLocalizations {
       'Monitor wo orders wɔ bere ankasa mu denam yɛn intuitive tracking nhyehyɛe.';
 
   @override
-  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
+  String
+  get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Mpopa mfonini ne video fael a wɔde asie wɔ wo mpɔtam hɔ a wɔde kyerɛw application bi kosi sɛ adwumayɛfo no bɛpene so.';
 
   @override
@@ -428,7 +430,8 @@ class AppLocalizationsAk extends AppLocalizations {
   String get alreadyHaveAccount => 'So wowɔ akontaabu dedaw?';
 
   @override
-  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+  String
+  get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
       'Hwɛ sɛ mfonini ahorow no mu da hɔ na Kuran Kronkron no dodow a ɛfata ansa na wode amena';
 
   @override

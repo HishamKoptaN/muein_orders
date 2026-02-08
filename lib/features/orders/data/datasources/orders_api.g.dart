@@ -2,11 +2,13 @@
 
 part of 'orders_api.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
 class _OrdersApi implements OrdersApi {
   _OrdersApi(this._dio, {this.baseUrl, this.errorLogger}) {
@@ -21,16 +23,15 @@ class _OrdersApi implements OrdersApi {
 
   @override
   Future<OrdersResModel> getOrders({
-    required int packageId,
     int? page,
+    required int productTypeId,
     String? query,
-    bool? isDistributionPhotographed,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
+      r'product_type_id': productTypeId,
       r'query': query,
-      r'is_distribution_photographed': isDistributionPhotographed,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -39,7 +40,7 @@ class _OrdersApi implements OrdersApi {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'orders/${packageId}',
+            'orders',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -50,7 +51,7 @@ class _OrdersApi implements OrdersApi {
     try {
       _value = OrdersResModel.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -80,7 +81,7 @@ class _OrdersApi implements OrdersApi {
     try {
       _value = Order.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -113,3 +114,5 @@ class _OrdersApi implements OrdersApi {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

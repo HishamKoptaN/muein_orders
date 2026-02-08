@@ -1,11 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
 import '../../domain/use_cases/use_cases.dart';
@@ -13,135 +13,137 @@ import '../../domain/use_cases/use_cases.dart';
 part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
+
 @singleton
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ProfileUseCases _profileUseCases;
-  ProfileResEntity? _profile;
-  GenericFormzInput<File>? _image;
-  GenericFormzInput<String>? _name;
-  PhoneNumberInput? _phone;
-  bool _isEditingProfile = false;
-  FormzSubmissionStatus? _formzSubmissionStatus;
-  ProfileBloc(this._profileUseCases)
-      : super(
-          const ProfileState.loading(),
-        ) {
-    on<ProfileEvent>(
-      (event, emit) async {
-        await event.when(
-          getProfile: () async {
-            emit(const ProfileState.loading());
-            final res = await _profileUseCases.getProfile();
-            res.when(
-              success: (
-                res,
-              ) {
-                _profile = res;
-                emitCustomLoaded(
-                  emit: emit,
-                );
-              },
-              failure: (error) {
-                emit(
-                  ProfileState.failure(
-                    error: error.message ?? 'حدث خطأ غير متوقع',
-                  ),
-                );
-              },
-            );
-          },
-          startEditing: () async {
-            _isEditingProfile = true;
-            emitCustomLoaded(
-              emit: emit,
-            );
-          },
-          cancelEditing: () async {
-            _isEditingProfile = false;
-            clearData();
-            emit(
-              ProfileState.loaded(
-                profile: _profile!,
-                isEditingProfile: _isEditingProfile,
-                formzSubmissionStatus: FormzSubmissionStatus.initial,
-              ),
-            );
-          },
-          dataChanged: (
-            image,
-            name,
-            phone,
-          ) {
-            if (image?.isValid == true) {
-              _image = image ?? _image;
-              _profile = _profile?.copyWith(
-                selectedImage: image!.value,
+
+  ProfileBloc(this._profileUseCases) : super(const ProfileState.loading()) {
+    on<ProfileEvent>((event, emit) async {
+      await event.when(
+        getProfile: () async {
+          emit(const ProfileState.loading());
+          final res = await _profileUseCases.getProfile();
+          await res.when(
+            success: (res) {
+              emit(
+                ProfileState.loaded(
+                  profile: res ?? ProfileResEntity(),
+                  updateProfileReq: null,
+                  isEditing: false,
+                  formzSubmissionStatus: FormzSubmissionStatus.initial,
+                ),
               );
-            }
-            _name = name ?? _name;
-            _phone = phone ?? _phone;
-            emitCustomLoaded(
-              emit: emit,
-            );
-          },
-          updateProfile: () async {
-            emitCustomLoaded(
-              emit: emit,
-              formzSubmissionStatus: FormzSubmissionStatus.inProgress,
-            );
-            final result = await _profileUseCases.updateProfile(
-              updateProfileReqEntity: UpdateProfileReqEntity(
-                image: _image?.value,
-                name: _name?.value,
-                phone: _phone?.value,
-              ),
-            );
-            result.when(
-              success: (
-                profile,
-              ) {
-                _profile = profile;
-                emit(
-                  const ProfileState.success(),
-                );
-                _isEditingProfile = false;
-                emitCustomLoaded(
-                  emit: emit,
-                );
-              },
-              failure: (
-                error,
-              ) {
-                emit(
-                  ProfileState.failure(
-                    error: error.message ?? 'حدث خطأ غير متوقع',
-                  ),
-                );
-                emitCustomLoaded(
-                  emit: emit,
-                );
-              },
-            );
-          },
-        );
-      },
-    );
+            },
+            failure: (error) {
+              emit(
+                ProfileState.failure(
+                  error: error.message ?? 'حدث خطأ غير متوقع',
+                ),
+              );
+            },
+          );
+        },
+        startEdit: () async {
+          await state.mapOrNull(
+            loaded: (state) {
+              emitCustomLoaded(
+                emit: emit,
+                state: state,
+                isEditing: true,
+                updateProfileReq: UpdateProfileReqEntity(
+                  name: state.profile.name != null
+                      ? GenericFormzInput<String>.dirty(state.profile.name)
+                      : null,
+                  phone: state.profile.phone != null
+                      ? PhoneNumberInput.dirty(state.profile.phone ?? '')
+                      : null,
+                ),
+              );
+            },
+          );
+        },
+        dataChanged: (updateProfileReq) async {
+          await state.mapOrNull(
+            loaded: (state) {
+              emitCustomLoaded(
+                emit: emit,
+                state: state,
+                updateProfileReq: updateProfileReq,
+              );
+            },
+          );
+        },
+        updateProfile: () async {
+          await state.mapOrNull(
+            loaded: (state) async {
+              emitCustomLoaded(
+                emit: emit,
+                state: state,
+                formzSubmissionStatus: FormzSubmissionStatus.inProgress,
+              );
+              final result = await _profileUseCases.updateProfile(
+                updateProfileReqEntity:
+                    state.updateProfileReq ?? const UpdateProfileReqEntity(),
+              );
+              await result.when(
+                success: (profile) {
+                  emit(const ProfileState.success());
+                  emitCustomLoaded(
+                    emit: emit,
+                    state: state,
+                    profile:
+                        profile?.copyWith(
+                          name: profile.name,
+                          phone: profile.phone,
+                        ) ??
+                        state.profile,
+                    isEditing: false,
+                    updateProfileReq: null,
+                  );
+                },
+                failure: (error) {
+                  emit(
+                    ProfileState.failure(
+                      error: error.message ?? 'حدث خطأ غير متوقع',
+                    ),
+                  );
+                },
+              );
+            },
+          );
+        },
+        cancelEdit: () async {
+          await state.mapOrNull(
+            loaded: (state) {
+              emitCustomLoaded(emit: emit, state: state, isEditing: false);
+            },
+          );
+        },
+      );
+    });
   }
   void emitCustomLoaded({
     required Emitter<ProfileState> emit,
+    required _Loaded state,
+    ProfileResEntity? profile,
+    bool? isEditing,
+    UpdateProfileReqEntity? updateProfileReq,
+
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     emit(
       ProfileState.loaded(
-        profile: _isEditingProfile
-            ? _profile!.copyWith(
-                name: _name?.value ?? _profile!.name,
-                phone: _phone?.value ?? _profile!.phone,
-              )
-            : _profile!,
-        isEditingProfile: _isEditingProfile,
-        formzSubmissionStatus: formzSubmissionStatus ??
-            ((_name?.isValid == true && _phone?.isValid == true)
+        profile: profile ?? state.profile,
+        updateProfileReq: updateProfileReq ?? state.updateProfileReq,
+        isEditing: isEditing ?? state.isEditing,
+        formzSubmissionStatus:
+            formzSubmissionStatus ??
+            formzSubmissionStatus ??
+            (Formz.validate([
+                  state.updateProfileReq?.name ??
+                      const GenericFormzInput<String>.pure(),
+                ])
                 ? FormzSubmissionStatus.success
                 : FormzSubmissionStatus.failure),
       ),
@@ -152,16 +154,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     required Emitter<ProfileState> emit,
     required ApiErrorModel apiErrorModel,
   }) {
-    return emit(
-      ProfileState.failure(
-        error: apiErrorModel.error ?? '',
-      ),
-    );
-  }
-
-  void clearData() {
-    _image = null;
-    _name = null;
-    _phone = null;
+    return emit(ProfileState.failure(error: apiErrorModel.error ?? ''));
   }
 }

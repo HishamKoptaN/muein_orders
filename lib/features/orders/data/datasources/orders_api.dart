@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart' show factoryMethod, injectable, singleton;
+import 'package:injectable/injectable.dart' show factoryMethod, singleton;
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/config/app_config.dart';
@@ -9,28 +9,20 @@ import '../models/orders_res_model.dart';
 part 'orders_api.g.dart';
 
 @singleton
-@RestApi(
-  baseUrl: AppConfig.apiBaseUrl,
-)
+@RestApi(baseUrl: AppConfig.apiBaseUrl)
 abstract class OrdersApi {
   @factoryMethod
-  factory OrdersApi(
-    Dio dio,
-  ) = _OrdersApi;
+  factory OrdersApi(Dio dio) = _OrdersApi;
   // ! Get orders for a specific package
-  @GET(
-    '${ApiConstants.orders}/{packageId}',
-  )
+  @GET(ApiConstants.orders)
   Future<OrdersResModel> getOrders({
-    @Path('packageId') required int packageId,
     @Query('page') int? page,
+    @Query('product_type_id') required int productTypeId,
     @Query('query') String? query,
-    @Query('is_distribution_photographed') bool? isDistributionPhotographed,
+    // @Query('is_distribution_photographed') bool? isDistributionPhotographed,
   });
   // ! updateClientField
-  @POST(
-    ApiConstants.orders,
-  )
+  @POST(ApiConstants.orders)
   Future<Order> updateClientField({
     required int clientId,
     required bool isQuranPhotographed,

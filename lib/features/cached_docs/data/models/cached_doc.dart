@@ -6,7 +6,7 @@ part 'cached_doc.freezed.dart';
 part 'cached_doc.g.dart';
 
 @freezed
-class CachedDoc with _$CachedDoc {
+abstract class CachedDoc with _$CachedDoc {
   const factory CachedDoc({
     int? id,
     int? orderId,

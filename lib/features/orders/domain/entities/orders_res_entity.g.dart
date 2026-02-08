@@ -6,9 +6,8 @@ part of 'orders_res_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$OrdersResEntityImpl _$$OrdersResEntityImplFromJson(
-        Map<String, dynamic> json) =>
-    _$OrdersResEntityImpl(
+_OrdersResEntity _$OrdersResEntityFromJson(Map<String, dynamic> json) =>
+    _OrdersResEntity(
       orders: (json['orders'] as List<dynamic>?)
           ?.map((e) => OrderEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -17,83 +16,71 @@ _$OrdersResEntityImpl _$$OrdersResEntityImplFromJson(
           : MetaEntity.fromJson(json['meta'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$OrdersResEntityImplToJson(
-        _$OrdersResEntityImpl instance) =>
+Map<String, dynamic> _$OrdersResEntityToJson(_OrdersResEntity instance) =>
     <String, dynamic>{
-      if (instance.orders?.map((e) => e.toJson()).toList() case final value?)
-        'orders': value,
-      if (instance.meta?.toJson() case final value?) 'meta': value,
+      'orders': ?instance.orders?.map((e) => e.toJson()).toList(),
+      'meta': ?instance.meta?.toJson(),
     };
 
-_$OrderEntityImpl _$$OrderEntityImplFromJson(Map<String, dynamic> json) =>
-    _$OrderEntityImpl(
-      id: (json['id'] as num?)?.toInt(),
-      createdAt: json['created_at'] as String?,
-      updatedAt: json['updated_at'] as String?,
-      name: json['name'] as String?,
-      printedName: json['printed_name'] as String?,
-      phone: json['phone'] as String?,
-      status: (json['status'] as num?)?.toInt(),
-      stickerPrepared: json['sticker_prepared'] as bool?,
-      videosUploaded: json['videos_uploaded'] as bool?,
-      finalEstimateReady: json['final_estimate_ready'] as bool?,
-      email: json['email'] as String?,
-      executionNum: json['execution_num'] as String?,
-      orderNum: json['order_num'] as String?,
-      cartonCount: (json['carton_count'] as num?)?.toInt(),
-      ordersCount: (json['orders_count'] as num?)?.toInt(),
-      totalAmount: json['total_amount'] as String?,
-      date:
-          json['date'] == null ? null : DateTime.parse(json['date'] as String),
-      isQuranPrinted: json['is_quran_printed'] as bool?,
-      isQuranPhotographed: json['is_quran_photographed'] as bool?,
-      isDistributionPhotographed: json['is_distribution_photographed'] as bool?,
-      isLocationReceived: json['is_location_received'] as bool?,
-      locationLink: json['location_link'],
-      isFinalReportReady: json['is_final_report_ready'] as bool?,
-      isReportSent: json['is_report_sent'] as bool?,
-      originCountryId: (json['origin_country_id'] as num?)?.toInt(),
-      distributionCountryId: (json['distribution_country_id'] as num?)?.toInt(),
-      packageId: (json['package_id'] as num?)?.toInt(),
-      quranCopiesCount: (json['quran_copies_count'] as num?)?.toInt(),
-    );
+_OrderEntity _$OrderEntityFromJson(Map<String, dynamic> json) => _OrderEntity(
+  id: (json['id'] as num?)?.toInt(),
+  createdAt: json['created_at'] as String?,
+  updatedAt: json['updated_at'] as String?,
+  name: json['name'] as String?,
+  printedName: json['printed_name'] as String?,
+  phone: json['phone'] as String?,
+  status: (json['status'] as num?)?.toInt(),
+  stickerPrepared: json['sticker_prepared'] as bool?,
+  videosUploaded: json['videos_uploaded'] as bool?,
+  finalEstimateReady: json['final_estimate_ready'] as bool?,
+  email: json['email'] as String?,
+  executionNum: json['execution_num'] as String?,
+  orderNum: json['order_num'] as String?,
+  cartonCount: (json['carton_count'] as num?)?.toInt(),
+  ordersCount: (json['orders_count'] as num?)?.toInt(),
+  totalAmount: json['total_amount'] as String?,
+  date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
+  isQuranPrinted: json['is_quran_printed'] as bool?,
+  isQuranPhotographed: json['is_quran_photographed'] as bool?,
+  isDistributionPhotographed: json['is_distribution_photographed'] as bool?,
+  isLocationReceived: json['is_location_received'] as bool?,
+  locationLink: json['location_link'],
+  isFinalReportReady: json['is_final_report_ready'] as bool?,
+  isReportSent: json['is_report_sent'] as bool?,
+  originCountryId: (json['origin_country_id'] as num?)?.toInt(),
+  distributionCountryId: (json['distribution_country_id'] as num?)?.toInt(),
+  packageId: (json['package_id'] as num?)?.toInt(),
+  quranCopiesCount: (json['quran_copies_count'] as num?)?.toInt(),
+);
 
-Map<String, dynamic> _$$OrderEntityImplToJson(_$OrderEntityImpl instance) =>
+Map<String, dynamic> _$OrderEntityToJson(_OrderEntity instance) =>
     <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.createdAt case final value?) 'created_at': value,
-      if (instance.updatedAt case final value?) 'updated_at': value,
-      if (instance.name case final value?) 'name': value,
-      if (instance.printedName case final value?) 'printed_name': value,
-      if (instance.phone case final value?) 'phone': value,
-      if (instance.status case final value?) 'status': value,
-      if (instance.stickerPrepared case final value?) 'sticker_prepared': value,
-      if (instance.videosUploaded case final value?) 'videos_uploaded': value,
-      if (instance.finalEstimateReady case final value?)
-        'final_estimate_ready': value,
-      if (instance.email case final value?) 'email': value,
-      if (instance.executionNum case final value?) 'execution_num': value,
-      if (instance.orderNum case final value?) 'order_num': value,
-      if (instance.cartonCount case final value?) 'carton_count': value,
-      if (instance.ordersCount case final value?) 'orders_count': value,
-      if (instance.totalAmount case final value?) 'total_amount': value,
-      if (instance.date?.toIso8601String() case final value?) 'date': value,
-      if (instance.isQuranPrinted case final value?) 'is_quran_printed': value,
-      if (instance.isQuranPhotographed case final value?)
-        'is_quran_photographed': value,
-      if (instance.isDistributionPhotographed case final value?)
-        'is_distribution_photographed': value,
-      if (instance.isLocationReceived case final value?)
-        'is_location_received': value,
-      if (instance.locationLink case final value?) 'location_link': value,
-      if (instance.isFinalReportReady case final value?)
-        'is_final_report_ready': value,
-      if (instance.isReportSent case final value?) 'is_report_sent': value,
-      if (instance.originCountryId case final value?)
-        'origin_country_id': value,
-      if (instance.distributionCountryId case final value?)
-        'distribution_country_id': value,
-      if (instance.packageId case final value?) 'package_id': value,
-      if (instance.quranCopiesCount case final value?)
-        'quran_copies_count': value,
+      'id': ?instance.id,
+      'created_at': ?instance.createdAt,
+      'updated_at': ?instance.updatedAt,
+      'name': ?instance.name,
+      'printed_name': ?instance.printedName,
+      'phone': ?instance.phone,
+      'status': ?instance.status,
+      'sticker_prepared': ?instance.stickerPrepared,
+      'videos_uploaded': ?instance.videosUploaded,
+      'final_estimate_ready': ?instance.finalEstimateReady,
+      'email': ?instance.email,
+      'execution_num': ?instance.executionNum,
+      'order_num': ?instance.orderNum,
+      'carton_count': ?instance.cartonCount,
+      'orders_count': ?instance.ordersCount,
+      'total_amount': ?instance.totalAmount,
+      'date': ?instance.date?.toIso8601String(),
+      'is_quran_printed': ?instance.isQuranPrinted,
+      'is_quran_photographed': ?instance.isQuranPhotographed,
+      'is_distribution_photographed': ?instance.isDistributionPhotographed,
+      'is_location_received': ?instance.isLocationReceived,
+      'location_link': ?instance.locationLink,
+      'is_final_report_ready': ?instance.isFinalReportReady,
+      'is_report_sent': ?instance.isReportSent,
+      'origin_country_id': ?instance.originCountryId,
+      'distribution_country_id': ?instance.distributionCountryId,
+      'package_id': ?instance.packageId,
+      'quran_copies_count': ?instance.quranCopiesCount,
     };

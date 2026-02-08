@@ -13,12 +13,12 @@ jobs:
       - name: إعداد JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: "17"
+          distribution: "temurin"
       - name: إعداد فلاتر
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.0.0'
+          flutter-version: "3.0.0"
           channel: stable
       - name: Upgrade Flutter
         run: flutter upgrade

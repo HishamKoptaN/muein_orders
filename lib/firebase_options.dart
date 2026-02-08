@@ -41,51 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB6YfewQ8X0wgcICWXedlSVbLrVx0xm8b0',
-    appId: '1:14728606104:android:f0a45ac312e53e3cbc3bed',
-    messagingSenderId: '14728606104',
-    projectId: 'mubin-c2b92',
-    storageBucket: 'mubin-c2b92.firebasestorage.app',
+    apiKey: 'AIzaSyAeTLNT48KM6kwGJSWnU4BSqwM4cMGsv-4',
+    appId: '1:448994699498:android:74393cf2f672b119c00f93',
+    messagingSenderId: '448994699498',
+    projectId: 'muein-f36d0',
+    storageBucket: 'muein-f36d0.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBfnmLx6hjXf8Amx3p4iXqDgqM1XAgUB-4',
-    appId: '1:14728606104:ios:300f20f02c3915fdbc3bed',
-    messagingSenderId: '14728606104',
-    projectId: 'mubin-c2b92',
-    storageBucket: 'mubin-c2b92.firebasestorage.app',
-    iosClientId: '14728606104-37tsaqu7tejmb5pqb5ssl8kgblitbgv5.apps.googleusercontent.com',
-    iosBundleId: 'com.mubin.app.mubinOrders',
+    apiKey: 'AIzaSyA_CRZhhqC9LFJnb_X1-YMc6hJiQvgqHSQ',
+    appId: '1:448994699498:ios:3a6767864f1ee363c00f93',
+    messagingSenderId: '448994699498',
+    projectId: 'muein-f36d0',
+    storageBucket: 'muein-f36d0.firebasestorage.app',
+    iosBundleId: 'com.example.mueinorders',
   );
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAPv67PyGsQecynSaGX3B46WuZajERQSIY',
-    appId: '1:14728606104:web:58cc313390a0510dbc3bed',
-    messagingSenderId: '14728606104',
-    projectId: 'mubin-c2b92',
-    authDomain: 'mubin-c2b92.firebaseapp.com',
-    storageBucket: 'mubin-c2b92.firebasestorage.app',
-    measurementId: 'G-GYERSLWL89',
+    apiKey: 'AIzaSyChmr66YKOYr85l0K7WqxSHP3C57o5rcho',
+    appId: '1:448994699498:web:aae68046de901ba2c00f93',
+    messagingSenderId: '448994699498',
+    projectId: 'muein-f36d0',
+    authDomain: 'muein-f36d0.firebaseapp.com',
+    storageBucket: 'muein-f36d0.firebasestorage.app',
+    measurementId: 'G-HQK1QRRGDB',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBfnmLx6hjXf8Amx3p4iXqDgqM1XAgUB-4',
-    appId: '1:14728606104:ios:7ffaa8051b1811d0bc3bed',
-    messagingSenderId: '14728606104',
-    projectId: 'mubin-c2b92',
-    storageBucket: 'mubin-c2b92.firebasestorage.app',
-    iosClientId: '14728606104-qmjf8asfuf9mh65unhk85p6uf4o6in42.apps.googleusercontent.com',
-    iosBundleId: 'com.mubin.app.orders',
+    apiKey: 'AIzaSyA_CRZhhqC9LFJnb_X1-YMc6hJiQvgqHSQ',
+    appId: '1:448994699498:ios:4bcd3a32f682997ec00f93',
+    messagingSenderId: '448994699498',
+    projectId: 'muein-f36d0',
+    storageBucket: 'muein-f36d0.firebasestorage.app',
+    iosBundleId: 'com.muein.app.orders',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAPv67PyGsQecynSaGX3B46WuZajERQSIY',
-    appId: '1:14728606104:web:a70abdb9a73f1c69bc3bed',
-    messagingSenderId: '14728606104',
-    projectId: 'mubin-c2b92',
-    authDomain: 'mubin-c2b92.firebaseapp.com',
-    storageBucket: 'mubin-c2b92.firebasestorage.app',
-    measurementId: 'G-TJ2TQBQ3P7',
+    apiKey: 'AIzaSyChmr66YKOYr85l0K7WqxSHP3C57o5rcho',
+    appId: '1:448994699498:web:791f7b509d66a068c00f93',
+    messagingSenderId: '448994699498',
+    projectId: 'muein-f36d0',
+    authDomain: 'muein-f36d0.firebaseapp.com',
+    storageBucket: 'muein-f36d0.firebasestorage.app',
+    measurementId: 'G-4ZJRMLDFZ6',
   );
 
 }

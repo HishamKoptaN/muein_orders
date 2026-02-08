@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mubinorders"
+    namespace = "com.example.mueinorders"
     compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
@@ -24,7 +24,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.mubinorders"
+        applicationId = "com.example.mueinorders"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
         versionCode = 1

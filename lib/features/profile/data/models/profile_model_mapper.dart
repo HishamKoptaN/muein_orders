@@ -10,26 +10,6 @@ extension ProfileModelX on ProfileResModel {
       phone: phone ?? '',
       createdAt: createdAt ?? '',
       email: email ?? '',
-      balance: balance?.toEntity() ??
-          BalanceEntity(
-            currentBalance: '',
-            totalEarned: '',
-            totalSpent: '',
-            pendingBalance: '',
-            currency: '',
-          ),
-    );
-  }
-}
-
-extension BalanceX on Balance {
-  BalanceEntity toEntity() {
-    return BalanceEntity(
-      currentBalance: currentBalance ?? '',
-      totalEarned: totalEarned ?? '',
-      totalSpent: totalSpent ?? '',
-      pendingBalance: pendingBalance ?? '',
-      currency: currency ?? '',
     );
   }
 }

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,209 +9,275 @@ part of 'user_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-UserData _$UserDataFromJson(Map<String, dynamic> json) {
-  return _UserData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$UserData {
-  @JsonKey(name: 'token')
-  String? get token => throw _privateConstructorUsedError;
-  @JsonKey(name: 'fcm_token')
-  String? get fcmToken => throw _privateConstructorUsedError;
-  @JsonKey(name: 'role')
-  String? get role => throw _privateConstructorUsedError;
+
+@JsonKey(name: 'token') String? get token;@JsonKey(name: 'fcm_token') String? get fcmToken;@JsonKey(name: 'role') String? get role;
+/// Create a copy of UserData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UserDataCopyWith<UserData> get copyWith => _$UserDataCopyWithImpl<UserData>(this as UserData, _$identity);
 
   /// Serializes this UserData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of UserData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserDataCopyWith<UserData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserData&&(identical(other.token, token) || other.token == token)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.role, role) || other.role == role));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,token,fcmToken,role);
+
+@override
+String toString() {
+  return 'UserData(token: $token, fcmToken: $fcmToken, role: $role)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $UserDataCopyWith<$Res> {
-  factory $UserDataCopyWith(UserData value, $Res Function(UserData) then) =
-      _$UserDataCopyWithImpl<$Res, UserData>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'token') String? token,
-      @JsonKey(name: 'fcm_token') String? fcmToken,
-      @JsonKey(name: 'role') String? role});
-}
+abstract mixin class $UserDataCopyWith<$Res>  {
+  factory $UserDataCopyWith(UserData value, $Res Function(UserData) _then) = _$UserDataCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'token') String? token,@JsonKey(name: 'fcm_token') String? fcmToken,@JsonKey(name: 'role') String? role
+});
 
+
+
+
+}
 /// @nodoc
-class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
+class _$UserDataCopyWithImpl<$Res>
     implements $UserDataCopyWith<$Res> {
-  _$UserDataCopyWithImpl(this._value, this._then);
+  _$UserDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UserData _self;
+  final $Res Function(UserData) _then;
 
-  /// Create a copy of UserData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? token = freezed,
-    Object? fcmToken = freezed,
-    Object? role = freezed,
-  }) {
-    return _then(_value.copyWith(
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fcmToken: freezed == fcmToken
-          ? _value.fcmToken
-          : fcmToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of UserData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? token = freezed,Object? fcmToken = freezed,Object? role = freezed,}) {
+  return _then(_self.copyWith(
+token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String?,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
+as String?,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$UserDataImplCopyWith<$Res>
-    implements $UserDataCopyWith<$Res> {
-  factory _$$UserDataImplCopyWith(
-          _$UserDataImpl value, $Res Function(_$UserDataImpl) then) =
-      __$$UserDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'token') String? token,
-      @JsonKey(name: 'fcm_token') String? fcmToken,
-      @JsonKey(name: 'role') String? role});
 }
 
-/// @nodoc
-class __$$UserDataImplCopyWithImpl<$Res>
-    extends _$UserDataCopyWithImpl<$Res, _$UserDataImpl>
-    implements _$$UserDataImplCopyWith<$Res> {
-  __$$UserDataImplCopyWithImpl(
-      _$UserDataImpl _value, $Res Function(_$UserDataImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of UserData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? token = freezed,
-    Object? fcmToken = freezed,
-    Object? role = freezed,
-  }) {
-    return _then(_$UserDataImpl(
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fcmToken: freezed == fcmToken
-          ? _value.fcmToken
-          : fcmToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [UserData].
+extension UserDataPatterns on UserData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _UserData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserData value)  $default,){
+final _that = this;
+switch (_that) {
+case _UserData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _UserData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'token')  String? token, @JsonKey(name: 'fcm_token')  String? fcmToken, @JsonKey(name: 'role')  String? role)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _UserData() when $default != null:
+return $default(_that.token,_that.fcmToken,_that.role);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'token')  String? token, @JsonKey(name: 'fcm_token')  String? fcmToken, @JsonKey(name: 'role')  String? role)  $default,) {final _that = this;
+switch (_that) {
+case _UserData():
+return $default(_that.token,_that.fcmToken,_that.role);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'token')  String? token, @JsonKey(name: 'fcm_token')  String? fcmToken, @JsonKey(name: 'role')  String? role)?  $default,) {final _that = this;
+switch (_that) {
+case _UserData() when $default != null:
+return $default(_that.token,_that.fcmToken,_that.role);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UserDataImpl implements _UserData {
-  const _$UserDataImpl(
-      {@JsonKey(name: 'token') this.token,
-      @JsonKey(name: 'fcm_token') this.fcmToken,
-      @JsonKey(name: 'role') this.role});
 
-  factory _$UserDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserDataImplFromJson(json);
+class _UserData implements UserData {
+  const _UserData({@JsonKey(name: 'token') this.token, @JsonKey(name: 'fcm_token') this.fcmToken, @JsonKey(name: 'role') this.role});
+  factory _UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
 
-  @override
-  @JsonKey(name: 'token')
-  final String? token;
-  @override
-  @JsonKey(name: 'fcm_token')
-  final String? fcmToken;
-  @override
-  @JsonKey(name: 'role')
-  final String? role;
+@override@JsonKey(name: 'token') final  String? token;
+@override@JsonKey(name: 'fcm_token') final  String? fcmToken;
+@override@JsonKey(name: 'role') final  String? role;
 
-  @override
-  String toString() {
-    return 'UserData(token: $token, fcmToken: $fcmToken, role: $role)';
-  }
+/// Create a copy of UserData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UserDataCopyWith<_UserData> get copyWith => __$UserDataCopyWithImpl<_UserData>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserDataImpl &&
-            (identical(other.token, token) || other.token == token) &&
-            (identical(other.fcmToken, fcmToken) ||
-                other.fcmToken == fcmToken) &&
-            (identical(other.role, role) || other.role == role));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, token, fcmToken, role);
-
-  /// Create a copy of UserData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>
-      __$$UserDataImplCopyWithImpl<_$UserDataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserDataImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$UserDataToJson(this, );
 }
 
-abstract class _UserData implements UserData {
-  const factory _UserData(
-      {@JsonKey(name: 'token') final String? token,
-      @JsonKey(name: 'fcm_token') final String? fcmToken,
-      @JsonKey(name: 'role') final String? role}) = _$UserDataImpl;
-
-  factory _UserData.fromJson(Map<String, dynamic> json) =
-      _$UserDataImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'token')
-  String? get token;
-  @override
-  @JsonKey(name: 'fcm_token')
-  String? get fcmToken;
-  @override
-  @JsonKey(name: 'role')
-  String? get role;
-
-  /// Create a copy of UserData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserDataImplCopyWith<_$UserDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserData&&(identical(other.token, token) || other.token == token)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.role, role) || other.role == role));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,token,fcmToken,role);
+
+@override
+String toString() {
+  return 'UserData(token: $token, fcmToken: $fcmToken, role: $role)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
+  factory _$UserDataCopyWith(_UserData value, $Res Function(_UserData) _then) = __$UserDataCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'token') String? token,@JsonKey(name: 'fcm_token') String? fcmToken,@JsonKey(name: 'role') String? role
+});
+
+
+
+
+}
+/// @nodoc
+class __$UserDataCopyWithImpl<$Res>
+    implements _$UserDataCopyWith<$Res> {
+  __$UserDataCopyWithImpl(this._self, this._then);
+
+  final _UserData _self;
+  final $Res Function(_UserData) _then;
+
+/// Create a copy of UserData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? token = freezed,Object? fcmToken = freezed,Object? role = freezed,}) {
+  return _then(_UserData(
+token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String?,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
+as String?,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

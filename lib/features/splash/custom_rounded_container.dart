@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 /// A customizable container with rounded corners and shadow
 class CustomRoundedContainer extends StatelessWidget {
   /// The widget below this widget in the tree
@@ -57,10 +56,7 @@ class CustomRoundedContainer extends StatelessWidget {
       ),
       // Clip the child to the border radius
       clipBehavior: Clip.antiAlias,
-      child: Material(
-        color: Colors.transparent,
-        child: child,
-      ),
+      child: Material(color: Colors.transparent, child: child),
     );
   }
 }

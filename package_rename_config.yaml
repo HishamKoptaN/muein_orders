@@ -1,33 +1,33 @@
 #! dart run package_rename --path="package_rename_config.yaml"
 package_rename_config:
   android:
-    app_name: "mubin orders" # اسم التطبيق
-    package_name: "com.example.mubinorders" # اسم الحزمة  
+    app_name: "muein orders" # اسم التطبيق
+    package_name: "com.example.mueinorders" # اسم الحزمة  
     override_old_package: true # لتجاهل الحزمة القديمة
     lang: "en" # لغة التطبيق (اختياري)
 
   ios:
-    app_name: "mubin orders" # اسم التطبيق
-    bundle_name: "com.example.mubinorders" # اسم الحزمة  
-    package_name: "com.example.mubinorders" # اسم الحزمة
+    app_name: "muein orders" # اسم التطبيق
+    bundle_name: "com.example.mueinorders" # اسم الحزمة  
+    package_name: "com.example.mueinorders" # اسم الحزمة
 
   linux:
-    app_name: "mubin orders" # اسم التطبيق
-    package_name: "com.example.mubinorders" # اسم الحزمة
-    exe_name: "mubin_orders" # اسم ملف التنفيذ
+    app_name: "muein orders" # اسم التطبيق
+    package_name: "com.example.mueinorders" # اسم الحزمة
+    exe_name: "muein_orders" # اسم ملف التنفيذ
 
   macos:
-    app_name: "mubin orders" # اسم التطبيق
-    package_name: "com.mubin.app.orders" # اسم الحزمة
+    app_name: "muein orders" # اسم التطبيق
+    package_name: "com.muein.app.orders" # اسم الحزمة
     copyright_notice: "© 2024 IMolds" # حقوق الطبع والنشر (اختياري)
 
   web:
-    app_name: "mubin orders" # اسم التطبيق
-    short_app_name: "mubin_orders" # اسم التطبيق المختصر (اختياري)
+    app_name: "muein orders" # اسم التطبيق
+    short_app_name: "muein_orders" # اسم التطبيق المختصر (اختياري)
     description: "aquan App dev" # وصف التطبيق (اختياري)
 
   windows:
-    app_name: "mubin orders" # اسم التطبيق
-    organization: "mubin_orders" # اسم المؤسسة (اختياري)
-    copyright_notice: "© 2024 mubin_orders" # حقوق الطبع والنشر (اختياري)
-    exe_name: "mubin_orders" # اسم ملف التنفيذ
+    app_name: "muein orders" # اسم التطبيق
+    organization: "muein_orders" # اسم المؤسسة (اختياري)
+    copyright_notice: "© 2026 muein_orders" # حقوق الطبع والنشر (اختياري)
+    exe_name: "muein_orders" # اسم ملف التنفيذ

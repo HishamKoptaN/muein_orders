@@ -4,9 +4,9 @@ import '../models/update_profile_req_model.dart';
 extension UpdateProfileReqX on UpdateProfileReqEntity {
   UpdateProfileReqModel toModel() {
     return UpdateProfileReqModel(
-      image: image,
-      name: name,
-      phone: phone,
+      image: image?.value,
+      name: name?.value,
+      phone: phone?.value,
     );
   }
 }

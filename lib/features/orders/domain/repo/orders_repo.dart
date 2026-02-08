@@ -3,9 +3,9 @@ import '../entities/orders_res_entity.dart';
 
 abstract class OrdersRepo {
   Future<ApiResult<OrdersResEntity?>> getOrders({
-    required int packageId,
+    required int productTypeId,
     bool loadMore = false,
-    bool? isDistributionPhotographed,
+    // bool? isDistributionPhotographed,
   });
 
   Future<ApiResult<OrderEntity?>> updateClientField({

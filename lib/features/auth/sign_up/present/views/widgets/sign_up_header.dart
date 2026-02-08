@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 import '../../../../../../../core/theme/app_colors.dart';
-import '../../../../../../gen/assets.gen.dart';
 
 class SignUpHeader extends StatelessWidget {
   const SignUpHeader({super.key});
@@ -12,7 +11,7 @@ class SignUpHeader extends StatelessWidget {
       children: [
         const SizedBox(height: 148),
         Image.asset(
-          'assets/logos/mubin_logo.png',
+          'assets/logos/logo_solid.png',
           width: 272,
           height: 137,
           color: AppColors.brandMint,

@@ -1,13 +1,15 @@
 import 'dart:io';
+
+import 'package:form_inputs/form_inputs.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'update_profile_req_entity.freezed.dart';
 
 @freezed
-class UpdateProfileReqEntity with _$UpdateProfileReqEntity {
+abstract class UpdateProfileReqEntity with _$UpdateProfileReqEntity {
   const factory UpdateProfileReqEntity({
-    File? image,
-    String? name,
-    String? phone,
+    GenericFormzInput<File>? image,
+    GenericFormzInput<String>? name,
+    PhoneNumberInput? phone,
   }) = _UpdateProfileReqEntity;
 }

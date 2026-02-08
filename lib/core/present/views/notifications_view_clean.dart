@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../features/cached_docs/data/datasources/local/drift/app_database.dart';
-import '../../../features/cached_docs/data/mappers/cached_doc_mapper.dart';
 import '../../../features/cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../di/dependency_injection.dart';
-import '../../widgets/custom_app_bar.dart';
+import '../../widgets/navigation/custom_app_bar.dart';
 
 part 'notifications/notification_item.dart';
 part 'notifications/notification_list.dart';
@@ -34,14 +33,9 @@ class _NotificationsViewState extends State<NotificationsView> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'الإشعارات',
-      ),
-      body: _NotificationStream(
-        docsStream: _docsStream,
-      ),
+      appBar: const CustomAppBar(title: 'الإشعارات'),
+      body: _NotificationStream(docsStream: _docsStream),
     );
   }
 }

@@ -1,43 +1,26 @@
 {
   "project_info": {
-    "project_number": "14728606104",
-    "project_id": "mubin-c2b92",
-    "storage_bucket": "mubin-c2b92.appspot.com"
+    "project_number": "448994699498",
+    "project_id": "muein-f36d0",
+    "storage_bucket": "muein-f36d0.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14728606104:android:f0a45ac312e53e3cbc3bed",
+        "mobilesdk_app_id": "1:448994699498:android:74393cf2f672b119c00f93",
         "android_client_info": {
-          "package_name": "com.example.mubinorders"
+          "package_name": "com.example.mueinorders"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "14728606104-4u5uch5k1ev8ukc04g2qcns59pquo35v.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB6YfewQ8X0wgcICWXedlSVbLrVx0xm8b0"
+          "current_key": "AIzaSyAeTLNT48KM6kwGJSWnU4BSqwM4cMGsv-4"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "14728606104-4u5uch5k1ev8ukc04g2qcns59pquo35v.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "14728606104-087c8lpoggf7vd2dpqqr94ijk3g0i1mf.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.mubin.app.dash"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

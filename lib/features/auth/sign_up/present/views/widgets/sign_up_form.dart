@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_inputs/form_inputs.dart';
 
-import '../../../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../bloc/sign_up_bloc.dart';
 
@@ -31,76 +32,62 @@ class SignUpForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     return Column(
+      spacing: 10.h,
       children: [
-        // Name Field
-        CustomTextFormField(
+        CustomAuthTextFormField(
           key: const Key('name_field'),
           initialValue: name.value,
           hintText: t.name,
-          prefixIcon: const Icon(Icons.person_outline),
+          prefixIcon: const Icon(Icons.person_outline, color: Colors.white),
           onChanged: (v) => context.read<SignUpBloc>().add(
-                SignUpEvent.dataChanged(name: GenericFormzInput.dirty(v)),
-              ),
+            SignUpEvent.dataChanged(name: GenericFormzInput.dirty(v)),
+          ),
           validator: (value) =>
               value?.isNotEmpty == true ? null : 'الاسم مطلوب',
         ),
-        const SizedBox(height: 8),
-        // Email Field
-        CustomTextFormField(
+        CustomAuthTextFormField(
           key: const Key('email_field'),
           initialValue: email.value,
           hintText: t.emailHint,
-          prefixIcon: const Icon(Icons.email_outlined),
+          prefixIcon: const Icon(Icons.email_outlined, color: Colors.white),
           keyboardType: TextInputType.emailAddress,
           onChanged: (v) => context.read<SignUpBloc>().add(
-                SignUpEvent.dataChanged(email: EmailInput.dirty(v)),
-              ),
+            SignUpEvent.dataChanged(email: EmailInput.dirty(v)),
+          ),
           validator: (value) => EmailInput.dirty(value ?? '').error?.message,
         ),
-        const SizedBox(height: 8),
-        // Phone Field
-        CustomTextFormField(
+        CustomAuthTextFormField(
           key: const Key('phone_field'),
           initialValue: phone.value,
           hintText: t.phone,
-          prefixIcon: const Icon(Icons.phone_outlined),
+          prefixIcon: const Icon(Icons.phone_outlined, color: Colors.white),
           onChanged: (v) => context.read<SignUpBloc>().add(
-                SignUpEvent.dataChanged(phone: PhoneNumberInput.dirty(v)),
-              ),
+            SignUpEvent.dataChanged(phone: PhoneNumberInput.dirty(v)),
+          ),
         ),
-        const SizedBox(height: 8),
-        CustomTextFormField(
+        CustomAuthTextFormField(
           key: const Key('password_field'),
           hintText: 'كلمة المرور',
           initialValue: password.value,
-          prefixIcon: const Icon(Icons.lock_outline),
+          prefixIcon: const Icon(Icons.lock_outline, color: Colors.white),
           isPassword: true,
           obscureText: obscurePassword,
           showPasswordToggle: true,
           onChanged: (v) => context.read<SignUpBloc>().add(
-                SignUpEvent.dataChanged(
-                  password: PasswordInput.dirty(
-                    v,
-                  ),
-                ),
-              ),
+            SignUpEvent.dataChanged(password: PasswordInput.dirty(v)),
+          ),
         ),
-        // Confirm Password Field
-        CustomTextFormField(
+        CustomAuthTextFormField(
           key: const Key('confirm_password_field'),
           initialValue: confirmPassword.value,
           hintText: 'تأكيد كلمة المرور',
-          prefixIcon: const Icon(Icons.lock_outline),
+          prefixIcon: const Icon(Icons.lock_outline, color: Colors.white),
           isPassword: true,
           obscureText: obscurePassword,
           showPasswordToggle: true,
           onChanged: (v) => context.read<SignUpBloc>().add(
-                SignUpEvent.dataChanged(
-                  confirmPassword: PasswordInput.dirty(
-                    v,
-                  ),
-                ),
-              ),
+            SignUpEvent.dataChanged(confirmPassword: PasswordInput.dirty(v)),
+          ),
         ),
       ],
     );

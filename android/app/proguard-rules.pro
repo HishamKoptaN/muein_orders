@@ -27,7 +27,7 @@
 }
 
 # Keep custom application classes
--keep class com.mubin.app.orders.** { *; }
+-keep class com.muein.app.orders.** { *; }
 
 # Keep serialization classes
 -keep class * implements java.io.Serializable { *; }

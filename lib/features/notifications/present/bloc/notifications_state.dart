@@ -1,10 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../../core/errors/api_error_model.dart';
 import '../../domain/entities/notification_entity.dart';
+
 part 'notifications_state.freezed.dart';
 
 @freezed
-class NotificationsState with _$NotificationsState {
+abstract class NotificationsState with _$NotificationsState {
   const factory NotificationsState.initial() = _Initial;
   const factory NotificationsState.loading() = _Loading;
   const factory NotificationsState.loaded({

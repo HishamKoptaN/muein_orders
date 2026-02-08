@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,894 +9,610 @@ part of 'theme_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$ThemeEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() toggleTheme,
-    required TResult Function(ThemeMode mode) setMode,
-    required TResult Function() setLight,
-    required TResult Function() setDark,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? toggleTheme,
-    TResult? Function(ThemeMode mode)? setMode,
-    TResult? Function()? setLight,
-    TResult? Function()? setDark,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? toggleTheme,
-    TResult Function(ThemeMode mode)? setMode,
-    TResult Function()? setLight,
-    TResult Function()? setDark,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ToggleTheme value) toggleTheme,
-    required TResult Function(_SetMode value) setMode,
-    required TResult Function(_SetLight value) setLight,
-    required TResult Function(_SetDark value) setDark,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ToggleTheme value)? toggleTheme,
-    TResult? Function(_SetMode value)? setMode,
-    TResult? Function(_SetLight value)? setLight,
-    TResult? Function(_SetDark value)? setDark,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ToggleTheme value)? toggleTheme,
-    TResult Function(_SetMode value)? setMode,
-    TResult Function(_SetLight value)? setLight,
-    TResult Function(_SetDark value)? setDark,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ThemeEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ThemeEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ThemeEventCopyWith<$Res> {
-  factory $ThemeEventCopyWith(
-          ThemeEvent value, $Res Function(ThemeEvent) then) =
-      _$ThemeEventCopyWithImpl<$Res, ThemeEvent>;
+class $ThemeEventCopyWith<$Res>  {
+$ThemeEventCopyWith(ThemeEvent _, $Res Function(ThemeEvent) __);
 }
 
-/// @nodoc
-class _$ThemeEventCopyWithImpl<$Res, $Val extends ThemeEvent>
-    implements $ThemeEventCopyWith<$Res> {
-  _$ThemeEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [ThemeEvent].
+extension ThemeEventPatterns on ThemeEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of ThemeEvent
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _ToggleTheme value)?  toggleTheme,TResult Function( _SetMode value)?  setMode,TResult Function( _SetLight value)?  setLight,TResult Function( _SetDark value)?  setDark,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ToggleTheme() when toggleTheme != null:
+return toggleTheme(_that);case _SetMode() when setMode != null:
+return setMode(_that);case _SetLight() when setLight != null:
+return setLight(_that);case _SetDark() when setDark != null:
+return setDark(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _ToggleTheme value)  toggleTheme,required TResult Function( _SetMode value)  setMode,required TResult Function( _SetLight value)  setLight,required TResult Function( _SetDark value)  setDark,}){
+final _that = this;
+switch (_that) {
+case _ToggleTheme():
+return toggleTheme(_that);case _SetMode():
+return setMode(_that);case _SetLight():
+return setLight(_that);case _SetDark():
+return setDark(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _ToggleTheme value)?  toggleTheme,TResult? Function( _SetMode value)?  setMode,TResult? Function( _SetLight value)?  setLight,TResult? Function( _SetDark value)?  setDark,}){
+final _that = this;
+switch (_that) {
+case _ToggleTheme() when toggleTheme != null:
+return toggleTheme(_that);case _SetMode() when setMode != null:
+return setMode(_that);case _SetLight() when setLight != null:
+return setLight(_that);case _SetDark() when setDark != null:
+return setDark(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  toggleTheme,TResult Function( ThemeMode mode)?  setMode,TResult Function()?  setLight,TResult Function()?  setDark,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ToggleTheme() when toggleTheme != null:
+return toggleTheme();case _SetMode() when setMode != null:
+return setMode(_that.mode);case _SetLight() when setLight != null:
+return setLight();case _SetDark() when setDark != null:
+return setDark();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  toggleTheme,required TResult Function( ThemeMode mode)  setMode,required TResult Function()  setLight,required TResult Function()  setDark,}) {final _that = this;
+switch (_that) {
+case _ToggleTheme():
+return toggleTheme();case _SetMode():
+return setMode(_that.mode);case _SetLight():
+return setLight();case _SetDark():
+return setDark();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  toggleTheme,TResult? Function( ThemeMode mode)?  setMode,TResult? Function()?  setLight,TResult? Function()?  setDark,}) {final _that = this;
+switch (_that) {
+case _ToggleTheme() when toggleTheme != null:
+return toggleTheme();case _SetMode() when setMode != null:
+return setMode(_that.mode);case _SetLight() when setLight != null:
+return setLight();case _SetDark() when setDark != null:
+return setDark();case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$ToggleThemeImplCopyWith<$Res> {
-  factory _$$ToggleThemeImplCopyWith(
-          _$ToggleThemeImpl value, $Res Function(_$ToggleThemeImpl) then) =
-      __$$ToggleThemeImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ToggleThemeImplCopyWithImpl<$Res>
-    extends _$ThemeEventCopyWithImpl<$Res, _$ToggleThemeImpl>
-    implements _$$ToggleThemeImplCopyWith<$Res> {
-  __$$ToggleThemeImplCopyWithImpl(
-      _$ToggleThemeImpl _value, $Res Function(_$ToggleThemeImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ThemeEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ToggleThemeImpl implements _ToggleTheme {
-  const _$ToggleThemeImpl();
-
-  @override
-  String toString() {
-    return 'ThemeEvent.toggleTheme()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ToggleThemeImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() toggleTheme,
-    required TResult Function(ThemeMode mode) setMode,
-    required TResult Function() setLight,
-    required TResult Function() setDark,
-  }) {
-    return toggleTheme();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? toggleTheme,
-    TResult? Function(ThemeMode mode)? setMode,
-    TResult? Function()? setLight,
-    TResult? Function()? setDark,
-  }) {
-    return toggleTheme?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? toggleTheme,
-    TResult Function(ThemeMode mode)? setMode,
-    TResult Function()? setLight,
-    TResult Function()? setDark,
-    required TResult orElse(),
-  }) {
-    if (toggleTheme != null) {
-      return toggleTheme();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ToggleTheme value) toggleTheme,
-    required TResult Function(_SetMode value) setMode,
-    required TResult Function(_SetLight value) setLight,
-    required TResult Function(_SetDark value) setDark,
-  }) {
-    return toggleTheme(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ToggleTheme value)? toggleTheme,
-    TResult? Function(_SetMode value)? setMode,
-    TResult? Function(_SetLight value)? setLight,
-    TResult? Function(_SetDark value)? setDark,
-  }) {
-    return toggleTheme?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ToggleTheme value)? toggleTheme,
-    TResult Function(_SetMode value)? setMode,
-    TResult Function(_SetLight value)? setLight,
-    TResult Function(_SetDark value)? setDark,
-    required TResult orElse(),
-  }) {
-    if (toggleTheme != null) {
-      return toggleTheme(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ToggleTheme implements ThemeEvent {
-  const factory _ToggleTheme() = _$ToggleThemeImpl;
-}
-
-/// @nodoc
-abstract class _$$SetModeImplCopyWith<$Res> {
-  factory _$$SetModeImplCopyWith(
-          _$SetModeImpl value, $Res Function(_$SetModeImpl) then) =
-      __$$SetModeImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ThemeMode mode});
-}
-
-/// @nodoc
-class __$$SetModeImplCopyWithImpl<$Res>
-    extends _$ThemeEventCopyWithImpl<$Res, _$SetModeImpl>
-    implements _$$SetModeImplCopyWith<$Res> {
-  __$$SetModeImplCopyWithImpl(
-      _$SetModeImpl _value, $Res Function(_$SetModeImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ThemeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? mode = null,
-  }) {
-    return _then(_$SetModeImpl(
-      mode: null == mode
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$SetModeImpl implements _SetMode {
-  const _$SetModeImpl({required this.mode});
 
-  @override
-  final ThemeMode mode;
+class _ToggleTheme implements ThemeEvent {
+  const _ToggleTheme();
+  
 
-  @override
-  String toString() {
-    return 'ThemeEvent.setMode(mode: $mode)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SetModeImpl &&
-            (identical(other.mode, mode) || other.mode == mode));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, mode);
 
-  /// Create a copy of ThemeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SetModeImplCopyWith<_$SetModeImpl> get copyWith =>
-      __$$SetModeImplCopyWithImpl<_$SetModeImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() toggleTheme,
-    required TResult Function(ThemeMode mode) setMode,
-    required TResult Function() setLight,
-    required TResult Function() setDark,
-  }) {
-    return setMode(mode);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? toggleTheme,
-    TResult? Function(ThemeMode mode)? setMode,
-    TResult? Function()? setLight,
-    TResult? Function()? setDark,
-  }) {
-    return setMode?.call(mode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? toggleTheme,
-    TResult Function(ThemeMode mode)? setMode,
-    TResult Function()? setLight,
-    TResult Function()? setDark,
-    required TResult orElse(),
-  }) {
-    if (setMode != null) {
-      return setMode(mode);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ToggleTheme value) toggleTheme,
-    required TResult Function(_SetMode value) setMode,
-    required TResult Function(_SetLight value) setLight,
-    required TResult Function(_SetDark value) setDark,
-  }) {
-    return setMode(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ToggleTheme value)? toggleTheme,
-    TResult? Function(_SetMode value)? setMode,
-    TResult? Function(_SetLight value)? setLight,
-    TResult? Function(_SetDark value)? setDark,
-  }) {
-    return setMode?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ToggleTheme value)? toggleTheme,
-    TResult Function(_SetMode value)? setMode,
-    TResult Function(_SetLight value)? setLight,
-    TResult Function(_SetDark value)? setDark,
-    required TResult orElse(),
-  }) {
-    if (setMode != null) {
-      return setMode(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ToggleTheme);
 }
 
-abstract class _SetMode implements ThemeEvent {
-  const factory _SetMode({required final ThemeMode mode}) = _$SetModeImpl;
 
-  ThemeMode get mode;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of ThemeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SetModeImplCopyWith<_$SetModeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ThemeEvent.toggleTheme()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _SetMode implements ThemeEvent {
+  const _SetMode({required this.mode});
+  
+
+ final  ThemeMode mode;
+
+/// Create a copy of ThemeEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SetModeCopyWith<_SetMode> get copyWith => __$SetModeCopyWithImpl<_SetMode>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetMode&&(identical(other.mode, mode) || other.mode == mode));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,mode);
+
+@override
+String toString() {
+  return 'ThemeEvent.setMode(mode: $mode)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$SetLightImplCopyWith<$Res> {
-  factory _$$SetLightImplCopyWith(
-          _$SetLightImpl value, $Res Function(_$SetLightImpl) then) =
-      __$$SetLightImplCopyWithImpl<$Res>;
+abstract mixin class _$SetModeCopyWith<$Res> implements $ThemeEventCopyWith<$Res> {
+  factory _$SetModeCopyWith(_SetMode value, $Res Function(_SetMode) _then) = __$SetModeCopyWithImpl;
+@useResult
+$Res call({
+ ThemeMode mode
+});
+
+
+
+
+}
+/// @nodoc
+class __$SetModeCopyWithImpl<$Res>
+    implements _$SetModeCopyWith<$Res> {
+  __$SetModeCopyWithImpl(this._self, this._then);
+
+  final _SetMode _self;
+  final $Res Function(_SetMode) _then;
+
+/// Create a copy of ThemeEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? mode = null,}) {
+  return _then(_SetMode(
+mode: null == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as ThemeMode,
+  ));
 }
 
-/// @nodoc
-class __$$SetLightImplCopyWithImpl<$Res>
-    extends _$ThemeEventCopyWithImpl<$Res, _$SetLightImpl>
-    implements _$$SetLightImplCopyWith<$Res> {
-  __$$SetLightImplCopyWithImpl(
-      _$SetLightImpl _value, $Res Function(_$SetLightImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of ThemeEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$SetLightImpl implements _SetLight {
-  const _$SetLightImpl();
 
-  @override
-  String toString() {
-    return 'ThemeEvent.setLight()';
-  }
+class _SetLight implements ThemeEvent {
+  const _SetLight();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SetLightImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() toggleTheme,
-    required TResult Function(ThemeMode mode) setMode,
-    required TResult Function() setLight,
-    required TResult Function() setDark,
-  }) {
-    return setLight();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? toggleTheme,
-    TResult? Function(ThemeMode mode)? setMode,
-    TResult? Function()? setLight,
-    TResult? Function()? setDark,
-  }) {
-    return setLight?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? toggleTheme,
-    TResult Function(ThemeMode mode)? setMode,
-    TResult Function()? setLight,
-    TResult Function()? setDark,
-    required TResult orElse(),
-  }) {
-    if (setLight != null) {
-      return setLight();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ToggleTheme value) toggleTheme,
-    required TResult Function(_SetMode value) setMode,
-    required TResult Function(_SetLight value) setLight,
-    required TResult Function(_SetDark value) setDark,
-  }) {
-    return setLight(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ToggleTheme value)? toggleTheme,
-    TResult? Function(_SetMode value)? setMode,
-    TResult? Function(_SetLight value)? setLight,
-    TResult? Function(_SetDark value)? setDark,
-  }) {
-    return setLight?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ToggleTheme value)? toggleTheme,
-    TResult Function(_SetMode value)? setMode,
-    TResult Function(_SetLight value)? setLight,
-    TResult Function(_SetDark value)? setDark,
-    required TResult orElse(),
-  }) {
-    if (setLight != null) {
-      return setLight(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetLight);
 }
 
-abstract class _SetLight implements ThemeEvent {
-  const factory _SetLight() = _$SetLightImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ThemeEvent.setLight()';
 }
 
-/// @nodoc
-abstract class _$$SetDarkImplCopyWith<$Res> {
-  factory _$$SetDarkImplCopyWith(
-          _$SetDarkImpl value, $Res Function(_$SetDarkImpl) then) =
-      __$$SetDarkImplCopyWithImpl<$Res>;
+
 }
 
-/// @nodoc
-class __$$SetDarkImplCopyWithImpl<$Res>
-    extends _$ThemeEventCopyWithImpl<$Res, _$SetDarkImpl>
-    implements _$$SetDarkImplCopyWith<$Res> {
-  __$$SetDarkImplCopyWithImpl(
-      _$SetDarkImpl _value, $Res Function(_$SetDarkImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of ThemeEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
+
 
 /// @nodoc
 
-class _$SetDarkImpl implements _SetDark {
-  const _$SetDarkImpl();
 
-  @override
-  String toString() {
-    return 'ThemeEvent.setDark()';
-  }
+class _SetDark implements ThemeEvent {
+  const _SetDark();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SetDarkImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() toggleTheme,
-    required TResult Function(ThemeMode mode) setMode,
-    required TResult Function() setLight,
-    required TResult Function() setDark,
-  }) {
-    return setDark();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? toggleTheme,
-    TResult? Function(ThemeMode mode)? setMode,
-    TResult? Function()? setLight,
-    TResult? Function()? setDark,
-  }) {
-    return setDark?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? toggleTheme,
-    TResult Function(ThemeMode mode)? setMode,
-    TResult Function()? setLight,
-    TResult Function()? setDark,
-    required TResult orElse(),
-  }) {
-    if (setDark != null) {
-      return setDark();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ToggleTheme value) toggleTheme,
-    required TResult Function(_SetMode value) setMode,
-    required TResult Function(_SetLight value) setLight,
-    required TResult Function(_SetDark value) setDark,
-  }) {
-    return setDark(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ToggleTheme value)? toggleTheme,
-    TResult? Function(_SetMode value)? setMode,
-    TResult? Function(_SetLight value)? setLight,
-    TResult? Function(_SetDark value)? setDark,
-  }) {
-    return setDark?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ToggleTheme value)? toggleTheme,
-    TResult Function(_SetMode value)? setMode,
-    TResult Function(_SetLight value)? setLight,
-    TResult Function(_SetDark value)? setDark,
-    required TResult orElse(),
-  }) {
-    if (setDark != null) {
-      return setDark(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetDark);
 }
 
-abstract class _SetDark implements ThemeEvent {
-  const factory _SetDark() = _$SetDarkImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ThemeEvent.setDark()';
 }
+
+
+}
+
+
+
 
 /// @nodoc
 mixin _$ThemeState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(ThemeMode themeMode) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(ThemeMode themeMode)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(ThemeMode themeMode)? loaded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ThemeState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'ThemeState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ThemeStateCopyWith<$Res> {
-  factory $ThemeStateCopyWith(
-          ThemeState value, $Res Function(ThemeState) then) =
-      _$ThemeStateCopyWithImpl<$Res, ThemeState>;
+class $ThemeStateCopyWith<$Res>  {
+$ThemeStateCopyWith(ThemeState _, $Res Function(ThemeState) __);
 }
 
-/// @nodoc
-class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
-    implements $ThemeStateCopyWith<$Res> {
-  _$ThemeStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [ThemeState].
+extension ThemeStatePatterns on ThemeState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of ThemeState
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,}){
+final _that = this;
+switch (_that) {
+case _Loading():
+return loading(_that);case _Loaded():
+return loaded(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,}){
+final _that = this;
+switch (_that) {
+case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( ThemeMode themeMode)?  loaded,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.themeMode);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( ThemeMode themeMode)  loaded,}) {final _that = this;
+switch (_that) {
+case _Loading():
+return loading();case _Loaded():
+return loaded(_that.themeMode);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( ThemeMode themeMode)?  loaded,}) {final _that = this;
+switch (_that) {
+case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.themeMode);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ThemeStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ThemeState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
-
-  @override
-  String toString() {
-    return 'ThemeState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(ThemeMode themeMode) loaded,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(ThemeMode themeMode)? loaded,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(ThemeMode themeMode)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements ThemeState {
-  const factory _Loading() = _$LoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ThemeMode themeMode});
-}
-
-/// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$ThemeStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ThemeState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? themeMode = null,
-  }) {
-    return _then(_$LoadedImpl(
-      themeMode: null == themeMode
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required this.themeMode});
 
-  @override
-  final ThemeMode themeMode;
+class _Loading implements ThemeState {
+  const _Loading();
+  
 
-  @override
-  String toString() {
-    return 'ThemeState.loaded(themeMode: $themeMode)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, themeMode);
 
-  /// Create a copy of ThemeState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(ThemeMode themeMode) loaded,
-  }) {
-    return loaded(themeMode);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(ThemeMode themeMode)? loaded,
-  }) {
-    return loaded?.call(themeMode);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(ThemeMode themeMode)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(themeMode);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
-abstract class _Loaded implements ThemeState {
-  const factory _Loaded({required final ThemeMode themeMode}) = _$LoadedImpl;
 
-  ThemeMode get themeMode;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of ThemeState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'ThemeState.loading()';
 }
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Loaded implements ThemeState {
+  const _Loaded({required this.themeMode});
+  
+
+ final  ThemeMode themeMode;
+
+/// Create a copy of ThemeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,themeMode);
+
+@override
+String toString() {
+  return 'ThemeState.loaded(themeMode: $themeMode)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LoadedCopyWith<$Res> implements $ThemeStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ ThemeMode themeMode
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of ThemeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? themeMode = null,}) {
+  return _then(_Loaded(
+themeMode: null == themeMode ? _self.themeMode : themeMode // ignore: cast_nullable_to_non_nullable
+as ThemeMode,
+  ));
+}
+
+
+}
+
+// dart format on

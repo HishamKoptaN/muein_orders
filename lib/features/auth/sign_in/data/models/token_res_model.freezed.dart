@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,157 +9,269 @@ part of 'token_res_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-TokenResModel _$TokenResModelFromJson(Map<String, dynamic> json) {
-  return _TokenResModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$TokenResModel {
-  String get token => throw _privateConstructorUsedError;
+
+ String get token;
+/// Create a copy of TokenResModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TokenResModelCopyWith<TokenResModel> get copyWith => _$TokenResModelCopyWithImpl<TokenResModel>(this as TokenResModel, _$identity);
 
   /// Serializes this TokenResModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of TokenResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TokenResModelCopyWith<TokenResModel> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TokenResModel&&(identical(other.token, token) || other.token == token));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,token);
+
+@override
+String toString() {
+  return 'TokenResModel(token: $token)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TokenResModelCopyWith<$Res> {
-  factory $TokenResModelCopyWith(
-          TokenResModel value, $Res Function(TokenResModel) then) =
-      _$TokenResModelCopyWithImpl<$Res, TokenResModel>;
-  @useResult
-  $Res call({String token});
-}
+abstract mixin class $TokenResModelCopyWith<$Res>  {
+  factory $TokenResModelCopyWith(TokenResModel value, $Res Function(TokenResModel) _then) = _$TokenResModelCopyWithImpl;
+@useResult
+$Res call({
+ String token
+});
 
+
+
+
+}
 /// @nodoc
-class _$TokenResModelCopyWithImpl<$Res, $Val extends TokenResModel>
+class _$TokenResModelCopyWithImpl<$Res>
     implements $TokenResModelCopyWith<$Res> {
-  _$TokenResModelCopyWithImpl(this._value, this._then);
+  _$TokenResModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TokenResModel _self;
+  final $Res Function(TokenResModel) _then;
 
-  /// Create a copy of TokenResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? token = null,
-  }) {
-    return _then(_value.copyWith(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of TokenResModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? token = null,}) {
+  return _then(_self.copyWith(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$TokenResModelImplCopyWith<$Res>
-    implements $TokenResModelCopyWith<$Res> {
-  factory _$$TokenResModelImplCopyWith(
-          _$TokenResModelImpl value, $Res Function(_$TokenResModelImpl) then) =
-      __$$TokenResModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String token});
 }
 
-/// @nodoc
-class __$$TokenResModelImplCopyWithImpl<$Res>
-    extends _$TokenResModelCopyWithImpl<$Res, _$TokenResModelImpl>
-    implements _$$TokenResModelImplCopyWith<$Res> {
-  __$$TokenResModelImplCopyWithImpl(
-      _$TokenResModelImpl _value, $Res Function(_$TokenResModelImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of TokenResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? token = null,
-  }) {
-    return _then(_$TokenResModelImpl(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [TokenResModel].
+extension TokenResModelPatterns on TokenResModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TokenResModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TokenResModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TokenResModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _TokenResModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TokenResModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TokenResModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String token)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TokenResModel() when $default != null:
+return $default(_that.token);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String token)  $default,) {final _that = this;
+switch (_that) {
+case _TokenResModel():
+return $default(_that.token);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String token)?  $default,) {final _that = this;
+switch (_that) {
+case _TokenResModel() when $default != null:
+return $default(_that.token);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TokenResModelImpl implements _TokenResModel {
-  const _$TokenResModelImpl({required this.token});
 
-  factory _$TokenResModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TokenResModelImplFromJson(json);
+class _TokenResModel implements TokenResModel {
+  const _TokenResModel({required this.token});
+  factory _TokenResModel.fromJson(Map<String, dynamic> json) => _$TokenResModelFromJson(json);
 
-  @override
-  final String token;
+@override final  String token;
 
-  @override
-  String toString() {
-    return 'TokenResModel(token: $token)';
-  }
+/// Create a copy of TokenResModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TokenResModelCopyWith<_TokenResModel> get copyWith => __$TokenResModelCopyWithImpl<_TokenResModel>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TokenResModelImpl &&
-            (identical(other.token, token) || other.token == token));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, token);
-
-  /// Create a copy of TokenResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TokenResModelImplCopyWith<_$TokenResModelImpl> get copyWith =>
-      __$$TokenResModelImplCopyWithImpl<_$TokenResModelImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TokenResModelImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$TokenResModelToJson(this, );
 }
 
-abstract class _TokenResModel implements TokenResModel {
-  const factory _TokenResModel({required final String token}) =
-      _$TokenResModelImpl;
-
-  factory _TokenResModel.fromJson(Map<String, dynamic> json) =
-      _$TokenResModelImpl.fromJson;
-
-  @override
-  String get token;
-
-  /// Create a copy of TokenResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TokenResModelImplCopyWith<_$TokenResModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TokenResModel&&(identical(other.token, token) || other.token == token));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,token);
+
+@override
+String toString() {
+  return 'TokenResModel(token: $token)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TokenResModelCopyWith<$Res> implements $TokenResModelCopyWith<$Res> {
+  factory _$TokenResModelCopyWith(_TokenResModel value, $Res Function(_TokenResModel) _then) = __$TokenResModelCopyWithImpl;
+@override @useResult
+$Res call({
+ String token
+});
+
+
+
+
+}
+/// @nodoc
+class __$TokenResModelCopyWithImpl<$Res>
+    implements _$TokenResModelCopyWith<$Res> {
+  __$TokenResModelCopyWithImpl(this._self, this._then);
+
+  final _TokenResModel _self;
+  final $Res Function(_TokenResModel) _then;
+
+/// Create a copy of TokenResModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? token = null,}) {
+  return _then(_TokenResModel(
+token: null == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

@@ -12,7 +12,7 @@ class AppLocalizationsLg extends AppLocalizations {
   String get upload_videos => 'Wano wefunire obutambi';
 
   @override
-  String get welcometoMubinOrders => 'Mwaniriziddwa ku Mobin Talabat';
+  String get welcometoMueinOrders => 'Mwaniriziddwa ku Mobin Talabat';
 
   @override
   String get welcome => 'Kaale';
@@ -42,7 +42,8 @@ class AppLocalizationsLg extends AppLocalizations {
       'Ebiwandiiko nga mulimu ebifaananyi ne vidiyo';
 
   @override
-  String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
+  String
+  get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
       'Kakasa nti ebifaananyi bitegeerekeka bulungi, omuwendo gwa kkopi za Quran Entukuvu, n’omuwendo gw’okulagira nga tonnasindika.';
 
   @override
@@ -394,7 +395,8 @@ class AppLocalizationsLg extends AppLocalizations {
       'Londoola orders zo mu kiseera ekituufu n\'enkola yaffe ey\'okulondoola ennyangu.';
 
   @override
-  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
+  String
+  get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Tosazaamu fayiro z’ebifaananyi ne vidiyo eziterekeddwa mu kitundu ezikozesebwa okuwandiika enkola okutuusa nga zikkiriziddwa abaddukanya emirimu.';
 
   @override
@@ -426,7 +428,8 @@ class AppLocalizationsLg extends AppLocalizations {
   String get alreadyHaveAccount => 'Olina dda akawunti?';
 
   @override
-  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+  String
+  get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
       'Kakasa nti ebifaananyi bitegeerekeka bulungi n’omuwendo omutuufu ogwa kkopi za Quran Entukuvu nga tonnasindika';
 
   @override

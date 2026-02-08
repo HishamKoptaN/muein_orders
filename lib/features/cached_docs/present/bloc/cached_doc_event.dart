@@ -1,7 +1,7 @@
 part of 'cached_doc_bloc.dart';
 
 @freezed
-class CachedDocEvent with _$CachedDocEvent {
+abstract class CachedDocEvent with _$CachedDocEvent {
   const factory CachedDocEvent.initialize() = _Initialize;
   const factory CachedDocEvent.updateData({
     GenericFormzInput<int>? orderId,
@@ -11,8 +11,7 @@ class CachedDocEvent with _$CachedDocEvent {
     FileFormzInput? videoTwo,
     GenericFormzInput<double>? latitude,
     GenericFormzInput<double>? longitude,
-    GenericFormzInput<double>? shippingCost,
-    PackageEntity? package,
+    ProductTypeEntity? package,
   }) = _UpdateData;
   const factory CachedDocEvent.cachedDoc() = _CachedDoc;
 }

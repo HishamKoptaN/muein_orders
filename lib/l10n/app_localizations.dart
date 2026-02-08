@@ -69,7 +69,7 @@ import 'app_localizations_yo.dart';
 /// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -92,11 +92,11 @@ abstract class AppLocalizations {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
@@ -107,7 +107,7 @@ abstract class AppLocalizations {
     Locale('yo'),
     Locale('sw'),
     Locale('fr'),
-    Locale('lg')
+    Locale('lg'),
   ];
 
   /// No description provided for @upload_videos.
@@ -116,11 +116,11 @@ abstract class AppLocalizations {
   /// **'Download videos'**
   String get upload_videos;
 
-  /// No description provided for @welcometoMubinOrders.
+  /// No description provided for @welcometoMueinOrders.
   ///
   /// In en, this message translates to:
   /// **'Welcome to Mobin Talabat'**
-  String get welcometoMubinOrders;
+  String get welcometoMueinOrders;
 
   /// No description provided for @welcome.
   ///
@@ -175,7 +175,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ensure the clarity of the images, the number of copies of the Holy Quran, and the cost of the order before sending.'**
   String
-      get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending;
+  get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending;
 
   /// No description provided for @we_are_happy_to_have_you_join_our_store.
   ///
@@ -854,7 +854,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Do not delete locally stored photo and video files used to document an application until they are approved by the administration.'**
   String
-      get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration;
+  get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration;
 
   /// No description provided for @doNotDeleteTheDocumentationFiles.
   ///
@@ -909,7 +909,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending'**
   String
-      get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
+  get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
 
   /// No description provided for @failure.
   ///
@@ -1313,15 +1313,15 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) => <String>[
-        'ak',
-        'ar',
-        'en',
-        'ff',
-        'fr',
-        'lg',
-        'sw',
-        'yo'
-      ].contains(locale.languageCode);
+    'ak',
+    'ar',
+    'en',
+    'ff',
+    'fr',
+    'lg',
+    'sw',
+    'yo',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1349,8 +1349,9 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
 }

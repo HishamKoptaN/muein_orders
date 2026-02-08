@@ -12,7 +12,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get upload_videos => 'Télécharger des vidéos';
 
   @override
-  String get welcometoMubinOrders => 'Bienvenue à Mobin Talabat';
+  String get welcometoMueinOrders => 'Bienvenue à Mobin Talabat';
 
   @override
   String get welcome => 'Accueillir';
@@ -43,7 +43,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Documentation avec photos et vidéos';
 
   @override
-  String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
+  String
+  get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
       'Assurez-vous de la clarté des images, du nombre d\'exemplaires du Saint Coran et du coût de la commande avant l\'envoi.';
 
   @override
@@ -397,7 +398,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Suivez vos commandes en temps réel grâce à notre système de suivi intuitif.';
 
   @override
-  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
+  String
+  get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Ne supprimez pas les fichiers photo et vidéo stockés localement utilisés pour documenter une demande jusqu\'à ce qu\'ils soient approuvés par l\'administration.';
 
   @override
@@ -429,7 +431,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get alreadyHaveAccount => 'Avez-vous déjà un compte?';
 
   @override
-  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+  String
+  get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
       'Assurez-vous de la clarté des images et du nombre correct d\'exemplaires du Saint Coran avant l\'envoi';
 
   @override

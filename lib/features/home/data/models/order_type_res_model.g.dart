@@ -6,54 +6,34 @@ part of 'order_type_res_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$OrderTypeResModelImpl _$$OrderTypeResModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$OrderTypeResModelImpl(
-      package: json['package'] == null
+_OrderTypeResModel _$OrderTypeResModelFromJson(Map<String, dynamic> json) =>
+    _OrderTypeResModel(
+      productType: json['product_type'] == null
           ? null
-          : Package.fromJson(json['package'] as Map<String, dynamic>),
+          : ProductTypeModel.fromJson(
+              json['product_type'] as Map<String, dynamic>,
+            ),
       ordersCount: (json['orders_count'] as num?)?.toInt(),
       totalQuranCopies: (json['total_quran_copies'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$OrderTypeResModelImplToJson(
-        _$OrderTypeResModelImpl instance) =>
+Map<String, dynamic> _$OrderTypeResModelToJson(_OrderTypeResModel instance) =>
     <String, dynamic>{
-      if (instance.package?.toJson() case final value?) 'package': value,
-      if (instance.ordersCount case final value?) 'orders_count': value,
-      if (instance.totalQuranCopies case final value?)
-        'total_quran_copies': value,
+      'product_type': ?instance.productType?.toJson(),
+      'orders_count': ?instance.ordersCount,
+      'total_quran_copies': ?instance.totalQuranCopies,
     };
 
-_$PackageImpl _$$PackageImplFromJson(Map<String, dynamic> json) =>
-    _$PackageImpl(
-      id: (json['id'] as num?)?.toInt(),
-      image: json['image'] as String?,
-      quantity: (json['quantity'] as num?)?.toInt(),
-      docsCount: (json['docs_count'] as num?)?.toInt(),
-      type: json['type'] == null
-          ? null
-          : Type.fromJson(json['type'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$PackageImplToJson(_$PackageImpl instance) =>
-    <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.image case final value?) 'image': value,
-      if (instance.quantity case final value?) 'quantity': value,
-      if (instance.docsCount case final value?) 'docs_count': value,
-      if (instance.type?.toJson() case final value?) 'type': value,
-    };
-
-_$TypeImpl _$$TypeImplFromJson(Map<String, dynamic> json) => _$TypeImpl(
+_ProductTypeModel _$ProductTypeModelFromJson(Map<String, dynamic> json) =>
+    _ProductTypeModel(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
-      distributedType: json['distributed_type'] as String?,
+      docsCount: (json['docs_count'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$TypeImplToJson(_$TypeImpl instance) =>
+Map<String, dynamic> _$ProductTypeModelToJson(_ProductTypeModel instance) =>
     <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.name case final value?) 'name': value,
-      if (instance.distributedType case final value?) 'distributed_type': value,
+      'id': ?instance.id,
+      'name': ?instance.name,
+      'docs_count': ?instance.docsCount,
     };

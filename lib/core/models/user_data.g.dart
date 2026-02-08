@@ -6,16 +6,14 @@ part of 'user_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserDataImpl _$$UserDataImplFromJson(Map<String, dynamic> json) =>
-    _$UserDataImpl(
-      token: json['token'] as String?,
-      fcmToken: json['fcm_token'] as String?,
-      role: json['role'] as String?,
-    );
+_UserData _$UserDataFromJson(Map<String, dynamic> json) => _UserData(
+  token: json['token'] as String?,
+  fcmToken: json['fcm_token'] as String?,
+  role: json['role'] as String?,
+);
 
-Map<String, dynamic> _$$UserDataImplToJson(_$UserDataImpl instance) =>
-    <String, dynamic>{
-      if (instance.token case final value?) 'token': value,
-      if (instance.fcmToken case final value?) 'fcm_token': value,
-      if (instance.role case final value?) 'role': value,
-    };
+Map<String, dynamic> _$UserDataToJson(_UserData instance) => <String, dynamic>{
+  'token': ?instance.token,
+  'fcm_token': ?instance.fcmToken,
+  'role': ?instance.role,
+};

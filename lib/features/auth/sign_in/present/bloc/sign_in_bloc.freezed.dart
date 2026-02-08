@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,1457 +9,730 @@ part of 'sign_in_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$SignInEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)
-        dataChanged,
-    required TResult Function() signInWithCredentialsPressed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)?
-        dataChanged,
-    TResult? Function()? signInWithCredentialsPressed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)?
-        dataChanged,
-    TResult Function()? signInWithCredentialsPressed,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DataChanged value) dataChanged,
-    required TResult Function(_SignInWithCredentialsPressed value)
-        signInWithCredentialsPressed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DataChanged value)? dataChanged,
-    TResult? Function(_SignInWithCredentialsPressed value)?
-        signInWithCredentialsPressed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DataChanged value)? dataChanged,
-    TResult Function(_SignInWithCredentialsPressed value)?
-        signInWithCredentialsPressed,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SignInEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SignInEventCopyWith<$Res> {
-  factory $SignInEventCopyWith(
-          SignInEvent value, $Res Function(SignInEvent) then) =
-      _$SignInEventCopyWithImpl<$Res, SignInEvent>;
+class $SignInEventCopyWith<$Res>  {
+$SignInEventCopyWith(SignInEvent _, $Res Function(SignInEvent) __);
 }
 
-/// @nodoc
-class _$SignInEventCopyWithImpl<$Res, $Val extends SignInEvent>
-    implements $SignInEventCopyWith<$Res> {
-  _$SignInEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [SignInEvent].
+extension SignInEventPatterns on SignInEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of SignInEvent
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _DataChanged value)?  dataChanged,TResult Function( _SignInWithCredentialsPressed value)?  signInWithCredentialsPressed,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _DataChanged() when dataChanged != null:
+return dataChanged(_that);case _SignInWithCredentialsPressed() when signInWithCredentialsPressed != null:
+return signInWithCredentialsPressed(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _DataChanged value)  dataChanged,required TResult Function( _SignInWithCredentialsPressed value)  signInWithCredentialsPressed,}){
+final _that = this;
+switch (_that) {
+case _DataChanged():
+return dataChanged(_that);case _SignInWithCredentialsPressed():
+return signInWithCredentialsPressed(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _DataChanged value)?  dataChanged,TResult? Function( _SignInWithCredentialsPressed value)?  signInWithCredentialsPressed,}){
+final _that = this;
+switch (_that) {
+case _DataChanged() when dataChanged != null:
+return dataChanged(_that);case _SignInWithCredentialsPressed() when signInWithCredentialsPressed != null:
+return signInWithCredentialsPressed(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( EmailInput? email,  PasswordInput? password,  GenericFormzInput? obscurePassword)?  dataChanged,TResult Function()?  signInWithCredentialsPressed,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _DataChanged() when dataChanged != null:
+return dataChanged(_that.email,_that.password,_that.obscurePassword);case _SignInWithCredentialsPressed() when signInWithCredentialsPressed != null:
+return signInWithCredentialsPressed();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( EmailInput? email,  PasswordInput? password,  GenericFormzInput? obscurePassword)  dataChanged,required TResult Function()  signInWithCredentialsPressed,}) {final _that = this;
+switch (_that) {
+case _DataChanged():
+return dataChanged(_that.email,_that.password,_that.obscurePassword);case _SignInWithCredentialsPressed():
+return signInWithCredentialsPressed();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( EmailInput? email,  PasswordInput? password,  GenericFormzInput? obscurePassword)?  dataChanged,TResult? Function()?  signInWithCredentialsPressed,}) {final _that = this;
+switch (_that) {
+case _DataChanged() when dataChanged != null:
+return dataChanged(_that.email,_that.password,_that.obscurePassword);case _SignInWithCredentialsPressed() when signInWithCredentialsPressed != null:
+return signInWithCredentialsPressed();case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$DataChangedImplCopyWith<$Res> {
-  factory _$$DataChangedImplCopyWith(
-          _$DataChangedImpl value, $Res Function(_$DataChangedImpl) then) =
-      __$$DataChangedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {EmailInput? email,
-      PasswordInput? password,
-      GenericFormzInput<dynamic>? obscurePassword});
-}
-
-/// @nodoc
-class __$$DataChangedImplCopyWithImpl<$Res>
-    extends _$SignInEventCopyWithImpl<$Res, _$DataChangedImpl>
-    implements _$$DataChangedImplCopyWith<$Res> {
-  __$$DataChangedImplCopyWithImpl(
-      _$DataChangedImpl _value, $Res Function(_$DataChangedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignInEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = freezed,
-    Object? password = freezed,
-    Object? obscurePassword = freezed,
-  }) {
-    return _then(_$DataChangedImpl(
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as EmailInput?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as PasswordInput?,
-      obscurePassword: freezed == obscurePassword
-          ? _value.obscurePassword
-          : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$DataChangedImpl implements _DataChanged {
-  const _$DataChangedImpl({this.email, this.password, this.obscurePassword});
-
-  @override
-  final EmailInput? email;
-  @override
-  final PasswordInput? password;
-  @override
-  final GenericFormzInput<dynamic>? obscurePassword;
-
-  @override
-  String toString() {
-    return 'SignInEvent.dataChanged(email: $email, password: $password, obscurePassword: $obscurePassword)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DataChangedImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.obscurePassword, obscurePassword) ||
-                other.obscurePassword == obscurePassword));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, obscurePassword);
-
-  /// Create a copy of SignInEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DataChangedImplCopyWith<_$DataChangedImpl> get copyWith =>
-      __$$DataChangedImplCopyWithImpl<_$DataChangedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)
-        dataChanged,
-    required TResult Function() signInWithCredentialsPressed,
-  }) {
-    return dataChanged(email, password, obscurePassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)?
-        dataChanged,
-    TResult? Function()? signInWithCredentialsPressed,
-  }) {
-    return dataChanged?.call(email, password, obscurePassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)?
-        dataChanged,
-    TResult Function()? signInWithCredentialsPressed,
-    required TResult orElse(),
-  }) {
-    if (dataChanged != null) {
-      return dataChanged(email, password, obscurePassword);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DataChanged value) dataChanged,
-    required TResult Function(_SignInWithCredentialsPressed value)
-        signInWithCredentialsPressed,
-  }) {
-    return dataChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DataChanged value)? dataChanged,
-    TResult? Function(_SignInWithCredentialsPressed value)?
-        signInWithCredentialsPressed,
-  }) {
-    return dataChanged?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DataChanged value)? dataChanged,
-    TResult Function(_SignInWithCredentialsPressed value)?
-        signInWithCredentialsPressed,
-    required TResult orElse(),
-  }) {
-    if (dataChanged != null) {
-      return dataChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DataChanged implements SignInEvent {
-  const factory _DataChanged(
-      {final EmailInput? email,
-      final PasswordInput? password,
-      final GenericFormzInput<dynamic>? obscurePassword}) = _$DataChangedImpl;
-
-  EmailInput? get email;
-  PasswordInput? get password;
-  GenericFormzInput<dynamic>? get obscurePassword;
-
-  /// Create a copy of SignInEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataChangedImplCopyWith<_$DataChangedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SignInWithCredentialsPressedImplCopyWith<$Res> {
-  factory _$$SignInWithCredentialsPressedImplCopyWith(
-          _$SignInWithCredentialsPressedImpl value,
-          $Res Function(_$SignInWithCredentialsPressedImpl) then) =
-      __$$SignInWithCredentialsPressedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SignInWithCredentialsPressedImplCopyWithImpl<$Res>
-    extends _$SignInEventCopyWithImpl<$Res, _$SignInWithCredentialsPressedImpl>
-    implements _$$SignInWithCredentialsPressedImplCopyWith<$Res> {
-  __$$SignInWithCredentialsPressedImplCopyWithImpl(
-      _$SignInWithCredentialsPressedImpl _value,
-      $Res Function(_$SignInWithCredentialsPressedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignInEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$SignInWithCredentialsPressedImpl
-    implements _SignInWithCredentialsPressed {
-  const _$SignInWithCredentialsPressedImpl();
 
-  @override
-  String toString() {
-    return 'SignInEvent.signInWithCredentialsPressed()';
-  }
+class _DataChanged implements SignInEvent {
+  const _DataChanged({this.email, this.password, this.obscurePassword});
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SignInWithCredentialsPressedImpl);
-  }
+ final  EmailInput? email;
+ final  PasswordInput? password;
+ final  GenericFormzInput? obscurePassword;
 
-  @override
-  int get hashCode => runtimeType.hashCode;
+/// Create a copy of SignInEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_DataChanged>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)
-        dataChanged,
-    required TResult Function() signInWithCredentialsPressed,
-  }) {
-    return signInWithCredentialsPressed();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)?
-        dataChanged,
-    TResult? Function()? signInWithCredentialsPressed,
-  }) {
-    return signInWithCredentialsPressed?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmailInput? email, PasswordInput? password,
-            GenericFormzInput<dynamic>? obscurePassword)?
-        dataChanged,
-    TResult Function()? signInWithCredentialsPressed,
-    required TResult orElse(),
-  }) {
-    if (signInWithCredentialsPressed != null) {
-      return signInWithCredentialsPressed();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DataChanged value) dataChanged,
-    required TResult Function(_SignInWithCredentialsPressed value)
-        signInWithCredentialsPressed,
-  }) {
-    return signInWithCredentialsPressed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DataChanged value)? dataChanged,
-    TResult? Function(_SignInWithCredentialsPressed value)?
-        signInWithCredentialsPressed,
-  }) {
-    return signInWithCredentialsPressed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DataChanged value)? dataChanged,
-    TResult Function(_SignInWithCredentialsPressed value)?
-        signInWithCredentialsPressed,
-    required TResult orElse(),
-  }) {
-    if (signInWithCredentialsPressed != null) {
-      return signInWithCredentialsPressed(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword));
 }
 
-abstract class _SignInWithCredentialsPressed implements SignInEvent {
-  const factory _SignInWithCredentialsPressed() =
-      _$SignInWithCredentialsPressedImpl;
+
+@override
+int get hashCode => Object.hash(runtimeType,email,password,obscurePassword);
+
+@override
+String toString() {
+  return 'SignInEvent.dataChanged(email: $email, password: $password, obscurePassword: $obscurePassword)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$DataChangedCopyWith<$Res> implements $SignInEventCopyWith<$Res> {
+  factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
+@useResult
+$Res call({
+ EmailInput? email, PasswordInput? password, GenericFormzInput? obscurePassword
+});
+
+
+
+
+}
+/// @nodoc
+class __$DataChangedCopyWithImpl<$Res>
+    implements _$DataChangedCopyWith<$Res> {
+  __$DataChangedCopyWithImpl(this._self, this._then);
+
+  final _DataChanged _self;
+  final $Res Function(_DataChanged) _then;
+
+/// Create a copy of SignInEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? email = freezed,Object? password = freezed,Object? obscurePassword = freezed,}) {
+  return _then(_DataChanged(
+email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as EmailInput?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as PasswordInput?,obscurePassword: freezed == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _SignInWithCredentialsPressed implements SignInEvent {
+  const _SignInWithCredentialsPressed();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInWithCredentialsPressed);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SignInEvent.signInWithCredentialsPressed()';
+}
+
+
+}
+
+
+
 
 /// @nodoc
 mixin _$SignInState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function() unauthenticated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function()? success,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function()? unauthenticated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failure,
-    TResult Function()? unauthenticated,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Unauthenticated value) unauthenticated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Unauthenticated value)? unauthenticated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Unauthenticated value)? unauthenticated,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SignInState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SignInStateCopyWith<$Res> {
-  factory $SignInStateCopyWith(
-          SignInState value, $Res Function(SignInState) then) =
-      _$SignInStateCopyWithImpl<$Res, SignInState>;
+class $SignInStateCopyWith<$Res>  {
+$SignInStateCopyWith(SignInState _, $Res Function(SignInState) __);
 }
 
-/// @nodoc
-class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
-    implements $SignInStateCopyWith<$Res> {
-  _$SignInStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [SignInState].
+extension SignInStatePatterns on SignInState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Success value)?  success,TResult Function( _Failure value)?  failure,TResult Function( _Unauthenticated value)?  unauthenticated,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Success() when success != null:
+return success(_that);case _Failure() when failure != null:
+return failure(_that);case _Unauthenticated() when unauthenticated != null:
+return unauthenticated(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Success value)  success,required TResult Function( _Failure value)  failure,required TResult Function( _Unauthenticated value)  unauthenticated,}){
+final _that = this;
+switch (_that) {
+case _Initial():
+return initial(_that);case _Loading():
+return loading(_that);case _Loaded():
+return loaded(_that);case _Success():
+return success(_that);case _Failure():
+return failure(_that);case _Unauthenticated():
+return unauthenticated(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Success value)?  success,TResult? Function( _Failure value)?  failure,TResult? Function( _Unauthenticated value)?  unauthenticated,}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Success() when success != null:
+return success(_that);case _Failure() when failure != null:
+return failure(_that);case _Unauthenticated() when unauthenticated != null:
+return unauthenticated(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( EmailInput email,  PasswordInput password,  GenericFormzInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String errorMessage)?  failure,TResult Function()?  unauthenticated,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.email,_that.password,_that.obscurePassword,_that.formzSubmissionStatus);case _Success() when success != null:
+return success();case _Failure() when failure != null:
+return failure(_that.errorMessage);case _Unauthenticated() when unauthenticated != null:
+return unauthenticated();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( EmailInput email,  PasswordInput password,  GenericFormzInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String errorMessage)  failure,required TResult Function()  unauthenticated,}) {final _that = this;
+switch (_that) {
+case _Initial():
+return initial();case _Loading():
+return loading();case _Loaded():
+return loaded(_that.email,_that.password,_that.obscurePassword,_that.formzSubmissionStatus);case _Success():
+return success();case _Failure():
+return failure(_that.errorMessage);case _Unauthenticated():
+return unauthenticated();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( EmailInput email,  PasswordInput password,  GenericFormzInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String errorMessage)?  failure,TResult? Function()?  unauthenticated,}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.email,_that.password,_that.obscurePassword,_that.formzSubmissionStatus);case _Success() when success != null:
+return success();case _Failure() when failure != null:
+return failure(_that.errorMessage);case _Unauthenticated() when unauthenticated != null:
+return unauthenticated();case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SignInStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'SignInState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function() unauthenticated,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function()? success,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function()? unauthenticated,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failure,
-    TResult Function()? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Unauthenticated value) unauthenticated,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Unauthenticated value)? unauthenticated,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Unauthenticated value)? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements SignInState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SignInStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
 
-  @override
-  String toString() {
-    return 'SignInState.loading()';
-  }
+class _Initial implements SignInState {
+  const _Initial();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function() unauthenticated,
-  }) {
-    return loading();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function()? success,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function()? unauthenticated,
-  }) {
-    return loading?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failure,
-    TResult Function()? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Unauthenticated value) unauthenticated,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Unauthenticated value)? unauthenticated,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Unauthenticated value)? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
-abstract class _Loading implements SignInState {
-  const factory _Loading() = _$LoadingImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SignInState.initial()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Loading implements SignInState {
+  const _Loading();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SignInState.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Loaded implements SignInState {
+  const _Loaded({required this.email, required this.password, required this.obscurePassword, required this.formzSubmissionStatus});
+  
+
+ final  EmailInput email;
+ final  PasswordInput password;
+ final  GenericFormzInput obscurePassword;
+ final  FormzSubmissionStatus formzSubmissionStatus;
+
+/// Create a copy of SignInState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,email,password,obscurePassword,formzSubmissionStatus);
+
+@override
+String toString() {
+  return 'SignInState.loaded(email: $email, password: $password, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {EmailInput email,
-      PasswordInput password,
-      GenericFormzInput<dynamic> obscurePassword,
-      FormzSubmissionStatus formzSubmissionStatus});
+abstract mixin class _$LoadedCopyWith<$Res> implements $SignInStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ EmailInput email, PasswordInput password, GenericFormzInput obscurePassword, FormzSubmissionStatus formzSubmissionStatus
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of SignInState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? email = null,Object? password = null,Object? obscurePassword = null,Object? formzSubmissionStatus = null,}) {
+  return _then(_Loaded(
+email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as EmailInput,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as PasswordInput,obscurePassword: null == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+as FormzSubmissionStatus,
+  ));
 }
 
-/// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$SignInStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? password = null,
-    Object? obscurePassword = null,
-    Object? formzSubmissionStatus = null,
-  }) {
-    return _then(_$LoadedImpl(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as EmailInput,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
-      obscurePassword: null == obscurePassword
-          ? _value.obscurePassword
-          : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>,
-      formzSubmissionStatus: null == formzSubmissionStatus
-          ? _value.formzSubmissionStatus
-          : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
-              as FormzSubmissionStatus,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
-      {required this.email,
-      required this.password,
-      required this.obscurePassword,
-      required this.formzSubmissionStatus});
 
-  @override
-  final EmailInput email;
-  @override
-  final PasswordInput password;
-  @override
-  final GenericFormzInput<dynamic> obscurePassword;
-  @override
-  final FormzSubmissionStatus formzSubmissionStatus;
+class _Success implements SignInState {
+  const _Success();
+  
 
-  @override
-  String toString() {
-    return 'SignInState.loaded(email: $email, password: $password, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.obscurePassword, obscurePassword) ||
-                other.obscurePassword == obscurePassword) &&
-            (identical(other.formzSubmissionStatus, formzSubmissionStatus) ||
-                other.formzSubmissionStatus == formzSubmissionStatus));
-  }
 
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, obscurePassword, formzSubmissionStatus);
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function() unauthenticated,
-  }) {
-    return loaded(email, password, obscurePassword, formzSubmissionStatus);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function()? success,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function()? unauthenticated,
-  }) {
-    return loaded?.call(
-        email, password, obscurePassword, formzSubmissionStatus);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failure,
-    TResult Function()? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(email, password, obscurePassword, formzSubmissionStatus);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Unauthenticated value) unauthenticated,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Unauthenticated value)? unauthenticated,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Unauthenticated value)? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
 }
 
-abstract class _Loaded implements SignInState {
-  const factory _Loaded(
-          {required final EmailInput email,
-          required final PasswordInput password,
-          required final GenericFormzInput<dynamic> obscurePassword,
-          required final FormzSubmissionStatus formzSubmissionStatus}) =
-      _$LoadedImpl;
 
-  EmailInput get email;
-  PasswordInput get password;
-  GenericFormzInput<dynamic> get obscurePassword;
-  FormzSubmissionStatus get formzSubmissionStatus;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'SignInState.success()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Failure implements SignInState {
+  const _Failure({this.errorMessage = ''});
+  
+
+@JsonKey() final  String errorMessage;
+
+/// Create a copy of SignInState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,errorMessage);
+
+@override
+String toString() {
+  return 'SignInState.failure(errorMessage: $errorMessage)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract mixin class _$FailureCopyWith<$Res> implements $SignInStateCopyWith<$Res> {
+  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
+@useResult
+$Res call({
+ String errorMessage
+});
+
+
+
+
+}
+/// @nodoc
+class __$FailureCopyWithImpl<$Res>
+    implements _$FailureCopyWith<$Res> {
+  __$FailureCopyWithImpl(this._self, this._then);
+
+  final _Failure _self;
+  final $Res Function(_Failure) _then;
+
+/// Create a copy of SignInState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? errorMessage = null,}) {
+  return _then(_Failure(
+errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$SignInStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
 
-  @override
-  String toString() {
-    return 'SignInState.success()';
-  }
+class _Unauthenticated implements SignInState {
+  const _Unauthenticated();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function() unauthenticated,
-  }) {
-    return success();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function()? success,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function()? unauthenticated,
-  }) {
-    return success?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failure,
-    TResult Function()? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Unauthenticated value) unauthenticated,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Unauthenticated value)? unauthenticated,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Unauthenticated value)? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Unauthenticated);
 }
 
-abstract class _Success implements SignInState {
-  const factory _Success() = _$SuccessImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SignInState.unauthenticated()';
 }
 
-/// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String errorMessage});
+
 }
 
-/// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$SignInStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? errorMessage = null,
-  }) {
-    return _then(_$FailureImpl(
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
 
-/// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl({this.errorMessage = ''});
-
-  @override
-  @JsonKey()
-  final String errorMessage;
-
-  @override
-  String toString() {
-    return 'SignInState.failure(errorMessage: $errorMessage)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, errorMessage);
-
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function() unauthenticated,
-  }) {
-    return failure(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function()? success,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function()? unauthenticated,
-  }) {
-    return failure?.call(errorMessage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failure,
-    TResult Function()? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(errorMessage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Unauthenticated value) unauthenticated,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Unauthenticated value)? unauthenticated,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Unauthenticated value)? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Failure implements SignInState {
-  const factory _Failure({final String errorMessage}) = _$FailureImpl;
-
-  String get errorMessage;
-
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UnauthenticatedImplCopyWith<$Res> {
-  factory _$$UnauthenticatedImplCopyWith(_$UnauthenticatedImpl value,
-          $Res Function(_$UnauthenticatedImpl) then) =
-      __$$UnauthenticatedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UnauthenticatedImplCopyWithImpl<$Res>
-    extends _$SignInStateCopyWithImpl<$Res, _$UnauthenticatedImpl>
-    implements _$$UnauthenticatedImplCopyWith<$Res> {
-  __$$UnauthenticatedImplCopyWithImpl(
-      _$UnauthenticatedImpl _value, $Res Function(_$UnauthenticatedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignInState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$UnauthenticatedImpl implements _Unauthenticated {
-  const _$UnauthenticatedImpl();
-
-  @override
-  String toString() {
-    return 'SignInState.unauthenticated()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UnauthenticatedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function() success,
-    required TResult Function(String errorMessage) failure,
-    required TResult Function() unauthenticated,
-  }) {
-    return unauthenticated();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function()? success,
-    TResult? Function(String errorMessage)? failure,
-    TResult? Function()? unauthenticated,
-  }) {
-    return unauthenticated?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(
-            EmailInput email,
-            PasswordInput password,
-            GenericFormzInput<dynamic> obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function()? success,
-    TResult Function(String errorMessage)? failure,
-    TResult Function()? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (unauthenticated != null) {
-      return unauthenticated();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Unauthenticated value) unauthenticated,
-  }) {
-    return unauthenticated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-    TResult? Function(_Unauthenticated value)? unauthenticated,
-  }) {
-    return unauthenticated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Unauthenticated value)? unauthenticated,
-    required TResult orElse(),
-  }) {
-    if (unauthenticated != null) {
-      return unauthenticated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Unauthenticated implements SignInState {
-  const factory _Unauthenticated() = _$UnauthenticatedImpl;
-}
+// dart format on

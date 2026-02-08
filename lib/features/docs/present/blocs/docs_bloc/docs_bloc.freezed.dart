@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,859 +9,647 @@ part of 'docs_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$DocsEvent {
-  int get orderId => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int orderId) getDocs,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int orderId)? getDocs,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int orderId)? getDocs,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetDocs value) getDocs,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetDocs value)? getDocs,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetDocs value)? getDocs,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DocsEventCopyWith<DocsEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+ int get orderId;
+/// Create a copy of DocsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$DocsEventCopyWith<DocsEvent> get copyWith => _$DocsEventCopyWithImpl<DocsEvent>(this as DocsEvent, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsEvent&&(identical(other.orderId, orderId) || other.orderId == orderId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,orderId);
+
+@override
+String toString() {
+  return 'DocsEvent(orderId: $orderId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $DocsEventCopyWith<$Res> {
-  factory $DocsEventCopyWith(DocsEvent value, $Res Function(DocsEvent) then) =
-      _$DocsEventCopyWithImpl<$Res, DocsEvent>;
-  @useResult
-  $Res call({int orderId});
-}
+abstract mixin class $DocsEventCopyWith<$Res>  {
+  factory $DocsEventCopyWith(DocsEvent value, $Res Function(DocsEvent) _then) = _$DocsEventCopyWithImpl;
+@useResult
+$Res call({
+ int orderId
+});
 
+
+
+
+}
 /// @nodoc
-class _$DocsEventCopyWithImpl<$Res, $Val extends DocsEvent>
+class _$DocsEventCopyWithImpl<$Res>
     implements $DocsEventCopyWith<$Res> {
-  _$DocsEventCopyWithImpl(this._value, this._then);
+  _$DocsEventCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final DocsEvent _self;
+  final $Res Function(DocsEvent) _then;
 
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? orderId = null,
-  }) {
-    return _then(_value.copyWith(
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
+/// Create a copy of DocsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? orderId = null,}) {
+  return _then(_self.copyWith(
+orderId: null == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [DocsEvent].
+extension DocsEventPatterns on DocsEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetDocs value)?  getDocs,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GetDocs() when getDocs != null:
+return getDocs(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetDocs value)  getDocs,}){
+final _that = this;
+switch (_that) {
+case _GetDocs():
+return getDocs(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetDocs value)?  getDocs,}){
+final _that = this;
+switch (_that) {
+case _GetDocs() when getDocs != null:
+return getDocs(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int orderId)?  getDocs,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GetDocs() when getDocs != null:
+return getDocs(_that.orderId);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int orderId)  getDocs,}) {final _that = this;
+switch (_that) {
+case _GetDocs():
+return getDocs(_that.orderId);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int orderId)?  getDocs,}) {final _that = this;
+switch (_that) {
+case _GetDocs() when getDocs != null:
+return getDocs(_that.orderId);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$GetDocsImplCopyWith<$Res>
-    implements $DocsEventCopyWith<$Res> {
-  factory _$$GetDocsImplCopyWith(
-          _$GetDocsImpl value, $Res Function(_$GetDocsImpl) then) =
-      __$$GetDocsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int orderId});
+
+
+class _GetDocs implements DocsEvent {
+  const _GetDocs({required this.orderId});
+  
+
+@override final  int orderId;
+
+/// Create a copy of DocsEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GetDocsCopyWith<_GetDocs> get copyWith => __$GetDocsCopyWithImpl<_GetDocs>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetDocs&&(identical(other.orderId, orderId) || other.orderId == orderId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,orderId);
+
+@override
+String toString() {
+  return 'DocsEvent.getDocs(orderId: $orderId)';
+}
+
+
 }
 
 /// @nodoc
-class __$$GetDocsImplCopyWithImpl<$Res>
-    extends _$DocsEventCopyWithImpl<$Res, _$GetDocsImpl>
-    implements _$$GetDocsImplCopyWith<$Res> {
-  __$$GetDocsImplCopyWithImpl(
-      _$GetDocsImpl _value, $Res Function(_$GetDocsImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$GetDocsCopyWith<$Res> implements $DocsEventCopyWith<$Res> {
+  factory _$GetDocsCopyWith(_GetDocs value, $Res Function(_GetDocs) _then) = __$GetDocsCopyWithImpl;
+@override @useResult
+$Res call({
+ int orderId
+});
 
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? orderId = null,
-  }) {
-    return _then(_$GetDocsImpl(
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$GetDocsCopyWithImpl<$Res>
+    implements _$GetDocsCopyWith<$Res> {
+  __$GetDocsCopyWithImpl(this._self, this._then);
 
-class _$GetDocsImpl implements _GetDocs {
-  const _$GetDocsImpl({required this.orderId});
+  final _GetDocs _self;
+  final $Res Function(_GetDocs) _then;
 
-  @override
-  final int orderId;
-
-  @override
-  String toString() {
-    return 'DocsEvent.getDocs(orderId: $orderId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetDocsImpl &&
-            (identical(other.orderId, orderId) || other.orderId == orderId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, orderId);
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetDocsImplCopyWith<_$GetDocsImpl> get copyWith =>
-      __$$GetDocsImplCopyWithImpl<_$GetDocsImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int orderId) getDocs,
-  }) {
-    return getDocs(orderId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int orderId)? getDocs,
-  }) {
-    return getDocs?.call(orderId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int orderId)? getDocs,
-    required TResult orElse(),
-  }) {
-    if (getDocs != null) {
-      return getDocs(orderId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetDocs value) getDocs,
-  }) {
-    return getDocs(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetDocs value)? getDocs,
-  }) {
-    return getDocs?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetDocs value)? getDocs,
-    required TResult orElse(),
-  }) {
-    if (getDocs != null) {
-      return getDocs(this);
-    }
-    return orElse();
-  }
+/// Create a copy of DocsEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? orderId = null,}) {
+  return _then(_GetDocs(
+orderId: null == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-abstract class _GetDocs implements DocsEvent {
-  const factory _GetDocs({required final int orderId}) = _$GetDocsImpl;
 
-  @override
-  int get orderId;
-
-  /// Create a copy of DocsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetDocsImplCopyWith<_$GetDocsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$DocsState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInProgress value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInProgress value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInProgress value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'DocsState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $DocsStateCopyWith<$Res> {
-  factory $DocsStateCopyWith(DocsState value, $Res Function(DocsState) then) =
-      _$DocsStateCopyWithImpl<$Res, DocsState>;
+class $DocsStateCopyWith<$Res>  {
+$DocsStateCopyWith(DocsState _, $Res Function(DocsState) __);
 }
 
-/// @nodoc
-class _$DocsStateCopyWithImpl<$Res, $Val extends DocsState>
-    implements $DocsStateCopyWith<$Res> {
-  _$DocsStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [DocsState].
+extension DocsStatePatterns on DocsState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _LoadInProgress value)?  loading,TResult Function( _Success value)?  success,TResult Function( _Loaded value)?  loaded,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LoadInProgress() when loading != null:
+return loading(_that);case _Success() when success != null:
+return success(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Failure() when failure != null:
+return failure(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _LoadInProgress value)  loading,required TResult Function( _Success value)  success,required TResult Function( _Loaded value)  loaded,required TResult Function( _Failure value)  failure,}){
+final _that = this;
+switch (_that) {
+case _LoadInProgress():
+return loading(_that);case _Success():
+return success(_that);case _Loaded():
+return loaded(_that);case _Failure():
+return failure(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _LoadInProgress value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Failure value)?  failure,}){
+final _that = this;
+switch (_that) {
+case _LoadInProgress() when loading != null:
+return loading(_that);case _Success() when success != null:
+return success(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Failure() when failure != null:
+return failure(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function()?  success,TResult Function( List<DocEntity>? docs,  bool? hasMore)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LoadInProgress() when loading != null:
+return loading();case _Success() when success != null:
+return success();case _Loaded() when loaded != null:
+return loaded(_that.docs,_that.hasMore);case _Failure() when failure != null:
+return failure(_that.apiErrorModel);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function()  success,required TResult Function( List<DocEntity>? docs,  bool? hasMore)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
+switch (_that) {
+case _LoadInProgress():
+return loading();case _Success():
+return success();case _Loaded():
+return loaded(_that.docs,_that.hasMore);case _Failure():
+return failure(_that.apiErrorModel);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( List<DocEntity>? docs,  bool? hasMore)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
+switch (_that) {
+case _LoadInProgress() when loading != null:
+return loading();case _Success() when success != null:
+return success();case _Loaded() when loaded != null:
+return loaded(_that.docs,_that.hasMore);case _Failure() when failure != null:
+return failure(_that.apiErrorModel);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$LoadInProgressImplCopyWith<$Res> {
-  factory _$$LoadInProgressImplCopyWith(_$LoadInProgressImpl value,
-          $Res Function(_$LoadInProgressImpl) then) =
-      __$$LoadInProgressImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadInProgressImplCopyWithImpl<$Res>
-    extends _$DocsStateCopyWithImpl<$Res, _$LoadInProgressImpl>
-    implements _$$LoadInProgressImplCopyWith<$Res> {
-  __$$LoadInProgressImplCopyWithImpl(
-      _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadInProgressImpl implements _LoadInProgress {
-  const _$LoadInProgressImpl();
-
-  @override
-  String toString() {
-    return 'DocsState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadInProgressImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInProgress value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInProgress value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInProgress value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadInProgress implements DocsState {
-  const factory _LoadInProgress() = _$LoadInProgressImpl;
-}
-
-/// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$DocsStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
 
-  @override
-  String toString() {
-    return 'DocsState.success()';
-  }
+class _LoadInProgress implements DocsState {
+  const _LoadInProgress();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) {
-    return success();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) {
-    return success?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInProgress value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInProgress value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInProgress value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadInProgress);
 }
 
-abstract class _Success implements DocsState {
-  const factory _Success() = _$SuccessImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'DocsState.loading()';
 }
 
-/// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<DocEntity>? docs, bool? hasMore});
+
 }
 
-/// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$DocsStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? docs = freezed,
-    Object? hasMore = freezed,
-  }) {
-    return _then(_$LoadedImpl(
-      docs: freezed == docs
-          ? _value._docs
-          : docs // ignore: cast_nullable_to_non_nullable
-              as List<DocEntity>?,
-      hasMore: freezed == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-}
+
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
-      {final List<DocEntity>? docs = const [], this.hasMore = false})
-      : _docs = docs;
 
-  final List<DocEntity>? _docs;
-  @override
-  @JsonKey()
-  List<DocEntity>? get docs {
-    final value = _docs;
-    if (value == null) return null;
-    if (_docs is EqualUnmodifiableListView) return _docs;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+class _Success implements DocsState {
+  const _Success();
+  
 
-  @override
-  @JsonKey()
-  final bool? hasMore;
 
-  @override
-  String toString() {
-    return 'DocsState.loaded(docs: $docs, hasMore: $hasMore)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._docs, _docs) &&
-            (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
-  }
 
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_docs), hasMore);
 
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) {
-    return loaded(docs, hasMore);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) {
-    return loaded?.call(docs, hasMore);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(docs, hasMore);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInProgress value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInProgress value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInProgress value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
 }
 
-abstract class _Loaded implements DocsState {
-  const factory _Loaded({final List<DocEntity>? docs, final bool? hasMore}) =
-      _$LoadedImpl;
 
-  List<DocEntity>? get docs;
-  bool? get hasMore;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'DocsState.success()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Loaded implements DocsState {
+  const _Loaded({final  List<DocEntity>? docs = const [], this.hasMore = false}): _docs = docs;
+  
+
+ final  List<DocEntity>? _docs;
+@JsonKey() List<DocEntity>? get docs {
+  final value = _docs;
+  if (value == null) return null;
+  if (_docs is EqualUnmodifiableListView) return _docs;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+@JsonKey() final  bool? hasMore;
+
+/// Create a copy of DocsState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._docs, _docs)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_docs),hasMore);
+
+@override
+String toString() {
+  return 'DocsState.loaded(docs: $docs, hasMore: $hasMore)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ApiErrorModel apiErrorModel});
+abstract mixin class _$LoadedCopyWith<$Res> implements $DocsStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ List<DocEntity>? docs, bool? hasMore
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of DocsState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? docs = freezed,Object? hasMore = freezed,}) {
+  return _then(_Loaded(
+docs: freezed == docs ? _self._docs : docs // ignore: cast_nullable_to_non_nullable
+as List<DocEntity>?,hasMore: freezed == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
 }
 
-/// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$DocsStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? apiErrorModel = null,
-  }) {
-    return _then(_$FailureImpl(
-      apiErrorModel: null == apiErrorModel
-          ? _value.apiErrorModel
-          : apiErrorModel // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl({required this.apiErrorModel});
 
-  @override
-  final ApiErrorModel apiErrorModel;
+class _Failure implements DocsState {
+  const _Failure({required this.apiErrorModel});
+  
 
-  @override
-  String toString() {
-    return 'DocsState.failure(apiErrorModel: $apiErrorModel)';
-  }
+ final  ApiErrorModel apiErrorModel;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
-            (identical(other.apiErrorModel, apiErrorModel) ||
-                other.apiErrorModel == apiErrorModel));
-  }
+/// Create a copy of DocsState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, apiErrorModel);
 
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(List<DocEntity>? docs, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) {
-    return failure(apiErrorModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) {
-    return failure?.call(apiErrorModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(List<DocEntity>? docs, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(apiErrorModel);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInProgress value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInProgress value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInProgress value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
 }
 
-abstract class _Failure implements DocsState {
-  const factory _Failure({required final ApiErrorModel apiErrorModel}) =
-      _$FailureImpl;
 
-  ApiErrorModel get apiErrorModel;
+@override
+int get hashCode => Object.hash(runtimeType,apiErrorModel);
 
-  /// Create a copy of DocsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'DocsState.failure(apiErrorModel: $apiErrorModel)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$FailureCopyWith<$Res> implements $DocsStateCopyWith<$Res> {
+  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
+@useResult
+$Res call({
+ ApiErrorModel apiErrorModel
+});
+
+
+
+
+}
+/// @nodoc
+class __$FailureCopyWithImpl<$Res>
+    implements _$FailureCopyWith<$Res> {
+  __$FailureCopyWithImpl(this._self, this._then);
+
+  final _Failure _self;
+  final $Res Function(_Failure) _then;
+
+/// Create a copy of DocsState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = null,}) {
+  return _then(_Failure(
+apiErrorModel: null == apiErrorModel ? _self.apiErrorModel : apiErrorModel // ignore: cast_nullable_to_non_nullable
+as ApiErrorModel,
+  ));
+}
+
+
+}
+
+// dart format on

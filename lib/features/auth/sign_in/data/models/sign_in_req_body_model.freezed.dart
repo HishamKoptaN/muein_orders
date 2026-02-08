@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,163 +9,269 @@ part of 'sign_in_req_body_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SignInReqBodyModel _$SignInReqBodyModelFromJson(Map<String, dynamic> json) {
-  return _SignInReqBodyModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$SignInReqBodyModel {
-  @JsonKey(name: 'id_token')
-  String get idToken => throw _privateConstructorUsedError;
+
+@JsonKey(name: 'id_token') String get idToken;
+/// Create a copy of SignInReqBodyModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SignInReqBodyModelCopyWith<SignInReqBodyModel> get copyWith => _$SignInReqBodyModelCopyWithImpl<SignInReqBodyModel>(this as SignInReqBodyModel, _$identity);
 
   /// Serializes this SignInReqBodyModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of SignInReqBodyModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SignInReqBodyModelCopyWith<SignInReqBodyModel> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,idToken);
+
+@override
+String toString() {
+  return 'SignInReqBodyModel(idToken: $idToken)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SignInReqBodyModelCopyWith<$Res> {
-  factory $SignInReqBodyModelCopyWith(
-          SignInReqBodyModel value, $Res Function(SignInReqBodyModel) then) =
-      _$SignInReqBodyModelCopyWithImpl<$Res, SignInReqBodyModel>;
-  @useResult
-  $Res call({@JsonKey(name: 'id_token') String idToken});
-}
+abstract mixin class $SignInReqBodyModelCopyWith<$Res>  {
+  factory $SignInReqBodyModelCopyWith(SignInReqBodyModel value, $Res Function(SignInReqBodyModel) _then) = _$SignInReqBodyModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'id_token') String idToken
+});
 
+
+
+
+}
 /// @nodoc
-class _$SignInReqBodyModelCopyWithImpl<$Res, $Val extends SignInReqBodyModel>
+class _$SignInReqBodyModelCopyWithImpl<$Res>
     implements $SignInReqBodyModelCopyWith<$Res> {
-  _$SignInReqBodyModelCopyWithImpl(this._value, this._then);
+  _$SignInReqBodyModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SignInReqBodyModel _self;
+  final $Res Function(SignInReqBodyModel) _then;
 
-  /// Create a copy of SignInReqBodyModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? idToken = null,
-  }) {
-    return _then(_value.copyWith(
-      idToken: null == idToken
-          ? _value.idToken
-          : idToken // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of SignInReqBodyModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? idToken = null,}) {
+  return _then(_self.copyWith(
+idToken: null == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$SignInReqBodyModelImplCopyWith<$Res>
-    implements $SignInReqBodyModelCopyWith<$Res> {
-  factory _$$SignInReqBodyModelImplCopyWith(_$SignInReqBodyModelImpl value,
-          $Res Function(_$SignInReqBodyModelImpl) then) =
-      __$$SignInReqBodyModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({@JsonKey(name: 'id_token') String idToken});
 }
 
-/// @nodoc
-class __$$SignInReqBodyModelImplCopyWithImpl<$Res>
-    extends _$SignInReqBodyModelCopyWithImpl<$Res, _$SignInReqBodyModelImpl>
-    implements _$$SignInReqBodyModelImplCopyWith<$Res> {
-  __$$SignInReqBodyModelImplCopyWithImpl(_$SignInReqBodyModelImpl _value,
-      $Res Function(_$SignInReqBodyModelImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SignInReqBodyModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? idToken = null,
-  }) {
-    return _then(_$SignInReqBodyModelImpl(
-      idToken: null == idToken
-          ? _value.idToken
-          : idToken // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [SignInReqBodyModel].
+extension SignInReqBodyModelPatterns on SignInReqBodyModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SignInReqBodyModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SignInReqBodyModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SignInReqBodyModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _SignInReqBodyModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SignInReqBodyModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SignInReqBodyModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SignInReqBodyModel() when $default != null:
+return $default(_that.idToken);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken)  $default,) {final _that = this;
+switch (_that) {
+case _SignInReqBodyModel():
+return $default(_that.idToken);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_token')  String idToken)?  $default,) {final _that = this;
+switch (_that) {
+case _SignInReqBodyModel() when $default != null:
+return $default(_that.idToken);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SignInReqBodyModelImpl implements _SignInReqBodyModel {
-  const _$SignInReqBodyModelImpl(
-      {@JsonKey(name: 'id_token') required this.idToken});
 
-  factory _$SignInReqBodyModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SignInReqBodyModelImplFromJson(json);
+class _SignInReqBodyModel implements SignInReqBodyModel {
+  const _SignInReqBodyModel({@JsonKey(name: 'id_token') required this.idToken});
+  factory _SignInReqBodyModel.fromJson(Map<String, dynamic> json) => _$SignInReqBodyModelFromJson(json);
 
-  @override
-  @JsonKey(name: 'id_token')
-  final String idToken;
+@override@JsonKey(name: 'id_token') final  String idToken;
 
-  @override
-  String toString() {
-    return 'SignInReqBodyModel(idToken: $idToken)';
-  }
+/// Create a copy of SignInReqBodyModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SignInReqBodyModelCopyWith<_SignInReqBodyModel> get copyWith => __$SignInReqBodyModelCopyWithImpl<_SignInReqBodyModel>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SignInReqBodyModelImpl &&
-            (identical(other.idToken, idToken) || other.idToken == idToken));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, idToken);
-
-  /// Create a copy of SignInReqBodyModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SignInReqBodyModelImplCopyWith<_$SignInReqBodyModelImpl> get copyWith =>
-      __$$SignInReqBodyModelImplCopyWithImpl<_$SignInReqBodyModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SignInReqBodyModelImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$SignInReqBodyModelToJson(this, );
 }
 
-abstract class _SignInReqBodyModel implements SignInReqBodyModel {
-  const factory _SignInReqBodyModel(
-          {@JsonKey(name: 'id_token') required final String idToken}) =
-      _$SignInReqBodyModelImpl;
-
-  factory _SignInReqBodyModel.fromJson(Map<String, dynamic> json) =
-      _$SignInReqBodyModelImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'id_token')
-  String get idToken;
-
-  /// Create a copy of SignInReqBodyModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SignInReqBodyModelImplCopyWith<_$SignInReqBodyModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,idToken);
+
+@override
+String toString() {
+  return 'SignInReqBodyModel(idToken: $idToken)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SignInReqBodyModelCopyWith<$Res> implements $SignInReqBodyModelCopyWith<$Res> {
+  factory _$SignInReqBodyModelCopyWith(_SignInReqBodyModel value, $Res Function(_SignInReqBodyModel) _then) = __$SignInReqBodyModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'id_token') String idToken
+});
+
+
+
+
+}
+/// @nodoc
+class __$SignInReqBodyModelCopyWithImpl<$Res>
+    implements _$SignInReqBodyModelCopyWith<$Res> {
+  __$SignInReqBodyModelCopyWithImpl(this._self, this._then);
+
+  final _SignInReqBodyModel _self;
+  final $Res Function(_SignInReqBodyModel) _then;
+
+/// Create a copy of SignInReqBodyModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? idToken = null,}) {
+  return _then(_SignInReqBodyModel(
+idToken: null == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

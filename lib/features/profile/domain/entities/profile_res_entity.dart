@@ -1,29 +1,40 @@
-import 'dart:io';
-import 'package:freezed_annotation/freezed_annotation.dart';
+class ProfileResEntity {
+  ProfileResEntity({
+    this.id,
+    this.image,
+    this.name,
+    this.phone,
+    this.email,
+    this.createdAt,
+  });
 
-part 'profile_res_entity.freezed.dart';
+  final int? id;
+  final String? image;
+  final String? name;
+  final String? phone;
+  final String? email;
+  final String? createdAt;
 
-@freezed
-class ProfileResEntity with _$ProfileResEntity {
-  const factory ProfileResEntity({
-     int? id,
-     String? image,
-     String? name,
-     String? phone,
-     String? email,
-     BalanceEntity? balance,
-     String? createdAt,
-     @JsonKey(ignore: true) File? selectedImage,
-  }) = _ProfileResEntity;
-}
+  ProfileResEntity copyWith({
+    int? id,
+    String? image,
+    String? name,
+    String? phone,
+    String? email,
+    String? createdAt,
+  }) {
+    return ProfileResEntity(
+      id: id ?? this.id,
+      image: image ?? this.image,
+      name: name ?? this.name,
+      phone: phone ?? this.phone,
+      email: email ?? this.email,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
 
-@freezed
-class BalanceEntity with _$BalanceEntity {
-  const factory BalanceEntity({
-     String? currentBalance,
-     String? totalEarned,
-     String? totalSpent,
-     String? pendingBalance,
-     String? currency,
-  }) = _BalanceEntity;
+  @override
+  String toString() {
+    return 'ProfileResEntity(id: $id, name: $name, phone: $phone, email: $email, createdAt: $createdAt, image: $image)';
+  }
 }

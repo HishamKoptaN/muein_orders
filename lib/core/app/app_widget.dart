@@ -8,6 +8,7 @@ import '../../features/auth/sign_in/present/bloc/sign_in_bloc.dart';
 import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart';
 import '../../features/cached_docs/present/bloc/cached_doc_bloc.dart';
 import '../../features/docs/present/blocs/docs_bloc/docs_bloc.dart';
+import '../../features/financial/present/financial_rep_bloc/financial_bloc.dart';
 import '../../features/home/present/bloc/home_bloc.dart';
 import '../../features/instructions/present/bloc/instructions_bloc.dart';
 import '../../features/language/bloc/language_bloc.dart';
@@ -19,8 +20,8 @@ import '../di/dependency_injection.dart';
 import '../localization/app_localization_setup.dart';
 import '../routing/app_router.dart';
 
-class MubinOrdersApp extends StatelessWidget {
-  const MubinOrdersApp({super.key});
+class MueinOrdersApp extends StatelessWidget {
+  const MueinOrdersApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,7 @@ class MubinOrdersApp extends StatelessWidget {
         BlocProvider<OrdersBloc>(create: (_) => getIt<OrdersBloc>()),
         BlocProvider<DocsBloc>(create: (_) => getIt<DocsBloc>()),
         BlocProvider<CachedDocBloc>(create: (_) => getIt<CachedDocBloc>()),
+        BlocProvider<FinancialBloc>(create: (_) => getIt<FinancialBloc>()),
         BlocProvider<ProfileBloc>(create: (_) => getIt<ProfileBloc>()),
       ],
       child: ScreenUtilInit(
@@ -57,16 +59,11 @@ class MubinOrdersApp extends StatelessWidget {
                   return MaterialApp.router(
                     title: AppConfig.appName,
                     debugShowCheckedModeBanner: false,
-                    theme: _lightTheme(buttonSize, primaryBtnColor),
-                    darkTheme: _darkTheme(buttonSize, primaryBtnColor),
-                    themeMode: themeState.maybeWhen(
-                      loaded: (themeMode) => themeMode,
-                      orElse: () => ThemeMode.system,
-                    ),
-                    locale:
-                        // const Locale('ar'),
-                        languageState.maybeWhen(
-                      loaded: (locale) => locale ?? const Locale('ar'),
+                    // theme: _lightTheme(buttonSize, primaryBtnColor),
+                    // darkTheme: _lightTheme(buttonSize, primaryBtnColor),
+                    // themeMode: ThemeMode.light,
+                    locale: languageState.maybeWhen(
+                      loaded: (locale) => locale,
                       orElse: () => const Locale('ar'),
                     ),
                     localizationsDelegates:

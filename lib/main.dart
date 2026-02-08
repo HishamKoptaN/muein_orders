@@ -9,27 +9,22 @@ import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl_standalone.dart';
 import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
+import 'core/app/global_variable.dart';
 import 'core/app_observer.dart';
 import 'core/background/workmanager_initializer.dart';
 import 'core/config/app_initializer.dart';
+import 'core/database/shared_pref_helper.dart';
+import 'core/database/shared_pref_keys.dart';
 import 'core/di/dependency_injection.dart';
+import 'features/auth/auth/present/bloc/auth_bloc.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    if (Firebase.apps.isEmpty) {
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
-    }
-  } catch (e, st) {
-    debugPrint('🔥 Firebase init error: $e');
-    debugPrint('$st');
-  }
-  Bloc.observer = AppBlocObserver();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await AppInitializer.initialize();
   await configureDependencies();
+  GlobalVariable.authBloc = getIt<AuthBloc>();
   final workManager = getIt<WorkManagerInitializer>();
   await workManager.initialize();
   await workManager.registerSystemUploadTask();
@@ -39,12 +34,13 @@ Future<void> main() async {
     intl.Intl.defaultLocale = 'en';
     FlutterNativeSplash.remove();
     if (kDebugMode) {
-      // await SharedPrefHelper.clearAllData();
-      // await SharedPrefHelper.clearAllSecuredData();
+      Bloc.observer = AppBlocObserver();
+      await SharedPrefHelper.setSecuredString(
+        key: SharedPrefKeys.jwtToken,
+        value: '8|mk6v1VBU0Gi2g7o29sxnR3ivFdz4vJljiSHQm4Cb864f05cb',
+      );
     }
-    runApp(
-      const MubinOrdersApp(),
-    );
+    runApp(const MueinOrdersApp());
   } catch (error, stackTrace) {
     _handleError(
       error: error,
@@ -53,22 +49,19 @@ Future<void> main() async {
     );
   }
 }
+
 void _handleError({
   required Object error,
   required StackTrace stackTrace,
   required String context,
 }) {
-  debugPrint('🔥 Error ($context): $error');
-  debugPrint('$stackTrace');
   runApp(
     ErrorApp(
       errorDetails: FlutterErrorDetails(
         exception: error,
         stack: stackTrace,
         library: 'app',
-        context: ErrorDescription(
-          context,
-        ),
+        context: ErrorDescription(context),
       ),
     ),
   );

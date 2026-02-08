@@ -4,7 +4,7 @@ part 'sign_in_req_body_model.freezed.dart';
 part 'sign_in_req_body_model.g.dart';
 
 @freezed
-class SignInReqBodyModel with _$SignInReqBodyModel {
+abstract class SignInReqBodyModel with _$SignInReqBodyModel {
   const factory SignInReqBodyModel({
     @JsonKey(name: 'id_token') required String idToken,
   }) = _SignInReqBodyModel;

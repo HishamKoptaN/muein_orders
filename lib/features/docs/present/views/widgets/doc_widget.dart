@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../../../../l10n/app_localizations.dart';
 import '../../../domain/entities/docs_res_entity.dart';
 import 'image_preview.dart';
 import 'video_widget.dart';
 
 class DocWidget extends StatelessWidget {
-  const DocWidget({
-    super.key,
-    required this.orderEntity,
-  });
+  const DocWidget({super.key, required this.orderEntity});
   final DocEntity? orderEntity;
   static const String routeName = 'DocWidget';
   @override
@@ -60,9 +58,7 @@ class DocWidget extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           ImagePreview.routeName,
-                          arguments: {
-                            'image_url': orderEntity?.imageOne ?? '',
-                          },
+                          arguments: {'image_url': orderEntity?.imageOne ?? ''},
                         );
                       },
                       child: Image.network(
@@ -97,9 +93,7 @@ class DocWidget extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           ImagePreview.routeName,
-                          arguments: {
-                            'image_url': orderEntity?.imageTwo ?? '',
-                          },
+                          arguments: {'image_url': orderEntity?.imageTwo ?? ''},
                         );
                       },
                       child: ClipRRect(

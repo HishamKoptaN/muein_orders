@@ -18,7 +18,7 @@ class LocationPickerButton extends StatelessWidget {
   });
   final GenericFormzInput<double>? latitude;
   final GenericFormzInput<double>? longitude;
-  final PackageEntity package;
+  final ProductTypeEntity package;
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
@@ -53,8 +53,9 @@ class LocationPickerButton extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Almarai',
                       fontSize: 16,
-                      color:
-                          hasLocation ? Colors.black : const Color(0xFFBABABA),
+                      color: hasLocation
+                          ? Colors.black
+                          : const Color(0xFFBABABA),
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -70,20 +71,18 @@ class LocationPickerButton extends StatelessWidget {
           onTap: () async {
             final LatLng? result = await Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (_) => const PickLocationView(),
-              ),
+              MaterialPageRoute(builder: (_) => const PickLocationView()),
             );
             if (result != null) {
               final lat = result.latitude.toString();
               final lng = result.longitude.toString();
               context.read<CachedDocBloc>().add(
-                    CachedDocEvent.updateData(
-                      latitude: GenericFormzInput.dirty(double.parse(lat)),
-                      longitude: GenericFormzInput.dirty(double.parse(lng)),
-                      package: package,
-                    ),
-                  );
+                CachedDocEvent.updateData(
+                  latitude: GenericFormzInput.dirty(double.parse(lat)),
+                  longitude: GenericFormzInput.dirty(double.parse(lng)),
+                  package: package,
+                ),
+              );
             }
           },
           child: Container(
@@ -111,11 +110,7 @@ class LocationPickerButton extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 4),
-                const Icon(
-                  Icons.location_on,
-                  color: Colors.white,
-                  size: 18,
-                ),
+                const Icon(Icons.location_on, color: Colors.white, size: 18),
               ],
             ),
           ),

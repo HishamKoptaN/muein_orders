@@ -1,6 +1,4 @@
 class ApiConstants {
- 
-
   // Auth endpoints
   static const String check = 'check';
   static const String login = 'login';
@@ -16,6 +14,7 @@ class ApiConstants {
   static const String docs = 'docs';
   static const String notifications = 'notifications';
   static const String externalNotifications = 'external-notifications';
+  static const String expenses = 'expenses';
 
   // Headers
   static const String authToken = 'auth-token';

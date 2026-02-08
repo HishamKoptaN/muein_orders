@@ -6,14 +6,8 @@ part of 'sign_in_req_body_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SignInReqBodyModelImpl _$$SignInReqBodyModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SignInReqBodyModelImpl(
-      idToken: json['id_token'] as String,
-    );
+_SignInReqBodyModel _$SignInReqBodyModelFromJson(Map<String, dynamic> json) =>
+    _SignInReqBodyModel(idToken: json['id_token'] as String);
 
-Map<String, dynamic> _$$SignInReqBodyModelImplToJson(
-        _$SignInReqBodyModelImpl instance) =>
-    <String, dynamic>{
-      'id_token': instance.idToken,
-    };
+Map<String, dynamic> _$SignInReqBodyModelToJson(_SignInReqBodyModel instance) =>
+    <String, dynamic>{'id_token': instance.idToken};

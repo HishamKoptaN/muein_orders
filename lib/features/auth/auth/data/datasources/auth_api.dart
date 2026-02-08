@@ -9,15 +9,11 @@ import '../models/auth_res_model.dart';
 part 'auth_api.g.dart';
 
 @singleton
-@RestApi(
-  baseUrl: AppConfig.apiAuthBaseUrl,
-)
+@RestApi(baseUrl: AppConfig.apiAuthBaseUrl)
 abstract class AuthApi {
   @factoryMethod
   factory AuthApi(Dio dio) = _AuthApi;
-  @POST(
-    ApiConstants.check,
-  )
+  @POST(ApiConstants.check)
   Future<void> check();
 
   @POST(ApiConstants.refreshToken)

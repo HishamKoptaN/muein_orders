@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../bloc/cached_doc_bloc.dart';
 
 class DebugAutoFillDoc extends StatefulWidget {
@@ -51,22 +53,17 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
     try {
       final bloc = context.read<CachedDocBloc>();
       final state = bloc.state;
-      final currentData = {
-        'timestamp': DateTime.now().toIso8601String(),
-      };
+      final currentData = {'timestamp': DateTime.now().toIso8601String()};
       state.mapOrNull(
         loaded: (loadedState) {
-          currentData.addAll(
-            {
-              'latitude': loadedState.latitude?.value?.toString() ?? '',
-              'longitude': loadedState.longitude?.value?.toString() ?? '',
-              'imageOnePath': loadedState.imageOne?.value?.path ?? '',
-              'imageTwoPath': loadedState.imageTwo?.value?.path ?? '',
-              'videoOnePath': loadedState.videoOne?.value?.path ?? '',
-              'videoTwoPath': loadedState.videoTwo?.value?.path ?? '',
-              'shippingCost': loadedState.shippingCost?.value?.toString() ?? '',
-            },
-          );
+          currentData.addAll({
+            'latitude': loadedState.latitude?.value?.toString() ?? '',
+            'longitude': loadedState.longitude?.value?.toString() ?? '',
+            'imageOnePath': loadedState.imageOne?.value?.path ?? '',
+            'imageTwoPath': loadedState.imageTwo?.value?.path ?? '',
+            'videoOnePath': loadedState.videoOne?.value?.path ?? '',
+            'videoTwoPath': loadedState.videoTwo?.value?.path ?? '',
+          });
         },
       );
       final prefs = await SharedPreferences.getInstance();
@@ -76,23 +73,17 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
         _savedData = currentData;
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('✅ تم حفظ البيانات الحالية بنجاح'),
-          backgroundColor: Colors.green,
-          duration: Duration(seconds: 2),
-        ),
+      context.showSuccessSnackBar(
+        title: 'تم الحفظ',
+        message: '✅ تم حفظ البيانات الحالية بنجاح',
       );
 
       debugPrint('💾 تم حفظ البيانات الحالية');
     } catch (e) {
       debugPrint('❌ خطأ في حفظ البيانات: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('❌ فشل في حفظ البيانات: $e'),
-          backgroundColor: Colors.red,
-          duration: const Duration(seconds: 3),
-        ),
+      context.showErrorSnackBar(
+        title: 'خطأ',
+        message: 'فشل في حفظ البيانات: $e',
       );
     }
   }
@@ -100,12 +91,9 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
   // دالة استرجاع البيانات المحفوظة
   Future<void> _restoreSavedData(BuildContext context) async {
     if (_savedData == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('❌ لا توجد بيانات محفوظة للاسترجاع'),
-          backgroundColor: Colors.orange,
-          duration: Duration(seconds: 2),
-        ),
+      context.showErrorSnackBar(
+        title: 'خطأ',
+        message: 'لا توجد بيانات محفوظة للاسترجاع',
       );
       return;
     }
@@ -115,46 +103,39 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
 
       // استرجاع البيانات المحفوظة
       if (_savedData!['orderId'] != null) {
-        bloc.add(CachedDocEvent.updateData(
-          orderId: GenericFormzInput.dirty(_savedData!['orderId']),
-        ));
+        bloc.add(
+          CachedDocEvent.updateData(
+            orderId: GenericFormzInput.dirty(_savedData!['orderId']),
+          ),
+        );
       }
 
       if (_savedData!['latitude'] != null && _savedData!['longitude'] != null) {
-        bloc.add(CachedDocEvent.updateData(
-          latitude:
-              GenericFormzInput.dirty(double.parse(_savedData!['latitude'])),
-          longitude:
-              GenericFormzInput.dirty(double.parse(_savedData!['longitude'])),
-        ));
+        bloc.add(
+          CachedDocEvent.updateData(
+            latitude: GenericFormzInput.dirty(
+              double.parse(_savedData!['latitude']),
+            ),
+            longitude: GenericFormzInput.dirty(
+              double.parse(_savedData!['longitude']),
+            ),
+          ),
+        );
       }
 
-      if (_savedData!['shippingCost'] != null &&
-          _savedData!['shippingCost'].toString().isNotEmpty) {
-        bloc.add(CachedDocEvent.updateData(
-          shippingCost: GenericFormzInput.dirty(
-              double.parse(_savedData!['shippingCost'])),
-        ));
-      }
       await _restoreSavedFiles(bloc);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('✅ تم استرجاع البيانات المحفوظة'),
-          backgroundColor: Colors.green,
-          duration: Duration(seconds: 2),
-        ),
+      context.showSuccessSnackBar(
+        title: 'تم الاسترجاع',
+        message: '✅ تم استرجاع البيانات المحفوظة',
       );
 
       debugPrint('🔄 تم استرجاع البيانات المحفوظة');
     } catch (e) {
       debugPrint('❌ خطأ في استرجاع البيانات: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('❌ فشل في استرجاع البيانات: $e'),
-          backgroundColor: Colors.red,
-          duration: const Duration(seconds: 3),
-        ),
+      context.showErrorSnackBar(
+        title: 'خطأ',
+        message: 'فشل في استرجاع البيانات: $e',
       );
     }
   }
@@ -171,8 +152,11 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
           _savedData!['imageOnePath'].toString().isNotEmpty) {
         final imageFile = File(_savedData!['imageOnePath']);
         if (await imageFile.exists()) {
-          bloc.add(CachedDocEvent.updateData(
-              imageOne: FileFormzInput.dirty(imageFile)));
+          bloc.add(
+            CachedDocEvent.updateData(
+              imageOne: FileFormzInput.dirty(imageFile),
+            ),
+          );
           debugPrint('✅ تم استرجاع الصورة الأولى: ${imageFile.path}');
         } else {
           debugPrint('⚠️ ملف الصورة الأولى غير موجود: ${imageFile.path}');
@@ -183,8 +167,11 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
           _savedData!['imageTwoPath'].toString().isNotEmpty) {
         final imageFile = File(_savedData!['imageTwoPath']);
         if (await imageFile.exists()) {
-          bloc.add(CachedDocEvent.updateData(
-              imageTwo: FileFormzInput.dirty(imageFile)));
+          bloc.add(
+            CachedDocEvent.updateData(
+              imageTwo: FileFormzInput.dirty(imageFile),
+            ),
+          );
           debugPrint('✅ تم استرجاع الصورة الثانية: ${imageFile.path}');
         } else {
           debugPrint('⚠️ ملف الصورة الثانية غير موجود: ${imageFile.path}');
@@ -195,8 +182,11 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
           _savedData!['videoOnePath'].toString().isNotEmpty) {
         final videoFile = File(_savedData!['videoOnePath']);
         if (await videoFile.exists()) {
-          bloc.add(CachedDocEvent.updateData(
-              videoOne: FileFormzInput.dirty(videoFile)));
+          bloc.add(
+            CachedDocEvent.updateData(
+              videoOne: FileFormzInput.dirty(videoFile),
+            ),
+          );
           debugPrint('✅ تم استرجاع الفيديو الأول: ${videoFile.path}');
         } else {
           debugPrint('⚠️ ملف الفيديو الأول غير موجود: ${videoFile.path}');
@@ -207,8 +197,11 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
           _savedData!['videoTwoPath'].toString().isNotEmpty) {
         final videoFile = File(_savedData!['videoTwoPath']);
         if (await videoFile.exists()) {
-          bloc.add(CachedDocEvent.updateData(
-              videoTwo: FileFormzInput.dirty(videoFile)));
+          bloc.add(
+            CachedDocEvent.updateData(
+              videoTwo: FileFormzInput.dirty(videoFile),
+            ),
+          );
           debugPrint('✅ تم استرجاع الفيديو الثاني: ${videoFile.path}');
         } else {
           debugPrint('⚠️ ملف الفيديو الثاني غير موجود: ${videoFile.path}');
@@ -235,7 +228,8 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
                 leading: const Icon(Icons.save, color: Colors.green),
                 title: const Text('حفظ البيانات الحالية'),
                 subtitle: const Text(
-                    'حفظ البيانات والملفات الحالية لاستخدامها لاحقاً'),
+                  'حفظ البيانات والملفات الحالية لاستخدامها لاحقاً',
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   _saveCurrentData(context);
@@ -247,7 +241,8 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
                   leading: const Icon(Icons.restore, color: Colors.orange),
                   title: const Text('استرجاع البيانات المحفوظة'),
                   subtitle: Text(
-                      'استرجاع البيانات المحفوظة في ${_savedData!['timestamp']}'),
+                    'استرجاع البيانات المحفوظة في ${_savedData!['timestamp']}',
+                  ),
                   onTap: () {
                     Navigator.of(context).pop();
                     _restoreSavedData(context);

@@ -1,16 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'cached_doc_entity.freezed.dart';
 part 'cached_doc_entity.g.dart';
 
-enum UploadStatus {
-  pending,
-  uploading,
-  success,
-  failure,
-}
+enum UploadStatus { pending, uploading, success, failure }
 
 @freezed
-class CachedDocEntity with _$CachedDocEntity {
+abstract class CachedDocEntity with _$CachedDocEntity {
   const factory CachedDocEntity({
     int? id,
     int? orderId,

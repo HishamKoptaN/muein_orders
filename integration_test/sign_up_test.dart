@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mubinorders/main.dart' as app;
+import 'package:mueinorders/main.dart' as app;
 
 // flutter test integration_test\sign_up_test.dart --flavor integration -d 192.168.0.172:33571
 void main() {

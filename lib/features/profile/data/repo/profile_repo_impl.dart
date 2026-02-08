@@ -21,16 +21,14 @@ class ProfileRepoImpl implements ProfileRepo {
   Future<ApiResult<ProfileResEntity>> getProfile() async {
     try {
       final result = await _profileApi.getProfile();
-
-      // الحصول على الإيميل من Firebase
+      print('DEBUG: API Result: ${result.toString()}');
       final firebaseUser = _firebaseAuth.currentUser;
       final email = firebaseUser?.email;
-
-      // دمج البيانات من API مع الإيميل من Firebase
       final profileEntity = result.toEntity().copyWith(email: email ?? '');
-
+      print('DEBUG: Profile Entity: ${profileEntity.toString()}');
       return ApiResult.success(data: profileEntity);
     } catch (e, st) {
+      print('DEBUG: Error in getProfile: $e');
       return ApiResult.failure(
         apiErrorModel: AppErrorHandler.toApiError(e, st),
       );
@@ -48,10 +46,8 @@ class ProfileRepoImpl implements ProfileRepo {
         model.name,
         model.phone,
       );
-      // الحصول على الإيميل من Firebase بعد التحديث
       final firebaseUser = _firebaseAuth.currentUser;
       final email = firebaseUser?.email;
-      // دمج البيانات من API مع الإيميل من Firebase
       final profileEntity = result.toEntity().copyWith(email: email ?? '');
       return ApiResult.success(data: profileEntity);
     } catch (e, st) {

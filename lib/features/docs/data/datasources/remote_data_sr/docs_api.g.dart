@@ -2,11 +2,13 @@
 
 part of 'docs_api.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
 class _DocsApi implements DocsApi {
   _DocsApi(this._dio, {this.baseUrl, this.errorLogger}) {
@@ -25,7 +27,7 @@ class _DocsApi implements DocsApi {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<DocsResModel>(
+    final _options = _setStreamType<DocsResModel?>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -38,10 +40,11 @@ class _DocsApi implements DocsApi {
     final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
     late DocsResModel? _value;
     try {
-      _value =
-          _result.data == null ? null : DocsResModel.fromJson(_result.data!);
+      _value = _result.data == null
+          ? null
+          : DocsResModel.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -66,67 +69,59 @@ class _DocsApi implements DocsApi {
     final _data = FormData();
     _data.fields.add(MapEntry('order_id', orderId.toString()));
     if (videoOne != null) {
-      if (videoOne != null) {
-        _data.files.add(
-          MapEntry(
-            'video_one',
-            MultipartFile.fromFileSync(
-              videoOne.path,
-              filename: videoOne.path.split(Platform.pathSeparator).last,
-            ),
+      _data.files.add(
+        MapEntry(
+          'video_one',
+          MultipartFile.fromFileSync(
+            videoOne.path,
+            filename: videoOne.path.split(Platform.pathSeparator).last,
           ),
-        );
-      }
+        ),
+      );
     }
     if (videoTwo != null) {
-      if (videoTwo != null) {
-        _data.files.add(
-          MapEntry(
-            'video_two',
-            MultipartFile.fromFileSync(
-              videoTwo.path,
-              filename: videoTwo.path.split(Platform.pathSeparator).last,
-            ),
+      _data.files.add(
+        MapEntry(
+          'video_two',
+          MultipartFile.fromFileSync(
+            videoTwo.path,
+            filename: videoTwo.path.split(Platform.pathSeparator).last,
           ),
-        );
-      }
+        ),
+      );
     }
     if (imageOne != null) {
-      if (imageOne != null) {
-        _data.files.add(
-          MapEntry(
-            'image_one',
-            MultipartFile.fromFileSync(
-              imageOne.path,
-              filename: imageOne.path.split(Platform.pathSeparator).last,
-            ),
+      _data.files.add(
+        MapEntry(
+          'image_one',
+          MultipartFile.fromFileSync(
+            imageOne.path,
+            filename: imageOne.path.split(Platform.pathSeparator).last,
           ),
-        );
-      }
+        ),
+      );
     }
     if (imageTwo != null) {
-      if (imageTwo != null) {
-        _data.files.add(
-          MapEntry(
-            'image_two',
-            MultipartFile.fromFileSync(
-              imageTwo.path,
-              filename: imageTwo.path.split(Platform.pathSeparator).last,
-            ),
+      _data.files.add(
+        MapEntry(
+          'image_two',
+          MultipartFile.fromFileSync(
+            imageTwo.path,
+            filename: imageTwo.path.split(Platform.pathSeparator).last,
           ),
-        );
-      }
+        ),
+      );
     }
     _data.fields.add(MapEntry('longitude', longitude));
     _data.fields.add(MapEntry('latitude', latitude));
     _data.fields.add(MapEntry('shipping_costs', shippingCosts));
     final _options = _setStreamType<Doc>(
       Options(
-        method: 'POST',
-        headers: _headers,
-        extra: _extra,
-        contentType: 'multipart/form-data',
-      )
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'multipart/form-data',
+          )
           .compose(
             _dio.options,
             'docs',
@@ -141,7 +136,7 @@ class _DocsApi implements DocsApi {
     try {
       _value = Doc.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -174,3 +169,5 @@ class _DocsApi implements DocsApi {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

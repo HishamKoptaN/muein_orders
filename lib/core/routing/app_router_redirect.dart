@@ -14,9 +14,7 @@ import '../../features/profile/present/views/profile_view.dart';
 
 class AppRouterRedirect {
   // مسارات مسموحة للجميع (مصادق أو غير مصادق)
-  static const Set<String> alwaysAccessible = {
-    SelectLanguageView.routeName,
-  };
+  static const Set<String> alwaysAccessible = {SelectLanguageView.routeName};
 
   // مسارات عامة بس للي مش عامل تسجيل دخول
   static const Set<String> public = {

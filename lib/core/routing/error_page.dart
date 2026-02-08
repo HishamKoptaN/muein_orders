@@ -4,10 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'app_routes.dart';
 
 class ErrorPageBuilder {
-  static Widget build(
-    BuildContext context, {
-    String? message,
-  }) {
+  static Widget build(BuildContext context, {String? message}) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Error'),

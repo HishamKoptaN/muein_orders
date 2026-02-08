@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 class AppConfig {
   // App Information
-  static const String appName = 'Mubin Orders';
+  static const String appName = 'Muein Orders';
   static const String appVersion = '1.3.0';
   static const int buildNumber = 4;
 
@@ -10,8 +10,8 @@ class AppConfig {
   static const String baseUrl =
       'https://hotpink-gnu-383634.hostingersite.com/mapi/';
   // Base URLs
-  static const String apiBaseUrl = '${baseUrl}api/';
   static const String apiAuthBaseUrl = '${baseUrl}auth/';
+  static const String apiBaseUrl = '${baseUrl}api/';
 
   // API Endpoints
   static const String summary = 'summary';
@@ -48,7 +48,7 @@ class AppConfig {
   static const List<String> supportedLanguages = ['ar', 'en'];
 
   // Database Configuration
-  static const String databaseName = 'mubin_orders.db';
+  static const String databaseName = 'muein_orders.db';
   static const int databaseVersion = 1;
 
   // Environment specific configurations

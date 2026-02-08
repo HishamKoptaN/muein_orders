@@ -4,7 +4,7 @@ part 'sign_up_req_model.freezed.dart';
 part 'sign_up_req_model.g.dart';
 
 @freezed
-class SignUpReqModel with _$SignUpReqModel {
+abstract class SignUpReqModel with _$SignUpReqModel {
   const factory SignUpReqModel({
     String? name,
     String? phone,

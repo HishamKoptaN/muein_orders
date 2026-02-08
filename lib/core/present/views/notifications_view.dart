@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import '../../../features/cached_docs/data/datasources/local/drift/app_database.dart';
+
 import '../../../../features/cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../features/cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../di/dependency_injection.dart';
-import '../../widgets/custom_app_bar.dart';
+import '../../widgets/navigation/custom_app_bar.dart';
 
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
@@ -32,9 +33,7 @@ class _NotificationsViewState extends State<NotificationsView> {
     final t = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'الإشعارات',
-      ),
+      appBar: const CustomAppBar(title: 'الإشعارات'),
       body: StreamBuilder<List<CachedDocEntity>>(
         stream: _docsStream,
         builder: (context, snapshot) {
@@ -51,11 +50,14 @@ class _NotificationsViewState extends State<NotificationsView> {
           final docs = snapshot.data ?? [];
 
           // تصفية الطلبات قيد الرفع فقط
-          final uploadingDocs = docs.where((doc) =>
-            doc.uploadStatus == UploadStatus.uploading ||
-            doc.uploadStatus == UploadStatus.success ||
-            doc.uploadStatus == UploadStatus.failure
-          ).toList();
+          final uploadingDocs = docs
+              .where(
+                (doc) =>
+                    doc.uploadStatus == UploadStatus.uploading ||
+                    doc.uploadStatus == UploadStatus.success ||
+                    doc.uploadStatus == UploadStatus.failure,
+              )
+              .toList();
 
           if (uploadingDocs.isEmpty) {
             return _buildEmptyState(t);
@@ -72,24 +74,20 @@ class _NotificationsViewState extends State<NotificationsView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.notifications_none,
-            size: 80,
-            color: Colors.grey[400],
-          ),
+          Icon(Icons.notifications_none, size: 80, color: Colors.grey[400]),
           Gap(16.h),
           Text(
             'لا توجد إشعارات حالياً',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: Colors.grey[600],
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(color: Colors.grey[600]),
           ),
           Gap(8.h),
           Text(
             'ستظهر هنا إشعارات تقدم رفع التوثيقات',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Colors.grey[500],
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: Colors.grey[500]),
             textAlign: TextAlign.center,
           ),
         ],
@@ -97,7 +95,10 @@ class _NotificationsViewState extends State<NotificationsView> {
     );
   }
 
-  Widget _buildNotificationsList(List<CachedDocEntity> docs, AppLocalizations t) {
+  Widget _buildNotificationsList(
+    List<CachedDocEntity> docs,
+    AppLocalizations t,
+  ) {
     return ListView.builder(
       padding: EdgeInsets.all(16.w),
       itemCount: docs.length,
@@ -158,19 +159,13 @@ class _NotificationsViewState extends State<NotificationsView> {
               Gap(8.h),
               Text(
                 'التقدم: ${doc.uploadProgress.toStringAsFixed(1)}%',
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: Colors.grey[600],
-                ),
+                style: TextStyle(fontSize: 12.sp, color: Colors.grey[600]),
               ),
             ],
             Gap(8.h),
             Text(
               _getDescriptionText(doc, t),
-              style: TextStyle(
-                fontSize: 12.sp,
-                color: Colors.grey[500],
-              ),
+              style: TextStyle(fontSize: 12.sp, color: Colors.grey[500]),
             ),
           ],
         ),

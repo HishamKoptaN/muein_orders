@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../../../core/routing/navigation_service.dart';
-import '../../../../../../core/theme/app_colors.dart';
-import '../../../../../../core/widgets/custom_circular_progress.dart';
+import '../../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../sign_in/present/views/sign_in_view.dart';
 import '../../bloc/sign_up_bloc.dart';
 
 class SignUpActions extends StatelessWidget {
-  const SignUpActions({
-    super.key,
-    required this.formzSubmissionStatus,
-  });
+  const SignUpActions({super.key, required this.formzSubmissionStatus});
   final FormzSubmissionStatus formzSubmissionStatus;
 
   @override
@@ -23,33 +18,15 @@ class SignUpActions extends StatelessWidget {
     return BlocBuilder<SignUpBloc, SignUpState>(
       builder: (context, state) => Column(
         children: [
-          SizedBox(
-            width: 332.w,
-            height: 60,
-            child: ElevatedButton(
-              key: const Key('signUp_button'),
-              onPressed: formzSubmissionStatus.isSuccess
-                  ? () => context.read<SignUpBloc>().add(
-                        const SignUpEvent.signUp(),
-                      )
-                  : null,
-              style: ButtonStyle(
-                backgroundColor: formzSubmissionStatus.isInProgressOrSuccess
-                    ? WidgetStateProperty.all(AppColors.primary)
-                    : WidgetStateProperty.all(Colors.grey),
-              ),
-              child: formzSubmissionStatus.isInProgress
-                  ? const CustomCircularProgress()
-                  : Text(
-                      t.registerAnAccount,
-                      style: const TextStyle(
-                        fontFamily: 'Almarai',
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                        // color: Colors.white,
-                      ),
-                    ),
-            ),
+          CustomBtnWidget(
+            key: const Key('signUp_button'),
+            onPressed: () {
+              if (formzSubmissionStatus.isSuccess) {
+                context.read<SignUpBloc>().add(const SignUpEvent.signUp());
+              }
+            },
+            text: t.registerAnAccount,
+            formzSubmissionStatus: formzSubmissionStatus,
           ),
           const SizedBox(height: 12),
           Row(

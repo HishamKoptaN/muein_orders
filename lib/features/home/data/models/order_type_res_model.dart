@@ -4,9 +4,9 @@ part 'order_type_res_model.freezed.dart';
 part 'order_type_res_model.g.dart';
 
 @freezed
-class OrderTypeResModel with _$OrderTypeResModel {
+abstract class OrderTypeResModel with _$OrderTypeResModel {
   const factory OrderTypeResModel({
-    @JsonKey(name: 'package') Package? package,
+    @JsonKey(name: 'product_type') ProductTypeModel? productType,
     @JsonKey(name: 'orders_count') int? ordersCount,
     @JsonKey(name: 'total_quran_copies') int? totalQuranCopies,
   }) = _OrderTypeResModel;
@@ -16,26 +16,12 @@ class OrderTypeResModel with _$OrderTypeResModel {
 }
 
 @freezed
-class Package with _$Package {
-  const factory Package({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'image') String? image,
-    @JsonKey(name: 'quantity') int? quantity,
-    @JsonKey(name: 'docs_count') int? docsCount,
-    @JsonKey(name: 'type') Type? type,
-  }) = _Package;
-
-  factory Package.fromJson(Map<String, dynamic> json) =>
-      _$PackageFromJson(json);
-}
-
-@freezed
-class Type with _$Type {
-  const factory Type({
+abstract class ProductTypeModel with _$ProductTypeModel {
+  const factory ProductTypeModel({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'distributed_type') String? distributedType,
-  }) = _Type;
-
-  factory Type.fromJson(Map<String, dynamic> json) => _$TypeFromJson(json);
+    @JsonKey(name: 'docs_count') int? docsCount,
+  }) = _ProductTypeModel;
+  factory ProductTypeModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductTypeModelFromJson(json);
 }

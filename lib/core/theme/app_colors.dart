@@ -41,7 +41,6 @@ class AppColors {
     onSurface: Color(0xFFFFFFFF),
     surfaceContainerHighest: Color(0x1FFFFFFF), // شفافية لملء الحقول
     onSurfaceVariant: hintOnDark, // للنصوص الثانوية والتلميحات
-
     // Outline & Shadow
     outline: Color(0x66FFFFFF),
     outlineVariant: Color(0x33FFFFFF),
@@ -228,8 +227,9 @@ class AppColors {
   // Status Aliases
   static const Color uploading = warning;
   static const Color uploaded = success;
-  static const Color failed =
-      Color(0xFFD32F2F); // Same as light theme error color
+  static const Color failed = Color(
+    0xFFD32F2F,
+  ); // Same as light theme error color
   static const Color pending = grey500;
 
   // Additional Gradients

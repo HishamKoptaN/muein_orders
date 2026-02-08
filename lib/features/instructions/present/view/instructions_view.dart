@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../home/present/view/home_view.dart';
 import '../bloc/instructions_bloc.dart';
@@ -24,15 +25,13 @@ class _InstructionsViewState extends State<InstructionsView> {
   @override
   void initState() {
     super.initState();
-    // إعادة تعيين الـ PageController إلى الصفحة الأولى عند دخول الصفحة
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_pageController.hasClients) {
         _pageController.jumpToPage(0);
       }
-      // إعادة تعيين الـ Bloc إلى الصفحة الأولى
       context.read<InstructionsBloc>().add(
-            const InstructionsEvent.pageChanged(pageIndex: 0),
-          );
+        const InstructionsEvent.pageChanged(pageIndex: 0),
+      );
     });
   }
 
@@ -65,18 +64,11 @@ class _InstructionsViewState extends State<InstructionsView> {
           : null,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(
-            right: 15,
-            left: 15,
-          ),
+          padding: const EdgeInsets.only(right: 15, left: 15),
           child: BlocConsumer<InstructionsBloc, InstructionsState>(
             listener: (context, state) {
               state.whenOrNull(
-                loaded: (
-                  pages,
-                  currentPageIndex,
-                  isLastPage,
-                ) {
+                loaded: (pages, currentPageIndex, isLastPage) {
                   if (_pageController.hasClients &&
                       _pageController.page?.round() != currentPageIndex) {
                     _pageController.animateToPage(
@@ -90,16 +82,10 @@ class _InstructionsViewState extends State<InstructionsView> {
             },
             builder: (context, state) {
               return state.maybeWhen(
-                loaded: (
-                  pages,
-                  currentPageIndex,
-                  isLastPage,
-                ) {
+                loaded: (pages, currentPageIndex, isLastPage) {
                   return Column(
                     children: [
-                      Gap(
-                        100.h,
-                      ),
+                      Gap(100.h),
                       SizedBox(
                         height: 460.h,
                         width: 261.w,
@@ -108,10 +94,8 @@ class _InstructionsViewState extends State<InstructionsView> {
                           physics: const NeverScrollableScrollPhysics(),
                           onPageChanged: (i) {
                             context.read<InstructionsBloc>().add(
-                                  InstructionsEvent.pageChanged(
-                                    pageIndex: i,
-                                  ),
-                                );
+                              InstructionsEvent.pageChanged(pageIndex: i),
+                            );
                           },
                           itemCount: pages.length,
                           itemBuilder: (context, index) {
@@ -126,14 +110,13 @@ class _InstructionsViewState extends State<InstructionsView> {
                                   height: 265.h,
                                   width: 261.w,
                                 ),
-                                Gap(
-                                  32.h,
-                                ),
+                                Gap(32.h),
                                 // Title
                                 Text(
                                   t.byKey(page.titleKey),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
+                                    color: Colors.white,
                                     fontFamily: 'Almarai',
                                     fontWeight: FontWeight.w700,
                                     fontStyle: FontStyle.normal,
@@ -141,14 +124,13 @@ class _InstructionsViewState extends State<InstructionsView> {
                                     letterSpacing: -0.22,
                                   ),
                                 ),
-                                Gap(
-                                  16.h,
-                                ),
+                                Gap(16.h),
                                 // Description
                                 Text(
                                   t.byKey(page.descriptionKey),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
+                                    color: Colors.white,
                                     fontFamily: 'Almarai',
                                     fontWeight: FontWeight.w400,
                                     fontStyle: FontStyle.normal,
@@ -161,9 +143,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                           },
                         ),
                       ),
-                      Gap(
-                        20.h,
-                      ),
+                      Gap(20.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
@@ -182,9 +162,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                           ),
                         ),
                       ),
-                      Gap(
-                        20.h,
-                      ),
+                      Gap(20.h),
                       SizedBox(
                         child: Navigator.canPop(context)
                             ? const SizedBox.shrink()
@@ -204,10 +182,8 @@ class _InstructionsViewState extends State<InstructionsView> {
                                 ),
                               ),
                       ),
-                      Gap(
-                        54.h,
-                      ),
-                      ElevatedButton(
+                      Gap(54.h),
+                      CustomBtnWidget(
                         onPressed: () {
                           if (isLastPage) {
                             NavigationService.navigateAndRemoveUntil(
@@ -216,53 +192,30 @@ class _InstructionsViewState extends State<InstructionsView> {
                             );
                           } else {
                             context.read<InstructionsBloc>().add(
-                                  InstructionsEvent.pageChanged(
-                                    pageIndex: currentPageIndex + 1,
-                                  ),
-                                );
+                              InstructionsEvent.pageChanged(
+                                pageIndex: currentPageIndex + 1,
+                              ),
+                            );
                           }
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: Text(
-                          isLastPage ? t.start : t.next,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
+                        text: isLastPage ? t.start : t.next,
                       ),
-                      Gap(
-                        24.h,
-                      ),
+                      Gap(24.h),
                     ],
                   );
                 },
-                loading: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
+                loading: () => const Center(child: CircularProgressIndicator()),
                 failure: (errorMessage) => Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(errorMessage),
                       const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text(t.retry),
-                      ),
+                      ElevatedButton(onPressed: () {}, child: Text(t.retry)),
                     ],
                   ),
                 ),
-                orElse: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
+                orElse: () => const Center(child: CircularProgressIndicator()),
               );
             },
           ),

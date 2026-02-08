@@ -7,19 +7,17 @@ import '../repo/orders_repo.dart';
 @singleton
 class OrdersUseCases {
   final OrdersRepo ordersRepo;
-  OrdersUseCases(
-    this.ordersRepo,
-  );
+  OrdersUseCases(this.ordersRepo);
   Future<ApiResult<OrdersResEntity?>> getOrders({
-    required int packageId,
+    required int productTypeId,
     String? query,
     bool loadMore = false,
     bool? isDistributionPhotographed,
   }) async {
     return await ordersRepo.getOrders(
-      packageId: packageId,
+      productTypeId: productTypeId,
       loadMore: loadMore,
-      isDistributionPhotographed: isDistributionPhotographed,
+      // isDistributionPhotographed: isDistributionPhotographed,
     );
   }
 

@@ -1,4 +1,4 @@
-//! tool/manage_l10n.dart
+//! dart run tool/manage_l10n.dart
 import 'dart:convert';
 import 'dart:io';
 

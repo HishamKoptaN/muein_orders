@@ -4,8 +4,6 @@ targets:
       include:
         - $package$
         - lib/**
-        - lib/core/routing/navigation_service.dart
-        - lib/core/routing/route_utils.dart
       exclude:
         - lib/l10n/**
     builders:

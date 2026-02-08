@@ -1,7 +1,7 @@
 part of 'instructions_bloc.dart';
 
 @freezed
-class InstructionsState with _$InstructionsState {
+abstract class InstructionsState with _$InstructionsState {
   const factory InstructionsState.loaded({
     required List<InstructionPageEntity> pages,
     required int currentPageIndex,

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../core/routing/navigation_service.dart';
-import '../../../core/widgets/custom_app_bar.dart';
+import '../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../auth/auth_choice/present/views/auth_choice_view.dart';
 import '../bloc/language_bloc.dart';
 
@@ -38,18 +38,14 @@ class SelectLanguageView extends StatelessWidget {
     return CustomScaffold(
       backgroundColor: const Color(0xFF003A45),
       appBar: Navigator.canPop(context)
-          ? CustomAppBar(
-              title: t.changeLanguage,
-            )
+          ? CustomAppBar(title: t.changeLanguage)
           : null,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(
               child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight,
-                ),
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
                 child: IntrinsicHeight(
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -74,43 +70,47 @@ class SelectLanguageView extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 32),
                                 ...languages.map((language) {
-                                  final langCode =
-                                      language['code']!.split('-').first;
+                                  final langCode = language['code']!
+                                      .split('-')
+                                      .first;
                                   final countryCode =
                                       language['code']!.split('-').length > 1
-                                          ? language['code']!
-                                              .split('-')
-                                              .last
-                                              .toUpperCase()
-                                          : null;
+                                      ? language['code']!
+                                            .split('-')
+                                            .last
+                                            .toUpperCase()
+                                      : null;
                                   final isSelected =
                                       currentLocale.languageCode == langCode &&
-                                          (countryCode == null ||
-                                              currentLocale.countryCode
-                                                      ?.toUpperCase() ==
-                                                  countryCode);
+                                      (countryCode == null ||
+                                          currentLocale.countryCode
+                                                  ?.toUpperCase() ==
+                                              countryCode);
 
                                   return Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 12.0),
+                                    padding: const EdgeInsets.only(
+                                      bottom: 12.0,
+                                    ),
                                     child: Material(
                                       color: isSelected
-                                          ? const Color(0xFF83BEA8)
-                                              .withOpacity(0.2)
+                                          ? const Color(
+                                              0xFF83BEA8,
+                                            ).withOpacity(0.2)
                                           : Colors.white.withOpacity(0.1),
                                       borderRadius: BorderRadius.circular(10),
                                       child: InkWell(
                                         onTap: () {
-                                          final parts =
-                                              language['code']!.split('-');
+                                          final parts = language['code']!.split(
+                                            '-',
+                                          );
                                           context.read<LanguageBloc>().add(
-                                                LanguageEvent.changeLanguage(
-                                                  languageCode: parts[0],
-                                                  countryCode: parts.length > 1
-                                                      ? parts[1]
-                                                      : null,
-                                                ),
-                                              );
+                                            LanguageEvent.changeLanguage(
+                                              languageCode: parts[0],
+                                              countryCode: parts.length > 1
+                                                  ? parts[1]
+                                                  : null,
+                                            ),
+                                          );
                                         },
                                         borderRadius: BorderRadius.circular(10),
                                         child: Container(
@@ -181,9 +181,8 @@ class SelectLanguageView extends StatelessWidget {
                               ],
                             );
                           },
-                          orElse: () => const Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                          orElse: () =>
+                              const Center(child: CircularProgressIndicator()),
                         );
                       },
                     ),

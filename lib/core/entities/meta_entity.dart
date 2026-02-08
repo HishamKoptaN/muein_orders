@@ -4,7 +4,7 @@ part 'meta_entity.freezed.dart';
 part 'meta_entity.g.dart';
 
 @freezed
-class MetaEntity with _$MetaEntity {
+abstract class MetaEntity with _$MetaEntity {
   const factory MetaEntity({
     int? currentPage,
     int? totalPages,

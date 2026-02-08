@@ -5,10 +5,12 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../core/utils/app_file_manager.dart';
 import '../../../home/domain/entities/order_type_res_entity.dart';
 import '../../domain/entities/cached_doc_entity.dart';
 import '../../domain/usecases/cached_docs_use_cases.dart';
-import '../../../../core/utils/app_file_manager.dart';
+
 part 'cached_doc_bloc.freezed.dart';
 part 'cached_doc_event.dart';
 part 'cached_doc_state.dart';
@@ -24,10 +26,9 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
   FileFormzInput? _videoTwo;
   GenericFormzInput<double>? _latitude;
   GenericFormzInput<double>? _longitude;
-  GenericFormzInput<double>? _shippingCosts;
   FormzSubmissionStatus? _formzSubmissionStatus;
   double? _localDocProgress;
-  PackageEntity? _package;
+  ProductTypeEntity? _package;
   // final NotificationManager notificationManager;
   StreamSubscription? _subscription;
 
@@ -35,142 +36,121 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
     this._docsUseCase,
     this._fileManager,
     // this.notificationManager,
-  ) : super(
-          const CachedDocState.loading(),
-        ) {
-    on<CachedDocEvent>(
-      (event, emit) async {
-        await event.whenOrNull(
-          updateData: (
-            orderId,
-            imageOne,
-            imageTwo,
-            videoOne,
-            videoTwo,
-            latitude,
-            longitude,
-            shippingCost,
-            package,
-          ) async {
-            _orderId = orderId ?? _orderId;
-            _imageOne = imageOne ?? _imageOne;
-            _imageTwo = imageTwo ?? _imageTwo;
-            _videoOne = videoOne ?? _videoOne;
-            _videoTwo = videoTwo ?? _videoTwo;
-            _latitude = latitude ?? _latitude;
-            _longitude = longitude ?? _longitude;
-            _shippingCosts = shippingCost ?? _shippingCosts;
-            _package = package ?? _package;
+  ) : super(const CachedDocState.loading()) {
+    on<CachedDocEvent>((event, emit) async {
+      await event.whenOrNull(
+        updateData:
+            (
+              orderId,
+              imageOne,
+              imageTwo,
+              videoOne,
+              videoTwo,
+              latitude,
+              longitude,
+              package,
+            ) async {
+              _orderId = orderId ?? _orderId;
+              _imageOne = imageOne ?? _imageOne;
+              _imageTwo = imageTwo ?? _imageTwo;
+              _videoOne = videoOne ?? _videoOne;
+              _videoTwo = videoTwo ?? _videoTwo;
+              _latitude = latitude ?? _latitude;
+              _longitude = longitude ?? _longitude;
+              _package = package ?? _package;
+              emitCustomLoaded(emit: emit);
+            },
+        cachedDoc: () async {
+          try {
             emitCustomLoaded(
               emit: emit,
+              formzSubmissionStatus: FormzSubmissionStatus.inProgress,
             );
-          },
-          cachedDoc: () async {
-            try {
-              emitCustomLoaded(
-                emit: emit,
-                formzSubmissionStatus: FormzSubmissionStatus.inProgress,
-              );
-
-              // نسخ الملفات إلى مجلد التطبيق الخاص وحفظ مساراتها الجديدة
-              String? copiedImageOne;
-              String? copiedImageTwo;
-              String? copiedVideoOne;
-              String? copiedVideoTwo;
-
-              // نسخ الصورة الأولى
-              if (_imageOne?.value?.path != null) {
-                copiedImageOne = await _fileManager.copyFileToTempDirectory(_imageOne!.value!.path);
-              }
-
-              // نسخ الصورة الثانية
-              if (_imageTwo?.value?.path != null) {
-                copiedImageTwo = await _fileManager.copyFileToTempDirectory(_imageTwo!.value!.path);
-              }
-
-              // نسخ الفيديو الأول
-              if (_videoOne?.value?.path != null) {
-                copiedVideoOne = await _fileManager.copyFileToTempDirectory(_videoOne!.value!.path);
-              }
-              // نسخ الفيديو الثاني
-              if (_videoTwo?.value?.path != null) {
-                copiedVideoTwo = await _fileManager.copyFileToTempDirectory(_videoTwo!.value!.path);
-              }
-
-              final docId = DateTime.now().millisecondsSinceEpoch;
-              await _docsUseCase.cachedDoc(
-                doc: CachedDocEntity(
-                  id: docId,
-                  orderId: _orderId!.value,
-                  imageOne: copiedImageOne,
-                  imageTwo: copiedImageTwo,
-                  videoOne: copiedVideoOne,
-                  videoTwo: copiedVideoTwo,
-                  latitude: _latitude!.value,
-                  longitude: _longitude!.value,
-                  shippingCost: _shippingCosts!.value,
-                ),
-              );
-
-              // تحديث حالة الرفع إلى نجح وحذف الملفات المؤقتة
-              // تعليق: حذف الملفات المؤقتة معلق حاليًا
-              // await _docsUseCase.updateUploadStatus(
-              //   docId: docId,
-              //   status: UploadStatus.success,
-              //   progress: 100.0,
-              // );
-
-              emit(const CachedDocState.success());
-            } catch (e) {
-              emitCustomFaliure(
-                emit: emit,
-                error: 'حدث خطأ غير متوقع: ${e.toString()}',
+            String? copiedImageOne;
+            String? copiedImageTwo;
+            String? copiedVideoOne;
+            String? copiedVideoTwo;
+            if (_imageOne?.value?.path != null) {
+              copiedImageOne = await _fileManager.copyFileToTempDirectory(
+                _imageOne!.value!.path,
               );
             }
-          },
-        );
-      },
-    );
+            if (_imageTwo?.value?.path != null) {
+              copiedImageTwo = await _fileManager.copyFileToTempDirectory(
+                _imageTwo!.value!.path,
+              );
+            }
+            if (_videoOne?.value?.path != null) {
+              copiedVideoOne = await _fileManager.copyFileToTempDirectory(
+                _videoOne!.value!.path,
+              );
+            }
+            if (_videoTwo?.value?.path != null) {
+              copiedVideoTwo = await _fileManager.copyFileToTempDirectory(
+                _videoTwo!.value!.path,
+              );
+            }
+            final docId = DateTime.now().millisecondsSinceEpoch;
+            await _docsUseCase.cachedDoc(
+              doc: CachedDocEntity(
+                id: docId,
+                orderId: _orderId!.value,
+                imageOne: copiedImageOne,
+                imageTwo: copiedImageTwo,
+                videoOne: copiedVideoOne,
+                videoTwo: copiedVideoTwo,
+                latitude: _latitude!.value,
+                longitude: _longitude!.value,
+              ),
+            );
+            // تحديث حالة الرفع إلى نجح وحذف الملفات المؤقتة
+            // تعليق: حذف الملفات المؤقتة معلق حاليًا
+            // await _docsUseCase.updateUploadStatus(
+            //   docId: docId,
+            //   status: UploadStatus.success,
+            //   progress: 100.0,
+            // );
+
+            emit(const CachedDocState.success());
+          } catch (e) {
+            emitCustomFaliure(
+              emit: emit,
+              error: 'حدث خطأ غير متوقع: ${e.toString()}',
+            );
+          }
+        },
+      );
+    });
   }
   emitCustomFaliure({
     required Emitter<CachedDocState> emit,
     required String error,
   }) {
-    emit(
-      CachedDocState.failure(
-        error: error,
-      ),
-    );
+    emit(CachedDocState.failure(error: error));
   }
 
   void emitCustomLoaded({
     required Emitter<CachedDocState> emit,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
-    // تحقق من صحة الحقول مع استثناء الإحداثيات للحزم المفردة (نوع 4)
     final fieldsToValidate = <FormzInput<dynamic, dynamic>>[
       _orderId ?? const GenericFormzInput.pure(),
       _videoOne ?? const FileFormzInput.pure(),
       _videoTwo ?? const FileFormzInput.pure(),
       _imageOne ?? const FileFormzInput.pure(),
       _imageTwo ?? const FileFormzInput.pure(),
-      _shippingCosts ?? const GenericFormzInput.pure(),
     ];
-
-    // إضافة الإحداثيات فقط إذا لم تكن الحزمة مفردة (نوع 4)
-    if (_package?.type?.id != 4) {
+    if (_package?.id != 4) {
       fieldsToValidate.addAll([
         _latitude ?? const GenericFormzInput.pure(),
         _longitude ?? const GenericFormzInput.pure(),
       ]);
     }
-
     formzSubmissionStatus ??= Formz.validate(fieldsToValidate)
         ? FormzSubmissionStatus.success
         : FormzSubmissionStatus.failure;
 
     _formzSubmissionStatus = formzSubmissionStatus;
-
     emit(
       CachedDocState.loaded(
         orderId: _orderId,
@@ -180,7 +160,6 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
         imageTwo: _imageTwo,
         latitude: _latitude,
         longitude: _longitude,
-        shippingCost: _shippingCosts,
         formzSubmissionStatus:
             _formzSubmissionStatus ?? FormzSubmissionStatus.initial,
         cachedProgress: _localDocProgress,

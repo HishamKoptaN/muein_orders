@@ -6,12 +6,8 @@ part of 'token_res_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TokenResModelImpl _$$TokenResModelImplFromJson(Map<String, dynamic> json) =>
-    _$TokenResModelImpl(
-      token: json['token'] as String,
-    );
+_TokenResModel _$TokenResModelFromJson(Map<String, dynamic> json) =>
+    _TokenResModel(token: json['token'] as String);
 
-Map<String, dynamic> _$$TokenResModelImplToJson(_$TokenResModelImpl instance) =>
-    <String, dynamic>{
-      'token': instance.token,
-    };
+Map<String, dynamic> _$TokenResModelToJson(_TokenResModel instance) =>
+    <String, dynamic>{'token': instance.token};

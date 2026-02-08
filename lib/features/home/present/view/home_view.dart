@@ -8,45 +8,53 @@ import 'package:translator/translator.dart';
 import '../../../../core/extensions/locale_extensions.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../drawer/my_drawer.dart';
 import '../../../orders/present/views/orders_view.dart';
+import '../../../profile/present/bloc/profile_bloc.dart';
 import '../../domain/entities/order_type_res_entity.dart';
 import '../bloc/home_bloc.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({
-    super.key,
-  });
+  const HomeView({super.key});
   static const String routeName = 'home';
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
-  Future<String> _getTranslatedText({
-    required String text,
-  }) async {
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeBloc>().add(const HomeEvent.getSummary());
+    context.read<ProfileBloc>().add(const ProfileEvent.getProfile());
+  }
+
+  String _getProductImage(int? productId) {
+    switch (productId) {
+      case 1:
+        return 'assets/images/25.png';
+      case 2:
+        return 'assets/images/45.png';
+      case 3:
+        return 'assets/images/90.png';
+      case 4:
+        return 'assets/images/1.png';
+      default:
+        return 'assets/images/1.png';
+    }
+  }
+
+  Future<String> _getTranslatedText({required String text}) async {
     if (text.isEmpty) return text;
     try {
-      return await translateText(
-        context,
-        text,
-      );
+      return await translateText(context, text);
     } catch (e) {
       debugPrint('Translation error: $e');
       return text;
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    context.read<HomeBloc>().add(
-          const HomeEvent.getSummary(),
-        );
   }
 
   @override
@@ -60,9 +68,7 @@ class _HomeViewState extends State<HomeView> {
           builder: (context) => GestureDetector(
             onTap: () => Scaffold.of(context).openDrawer(),
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 9,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 9),
               child: SvgPicture.asset(
                 'assets/icons/menu.svg',
                 fit: BoxFit.contain,
@@ -74,9 +80,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: SvgPicture.asset(
               Assets.icons.baseCart,
               fit: BoxFit.contain,
@@ -86,7 +90,8 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-      drawer: const MyDrawer(),
+      drawer: const CustomSideDrawer(),
+
       body: Column(
         children: [
           const SizedBox(height: 16),
@@ -94,28 +99,23 @@ class _HomeViewState extends State<HomeView> {
             child: BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
                 return state.maybeWhen(
-                  loaded: (
-                    orderTypeResEntity,
-                  ) {
+                  loaded: (orderTypeResEntity) {
                     return GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        mainAxisSpacing: 16,
-                        crossAxisSpacing: 16,
-                        childAspectRatio: 1.5,
-                      ),
+                            crossAxisCount: 1,
+                            mainAxisSpacing: 16,
+                            crossAxisSpacing: 16,
+                            childAspectRatio: 1.5,
+                          ),
                       padding: const EdgeInsets.all(8),
                       itemCount: orderTypeResEntity.length,
-                      itemBuilder: (
-                        context,
-                        index,
-                      ) {
+                      itemBuilder: (context, index) {
                         final orderType = orderTypeResEntity[index];
                         return _buildOrderCard(
                           t: t!,
                           orderTypeResEntity: orderType,
-                          title: orderType.package?.type?.name ?? '',
+                          title: orderType.productType?.name ?? '',
                         );
                       },
                     );
@@ -141,14 +141,16 @@ class _HomeViewState extends State<HomeView> {
         NavigationService.push(
           context,
           OrdersView.routeName,
-          extra: orderTypeResEntity.package,
+          extra: orderTypeResEntity.productType,
         );
       },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
-            image: NetworkImage(orderTypeResEntity.package?.image ?? ''),
+            image: AssetImage(
+              _getProductImage(orderTypeResEntity.productType?.id),
+            ),
             fit: BoxFit.cover,
           ),
         ),
@@ -158,10 +160,7 @@ class _HomeViewState extends State<HomeView> {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent,
-                Colors.black.withOpacity(0.6),
-              ],
+              colors: [Colors.transparent, Colors.black.withOpacity(0.6)],
             ),
           ),
           child: Column(
@@ -187,29 +186,21 @@ class _HomeViewState extends State<HomeView> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        FutureBuilder<String>(
-                          future: _getTranslatedText(
-                            text: orderTypeResEntity.package?.type?.name ?? '',
+                        Text(
+                          orderTypeResEntity.productType?.name ?? '',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Almarai',
                           ),
-                          builder: (context, snapshot) {
-                            return Text(
-                              snapshot.data ?? '',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Almarai',
-                              ),
-                            );
-                          },
                         ),
-                        Gap(
-                          5.w,
-                        ),
-                        if (orderTypeResEntity.package?.quantity != null &&
-                            (orderTypeResEntity.package?.quantity ?? 0) > 0)
+                        Gap(5.w),
+                        if (orderTypeResEntity.productType?.docsCount != null &&
+                            (orderTypeResEntity.productType?.docsCount ?? 0) >
+                                0)
                           Text(
-                            '${orderTypeResEntity.package?.quantity ?? ''}',
+                            '${orderTypeResEntity.productType?.docsCount ?? ''}',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 15.sp,
@@ -217,26 +208,15 @@ class _HomeViewState extends State<HomeView> {
                               fontFamily: 'Jost',
                             ),
                           ),
-                        Gap(
-                          5.w,
-                        ),
-                        FutureBuilder<String>(
-                          future: _getTranslatedText(
-                            text: orderTypeResEntity
-                                    .package?.type?.distributedType ??
-                                '',
+                        Gap(5.w),
+                        Text(
+                          orderTypeResEntity.productType?.name ?? '',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Almarai',
                           ),
-                          builder: (context, snapshot) {
-                            return Text(
-                              '(${snapshot.data})',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Almarai',
-                              ),
-                            );
-                          },
                         ),
                       ],
                     ),
@@ -254,9 +234,7 @@ class _HomeViewState extends State<HomeView> {
                             fontFamily: 'Jost',
                           ),
                         ),
-                        Gap(
-                          5.w,
-                        ),
+                        Gap(5.w),
                         Text(
                           '(${orderTypeResEntity.ordersCount ?? ''})',
                           style: TextStyle(
@@ -290,7 +268,6 @@ Future<String> translateText(
   String? to,
 }) async {
   if (input.isEmpty) return input;
-
   final translator = GoogleTranslator();
   try {
     final targetLanguage = to ?? context.currentLocale.languageCode;

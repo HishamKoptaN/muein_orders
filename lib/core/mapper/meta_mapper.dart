@@ -1,7 +1,7 @@
 import '../entities/meta_entity.dart';
-import '../models/meta.dart';
+import '../models/meta_model.dart';
 
-extension MetaMapper on Meta {
+extension MetaMapper on MetaModel {
   MetaEntity toEntity() {
     return MetaEntity(
       currentPage: currentPage ?? 1,

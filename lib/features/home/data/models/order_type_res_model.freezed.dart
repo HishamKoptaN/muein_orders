@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,698 +9,568 @@ part of 'order_type_res_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-OrderTypeResModel _$OrderTypeResModelFromJson(Map<String, dynamic> json) {
-  return _OrderTypeResModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$OrderTypeResModel {
-  @JsonKey(name: 'package')
-  Package? get package => throw _privateConstructorUsedError;
-  @JsonKey(name: 'orders_count')
-  int? get ordersCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_quran_copies')
-  int? get totalQuranCopies => throw _privateConstructorUsedError;
+
+@JsonKey(name: 'product_type') ProductTypeModel? get productType;@JsonKey(name: 'orders_count') int? get ordersCount;@JsonKey(name: 'total_quran_copies') int? get totalQuranCopies;
+/// Create a copy of OrderTypeResModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$OrderTypeResModelCopyWith<OrderTypeResModel> get copyWith => _$OrderTypeResModelCopyWithImpl<OrderTypeResModel>(this as OrderTypeResModel, _$identity);
 
   /// Serializes this OrderTypeResModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of OrderTypeResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderTypeResModelCopyWith<OrderTypeResModel> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderTypeResModel&&(identical(other.productType, productType) || other.productType == productType)&&(identical(other.ordersCount, ordersCount) || other.ordersCount == ordersCount)&&(identical(other.totalQuranCopies, totalQuranCopies) || other.totalQuranCopies == totalQuranCopies));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,productType,ordersCount,totalQuranCopies);
+
+@override
+String toString() {
+  return 'OrderTypeResModel(productType: $productType, ordersCount: $ordersCount, totalQuranCopies: $totalQuranCopies)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $OrderTypeResModelCopyWith<$Res> {
-  factory $OrderTypeResModelCopyWith(
-          OrderTypeResModel value, $Res Function(OrderTypeResModel) then) =
-      _$OrderTypeResModelCopyWithImpl<$Res, OrderTypeResModel>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'package') Package? package,
-      @JsonKey(name: 'orders_count') int? ordersCount,
-      @JsonKey(name: 'total_quran_copies') int? totalQuranCopies});
+abstract mixin class $OrderTypeResModelCopyWith<$Res>  {
+  factory $OrderTypeResModelCopyWith(OrderTypeResModel value, $Res Function(OrderTypeResModel) _then) = _$OrderTypeResModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'product_type') ProductTypeModel? productType,@JsonKey(name: 'orders_count') int? ordersCount,@JsonKey(name: 'total_quran_copies') int? totalQuranCopies
+});
 
-  $PackageCopyWith<$Res>? get package;
+
+$ProductTypeModelCopyWith<$Res>? get productType;
+
 }
-
 /// @nodoc
-class _$OrderTypeResModelCopyWithImpl<$Res, $Val extends OrderTypeResModel>
+class _$OrderTypeResModelCopyWithImpl<$Res>
     implements $OrderTypeResModelCopyWith<$Res> {
-  _$OrderTypeResModelCopyWithImpl(this._value, this._then);
+  _$OrderTypeResModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final OrderTypeResModel _self;
+  final $Res Function(OrderTypeResModel) _then;
 
-  /// Create a copy of OrderTypeResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? package = freezed,
-    Object? ordersCount = freezed,
-    Object? totalQuranCopies = freezed,
-  }) {
-    return _then(_value.copyWith(
-      package: freezed == package
-          ? _value.package
-          : package // ignore: cast_nullable_to_non_nullable
-              as Package?,
-      ordersCount: freezed == ordersCount
-          ? _value.ordersCount
-          : ordersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalQuranCopies: freezed == totalQuranCopies
-          ? _value.totalQuranCopies
-          : totalQuranCopies // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
+/// Create a copy of OrderTypeResModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? productType = freezed,Object? ordersCount = freezed,Object? totalQuranCopies = freezed,}) {
+  return _then(_self.copyWith(
+productType: freezed == productType ? _self.productType : productType // ignore: cast_nullable_to_non_nullable
+as ProductTypeModel?,ordersCount: freezed == ordersCount ? _self.ordersCount : ordersCount // ignore: cast_nullable_to_non_nullable
+as int?,totalQuranCopies: freezed == totalQuranCopies ? _self.totalQuranCopies : totalQuranCopies // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+/// Create a copy of OrderTypeResModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProductTypeModelCopyWith<$Res>? get productType {
+    if (_self.productType == null) {
+    return null;
   }
 
-  /// Create a copy of OrderTypeResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PackageCopyWith<$Res>? get package {
-    if (_value.package == null) {
-      return null;
-    }
-
-    return $PackageCopyWith<$Res>(_value.package!, (value) {
-      return _then(_value.copyWith(package: value) as $Val);
-    });
-  }
+  return $ProductTypeModelCopyWith<$Res>(_self.productType!, (value) {
+    return _then(_self.copyWith(productType: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$OrderTypeResModelImplCopyWith<$Res>
-    implements $OrderTypeResModelCopyWith<$Res> {
-  factory _$$OrderTypeResModelImplCopyWith(_$OrderTypeResModelImpl value,
-          $Res Function(_$OrderTypeResModelImpl) then) =
-      __$$OrderTypeResModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'package') Package? package,
-      @JsonKey(name: 'orders_count') int? ordersCount,
-      @JsonKey(name: 'total_quran_copies') int? totalQuranCopies});
 
-  @override
-  $PackageCopyWith<$Res>? get package;
+/// Adds pattern-matching-related methods to [OrderTypeResModel].
+extension OrderTypeResModelPatterns on OrderTypeResModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _OrderTypeResModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _OrderTypeResModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _OrderTypeResModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _OrderTypeResModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _OrderTypeResModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _OrderTypeResModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'product_type')  ProductTypeModel? productType, @JsonKey(name: 'orders_count')  int? ordersCount, @JsonKey(name: 'total_quran_copies')  int? totalQuranCopies)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _OrderTypeResModel() when $default != null:
+return $default(_that.productType,_that.ordersCount,_that.totalQuranCopies);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'product_type')  ProductTypeModel? productType, @JsonKey(name: 'orders_count')  int? ordersCount, @JsonKey(name: 'total_quran_copies')  int? totalQuranCopies)  $default,) {final _that = this;
+switch (_that) {
+case _OrderTypeResModel():
+return $default(_that.productType,_that.ordersCount,_that.totalQuranCopies);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'product_type')  ProductTypeModel? productType, @JsonKey(name: 'orders_count')  int? ordersCount, @JsonKey(name: 'total_quran_copies')  int? totalQuranCopies)?  $default,) {final _that = this;
+switch (_that) {
+case _OrderTypeResModel() when $default != null:
+return $default(_that.productType,_that.ordersCount,_that.totalQuranCopies);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$OrderTypeResModelImplCopyWithImpl<$Res>
-    extends _$OrderTypeResModelCopyWithImpl<$Res, _$OrderTypeResModelImpl>
-    implements _$$OrderTypeResModelImplCopyWith<$Res> {
-  __$$OrderTypeResModelImplCopyWithImpl(_$OrderTypeResModelImpl _value,
-      $Res Function(_$OrderTypeResModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrderTypeResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? package = freezed,
-    Object? ordersCount = freezed,
-    Object? totalQuranCopies = freezed,
-  }) {
-    return _then(_$OrderTypeResModelImpl(
-      package: freezed == package
-          ? _value.package
-          : package // ignore: cast_nullable_to_non_nullable
-              as Package?,
-      ordersCount: freezed == ordersCount
-          ? _value.ordersCount
-          : ordersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalQuranCopies: freezed == totalQuranCopies
-          ? _value.totalQuranCopies
-          : totalQuranCopies // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$OrderTypeResModelImpl implements _OrderTypeResModel {
-  const _$OrderTypeResModelImpl(
-      {@JsonKey(name: 'package') this.package,
-      @JsonKey(name: 'orders_count') this.ordersCount,
-      @JsonKey(name: 'total_quran_copies') this.totalQuranCopies});
-
-  factory _$OrderTypeResModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrderTypeResModelImplFromJson(json);
-
-  @override
-  @JsonKey(name: 'package')
-  final Package? package;
-  @override
-  @JsonKey(name: 'orders_count')
-  final int? ordersCount;
-  @override
-  @JsonKey(name: 'total_quran_copies')
-  final int? totalQuranCopies;
-
-  @override
-  String toString() {
-    return 'OrderTypeResModel(package: $package, ordersCount: $ordersCount, totalQuranCopies: $totalQuranCopies)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OrderTypeResModelImpl &&
-            (identical(other.package, package) || other.package == package) &&
-            (identical(other.ordersCount, ordersCount) ||
-                other.ordersCount == ordersCount) &&
-            (identical(other.totalQuranCopies, totalQuranCopies) ||
-                other.totalQuranCopies == totalQuranCopies));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, package, ordersCount, totalQuranCopies);
-
-  /// Create a copy of OrderTypeResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OrderTypeResModelImplCopyWith<_$OrderTypeResModelImpl> get copyWith =>
-      __$$OrderTypeResModelImplCopyWithImpl<_$OrderTypeResModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$OrderTypeResModelImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _OrderTypeResModel implements OrderTypeResModel {
-  const factory _OrderTypeResModel(
-          {@JsonKey(name: 'package') final Package? package,
-          @JsonKey(name: 'orders_count') final int? ordersCount,
-          @JsonKey(name: 'total_quran_copies') final int? totalQuranCopies}) =
-      _$OrderTypeResModelImpl;
-
-  factory _OrderTypeResModel.fromJson(Map<String, dynamic> json) =
-      _$OrderTypeResModelImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'package')
-  Package? get package;
-  @override
-  @JsonKey(name: 'orders_count')
-  int? get ordersCount;
-  @override
-  @JsonKey(name: 'total_quran_copies')
-  int? get totalQuranCopies;
-
-  /// Create a copy of OrderTypeResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrderTypeResModelImplCopyWith<_$OrderTypeResModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Package _$PackageFromJson(Map<String, dynamic> json) {
-  return _Package.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Package {
-  @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image')
-  String? get image => throw _privateConstructorUsedError;
-  @JsonKey(name: 'quantity')
-  int? get quantity => throw _privateConstructorUsedError;
-  @JsonKey(name: 'docs_count')
-  int? get docsCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'type')
-  Type? get type => throw _privateConstructorUsedError;
-
-  /// Serializes this Package to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PackageCopyWith<Package> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PackageCopyWith<$Res> {
-  factory $PackageCopyWith(Package value, $Res Function(Package) then) =
-      _$PackageCopyWithImpl<$Res, Package>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'image') String? image,
-      @JsonKey(name: 'quantity') int? quantity,
-      @JsonKey(name: 'docs_count') int? docsCount,
-      @JsonKey(name: 'type') Type? type});
-
-  $TypeCopyWith<$Res>? get type;
-}
-
-/// @nodoc
-class _$PackageCopyWithImpl<$Res, $Val extends Package>
-    implements $PackageCopyWith<$Res> {
-  _$PackageCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? image = freezed,
-    Object? quantity = freezed,
-    Object? docsCount = freezed,
-    Object? type = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-      docsCount: freezed == docsCount
-          ? _value.docsCount
-          : docsCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as Type?,
-    ) as $Val);
-  }
-
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TypeCopyWith<$Res>? get type {
-    if (_value.type == null) {
-      return null;
-    }
-
-    return $TypeCopyWith<$Res>(_value.type!, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$PackageImplCopyWith<$Res> implements $PackageCopyWith<$Res> {
-  factory _$$PackageImplCopyWith(
-          _$PackageImpl value, $Res Function(_$PackageImpl) then) =
-      __$$PackageImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'image') String? image,
-      @JsonKey(name: 'quantity') int? quantity,
-      @JsonKey(name: 'docs_count') int? docsCount,
-      @JsonKey(name: 'type') Type? type});
-
-  @override
-  $TypeCopyWith<$Res>? get type;
-}
-
-/// @nodoc
-class __$$PackageImplCopyWithImpl<$Res>
-    extends _$PackageCopyWithImpl<$Res, _$PackageImpl>
-    implements _$$PackageImplCopyWith<$Res> {
-  __$$PackageImplCopyWithImpl(
-      _$PackageImpl _value, $Res Function(_$PackageImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? image = freezed,
-    Object? quantity = freezed,
-    Object? docsCount = freezed,
-    Object? type = freezed,
-  }) {
-    return _then(_$PackageImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-      docsCount: freezed == docsCount
-          ? _value.docsCount
-          : docsCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as Type?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PackageImpl implements _Package {
-  const _$PackageImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'image') this.image,
-      @JsonKey(name: 'quantity') this.quantity,
-      @JsonKey(name: 'docs_count') this.docsCount,
-      @JsonKey(name: 'type') this.type});
 
-  factory _$PackageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PackageImplFromJson(json);
+class _OrderTypeResModel implements OrderTypeResModel {
+  const _OrderTypeResModel({@JsonKey(name: 'product_type') this.productType, @JsonKey(name: 'orders_count') this.ordersCount, @JsonKey(name: 'total_quran_copies') this.totalQuranCopies});
+  factory _OrderTypeResModel.fromJson(Map<String, dynamic> json) => _$OrderTypeResModelFromJson(json);
 
-  @override
-  @JsonKey(name: 'id')
-  final int? id;
-  @override
-  @JsonKey(name: 'image')
-  final String? image;
-  @override
-  @JsonKey(name: 'quantity')
-  final int? quantity;
-  @override
-  @JsonKey(name: 'docs_count')
-  final int? docsCount;
-  @override
-  @JsonKey(name: 'type')
-  final Type? type;
+@override@JsonKey(name: 'product_type') final  ProductTypeModel? productType;
+@override@JsonKey(name: 'orders_count') final  int? ordersCount;
+@override@JsonKey(name: 'total_quran_copies') final  int? totalQuranCopies;
 
-  @override
-  String toString() {
-    return 'Package(id: $id, image: $image, quantity: $quantity, docsCount: $docsCount, type: $type)';
-  }
+/// Create a copy of OrderTypeResModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$OrderTypeResModelCopyWith<_OrderTypeResModel> get copyWith => __$OrderTypeResModelCopyWithImpl<_OrderTypeResModel>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PackageImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.docsCount, docsCount) ||
-                other.docsCount == docsCount) &&
-            (identical(other.type, type) || other.type == type));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, image, quantity, docsCount, type);
-
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
-      __$$PackageImplCopyWithImpl<_$PackageImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PackageImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$OrderTypeResModelToJson(this, );
 }
 
-abstract class _Package implements Package {
-  const factory _Package(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'image') final String? image,
-      @JsonKey(name: 'quantity') final int? quantity,
-      @JsonKey(name: 'docs_count') final int? docsCount,
-      @JsonKey(name: 'type') final Type? type}) = _$PackageImpl;
-
-  factory _Package.fromJson(Map<String, dynamic> json) = _$PackageImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'id')
-  int? get id;
-  @override
-  @JsonKey(name: 'image')
-  String? get image;
-  @override
-  @JsonKey(name: 'quantity')
-  int? get quantity;
-  @override
-  @JsonKey(name: 'docs_count')
-  int? get docsCount;
-  @override
-  @JsonKey(name: 'type')
-  Type? get type;
-
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderTypeResModel&&(identical(other.productType, productType) || other.productType == productType)&&(identical(other.ordersCount, ordersCount) || other.ordersCount == ordersCount)&&(identical(other.totalQuranCopies, totalQuranCopies) || other.totalQuranCopies == totalQuranCopies));
 }
 
-Type _$TypeFromJson(Map<String, dynamic> json) {
-  return _Type.fromJson(json);
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,productType,ordersCount,totalQuranCopies);
+
+@override
+String toString() {
+  return 'OrderTypeResModel(productType: $productType, ordersCount: $ordersCount, totalQuranCopies: $totalQuranCopies)';
+}
+
+
 }
 
 /// @nodoc
-mixin _$Type {
-  @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'distributed_type')
-  String? get distributedType => throw _privateConstructorUsedError;
+abstract mixin class _$OrderTypeResModelCopyWith<$Res> implements $OrderTypeResModelCopyWith<$Res> {
+  factory _$OrderTypeResModelCopyWith(_OrderTypeResModel value, $Res Function(_OrderTypeResModel) _then) = __$OrderTypeResModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'product_type') ProductTypeModel? productType,@JsonKey(name: 'orders_count') int? ordersCount,@JsonKey(name: 'total_quran_copies') int? totalQuranCopies
+});
 
-  /// Serializes this Type to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Type
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TypeCopyWith<Type> get copyWith => throw _privateConstructorUsedError;
+@override $ProductTypeModelCopyWith<$Res>? get productType;
+
+}
+/// @nodoc
+class __$OrderTypeResModelCopyWithImpl<$Res>
+    implements _$OrderTypeResModelCopyWith<$Res> {
+  __$OrderTypeResModelCopyWithImpl(this._self, this._then);
+
+  final _OrderTypeResModel _self;
+  final $Res Function(_OrderTypeResModel) _then;
+
+/// Create a copy of OrderTypeResModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? productType = freezed,Object? ordersCount = freezed,Object? totalQuranCopies = freezed,}) {
+  return _then(_OrderTypeResModel(
+productType: freezed == productType ? _self.productType : productType // ignore: cast_nullable_to_non_nullable
+as ProductTypeModel?,ordersCount: freezed == ordersCount ? _self.ordersCount : ordersCount // ignore: cast_nullable_to_non_nullable
+as int?,totalQuranCopies: freezed == totalQuranCopies ? _self.totalQuranCopies : totalQuranCopies // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
 }
 
-/// @nodoc
-abstract class $TypeCopyWith<$Res> {
-  factory $TypeCopyWith(Type value, $Res Function(Type) then) =
-      _$TypeCopyWithImpl<$Res, Type>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'distributed_type') String? distributedType});
-}
-
-/// @nodoc
-class _$TypeCopyWithImpl<$Res, $Val extends Type>
-    implements $TypeCopyWith<$Res> {
-  _$TypeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Type
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? distributedType = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      distributedType: freezed == distributedType
-          ? _value.distributedType
-          : distributedType // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+/// Create a copy of OrderTypeResModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProductTypeModelCopyWith<$Res>? get productType {
+    if (_self.productType == null) {
+    return null;
   }
+
+  return $ProductTypeModelCopyWith<$Res>(_self.productType!, (value) {
+    return _then(_self.copyWith(productType: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$ProductTypeModel {
+
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'name') String? get name;@JsonKey(name: 'docs_count') int? get docsCount;
+/// Create a copy of ProductTypeModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ProductTypeModelCopyWith<ProductTypeModel> get copyWith => _$ProductTypeModelCopyWithImpl<ProductTypeModel>(this as ProductTypeModel, _$identity);
+
+  /// Serializes this ProductTypeModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductTypeModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.docsCount, docsCount) || other.docsCount == docsCount));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,docsCount);
+
+@override
+String toString() {
+  return 'ProductTypeModel(id: $id, name: $name, docsCount: $docsCount)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$TypeImplCopyWith<$Res> implements $TypeCopyWith<$Res> {
-  factory _$$TypeImplCopyWith(
-          _$TypeImpl value, $Res Function(_$TypeImpl) then) =
-      __$$TypeImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'distributed_type') String? distributedType});
+abstract mixin class $ProductTypeModelCopyWith<$Res>  {
+  factory $ProductTypeModelCopyWith(ProductTypeModel value, $Res Function(ProductTypeModel) _then) = _$ProductTypeModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'docs_count') int? docsCount
+});
+
+
+
+
+}
+/// @nodoc
+class _$ProductTypeModelCopyWithImpl<$Res>
+    implements $ProductTypeModelCopyWith<$Res> {
+  _$ProductTypeModelCopyWithImpl(this._self, this._then);
+
+  final ProductTypeModel _self;
+  final $Res Function(ProductTypeModel) _then;
+
+/// Create a copy of ProductTypeModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? docsCount = freezed,}) {
+  return _then(_self.copyWith(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,docsCount: freezed == docsCount ? _self.docsCount : docsCount // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
 }
 
-/// @nodoc
-class __$$TypeImplCopyWithImpl<$Res>
-    extends _$TypeCopyWithImpl<$Res, _$TypeImpl>
-    implements _$$TypeImplCopyWith<$Res> {
-  __$$TypeImplCopyWithImpl(_$TypeImpl _value, $Res Function(_$TypeImpl) _then)
-      : super(_value, _then);
+}
 
-  /// Create a copy of Type
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? distributedType = freezed,
-  }) {
-    return _then(_$TypeImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      distributedType: freezed == distributedType
-          ? _value.distributedType
-          : distributedType // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+
+/// Adds pattern-matching-related methods to [ProductTypeModel].
+extension ProductTypeModelPatterns on ProductTypeModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ProductTypeModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ProductTypeModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ProductTypeModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _ProductTypeModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ProductTypeModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ProductTypeModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'docs_count')  int? docsCount)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ProductTypeModel() when $default != null:
+return $default(_that.id,_that.name,_that.docsCount);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'docs_count')  int? docsCount)  $default,) {final _that = this;
+switch (_that) {
+case _ProductTypeModel():
+return $default(_that.id,_that.name,_that.docsCount);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'docs_count')  int? docsCount)?  $default,) {final _that = this;
+switch (_that) {
+case _ProductTypeModel() when $default != null:
+return $default(_that.id,_that.name,_that.docsCount);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TypeImpl implements _Type {
-  const _$TypeImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'distributed_type') this.distributedType});
 
-  factory _$TypeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TypeImplFromJson(json);
+class _ProductTypeModel implements ProductTypeModel {
+  const _ProductTypeModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'name') this.name, @JsonKey(name: 'docs_count') this.docsCount});
+  factory _ProductTypeModel.fromJson(Map<String, dynamic> json) => _$ProductTypeModelFromJson(json);
 
-  @override
-  @JsonKey(name: 'id')
-  final int? id;
-  @override
-  @JsonKey(name: 'name')
-  final String? name;
-  @override
-  @JsonKey(name: 'distributed_type')
-  final String? distributedType;
+@override@JsonKey(name: 'id') final  int? id;
+@override@JsonKey(name: 'name') final  String? name;
+@override@JsonKey(name: 'docs_count') final  int? docsCount;
 
-  @override
-  String toString() {
-    return 'Type(id: $id, name: $name, distributedType: $distributedType)';
-  }
+/// Create a copy of ProductTypeModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ProductTypeModelCopyWith<_ProductTypeModel> get copyWith => __$ProductTypeModelCopyWithImpl<_ProductTypeModel>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TypeImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.distributedType, distributedType) ||
-                other.distributedType == distributedType));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, name, distributedType);
-
-  /// Create a copy of Type
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TypeImplCopyWith<_$TypeImpl> get copyWith =>
-      __$$TypeImplCopyWithImpl<_$TypeImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TypeImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$ProductTypeModelToJson(this, );
 }
 
-abstract class _Type implements Type {
-  const factory _Type(
-          {@JsonKey(name: 'id') final int? id,
-          @JsonKey(name: 'name') final String? name,
-          @JsonKey(name: 'distributed_type') final String? distributedType}) =
-      _$TypeImpl;
-
-  factory _Type.fromJson(Map<String, dynamic> json) = _$TypeImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'id')
-  int? get id;
-  @override
-  @JsonKey(name: 'name')
-  String? get name;
-  @override
-  @JsonKey(name: 'distributed_type')
-  String? get distributedType;
-
-  /// Create a copy of Type
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TypeImplCopyWith<_$TypeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductTypeModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.docsCount, docsCount) || other.docsCount == docsCount));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,docsCount);
+
+@override
+String toString() {
+  return 'ProductTypeModel(id: $id, name: $name, docsCount: $docsCount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ProductTypeModelCopyWith<$Res> implements $ProductTypeModelCopyWith<$Res> {
+  factory _$ProductTypeModelCopyWith(_ProductTypeModel value, $Res Function(_ProductTypeModel) _then) = __$ProductTypeModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'docs_count') int? docsCount
+});
+
+
+
+
+}
+/// @nodoc
+class __$ProductTypeModelCopyWithImpl<$Res>
+    implements _$ProductTypeModelCopyWith<$Res> {
+  __$ProductTypeModelCopyWithImpl(this._self, this._then);
+
+  final _ProductTypeModel _self;
+  final $Res Function(_ProductTypeModel) _then;
+
+/// Create a copy of ProductTypeModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? docsCount = freezed,}) {
+  return _then(_ProductTypeModel(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,docsCount: freezed == docsCount ? _self.docsCount : docsCount // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+
+}
+
+// dart format on

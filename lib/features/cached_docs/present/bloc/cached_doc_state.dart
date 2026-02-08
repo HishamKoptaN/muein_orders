@@ -1,7 +1,7 @@
 part of 'cached_doc_bloc.dart';
 
 @freezed
-class CachedDocState with _$CachedDocState {
+abstract class CachedDocState with _$CachedDocState {
   const factory CachedDocState.loading() = _Loading;
   const factory CachedDocState.loaded({
     required GenericFormzInput<int>? orderId,
@@ -11,12 +11,9 @@ class CachedDocState with _$CachedDocState {
     required FileFormzInput? imageTwo,
     required GenericFormzInput<double>? latitude,
     required GenericFormzInput<double>? longitude,
-    required GenericFormzInput<double>? shippingCost,
     required FormzSubmissionStatus formzSubmissionStatus,
     required double? cachedProgress,
   }) = _Loaded;
   const factory CachedDocState.success() = _Success;
-  const factory CachedDocState.failure({
-    required String error,
-  }) = _Failure;
+  const factory CachedDocState.failure({required String error}) = _Failure;
 }

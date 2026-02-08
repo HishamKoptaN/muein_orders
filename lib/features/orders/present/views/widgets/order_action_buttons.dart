@@ -7,20 +7,20 @@ import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../../cached_docs/present/view/add_cached_doc_view.dart';
 import '../../../../home/domain/entities/order_type_res_entity.dart';
 import '../../../domain/entities/orders_res_entity.dart';
-import '../pdf/sitcker_pdf_preview_view.dart';
+import '../sitcker_pd/sitcker_pdf_preview_view.dart';
 
 Widget buildOrderActionButtons({
   required OrderEntity orderEntity,
   required int orderDocsCount,
   required AppLocalizations t,
-  required PackageEntity package,
+  required ProductTypeEntity productType,
 }) {
   return Center(
     child: FutureBuilder<int>(
       future: getIt<AppDatabase>().getAllDocs().then(
-            (allDocs) =>
-                allDocs.where((doc) => doc.orderId == orderEntity.id).length,
-          ),
+        (allDocs) =>
+            allDocs.where((doc) => doc.orderId == orderEntity.id).length,
+      ),
       builder: (context, snapshot) {
         final currentDocsCount = snapshot.data ?? 0;
         final canAddMoreDocs = currentDocsCount < orderDocsCount;
@@ -36,7 +36,7 @@ Widget buildOrderActionButtons({
                       routeName: AddCachedDocView.routeName,
                       arguments: {
                         'orderId': orderEntity.id,
-                        'package': package,
+                        'package': productType,
                       },
                     );
                   },
@@ -47,10 +47,7 @@ Widget buildOrderActionButtons({
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  icon: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
+                  icon: const Icon(Icons.add, color: Colors.white),
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
@@ -66,37 +63,38 @@ Widget buildOrderActionButtons({
                 ),
               ),
             if (canAddMoreDocs) const SizedBox(width: 12),
-            Expanded(
-              child: OutlinedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => PdfPreviewView(
-                        printedName: orderEntity.printedName ?? 'غير معروف',
-                        executionNum: orderEntity.executionNum ?? 'N/A',
+            if (productType.id != 4)
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => PdfPreviewView(
+                          printedName: orderEntity.printedName ?? 'غير معروف',
+                          executionNum: orderEntity.executionNum ?? 'N/A',
+                        ),
                       ),
+                    );
+                  },
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Color(0xFF0062B7)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                  );
-                },
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Color(0xFF0062B7)),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 16,
+                    ),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 16,
-                  ),
-                ),
-                child: Text(
-                  t.sticker,
-                  style: const TextStyle(
-                    color: Color(0xFF0062B7),
-                    fontWeight: FontWeight.w700,
+                  child: Text(
+                    t.sticker,
+                    style: const TextStyle(
+                      color: Color(0xFF0062B7),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         );
       },

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../home/domain/entities/order_type_res_entity.dart';
 import '../../domain/entities/orders_res_entity.dart';
@@ -13,11 +14,8 @@ import 'widgets/orders_tabs .dart';
 import 'widgets/shimmer/shimmer_client_row.dart';
 
 class OrdersView extends StatefulWidget {
-  PackageEntity package;
-  OrdersView({
-    super.key,
-    required this.package,
-  });
+  ProductTypeEntity package;
+  OrdersView({super.key, required this.package});
 
   static const String routeName = 'orders';
   @override
@@ -35,44 +33,40 @@ class _OrdersViewState extends State<OrdersView> {
   void _onTabSelected(int index) {
     setState(() => selectedTab = index);
     context.read<OrdersBloc>().add(
-          OrdersEvent.getOrders(
-            packageId: widget.package.id ?? 0,
-            loadMore: false,
-            isQuranPhotographed: selectedTab == 0,
-          ),
-        );
+      OrdersEvent.getOrders(
+        packageId: widget.package.id ?? 0,
+        loadMore: false,
+        isQuranPhotographed: selectedTab == 0,
+      ),
+    );
   }
 
   @override
   void initState() {
     super.initState();
     context.read<OrdersBloc>().add(
-          OrdersEvent.getOrders(
-            packageId: widget.package.id ?? 0,
-            loadMore: false,
-            isQuranPhotographed: selectedTab == 0,
-          ),
-        );
+      OrdersEvent.getOrders(
+        packageId: widget.package.id ?? 0,
+        loadMore: false,
+        isQuranPhotographed: selectedTab == 0,
+      ),
+    );
     _scrollController.addListener(_onScroll);
   }
 
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 100) {
-      debugPrint('✅ تم الوصول إلى نهاية القائمة وهناك المزيد');
       context.read<OrdersBloc>().state.whenOrNull(
-        loaded: (
-          clients,
-          hasMore,
-        ) {
+        loaded: (clients, hasMore) {
           if (hasMore == true) {
             context.read<OrdersBloc>().add(
-                  OrdersEvent.getOrders(
-                    packageId: widget.package.id ?? 0,
-                    loadMore: true,
-                    isQuranPhotographed: selectedTab == 0,
-                  ),
-                );
+              OrdersEvent.getOrders(
+                packageId: widget.package.id ?? 0,
+                loadMore: true,
+                isQuranPhotographed: selectedTab == 0,
+              ),
+            );
           }
         },
       );
@@ -89,19 +83,13 @@ class _OrdersViewState extends State<OrdersView> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     return CustomScaffold(
-      appBar: CustomAppBar(
-        title: t.orders,
-      ),
+      appBar: CustomAppBar(title: t.orders),
       body: BlocBuilder<OrdersBloc, OrdersState>(
         builder: (context, state) {
           return Column(
             children: [
               const SizedBox(height: 16),
-              OrdersTabs(
-                onTap: _onTabSelected,
-                t: t,
-                selectedTab: selectedTab,
-              ),
+              OrdersTabs(onTap: _onTabSelected, t: t, selectedTab: selectedTab),
               const SizedBox(height: 16),
               Row(
                 children: [
@@ -109,14 +97,11 @@ class _OrdersViewState extends State<OrdersView> {
                     width: 69,
                     height: 18,
                     child: Text(
-                      '${t.orders} ( ${state.maybeWhen(
-                        loaded: (orders, hasMore) {
-                          return orders?.length.toString() ?? '0';
-                        },
-                        orElse: () {
-                          return '0';
-                        },
-                      )} )',
+                      '${t.orders} ( ${state.maybeWhen(loaded: (orders, hasMore) {
+                        return orders?.length.toString() ?? '0';
+                      }, orElse: () {
+                        return '0';
+                      })} )',
                       textAlign: TextAlign.right,
                       style: const TextStyle(
                         fontFamily: 'Almarai',
@@ -134,31 +119,26 @@ class _OrdersViewState extends State<OrdersView> {
                 child: BlocBuilder<OrdersBloc, OrdersState>(
                   builder: (context, state) {
                     return state.maybeWhen(
-                      loaded: (
-                        orders,
-                        hasMore,
-                      ) {
+                      loaded: (orders, hasMore) {
                         if (orders?.isEmpty == true) {
                           return RefreshIndicator(
                             onRefresh: () async {
                               context.read<OrdersBloc>().add(
-                                    OrdersEvent.getOrders(
-                                      packageId: widget.package.id ?? 0,
-                                      loadMore: false,
-                                      isQuranPhotographed: selectedTab == 0,
-                                    ),
-                                  );
+                                OrdersEvent.getOrders(
+                                  packageId: widget.package.id ?? 0,
+                                  loadMore: false,
+                                  isQuranPhotographed: selectedTab == 0,
+                                ),
+                              );
                             },
                             child: Center(
                               child: Text(
                                 t.noOrders,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge
+                                style: Theme.of(context).textTheme.titleLarge
                                     ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSecondary,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onSecondary,
                                     ),
                               ),
                             ),
@@ -167,18 +147,16 @@ class _OrdersViewState extends State<OrdersView> {
                         return RefreshIndicator(
                           onRefresh: () async {
                             context.read<OrdersBloc>().add(
-                                  OrdersEvent.getOrders(
-                                    packageId: widget.package.id ?? 0,
-                                    loadMore: false,
-                                    isQuranPhotographed: selectedTab == 0,
-                                  ),
-                                );
+                              OrdersEvent.getOrders(
+                                packageId: widget.package.id ?? 0,
+                                loadMore: false,
+                                isQuranPhotographed: selectedTab == 0,
+                              ),
+                            );
                           },
                           child: Column(
                             children: [
-                              Gap(
-                                15.h,
-                              ),
+                              Gap(15.h),
                               Expanded(
                                 child: ListView.builder(
                                   controller: _scrollController,
@@ -200,23 +178,22 @@ class _OrdersViewState extends State<OrdersView> {
                           ),
                         );
                       },
-                     
+
                       loading: () {
                         return RefreshIndicator(
                           onRefresh: () async {
                             context.read<OrdersBloc>().add(
-                                  OrdersEvent.getOrders(
-                                    packageId: widget.package.id ?? 0,
-                                    loadMore: false,
-                                    isQuranPhotographed: selectedTab == 0,
-                                  ),
-                                );
+                              OrdersEvent.getOrders(
+                                packageId: widget.package.id ?? 0,
+                                loadMore: false,
+                                isQuranPhotographed: selectedTab == 0,
+                              ),
+                            );
                           },
                           child: ListView.builder(
                             itemCount: 10,
-                            itemBuilder: (context, index) => ShimmerClientRow(
-                              height: 100.h,
-                            ),
+                            itemBuilder: (context, index) =>
+                                ShimmerClientRow(height: 100.h),
                           ),
                         );
                       },
@@ -225,25 +202,23 @@ class _OrdersViewState extends State<OrdersView> {
                         return RefreshIndicator(
                           onRefresh: () async {
                             context.read<OrdersBloc>().add(
-                                  OrdersEvent.getOrders(
-                                    packageId: widget.package.id ?? 0,
-                                    loadMore: false,
-                                    isQuranPhotographed: selectedTab == 0,
-                                  ),
-                                );
+                              OrdersEvent.getOrders(
+                                packageId: widget.package.id ?? 0,
+                                loadMore: false,
+                                isQuranPhotographed: selectedTab == 0,
+                              ),
+                            );
                           },
                           child: ListView(
                             children: [
                               Center(
                                 child: Text(
                                   e.error ?? '',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge
+                                  style: Theme.of(context).textTheme.titleLarge
                                       ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSecondary,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onSecondary,
                                       ),
                                 ),
                               ),
@@ -251,22 +226,21 @@ class _OrdersViewState extends State<OrdersView> {
                           ),
                         );
                       },
-                       orElse: () {
+                      orElse: () {
                         return RefreshIndicator(
                           onRefresh: () async {
                             context.read<OrdersBloc>().add(
-                                  OrdersEvent.getOrders(
-                                    packageId: widget.package.id ?? 0,
-                                    loadMore: false,
-                                    isQuranPhotographed: selectedTab == 0,
-                                  ),
-                                );
+                              OrdersEvent.getOrders(
+                                packageId: widget.package.id ?? 0,
+                                loadMore: false,
+                                isQuranPhotographed: selectedTab == 0,
+                              ),
+                            );
                           },
                           child: ListView.builder(
                             itemCount: 10,
-                            itemBuilder: (context, index) => ShimmerClientRow(
-                              height: 100.h,
-                            ),
+                            itemBuilder: (context, index) =>
+                                ShimmerClientRow(height: 100.h),
                           ),
                         );
                       },

@@ -1,32 +1,17 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'order_type_res_entity.freezed.dart';
-
-@freezed
-class OrderTypeResEntity with _$OrderTypeResEntity {
-  const factory OrderTypeResEntity({
-    @JsonKey(name: 'package') PackageEntity? package,
-    @JsonKey(name: 'orders_count') int? ordersCount,
-    @JsonKey(name: 'total_quran_copies') int? totalQuranCopies,
-  }) = _OrderTypeResEntity;
+class OrderTypeResEntity {
+  OrderTypeResEntity({
+    this.productType,
+    this.ordersCount,
+    this.totalQuranCopies,
+  });
+  ProductTypeEntity? productType;
+  int? ordersCount;
+  int? totalQuranCopies;
 }
 
-@freezed
-class PackageEntity with _$PackageEntity {
-  const factory PackageEntity({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'image') String? image,
-    @JsonKey(name: 'quantity') int? quantity,
-    @JsonKey(name: 'docs_count') int? docsCount,
-    @JsonKey(name: 'type') TypeEntity? type,
-  }) = _PackageEntity;
-}
-
-@freezed
-class TypeEntity with _$TypeEntity {
-  const factory TypeEntity({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'distributed_type') String? distributedType,
-  }) = _TypeEntity;
+class ProductTypeEntity {
+  ProductTypeEntity({this.id, this.name, this.docsCount});
+  int? id;
+  String? name;
+  int? docsCount;
 }

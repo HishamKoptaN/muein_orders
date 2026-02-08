@@ -6,13 +6,8 @@ part of 'sign_up_res_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SignUpResModelImpl _$$SignUpResModelImplFromJson(Map<String, dynamic> json) =>
-    _$SignUpResModelImpl(
-      token: json['token'] as String,
-    );
+_SignUpResModel _$SignUpResModelFromJson(Map<String, dynamic> json) =>
+    _SignUpResModel(token: json['token'] as String);
 
-Map<String, dynamic> _$$SignUpResModelImplToJson(
-        _$SignUpResModelImpl instance) =>
-    <String, dynamic>{
-      'token': instance.token,
-    };
+Map<String, dynamic> _$SignUpResModelToJson(_SignUpResModel instance) =>
+    <String, dynamic>{'token': instance.token};

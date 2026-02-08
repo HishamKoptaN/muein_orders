@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
-import '../../../../core/widgets/app_container.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/Layouts/app_container.dart';
+import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../blocs/docs_bloc/docs_bloc.dart';
 import 'shimmer_widgets.dart/build_shimmer_order_placeholder.dart';
@@ -21,20 +22,14 @@ class _DocsViewState extends State<DocsView> {
   @override
   void initState() {
     super.initState();
-    context.read<DocsBloc>().add(
-          DocsEvent.getDocs(orderId: widget.orderId),
-        );
-    _scrollController.addListener(
-      _onScroll,
-    );
+    context.read<DocsBloc>().add(DocsEvent.getDocs(orderId: widget.orderId));
+    _scrollController.addListener(_onScroll);
   }
 
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent) {
-      context.read<DocsBloc>().add(
-            DocsEvent.getDocs(orderId: widget.orderId),
-          );
+      context.read<DocsBloc>().add(DocsEvent.getDocs(orderId: widget.orderId));
     }
   }
 
@@ -51,42 +46,27 @@ class _DocsViewState extends State<DocsView> {
     return CustomScaffold(
       appBar: CustomAppBar(title: t.documentations),
       body: BlocBuilder<DocsBloc, DocsState>(
-        builder: (
-          context,
-          state,
-        ) {
+        builder: (context, state) {
           return state.maybeWhen(
-            loaded: (
-              docs,
-              hasMore,
-            ) {
+            loaded: (docs, hasMore) {
               return ListView.builder(
                 controller: _scrollController,
                 itemCount: (docs?.length ?? 0) + 1,
-                itemBuilder: (
-                  context,
-                  i,
-                ) {
+                itemBuilder: (context, i) {
                   if (i < docs!.length) {
                     final order = docs[i];
                     return AppContainer(
                       height: height / 3,
                       child: Card(
                         semanticContainer: true,
-                        child: DocWidget(
-                          orderEntity: order,
-                        ),
+                        child: DocWidget(orderEntity: order),
                       ),
                     );
                   } else {
                     if (hasMore!) {
                       return const OrderShimmerWidget();
                     } else if (docs.isNotEmpty && !hasMore) {
-                      return Center(
-                        child: Text(
-                          t.noMoreDocs,
-                        ),
-                      );
+                      return Center(child: Text(t.noMoreDocs));
                     }
                     return const CircularProgressIndicator();
                   }
@@ -96,10 +76,7 @@ class _DocsViewState extends State<DocsView> {
             loading: () {
               return ListView.builder(
                 itemCount: 10,
-                itemBuilder: (
-                  context,
-                  i,
-                ) {
+                itemBuilder: (context, i) {
                   return const OrderShimmerWidget();
                 },
               );
@@ -115,21 +92,14 @@ class _DocsViewState extends State<DocsView> {
 }
 
 class GestureDetectorWidget extends StatelessWidget {
-  GestureDetectorWidget({
-    super.key,
-    required this.onTap,
-  });
+  GestureDetectorWidget({super.key, required this.onTap});
 
   void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: const AppContainer(
-        child: Icon(
-          Icons.location_on,
-        ),
-      ),
+      child: const AppContainer(child: Icon(Icons.location_on)),
     );
   }
 }

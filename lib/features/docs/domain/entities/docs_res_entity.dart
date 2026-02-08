@@ -5,7 +5,7 @@ part 'docs_res_entity.freezed.dart';
 part 'docs_res_entity.g.dart';
 
 @freezed
-class DocsResEntity with _$DocsResEntity {
+abstract class DocsResEntity with _$DocsResEntity {
   const factory DocsResEntity({
     @JsonKey(name: 'docs') List<DocEntity>? docs,
     @JsonKey(name: 'meta') MetaEntity? meta,
@@ -15,7 +15,7 @@ class DocsResEntity with _$DocsResEntity {
 }
 
 @freezed
-class DocEntity with _$DocEntity {
+abstract class DocEntity with _$DocEntity {
   const factory DocEntity({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'order_number') String? orderNumber,

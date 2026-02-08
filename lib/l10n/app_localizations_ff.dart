@@ -12,7 +12,7 @@ class AppLocalizationsFf extends AppLocalizations {
   String get upload_videos => 'Sokkitde wideyooji';
 
   @override
-  String get welcometoMubinOrders => 'A jaɓɓaama e Mobin Talabat';
+  String get welcometoMueinOrders => 'A jaɓɓaama e Mobin Talabat';
 
   @override
   String get welcome => 'Jabbama';
@@ -43,7 +43,8 @@ class AppLocalizationsFf extends AppLocalizations {
       'Dokimaaji e fotooji e wideyooji';
 
   @override
-  String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
+  String
+  get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
       'Yenaneede laaɓal natal ngal, limoore koppiiji Qur’aana ceniiɗi ɗii, e njoɓdi yamiroore ndee hade maa neldude.';
 
   @override
@@ -394,7 +395,8 @@ class AppLocalizationsFf extends AppLocalizations {
       'Yiylo jamirooje maa e sahaa tigi-rigi e njuɓɓudi men rewindaade.';
 
   @override
-  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
+  String
+  get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Hoto momtu piille fotooje e wideyooji kuutorteeɗe ngam winndude ɗaɓɓaande haa nde njuɓɓudi ndii jaɓi ɗum.';
 
   @override
@@ -426,7 +428,8 @@ class AppLocalizationsFf extends AppLocalizations {
   String get alreadyHaveAccount => 'Mbele aɗa jogii konte jooni?';
 
   @override
-  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+  String
+  get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
       'Yenaneede laaɓal natal ngal e limoore laaɓtunde e nder Qur’aana tedduɗo oo hade maa neldude';
 
   @override

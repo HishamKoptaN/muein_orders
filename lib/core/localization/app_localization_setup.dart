@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import '../../l10n/app_localizations.dart';
 import 'custom_localization_delegates.dart';
 
@@ -45,8 +45,7 @@ class FallbackLocalizationDelegate
   static const List<String> _supported = ['lg', 'sw', 'yo', 'ff', 'ak', 'fr'];
 
   @override
-  bool isSupported(Locale locale) =>
-      _supported.contains(locale.languageCode);
+  bool isSupported(Locale locale) => _supported.contains(locale.languageCode);
 
   @override
   Future<WidgetsLocalizations> load(Locale locale) async {
@@ -93,11 +92,11 @@ class FallbackLocalizationDelegate
   }
 
   @override
-  bool shouldReload(covariant LocalizationsDelegate<WidgetsLocalizations> old) =>
+  bool shouldReload(
+          covariant LocalizationsDelegate<WidgetsLocalizations> old) =>
       false;
 }
 
-/// هذا الكلاس بسيط لتوفير النصوص الأساسية يدويًا
 class _BasicLocalizedTexts extends DefaultWidgetsLocalizations {
   final Map<String, String> texts;
   const _BasicLocalizedTexts(this.texts);

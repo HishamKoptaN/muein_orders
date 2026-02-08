@@ -12,7 +12,7 @@ class AppLocalizationsYo extends AppLocalizations {
   String get upload_videos => 'Ṣe igbasilẹ awọn fidio';
 
   @override
-  String get welcometoMubinOrders => 'Kaabo si Mobin Talabat';
+  String get welcometoMueinOrders => 'Kaabo si Mobin Talabat';
 
   @override
   String get welcome => 'Kaabo';
@@ -42,7 +42,8 @@ class AppLocalizationsYo extends AppLocalizations {
       'Iwe pẹlu awọn fọto ati awọn fidio';
 
   @override
-  String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
+  String
+  get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
       'Rii daju wípé awọn aworan, nọmba awọn ẹda ti Al-Qur\'an Mimọ, ati iye owo aṣẹ ṣaaju fifiranṣẹ.';
 
   @override
@@ -393,7 +394,8 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ṣe abojuto awọn aṣẹ rẹ ni akoko gidi pẹlu eto ipasẹ ogbon inu wa.';
 
   @override
-  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
+  String
+  get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Ma ṣe paarẹ fọto ti agbegbe ti o fipamọ ati awọn faili fidio ti a lo lati ṣe igbasilẹ ohun elo kan titi ti iṣakoso yoo fi fọwọsi wọn.';
 
   @override
@@ -425,7 +427,8 @@ class AppLocalizationsYo extends AppLocalizations {
   String get alreadyHaveAccount => 'Ṣe o ti ni akọọlẹ tẹlẹ?';
 
   @override
-  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+  String
+  get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
       'Rii daju wípé awọn aworan ati nọmba to pe ti awọn ẹda Al-Qur\'an Mimọ ṣaaju fifiranṣẹ';
 
   @override

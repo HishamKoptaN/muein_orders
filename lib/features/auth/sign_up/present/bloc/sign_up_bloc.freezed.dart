@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,1743 +9,804 @@ part of 'sign_up_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
-mixin _$SignUpEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            PasswordInput? password,
-            PasswordInput? confirmPassword,
-            bool? obscurePassword)
-        dataChanged,
-    required TResult Function() signUp,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            PasswordInput? password,
-            PasswordInput? confirmPassword,
-            bool? obscurePassword)?
-        dataChanged,
-    TResult? Function()? signUp,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            PasswordInput? password,
-            PasswordInput? confirmPassword,
-            bool? obscurePassword)?
-        dataChanged,
-    TResult Function()? signUp,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DataChanged value) dataChanged,
-    required TResult Function(_SignUp value) signUp,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DataChanged value)? dataChanged,
-    TResult? Function(_SignUp value)? signUp,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DataChanged value)? dataChanged,
-    TResult Function(_SignUp value)? signUp,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+mixin _$SignUpEvent implements DiagnosticableTreeMixin {
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpEvent'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $SignUpEventCopyWith<$Res> {
-  factory $SignUpEventCopyWith(
-          SignUpEvent value, $Res Function(SignUpEvent) then) =
-      _$SignUpEventCopyWithImpl<$Res, SignUpEvent>;
+class $SignUpEventCopyWith<$Res>  {
+$SignUpEventCopyWith(SignUpEvent _, $Res Function(SignUpEvent) __);
 }
 
-/// @nodoc
-class _$SignUpEventCopyWithImpl<$Res, $Val extends SignUpEvent>
-    implements $SignUpEventCopyWith<$Res> {
-  _$SignUpEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [SignUpEvent].
+extension SignUpEventPatterns on SignUpEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of SignUpEvent
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _DataChanged value)?  dataChanged,TResult Function( _SignUp value)?  signUp,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _DataChanged() when dataChanged != null:
+return dataChanged(_that);case _SignUp() when signUp != null:
+return signUp(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _DataChanged value)  dataChanged,required TResult Function( _SignUp value)  signUp,}){
+final _that = this;
+switch (_that) {
+case _DataChanged():
+return dataChanged(_that);case _SignUp():
+return signUp(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _DataChanged value)?  dataChanged,TResult? Function( _SignUp value)?  signUp,}){
+final _that = this;
+switch (_that) {
+case _DataChanged() when dataChanged != null:
+return dataChanged(_that);case _SignUp() when signUp != null:
+return signUp(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( GenericFormzInput? name,  EmailInput? email,  PhoneNumberInput? phone,  PasswordInput? password,  PasswordInput? confirmPassword,  bool? obscurePassword)?  dataChanged,TResult Function()?  signUp,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _DataChanged() when dataChanged != null:
+return dataChanged(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.obscurePassword);case _SignUp() when signUp != null:
+return signUp();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( GenericFormzInput? name,  EmailInput? email,  PhoneNumberInput? phone,  PasswordInput? password,  PasswordInput? confirmPassword,  bool? obscurePassword)  dataChanged,required TResult Function()  signUp,}) {final _that = this;
+switch (_that) {
+case _DataChanged():
+return dataChanged(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.obscurePassword);case _SignUp():
+return signUp();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( GenericFormzInput? name,  EmailInput? email,  PhoneNumberInput? phone,  PasswordInput? password,  PasswordInput? confirmPassword,  bool? obscurePassword)?  dataChanged,TResult? Function()?  signUp,}) {final _that = this;
+switch (_that) {
+case _DataChanged() when dataChanged != null:
+return dataChanged(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.obscurePassword);case _SignUp() when signUp != null:
+return signUp();case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$DataChangedImplCopyWith<$Res> {
-  factory _$$DataChangedImplCopyWith(
-          _$DataChangedImpl value, $Res Function(_$DataChangedImpl) then) =
-      __$$DataChangedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {GenericFormzInput<dynamic>? name,
-      EmailInput? email,
-      PhoneNumberInput? phone,
-      PasswordInput? password,
-      PasswordInput? confirmPassword,
-      bool? obscurePassword});
-}
-
-/// @nodoc
-class __$$DataChangedImplCopyWithImpl<$Res>
-    extends _$SignUpEventCopyWithImpl<$Res, _$DataChangedImpl>
-    implements _$$DataChangedImplCopyWith<$Res> {
-  __$$DataChangedImplCopyWithImpl(
-      _$DataChangedImpl _value, $Res Function(_$DataChangedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignUpEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = freezed,
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? password = freezed,
-    Object? confirmPassword = freezed,
-    Object? obscurePassword = freezed,
-  }) {
-    return _then(_$DataChangedImpl(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as EmailInput?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as PhoneNumberInput?,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as PasswordInput?,
-      confirmPassword: freezed == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as PasswordInput?,
-      obscurePassword: freezed == obscurePassword
-          ? _value.obscurePassword
-          : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$DataChangedImpl with DiagnosticableTreeMixin implements _DataChanged {
-  const _$DataChangedImpl(
-      {this.name,
-      this.email,
-      this.phone,
-      this.password,
-      this.confirmPassword,
-      this.obscurePassword});
-
-  @override
-  final GenericFormzInput<dynamic>? name;
-  @override
-  final EmailInput? email;
-  @override
-  final PhoneNumberInput? phone;
-  @override
-  final PasswordInput? password;
-  @override
-  final PasswordInput? confirmPassword;
-  @override
-  final bool? obscurePassword;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpEvent.dataChanged(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SignUpEvent.dataChanged'))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('phone', phone))
-      ..add(DiagnosticsProperty('password', password))
-      ..add(DiagnosticsProperty('confirmPassword', confirmPassword))
-      ..add(DiagnosticsProperty('obscurePassword', obscurePassword));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DataChangedImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.confirmPassword, confirmPassword) ||
-                other.confirmPassword == confirmPassword) &&
-            (identical(other.obscurePassword, obscurePassword) ||
-                other.obscurePassword == obscurePassword));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, name, email, phone, password,
-      confirmPassword, obscurePassword);
-
-  /// Create a copy of SignUpEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DataChangedImplCopyWith<_$DataChangedImpl> get copyWith =>
-      __$$DataChangedImplCopyWithImpl<_$DataChangedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            PasswordInput? password,
-            PasswordInput? confirmPassword,
-            bool? obscurePassword)
-        dataChanged,
-    required TResult Function() signUp,
-  }) {
-    return dataChanged(
-        name, email, phone, password, confirmPassword, obscurePassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            PasswordInput? password,
-            PasswordInput? confirmPassword,
-            bool? obscurePassword)?
-        dataChanged,
-    TResult? Function()? signUp,
-  }) {
-    return dataChanged?.call(
-        name, email, phone, password, confirmPassword, obscurePassword);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            PasswordInput? password,
-            PasswordInput? confirmPassword,
-            bool? obscurePassword)?
-        dataChanged,
-    TResult Function()? signUp,
-    required TResult orElse(),
-  }) {
-    if (dataChanged != null) {
-      return dataChanged(
-          name, email, phone, password, confirmPassword, obscurePassword);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DataChanged value) dataChanged,
-    required TResult Function(_SignUp value) signUp,
-  }) {
-    return dataChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DataChanged value)? dataChanged,
-    TResult? Function(_SignUp value)? signUp,
-  }) {
-    return dataChanged?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DataChanged value)? dataChanged,
-    TResult Function(_SignUp value)? signUp,
-    required TResult orElse(),
-  }) {
-    if (dataChanged != null) {
-      return dataChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _DataChanged implements SignUpEvent {
-  const factory _DataChanged(
-      {final GenericFormzInput<dynamic>? name,
-      final EmailInput? email,
-      final PhoneNumberInput? phone,
-      final PasswordInput? password,
-      final PasswordInput? confirmPassword,
-      final bool? obscurePassword}) = _$DataChangedImpl;
-
-  GenericFormzInput<dynamic>? get name;
-  EmailInput? get email;
-  PhoneNumberInput? get phone;
-  PasswordInput? get password;
-  PasswordInput? get confirmPassword;
-  bool? get obscurePassword;
-
-  /// Create a copy of SignUpEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataChangedImplCopyWith<_$DataChangedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SignUpImplCopyWith<$Res> {
-  factory _$$SignUpImplCopyWith(
-          _$SignUpImpl value, $Res Function(_$SignUpImpl) then) =
-      __$$SignUpImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SignUpImplCopyWithImpl<$Res>
-    extends _$SignUpEventCopyWithImpl<$Res, _$SignUpImpl>
-    implements _$$SignUpImplCopyWith<$Res> {
-  __$$SignUpImplCopyWithImpl(
-      _$SignUpImpl _value, $Res Function(_$SignUpImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignUpEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$SignUpImpl with DiagnosticableTreeMixin implements _SignUp {
-  const _$SignUpImpl();
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpEvent.signUp()';
-  }
+class _DataChanged with DiagnosticableTreeMixin implements SignUpEvent {
+  const _DataChanged({this.name, this.email, this.phone, this.password, this.confirmPassword, this.obscurePassword});
+  
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SignUpEvent.signUp'));
-  }
+ final  GenericFormzInput? name;
+ final  EmailInput? email;
+ final  PhoneNumberInput? phone;
+ final  PasswordInput? password;
+ final  PasswordInput? confirmPassword;
+ final  bool? obscurePassword;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SignUpImpl);
-  }
+/// Create a copy of SignUpEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_DataChanged>(this, _$identity);
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            PasswordInput? password,
-            PasswordInput? confirmPassword,
-            bool? obscurePassword)
-        dataChanged,
-    required TResult Function() signUp,
-  }) {
-    return signUp();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            PasswordInput? password,
-            PasswordInput? confirmPassword,
-            bool? obscurePassword)?
-        dataChanged,
-    TResult? Function()? signUp,
-  }) {
-    return signUp?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            GenericFormzInput<dynamic>? name,
-            EmailInput? email,
-            PhoneNumberInput? phone,
-            PasswordInput? password,
-            PasswordInput? confirmPassword,
-            bool? obscurePassword)?
-        dataChanged,
-    TResult Function()? signUp,
-    required TResult orElse(),
-  }) {
-    if (signUp != null) {
-      return signUp();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_DataChanged value) dataChanged,
-    required TResult Function(_SignUp value) signUp,
-  }) {
-    return signUp(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_DataChanged value)? dataChanged,
-    TResult? Function(_SignUp value)? signUp,
-  }) {
-    return signUp?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_DataChanged value)? dataChanged,
-    TResult Function(_SignUp value)? signUp,
-    required TResult orElse(),
-  }) {
-    if (signUp != null) {
-      return signUp(this);
-    }
-    return orElse();
-  }
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpEvent.dataChanged'))
+    ..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('phone', phone))..add(DiagnosticsProperty('password', password))..add(DiagnosticsProperty('confirmPassword', confirmPassword))..add(DiagnosticsProperty('obscurePassword', obscurePassword));
 }
 
-abstract class _SignUp implements SignUpEvent {
-  const factory _SignUp() = _$SignUpImpl;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,name,email,phone,password,confirmPassword,obscurePassword);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpEvent.dataChanged(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword)';
+}
+
+
 }
 
 /// @nodoc
-mixin _$SignUpState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() settingsLoading,
-    required TResult Function() success,
-    required TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function(String error) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? settingsLoading,
-    TResult? Function()? success,
-    TResult? Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function(String error)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? settingsLoading,
-    TResult Function()? success,
-    TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function(String error)? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_SettingsLoading value) settingsLoading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_SettingsLoading value)? settingsLoading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_SettingsLoading value)? settingsLoading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+abstract mixin class _$DataChangedCopyWith<$Res> implements $SignUpEventCopyWith<$Res> {
+  factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
+@useResult
+$Res call({
+ GenericFormzInput? name, EmailInput? email, PhoneNumberInput? phone, PasswordInput? password, PasswordInput? confirmPassword, bool? obscurePassword
+});
+
+
+
+
+}
+/// @nodoc
+class __$DataChangedCopyWithImpl<$Res>
+    implements _$DataChangedCopyWith<$Res> {
+  __$DataChangedCopyWithImpl(this._self, this._then);
+
+  final _DataChanged _self;
+  final $Res Function(_DataChanged) _then;
+
+/// Create a copy of SignUpEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? email = freezed,Object? phone = freezed,Object? password = freezed,Object? confirmPassword = freezed,Object? obscurePassword = freezed,}) {
+  return _then(_DataChanged(
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as EmailInput?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as PhoneNumberInput?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as PasswordInput?,confirmPassword: freezed == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
+as PasswordInput?,obscurePassword: freezed == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
 }
 
-/// @nodoc
-abstract class $SignUpStateCopyWith<$Res> {
-  factory $SignUpStateCopyWith(
-          SignUpState value, $Res Function(SignUpState) then) =
-      _$SignUpStateCopyWithImpl<$Res, SignUpState>;
-}
 
-/// @nodoc
-class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
-    implements $SignUpStateCopyWith<$Res> {
-  _$SignUpStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SignUpStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
-  const _$InitialImpl();
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpState.initial()';
-  }
+class _SignUp with DiagnosticableTreeMixin implements SignUpEvent {
+  const _SignUp();
+  
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SignUpState.initial'));
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() settingsLoading,
-    required TResult Function() success,
-    required TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function(String error) failure,
-  }) {
-    return initial();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? settingsLoading,
-    TResult? Function()? success,
-    TResult? Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function(String error)? failure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? settingsLoading,
-    TResult Function()? success,
-    TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function(String error)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_SettingsLoading value) settingsLoading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_SettingsLoading value)? settingsLoading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_SettingsLoading value)? settingsLoading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpEvent.signUp'))
+    ;
 }
 
-abstract class _Initial implements SignUpState {
-  const factory _Initial() = _$InitialImpl;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignUp);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpEvent.signUp()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+mixin _$SignUpState implements DiagnosticableTreeMixin {
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpState'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+class $SignUpStateCopyWith<$Res>  {
+$SignUpStateCopyWith(SignUpState _, $Res Function(SignUpState) __);
 }
 
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SignUpStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
+/// Adds pattern-matching-related methods to [SignUpState].
+extension SignUpStatePatterns on SignUpState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _SettingsLoading value)?  settingsLoading,TResult Function( _Success value)?  success,TResult Function( _Loaded value)?  loaded,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _SettingsLoading() when settingsLoading != null:
+return settingsLoading(_that);case _Success() when success != null:
+return success(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Failure() when failure != null:
+return failure(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _SettingsLoading value)  settingsLoading,required TResult Function( _Success value)  success,required TResult Function( _Loaded value)  loaded,required TResult Function( _Failure value)  failure,}){
+final _that = this;
+switch (_that) {
+case _Initial():
+return initial(_that);case _Loading():
+return loading(_that);case _SettingsLoading():
+return settingsLoading(_that);case _Success():
+return success(_that);case _Loaded():
+return loaded(_that);case _Failure():
+return failure(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _SettingsLoading value)?  settingsLoading,TResult? Function( _Success value)?  success,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Failure value)?  failure,}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _SettingsLoading() when settingsLoading != null:
+return settingsLoading(_that);case _Success() when success != null:
+return success(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Failure() when failure != null:
+return failure(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  settingsLoading,TResult Function()?  success,TResult Function( GenericFormzInput name,  EmailInput email,  PhoneNumberInput phone,  PasswordInput password,  PasswordInput confirmPassword,  ConfirmPasswordInput confirmPasswordInput,  bool obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _SettingsLoading() when settingsLoading != null:
+return settingsLoading();case _Success() when success != null:
+return success();case _Loaded() when loaded != null:
+return loaded(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.confirmPasswordInput,_that.obscurePassword,_that.formzSubmissionStatus);case _Failure() when failure != null:
+return failure(_that.error);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  settingsLoading,required TResult Function()  success,required TResult Function( GenericFormzInput name,  EmailInput email,  PhoneNumberInput phone,  PasswordInput password,  PasswordInput confirmPassword,  ConfirmPasswordInput confirmPasswordInput,  bool obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function( String error)  failure,}) {final _that = this;
+switch (_that) {
+case _Initial():
+return initial();case _Loading():
+return loading();case _SettingsLoading():
+return settingsLoading();case _Success():
+return success();case _Loaded():
+return loaded(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.confirmPasswordInput,_that.obscurePassword,_that.formzSubmissionStatus);case _Failure():
+return failure(_that.error);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  settingsLoading,TResult? Function()?  success,TResult? Function( GenericFormzInput name,  EmailInput email,  PhoneNumberInput phone,  PasswordInput password,  PasswordInput confirmPassword,  ConfirmPasswordInput confirmPasswordInput,  bool obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function( String error)?  failure,}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _SettingsLoading() when settingsLoading != null:
+return settingsLoading();case _Success() when success != null:
+return success();case _Loaded() when loaded != null:
+return loaded(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.confirmPasswordInput,_that.obscurePassword,_that.formzSubmissionStatus);case _Failure() when failure != null:
+return failure(_that.error);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-
-class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
-  const _$LoadingImpl();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpState.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SignUpState.loading'));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() settingsLoading,
-    required TResult Function() success,
-    required TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function(String error) failure,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? settingsLoading,
-    TResult? Function()? success,
-    TResult? Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function(String error)? failure,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? settingsLoading,
-    TResult Function()? success,
-    TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function(String error)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_SettingsLoading value) settingsLoading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_SettingsLoading value)? settingsLoading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_SettingsLoading value)? settingsLoading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements SignUpState {
-  const factory _Loading() = _$LoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$SettingsLoadingImplCopyWith<$Res> {
-  factory _$$SettingsLoadingImplCopyWith(_$SettingsLoadingImpl value,
-          $Res Function(_$SettingsLoadingImpl) then) =
-      __$$SettingsLoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SettingsLoadingImplCopyWithImpl<$Res>
-    extends _$SignUpStateCopyWithImpl<$Res, _$SettingsLoadingImpl>
-    implements _$$SettingsLoadingImplCopyWith<$Res> {
-  __$$SettingsLoadingImplCopyWithImpl(
-      _$SettingsLoadingImpl _value, $Res Function(_$SettingsLoadingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$SettingsLoadingImpl
-    with DiagnosticableTreeMixin
-    implements _SettingsLoading {
-  const _$SettingsLoadingImpl();
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpState.settingsLoading()';
-  }
+class _Initial with DiagnosticableTreeMixin implements SignUpState {
+  const _Initial();
+  
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SignUpState.settingsLoading'));
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SettingsLoadingImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() settingsLoading,
-    required TResult Function() success,
-    required TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function(String error) failure,
-  }) {
-    return settingsLoading();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? settingsLoading,
-    TResult? Function()? success,
-    TResult? Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function(String error)? failure,
-  }) {
-    return settingsLoading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? settingsLoading,
-    TResult Function()? success,
-    TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function(String error)? failure,
-    required TResult orElse(),
-  }) {
-    if (settingsLoading != null) {
-      return settingsLoading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_SettingsLoading value) settingsLoading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return settingsLoading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_SettingsLoading value)? settingsLoading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return settingsLoading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_SettingsLoading value)? settingsLoading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (settingsLoading != null) {
-      return settingsLoading(this);
-    }
-    return orElse();
-  }
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpState.initial'))
+    ;
 }
 
-abstract class _SettingsLoading implements SignUpState {
-  const factory _SettingsLoading() = _$SettingsLoadingImpl;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
-/// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpState.initial()';
 }
 
-/// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$SignUpStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
 }
+
+
+
 
 /// @nodoc
 
-class _$SuccessImpl with DiagnosticableTreeMixin implements _Success {
-  const _$SuccessImpl();
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpState.success()';
-  }
+class _Loading with DiagnosticableTreeMixin implements SignUpState {
+  const _Loading();
+  
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SignUpState.success'));
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() settingsLoading,
-    required TResult Function() success,
-    required TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function(String error) failure,
-  }) {
-    return success();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? settingsLoading,
-    TResult? Function()? success,
-    TResult? Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function(String error)? failure,
-  }) {
-    return success?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? settingsLoading,
-    TResult Function()? success,
-    TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function(String error)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_SettingsLoading value) settingsLoading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_SettingsLoading value)? settingsLoading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_SettingsLoading value)? settingsLoading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpState.loading'))
+    ;
 }
 
-abstract class _Success implements SignUpState {
-  const factory _Success() = _$SuccessImpl;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpState.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _SettingsLoading with DiagnosticableTreeMixin implements SignUpState {
+  const _SettingsLoading();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpState.settingsLoading'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsLoading);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpState.settingsLoading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Success with DiagnosticableTreeMixin implements SignUpState {
+  const _Success();
+  
+
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpState.success'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpState.success()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Loaded with DiagnosticableTreeMixin implements SignUpState {
+  const _Loaded({required this.name, required this.email, required this.phone, required this.password, required this.confirmPassword, required this.confirmPasswordInput, this.obscurePassword = true, required this.formzSubmissionStatus});
+  
+
+ final  GenericFormzInput name;
+ final  EmailInput email;
+ final  PhoneNumberInput phone;
+ final  PasswordInput password;
+ final  PasswordInput confirmPassword;
+ final  ConfirmPasswordInput confirmPasswordInput;
+@JsonKey() final  bool obscurePassword;
+ final  FormzSubmissionStatus formzSubmissionStatus;
+
+/// Create a copy of SignUpState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpState.loaded'))
+    ..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('phone', phone))..add(DiagnosticsProperty('password', password))..add(DiagnosticsProperty('confirmPassword', confirmPassword))..add(DiagnosticsProperty('confirmPasswordInput', confirmPasswordInput))..add(DiagnosticsProperty('obscurePassword', obscurePassword))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.confirmPasswordInput, confirmPasswordInput) || other.confirmPasswordInput == confirmPasswordInput)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,name,email,phone,password,confirmPassword,confirmPasswordInput,obscurePassword,formzSubmissionStatus);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpState.loaded(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, confirmPasswordInput: $confirmPasswordInput, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {GenericFormzInput<dynamic> name,
-      EmailInput email,
-      PhoneNumberInput phone,
-      PasswordInput password,
-      PasswordInput confirmPassword,
-      ConfirmPasswordInput confirmPasswordInput,
-      bool obscurePassword,
-      FormzSubmissionStatus formzSubmissionStatus});
+abstract mixin class _$LoadedCopyWith<$Res> implements $SignUpStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ GenericFormzInput name, EmailInput email, PhoneNumberInput phone, PasswordInput password, PasswordInput confirmPassword, ConfirmPasswordInput confirmPasswordInput, bool obscurePassword, FormzSubmissionStatus formzSubmissionStatus
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of SignUpState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? name = null,Object? email = null,Object? phone = null,Object? password = null,Object? confirmPassword = null,Object? confirmPasswordInput = null,Object? obscurePassword = null,Object? formzSubmissionStatus = null,}) {
+  return _then(_Loaded(
+name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as EmailInput,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as PhoneNumberInput,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as PasswordInput,confirmPassword: null == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
+as PasswordInput,confirmPasswordInput: null == confirmPasswordInput ? _self.confirmPasswordInput : confirmPasswordInput // ignore: cast_nullable_to_non_nullable
+as ConfirmPasswordInput,obscurePassword: null == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
+as bool,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+as FormzSubmissionStatus,
+  ));
 }
 
-/// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$SignUpStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? email = null,
-    Object? phone = null,
-    Object? password = null,
-    Object? confirmPassword = null,
-    Object? confirmPasswordInput = null,
-    Object? obscurePassword = null,
-    Object? formzSubmissionStatus = null,
-  }) {
-    return _then(_$LoadedImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as GenericFormzInput<dynamic>,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as EmailInput,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as PhoneNumberInput,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
-      confirmPassword: null == confirmPassword
-          ? _value.confirmPassword
-          : confirmPassword // ignore: cast_nullable_to_non_nullable
-              as PasswordInput,
-      confirmPasswordInput: null == confirmPasswordInput
-          ? _value.confirmPasswordInput
-          : confirmPasswordInput // ignore: cast_nullable_to_non_nullable
-              as ConfirmPasswordInput,
-      obscurePassword: null == obscurePassword
-          ? _value.obscurePassword
-          : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as bool,
-      formzSubmissionStatus: null == formzSubmissionStatus
-          ? _value.formzSubmissionStatus
-          : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
-              as FormzSubmissionStatus,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
-  const _$LoadedImpl(
-      {required this.name,
-      required this.email,
-      required this.phone,
-      required this.password,
-      required this.confirmPassword,
-      required this.confirmPasswordInput,
-      this.obscurePassword = true,
-      required this.formzSubmissionStatus});
 
-  @override
-  final GenericFormzInput<dynamic> name;
-  @override
-  final EmailInput email;
-  @override
-  final PhoneNumberInput phone;
-  @override
-  final PasswordInput password;
-  @override
-  final PasswordInput confirmPassword;
-  @override
-  final ConfirmPasswordInput confirmPasswordInput;
-  @override
-  @JsonKey()
-  final bool obscurePassword;
-  @override
-  final FormzSubmissionStatus formzSubmissionStatus;
+class _Failure with DiagnosticableTreeMixin implements SignUpState {
+  const _Failure({required this.error});
+  
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpState.loaded(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, confirmPasswordInput: $confirmPasswordInput, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
-  }
+ final  String error;
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SignUpState.loaded'))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('phone', phone))
-      ..add(DiagnosticsProperty('password', password))
-      ..add(DiagnosticsProperty('confirmPassword', confirmPassword))
-      ..add(DiagnosticsProperty('confirmPasswordInput', confirmPasswordInput))
-      ..add(DiagnosticsProperty('obscurePassword', obscurePassword))
-      ..add(
-          DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
-  }
+/// Create a copy of SignUpState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.confirmPassword, confirmPassword) ||
-                other.confirmPassword == confirmPassword) &&
-            (identical(other.confirmPasswordInput, confirmPasswordInput) ||
-                other.confirmPasswordInput == confirmPasswordInput) &&
-            (identical(other.obscurePassword, obscurePassword) ||
-                other.obscurePassword == obscurePassword) &&
-            (identical(other.formzSubmissionStatus, formzSubmissionStatus) ||
-                other.formzSubmissionStatus == formzSubmissionStatus));
-  }
 
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      email,
-      phone,
-      password,
-      confirmPassword,
-      confirmPasswordInput,
-      obscurePassword,
-      formzSubmissionStatus);
-
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() settingsLoading,
-    required TResult Function() success,
-    required TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function(String error) failure,
-  }) {
-    return loaded(name, email, phone, password, confirmPassword,
-        confirmPasswordInput, obscurePassword, formzSubmissionStatus);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? settingsLoading,
-    TResult? Function()? success,
-    TResult? Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function(String error)? failure,
-  }) {
-    return loaded?.call(name, email, phone, password, confirmPassword,
-        confirmPasswordInput, obscurePassword, formzSubmissionStatus);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? settingsLoading,
-    TResult Function()? success,
-    TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function(String error)? failure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(name, email, phone, password, confirmPassword,
-          confirmPasswordInput, obscurePassword, formzSubmissionStatus);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_SettingsLoading value) settingsLoading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_SettingsLoading value)? settingsLoading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_SettingsLoading value)? settingsLoading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignUpState.failure'))
+    ..add(DiagnosticsProperty('error', error));
 }
 
-abstract class _Loaded implements SignUpState {
-  const factory _Loaded(
-          {required final GenericFormzInput<dynamic> name,
-          required final EmailInput email,
-          required final PhoneNumberInput phone,
-          required final PasswordInput password,
-          required final PasswordInput confirmPassword,
-          required final ConfirmPasswordInput confirmPasswordInput,
-          final bool obscurePassword,
-          required final FormzSubmissionStatus formzSubmissionStatus}) =
-      _$LoadedImpl;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.error, error) || other.error == error));
+}
 
-  GenericFormzInput<dynamic> get name;
-  EmailInput get email;
-  PhoneNumberInput get phone;
-  PasswordInput get password;
-  PasswordInput get confirmPassword;
-  ConfirmPasswordInput get confirmPasswordInput;
-  bool get obscurePassword;
-  FormzSubmissionStatus get formzSubmissionStatus;
 
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+int get hashCode => Object.hash(runtimeType,error);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SignUpState.failure(error: $error)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String error});
-}
+abstract mixin class _$FailureCopyWith<$Res> implements $SignUpStateCopyWith<$Res> {
+  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
+@useResult
+$Res call({
+ String error
+});
 
+
+
+
+}
 /// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$SignUpStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
-      : super(_value, _then);
+class __$FailureCopyWithImpl<$Res>
+    implements _$FailureCopyWith<$Res> {
+  __$FailureCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$FailureImpl(
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  final _Failure _self;
+  final $Res Function(_Failure) _then;
+
+/// Create a copy of SignUpState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? error = null,}) {
+  return _then(_Failure(
+error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
 
-class _$FailureImpl with DiagnosticableTreeMixin implements _Failure {
-  const _$FailureImpl({required this.error});
-
-  @override
-  final String error;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpState.failure(error: $error)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SignUpState.failure'))
-      ..add(DiagnosticsProperty('error', error));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() settingsLoading,
-    required TResult Function() success,
-    required TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)
-        loaded,
-    required TResult Function(String error) failure,
-  }) {
-    return failure(error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? settingsLoading,
-    TResult? Function()? success,
-    TResult? Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult? Function(String error)? failure,
-  }) {
-    return failure?.call(error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? settingsLoading,
-    TResult Function()? success,
-    TResult Function(
-            GenericFormzInput<dynamic> name,
-            EmailInput email,
-            PhoneNumberInput phone,
-            PasswordInput password,
-            PasswordInput confirmPassword,
-            ConfirmPasswordInput confirmPasswordInput,
-            bool obscurePassword,
-            FormzSubmissionStatus formzSubmissionStatus)?
-        loaded,
-    TResult Function(String error)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_SettingsLoading value) settingsLoading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_SettingsLoading value)? settingsLoading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_SettingsLoading value)? settingsLoading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
 }
 
-abstract class _Failure implements SignUpState {
-  const factory _Failure({required final String error}) = _$FailureImpl;
-
-  String get error;
-
-  /// Create a copy of SignUpState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

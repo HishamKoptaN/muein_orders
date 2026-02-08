@@ -6,7 +6,7 @@ part 'orders_res_entity.freezed.dart';
 part 'orders_res_entity.g.dart';
 
 @freezed
-class OrdersResEntity with _$OrdersResEntity {
+abstract class OrdersResEntity with _$OrdersResEntity {
   const factory OrdersResEntity({
     required List<OrderEntity>? orders,
     required MetaEntity? meta,
@@ -16,7 +16,7 @@ class OrdersResEntity with _$OrdersResEntity {
 }
 
 @freezed
-class OrderEntity with _$OrderEntity {
+abstract class OrderEntity with _$OrderEntity {
   const factory OrderEntity({
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'created_at') String? createdAt,

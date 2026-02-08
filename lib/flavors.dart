@@ -13,30 +13,30 @@ class F {
   static String get title {
     switch (appFlavor) {
       case Flavor.integration:
-        return 'Mubin Orders Integration';
+        return 'Muein Orders Integration';
       case Flavor.staging:
-        return 'Mubin Orders Staging';
+        return 'Muein Orders Staging';
       case Flavor.development:
-        return 'Mubin Orders Dev';
+        return 'Muein Orders Dev';
       case Flavor.production:
-        return 'Mubin Orders';
+        return 'Muein Orders';
       case null:
-        return 'Mubin Orders';
+        return 'Muein Orders';
     }
   }
 
   static String get baseUrl {
     switch (appFlavor) {
       case Flavor.integration:
-        return 'https://api.mubin-orders.com/integration';
+        return 'https://api.muein-orders.com/integration';
       case Flavor.staging:
-        return 'https://api.mubin-orders.com/staging';
+        return 'https://api.muein-orders.com/staging';
       case Flavor.development:
-        return 'https://api.mubin-orders.com/dev';
+        return 'https://api.muein-orders.com/dev';
       case Flavor.production:
-        return 'https://api.mubin-orders.com';
+        return 'https://api.muein-orders.com';
       case null:
-        return 'https://api.mubin-orders.com';
+        return 'https://api.muein-orders.com';
     }
   }
 

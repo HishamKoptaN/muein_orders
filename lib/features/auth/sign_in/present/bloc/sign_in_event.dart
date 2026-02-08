@@ -1,7 +1,7 @@
 part of 'sign_in_bloc.dart';
 
 @freezed
-class SignInEvent with _$SignInEvent {
+abstract class SignInEvent with _$SignInEvent {
   const factory SignInEvent.dataChanged({
     EmailInput? email,
     PasswordInput? password,

@@ -12,7 +12,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get upload_videos => 'تحميل مقاطع الفيديو';
 
   @override
-  String get welcometoMubinOrders => 'مرحباً بكم في طلبات موبين';
+  String get welcometoMueinOrders => 'مرحباً بكم في طلبات موبين';
 
   @override
   String get welcome => 'مرحباً';
@@ -41,8 +41,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String
-      get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-          'تأكد من وضوح الصور وعدد نسخ القرآن الكريم وتكاليف الطلب قبل الإرسال.';
+  get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
+      'تأكد من وضوح الصور وعدد نسخ القرآن الكريم وتكاليف الطلب قبل الإرسال.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
@@ -390,7 +390,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'قم بمراقبة طلباتك في الوقت الفعلي باستخدام نظام التتبع البديهي لدينا';
 
   @override
-  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
+  String
+  get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'لا تقم بحذف ملفات الصور والفيديو المخزنة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة';
 
   @override
@@ -422,8 +423,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String
-      get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-          'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال';
+  get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+      'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال';
 
   @override
   String get failure => 'فشل';

@@ -2,15 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/widgets/custom_circular_progress.dart';
+import '../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../home/present/view/home_view.dart';
 import '../../../sign_in/present/views/sign_in_view.dart';
 import '../bloc/auth_bloc.dart';
 
 class AuthView extends StatefulWidget {
-  const AuthView({
-    super.key,
-  });
+  const AuthView({super.key});
   static const String routeName = 'auth';
 
   @override
@@ -36,16 +34,6 @@ class _AuthViewState extends State<AuthView> {
             },
             orElse: () {
               return const CustomCircularProgress();
-              // Container(
-              //   width: double.infinity,
-              //   height: double.infinity,
-              //   decoration: const BoxDecoration(
-              //     image: DecorationImage(
-              //       image: AssetImage('assets/images/splash.png'),
-              //       fit: BoxFit.cover,
-              //     ),
-              //   ),
-              // );
             },
           );
         },

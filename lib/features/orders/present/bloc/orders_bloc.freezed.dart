@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,1374 +9,804 @@ part of 'orders_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$OrdersEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            int packageId, bool loadMore, bool? isQuranPhotographed)
-        getOrders,
-    required TResult Function(int orderId) updateIsDistributionPhotographed,
-    required TResult Function(String query, bool getMore) searchOrders,
-    required TResult Function() disposeSearch,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult? Function(int orderId)? updateIsDistributionPhotographed,
-    TResult? Function(String query, bool getMore)? searchOrders,
-    TResult? Function()? disposeSearch,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult Function(int orderId)? updateIsDistributionPhotographed,
-    TResult Function(String query, bool getMore)? searchOrders,
-    TResult Function()? disposeSearch,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_UpdateIsDistributionPhotographed value)
-        updateIsDistributionPhotographed,
-    required TResult Function(_SearchOrders value) searchOrders,
-    required TResult Function(_DisposeSearch value) disposeSearch,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult? Function(_SearchOrders value)? searchOrders,
-    TResult? Function(_DisposeSearch value)? disposeSearch,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult Function(_SearchOrders value)? searchOrders,
-    TResult Function(_DisposeSearch value)? disposeSearch,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'OrdersEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $OrdersEventCopyWith<$Res> {
-  factory $OrdersEventCopyWith(
-          OrdersEvent value, $Res Function(OrdersEvent) then) =
-      _$OrdersEventCopyWithImpl<$Res, OrdersEvent>;
+class $OrdersEventCopyWith<$Res>  {
+$OrdersEventCopyWith(OrdersEvent _, $Res Function(OrdersEvent) __);
 }
 
-/// @nodoc
-class _$OrdersEventCopyWithImpl<$Res, $Val extends OrdersEvent>
-    implements $OrdersEventCopyWith<$Res> {
-  _$OrdersEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [OrdersEvent].
+extension OrdersEventPatterns on OrdersEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetOrders value)?  getOrders,TResult Function( _UpdateIsDistributionPhotographed value)?  updateIsDistributionPhotographed,TResult Function( _SearchOrders value)?  searchOrders,TResult Function( _DisposeSearch value)?  disposeSearch,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GetOrders() when getOrders != null:
+return getOrders(_that);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
+return updateIsDistributionPhotographed(_that);case _SearchOrders() when searchOrders != null:
+return searchOrders(_that);case _DisposeSearch() when disposeSearch != null:
+return disposeSearch(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetOrders value)  getOrders,required TResult Function( _UpdateIsDistributionPhotographed value)  updateIsDistributionPhotographed,required TResult Function( _SearchOrders value)  searchOrders,required TResult Function( _DisposeSearch value)  disposeSearch,}){
+final _that = this;
+switch (_that) {
+case _GetOrders():
+return getOrders(_that);case _UpdateIsDistributionPhotographed():
+return updateIsDistributionPhotographed(_that);case _SearchOrders():
+return searchOrders(_that);case _DisposeSearch():
+return disposeSearch(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetOrders value)?  getOrders,TResult? Function( _UpdateIsDistributionPhotographed value)?  updateIsDistributionPhotographed,TResult? Function( _SearchOrders value)?  searchOrders,TResult? Function( _DisposeSearch value)?  disposeSearch,}){
+final _that = this;
+switch (_that) {
+case _GetOrders() when getOrders != null:
+return getOrders(_that);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
+return updateIsDistributionPhotographed(_that);case _SearchOrders() when searchOrders != null:
+return searchOrders(_that);case _DisposeSearch() when disposeSearch != null:
+return disposeSearch(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int packageId,  bool loadMore,  bool? isQuranPhotographed)?  getOrders,TResult Function( int orderId)?  updateIsDistributionPhotographed,TResult Function( String query,  bool getMore)?  searchOrders,TResult Function()?  disposeSearch,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GetOrders() when getOrders != null:
+return getOrders(_that.packageId,_that.loadMore,_that.isQuranPhotographed);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
+return updateIsDistributionPhotographed(_that.orderId);case _SearchOrders() when searchOrders != null:
+return searchOrders(_that.query,_that.getMore);case _DisposeSearch() when disposeSearch != null:
+return disposeSearch();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int packageId,  bool loadMore,  bool? isQuranPhotographed)  getOrders,required TResult Function( int orderId)  updateIsDistributionPhotographed,required TResult Function( String query,  bool getMore)  searchOrders,required TResult Function()  disposeSearch,}) {final _that = this;
+switch (_that) {
+case _GetOrders():
+return getOrders(_that.packageId,_that.loadMore,_that.isQuranPhotographed);case _UpdateIsDistributionPhotographed():
+return updateIsDistributionPhotographed(_that.orderId);case _SearchOrders():
+return searchOrders(_that.query,_that.getMore);case _DisposeSearch():
+return disposeSearch();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int packageId,  bool loadMore,  bool? isQuranPhotographed)?  getOrders,TResult? Function( int orderId)?  updateIsDistributionPhotographed,TResult? Function( String query,  bool getMore)?  searchOrders,TResult? Function()?  disposeSearch,}) {final _that = this;
+switch (_that) {
+case _GetOrders() when getOrders != null:
+return getOrders(_that.packageId,_that.loadMore,_that.isQuranPhotographed);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
+return updateIsDistributionPhotographed(_that.orderId);case _SearchOrders() when searchOrders != null:
+return searchOrders(_that.query,_that.getMore);case _DisposeSearch() when disposeSearch != null:
+return disposeSearch();case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$GetOrdersImplCopyWith<$Res> {
-  factory _$$GetOrdersImplCopyWith(
-          _$GetOrdersImpl value, $Res Function(_$GetOrdersImpl) then) =
-      __$$GetOrdersImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int packageId, bool loadMore, bool? isQuranPhotographed});
-}
-
-/// @nodoc
-class __$$GetOrdersImplCopyWithImpl<$Res>
-    extends _$OrdersEventCopyWithImpl<$Res, _$GetOrdersImpl>
-    implements _$$GetOrdersImplCopyWith<$Res> {
-  __$$GetOrdersImplCopyWithImpl(
-      _$GetOrdersImpl _value, $Res Function(_$GetOrdersImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? packageId = null,
-    Object? loadMore = null,
-    Object? isQuranPhotographed = freezed,
-  }) {
-    return _then(_$GetOrdersImpl(
-      packageId: null == packageId
-          ? _value.packageId
-          : packageId // ignore: cast_nullable_to_non_nullable
-              as int,
-      loadMore: null == loadMore
-          ? _value.loadMore
-          : loadMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isQuranPhotographed: freezed == isQuranPhotographed
-          ? _value.isQuranPhotographed
-          : isQuranPhotographed // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GetOrdersImpl implements _GetOrders {
-  const _$GetOrdersImpl(
-      {required this.packageId,
-      required this.loadMore,
-      this.isQuranPhotographed});
-
-  @override
-  final int packageId;
-  @override
-  final bool loadMore;
-  @override
-  final bool? isQuranPhotographed;
-
-  @override
-  String toString() {
-    return 'OrdersEvent.getOrders(packageId: $packageId, loadMore: $loadMore, isQuranPhotographed: $isQuranPhotographed)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetOrdersImpl &&
-            (identical(other.packageId, packageId) ||
-                other.packageId == packageId) &&
-            (identical(other.loadMore, loadMore) ||
-                other.loadMore == loadMore) &&
-            (identical(other.isQuranPhotographed, isQuranPhotographed) ||
-                other.isQuranPhotographed == isQuranPhotographed));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, packageId, loadMore, isQuranPhotographed);
-
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetOrdersImplCopyWith<_$GetOrdersImpl> get copyWith =>
-      __$$GetOrdersImplCopyWithImpl<_$GetOrdersImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            int packageId, bool loadMore, bool? isQuranPhotographed)
-        getOrders,
-    required TResult Function(int orderId) updateIsDistributionPhotographed,
-    required TResult Function(String query, bool getMore) searchOrders,
-    required TResult Function() disposeSearch,
-  }) {
-    return getOrders(packageId, loadMore, isQuranPhotographed);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult? Function(int orderId)? updateIsDistributionPhotographed,
-    TResult? Function(String query, bool getMore)? searchOrders,
-    TResult? Function()? disposeSearch,
-  }) {
-    return getOrders?.call(packageId, loadMore, isQuranPhotographed);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult Function(int orderId)? updateIsDistributionPhotographed,
-    TResult Function(String query, bool getMore)? searchOrders,
-    TResult Function()? disposeSearch,
-    required TResult orElse(),
-  }) {
-    if (getOrders != null) {
-      return getOrders(packageId, loadMore, isQuranPhotographed);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_UpdateIsDistributionPhotographed value)
-        updateIsDistributionPhotographed,
-    required TResult Function(_SearchOrders value) searchOrders,
-    required TResult Function(_DisposeSearch value) disposeSearch,
-  }) {
-    return getOrders(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult? Function(_SearchOrders value)? searchOrders,
-    TResult? Function(_DisposeSearch value)? disposeSearch,
-  }) {
-    return getOrders?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult Function(_SearchOrders value)? searchOrders,
-    TResult Function(_DisposeSearch value)? disposeSearch,
-    required TResult orElse(),
-  }) {
-    if (getOrders != null) {
-      return getOrders(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetOrders implements OrdersEvent {
-  const factory _GetOrders(
-      {required final int packageId,
-      required final bool loadMore,
-      final bool? isQuranPhotographed}) = _$GetOrdersImpl;
-
-  int get packageId;
-  bool get loadMore;
-  bool? get isQuranPhotographed;
-
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GetOrdersImplCopyWith<_$GetOrdersImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UpdateIsDistributionPhotographedImplCopyWith<$Res> {
-  factory _$$UpdateIsDistributionPhotographedImplCopyWith(
-          _$UpdateIsDistributionPhotographedImpl value,
-          $Res Function(_$UpdateIsDistributionPhotographedImpl) then) =
-      __$$UpdateIsDistributionPhotographedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int orderId});
-}
-
-/// @nodoc
-class __$$UpdateIsDistributionPhotographedImplCopyWithImpl<$Res>
-    extends _$OrdersEventCopyWithImpl<$Res,
-        _$UpdateIsDistributionPhotographedImpl>
-    implements _$$UpdateIsDistributionPhotographedImplCopyWith<$Res> {
-  __$$UpdateIsDistributionPhotographedImplCopyWithImpl(
-      _$UpdateIsDistributionPhotographedImpl _value,
-      $Res Function(_$UpdateIsDistributionPhotographedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? orderId = null,
-  }) {
-    return _then(_$UpdateIsDistributionPhotographedImpl(
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$UpdateIsDistributionPhotographedImpl
-    implements _UpdateIsDistributionPhotographed {
-  const _$UpdateIsDistributionPhotographedImpl({required this.orderId});
 
-  @override
-  final int orderId;
+class _GetOrders implements OrdersEvent {
+  const _GetOrders({required this.packageId, required this.loadMore, this.isQuranPhotographed});
+  
 
-  @override
-  String toString() {
-    return 'OrdersEvent.updateIsDistributionPhotographed(orderId: $orderId)';
-  }
+ final  int packageId;
+ final  bool loadMore;
+ final  bool? isQuranPhotographed;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateIsDistributionPhotographedImpl &&
-            (identical(other.orderId, orderId) || other.orderId == orderId));
-  }
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GetOrdersCopyWith<_GetOrders> get copyWith => __$GetOrdersCopyWithImpl<_GetOrders>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, orderId);
 
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UpdateIsDistributionPhotographedImplCopyWith<
-          _$UpdateIsDistributionPhotographedImpl>
-      get copyWith => __$$UpdateIsDistributionPhotographedImplCopyWithImpl<
-          _$UpdateIsDistributionPhotographedImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            int packageId, bool loadMore, bool? isQuranPhotographed)
-        getOrders,
-    required TResult Function(int orderId) updateIsDistributionPhotographed,
-    required TResult Function(String query, bool getMore) searchOrders,
-    required TResult Function() disposeSearch,
-  }) {
-    return updateIsDistributionPhotographed(orderId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult? Function(int orderId)? updateIsDistributionPhotographed,
-    TResult? Function(String query, bool getMore)? searchOrders,
-    TResult? Function()? disposeSearch,
-  }) {
-    return updateIsDistributionPhotographed?.call(orderId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult Function(int orderId)? updateIsDistributionPhotographed,
-    TResult Function(String query, bool getMore)? searchOrders,
-    TResult Function()? disposeSearch,
-    required TResult orElse(),
-  }) {
-    if (updateIsDistributionPhotographed != null) {
-      return updateIsDistributionPhotographed(orderId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_UpdateIsDistributionPhotographed value)
-        updateIsDistributionPhotographed,
-    required TResult Function(_SearchOrders value) searchOrders,
-    required TResult Function(_DisposeSearch value) disposeSearch,
-  }) {
-    return updateIsDistributionPhotographed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult? Function(_SearchOrders value)? searchOrders,
-    TResult? Function(_DisposeSearch value)? disposeSearch,
-  }) {
-    return updateIsDistributionPhotographed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult Function(_SearchOrders value)? searchOrders,
-    TResult Function(_DisposeSearch value)? disposeSearch,
-    required TResult orElse(),
-  }) {
-    if (updateIsDistributionPhotographed != null) {
-      return updateIsDistributionPhotographed(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetOrders&&(identical(other.packageId, packageId) || other.packageId == packageId)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore)&&(identical(other.isQuranPhotographed, isQuranPhotographed) || other.isQuranPhotographed == isQuranPhotographed));
 }
 
-abstract class _UpdateIsDistributionPhotographed implements OrdersEvent {
-  const factory _UpdateIsDistributionPhotographed(
-      {required final int orderId}) = _$UpdateIsDistributionPhotographedImpl;
 
-  int get orderId;
+@override
+int get hashCode => Object.hash(runtimeType,packageId,loadMore,isQuranPhotographed);
 
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateIsDistributionPhotographedImplCopyWith<
-          _$UpdateIsDistributionPhotographedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'OrdersEvent.getOrders(packageId: $packageId, loadMore: $loadMore, isQuranPhotographed: $isQuranPhotographed)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$SearchOrdersImplCopyWith<$Res> {
-  factory _$$SearchOrdersImplCopyWith(
-          _$SearchOrdersImpl value, $Res Function(_$SearchOrdersImpl) then) =
-      __$$SearchOrdersImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String query, bool getMore});
+abstract mixin class _$GetOrdersCopyWith<$Res> implements $OrdersEventCopyWith<$Res> {
+  factory _$GetOrdersCopyWith(_GetOrders value, $Res Function(_GetOrders) _then) = __$GetOrdersCopyWithImpl;
+@useResult
+$Res call({
+ int packageId, bool loadMore, bool? isQuranPhotographed
+});
+
+
+
+
+}
+/// @nodoc
+class __$GetOrdersCopyWithImpl<$Res>
+    implements _$GetOrdersCopyWith<$Res> {
+  __$GetOrdersCopyWithImpl(this._self, this._then);
+
+  final _GetOrders _self;
+  final $Res Function(_GetOrders) _then;
+
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? packageId = null,Object? loadMore = null,Object? isQuranPhotographed = freezed,}) {
+  return _then(_GetOrders(
+packageId: null == packageId ? _self.packageId : packageId // ignore: cast_nullable_to_non_nullable
+as int,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
+as bool,isQuranPhotographed: freezed == isQuranPhotographed ? _self.isQuranPhotographed : isQuranPhotographed // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
 }
 
-/// @nodoc
-class __$$SearchOrdersImplCopyWithImpl<$Res>
-    extends _$OrdersEventCopyWithImpl<$Res, _$SearchOrdersImpl>
-    implements _$$SearchOrdersImplCopyWith<$Res> {
-  __$$SearchOrdersImplCopyWithImpl(
-      _$SearchOrdersImpl _value, $Res Function(_$SearchOrdersImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? query = null,
-    Object? getMore = null,
-  }) {
-    return _then(_$SearchOrdersImpl(
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      getMore: null == getMore
-          ? _value.getMore
-          : getMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$SearchOrdersImpl implements _SearchOrders {
-  const _$SearchOrdersImpl({required this.query, this.getMore = false});
 
-  @override
-  final String query;
-  @override
-  @JsonKey()
-  final bool getMore;
+class _UpdateIsDistributionPhotographed implements OrdersEvent {
+  const _UpdateIsDistributionPhotographed({required this.orderId});
+  
 
-  @override
-  String toString() {
-    return 'OrdersEvent.searchOrders(query: $query, getMore: $getMore)';
-  }
+ final  int orderId;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SearchOrdersImpl &&
-            (identical(other.query, query) || other.query == query) &&
-            (identical(other.getMore, getMore) || other.getMore == getMore));
-  }
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UpdateIsDistributionPhotographedCopyWith<_UpdateIsDistributionPhotographed> get copyWith => __$UpdateIsDistributionPhotographedCopyWithImpl<_UpdateIsDistributionPhotographed>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, query, getMore);
 
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SearchOrdersImplCopyWith<_$SearchOrdersImpl> get copyWith =>
-      __$$SearchOrdersImplCopyWithImpl<_$SearchOrdersImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            int packageId, bool loadMore, bool? isQuranPhotographed)
-        getOrders,
-    required TResult Function(int orderId) updateIsDistributionPhotographed,
-    required TResult Function(String query, bool getMore) searchOrders,
-    required TResult Function() disposeSearch,
-  }) {
-    return searchOrders(query, getMore);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult? Function(int orderId)? updateIsDistributionPhotographed,
-    TResult? Function(String query, bool getMore)? searchOrders,
-    TResult? Function()? disposeSearch,
-  }) {
-    return searchOrders?.call(query, getMore);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult Function(int orderId)? updateIsDistributionPhotographed,
-    TResult Function(String query, bool getMore)? searchOrders,
-    TResult Function()? disposeSearch,
-    required TResult orElse(),
-  }) {
-    if (searchOrders != null) {
-      return searchOrders(query, getMore);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_UpdateIsDistributionPhotographed value)
-        updateIsDistributionPhotographed,
-    required TResult Function(_SearchOrders value) searchOrders,
-    required TResult Function(_DisposeSearch value) disposeSearch,
-  }) {
-    return searchOrders(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult? Function(_SearchOrders value)? searchOrders,
-    TResult? Function(_DisposeSearch value)? disposeSearch,
-  }) {
-    return searchOrders?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult Function(_SearchOrders value)? searchOrders,
-    TResult Function(_DisposeSearch value)? disposeSearch,
-    required TResult orElse(),
-  }) {
-    if (searchOrders != null) {
-      return searchOrders(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateIsDistributionPhotographed&&(identical(other.orderId, orderId) || other.orderId == orderId));
 }
 
-abstract class _SearchOrders implements OrdersEvent {
-  const factory _SearchOrders(
-      {required final String query, final bool getMore}) = _$SearchOrdersImpl;
 
-  String get query;
-  bool get getMore;
+@override
+int get hashCode => Object.hash(runtimeType,orderId);
 
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SearchOrdersImplCopyWith<_$SearchOrdersImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'OrdersEvent.updateIsDistributionPhotographed(orderId: $orderId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$DisposeSearchImplCopyWith<$Res> {
-  factory _$$DisposeSearchImplCopyWith(
-          _$DisposeSearchImpl value, $Res Function(_$DisposeSearchImpl) then) =
-      __$$DisposeSearchImplCopyWithImpl<$Res>;
+abstract mixin class _$UpdateIsDistributionPhotographedCopyWith<$Res> implements $OrdersEventCopyWith<$Res> {
+  factory _$UpdateIsDistributionPhotographedCopyWith(_UpdateIsDistributionPhotographed value, $Res Function(_UpdateIsDistributionPhotographed) _then) = __$UpdateIsDistributionPhotographedCopyWithImpl;
+@useResult
+$Res call({
+ int orderId
+});
+
+
+
+
+}
+/// @nodoc
+class __$UpdateIsDistributionPhotographedCopyWithImpl<$Res>
+    implements _$UpdateIsDistributionPhotographedCopyWith<$Res> {
+  __$UpdateIsDistributionPhotographedCopyWithImpl(this._self, this._then);
+
+  final _UpdateIsDistributionPhotographed _self;
+  final $Res Function(_UpdateIsDistributionPhotographed) _then;
+
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? orderId = null,}) {
+  return _then(_UpdateIsDistributionPhotographed(
+orderId: null == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-/// @nodoc
-class __$$DisposeSearchImplCopyWithImpl<$Res>
-    extends _$OrdersEventCopyWithImpl<$Res, _$DisposeSearchImpl>
-    implements _$$DisposeSearchImplCopyWith<$Res> {
-  __$$DisposeSearchImplCopyWithImpl(
-      _$DisposeSearchImpl _value, $Res Function(_$DisposeSearchImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$DisposeSearchImpl implements _DisposeSearch {
-  const _$DisposeSearchImpl();
 
-  @override
-  String toString() {
-    return 'OrdersEvent.disposeSearch()';
-  }
+class _SearchOrders implements OrdersEvent {
+  const _SearchOrders({required this.query, this.getMore = false});
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DisposeSearchImpl);
-  }
+ final  String query;
+@JsonKey() final  bool getMore;
 
-  @override
-  int get hashCode => runtimeType.hashCode;
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SearchOrdersCopyWith<_SearchOrders> get copyWith => __$SearchOrdersCopyWithImpl<_SearchOrders>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            int packageId, bool loadMore, bool? isQuranPhotographed)
-        getOrders,
-    required TResult Function(int orderId) updateIsDistributionPhotographed,
-    required TResult Function(String query, bool getMore) searchOrders,
-    required TResult Function() disposeSearch,
-  }) {
-    return disposeSearch();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult? Function(int orderId)? updateIsDistributionPhotographed,
-    TResult? Function(String query, bool getMore)? searchOrders,
-    TResult? Function()? disposeSearch,
-  }) {
-    return disposeSearch?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int packageId, bool loadMore, bool? isQuranPhotographed)?
-        getOrders,
-    TResult Function(int orderId)? updateIsDistributionPhotographed,
-    TResult Function(String query, bool getMore)? searchOrders,
-    TResult Function()? disposeSearch,
-    required TResult orElse(),
-  }) {
-    if (disposeSearch != null) {
-      return disposeSearch();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_UpdateIsDistributionPhotographed value)
-        updateIsDistributionPhotographed,
-    required TResult Function(_SearchOrders value) searchOrders,
-    required TResult Function(_DisposeSearch value) disposeSearch,
-  }) {
-    return disposeSearch(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult? Function(_SearchOrders value)? searchOrders,
-    TResult? Function(_DisposeSearch value)? disposeSearch,
-  }) {
-    return disposeSearch?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_UpdateIsDistributionPhotographed value)?
-        updateIsDistributionPhotographed,
-    TResult Function(_SearchOrders value)? searchOrders,
-    TResult Function(_DisposeSearch value)? disposeSearch,
-    required TResult orElse(),
-  }) {
-    if (disposeSearch != null) {
-      return disposeSearch(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchOrders&&(identical(other.query, query) || other.query == query)&&(identical(other.getMore, getMore) || other.getMore == getMore));
 }
 
-abstract class _DisposeSearch implements OrdersEvent {
-  const factory _DisposeSearch() = _$DisposeSearchImpl;
+
+@override
+int get hashCode => Object.hash(runtimeType,query,getMore);
+
+@override
+String toString() {
+  return 'OrdersEvent.searchOrders(query: $query, getMore: $getMore)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SearchOrdersCopyWith<$Res> implements $OrdersEventCopyWith<$Res> {
+  factory _$SearchOrdersCopyWith(_SearchOrders value, $Res Function(_SearchOrders) _then) = __$SearchOrdersCopyWithImpl;
+@useResult
+$Res call({
+ String query, bool getMore
+});
+
+
+
+
+}
+/// @nodoc
+class __$SearchOrdersCopyWithImpl<$Res>
+    implements _$SearchOrdersCopyWith<$Res> {
+  __$SearchOrdersCopyWithImpl(this._self, this._then);
+
+  final _SearchOrders _self;
+  final $Res Function(_SearchOrders) _then;
+
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? query = null,Object? getMore = null,}) {
+  return _then(_SearchOrders(
+query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String,getMore: null == getMore ? _self.getMore : getMore // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _DisposeSearch implements OrdersEvent {
+  const _DisposeSearch();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DisposeSearch);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'OrdersEvent.disposeSearch()';
+}
+
+
+}
+
+
+
 
 /// @nodoc
 mixin _$OrdersState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'OrdersState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $OrdersStateCopyWith<$Res> {
-  factory $OrdersStateCopyWith(
-          OrdersState value, $Res Function(OrdersState) then) =
-      _$OrdersStateCopyWithImpl<$Res, OrdersState>;
+class $OrdersStateCopyWith<$Res>  {
+$OrdersStateCopyWith(OrdersState _, $Res Function(OrdersState) __);
 }
 
-/// @nodoc
-class _$OrdersStateCopyWithImpl<$Res, $Val extends OrdersState>
-    implements $OrdersStateCopyWith<$Res> {
-  _$OrdersStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [OrdersState].
+extension OrdersStatePatterns on OrdersState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Failure() when failure != null:
+return failure(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Failure value)  failure,}){
+final _that = this;
+switch (_that) {
+case _Initial():
+return initial(_that);case _Loading():
+return loading(_that);case _Loaded():
+return loaded(_that);case _Failure():
+return failure(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Failure value)?  failure,}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Failure() when failure != null:
+return failure(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<OrderEntity>? orders,  bool? hasMore)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.orders,_that.hasMore);case _Failure() when failure != null:
+return failure(_that.apiErrorModel);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<OrderEntity>? orders,  bool? hasMore)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
+switch (_that) {
+case _Initial():
+return initial();case _Loading():
+return loading();case _Loaded():
+return loaded(_that.orders,_that.hasMore);case _Failure():
+return failure(_that.apiErrorModel);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<OrderEntity>? orders,  bool? hasMore)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Loaded() when loaded != null:
+return loaded(_that.orders,_that.hasMore);case _Failure() when failure != null:
+return failure(_that.apiErrorModel);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'OrdersState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements OrdersState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
 
-  @override
-  String toString() {
-    return 'OrdersState.loading()';
-  }
+class _Initial implements OrdersState {
+  const _Initial();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) {
-    return loading();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) {
-    return loading?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
-abstract class _Loading implements OrdersState {
-  const factory _Loading() = _$LoadingImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'OrdersState.initial()';
 }
 
-/// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<OrderEntity>? orders, bool? hasMore});
+
 }
 
-/// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? orders = freezed,
-    Object? hasMore = freezed,
-  }) {
-    return _then(_$LoadedImpl(
-      orders: freezed == orders
-          ? _value._orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<OrderEntity>?,
-      hasMore: freezed == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-}
+
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(
-      {required final List<OrderEntity>? orders, required this.hasMore})
-      : _orders = orders;
 
-  final List<OrderEntity>? _orders;
-  @override
-  List<OrderEntity>? get orders {
-    final value = _orders;
-    if (value == null) return null;
-    if (_orders is EqualUnmodifiableListView) return _orders;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+class _Loading implements OrdersState {
+  const _Loading();
+  
 
-  @override
-  final bool? hasMore;
 
-  @override
-  String toString() {
-    return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._orders, _orders) &&
-            (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
-  }
 
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_orders), hasMore);
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) {
-    return loaded(orders, hasMore);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) {
-    return loaded?.call(orders, hasMore);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(orders, hasMore);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return loaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
-abstract class _Loaded implements OrdersState {
-  const factory _Loaded(
-      {required final List<OrderEntity>? orders,
-      required final bool? hasMore}) = _$LoadedImpl;
 
-  List<OrderEntity>? get orders;
-  bool? get hasMore;
+@override
+int get hashCode => runtimeType.hashCode;
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'OrdersState.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Loaded implements OrdersState {
+  const _Loaded({required final  List<OrderEntity>? orders, required this.hasMore}): _orders = orders;
+  
+
+ final  List<OrderEntity>? _orders;
+ List<OrderEntity>? get orders {
+  final value = _orders;
+  if (value == null) return null;
+  if (_orders is EqualUnmodifiableListView) return _orders;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+ final  bool? hasMore;
+
+/// Create a copy of OrdersState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._orders, _orders)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_orders),hasMore);
+
+@override
+String toString() {
+  return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ApiErrorModel apiErrorModel});
+abstract mixin class _$LoadedCopyWith<$Res> implements $OrdersStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ List<OrderEntity>? orders, bool? hasMore
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of OrdersState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? orders = freezed,Object? hasMore = freezed,}) {
+  return _then(_Loaded(
+orders: freezed == orders ? _self._orders : orders // ignore: cast_nullable_to_non_nullable
+as List<OrderEntity>?,hasMore: freezed == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
 }
 
-/// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? apiErrorModel = null,
-  }) {
-    return _then(_$FailureImpl(
-      apiErrorModel: null == apiErrorModel
-          ? _value.apiErrorModel
-          : apiErrorModel // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl({required this.apiErrorModel});
 
-  @override
-  final ApiErrorModel apiErrorModel;
+class _Failure implements OrdersState {
+  const _Failure({required this.apiErrorModel});
+  
 
-  @override
-  String toString() {
-    return 'OrdersState.failure(apiErrorModel: $apiErrorModel)';
-  }
+ final  ApiErrorModel apiErrorModel;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
-            (identical(other.apiErrorModel, apiErrorModel) ||
-                other.apiErrorModel == apiErrorModel));
-  }
+/// Create a copy of OrdersState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, apiErrorModel);
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<OrderEntity>? orders, bool? hasMore) loaded,
-    required TResult Function(ApiErrorModel apiErrorModel) failure,
-  }) {
-    return failure(apiErrorModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult? Function(ApiErrorModel apiErrorModel)? failure,
-  }) {
-    return failure?.call(apiErrorModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<OrderEntity>? orders, bool? hasMore)? loaded,
-    TResult Function(ApiErrorModel apiErrorModel)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(apiErrorModel);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
 }
 
-abstract class _Failure implements OrdersState {
-  const factory _Failure({required final ApiErrorModel apiErrorModel}) =
-      _$FailureImpl;
 
-  ApiErrorModel get apiErrorModel;
+@override
+int get hashCode => Object.hash(runtimeType,apiErrorModel);
 
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'OrdersState.failure(apiErrorModel: $apiErrorModel)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$FailureCopyWith<$Res> implements $OrdersStateCopyWith<$Res> {
+  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
+@useResult
+$Res call({
+ ApiErrorModel apiErrorModel
+});
+
+
+
+
+}
+/// @nodoc
+class __$FailureCopyWithImpl<$Res>
+    implements _$FailureCopyWith<$Res> {
+  __$FailureCopyWithImpl(this._self, this._then);
+
+  final _Failure _self;
+  final $Res Function(_Failure) _then;
+
+/// Create a copy of OrdersState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = null,}) {
+  return _then(_Failure(
+apiErrorModel: null == apiErrorModel ? _self.apiErrorModel : apiErrorModel // ignore: cast_nullable_to_non_nullable
+as ApiErrorModel,
+  ));
+}
+
+
+}
+
+// dart format on

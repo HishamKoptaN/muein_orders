@@ -12,7 +12,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get upload_videos => 'Pakua video';
 
   @override
-  String get welcometoMubinOrders => 'Karibu Mobin Talabat';
+  String get welcometoMueinOrders => 'Karibu Mobin Talabat';
 
   @override
   String get welcome => 'Karibu';
@@ -42,7 +42,8 @@ class AppLocalizationsSw extends AppLocalizations {
       'Nyaraka zilizo na picha na video';
 
   @override
-  String get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
+  String
+  get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
       'Hakikisha uwazi wa picha, idadi ya nakala za Kurani Tukufu, na gharama ya agizo kabla ya kutuma.';
 
   @override
@@ -393,7 +394,8 @@ class AppLocalizationsSw extends AppLocalizations {
       'Fuatilia maagizo yako kwa wakati halisi na mfumo wetu wa ufuatiliaji wa angavu.';
 
   @override
-  String get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
+  String
+  get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
       'Usifute faili za picha na video zilizohifadhiwa ndani zinazotumiwa kurekodi maombi hadi ziidhinishwe na wasimamizi.';
 
   @override
@@ -424,7 +426,8 @@ class AppLocalizationsSw extends AppLocalizations {
   String get alreadyHaveAccount => 'Je, tayari una akaunti?';
 
   @override
-  String get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
+  String
+  get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
       'Hakikisha uwazi wa picha na idadi sahihi ya nakala za Kurani Tukufu kabla ya kutuma';
 
   @override

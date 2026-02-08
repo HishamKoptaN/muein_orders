@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,1446 +9,1161 @@ part of 'orders_res_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-OrdersResModel _$OrdersResModelFromJson(Map<String, dynamic> json) {
-  return _OrdersResModel.fromJson(json);
-}
 
 /// @nodoc
 mixin _$OrdersResModel {
-  @JsonKey(name: 'orders')
-  List<Order>? get orders => throw _privateConstructorUsedError;
-  @JsonKey(name: 'meta')
-  Meta? get meta => throw _privateConstructorUsedError;
+
+@JsonKey(name: 'orders') List<Order>? get orders;@JsonKey(name: 'meta') MetaModel? get meta;
+/// Create a copy of OrdersResModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$OrdersResModelCopyWith<OrdersResModel> get copyWith => _$OrdersResModelCopyWithImpl<OrdersResModel>(this as OrdersResModel, _$identity);
 
   /// Serializes this OrdersResModel to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of OrdersResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrdersResModelCopyWith<OrdersResModel> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersResModel&&const DeepCollectionEquality().equals(other.orders, orders)&&(identical(other.meta, meta) || other.meta == meta));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(orders),meta);
+
+@override
+String toString() {
+  return 'OrdersResModel(orders: $orders, meta: $meta)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $OrdersResModelCopyWith<$Res> {
-  factory $OrdersResModelCopyWith(
-          OrdersResModel value, $Res Function(OrdersResModel) then) =
-      _$OrdersResModelCopyWithImpl<$Res, OrdersResModel>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'orders') List<Order>? orders,
-      @JsonKey(name: 'meta') Meta? meta});
+abstract mixin class $OrdersResModelCopyWith<$Res>  {
+  factory $OrdersResModelCopyWith(OrdersResModel value, $Res Function(OrdersResModel) _then) = _$OrdersResModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'orders') List<Order>? orders,@JsonKey(name: 'meta') MetaModel? meta
+});
 
-  $MetaCopyWith<$Res>? get meta;
+
+$MetaModelCopyWith<$Res>? get meta;
+
 }
-
 /// @nodoc
-class _$OrdersResModelCopyWithImpl<$Res, $Val extends OrdersResModel>
+class _$OrdersResModelCopyWithImpl<$Res>
     implements $OrdersResModelCopyWith<$Res> {
-  _$OrdersResModelCopyWithImpl(this._value, this._then);
+  _$OrdersResModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final OrdersResModel _self;
+  final $Res Function(OrdersResModel) _then;
 
-  /// Create a copy of OrdersResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? orders = freezed,
-    Object? meta = freezed,
-  }) {
-    return _then(_value.copyWith(
-      orders: freezed == orders
-          ? _value.orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<Order>?,
-      meta: freezed == meta
-          ? _value.meta
-          : meta // ignore: cast_nullable_to_non_nullable
-              as Meta?,
-    ) as $Val);
+/// Create a copy of OrdersResModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? orders = freezed,Object? meta = freezed,}) {
+  return _then(_self.copyWith(
+orders: freezed == orders ? _self.orders : orders // ignore: cast_nullable_to_non_nullable
+as List<Order>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaModel?,
+  ));
+}
+/// Create a copy of OrdersResModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaModelCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
+    return null;
   }
 
-  /// Create a copy of OrdersResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $MetaCopyWith<$Res>? get meta {
-    if (_value.meta == null) {
-      return null;
-    }
-
-    return $MetaCopyWith<$Res>(_value.meta!, (value) {
-      return _then(_value.copyWith(meta: value) as $Val);
-    });
-  }
+  return $MetaModelCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$OrdersResModelImplCopyWith<$Res>
-    implements $OrdersResModelCopyWith<$Res> {
-  factory _$$OrdersResModelImplCopyWith(_$OrdersResModelImpl value,
-          $Res Function(_$OrdersResModelImpl) then) =
-      __$$OrdersResModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'orders') List<Order>? orders,
-      @JsonKey(name: 'meta') Meta? meta});
 
-  @override
-  $MetaCopyWith<$Res>? get meta;
+/// Adds pattern-matching-related methods to [OrdersResModel].
+extension OrdersResModelPatterns on OrdersResModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _OrdersResModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _OrdersResModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _OrdersResModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _OrdersResModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _OrdersResModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _OrdersResModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'orders')  List<Order>? orders, @JsonKey(name: 'meta')  MetaModel? meta)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _OrdersResModel() when $default != null:
+return $default(_that.orders,_that.meta);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'orders')  List<Order>? orders, @JsonKey(name: 'meta')  MetaModel? meta)  $default,) {final _that = this;
+switch (_that) {
+case _OrdersResModel():
+return $default(_that.orders,_that.meta);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'orders')  List<Order>? orders, @JsonKey(name: 'meta')  MetaModel? meta)?  $default,) {final _that = this;
+switch (_that) {
+case _OrdersResModel() when $default != null:
+return $default(_that.orders,_that.meta);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$OrdersResModelImplCopyWithImpl<$Res>
-    extends _$OrdersResModelCopyWithImpl<$Res, _$OrdersResModelImpl>
-    implements _$$OrdersResModelImplCopyWith<$Res> {
-  __$$OrdersResModelImplCopyWithImpl(
-      _$OrdersResModelImpl _value, $Res Function(_$OrdersResModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrdersResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? orders = freezed,
-    Object? meta = freezed,
-  }) {
-    return _then(_$OrdersResModelImpl(
-      orders: freezed == orders
-          ? _value._orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<Order>?,
-      meta: freezed == meta
-          ? _value.meta
-          : meta // ignore: cast_nullable_to_non_nullable
-              as Meta?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$OrdersResModelImpl implements _OrdersResModel {
-  const _$OrdersResModelImpl(
-      {@JsonKey(name: 'orders') final List<Order>? orders,
-      @JsonKey(name: 'meta') this.meta})
-      : _orders = orders;
 
-  factory _$OrdersResModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrdersResModelImplFromJson(json);
+class _OrdersResModel implements OrdersResModel {
+  const _OrdersResModel({@JsonKey(name: 'orders') final  List<Order>? orders, @JsonKey(name: 'meta') this.meta}): _orders = orders;
+  factory _OrdersResModel.fromJson(Map<String, dynamic> json) => _$OrdersResModelFromJson(json);
 
-  final List<Order>? _orders;
-  @override
-  @JsonKey(name: 'orders')
-  List<Order>? get orders {
-    final value = _orders;
-    if (value == null) return null;
-    if (_orders is EqualUnmodifiableListView) return _orders;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  @JsonKey(name: 'meta')
-  final Meta? meta;
-
-  @override
-  String toString() {
-    return 'OrdersResModel(orders: $orders, meta: $meta)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OrdersResModelImpl &&
-            const DeepCollectionEquality().equals(other._orders, _orders) &&
-            (identical(other.meta, meta) || other.meta == meta));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_orders), meta);
-
-  /// Create a copy of OrdersResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OrdersResModelImplCopyWith<_$OrdersResModelImpl> get copyWith =>
-      __$$OrdersResModelImplCopyWithImpl<_$OrdersResModelImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$OrdersResModelImplToJson(
-      this,
-    );
-  }
+ final  List<Order>? _orders;
+@override@JsonKey(name: 'orders') List<Order>? get orders {
+  final value = _orders;
+  if (value == null) return null;
+  if (_orders is EqualUnmodifiableListView) return _orders;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
 }
 
-abstract class _OrdersResModel implements OrdersResModel {
-  const factory _OrdersResModel(
-      {@JsonKey(name: 'orders') final List<Order>? orders,
-      @JsonKey(name: 'meta') final Meta? meta}) = _$OrdersResModelImpl;
+@override@JsonKey(name: 'meta') final  MetaModel? meta;
 
-  factory _OrdersResModel.fromJson(Map<String, dynamic> json) =
-      _$OrdersResModelImpl.fromJson;
+/// Create a copy of OrdersResModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$OrdersResModelCopyWith<_OrdersResModel> get copyWith => __$OrdersResModelCopyWithImpl<_OrdersResModel>(this, _$identity);
 
-  @override
-  @JsonKey(name: 'orders')
-  List<Order>? get orders;
-  @override
-  @JsonKey(name: 'meta')
-  Meta? get meta;
-
-  /// Create a copy of OrdersResModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrdersResModelImplCopyWith<_$OrdersResModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$OrdersResModelToJson(this, );
 }
 
-Order _$OrderFromJson(Map<String, dynamic> json) {
-  return _Order.fromJson(json);
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrdersResModel&&const DeepCollectionEquality().equals(other._orders, _orders)&&(identical(other.meta, meta) || other.meta == meta));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_orders),meta);
+
+@override
+String toString() {
+  return 'OrdersResModel(orders: $orders, meta: $meta)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$OrdersResModelCopyWith<$Res> implements $OrdersResModelCopyWith<$Res> {
+  factory _$OrdersResModelCopyWith(_OrdersResModel value, $Res Function(_OrdersResModel) _then) = __$OrdersResModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'orders') List<Order>? orders,@JsonKey(name: 'meta') MetaModel? meta
+});
+
+
+@override $MetaModelCopyWith<$Res>? get meta;
+
+}
+/// @nodoc
+class __$OrdersResModelCopyWithImpl<$Res>
+    implements _$OrdersResModelCopyWith<$Res> {
+  __$OrdersResModelCopyWithImpl(this._self, this._then);
+
+  final _OrdersResModel _self;
+  final $Res Function(_OrdersResModel) _then;
+
+/// Create a copy of OrdersResModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? orders = freezed,Object? meta = freezed,}) {
+  return _then(_OrdersResModel(
+orders: freezed == orders ? _self._orders : orders // ignore: cast_nullable_to_non_nullable
+as List<Order>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaModel?,
+  ));
+}
+
+/// Create a copy of OrdersResModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaModelCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
+    return null;
+  }
+
+  return $MetaModelCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
+  });
+}
+}
+
 
 /// @nodoc
 mixin _$Order {
-  @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status')
-  bool? get status => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
-  String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'printed_name')
-  String? get printedName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'execution_num')
-  String? get executionNum => throw _privateConstructorUsedError;
-  @JsonKey(name: 'order_num')
-  String? get orderNum => throw _privateConstructorUsedError;
-  @JsonKey(name: 'docs')
-  List<dynamic>? get docs => throw _privateConstructorUsedError;
-  @JsonKey(name: 'package')
-  Package? get package => throw _privateConstructorUsedError;
-  @JsonKey(name: 'distribution_country')
-  DistributionCountry? get distributionCountry =>
-      throw _privateConstructorUsedError;
-  @JsonKey(name: 'carton_count')
-  int? get cartonCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'orders_count')
-  int? get ordersCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_amount')
-  String? get totalAmount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'date')
-  DateTime? get date => throw _privateConstructorUsedError;
-  @JsonKey(name: 'days')
-  int? get days => throw _privateConstructorUsedError;
-  @JsonKey(name: 'email')
-  String? get email => throw _privateConstructorUsedError;
-  @JsonKey(name: 'phone')
-  String? get phone => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_quran_printed')
-  bool? get isQuranPrinted => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_quran_photographed')
-  bool? get isQuranPhotographed => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_distribution_photographed')
-  bool? get isDistributionPhotographed => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_location_received')
-  bool? get isLocationReceived => throw _privateConstructorUsedError;
-  @JsonKey(name: 'location_link')
-  bool? get locationLink => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_final_report_ready')
-  bool? get isFinalReportReady => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_report_sent')
-  bool? get isReportSent => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sticker_prepared')
-  bool? get stickerPrepared => throw _privateConstructorUsedError;
-  @JsonKey(name: 'videos_uploaded')
-  bool? get videosUploaded => throw _privateConstructorUsedError;
-  @JsonKey(name: 'final_estimate_ready')
-  bool? get finalEstimateReady => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  String? get createdAt => throw _privateConstructorUsedError;
+
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'printed_name') String? get printedName;@JsonKey(name: 'docs') List<dynamic>? get docs;@JsonKey(name: 'distribution_country') DistributionCountry? get distributionCountry;@JsonKey(name: 'date') DateTime? get date;@JsonKey(name: 'days') int? get days;@JsonKey(name: 'is_quran_photographed') bool? get isQuranPhotographed;@JsonKey(name: 'is_distribution_photographed') bool? get isDistributionPhotographed;@JsonKey(name: 'sticker_prepared') bool? get stickerPrepared;@JsonKey(name: 'created_at') String? get createdAt;
+/// Create a copy of Order
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$OrderCopyWith<Order> get copyWith => _$OrderCopyWithImpl<Order>(this as Order, _$identity);
 
   /// Serializes this Order to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of Order
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderCopyWith<Order> get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Order&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other.docs, docs)&&(identical(other.distributionCountry, distributionCountry) || other.distributionCountry == distributionCountry)&&(identical(other.date, date) || other.date == date)&&(identical(other.days, days) || other.days == days)&&(identical(other.isQuranPhotographed, isQuranPhotographed) || other.isQuranPhotographed == isQuranPhotographed)&&(identical(other.isDistributionPhotographed, isDistributionPhotographed) || other.isDistributionPhotographed == isDistributionPhotographed)&&(identical(other.stickerPrepared, stickerPrepared) || other.stickerPrepared == stickerPrepared)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,printedName,const DeepCollectionEquality().hash(docs),distributionCountry,date,days,isQuranPhotographed,isDistributionPhotographed,stickerPrepared,createdAt);
+
+@override
+String toString() {
+  return 'Order(id: $id, printedName: $printedName, docs: $docs, distributionCountry: $distributionCountry, date: $date, days: $days, isQuranPhotographed: $isQuranPhotographed, isDistributionPhotographed: $isDistributionPhotographed, stickerPrepared: $stickerPrepared, createdAt: $createdAt)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $OrderCopyWith<$Res> {
-  factory $OrderCopyWith(Order value, $Res Function(Order) then) =
-      _$OrderCopyWithImpl<$Res, Order>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'status') bool? status,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'printed_name') String? printedName,
-      @JsonKey(name: 'execution_num') String? executionNum,
-      @JsonKey(name: 'order_num') String? orderNum,
-      @JsonKey(name: 'docs') List<dynamic>? docs,
-      @JsonKey(name: 'package') Package? package,
-      @JsonKey(name: 'distribution_country')
-      DistributionCountry? distributionCountry,
-      @JsonKey(name: 'carton_count') int? cartonCount,
-      @JsonKey(name: 'orders_count') int? ordersCount,
-      @JsonKey(name: 'total_amount') String? totalAmount,
-      @JsonKey(name: 'date') DateTime? date,
-      @JsonKey(name: 'days') int? days,
-      @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'phone') String? phone,
-      @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
-      @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
-      @JsonKey(name: 'is_distribution_photographed')
-      bool? isDistributionPhotographed,
-      @JsonKey(name: 'is_location_received') bool? isLocationReceived,
-      @JsonKey(name: 'location_link') bool? locationLink,
-      @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
-      @JsonKey(name: 'is_report_sent') bool? isReportSent,
-      @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
-      @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
-      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady,
-      @JsonKey(name: 'created_at') String? createdAt});
+abstract mixin class $OrderCopyWith<$Res>  {
+  factory $OrderCopyWith(Order value, $Res Function(Order) _then) = _$OrderCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'printed_name') String? printedName,@JsonKey(name: 'docs') List<dynamic>? docs,@JsonKey(name: 'distribution_country') DistributionCountry? distributionCountry,@JsonKey(name: 'date') DateTime? date,@JsonKey(name: 'days') int? days,@JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,@JsonKey(name: 'is_distribution_photographed') bool? isDistributionPhotographed,@JsonKey(name: 'sticker_prepared') bool? stickerPrepared,@JsonKey(name: 'created_at') String? createdAt
+});
 
-  $PackageCopyWith<$Res>? get package;
-  $DistributionCountryCopyWith<$Res>? get distributionCountry;
+
+$DistributionCountryCopyWith<$Res>? get distributionCountry;
+
 }
-
 /// @nodoc
-class _$OrderCopyWithImpl<$Res, $Val extends Order>
+class _$OrderCopyWithImpl<$Res>
     implements $OrderCopyWith<$Res> {
-  _$OrderCopyWithImpl(this._value, this._then);
+  _$OrderCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Order _self;
+  final $Res Function(Order) _then;
 
-  /// Create a copy of Order
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? status = freezed,
-    Object? name = freezed,
-    Object? printedName = freezed,
-    Object? executionNum = freezed,
-    Object? orderNum = freezed,
-    Object? docs = freezed,
-    Object? package = freezed,
-    Object? distributionCountry = freezed,
-    Object? cartonCount = freezed,
-    Object? ordersCount = freezed,
-    Object? totalAmount = freezed,
-    Object? date = freezed,
-    Object? days = freezed,
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? isQuranPrinted = freezed,
-    Object? isQuranPhotographed = freezed,
-    Object? isDistributionPhotographed = freezed,
-    Object? isLocationReceived = freezed,
-    Object? locationLink = freezed,
-    Object? isFinalReportReady = freezed,
-    Object? isReportSent = freezed,
-    Object? stickerPrepared = freezed,
-    Object? videosUploaded = freezed,
-    Object? finalEstimateReady = freezed,
-    Object? createdAt = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      printedName: freezed == printedName
-          ? _value.printedName
-          : printedName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      executionNum: freezed == executionNum
-          ? _value.executionNum
-          : executionNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orderNum: freezed == orderNum
-          ? _value.orderNum
-          : orderNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-      docs: freezed == docs
-          ? _value.docs
-          : docs // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      package: freezed == package
-          ? _value.package
-          : package // ignore: cast_nullable_to_non_nullable
-              as Package?,
-      distributionCountry: freezed == distributionCountry
-          ? _value.distributionCountry
-          : distributionCountry // ignore: cast_nullable_to_non_nullable
-              as DistributionCountry?,
-      cartonCount: freezed == cartonCount
-          ? _value.cartonCount
-          : cartonCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      ordersCount: freezed == ordersCount
-          ? _value.ordersCount
-          : ordersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalAmount: freezed == totalAmount
-          ? _value.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      days: freezed == days
-          ? _value.days
-          : days // ignore: cast_nullable_to_non_nullable
-              as int?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isQuranPrinted: freezed == isQuranPrinted
-          ? _value.isQuranPrinted
-          : isQuranPrinted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isQuranPhotographed: freezed == isQuranPhotographed
-          ? _value.isQuranPhotographed
-          : isQuranPhotographed // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isDistributionPhotographed: freezed == isDistributionPhotographed
-          ? _value.isDistributionPhotographed
-          : isDistributionPhotographed // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isLocationReceived: freezed == isLocationReceived
-          ? _value.isLocationReceived
-          : isLocationReceived // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      locationLink: freezed == locationLink
-          ? _value.locationLink
-          : locationLink // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isFinalReportReady: freezed == isFinalReportReady
-          ? _value.isFinalReportReady
-          : isFinalReportReady // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isReportSent: freezed == isReportSent
-          ? _value.isReportSent
-          : isReportSent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      stickerPrepared: freezed == stickerPrepared
-          ? _value.stickerPrepared
-          : stickerPrepared // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      videosUploaded: freezed == videosUploaded
-          ? _value.videosUploaded
-          : videosUploaded // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      finalEstimateReady: freezed == finalEstimateReady
-          ? _value.finalEstimateReady
-          : finalEstimateReady // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+/// Create a copy of Order
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? printedName = freezed,Object? docs = freezed,Object? distributionCountry = freezed,Object? date = freezed,Object? days = freezed,Object? isQuranPhotographed = freezed,Object? isDistributionPhotographed = freezed,Object? stickerPrepared = freezed,Object? createdAt = freezed,}) {
+  return _then(_self.copyWith(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,printedName: freezed == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
+as String?,docs: freezed == docs ? _self.docs : docs // ignore: cast_nullable_to_non_nullable
+as List<dynamic>?,distributionCountry: freezed == distributionCountry ? _self.distributionCountry : distributionCountry // ignore: cast_nullable_to_non_nullable
+as DistributionCountry?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime?,days: freezed == days ? _self.days : days // ignore: cast_nullable_to_non_nullable
+as int?,isQuranPhotographed: freezed == isQuranPhotographed ? _self.isQuranPhotographed : isQuranPhotographed // ignore: cast_nullable_to_non_nullable
+as bool?,isDistributionPhotographed: freezed == isDistributionPhotographed ? _self.isDistributionPhotographed : isDistributionPhotographed // ignore: cast_nullable_to_non_nullable
+as bool?,stickerPrepared: freezed == stickerPrepared ? _self.stickerPrepared : stickerPrepared // ignore: cast_nullable_to_non_nullable
+as bool?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+/// Create a copy of Order
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DistributionCountryCopyWith<$Res>? get distributionCountry {
+    if (_self.distributionCountry == null) {
+    return null;
   }
 
-  /// Create a copy of Order
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PackageCopyWith<$Res>? get package {
-    if (_value.package == null) {
-      return null;
-    }
-
-    return $PackageCopyWith<$Res>(_value.package!, (value) {
-      return _then(_value.copyWith(package: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Order
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DistributionCountryCopyWith<$Res>? get distributionCountry {
-    if (_value.distributionCountry == null) {
-      return null;
-    }
-
-    return $DistributionCountryCopyWith<$Res>(_value.distributionCountry!,
-        (value) {
-      return _then(_value.copyWith(distributionCountry: value) as $Val);
-    });
-  }
+  return $DistributionCountryCopyWith<$Res>(_self.distributionCountry!, (value) {
+    return _then(_self.copyWith(distributionCountry: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
-  factory _$$OrderImplCopyWith(
-          _$OrderImpl value, $Res Function(_$OrderImpl) then) =
-      __$$OrderImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'status') bool? status,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'printed_name') String? printedName,
-      @JsonKey(name: 'execution_num') String? executionNum,
-      @JsonKey(name: 'order_num') String? orderNum,
-      @JsonKey(name: 'docs') List<dynamic>? docs,
-      @JsonKey(name: 'package') Package? package,
-      @JsonKey(name: 'distribution_country')
-      DistributionCountry? distributionCountry,
-      @JsonKey(name: 'carton_count') int? cartonCount,
-      @JsonKey(name: 'orders_count') int? ordersCount,
-      @JsonKey(name: 'total_amount') String? totalAmount,
-      @JsonKey(name: 'date') DateTime? date,
-      @JsonKey(name: 'days') int? days,
-      @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'phone') String? phone,
-      @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
-      @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
-      @JsonKey(name: 'is_distribution_photographed')
-      bool? isDistributionPhotographed,
-      @JsonKey(name: 'is_location_received') bool? isLocationReceived,
-      @JsonKey(name: 'location_link') bool? locationLink,
-      @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
-      @JsonKey(name: 'is_report_sent') bool? isReportSent,
-      @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
-      @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
-      @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady,
-      @JsonKey(name: 'created_at') String? createdAt});
 
-  @override
-  $PackageCopyWith<$Res>? get package;
-  @override
-  $DistributionCountryCopyWith<$Res>? get distributionCountry;
+/// Adds pattern-matching-related methods to [Order].
+extension OrderPatterns on Order {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Order value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Order() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Order value)  $default,){
+final _that = this;
+switch (_that) {
+case _Order():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Order value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Order() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'printed_name')  String? printedName, @JsonKey(name: 'docs')  List<dynamic>? docs, @JsonKey(name: 'distribution_country')  DistributionCountry? distributionCountry, @JsonKey(name: 'date')  DateTime? date, @JsonKey(name: 'days')  int? days, @JsonKey(name: 'is_quran_photographed')  bool? isQuranPhotographed, @JsonKey(name: 'is_distribution_photographed')  bool? isDistributionPhotographed, @JsonKey(name: 'sticker_prepared')  bool? stickerPrepared, @JsonKey(name: 'created_at')  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Order() when $default != null:
+return $default(_that.id,_that.printedName,_that.docs,_that.distributionCountry,_that.date,_that.days,_that.isQuranPhotographed,_that.isDistributionPhotographed,_that.stickerPrepared,_that.createdAt);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'printed_name')  String? printedName, @JsonKey(name: 'docs')  List<dynamic>? docs, @JsonKey(name: 'distribution_country')  DistributionCountry? distributionCountry, @JsonKey(name: 'date')  DateTime? date, @JsonKey(name: 'days')  int? days, @JsonKey(name: 'is_quran_photographed')  bool? isQuranPhotographed, @JsonKey(name: 'is_distribution_photographed')  bool? isDistributionPhotographed, @JsonKey(name: 'sticker_prepared')  bool? stickerPrepared, @JsonKey(name: 'created_at')  String? createdAt)  $default,) {final _that = this;
+switch (_that) {
+case _Order():
+return $default(_that.id,_that.printedName,_that.docs,_that.distributionCountry,_that.date,_that.days,_that.isQuranPhotographed,_that.isDistributionPhotographed,_that.stickerPrepared,_that.createdAt);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'printed_name')  String? printedName, @JsonKey(name: 'docs')  List<dynamic>? docs, @JsonKey(name: 'distribution_country')  DistributionCountry? distributionCountry, @JsonKey(name: 'date')  DateTime? date, @JsonKey(name: 'days')  int? days, @JsonKey(name: 'is_quran_photographed')  bool? isQuranPhotographed, @JsonKey(name: 'is_distribution_photographed')  bool? isDistributionPhotographed, @JsonKey(name: 'sticker_prepared')  bool? stickerPrepared, @JsonKey(name: 'created_at')  String? createdAt)?  $default,) {final _that = this;
+switch (_that) {
+case _Order() when $default != null:
+return $default(_that.id,_that.printedName,_that.docs,_that.distributionCountry,_that.date,_that.days,_that.isQuranPhotographed,_that.isDistributionPhotographed,_that.stickerPrepared,_that.createdAt);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-class __$$OrderImplCopyWithImpl<$Res>
-    extends _$OrderCopyWithImpl<$Res, _$OrderImpl>
-    implements _$$OrderImplCopyWith<$Res> {
-  __$$OrderImplCopyWithImpl(
-      _$OrderImpl _value, $Res Function(_$OrderImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Order
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? status = freezed,
-    Object? name = freezed,
-    Object? printedName = freezed,
-    Object? executionNum = freezed,
-    Object? orderNum = freezed,
-    Object? docs = freezed,
-    Object? package = freezed,
-    Object? distributionCountry = freezed,
-    Object? cartonCount = freezed,
-    Object? ordersCount = freezed,
-    Object? totalAmount = freezed,
-    Object? date = freezed,
-    Object? days = freezed,
-    Object? email = freezed,
-    Object? phone = freezed,
-    Object? isQuranPrinted = freezed,
-    Object? isQuranPhotographed = freezed,
-    Object? isDistributionPhotographed = freezed,
-    Object? isLocationReceived = freezed,
-    Object? locationLink = freezed,
-    Object? isFinalReportReady = freezed,
-    Object? isReportSent = freezed,
-    Object? stickerPrepared = freezed,
-    Object? videosUploaded = freezed,
-    Object? finalEstimateReady = freezed,
-    Object? createdAt = freezed,
-  }) {
-    return _then(_$OrderImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      printedName: freezed == printedName
-          ? _value.printedName
-          : printedName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      executionNum: freezed == executionNum
-          ? _value.executionNum
-          : executionNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-      orderNum: freezed == orderNum
-          ? _value.orderNum
-          : orderNum // ignore: cast_nullable_to_non_nullable
-              as String?,
-      docs: freezed == docs
-          ? _value._docs
-          : docs // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      package: freezed == package
-          ? _value.package
-          : package // ignore: cast_nullable_to_non_nullable
-              as Package?,
-      distributionCountry: freezed == distributionCountry
-          ? _value.distributionCountry
-          : distributionCountry // ignore: cast_nullable_to_non_nullable
-              as DistributionCountry?,
-      cartonCount: freezed == cartonCount
-          ? _value.cartonCount
-          : cartonCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      ordersCount: freezed == ordersCount
-          ? _value.ordersCount
-          : ordersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalAmount: freezed == totalAmount
-          ? _value.totalAmount
-          : totalAmount // ignore: cast_nullable_to_non_nullable
-              as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      days: freezed == days
-          ? _value.days
-          : days // ignore: cast_nullable_to_non_nullable
-              as int?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isQuranPrinted: freezed == isQuranPrinted
-          ? _value.isQuranPrinted
-          : isQuranPrinted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isQuranPhotographed: freezed == isQuranPhotographed
-          ? _value.isQuranPhotographed
-          : isQuranPhotographed // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isDistributionPhotographed: freezed == isDistributionPhotographed
-          ? _value.isDistributionPhotographed
-          : isDistributionPhotographed // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isLocationReceived: freezed == isLocationReceived
-          ? _value.isLocationReceived
-          : isLocationReceived // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      locationLink: freezed == locationLink
-          ? _value.locationLink
-          : locationLink // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isFinalReportReady: freezed == isFinalReportReady
-          ? _value.isFinalReportReady
-          : isFinalReportReady // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isReportSent: freezed == isReportSent
-          ? _value.isReportSent
-          : isReportSent // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      stickerPrepared: freezed == stickerPrepared
-          ? _value.stickerPrepared
-          : stickerPrepared // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      videosUploaded: freezed == videosUploaded
-          ? _value.videosUploaded
-          : videosUploaded // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      finalEstimateReady: freezed == finalEstimateReady
-          ? _value.finalEstimateReady
-          : finalEstimateReady // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$OrderImpl implements _Order {
-  const _$OrderImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'printed_name') this.printedName,
-      @JsonKey(name: 'execution_num') this.executionNum,
-      @JsonKey(name: 'order_num') this.orderNum,
-      @JsonKey(name: 'docs') final List<dynamic>? docs,
-      @JsonKey(name: 'package') this.package,
-      @JsonKey(name: 'distribution_country') this.distributionCountry,
-      @JsonKey(name: 'carton_count') this.cartonCount,
-      @JsonKey(name: 'orders_count') this.ordersCount,
-      @JsonKey(name: 'total_amount') this.totalAmount,
-      @JsonKey(name: 'date') this.date,
-      @JsonKey(name: 'days') this.days,
-      @JsonKey(name: 'email') this.email,
-      @JsonKey(name: 'phone') this.phone,
-      @JsonKey(name: 'is_quran_printed') this.isQuranPrinted,
-      @JsonKey(name: 'is_quran_photographed') this.isQuranPhotographed,
-      @JsonKey(name: 'is_distribution_photographed')
-      this.isDistributionPhotographed,
-      @JsonKey(name: 'is_location_received') this.isLocationReceived,
-      @JsonKey(name: 'location_link') this.locationLink,
-      @JsonKey(name: 'is_final_report_ready') this.isFinalReportReady,
-      @JsonKey(name: 'is_report_sent') this.isReportSent,
-      @JsonKey(name: 'sticker_prepared') this.stickerPrepared,
-      @JsonKey(name: 'videos_uploaded') this.videosUploaded,
-      @JsonKey(name: 'final_estimate_ready') this.finalEstimateReady,
-      @JsonKey(name: 'created_at') this.createdAt})
-      : _docs = docs;
 
-  factory _$OrderImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrderImplFromJson(json);
+class _Order implements Order {
+  const _Order({@JsonKey(name: 'id') this.id, @JsonKey(name: 'printed_name') this.printedName, @JsonKey(name: 'docs') final  List<dynamic>? docs, @JsonKey(name: 'distribution_country') this.distributionCountry, @JsonKey(name: 'date') this.date, @JsonKey(name: 'days') this.days, @JsonKey(name: 'is_quran_photographed') this.isQuranPhotographed, @JsonKey(name: 'is_distribution_photographed') this.isDistributionPhotographed, @JsonKey(name: 'sticker_prepared') this.stickerPrepared, @JsonKey(name: 'created_at') this.createdAt}): _docs = docs;
+  factory _Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 
-  @override
-  @JsonKey(name: 'id')
-  final int? id;
-  @override
-  @JsonKey(name: 'status')
-  final bool? status;
-  @override
-  @JsonKey(name: 'name')
-  final String? name;
-  @override
-  @JsonKey(name: 'printed_name')
-  final String? printedName;
-  @override
-  @JsonKey(name: 'execution_num')
-  final String? executionNum;
-  @override
-  @JsonKey(name: 'order_num')
-  final String? orderNum;
-  final List<dynamic>? _docs;
-  @override
-  @JsonKey(name: 'docs')
-  List<dynamic>? get docs {
-    final value = _docs;
-    if (value == null) return null;
-    if (_docs is EqualUnmodifiableListView) return _docs;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  @JsonKey(name: 'package')
-  final Package? package;
-  @override
-  @JsonKey(name: 'distribution_country')
-  final DistributionCountry? distributionCountry;
-  @override
-  @JsonKey(name: 'carton_count')
-  final int? cartonCount;
-  @override
-  @JsonKey(name: 'orders_count')
-  final int? ordersCount;
-  @override
-  @JsonKey(name: 'total_amount')
-  final String? totalAmount;
-  @override
-  @JsonKey(name: 'date')
-  final DateTime? date;
-  @override
-  @JsonKey(name: 'days')
-  final int? days;
-  @override
-  @JsonKey(name: 'email')
-  final String? email;
-  @override
-  @JsonKey(name: 'phone')
-  final String? phone;
-  @override
-  @JsonKey(name: 'is_quran_printed')
-  final bool? isQuranPrinted;
-  @override
-  @JsonKey(name: 'is_quran_photographed')
-  final bool? isQuranPhotographed;
-  @override
-  @JsonKey(name: 'is_distribution_photographed')
-  final bool? isDistributionPhotographed;
-  @override
-  @JsonKey(name: 'is_location_received')
-  final bool? isLocationReceived;
-  @override
-  @JsonKey(name: 'location_link')
-  final bool? locationLink;
-  @override
-  @JsonKey(name: 'is_final_report_ready')
-  final bool? isFinalReportReady;
-  @override
-  @JsonKey(name: 'is_report_sent')
-  final bool? isReportSent;
-  @override
-  @JsonKey(name: 'sticker_prepared')
-  final bool? stickerPrepared;
-  @override
-  @JsonKey(name: 'videos_uploaded')
-  final bool? videosUploaded;
-  @override
-  @JsonKey(name: 'final_estimate_ready')
-  final bool? finalEstimateReady;
-  @override
-  @JsonKey(name: 'created_at')
-  final String? createdAt;
-
-  @override
-  String toString() {
-    return 'Order(id: $id, status: $status, name: $name, printedName: $printedName, executionNum: $executionNum, orderNum: $orderNum, docs: $docs, package: $package, distributionCountry: $distributionCountry, cartonCount: $cartonCount, ordersCount: $ordersCount, totalAmount: $totalAmount, date: $date, days: $days, email: $email, phone: $phone, isQuranPrinted: $isQuranPrinted, isQuranPhotographed: $isQuranPhotographed, isDistributionPhotographed: $isDistributionPhotographed, isLocationReceived: $isLocationReceived, locationLink: $locationLink, isFinalReportReady: $isFinalReportReady, isReportSent: $isReportSent, stickerPrepared: $stickerPrepared, videosUploaded: $videosUploaded, finalEstimateReady: $finalEstimateReady, createdAt: $createdAt)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OrderImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.printedName, printedName) ||
-                other.printedName == printedName) &&
-            (identical(other.executionNum, executionNum) ||
-                other.executionNum == executionNum) &&
-            (identical(other.orderNum, orderNum) ||
-                other.orderNum == orderNum) &&
-            const DeepCollectionEquality().equals(other._docs, _docs) &&
-            (identical(other.package, package) || other.package == package) &&
-            (identical(other.distributionCountry, distributionCountry) ||
-                other.distributionCountry == distributionCountry) &&
-            (identical(other.cartonCount, cartonCount) ||
-                other.cartonCount == cartonCount) &&
-            (identical(other.ordersCount, ordersCount) ||
-                other.ordersCount == ordersCount) &&
-            (identical(other.totalAmount, totalAmount) ||
-                other.totalAmount == totalAmount) &&
-            (identical(other.date, date) || other.date == date) &&
-            (identical(other.days, days) || other.days == days) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.isQuranPrinted, isQuranPrinted) ||
-                other.isQuranPrinted == isQuranPrinted) &&
-            (identical(other.isQuranPhotographed, isQuranPhotographed) ||
-                other.isQuranPhotographed == isQuranPhotographed) &&
-            (identical(other.isDistributionPhotographed,
-                    isDistributionPhotographed) ||
-                other.isDistributionPhotographed ==
-                    isDistributionPhotographed) &&
-            (identical(other.isLocationReceived, isLocationReceived) ||
-                other.isLocationReceived == isLocationReceived) &&
-            (identical(other.locationLink, locationLink) ||
-                other.locationLink == locationLink) &&
-            (identical(other.isFinalReportReady, isFinalReportReady) ||
-                other.isFinalReportReady == isFinalReportReady) &&
-            (identical(other.isReportSent, isReportSent) ||
-                other.isReportSent == isReportSent) &&
-            (identical(other.stickerPrepared, stickerPrepared) ||
-                other.stickerPrepared == stickerPrepared) &&
-            (identical(other.videosUploaded, videosUploaded) ||
-                other.videosUploaded == videosUploaded) &&
-            (identical(other.finalEstimateReady, finalEstimateReady) ||
-                other.finalEstimateReady == finalEstimateReady) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        status,
-        name,
-        printedName,
-        executionNum,
-        orderNum,
-        const DeepCollectionEquality().hash(_docs),
-        package,
-        distributionCountry,
-        cartonCount,
-        ordersCount,
-        totalAmount,
-        date,
-        days,
-        email,
-        phone,
-        isQuranPrinted,
-        isQuranPhotographed,
-        isDistributionPhotographed,
-        isLocationReceived,
-        locationLink,
-        isFinalReportReady,
-        isReportSent,
-        stickerPrepared,
-        videosUploaded,
-        finalEstimateReady,
-        createdAt
-      ]);
-
-  /// Create a copy of Order
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>
-      __$$OrderImplCopyWithImpl<_$OrderImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$OrderImplToJson(
-      this,
-    );
-  }
+@override@JsonKey(name: 'id') final  int? id;
+@override@JsonKey(name: 'printed_name') final  String? printedName;
+ final  List<dynamic>? _docs;
+@override@JsonKey(name: 'docs') List<dynamic>? get docs {
+  final value = _docs;
+  if (value == null) return null;
+  if (_docs is EqualUnmodifiableListView) return _docs;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
 }
 
-abstract class _Order implements Order {
-  const factory _Order(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'status') final bool? status,
-      @JsonKey(name: 'name') final String? name,
-      @JsonKey(name: 'printed_name') final String? printedName,
-      @JsonKey(name: 'execution_num') final String? executionNum,
-      @JsonKey(name: 'order_num') final String? orderNum,
-      @JsonKey(name: 'docs') final List<dynamic>? docs,
-      @JsonKey(name: 'package') final Package? package,
-      @JsonKey(name: 'distribution_country')
-      final DistributionCountry? distributionCountry,
-      @JsonKey(name: 'carton_count') final int? cartonCount,
-      @JsonKey(name: 'orders_count') final int? ordersCount,
-      @JsonKey(name: 'total_amount') final String? totalAmount,
-      @JsonKey(name: 'date') final DateTime? date,
-      @JsonKey(name: 'days') final int? days,
-      @JsonKey(name: 'email') final String? email,
-      @JsonKey(name: 'phone') final String? phone,
-      @JsonKey(name: 'is_quran_printed') final bool? isQuranPrinted,
-      @JsonKey(name: 'is_quran_photographed') final bool? isQuranPhotographed,
-      @JsonKey(name: 'is_distribution_photographed')
-      final bool? isDistributionPhotographed,
-      @JsonKey(name: 'is_location_received') final bool? isLocationReceived,
-      @JsonKey(name: 'location_link') final bool? locationLink,
-      @JsonKey(name: 'is_final_report_ready') final bool? isFinalReportReady,
-      @JsonKey(name: 'is_report_sent') final bool? isReportSent,
-      @JsonKey(name: 'sticker_prepared') final bool? stickerPrepared,
-      @JsonKey(name: 'videos_uploaded') final bool? videosUploaded,
-      @JsonKey(name: 'final_estimate_ready') final bool? finalEstimateReady,
-      @JsonKey(name: 'created_at') final String? createdAt}) = _$OrderImpl;
+@override@JsonKey(name: 'distribution_country') final  DistributionCountry? distributionCountry;
+@override@JsonKey(name: 'date') final  DateTime? date;
+@override@JsonKey(name: 'days') final  int? days;
+@override@JsonKey(name: 'is_quran_photographed') final  bool? isQuranPhotographed;
+@override@JsonKey(name: 'is_distribution_photographed') final  bool? isDistributionPhotographed;
+@override@JsonKey(name: 'sticker_prepared') final  bool? stickerPrepared;
+@override@JsonKey(name: 'created_at') final  String? createdAt;
 
-  factory _Order.fromJson(Map<String, dynamic> json) = _$OrderImpl.fromJson;
+/// Create a copy of Order
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$OrderCopyWith<_Order> get copyWith => __$OrderCopyWithImpl<_Order>(this, _$identity);
 
-  @override
-  @JsonKey(name: 'id')
-  int? get id;
-  @override
-  @JsonKey(name: 'status')
-  bool? get status;
-  @override
-  @JsonKey(name: 'name')
-  String? get name;
-  @override
-  @JsonKey(name: 'printed_name')
-  String? get printedName;
-  @override
-  @JsonKey(name: 'execution_num')
-  String? get executionNum;
-  @override
-  @JsonKey(name: 'order_num')
-  String? get orderNum;
-  @override
-  @JsonKey(name: 'docs')
-  List<dynamic>? get docs;
-  @override
-  @JsonKey(name: 'package')
-  Package? get package;
-  @override
-  @JsonKey(name: 'distribution_country')
-  DistributionCountry? get distributionCountry;
-  @override
-  @JsonKey(name: 'carton_count')
-  int? get cartonCount;
-  @override
-  @JsonKey(name: 'orders_count')
-  int? get ordersCount;
-  @override
-  @JsonKey(name: 'total_amount')
-  String? get totalAmount;
-  @override
-  @JsonKey(name: 'date')
-  DateTime? get date;
-  @override
-  @JsonKey(name: 'days')
-  int? get days;
-  @override
-  @JsonKey(name: 'email')
-  String? get email;
-  @override
-  @JsonKey(name: 'phone')
-  String? get phone;
-  @override
-  @JsonKey(name: 'is_quran_printed')
-  bool? get isQuranPrinted;
-  @override
-  @JsonKey(name: 'is_quran_photographed')
-  bool? get isQuranPhotographed;
-  @override
-  @JsonKey(name: 'is_distribution_photographed')
-  bool? get isDistributionPhotographed;
-  @override
-  @JsonKey(name: 'is_location_received')
-  bool? get isLocationReceived;
-  @override
-  @JsonKey(name: 'location_link')
-  bool? get locationLink;
-  @override
-  @JsonKey(name: 'is_final_report_ready')
-  bool? get isFinalReportReady;
-  @override
-  @JsonKey(name: 'is_report_sent')
-  bool? get isReportSent;
-  @override
-  @JsonKey(name: 'sticker_prepared')
-  bool? get stickerPrepared;
-  @override
-  @JsonKey(name: 'videos_uploaded')
-  bool? get videosUploaded;
-  @override
-  @JsonKey(name: 'final_estimate_ready')
-  bool? get finalEstimateReady;
-  @override
-  @JsonKey(name: 'created_at')
-  String? get createdAt;
-
-  /// Create a copy of Order
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$OrderToJson(this, );
 }
 
-DistributionCountry _$DistributionCountryFromJson(Map<String, dynamic> json) {
-  return _DistributionCountry.fromJson(json);
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Order&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other._docs, _docs)&&(identical(other.distributionCountry, distributionCountry) || other.distributionCountry == distributionCountry)&&(identical(other.date, date) || other.date == date)&&(identical(other.days, days) || other.days == days)&&(identical(other.isQuranPhotographed, isQuranPhotographed) || other.isQuranPhotographed == isQuranPhotographed)&&(identical(other.isDistributionPhotographed, isDistributionPhotographed) || other.isDistributionPhotographed == isDistributionPhotographed)&&(identical(other.stickerPrepared, stickerPrepared) || other.stickerPrepared == stickerPrepared)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,printedName,const DeepCollectionEquality().hash(_docs),distributionCountry,date,days,isQuranPhotographed,isDistributionPhotographed,stickerPrepared,createdAt);
+
+@override
+String toString() {
+  return 'Order(id: $id, printedName: $printedName, docs: $docs, distributionCountry: $distributionCountry, date: $date, days: $days, isQuranPhotographed: $isQuranPhotographed, isDistributionPhotographed: $isDistributionPhotographed, stickerPrepared: $stickerPrepared, createdAt: $createdAt)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
+  factory _$OrderCopyWith(_Order value, $Res Function(_Order) _then) = __$OrderCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'printed_name') String? printedName,@JsonKey(name: 'docs') List<dynamic>? docs,@JsonKey(name: 'distribution_country') DistributionCountry? distributionCountry,@JsonKey(name: 'date') DateTime? date,@JsonKey(name: 'days') int? days,@JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,@JsonKey(name: 'is_distribution_photographed') bool? isDistributionPhotographed,@JsonKey(name: 'sticker_prepared') bool? stickerPrepared,@JsonKey(name: 'created_at') String? createdAt
+});
+
+
+@override $DistributionCountryCopyWith<$Res>? get distributionCountry;
+
+}
+/// @nodoc
+class __$OrderCopyWithImpl<$Res>
+    implements _$OrderCopyWith<$Res> {
+  __$OrderCopyWithImpl(this._self, this._then);
+
+  final _Order _self;
+  final $Res Function(_Order) _then;
+
+/// Create a copy of Order
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? printedName = freezed,Object? docs = freezed,Object? distributionCountry = freezed,Object? date = freezed,Object? days = freezed,Object? isQuranPhotographed = freezed,Object? isDistributionPhotographed = freezed,Object? stickerPrepared = freezed,Object? createdAt = freezed,}) {
+  return _then(_Order(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,printedName: freezed == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
+as String?,docs: freezed == docs ? _self._docs : docs // ignore: cast_nullable_to_non_nullable
+as List<dynamic>?,distributionCountry: freezed == distributionCountry ? _self.distributionCountry : distributionCountry // ignore: cast_nullable_to_non_nullable
+as DistributionCountry?,date: freezed == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime?,days: freezed == days ? _self.days : days // ignore: cast_nullable_to_non_nullable
+as int?,isQuranPhotographed: freezed == isQuranPhotographed ? _self.isQuranPhotographed : isQuranPhotographed // ignore: cast_nullable_to_non_nullable
+as bool?,isDistributionPhotographed: freezed == isDistributionPhotographed ? _self.isDistributionPhotographed : isDistributionPhotographed // ignore: cast_nullable_to_non_nullable
+as bool?,stickerPrepared: freezed == stickerPrepared ? _self.stickerPrepared : stickerPrepared // ignore: cast_nullable_to_non_nullable
+as bool?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+/// Create a copy of Order
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DistributionCountryCopyWith<$Res>? get distributionCountry {
+    if (_self.distributionCountry == null) {
+    return null;
+  }
+
+  return $DistributionCountryCopyWith<$Res>(_self.distributionCountry!, (value) {
+    return _then(_self.copyWith(distributionCountry: value));
+  });
+}
+}
+
 
 /// @nodoc
 mixin _$DistributionCountry {
-  @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'code')
-  String? get code => throw _privateConstructorUsedError;
+
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'code') String? get code;
+/// Create a copy of DistributionCountry
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$DistributionCountryCopyWith<DistributionCountry> get copyWith => _$DistributionCountryCopyWithImpl<DistributionCountry>(this as DistributionCountry, _$identity);
 
   /// Serializes this DistributionCountry to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of DistributionCountry
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DistributionCountryCopyWith<DistributionCountry> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DistributionCountry&&(identical(other.id, id) || other.id == id)&&(identical(other.code, code) || other.code == code));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,code);
+
+@override
+String toString() {
+  return 'DistributionCountry(id: $id, code: $code)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $DistributionCountryCopyWith<$Res> {
-  factory $DistributionCountryCopyWith(
-          DistributionCountry value, $Res Function(DistributionCountry) then) =
-      _$DistributionCountryCopyWithImpl<$Res, DistributionCountry>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'code') String? code});
-}
+abstract mixin class $DistributionCountryCopyWith<$Res>  {
+  factory $DistributionCountryCopyWith(DistributionCountry value, $Res Function(DistributionCountry) _then) = _$DistributionCountryCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'code') String? code
+});
 
+
+
+
+}
 /// @nodoc
-class _$DistributionCountryCopyWithImpl<$Res, $Val extends DistributionCountry>
+class _$DistributionCountryCopyWithImpl<$Res>
     implements $DistributionCountryCopyWith<$Res> {
-  _$DistributionCountryCopyWithImpl(this._value, this._then);
+  _$DistributionCountryCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final DistributionCountry _self;
+  final $Res Function(DistributionCountry) _then;
 
-  /// Create a copy of DistributionCountry
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? code = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of DistributionCountry
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? code = freezed,}) {
+  return _then(_self.copyWith(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$DistributionCountryImplCopyWith<$Res>
-    implements $DistributionCountryCopyWith<$Res> {
-  factory _$$DistributionCountryImplCopyWith(_$DistributionCountryImpl value,
-          $Res Function(_$DistributionCountryImpl) then) =
-      __$$DistributionCountryImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id, @JsonKey(name: 'code') String? code});
 }
 
-/// @nodoc
-class __$$DistributionCountryImplCopyWithImpl<$Res>
-    extends _$DistributionCountryCopyWithImpl<$Res, _$DistributionCountryImpl>
-    implements _$$DistributionCountryImplCopyWith<$Res> {
-  __$$DistributionCountryImplCopyWithImpl(_$DistributionCountryImpl _value,
-      $Res Function(_$DistributionCountryImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of DistributionCountry
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? code = freezed,
-  }) {
-    return _then(_$DistributionCountryImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      code: freezed == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [DistributionCountry].
+extension DistributionCountryPatterns on DistributionCountry {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _DistributionCountry value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _DistributionCountry() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _DistributionCountry value)  $default,){
+final _that = this;
+switch (_that) {
+case _DistributionCountry():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _DistributionCountry value)?  $default,){
+final _that = this;
+switch (_that) {
+case _DistributionCountry() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'code')  String? code)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _DistributionCountry() when $default != null:
+return $default(_that.id,_that.code);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'code')  String? code)  $default,) {final _that = this;
+switch (_that) {
+case _DistributionCountry():
+return $default(_that.id,_that.code);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'code')  String? code)?  $default,) {final _that = this;
+switch (_that) {
+case _DistributionCountry() when $default != null:
+return $default(_that.id,_that.code);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$DistributionCountryImpl implements _DistributionCountry {
-  const _$DistributionCountryImpl(
-      {@JsonKey(name: 'id') this.id, @JsonKey(name: 'code') this.code});
 
-  factory _$DistributionCountryImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DistributionCountryImplFromJson(json);
+class _DistributionCountry implements DistributionCountry {
+  const _DistributionCountry({@JsonKey(name: 'id') this.id, @JsonKey(name: 'code') this.code});
+  factory _DistributionCountry.fromJson(Map<String, dynamic> json) => _$DistributionCountryFromJson(json);
 
-  @override
-  @JsonKey(name: 'id')
-  final int? id;
-  @override
-  @JsonKey(name: 'code')
-  final String? code;
+@override@JsonKey(name: 'id') final  int? id;
+@override@JsonKey(name: 'code') final  String? code;
 
-  @override
-  String toString() {
-    return 'DistributionCountry(id: $id, code: $code)';
-  }
+/// Create a copy of DistributionCountry
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$DistributionCountryCopyWith<_DistributionCountry> get copyWith => __$DistributionCountryCopyWithImpl<_DistributionCountry>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DistributionCountryImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.code, code) || other.code == code));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, code);
-
-  /// Create a copy of DistributionCountry
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DistributionCountryImplCopyWith<_$DistributionCountryImpl> get copyWith =>
-      __$$DistributionCountryImplCopyWithImpl<_$DistributionCountryImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DistributionCountryImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$DistributionCountryToJson(this, );
 }
 
-abstract class _DistributionCountry implements DistributionCountry {
-  const factory _DistributionCountry(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'code') final String? code}) = _$DistributionCountryImpl;
-
-  factory _DistributionCountry.fromJson(Map<String, dynamic> json) =
-      _$DistributionCountryImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'id')
-  int? get id;
-  @override
-  @JsonKey(name: 'code')
-  String? get code;
-
-  /// Create a copy of DistributionCountry
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DistributionCountryImplCopyWith<_$DistributionCountryImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DistributionCountry&&(identical(other.id, id) || other.id == id)&&(identical(other.code, code) || other.code == code));
 }
 
-Package _$PackageFromJson(Map<String, dynamic> json) {
-  return _Package.fromJson(json);
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,code);
+
+@override
+String toString() {
+  return 'DistributionCountry(id: $id, code: $code)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$DistributionCountryCopyWith<$Res> implements $DistributionCountryCopyWith<$Res> {
+  factory _$DistributionCountryCopyWith(_DistributionCountry value, $Res Function(_DistributionCountry) _then) = __$DistributionCountryCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'code') String? code
+});
+
+
+
+
+}
+/// @nodoc
+class __$DistributionCountryCopyWithImpl<$Res>
+    implements _$DistributionCountryCopyWith<$Res> {
+  __$DistributionCountryCopyWithImpl(this._self, this._then);
+
+  final _DistributionCountry _self;
+  final $Res Function(_DistributionCountry) _then;
+
+/// Create a copy of DistributionCountry
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? code = freezed,}) {
+  return _then(_DistributionCountry(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,code: freezed == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
 
 /// @nodoc
 mixin _$Package {
-  @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'type')
-  dynamic get type => throw _privateConstructorUsedError;
-  @JsonKey(name: 'quantity')
-  int? get quantity => throw _privateConstructorUsedError;
+
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'type') dynamic get type;@JsonKey(name: 'quantity') int? get quantity;
+/// Create a copy of Package
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PackageCopyWith<Package> get copyWith => _$PackageCopyWithImpl<Package>(this as Package, _$identity);
 
   /// Serializes this Package to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PackageCopyWith<Package> get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Package&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.type, type)&&(identical(other.quantity, quantity) || other.quantity == quantity));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(type),quantity);
+
+@override
+String toString() {
+  return 'Package(id: $id, type: $type, quantity: $quantity)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $PackageCopyWith<$Res> {
-  factory $PackageCopyWith(Package value, $Res Function(Package) then) =
-      _$PackageCopyWithImpl<$Res, Package>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'type') dynamic type,
-      @JsonKey(name: 'quantity') int? quantity});
-}
+abstract mixin class $PackageCopyWith<$Res>  {
+  factory $PackageCopyWith(Package value, $Res Function(Package) _then) = _$PackageCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'type') dynamic type,@JsonKey(name: 'quantity') int? quantity
+});
 
+
+
+
+}
 /// @nodoc
-class _$PackageCopyWithImpl<$Res, $Val extends Package>
+class _$PackageCopyWithImpl<$Res>
     implements $PackageCopyWith<$Res> {
-  _$PackageCopyWithImpl(this._value, this._then);
+  _$PackageCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Package _self;
+  final $Res Function(Package) _then;
 
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? quantity = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
+/// Create a copy of Package
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? type = freezed,Object? quantity = freezed,}) {
+  return _then(_self.copyWith(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as dynamic,quantity: freezed == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$PackageImplCopyWith<$Res> implements $PackageCopyWith<$Res> {
-  factory _$$PackageImplCopyWith(
-          _$PackageImpl value, $Res Function(_$PackageImpl) then) =
-      __$$PackageImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') int? id,
-      @JsonKey(name: 'type') dynamic type,
-      @JsonKey(name: 'quantity') int? quantity});
 }
 
-/// @nodoc
-class __$$PackageImplCopyWithImpl<$Res>
-    extends _$PackageCopyWithImpl<$Res, _$PackageImpl>
-    implements _$$PackageImplCopyWith<$Res> {
-  __$$PackageImplCopyWithImpl(
-      _$PackageImpl _value, $Res Function(_$PackageImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? type = freezed,
-    Object? quantity = freezed,
-  }) {
-    return _then(_$PackageImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      quantity: freezed == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [Package].
+extension PackagePatterns on Package {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Package value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Package() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Package value)  $default,){
+final _that = this;
+switch (_that) {
+case _Package():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Package value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Package() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'type')  dynamic type, @JsonKey(name: 'quantity')  int? quantity)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Package() when $default != null:
+return $default(_that.id,_that.type,_that.quantity);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'type')  dynamic type, @JsonKey(name: 'quantity')  int? quantity)  $default,) {final _that = this;
+switch (_that) {
+case _Package():
+return $default(_that.id,_that.type,_that.quantity);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'type')  dynamic type, @JsonKey(name: 'quantity')  int? quantity)?  $default,) {final _that = this;
+switch (_that) {
+case _Package() when $default != null:
+return $default(_that.id,_that.type,_that.quantity);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PackageImpl implements _Package {
-  const _$PackageImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'type') this.type,
-      @JsonKey(name: 'quantity') this.quantity});
 
-  factory _$PackageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PackageImplFromJson(json);
+class _Package implements Package {
+  const _Package({@JsonKey(name: 'id') this.id, @JsonKey(name: 'type') this.type, @JsonKey(name: 'quantity') this.quantity});
+  factory _Package.fromJson(Map<String, dynamic> json) => _$PackageFromJson(json);
 
-  @override
-  @JsonKey(name: 'id')
-  final int? id;
-  @override
-  @JsonKey(name: 'type')
-  final dynamic type;
-  @override
-  @JsonKey(name: 'quantity')
-  final int? quantity;
+@override@JsonKey(name: 'id') final  int? id;
+@override@JsonKey(name: 'type') final  dynamic type;
+@override@JsonKey(name: 'quantity') final  int? quantity;
 
-  @override
-  String toString() {
-    return 'Package(id: $id, type: $type, quantity: $quantity)';
-  }
+/// Create a copy of Package
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PackageCopyWith<_Package> get copyWith => __$PackageCopyWithImpl<_Package>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PackageImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, id, const DeepCollectionEquality().hash(type), quantity);
-
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
-      __$$PackageImplCopyWithImpl<_$PackageImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PackageImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$PackageToJson(this, );
 }
 
-abstract class _Package implements Package {
-  const factory _Package(
-      {@JsonKey(name: 'id') final int? id,
-      @JsonKey(name: 'type') final dynamic type,
-      @JsonKey(name: 'quantity') final int? quantity}) = _$PackageImpl;
-
-  factory _Package.fromJson(Map<String, dynamic> json) = _$PackageImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'id')
-  int? get id;
-  @override
-  @JsonKey(name: 'type')
-  dynamic get type;
-  @override
-  @JsonKey(name: 'quantity')
-  int? get quantity;
-
-  /// Create a copy of Package
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Package&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.type, type)&&(identical(other.quantity, quantity) || other.quantity == quantity));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(type),quantity);
+
+@override
+String toString() {
+  return 'Package(id: $id, type: $type, quantity: $quantity)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PackageCopyWith<$Res> implements $PackageCopyWith<$Res> {
+  factory _$PackageCopyWith(_Package value, $Res Function(_Package) _then) = __$PackageCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'type') dynamic type,@JsonKey(name: 'quantity') int? quantity
+});
+
+
+
+
+}
+/// @nodoc
+class __$PackageCopyWithImpl<$Res>
+    implements _$PackageCopyWith<$Res> {
+  __$PackageCopyWithImpl(this._self, this._then);
+
+  final _Package _self;
+  final $Res Function(_Package) _then;
+
+/// Create a copy of Package
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? type = freezed,Object? quantity = freezed,}) {
+  return _then(_Package(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as dynamic,quantity: freezed == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+
+}
+
+// dart format on

@@ -10,25 +10,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 @module
 abstract class InjectionModule {
   // Internet connection checker
-  @lazySingleton
+  @singleton
   InternetConnection get connectionChecker =>
       InternetConnection.createInstance();
-  @lazySingleton
+  @singleton
   FlutterLocalNotificationsPlugin get notificationsPlugin =>
       FlutterLocalNotificationsPlugin();
   // Firebase services
-  @lazySingleton
+  @singleton
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
-
-  @lazySingleton
+  @singleton
   FirebaseMessaging get firebaseMessaging => FirebaseMessaging.instance;
-
-  // SharedPreferencesAsync
   @preResolve
   Future<SharedPreferencesAsync> get prefs async =>
       await SharedPreferencesAsync();
-
-  // Secure storage
-  @lazySingleton
+  @singleton
   FlutterSecureStorage get secureStorage => const FlutterSecureStorage();
 }

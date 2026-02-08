@@ -6,20 +6,19 @@ part of 'meta_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MetaEntityImpl _$$MetaEntityImplFromJson(Map<String, dynamic> json) =>
-    _$MetaEntityImpl(
-      currentPage: (json['currentPage'] as num?)?.toInt(),
-      totalPages: (json['totalPages'] as num?)?.toInt(),
-      perPage: (json['perPage'] as num?)?.toInt(),
-      hasNextPage: json['hasNextPage'] as bool?,
-      hasPreviousPage: json['hasPreviousPage'] as bool?,
-    );
+_MetaEntity _$MetaEntityFromJson(Map<String, dynamic> json) => _MetaEntity(
+  currentPage: (json['currentPage'] as num?)?.toInt(),
+  totalPages: (json['totalPages'] as num?)?.toInt(),
+  perPage: (json['perPage'] as num?)?.toInt(),
+  hasNextPage: json['hasNextPage'] as bool?,
+  hasPreviousPage: json['hasPreviousPage'] as bool?,
+);
 
-Map<String, dynamic> _$$MetaEntityImplToJson(_$MetaEntityImpl instance) =>
+Map<String, dynamic> _$MetaEntityToJson(_MetaEntity instance) =>
     <String, dynamic>{
-      if (instance.currentPage case final value?) 'currentPage': value,
-      if (instance.totalPages case final value?) 'totalPages': value,
-      if (instance.perPage case final value?) 'perPage': value,
-      if (instance.hasNextPage case final value?) 'hasNextPage': value,
-      if (instance.hasPreviousPage case final value?) 'hasPreviousPage': value,
+      'currentPage': ?instance.currentPage,
+      'totalPages': ?instance.totalPages,
+      'perPage': ?instance.perPage,
+      'hasNextPage': ?instance.hasNextPage,
+      'hasPreviousPage': ?instance.hasPreviousPage,
     };

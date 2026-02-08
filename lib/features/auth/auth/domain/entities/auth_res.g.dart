@@ -6,12 +6,9 @@ part of 'auth_res.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AuthResImpl _$$AuthResImplFromJson(Map<String, dynamic> json) =>
-    _$AuthResImpl(
-      token: json['token'] as String,
-    );
+_AuthRes _$AuthResFromJson(Map<String, dynamic> json) =>
+    _AuthRes(token: json['token'] as String);
 
-Map<String, dynamic> _$$AuthResImplToJson(_$AuthResImpl instance) =>
-    <String, dynamic>{
-      'token': instance.token,
-    };
+Map<String, dynamic> _$AuthResToJson(_AuthRes instance) => <String, dynamic>{
+  'token': instance.token,
+};

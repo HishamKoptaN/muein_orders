@@ -7,18 +7,15 @@ import '../../core/performance/performance_manager.dart';
 class AppInitializer {
   static Future<void> initialize() async {
     if (kIsWeb) {
-      // 🌐 للويب
       HydratedBloc.storage = await HydratedStorage.build(
         storageDirectory: HydratedStorageDirectory.web,
       );
     } else {
-      // 📱 للموبايل
       final dir = await getApplicationDocumentsDirectory();
       HydratedBloc.storage = await HydratedStorage.build(
         storageDirectory: HydratedStorageDirectory(dir.path),
       );
     }
-    // ⚙️ تهيئة تحسينات الأداء
     await PerformanceManager.initialize();
   }
 }

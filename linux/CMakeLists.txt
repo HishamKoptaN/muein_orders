@@ -3,10 +3,10 @@ cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
 # The name of the executable created for the application.
-set(BINARY_NAME "mubin_orders")
+set(BINARY_NAME "muein_orders")
 
 # The unique GTK application identifier for this application.
-set(APPLICATION_ID "com.example.mubinorders")
+set(APPLICATION_ID "com.example.mueinorders")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent versions of CMake.
 cmake_policy(SET CMP0063 NEW)

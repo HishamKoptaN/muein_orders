@@ -1,5 +1,5 @@
-import 'dart:developer' as developer;
 import 'package:injectable/injectable.dart';
+
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/errors/api_error_handler.dart';
 import '../../../../core/mapper/meta_mapper.dart';
@@ -8,46 +8,29 @@ import '../../domain/repo/orders_repo.dart';
 import '../datasources/orders_api.dart';
 import '../mappers/orders_res_mapper.dart';
 
-@Singleton(
-  as: OrdersRepo,
-)
+@Singleton(as: OrdersRepo)
 class OrdersRepoImpl implements OrdersRepo {
   final OrdersApi ordersApi;
-  OrdersRepoImpl(
-    this.ordersApi,
-  );
+  OrdersRepoImpl(this.ordersApi);
   OrdersResEntity? _cachedResOrders;
 
   @override
   Future<ApiResult<OrdersResEntity?>> getOrders({
-    required int packageId,
+    required int productTypeId,
     String? query,
     bool loadMore = false,
     bool? isDistributionPhotographed,
   }) async {
     try {
       final res = await ordersApi.getOrders(
-        packageId: packageId,
+        productTypeId: productTypeId,
         page: !loadMore ? 1 : (_cachedResOrders?.meta?.currentPage ?? 0) + 1,
         query: query,
-        isDistributionPhotographed: isDistributionPhotographed,
+        // isDistributionPhotographed: isDistributionPhotographed,
       );
-      final orders = res.orders!.map(
-        (model) {
-          try {
-            return model.toEntity();
-          } catch (e, stackTrace) {
-            developer.log(
-              'Error converting model to entity',
-              error: e,
-              stackTrace: stackTrace,
-            );
-            throw FormatException(
-              'Failed to convert model to entity: ${e.toString()}',
-            );
-          }
-        },
-      ).toList();
+      final orders = res.orders!.map((model) {
+        return model.toEntity();
+      }).toList();
       if (loadMore && _cachedResOrders != null) {
         _cachedResOrders!.orders!.addAll(orders);
       } else {
@@ -56,9 +39,7 @@ class OrdersRepoImpl implements OrdersRepo {
           meta: res.meta?.toEntity(),
         );
       }
-      return ApiResult.success(
-        data: _cachedResOrders,
-      );
+      return ApiResult.success(data: _cachedResOrders);
     } catch (error, stackTrace) {
       return ApiResult.failure(
         apiErrorModel: ApiErrorHandler.handle(
@@ -80,14 +61,10 @@ class OrdersRepoImpl implements OrdersRepo {
         isQuranPhotographed: isQuranPhotographed,
       );
       res.toEntity();
-      return const ApiResult.success(
-        data: null,
-      );
+      return const ApiResult.success(data: null);
     } catch (error) {
       return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(
-          error: error,
-        ),
+        apiErrorModel: ApiErrorHandler.handle(error: error),
       );
     }
   }

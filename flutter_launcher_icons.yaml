@@ -1,36 +1,11 @@
 # Flutter Launcher Icons Configuration
 # dart run flutter_launcher_icons:main -f flutter_launcher_icons.yaml
-
 flutter_launcher_icons:
-  # مسارات الصور
-  image_path: "assets/icons/mubin_base_logo.png"
-  image_path_android: "assets/icons/mubin_base_logo.png"
-  image_path_ios: "assets/icons/mubin_base_logo.png"
-
-  # إعدادات Android
+  image_path: "assets/logos/logo.png"
+  image_path_android: "assets/logos/logo.png"
+  image_path_ios: "assets/logos/logo.png"
   android: true
   min_sdk_android: 21
-  adaptive_icon_background: "#003A45"
-  adaptive_icon_foreground: "assets/icons/mubin_base_logo.png"
-
-  # إعدادات iOS
+  adaptive_icon_background: "#003A46"
+  adaptive_icon_foreground: "assets/logos/logo.png"
   ios: true
-
-  # إعدادات Web
-  web:
-    generate: true
-    background_color: "#003A45"
-    theme_color: "#003A45"
-
-  # إعدادات Windows
-  windows:
-    generate: true
-    icon_size: 48
-
-  # إعدادات macOS
-  macos:
-    generate: true
-
-  # إعدادات Linux
-  linux:
-    generate: true

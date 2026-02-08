@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,181 +9,269 @@ part of 'instruction_page_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$InstructionPageEntity {
-  String get titleKey => throw _privateConstructorUsedError;
-  String get descriptionKey => throw _privateConstructorUsedError;
-  String get imagePath => throw _privateConstructorUsedError;
 
-  /// Create a copy of InstructionPageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $InstructionPageEntityCopyWith<InstructionPageEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get titleKey; String get descriptionKey; String get imagePath;
+/// Create a copy of InstructionPageEntity
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$InstructionPageEntityCopyWith<InstructionPageEntity> get copyWith => _$InstructionPageEntityCopyWithImpl<InstructionPageEntity>(this as InstructionPageEntity, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InstructionPageEntity&&(identical(other.titleKey, titleKey) || other.titleKey == titleKey)&&(identical(other.descriptionKey, descriptionKey) || other.descriptionKey == descriptionKey)&&(identical(other.imagePath, imagePath) || other.imagePath == imagePath));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,titleKey,descriptionKey,imagePath);
+
+@override
+String toString() {
+  return 'InstructionPageEntity(titleKey: $titleKey, descriptionKey: $descriptionKey, imagePath: $imagePath)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $InstructionPageEntityCopyWith<$Res> {
-  factory $InstructionPageEntityCopyWith(InstructionPageEntity value,
-          $Res Function(InstructionPageEntity) then) =
-      _$InstructionPageEntityCopyWithImpl<$Res, InstructionPageEntity>;
-  @useResult
-  $Res call({String titleKey, String descriptionKey, String imagePath});
-}
+abstract mixin class $InstructionPageEntityCopyWith<$Res>  {
+  factory $InstructionPageEntityCopyWith(InstructionPageEntity value, $Res Function(InstructionPageEntity) _then) = _$InstructionPageEntityCopyWithImpl;
+@useResult
+$Res call({
+ String titleKey, String descriptionKey, String imagePath
+});
 
+
+
+
+}
 /// @nodoc
-class _$InstructionPageEntityCopyWithImpl<$Res,
-        $Val extends InstructionPageEntity>
+class _$InstructionPageEntityCopyWithImpl<$Res>
     implements $InstructionPageEntityCopyWith<$Res> {
-  _$InstructionPageEntityCopyWithImpl(this._value, this._then);
+  _$InstructionPageEntityCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final InstructionPageEntity _self;
+  final $Res Function(InstructionPageEntity) _then;
 
-  /// Create a copy of InstructionPageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? titleKey = null,
-    Object? descriptionKey = null,
-    Object? imagePath = null,
-  }) {
-    return _then(_value.copyWith(
-      titleKey: null == titleKey
-          ? _value.titleKey
-          : titleKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionKey: null == descriptionKey
-          ? _value.descriptionKey
-          : descriptionKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      imagePath: null == imagePath
-          ? _value.imagePath
-          : imagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of InstructionPageEntity
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? titleKey = null,Object? descriptionKey = null,Object? imagePath = null,}) {
+  return _then(_self.copyWith(
+titleKey: null == titleKey ? _self.titleKey : titleKey // ignore: cast_nullable_to_non_nullable
+as String,descriptionKey: null == descriptionKey ? _self.descriptionKey : descriptionKey // ignore: cast_nullable_to_non_nullable
+as String,imagePath: null == imagePath ? _self.imagePath : imagePath // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [InstructionPageEntity].
+extension InstructionPageEntityPatterns on InstructionPageEntity {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _InstructionPageEntity value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _InstructionPageEntity() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _InstructionPageEntity value)  $default,){
+final _that = this;
+switch (_that) {
+case _InstructionPageEntity():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _InstructionPageEntity value)?  $default,){
+final _that = this;
+switch (_that) {
+case _InstructionPageEntity() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String titleKey,  String descriptionKey,  String imagePath)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _InstructionPageEntity() when $default != null:
+return $default(_that.titleKey,_that.descriptionKey,_that.imagePath);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String titleKey,  String descriptionKey,  String imagePath)  $default,) {final _that = this;
+switch (_that) {
+case _InstructionPageEntity():
+return $default(_that.titleKey,_that.descriptionKey,_that.imagePath);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String titleKey,  String descriptionKey,  String imagePath)?  $default,) {final _that = this;
+switch (_that) {
+case _InstructionPageEntity() when $default != null:
+return $default(_that.titleKey,_that.descriptionKey,_that.imagePath);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$InstructionPageEntityImplCopyWith<$Res>
-    implements $InstructionPageEntityCopyWith<$Res> {
-  factory _$$InstructionPageEntityImplCopyWith(
-          _$InstructionPageEntityImpl value,
-          $Res Function(_$InstructionPageEntityImpl) then) =
-      __$$InstructionPageEntityImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String titleKey, String descriptionKey, String imagePath});
+
+
+class _InstructionPageEntity implements InstructionPageEntity {
+  const _InstructionPageEntity({required this.titleKey, required this.descriptionKey, required this.imagePath});
+  
+
+@override final  String titleKey;
+@override final  String descriptionKey;
+@override final  String imagePath;
+
+/// Create a copy of InstructionPageEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$InstructionPageEntityCopyWith<_InstructionPageEntity> get copyWith => __$InstructionPageEntityCopyWithImpl<_InstructionPageEntity>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InstructionPageEntity&&(identical(other.titleKey, titleKey) || other.titleKey == titleKey)&&(identical(other.descriptionKey, descriptionKey) || other.descriptionKey == descriptionKey)&&(identical(other.imagePath, imagePath) || other.imagePath == imagePath));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,titleKey,descriptionKey,imagePath);
+
+@override
+String toString() {
+  return 'InstructionPageEntity(titleKey: $titleKey, descriptionKey: $descriptionKey, imagePath: $imagePath)';
+}
+
+
 }
 
 /// @nodoc
-class __$$InstructionPageEntityImplCopyWithImpl<$Res>
-    extends _$InstructionPageEntityCopyWithImpl<$Res,
-        _$InstructionPageEntityImpl>
-    implements _$$InstructionPageEntityImplCopyWith<$Res> {
-  __$$InstructionPageEntityImplCopyWithImpl(_$InstructionPageEntityImpl _value,
-      $Res Function(_$InstructionPageEntityImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$InstructionPageEntityCopyWith<$Res> implements $InstructionPageEntityCopyWith<$Res> {
+  factory _$InstructionPageEntityCopyWith(_InstructionPageEntity value, $Res Function(_InstructionPageEntity) _then) = __$InstructionPageEntityCopyWithImpl;
+@override @useResult
+$Res call({
+ String titleKey, String descriptionKey, String imagePath
+});
 
-  /// Create a copy of InstructionPageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? titleKey = null,
-    Object? descriptionKey = null,
-    Object? imagePath = null,
-  }) {
-    return _then(_$InstructionPageEntityImpl(
-      titleKey: null == titleKey
-          ? _value.titleKey
-          : titleKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      descriptionKey: null == descriptionKey
-          ? _value.descriptionKey
-          : descriptionKey // ignore: cast_nullable_to_non_nullable
-              as String,
-      imagePath: null == imagePath
-          ? _value.imagePath
-          : imagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$InstructionPageEntityCopyWithImpl<$Res>
+    implements _$InstructionPageEntityCopyWith<$Res> {
+  __$InstructionPageEntityCopyWithImpl(this._self, this._then);
 
-class _$InstructionPageEntityImpl implements _InstructionPageEntity {
-  const _$InstructionPageEntityImpl(
-      {required this.titleKey,
-      required this.descriptionKey,
-      required this.imagePath});
+  final _InstructionPageEntity _self;
+  final $Res Function(_InstructionPageEntity) _then;
 
-  @override
-  final String titleKey;
-  @override
-  final String descriptionKey;
-  @override
-  final String imagePath;
-
-  @override
-  String toString() {
-    return 'InstructionPageEntity(titleKey: $titleKey, descriptionKey: $descriptionKey, imagePath: $imagePath)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InstructionPageEntityImpl &&
-            (identical(other.titleKey, titleKey) ||
-                other.titleKey == titleKey) &&
-            (identical(other.descriptionKey, descriptionKey) ||
-                other.descriptionKey == descriptionKey) &&
-            (identical(other.imagePath, imagePath) ||
-                other.imagePath == imagePath));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, titleKey, descriptionKey, imagePath);
-
-  /// Create a copy of InstructionPageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InstructionPageEntityImplCopyWith<_$InstructionPageEntityImpl>
-      get copyWith => __$$InstructionPageEntityImplCopyWithImpl<
-          _$InstructionPageEntityImpl>(this, _$identity);
+/// Create a copy of InstructionPageEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? titleKey = null,Object? descriptionKey = null,Object? imagePath = null,}) {
+  return _then(_InstructionPageEntity(
+titleKey: null == titleKey ? _self.titleKey : titleKey // ignore: cast_nullable_to_non_nullable
+as String,descriptionKey: null == descriptionKey ? _self.descriptionKey : descriptionKey // ignore: cast_nullable_to_non_nullable
+as String,imagePath: null == imagePath ? _self.imagePath : imagePath // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class _InstructionPageEntity implements InstructionPageEntity {
-  const factory _InstructionPageEntity(
-      {required final String titleKey,
-      required final String descriptionKey,
-      required final String imagePath}) = _$InstructionPageEntityImpl;
 
-  @override
-  String get titleKey;
-  @override
-  String get descriptionKey;
-  @override
-  String get imagePath;
-
-  /// Create a copy of InstructionPageEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InstructionPageEntityImplCopyWith<_$InstructionPageEntityImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
+
+// dart format on

@@ -6,9 +6,8 @@ part of 'cached_doc_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CachedDocEntityImpl _$$CachedDocEntityImplFromJson(
-        Map<String, dynamic> json) =>
-    _$CachedDocEntityImpl(
+_CachedDocEntity _$CachedDocEntityFromJson(Map<String, dynamic> json) =>
+    _CachedDocEntity(
       id: (json['id'] as num?)?.toInt(),
       orderId: (json['orderId'] as num?)?.toInt(),
       imageOne: json['imageOne'] as String?,
@@ -20,22 +19,21 @@ _$CachedDocEntityImpl _$$CachedDocEntityImplFromJson(
       shippingCost: (json['shippingCost'] as num?)?.toDouble(),
       uploadStatus:
           $enumDecodeNullable(_$UploadStatusEnumMap, json['uploadStatus']) ??
-              UploadStatus.pending,
+          UploadStatus.pending,
       uploadProgress: (json['uploadProgress'] as num?)?.toDouble() ?? 0.0,
     );
 
-Map<String, dynamic> _$$CachedDocEntityImplToJson(
-        _$CachedDocEntityImpl instance) =>
+Map<String, dynamic> _$CachedDocEntityToJson(_CachedDocEntity instance) =>
     <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.orderId case final value?) 'orderId': value,
-      if (instance.imageOne case final value?) 'imageOne': value,
-      if (instance.imageTwo case final value?) 'imageTwo': value,
-      if (instance.videoOne case final value?) 'videoOne': value,
-      if (instance.videoTwo case final value?) 'videoTwo': value,
-      if (instance.latitude case final value?) 'latitude': value,
-      if (instance.longitude case final value?) 'longitude': value,
-      if (instance.shippingCost case final value?) 'shippingCost': value,
+      'id': ?instance.id,
+      'orderId': ?instance.orderId,
+      'imageOne': ?instance.imageOne,
+      'imageTwo': ?instance.imageTwo,
+      'videoOne': ?instance.videoOne,
+      'videoTwo': ?instance.videoTwo,
+      'latitude': ?instance.latitude,
+      'longitude': ?instance.longitude,
+      'shippingCost': ?instance.shippingCost,
       'uploadStatus': _$UploadStatusEnumMap[instance.uploadStatus]!,
       'uploadProgress': instance.uploadProgress,
     };

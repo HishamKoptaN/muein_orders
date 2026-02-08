@@ -9,6 +9,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/app/global_variable.dart';
+import '../../../../../core/networking/api_result.dart';
 import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/use_cases/sign_in_use_cases.dart';
 
@@ -22,26 +23,24 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   EmailInput? _email;
   PasswordInput? _password;
   GenericFormzInput? _obscurePassword;
-  SignInBloc({
-    required this.signInUseCases,
-  }) : super(
-          const SignInState.loaded(
-            email: EmailInput.pure(),
-            password: PasswordInput.pure(),
-            obscurePassword: GenericFormzInput.pure(),
-            formzSubmissionStatus: FormzSubmissionStatus.initial,
-          ),
-        ) {
-    on<SignInEvent>(
-      (event, emit) async {
-        await event.map(dataChanged: (e) async {
+  SignInBloc({required this.signInUseCases})
+    : super(
+        const SignInState.loaded(
+          email: EmailInput.pure(),
+          password: PasswordInput.pure(),
+          obscurePassword: GenericFormzInput.pure(),
+          formzSubmissionStatus: FormzSubmissionStatus.initial,
+        ),
+      ) {
+    on<SignInEvent>((event, emit) async {
+      await event.map(
+        dataChanged: (e) async {
           _email = e.email ?? _email;
           _password = e.password ?? _password;
           _obscurePassword = e.obscurePassword ?? _obscurePassword;
-          _emitCustomLoaded(
-            emit: emit,
-          );
-        }, signInWithCredentialsPressed: (_) async {
+          _emitCustomLoaded(emit: emit);
+        },
+        signInWithCredentialsPressed: (_) async {
           _emitCustomLoaded(
             emit: emit,
             formzSubmissionStatus: FormzSubmissionStatus.inProgress,
@@ -51,34 +50,24 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             password: _password!.value,
           );
           result.when(
-            success: (
-              data,
-            ) {
+            success: (data) {
               GlobalVariable.authBloc.add(const AuthEvent.emitAuthenticated());
               Future.delayed(const Duration(seconds: 3));
-              emit(
-                const SignInState.success(),
-              );
-              _emitCustomLoaded(
-                emit: emit,
-              );
+              emit(const SignInState.success());
+              _emitCustomLoaded(emit: emit);
             },
-            failure: (
-              error,
-            ) {
+            failure: (error) {
               emit(
                 SignInState.failure(
                   errorMessage: error.message ?? 'Login failed',
                 ),
               );
-              _emitCustomLoaded(
-                emit: emit,
-              );
+              _emitCustomLoaded(emit: emit);
             },
           );
-        });
-      },
-    );
+        },
+      );
+    });
   }
 
   void _emitCustomLoaded({
@@ -90,13 +79,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         email: _email ?? const EmailInput.pure(),
         password: _password ?? const PasswordInput.pure(),
         obscurePassword: _obscurePassword ?? const GenericFormzInput.pure(),
-        formzSubmissionStatus: formzSubmissionStatus ??
-            (Formz.validate(
-              [
-                _email ?? const EmailInput.pure(),
-                _password ?? const PasswordInput.pure(),
-              ],
-            )
+        formzSubmissionStatus:
+            formzSubmissionStatus ??
+            (Formz.validate([
+                  _email ?? const EmailInput.pure(),
+                  _password ?? const PasswordInput.pure(),
+                ])
                 ? FormzSubmissionStatus.success
                 : FormzSubmissionStatus.failure),
       ),

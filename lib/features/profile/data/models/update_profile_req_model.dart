@@ -8,7 +8,7 @@ part 'update_profile_req_model.freezed.dart';
 part 'update_profile_req_model.g.dart';
 
 @freezed
-class UpdateProfileReqModel with _$UpdateProfileReqModel {
+abstract class UpdateProfileReqModel with _$UpdateProfileReqModel {
   const factory UpdateProfileReqModel({
     @FileConverter() File? image,
     String? name,

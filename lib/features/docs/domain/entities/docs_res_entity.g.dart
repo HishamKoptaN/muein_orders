@@ -6,8 +6,8 @@ part of 'docs_res_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DocsResEntityImpl _$$DocsResEntityImplFromJson(Map<String, dynamic> json) =>
-    _$DocsResEntityImpl(
+_DocsResEntity _$DocsResEntityFromJson(Map<String, dynamic> json) =>
+    _DocsResEntity(
       docs: (json['docs'] as List<dynamic>?)
           ?.map((e) => DocEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -16,47 +16,43 @@ _$DocsResEntityImpl _$$DocsResEntityImplFromJson(Map<String, dynamic> json) =>
           : MetaEntity.fromJson(json['meta'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$DocsResEntityImplToJson(_$DocsResEntityImpl instance) =>
+Map<String, dynamic> _$DocsResEntityToJson(_DocsResEntity instance) =>
     <String, dynamic>{
-      if (instance.docs?.map((e) => e.toJson()).toList() case final value?)
-        'docs': value,
-      if (instance.meta?.toJson() case final value?) 'meta': value,
+      'docs': ?instance.docs?.map((e) => e.toJson()).toList(),
+      'meta': ?instance.meta?.toJson(),
     };
 
-_$DocEntityImpl _$$DocEntityImplFromJson(Map<String, dynamic> json) =>
-    _$DocEntityImpl(
-      id: (json['id'] as num?)?.toInt(),
-      orderNumber: json['order_number'] as String?,
-      place: json['place'] as String?,
-      videoOne: json['video_one'] as String?,
-      videoTwo: json['video_two'] as String?,
-      thumbnailUrlOne: json['thumbnail_url_one'] as String?,
-      thumbnailUrlTwo: json['thumbnail_url_two'] as String?,
-      imageOne: json['image_one'] as String?,
-      imageTwo: json['image_two'] as String?,
-      updatedAt: json['updated_at'] as String?,
-      latitude: json['latitude'] as String?,
-      longitude: json['longitude'] as String?,
-      branchId: (json['branch_id'] as num?)?.toInt(),
-      createdAt: json['created_at'] as String?,
-    );
+_DocEntity _$DocEntityFromJson(Map<String, dynamic> json) => _DocEntity(
+  id: (json['id'] as num?)?.toInt(),
+  orderNumber: json['order_number'] as String?,
+  place: json['place'] as String?,
+  videoOne: json['video_one'] as String?,
+  videoTwo: json['video_two'] as String?,
+  thumbnailUrlOne: json['thumbnail_url_one'] as String?,
+  thumbnailUrlTwo: json['thumbnail_url_two'] as String?,
+  imageOne: json['image_one'] as String?,
+  imageTwo: json['image_two'] as String?,
+  updatedAt: json['updated_at'] as String?,
+  latitude: json['latitude'] as String?,
+  longitude: json['longitude'] as String?,
+  branchId: (json['branch_id'] as num?)?.toInt(),
+  createdAt: json['created_at'] as String?,
+);
 
-Map<String, dynamic> _$$DocEntityImplToJson(_$DocEntityImpl instance) =>
+Map<String, dynamic> _$DocEntityToJson(_DocEntity instance) =>
     <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.orderNumber case final value?) 'order_number': value,
-      if (instance.place case final value?) 'place': value,
-      if (instance.videoOne case final value?) 'video_one': value,
-      if (instance.videoTwo case final value?) 'video_two': value,
-      if (instance.thumbnailUrlOne case final value?)
-        'thumbnail_url_one': value,
-      if (instance.thumbnailUrlTwo case final value?)
-        'thumbnail_url_two': value,
-      if (instance.imageOne case final value?) 'image_one': value,
-      if (instance.imageTwo case final value?) 'image_two': value,
-      if (instance.updatedAt case final value?) 'updated_at': value,
-      if (instance.latitude case final value?) 'latitude': value,
-      if (instance.longitude case final value?) 'longitude': value,
-      if (instance.branchId case final value?) 'branch_id': value,
-      if (instance.createdAt case final value?) 'created_at': value,
+      'id': ?instance.id,
+      'order_number': ?instance.orderNumber,
+      'place': ?instance.place,
+      'video_one': ?instance.videoOne,
+      'video_two': ?instance.videoTwo,
+      'thumbnail_url_one': ?instance.thumbnailUrlOne,
+      'thumbnail_url_two': ?instance.thumbnailUrlTwo,
+      'image_one': ?instance.imageOne,
+      'image_two': ?instance.imageTwo,
+      'updated_at': ?instance.updatedAt,
+      'latitude': ?instance.latitude,
+      'longitude': ?instance.longitude,
+      'branch_id': ?instance.branchId,
+      'created_at': ?instance.createdAt,
     };

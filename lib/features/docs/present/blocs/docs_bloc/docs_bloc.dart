@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/entities/meta_entity.dart';
 import '../../../../../core/errors/api_error_model.dart';
+import '../../../../../core/networking/api_result.dart';
 import '../../../domain/entities/docs_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
 part 'docs_bloc.freezed.dart';

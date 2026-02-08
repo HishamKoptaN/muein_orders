@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/routing/navigation_service.dart';
-import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../sign_in/present/views/sign_in_view.dart';
@@ -48,60 +49,30 @@ class AuthChoiceView extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.9),
-                    Colors.transparent,
-                  ],
+                  colors: [Colors.black.withOpacity(0.9), Colors.transparent],
                 ),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Sign Up Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        NavigationService.navigateAndRemoveUntil(
-                          context: context,
-                          routeName: SignUpView.routeName,
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                      ),
-                      child: Text(
-                        t.signUp,
-                        style: TextStyle(
-                          color: AppColors.primary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                  CustomBtnWidget(
+                    text: t.signUp,
+                    onPressed: () {
+                      NavigationService.navigateAndRemoveUntil(
+                        context: context,
+                        routeName: SignUpView.routeName,
+                      );
+                    },
                   ),
-                  const SizedBox(height: 16),
-                  const SizedBox(height: 16),
-                  // Sign In Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        NavigationService.navigateAndRemoveUntil(
-                          context: context,
-                          routeName: SignInView.routeName,
-                        );
-                      },
-                      child: Text(
-                        t.login,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                  SizedBox(height: 40.h),
+                  CustomBtnWidget(
+                    onPressed: () {
+                      NavigationService.navigateAndRemoveUntil(
+                        context: context,
+                        routeName: SignInView.routeName,
+                      );
+                    },
+                    text: t.login,
                   ),
                 ],
               ),
