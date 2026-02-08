@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build_and_deploy:
     # شرط التنفيذ: يجب أن تحتوي رسالة الـ Commit على كلمة build
@@ -28,7 +27,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.29.0" # نسخة مستقرة مع Dart 3.10+
+          flutter-version: "3.32.0" # أحدث نسخة مع Dart 3.10+
           channel: stable
           cache: true
 
