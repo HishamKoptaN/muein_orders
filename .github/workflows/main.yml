@@ -19,7 +19,6 @@ jobs:
           java-version: "17"
           distribution: "temurin"
           cache: "gradle"
-
       # 3. إعداد فلاتر مع تفعيل الكاش للـ SDK والـ Pub
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -27,7 +26,6 @@ jobs:
           flutter-version: "3.32.0" # أحدث نسخة مع Dart 3.10+
           channel: stable
           cache: true
-
       # 4. تحديث Flutter للحصول على أحدث Dart SDK
       - name: Upgrade Flutter
         run: flutter upgrade
