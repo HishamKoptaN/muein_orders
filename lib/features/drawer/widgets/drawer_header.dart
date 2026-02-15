@@ -19,7 +19,7 @@ class CustomDrawerHeader extends StatelessWidget {
       child: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
           return state.maybeWhen(
-            loaded: (profile, updateProfileReq, isEditing, formzSubmissionStatus) {
+            loaded: (profile, updateProfileReq, formzSubmissionStatus) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,

@@ -11,9 +11,7 @@ part of 'profile_api.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
 class _ProfileApi implements ProfileApi {
-  _ProfileApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://hotpink-gnu-383634.hostingersite.com/mapi/api/';
-  }
+  _ProfileApi(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -49,40 +47,44 @@ class _ProfileApi implements ProfileApi {
   }
 
   @override
-  Future<ProfileResModel> updateProfile(
-    File? image,
-    String? name,
-    String? phone,
-  ) async {
+  Future<PresignedUrlModel> presignedAvatarUrl({
+    required PresignedUrlReqModel presignedUrlReqModel,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = FormData();
-    if (image != null) {
-      _data.files.add(
-        MapEntry(
-          'image',
-          MultipartFile.fromFileSync(
-            image.path,
-            filename: image.path.split(Platform.pathSeparator).last,
-          ),
-        ),
-      );
-    }
-    if (name != null) {
-      _data.fields.add(MapEntry('name', name));
-    }
-    if (phone != null) {
-      _data.fields.add(MapEntry('phone', phone));
-    }
-    final _options = _setStreamType<ProfileResModel>(
-      Options(
-            method: 'POST',
-            headers: _headers,
-            extra: _extra,
-            contentType: 'multipart/form-data',
+    final _data = presignedUrlReqModel;
+    final _options = _setStreamType<PresignedUrlModel>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/profile',
+            queryParameters: queryParameters,
+            data: _data,
           )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
+    late PresignedUrlModel _value;
+    try {
+      _value = PresignedUrlModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ProfileResModel> updateProfile({
+    required UpdateProfileReqModel updateProfileReqModel,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = updateProfileReqModel;
+    final _options = _setStreamType<ProfileResModel>(
+      Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
             '/profile',

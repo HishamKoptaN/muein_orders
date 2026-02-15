@@ -8,7 +8,6 @@ import '../models/notification_model.dart';
 part 'notifications_api.g.dart';
 
 @RestApi(
-  baseUrl: AppConfig.apiBaseUrl,
 )
 @singleton
 abstract class NotificationsApi {

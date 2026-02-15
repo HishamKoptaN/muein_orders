@@ -21,6 +21,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
     as _i161;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../config/env.dart' as _i557;
 import '../../features/auth/auth/data/datasources/auth_api.dart' as _i976;
 import '../../features/auth/auth/data/repo/auth_repo_impl.dart' as _i246;
 import '../../features/auth/auth/domain/repo/auth_repo.dart' as _i610;
@@ -105,12 +106,17 @@ import '../../features/profile/data/repo/profile_repo_impl.dart' as _i256;
 import '../../features/profile/domain/repo/profile_repo.dart' as _i364;
 import '../../features/profile/domain/use_cases/use_cases.dart' as _i291;
 import '../../features/profile/present/bloc/profile_bloc.dart' as _i475;
+import '../../features/s3/data/data_sources/s3_api.dart' as _i335;
+import '../../features/s3/data/repo/s3_repo.dart' as _i1;
+import '../../features/s3/domain/repo_impl/s3_repo_impl.dart' as _i758;
 import '../../features/theme/blocs/theme_bloc.dart' as _i307;
 import '../background/workmanager_initializer.dart' as _i996;
 import '../networking/network_info.dart' as _i303;
 import '../services/notification_manager.dart' as _i105;
 import '../utils/app_file_manager.dart' as _i246;
 import 'api_module.dart' as _i804;
+import 'dio/api_module.dart' as _i158;
+import 'dio/dio_module.dart' as _i374;
 import 'injection_module.dart' as _i212;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -122,6 +128,7 @@ Future<_i174.GetIt> $initGetIt(
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final injectionModule = _$InjectionModule();
   final apiModule = _$ApiModule();
+  final dioModule = _$DioModule();
   await gh.factoryAsync<_i460.SharedPreferencesAsync>(
     () => injectionModule.prefs,
     preResolve: true,
@@ -130,6 +137,8 @@ Future<_i174.GetIt> $initGetIt(
     () => _i996.WorkManagerInitializer(),
   );
   gh.singleton<_i804.LoggingInterceptor>(() => _i804.LoggingInterceptor());
+  gh.singleton<_i557.Env>(() => apiModule.config);
+  gh.singleton<_i158.LoggingInterceptor>(() => _i158.LoggingInterceptor());
   gh.singleton<_i161.InternetConnection>(
     () => injectionModule.connectionChecker,
   );
@@ -147,6 +156,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i724.LanguageBloc>(() => _i724.LanguageBloc());
   gh.singleton<_i307.ThemeBloc>(() => _i307.ThemeBloc());
   gh.lazySingleton<_i804.TokenStorage>(() => _i804.TokenStorage());
+  gh.lazySingleton<_i158.TokenStorage>(() => _i158.TokenStorage());
   gh.singleton<_i804.AuthInterceptor>(
     () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()),
   );
@@ -156,9 +166,16 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i281.CachedDocsRepo>(
     () => _i240.CachedDocsRepoImpl(gh<_i523.AppDatabase>()),
   );
+  gh.singleton<_i361.Dio>(
+    () => dioModule.s3Dio(gh<_i158.LoggingInterceptor>()),
+    instanceName: 's3Dio',
+  );
   gh.lazySingleton<_i105.NotificationManager>(
     () =>
         _i105.NotificationManager(gh<_i163.FlutterLocalNotificationsPlugin>()),
+  );
+  gh.singleton<_i158.AuthInterceptor>(
+    () => _i158.AuthInterceptor(gh<_i158.TokenStorage>()),
   );
   gh.singleton<_i303.NetworkInfo>(
     () => _i303.NetworkInfoImpl(
@@ -178,28 +195,30 @@ Future<_i174.GetIt> $initGetIt(
     () => _i629.SendPassResetEmailUseCase(gh<_i614.ForgotPassRepo>()),
   );
   gh.singleton<_i361.Dio>(
-    () => apiModule.dio(
-      gh<_i804.AuthInterceptor>(),
-      gh<_i804.LoggingInterceptor>(),
+    () => dioModule.authDio(
+      gh<_i158.AuthInterceptor>(),
+      gh<_i158.LoggingInterceptor>(),
+    ),
+    instanceName: 'authDio',
+  );
+  gh.lazySingleton<_i1.S3Repo>(
+    () => _i758.S3RepoImpl(gh<_i361.Dio>(instanceName: 's3Dio')),
+  );
+  gh.singleton<_i361.Dio>(
+    () => dioModule.dio(
+      gh<_i158.AuthInterceptor>(),
+      gh<_i158.LoggingInterceptor>(),
     ),
   );
-  gh.lazySingleton<_i804.SignInApi>(() => _i804.SignInApi(gh<_i361.Dio>()));
-  gh.lazySingleton<_i552.SignUpApi>(() => _i552.SignUpApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i977.DocsApi>(() => _i977.DocsApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i191.ProfileApi>(() => _i191.ProfileApi(gh<_i361.Dio>()));
-  gh.singleton<_i976.AuthApi>(() => _i976.AuthApi(gh<_i361.Dio>()));
+  gh.lazySingleton<_i335.S3Api>(() => _i335.S3Api(gh<_i361.Dio>()));
   gh.singleton<_i252.FinancialApi>(() => _i252.FinancialApi(gh<_i361.Dio>()));
   gh.singleton<_i11.HomeApi>(() => _i11.HomeApi(gh<_i361.Dio>()));
   gh.singleton<_i352.NotificationsApi>(
     () => _i352.NotificationsApi(gh<_i361.Dio>()),
   );
   gh.singleton<_i165.OrdersApi>(() => _i165.OrdersApi(gh<_i361.Dio>()));
-  gh.lazySingleton<_i871.SignUpRepo>(
-    () => _i17.SignUpRepoImpl(gh<_i552.SignUpApi>(), gh<_i804.TokenStorage>()),
-  );
-  gh.lazySingleton<_i251.SignUpUseCases>(
-    () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()),
-  );
   gh.lazySingleton<_i154.ForgotPassBloc>(
     () => _i154.ForgotPassBloc(gh<_i629.SendPassResetEmailUseCase>()),
   );
@@ -210,11 +229,23 @@ Future<_i174.GetIt> $initGetIt(
     () =>
         _i256.ProfileRepoImpl(gh<_i191.ProfileApi>(), gh<_i59.FirebaseAuth>()),
   );
+  gh.singleton<_i291.ProfileUseCases>(
+    () => _i291.ProfileUseCases(gh<_i364.ProfileRepo>(), gh<_i1.S3Repo>()),
+  );
   gh.singleton<_i808.OrdersRepo>(
     () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()),
   );
   gh.singleton<_i1011.FinancialRepo>(
     () => _i58.FinancialRepoImpl(gh<_i252.FinancialApi>()),
+  );
+  gh.singleton<_i976.AuthApi>(
+    () => _i976.AuthApi(gh<_i361.Dio>(instanceName: 'authDio')),
+  );
+  gh.lazySingleton<_i804.SignInApi>(
+    () => _i804.SignInApi(gh<_i361.Dio>(instanceName: 'authDio')),
+  );
+  gh.lazySingleton<_i552.SignUpApi>(
+    () => _i552.SignUpApi(gh<_i361.Dio>(instanceName: 'authDio')),
   );
   gh.lazySingleton<_i280.HomeRepo>(
     () => _i886.HomeRepoImpl(gh<_i11.HomeApi>()),
@@ -225,9 +256,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i610.AuthRepo>(
     () => _i246.AuthRepoImpl(gh<_i59.FirebaseAuth>(), gh<_i976.AuthApi>()),
   );
-  gh.lazySingleton<_i226.SignUpBloc>(
-    () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()),
-  );
   gh.singleton<_i583.HomeUseCases>(
     () => _i583.HomeUseCases(gh<_i280.HomeRepo>()),
   );
@@ -236,6 +264,9 @@ Future<_i174.GetIt> $initGetIt(
       postsApi: gh<_i977.DocsApi>(),
       db: gh<_i523.AppDatabase>(),
     ),
+  );
+  gh.singleton<_i475.ProfileBloc>(
+    () => _i475.ProfileBloc(gh<_i291.ProfileUseCases>()),
   );
   gh.lazySingleton<_i305.SignInRepo>(
     () => _i218.SignInRepoImpl(
@@ -248,8 +279,11 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i941.SignInUseCases>(
     () => _i941.SignInUseCases(gh<_i305.SignInRepo>(), gh<_i59.FirebaseAuth>()),
   );
-  gh.singleton<_i291.ProfileUseCases>(
-    () => _i291.ProfileUseCases(gh<_i364.ProfileRepo>()),
+  gh.lazySingleton<_i871.SignUpRepo>(
+    () => _i17.SignUpRepoImpl(gh<_i552.SignUpApi>(), gh<_i804.TokenStorage>()),
+  );
+  gh.lazySingleton<_i251.SignUpUseCases>(
+    () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()),
   );
   gh.lazySingleton<_i689.DocsUseCase>(
     () => _i689.DocsUseCase(
@@ -285,14 +319,14 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i665.SignInBloc>(
     () => _i665.SignInBloc(signInUseCases: gh<_i941.SignInUseCases>()),
   );
+  gh.lazySingleton<_i226.SignUpBloc>(
+    () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()),
+  );
   gh.singleton<_i422.CachedDocBloc>(
     () => _i422.CachedDocBloc(
       gh<_i748.CachedDocsUseCases>(),
       gh<_i246.AppFileManager>(),
     ),
-  );
-  gh.singleton<_i475.ProfileBloc>(
-    () => _i475.ProfileBloc(gh<_i291.ProfileUseCases>()),
   );
   gh.singleton<_i189.OrdersBloc>(
     () => _i189.OrdersBloc(
@@ -311,4 +345,6 @@ Future<_i174.GetIt> $initGetIt(
 
 class _$InjectionModule extends _i212.InjectionModule {}
 
-class _$ApiModule extends _i804.ApiModule {}
+class _$ApiModule extends _i158.ApiModule {}
+
+class _$DioModule extends _i374.DioModule {}

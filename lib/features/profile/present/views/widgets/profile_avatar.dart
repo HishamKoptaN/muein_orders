@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../../domain/entities/profile_res_entity.dart';
@@ -10,76 +11,81 @@ class ProfileAvatar extends StatelessWidget {
     super.key,
     required this.profile,
     required this.updateProfileReq,
-    required this.isEditing,
-    required this.onEditImageTap,
+    this.onEditImageTap,
   });
 
   final ProfileResEntity profile;
   final UpdateProfileReqEntity? updateProfileReq;
-  final bool isEditing;
-  final VoidCallback onEditImageTap;
+  final VoidCallback? onEditImageTap;
+  Widget _buildAvatarImage() {
+    Widget imageWidget;
+    if (updateProfileReq?.avatar?.value != null) {
+      imageWidget = Image.file(
+        updateProfileReq!.avatar!.value!,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) => buildPlaceholder(),
+      );
+    } else if (profile.avatar != null && profile.avatar!.isNotEmpty) {
+      imageWidget = Image.network(
+        profile.avatar!,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) => buildPlaceholder(),
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+        },
+      );
+    } else {
+      imageWidget = buildPlaceholder();
+    }
+
+    return Container(
+      width: 110.w,
+      height: 110.w,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        shape: BoxShape.circle,
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: imageWidget,
+    );
+  }
+
+  Widget buildPlaceholder() {
+    return Icon(Icons.person, size: 60.sp, color: Colors.grey[600]);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: AppColors.brandMint, width: 3),
-            // image: DecorationImage(
-            //   image: _getProfileImage(),
-            //   fit: BoxFit.cover,
-            // ),
-          ),
-          child: Icon(Icons.person, color: Colors.black, size: 80.w),
-        ),
-        // if (isEditing)
-        //   Positioned(
-        //     bottom: 0,
-        //     right: 0,
-        //     child: GestureDetector(
-        //       onTap: onEditImageTap,
-        //       child: Container(
-        //         width: 40,
-        //         height: 40,
-        //         decoration: const BoxDecoration(
-        //           color: AppColors.brandMint,
-        //           shape: BoxShape.circle,
-        //         ),
-        //         child: const Icon(
-        //           Icons.edit_outlined,
-        //           color: Colors.white,
-        //           size: 20,
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        const SizedBox(height: 12),
-        Text(
-          profile.name ?? '',
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Stack(
           children: [
-            const Icon(Icons.star, color: Colors.amber, size: 18),
-            const Text(' 4.7', style: TextStyle(color: Colors.grey)),
-            Icon(Icons.chevron_left, color: Colors.grey[400], size: 20),
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: AppColors.brandMint, width: 3),
+              ),
+              child: _buildAvatarImage(),
+            ),
+            if (updateProfileReq != null)
+              Positioned(
+                bottom: 5.h,
+                right: 10.w,
+                child: GestureDetector(
+                  onTap: onEditImageTap,
+                  child: FaIcon(
+                    FontAwesomeIcons.penToSquare,
+                    color: Colors.green,
+                    size: 22.w,
+                  ),
+                ),
+              ),
           ],
         ),
       ],
     );
-  }
-
-  ImageProvider _getProfileImage() {
-    if (isEditing && updateProfileReq?.image?.value != null) {
-      return FileImage(updateProfileReq!.image!.value!);
-    } else if (profile.image != null) {
-      return NetworkImage(profile.image!);
-    }
-    return const AssetImage('assets/images/default_avatar.png');
   }
 }

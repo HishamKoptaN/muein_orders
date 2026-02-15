@@ -13,7 +13,7 @@ class HomeRepoImpl implements HomeRepo {
   const HomeRepoImpl(this._remote);
 
   @override
-  Future<ApiResult<List<OrderTypeResEntity>>> getSummary() async {
+  Future<ApiResult<List<StatEntity>>> getSummary() async {
     try {
       final model = await _remote.getSummary();
       return ApiResult.success(data: model.map((e) => e.toEntity()).toList());

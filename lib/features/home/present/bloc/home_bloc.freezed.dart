@@ -382,7 +382,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( List<OrderTypeResEntity> orderTypeResEntity)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( List<StatEntity> orderTypeResEntity)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
@@ -405,7 +405,7 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( List<OrderTypeResEntity> orderTypeResEntity)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( List<StatEntity> orderTypeResEntity)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
 switch (_that) {
 case _Loading():
 return loading();case _Loaded():
@@ -427,7 +427,7 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( List<OrderTypeResEntity> orderTypeResEntity)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( List<StatEntity> orderTypeResEntity)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
@@ -476,11 +476,11 @@ String toString() {
 
 
 class _Loaded implements HomeState {
-  const _Loaded({required final  List<OrderTypeResEntity> orderTypeResEntity}): _orderTypeResEntity = orderTypeResEntity;
+  const _Loaded({required final  List<StatEntity> orderTypeResEntity}): _orderTypeResEntity = orderTypeResEntity;
   
 
- final  List<OrderTypeResEntity> _orderTypeResEntity;
- List<OrderTypeResEntity> get orderTypeResEntity {
+ final  List<StatEntity> _orderTypeResEntity;
+ List<StatEntity> get orderTypeResEntity {
   if (_orderTypeResEntity is EqualUnmodifiableListView) return _orderTypeResEntity;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_orderTypeResEntity);
@@ -517,7 +517,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $HomeStateCopyWith<$Res> 
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- List<OrderTypeResEntity> orderTypeResEntity
+ List<StatEntity> orderTypeResEntity
 });
 
 
@@ -537,7 +537,7 @@ class __$LoadedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? orderTypeResEntity = null,}) {
   return _then(_Loaded(
 orderTypeResEntity: null == orderTypeResEntity ? _self._orderTypeResEntity : orderTypeResEntity // ignore: cast_nullable_to_non_nullable
-as List<OrderTypeResEntity>,
+as List<StatEntity>,
   ));
 }
 

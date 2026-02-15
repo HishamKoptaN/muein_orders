@@ -26,7 +26,7 @@ class AddDocWidget extends StatelessWidget {
   final FileFormzInput imageTwo;
   final GenericFormzInput<double>? latitude;
   final GenericFormzInput<double>? longitude;
-  final ProductTypeEntity package;
+  final StatEntity package;
 
   static const String routeName = 'DocWidget';
   @override

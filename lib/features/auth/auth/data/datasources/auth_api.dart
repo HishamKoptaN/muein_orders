@@ -2,17 +2,16 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../../core/config/app_config.dart';
 import '../../../../../core/constants/api_constants.dart';
 import '../models/auth_res_model.dart';
 
 part 'auth_api.g.dart';
 
 @singleton
-@RestApi(baseUrl: AppConfig.apiAuthBaseUrl)
+@RestApi()
 abstract class AuthApi {
   @factoryMethod
-  factory AuthApi(Dio dio) = _AuthApi;
+  factory AuthApi(@Named("authDio") Dio dio) = _AuthApi;
   @POST(ApiConstants.check)
   Future<void> check();
 

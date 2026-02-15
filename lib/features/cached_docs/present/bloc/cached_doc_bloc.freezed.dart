@@ -125,7 +125,7 @@ return cachedDoc(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initialize,TResult Function( GenericFormzInput<int>? orderId,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  ProductTypeEntity? package)?  updateData,TResult Function()?  cachedDoc,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initialize,TResult Function( GenericFormzInput<int>? orderId,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  StatEntity? package)?  updateData,TResult Function()?  cachedDoc,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initialize() when initialize != null:
 return initialize();case _UpdateData() when updateData != null:
@@ -148,7 +148,7 @@ return cachedDoc();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initialize,required TResult Function( GenericFormzInput<int>? orderId,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  ProductTypeEntity? package)  updateData,required TResult Function()  cachedDoc,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initialize,required TResult Function( GenericFormzInput<int>? orderId,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  StatEntity? package)  updateData,required TResult Function()  cachedDoc,}) {final _that = this;
 switch (_that) {
 case _Initialize():
 return initialize();case _UpdateData():
@@ -170,7 +170,7 @@ return cachedDoc();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initialize,TResult? Function( GenericFormzInput<int>? orderId,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  ProductTypeEntity? package)?  updateData,TResult? Function()?  cachedDoc,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initialize,TResult? Function( GenericFormzInput<int>? orderId,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  StatEntity? package)?  updateData,TResult? Function()?  cachedDoc,}) {final _that = this;
 switch (_that) {
 case _Initialize() when initialize != null:
 return initialize();case _UpdateData() when updateData != null:
@@ -229,7 +229,7 @@ class _UpdateData implements CachedDocEvent {
  final  FileFormzInput? videoTwo;
  final  GenericFormzInput<double>? latitude;
  final  GenericFormzInput<double>? longitude;
- final  ProductTypeEntity? package;
+ final  StatEntity? package;
 
 /// Create a copy of CachedDocEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -261,7 +261,7 @@ abstract mixin class _$UpdateDataCopyWith<$Res> implements $CachedDocEventCopyWi
   factory _$UpdateDataCopyWith(_UpdateData value, $Res Function(_UpdateData) _then) = __$UpdateDataCopyWithImpl;
 @useResult
 $Res call({
- GenericFormzInput<int>? orderId, FileFormzInput? imageOne, FileFormzInput? imageTwo, FileFormzInput? videoOne, FileFormzInput? videoTwo, GenericFormzInput<double>? latitude, GenericFormzInput<double>? longitude, ProductTypeEntity? package
+ GenericFormzInput<int>? orderId, FileFormzInput? imageOne, FileFormzInput? imageTwo, FileFormzInput? videoOne, FileFormzInput? videoTwo, GenericFormzInput<double>? latitude, GenericFormzInput<double>? longitude, StatEntity? package
 });
 
 
@@ -288,7 +288,7 @@ as FileFormzInput?,videoTwo: freezed == videoTwo ? _self.videoTwo : videoTwo // 
 as FileFormzInput?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as GenericFormzInput<double>?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
 as GenericFormzInput<double>?,package: freezed == package ? _self.package : package // ignore: cast_nullable_to_non_nullable
-as ProductTypeEntity?,
+as StatEntity?,
   ));
 }
 

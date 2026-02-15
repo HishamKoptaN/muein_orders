@@ -1,26 +1,27 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../core/config/app_config.dart';
+import '../models/presigned/presigned_url_model.dart';
+import '../models/presigned/presigned_url_req_model.dart';
 import '../models/profile_res_model.dart';
+import '../models/update_profile_req_model.dart';
 
 part 'profile_api.g.dart';
 
 @lazySingleton
-@RestApi(baseUrl: AppConfig.apiBaseUrl)
+@RestApi()
 abstract class ProfileApi {
   @factoryMethod
   factory ProfileApi(Dio dio) = _ProfileApi;
   @GET('/profile')
   Future<ProfileResModel> getProfile();
   @POST('/profile')
-  @MultiPart()
-  Future<ProfileResModel> updateProfile(
-    @Part() File? image,
-    @Part() String? name,
-    @Part() String? phone,
-  );
+  Future<PresignedUrlModel> presignedAvatarUrl({
+    @Body() required PresignedUrlReqModel presignedUrlReqModel,
+  });
+  @PUT('/profile')
+  Future<ProfileResModel> updateProfile({
+    @Body() required UpdateProfileReqModel updateProfileReqModel,
+  });
 }

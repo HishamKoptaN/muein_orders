@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
-
 import '../../../../../core/debug_widget.dart';
-import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
-import '../../../../instructions/present/view/instructions_view.dart';
 import '../bloc/sign_in_bloc.dart';
 import 'widgets/sign_in_background.dart';
 import 'widgets/sign_in_body.dart';
@@ -21,7 +18,7 @@ class SignInView extends StatelessWidget {
         context.read<SignInBloc>()
           ..add(
             const SignInEvent.dataChanged(
-              email: EmailInput.dirty('msaad@gmail.com'),
+              email: EmailInput.dirty('waleed@gmail.com'),
             ),
           )
           ..add(
@@ -34,12 +31,6 @@ class SignInView extends StatelessWidget {
       child: BlocConsumer<SignInBloc, SignInState>(
         listener: (context, state) async {
           await state.whenOrNull(
-            success: () {
-              NavigationService.navigateAndRemoveUntil(
-                context: context,
-                routeName: InstructionsView.routeName,
-              );
-            },
             failure: (failure) {
               context.showErrorSnackBar(title: 'خطأ', message: failure);
             },

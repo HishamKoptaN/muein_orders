@@ -2,7 +2,7 @@ name: Build and Distribute (v7a Optimized)
 on:
   push:
     branches:
-      - main
+      - dev
 jobs:
   build_and_deploy:
     if: contains(github.event.head_commit.message, 'build')

@@ -5,11 +5,10 @@ extension ProfileModelX on ProfileResModel {
   ProfileResEntity toEntity() {
     return ProfileResEntity(
       id: id ?? 0,
+      avatar: avatar ?? '',
       name: name ?? '',
-      image: image ?? '',
       phone: phone ?? '',
       createdAt: createdAt ?? '',
-      email: email ?? '',
     );
   }
 }

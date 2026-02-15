@@ -20,11 +20,9 @@ extension MetaModelMapper on MetaModel {
   );
 }
 
-extension DocModelMapper on Doc {
+extension DocModelMapper on DocModel {
   DocEntity toEntity() => DocEntity(
     id: id,
-    orderNumber: orderNumber,
-    place: place,
     videoOne: videoOne,
     videoTwo: videoTwo,
     thumbnailUrlOne: thumbnailUrlOne,
@@ -34,7 +32,7 @@ extension DocModelMapper on Doc {
     updatedAt: updatedAt,
     latitude: latitude,
     longitude: longitude,
-    branchId: branchId,
+    docStatusModel: docStatus,
     createdAt: createdAt,
   );
 }

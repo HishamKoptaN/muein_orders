@@ -9,7 +9,7 @@ part of 'update_profile_req_model.dart';
 _UpdateProfileReqModel _$UpdateProfileReqModelFromJson(
   Map<String, dynamic> json,
 ) => _UpdateProfileReqModel(
-  image: const FileConverter().fromJson(json['image'] as String?),
+  avatar: json['avatar'] as String?,
   name: json['name'] as String?,
   phone: json['phone'] as String?,
 );
@@ -17,7 +17,7 @@ _UpdateProfileReqModel _$UpdateProfileReqModelFromJson(
 Map<String, dynamic> _$UpdateProfileReqModelToJson(
   _UpdateProfileReqModel instance,
 ) => <String, dynamic>{
-  'image': ?const FileConverter().toJson(instance.image),
+  'avatar': ?instance.avatar,
   'name': ?instance.name,
   'phone': ?instance.phone,
 };

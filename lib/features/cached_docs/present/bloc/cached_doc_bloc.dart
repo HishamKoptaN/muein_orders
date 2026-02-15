@@ -28,7 +28,7 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
   GenericFormzInput<double>? _longitude;
   FormzSubmissionStatus? _formzSubmissionStatus;
   double? _localDocProgress;
-  ProductTypeEntity? _package;
+  StatEntity? _package;
   // final NotificationManager notificationManager;
   StreamSubscription? _subscription;
 

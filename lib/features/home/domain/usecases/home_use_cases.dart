@@ -7,10 +7,8 @@ import '../repo/home_repo.dart';
 @singleton
 class HomeUseCases {
   final HomeRepo homeRepo;
-  HomeUseCases(
-    this.homeRepo,
-  );
-  Future<ApiResult<List<OrderTypeResEntity>?>> getSummary() async {
+  HomeUseCases(this.homeRepo);
+  Future<ApiResult<List<StatEntity>?>> getSummary() async {
     return await homeRepo.getSummary();
   }
 }

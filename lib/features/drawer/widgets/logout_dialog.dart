@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
+import '../../../core/di/dependency_injection.dart';
 import '../../auth/auth/present/bloc/auth_bloc.dart';
-import '../../auth/sign_in/present/views/sign_in_view.dart';
 
 void showLogoutBottomSheet(BuildContext context) {
   showModalBottomSheet(
@@ -46,10 +44,8 @@ void showLogoutBottomSheet(BuildContext context) {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      context.read<AuthBloc>().add(const AuthEvent.signedOut());
-                      if (context.mounted) {
-                        context.goNamed(SignInView.routeName);
-                      }
+                      getIt<AuthBloc>().add(const AuthEvent.signedOut());
+                      Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF83BEA8),

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../features/cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../features/cached_docs/domain/entities/cached_doc_entity.dart';
-import '../../../l10n/app_localizations.dart';
 import '../../di/dependency_injection.dart';
 import '../../widgets/navigation/custom_app_bar.dart';
 
@@ -28,11 +27,44 @@ class _NotificationsViewState extends State<NotificationsView> {
   void initState() {
     super.initState();
     _db = getIt<AppDatabase>();
+    _docsStream = _db.watchAllDocs().map(
+      (docs) => docs
+          .map(
+            (doc) => CachedDocEntity(
+              id: doc.id,
+              orderId: doc.orderId,
+              imageOne: doc.imageOne,
+              imageTwo: doc.imageTwo,
+              videoOne: doc.videoOne,
+              videoTwo: doc.videoTwo,
+              latitude: doc.latitude,
+              longitude: doc.longitude,
+              shippingCost: doc.shippingCost,
+              uploadStatus: _parseUploadStatus(doc.uploadStatus),
+              uploadProgress: doc.uploadProgress,
+            ),
+          )
+          .toList(),
+    );
+  }
+
+  UploadStatus _parseUploadStatus(String status) {
+    switch (status.toLowerCase()) {
+      case 'pending':
+        return UploadStatus.pending;
+      case 'uploading':
+        return UploadStatus.uploading;
+      case 'success':
+        return UploadStatus.success;
+      case 'failure':
+        return UploadStatus.failure;
+      default:
+        return UploadStatus.pending;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
     return Scaffold(
       appBar: const CustomAppBar(title: 'الإشعارات'),
       body: _NotificationStream(docsStream: _docsStream),

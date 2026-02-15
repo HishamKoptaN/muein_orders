@@ -11,9 +11,7 @@ part of 'orders_api.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
 class _OrdersApi implements OrdersApi {
-  _OrdersApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://hotpink-gnu-383634.hostingersite.com/mapi/api/';
-  }
+  _OrdersApi(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -46,7 +44,7 @@ class _OrdersApi implements OrdersApi {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
     late OrdersResModel _value;
     try {
       _value = OrdersResModel.fromJson(_result.data!);
@@ -58,7 +56,7 @@ class _OrdersApi implements OrdersApi {
   }
 
   @override
-  Future<Order> updateClientField({
+  Future<OrderModel> updateClientField({
     required int clientId,
     required bool isQuranPhotographed,
   }) async {
@@ -66,7 +64,7 @@ class _OrdersApi implements OrdersApi {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<Order>(
+    final _options = _setStreamType<OrderModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -76,10 +74,10 @@ class _OrdersApi implements OrdersApi {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late Order _value;
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
+    late OrderModel _value;
     try {
-      _value = Order.fromJson(_result.data!);
+      _value = OrderModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

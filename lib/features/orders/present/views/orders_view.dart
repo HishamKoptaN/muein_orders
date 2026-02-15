@@ -14,8 +14,8 @@ import 'widgets/orders_tabs .dart';
 import 'widgets/shimmer/shimmer_client_row.dart';
 
 class OrdersView extends StatefulWidget {
-  ProductTypeEntity package;
-  OrdersView({super.key, required this.package});
+  StatEntity stat;
+  OrdersView({super.key, required this.stat});
 
   static const String routeName = 'orders';
   @override
@@ -34,7 +34,7 @@ class _OrdersViewState extends State<OrdersView> {
     setState(() => selectedTab = index);
     context.read<OrdersBloc>().add(
       OrdersEvent.getOrders(
-        packageId: widget.package.id ?? 0,
+        subCategoryId: widget.stat.id ?? 1,
         loadMore: false,
         isQuranPhotographed: selectedTab == 0,
       ),
@@ -46,7 +46,7 @@ class _OrdersViewState extends State<OrdersView> {
     super.initState();
     context.read<OrdersBloc>().add(
       OrdersEvent.getOrders(
-        packageId: widget.package.id ?? 0,
+        subCategoryId: widget.stat.subCategory?.id ?? 0,
         loadMore: false,
         isQuranPhotographed: selectedTab == 0,
       ),
@@ -62,7 +62,7 @@ class _OrdersViewState extends State<OrdersView> {
           if (hasMore == true) {
             context.read<OrdersBloc>().add(
               OrdersEvent.getOrders(
-                packageId: widget.package.id ?? 0,
+                subCategoryId: widget.stat.subCategory?.id ?? 0,
                 loadMore: true,
                 isQuranPhotographed: selectedTab == 0,
               ),
@@ -125,7 +125,7 @@ class _OrdersViewState extends State<OrdersView> {
                             onRefresh: () async {
                               context.read<OrdersBloc>().add(
                                 OrdersEvent.getOrders(
-                                  packageId: widget.package.id ?? 0,
+                                  subCategoryId: widget.stat.id ?? 0,
                                   loadMore: false,
                                   isQuranPhotographed: selectedTab == 0,
                                 ),
@@ -148,7 +148,7 @@ class _OrdersViewState extends State<OrdersView> {
                           onRefresh: () async {
                             context.read<OrdersBloc>().add(
                               OrdersEvent.getOrders(
-                                packageId: widget.package.id ?? 0,
+                                subCategoryId: widget.stat.id ?? 0,
                                 loadMore: false,
                                 isQuranPhotographed: selectedTab == 0,
                               ),
@@ -163,13 +163,12 @@ class _OrdersViewState extends State<OrdersView> {
                                   itemCount: orders?.length,
                                   itemBuilder: (context, index) {
                                     final order = orders?[index];
-                                    return buildOrderCard(
+                                    return buildDocOrderCard(
                                       t: t,
                                       context: context,
                                       orderEntity: order ?? const OrderEntity(),
-                                      orderDocsCount:
-                                          widget.package.docsCount ?? 1,
-                                      package: widget.package,
+                                      orderDocsCount: widget.stat.id ?? 1,
+                                      package: widget.stat,
                                     );
                                   },
                                 ),
@@ -184,7 +183,7 @@ class _OrdersViewState extends State<OrdersView> {
                           onRefresh: () async {
                             context.read<OrdersBloc>().add(
                               OrdersEvent.getOrders(
-                                packageId: widget.package.id ?? 0,
+                                subCategoryId: widget.stat.id ?? 0,
                                 loadMore: false,
                                 isQuranPhotographed: selectedTab == 0,
                               ),
@@ -203,7 +202,7 @@ class _OrdersViewState extends State<OrdersView> {
                           onRefresh: () async {
                             context.read<OrdersBloc>().add(
                               OrdersEvent.getOrders(
-                                packageId: widget.package.id ?? 0,
+                                subCategoryId: widget.stat.id ?? 0,
                                 loadMore: false,
                                 isQuranPhotographed: selectedTab == 0,
                               ),
@@ -231,7 +230,7 @@ class _OrdersViewState extends State<OrdersView> {
                           onRefresh: () async {
                             context.read<OrdersBloc>().add(
                               OrdersEvent.getOrders(
-                                packageId: widget.package.id ?? 0,
+                                subCategoryId: widget.stat.id ?? 0,
                                 loadMore: false,
                                 isQuranPhotographed: selectedTab == 0,
                               ),

@@ -19,34 +19,11 @@ abstract class OrdersResEntity with _$OrdersResEntity {
 abstract class OrderEntity with _$OrderEntity {
   const factory OrderEntity({
     @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'created_at') String? createdAt,
-    @JsonKey(name: 'updated_at') String? updatedAt,
-    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'printed_name') String? printedName,
-    @JsonKey(name: 'phone') String? phone,
-    @JsonKey(name: 'status') int? status,
-    @JsonKey(name: 'sticker_prepared') bool? stickerPrepared,
-    @JsonKey(name: 'videos_uploaded') bool? videosUploaded,
-    @JsonKey(name: 'final_estimate_ready') bool? finalEstimateReady,
-    @JsonKey(name: 'email') String? email,
-    @JsonKey(name: 'execution_num') String? executionNum,
-    @JsonKey(name: 'order_num') String? orderNum,
-    @JsonKey(name: 'carton_count') int? cartonCount,
-    @JsonKey(name: 'orders_count') int? ordersCount,
-    @JsonKey(name: 'total_amount') String? totalAmount,
-    @JsonKey(name: 'date') DateTime? date,
-    @JsonKey(name: 'is_quran_printed') bool? isQuranPrinted,
+    @JsonKey(name: 'salla_order_id') String? sallaOrderId,
     @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
     @JsonKey(name: 'is_distribution_photographed')
     bool? isDistributionPhotographed,
-    @JsonKey(name: 'is_location_received') bool? isLocationReceived,
-    @JsonKey(name: 'location_link') dynamic locationLink,
-    @JsonKey(name: 'is_final_report_ready') bool? isFinalReportReady,
-    @JsonKey(name: 'is_report_sent') bool? isReportSent,
-    @JsonKey(name: 'origin_country_id') int? originCountryId,
-    @JsonKey(name: 'distribution_country_id') int? distributionCountryId,
-    @JsonKey(name: 'package_id') int? packageId,
-    @JsonKey(name: 'quran_copies_count') int? quranCopiesCount,
   }) = _OrderEntity;
 
   factory OrderEntity.fromJson(Map<String, dynamic> json) =>

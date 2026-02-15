@@ -30,7 +30,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                 ProfileState.loaded(
                   profile: res ?? ProfileResEntity(),
                   updateProfileReq: null,
-                  isEditing: false,
                   formzSubmissionStatus: FormzSubmissionStatus.initial,
                 ),
               );
@@ -44,35 +43,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             },
           );
         },
-        startEdit: () async {
-          await state.mapOrNull(
-            loaded: (state) {
-              emitCustomLoaded(
-                emit: emit,
-                state: state,
-                isEditing: true,
-                updateProfileReq: UpdateProfileReqEntity(
-                  name: state.profile.name != null
-                      ? GenericFormzInput<String>.dirty(state.profile.name)
-                      : null,
-                  phone: state.profile.phone != null
-                      ? PhoneNumberInput.dirty(state.profile.phone ?? '')
-                      : null,
-                ),
-              );
-            },
-          );
-        },
-        dataChanged: (updateProfileReq) async {
-          await state.mapOrNull(
-            loaded: (state) {
-              emitCustomLoaded(
-                emit: emit,
-                state: state,
-                updateProfileReq: updateProfileReq,
-              );
-            },
-          );
+        dataChanged: (state) async {
+          emitCustomLoaded(emit: emit, state: state);
         },
         updateProfile: () async {
           await state.mapOrNull(
@@ -91,15 +63,16 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                   emit(const ProfileState.success());
                   emitCustomLoaded(
                     emit: emit,
-                    state: state,
-                    profile:
-                        profile?.copyWith(
-                          name: profile.name,
-                          phone: profile.phone,
-                        ) ??
-                        state.profile,
-                    isEditing: false,
-                    updateProfileReq: null,
+                    state: state.copyWith(
+                      profile:
+                          profile?.copyWith(
+                            avatar: profile.avatar ?? state.profile.avatar,
+                            name: profile.name ?? state.profile.name,
+                            phone: profile.phone ?? state.profile.phone,
+                          ) ??
+                          state.profile,
+                      updateProfileReq: null,
+                    ),
                   );
                 },
                 failure: (error) {
@@ -108,15 +81,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                       error: error.message ?? 'حدث خطأ غير متوقع',
                     ),
                   );
+                  emitCustomLoaded(emit: emit, state: state);
                 },
               );
-            },
-          );
-        },
-        cancelEdit: () async {
-          await state.mapOrNull(
-            loaded: (state) {
-              emitCustomLoaded(emit: emit, state: state, isEditing: false);
             },
           );
         },
@@ -125,28 +92,26 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
   void emitCustomLoaded({
     required Emitter<ProfileState> emit,
-    required _Loaded state,
+    required _Loaded? state,
     ProfileResEntity? profile,
-    bool? isEditing,
     UpdateProfileReqEntity? updateProfileReq,
-
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     emit(
-      ProfileState.loaded(
-        profile: profile ?? state.profile,
-        updateProfileReq: updateProfileReq ?? state.updateProfileReq,
-        isEditing: isEditing ?? state.isEditing,
-        formzSubmissionStatus:
-            formzSubmissionStatus ??
-            formzSubmissionStatus ??
-            (Formz.validate([
-                  state.updateProfileReq?.name ??
-                      const GenericFormzInput<String>.pure(),
-                ])
-                ? FormzSubmissionStatus.success
-                : FormzSubmissionStatus.failure),
-      ),
+      state ??
+          ProfileState.loaded(
+            profile: profile ?? state?.profile ?? ProfileResEntity(),
+            updateProfileReq: updateProfileReq ?? state?.updateProfileReq,
+            formzSubmissionStatus:
+                formzSubmissionStatus ??
+                formzSubmissionStatus ??
+                (Formz.validate([
+                      state?.updateProfileReq?.name ??
+                          const GenericFormzInput<String>.pure(),
+                    ])
+                    ? FormzSubmissionStatus.success
+                    : FormzSubmissionStatus.failure),
+          ),
     );
   }
 

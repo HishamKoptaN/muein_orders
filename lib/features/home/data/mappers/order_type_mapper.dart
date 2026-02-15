@@ -1,14 +1,15 @@
 import '../../domain/entities/order_type_res_entity.dart';
-import '../models/order_type_res_model.dart';
+import '../models/stat_model.dart';
 
-extension OrderTypeResModelMapper on OrderTypeResModel {
-  OrderTypeResEntity toEntity() => OrderTypeResEntity(
-    productType: productType?.toEntity(),
-    ordersCount: ordersCount,
-    totalQuranCopies: totalQuranCopies,
+extension OrderTypeResModelMapper on StatModel {
+  StatEntity toEntity() => StatEntity(
+    id: id,
+    docsCount: docsCount,
+    subCategory: subCategory?.toEntity(),
   );
 }
 
-extension ProductTypeModelMapper on ProductTypeModel {
-  ProductTypeEntity toEntity() => ProductTypeEntity(id: id, name: name);
+extension SubCategoryModelMapper on SubCategoryModel {
+  SubCategoryEntity toEntity() =>
+      SubCategoryEntity(id: id, name: name, image: image);
 }

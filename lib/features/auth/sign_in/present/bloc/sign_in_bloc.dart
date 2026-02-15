@@ -8,7 +8,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/app/global_variable.dart';
+import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/use_cases/sign_in_use_cases.dart';
@@ -51,7 +51,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           );
           result.when(
             success: (data) {
-              GlobalVariable.authBloc.add(const AuthEvent.emitAuthenticated());
+              getIt<AuthBloc>().add(const AuthEvent.emitAuthenticated());
               Future.delayed(const Duration(seconds: 3));
               emit(const SignInState.success());
               _emitCustomLoaded(emit: emit);

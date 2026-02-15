@@ -28,7 +28,7 @@ Widget buildOrderRow({
           ),
           Expanded(
             flex: 2,
-            child: buildTransactionDetail(text: order.executionNum ?? ''),
+            child: buildTransactionDetail(text: order.id.toString()),
           ),
           Expanded(
             flex: 2,
@@ -37,7 +37,7 @@ Widget buildOrderRow({
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (_) => PdfPreviewView(
-                      executionNum: order.executionNum ?? '',
+                      executionNum: order.id.toString(),
                       printedName: order.printedName ?? '',
                     ),
                   ),

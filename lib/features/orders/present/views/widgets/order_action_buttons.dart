@@ -13,7 +13,7 @@ Widget buildOrderActionButtons({
   required OrderEntity orderEntity,
   required int orderDocsCount,
   required AppLocalizations t,
-  required ProductTypeEntity productType,
+  required StatEntity productType,
 }) {
   return Center(
     child: FutureBuilder<int>(
@@ -71,7 +71,7 @@ Widget buildOrderActionButtons({
                       MaterialPageRoute(
                         builder: (context) => PdfPreviewView(
                           printedName: orderEntity.printedName ?? 'غير معروف',
-                          executionNum: orderEntity.executionNum ?? 'N/A',
+                          executionNum: orderEntity.id?.toString() ?? '0',
                         ),
                       ),
                     );

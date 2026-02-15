@@ -8,7 +8,9 @@ part 'update_profile_req_entity.freezed.dart';
 @freezed
 abstract class UpdateProfileReqEntity with _$UpdateProfileReqEntity {
   const factory UpdateProfileReqEntity({
-    GenericFormzInput<File>? image,
+    GenericFormzInput<int>? id,
+    GenericFormzInput<File>? avatar,
+    String? avatarPath,
     GenericFormzInput<String>? name,
     PhoneNumberInput? phone,
   }) = _UpdateProfileReqEntity;

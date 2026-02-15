@@ -22,7 +22,7 @@ class AddCachedDocView extends StatefulWidget {
   });
   static const String routeName = 'add-cached-doc';
   final int orderId;
-  final ProductTypeEntity package;
+  final StatEntity package;
 
   @override
   State<AddCachedDocView> createState() => _AddCachedDocViewState();

@@ -16,8 +16,8 @@ class ModernOrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-    final statusColor = _getStatusColor((order.status ?? '').toString());
-    final statusIcon = _getStatusIcon((order.status ?? '').toString());
+    final statusColor = _getStatusColor('');
+    final statusIcon = _getStatusIcon('');
     final isPhotographed = order.isDistributionPhotographed ?? false;
 
     return Container(
@@ -96,7 +96,7 @@ class ModernOrderCard extends StatelessWidget {
                               ),
                               Gap(4.h),
                               Text(
-                                '${t.execution_number}: ${order.executionNum ?? "---"}',
+                                '${t.execution_number}: ${order.id ?? "---"}',
                                 style: AppTextStyles.bodySmall.copyWith(
                                   color: AppColors.primary,
                                 ),
@@ -121,11 +121,11 @@ class ModernOrderCard extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          _buildDetailItem(
-                            icon: Icons.location_on_outlined,
-                            label: t.location,
-                            value: order.locationLink?.toString() ?? '---',
-                          ),
+                          // _buildDetailItem(
+                          //   icon: Icons.location_on_outlined,
+                          //   label: t.location,
+                          //   value: order.locationLink?.toString() ?? '---',
+                          // ),
                           Gap(16.w),
                           _buildDetailItem(
                             icon: Icons.numbers_outlined,

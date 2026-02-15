@@ -14,12 +14,12 @@ import '../../../domain/entities/orders_res_entity.dart';
 import 'order_action_buttons.dart';
 import 'order_doc_status.dart';
 
-Widget buildOrderCard({
+Widget buildDocOrderCard({
   required BuildContext context,
   required OrderEntity orderEntity,
   required int orderDocsCount,
   required AppLocalizations t,
-  required ProductTypeEntity package,
+  required StatEntity package,
 }) {
   final db = getIt<AppDatabase>();
   return GestureDetector(
@@ -44,82 +44,78 @@ Widget buildOrderCard({
           ],
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Row(children: [SizedBox(width: 6)]),
-                  Text(
-                    '#${orderEntity.id.toString()}',
-                    style: const TextStyle(
-                      fontFamily: 'Almarai',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF323232),
-                    ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Row(children: [SizedBox(width: 6)]),
+                Text(
+                  '#${orderEntity.sallaOrderId}',
+                  style: const TextStyle(
+                    fontFamily: 'Almarai',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF323232),
                   ),
-                ],
-              ),
-              const SizedBox(height: 15),
-              buildOrderDocStatus(
-                context: context,
-                orderEntity: orderEntity,
-                t: t,
-                onRetry: () async {
-                  try {
-                    final docsUseCase = getIt<DocsUseCase>();
-                    final db = getIt<AppDatabase>();
-                    final failedDocs =
-                        await (db.select(db.cachedDocs)..where(
-                              (tbl) =>
-                                  tbl.orderId.equals(orderEntity.id ?? 0) &
-                                  tbl.uploadStatus.equals('failure'),
-                            ))
-                            .get();
+                ),
+              ],
+            ),
+            const SizedBox(height: 15),
+            buildOrderDocStatus(
+              context: context,
+              orderEntity: orderEntity,
+              t: t,
+              onRetry: () async {
+                try {
+                  final docsUseCase = getIt<DocsUseCase>();
+                  final db = getIt<AppDatabase>();
+                  final failedDocs =
+                      await (db.select(db.cachedDocs)..where(
+                            (tbl) =>
+                                tbl.orderId.equals(orderEntity.id ?? 0) &
+                                tbl.uploadStatus.equals('failure'),
+                          ))
+                          .get();
 
-                    if (failedDocs.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'لا توجد مستندات فاشلة لإعادة المحاولة',
-                          ),
-                        ),
-                      );
-                      return;
-                    }
-
-                    for (final doc in failedDocs) {
-                      await docsUseCase.retryUpload(docId: doc.id);
-                    }
-
+                  if (failedDocs.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'تم بدء إعادة المحاولة لـ ${failedDocs.length} مستند',
-                        ),
+                      const SnackBar(
+                        content: Text('لا توجد مستندات فاشلة لإعادة المحاولة'),
                       ),
                     );
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('خطأ في إعادة المحاولة: $e')),
-                    );
+                    return;
                   }
-                },
-              ),
-              const SizedBox(height: 8),
-              buildOrderActionButtons(
-                orderEntity: orderEntity,
-                orderDocsCount: orderDocsCount,
-                t: t,
-                productType: package,
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
+
+                  for (final doc in failedDocs) {
+                    await docsUseCase.retryUpload(docId: doc.id);
+                  }
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'تم بدء إعادة المحاولة لـ ${failedDocs.length} مستند',
+                      ),
+                    ),
+                  );
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('خطأ في إعادة المحاولة: $e')),
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 8),
+            buildOrderActionButtons(
+              orderEntity: orderEntity,
+              orderDocsCount: orderDocsCount,
+              t: t,
+              productType: package,
+            ),
+            const SizedBox(height: 16),
+          ],
         ),
       ),
     ),

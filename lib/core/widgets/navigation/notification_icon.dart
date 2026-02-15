@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../features/cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../di/dependency_injection.dart';
-import '../../present/views/notifications_view.dart';
+import '../../present/views/notifications_view_clean.dart';
 import '../../services/notification_manager.dart';
 
 class NotificationIcon extends StatefulWidget {

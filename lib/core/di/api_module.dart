@@ -11,38 +11,7 @@ import '../networking/slow_upload_interceptor.dart';
 
 @module
 abstract class ApiModule {
-  @singleton
-  Dio dio(
-    AuthInterceptor authInterceptor,
-    LoggingInterceptor loggingInterceptor,
-  ) {
-    final dio = Dio(
-      BaseOptions(
-        baseUrl: AppConfig.baseUrl,
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      ),
-    );
-    dio.interceptors.addAll([
-      authInterceptor,
-      LogInterceptor(responseBody: true),
-      PrettyDioLogger(
-        requestBody: true,
-        requestHeader: true,
-        responseHeader: true,
-      ),
-    ]);
-    // if (kDebugMode) {
-    dio.interceptors.add(
-      SlowUploadInterceptor(bytesPerSecond: 64, chunkSize: 1024),
-    );
-    // }
-    return dio;
-  }
+ 
 }
 
 @singleton

@@ -17,7 +17,7 @@ import '../../../features/orders/present/views/orders_view.dart';
 import '../../../features/orders/present/views/sitcker_pd/sitcker_pdf_preview_view.dart';
 import '../../../features/profile/present/views/profile_view.dart';
 import '../../../features/splash/start_view.dart';
-import '../route_utils.dart';
+import '../../present/views/notifications_view_clean.dart';
 
 class RouteConfig {
   static List<RouteBase> get routes {
@@ -54,41 +54,54 @@ class RouteConfig {
         routeName: SignUpView.routeName,
         builder: (context, state) => const SignUpView(),
       ),
-      goRoute(
-        routeName: HomeView.routeName,
-        builder: (context, state) => const HomeView(),
-      ),
-      goRoute(
-        routeName: OrdersView.routeName,
-        builder: (context, state) {
-          final package = state.extra as ProductTypeEntity;
-          return OrdersView(package: package);
+      ShellRoute(
+        builder: (context, state, child) {
+          return HomeView(child: child);
         },
-      ),
-
-      goRoute(
-        routeName: PdfPreviewView.routeName,
-        builder: (context, state) {
-          final printedName = state.pathParameters['printedName'] ?? '0';
-          final executionNum = state.pathParameters['executionNum'] ?? '0';
-          return PdfPreviewView(
-            printedName: printedName,
-            executionNum: executionNum,
-          );
-        },
+        routes: [
+          goRoute(
+            routeName: NotificationsView.routeName,
+            builder: (context, state) => const NotificationsView(),
+          ),
+          //! Orders
+          goRoute(
+            routeName: OrdersView.routeName,
+            builder: (context, state) =>
+                OrdersView(stat: state.extra as StatEntity? ?? StatEntity()),
+            routes: [
+              goRoute(
+                routeName: PdfPreviewView.routeName,
+                builder: (context, state) {
+                  final printedName =
+                      state.pathParameters['printedName'] ?? '0';
+                  final executionNum =
+                      state.pathParameters['executionNum'] ?? '0';
+                  return PdfPreviewView(
+                    printedName: printedName,
+                    executionNum: executionNum,
+                  );
+                },
+              ),
+            ],
+          ),
+          goRoute(
+            routeName: ProfileView.routeName,
+            builder: (context, state) => const ProfileView(),
+          ),
+        ],
       ),
       goRoute(
         routeName: AddCachedDocView.routeName,
         builder: (context, state) {
           final args = state.extra as Map<String, dynamic>?;
           final orderId = args?['orderId'] as int?;
-          final package = args?['package'] as ProductTypeEntity?;
+          final package = args?['package'] as StatEntity?;
           if (orderId == null || orderId == 0) {
             debugPrint('Invalid orderId: $orderId, using default value 0');
           }
           return AddCachedDocView(
             orderId: orderId ?? 0,
-            package: package ?? ProductTypeEntity(),
+            package: package ?? StatEntity(),
           );
         },
       ),
@@ -97,15 +110,49 @@ class RouteConfig {
         builder: (context, state) => const CreateExpenseView(),
       ),
       goRoute(
-        routeName: ProfileView.routeName,
-        builder: (context, state) => const ProfileView(),
-      ),
-      goRoute(
         routeName: ChangePassView.routeName,
         builder: (context, state) => const ChangePassView(),
       ),
+      goRoute(
+        routeName: HomeView.routeName,
+        builder: (context, state) => const HomeView(),
+      ),
     ];
     return routes;
+  }
+
+  static GoRoute goRoute({
+    required String routeName,
+    required Widget Function(BuildContext context, GoRouterState state) builder,
+    List<RouteBase>? routes,
+    bool isSubRoute = false,
+    String? paramName,
+  }) {
+    String finalPath = isSubRoute ? routeName : '/$routeName';
+    if (paramName != null) {
+      finalPath += '/:$paramName';
+    }
+    return GoRoute(
+      path: finalPath,
+      name: routeName,
+      builder: builder,
+      routes: routes ?? [],
+    );
+  }
+
+  static GoRoute detailsRoute({
+    required String routeName,
+    required String paramName,
+    required Widget Function(int id) viewBuilder,
+  }) {
+    return GoRoute(
+      name: routeName,
+      path: '$routeName/:$paramName',
+      builder: (context, state) {
+        final id = int.tryParse(state.pathParameters[paramName] ?? '0') ?? 0;
+        return viewBuilder(id);
+      },
+    );
   }
 
   static Page<dynamic> errorPageBuilder(

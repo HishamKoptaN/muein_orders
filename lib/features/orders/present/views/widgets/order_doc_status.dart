@@ -7,9 +7,7 @@ import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../../cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../domain/entities/orders_res_entity.dart';
 
-UploadStatus _stringToUploadStatus({
-  required String status,
-}) {
+UploadStatus _stringToUploadStatus({required String status}) {
   return UploadStatus.values.firstWhere(
     (e) => e.name == status,
     orElse: () => UploadStatus.pending,
@@ -42,9 +40,7 @@ Widget buildOrderDocStatus({
               getIt<AppDatabase>()
                   .watchDocs(orderId: orderEntity.id ?? 0)
                   .distinct(),
-              throttleDuration: const Duration(
-                milliseconds: 800,
-              ),
+              throttleDuration: const Duration(milliseconds: 800),
             ),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -69,8 +65,9 @@ Widget buildOrderDocStatus({
                 itemCount: docs.length,
                 itemBuilder: (context, index) {
                   final doc = docs[index];
-                  final uploadStatus =
-                      _stringToUploadStatus(status: doc.uploadStatus);
+                  final uploadStatus = _stringToUploadStatus(
+                    status: doc.uploadStatus,
+                  );
                   switch (uploadStatus) {
                     case UploadStatus.pending:
                       return _buildMessage(
@@ -91,9 +88,7 @@ Widget buildOrderDocStatus({
                           ),
                           Text(
                             '${doc.uploadProgress.toStringAsFixed(1)}%',
-                            style: const TextStyle(
-                              color: Color(0xFF4CAF50),
-                            ),
+                            style: const TextStyle(color: Color(0xFF4CAF50)),
                           ),
                         ],
                       );
@@ -162,12 +157,7 @@ Widget _buildMessage({
     mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-      Text(
-        text,
-        style: TextStyle(
-          color: getStatusColor(),
-        ),
-      ),
+      Text(text, style: TextStyle(color: getStatusColor())),
       const SizedBox(width: 5),
       Container(
         width: 13,

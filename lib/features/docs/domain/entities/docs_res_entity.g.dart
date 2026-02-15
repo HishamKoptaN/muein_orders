@@ -24,8 +24,6 @@ Map<String, dynamic> _$DocsResEntityToJson(_DocsResEntity instance) =>
 
 _DocEntity _$DocEntityFromJson(Map<String, dynamic> json) => _DocEntity(
   id: (json['id'] as num?)?.toInt(),
-  orderNumber: json['order_number'] as String?,
-  place: json['place'] as String?,
   videoOne: json['video_one'] as String?,
   videoTwo: json['video_two'] as String?,
   thumbnailUrlOne: json['thumbnail_url_one'] as String?,
@@ -34,16 +32,16 @@ _DocEntity _$DocEntityFromJson(Map<String, dynamic> json) => _DocEntity(
   imageTwo: json['image_two'] as String?,
   updatedAt: json['updated_at'] as String?,
   latitude: json['latitude'] as String?,
+  docStatusModel: json['doc_status'] == null
+      ? null
+      : DocStatusModel.fromJson(json['doc_status'] as Map<String, dynamic>),
   longitude: json['longitude'] as String?,
-  branchId: (json['branch_id'] as num?)?.toInt(),
   createdAt: json['created_at'] as String?,
 );
 
 Map<String, dynamic> _$DocEntityToJson(_DocEntity instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'order_number': ?instance.orderNumber,
-      'place': ?instance.place,
       'video_one': ?instance.videoOne,
       'video_two': ?instance.videoTwo,
       'thumbnail_url_one': ?instance.thumbnailUrlOne,
@@ -52,7 +50,7 @@ Map<String, dynamic> _$DocEntityToJson(_DocEntity instance) =>
       'image_two': ?instance.imageTwo,
       'updated_at': ?instance.updatedAt,
       'latitude': ?instance.latitude,
+      'doc_status': ?instance.docStatusModel?.toJson(),
       'longitude': ?instance.longitude,
-      'branch_id': ?instance.branchId,
       'created_at': ?instance.createdAt,
     };

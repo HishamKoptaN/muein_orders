@@ -6,7 +6,6 @@ abstract class ProfileState with _$ProfileState {
   const factory ProfileState.loaded({
     required ProfileResEntity profile,
     required UpdateProfileReqEntity? updateProfileReq,
-    required bool isEditing,
     required FormzSubmissionStatus formzSubmissionStatus,
   }) = _Loaded;
   const factory ProfileState.success() = _Success;

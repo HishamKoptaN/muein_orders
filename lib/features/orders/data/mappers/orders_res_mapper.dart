@@ -12,17 +12,13 @@ extension OrdersResMapper on OrdersResModel {
   }
 }
 
-extension OrderMapper on Order {
+extension OrderMapper on OrderModel {
   OrderEntity toEntity() {
     return OrderEntity(
       id: id ?? 0,
-      status: 1,
       printedName: printedName ?? '',
-      date: date ?? DateTime.now(),
-      isQuranPhotographed: isQuranPhotographed ?? false,
-      isDistributionPhotographed: isDistributionPhotographed ?? false,
-      stickerPrepared: stickerPrepared ?? false,
-      createdAt: createdAt ?? '',
+      sallaOrderId: sallaOrderId?.toString() ?? '',
+      isDistributionPhotographed: false,
     );
   }
 }

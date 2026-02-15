@@ -1,58 +1,42 @@
 {
   "version": "0.2.0",
   "configurations": [
+    /* ================= DEV ================= */
+
     {
-      "name": "Flutter (Debug)",
+      "name": "Flutter Dev (Android)",
       "type": "dart",
       "request": "launch",
-      "program": "lib/main.dart",
-      "args": [],
-      "env": {
-        "FLUTTER_WEB_USE_SKIA": "true"
-      }
-    },
-    {
-      "name": "Flutter (Profile)",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib/main.dart",
-      "flutterMode": "profile",
-      "args": []
-    },
-    {
-      "name": "Flutter (Release)",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib/main.dart",
-      "flutterMode": "release",
-      "args": []
-    },
-    {
-      "name": "Flutter Web (Debug)",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib/main.dart",
-      "deviceId": "web-server",
-      "args": [
-        "--web-renderer",
-        "html",
-        "--web-port",
-        "3000"
-      ]
-    },
-    {
-      "name": "Flutter Android (Debug)",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib/main.dart",
+      "program": "lib/main_dev.dart",
+      "args": ["--flavor", "dev"],
       "deviceId": "android"
     },
     {
-      "name": "Flutter iOS (Debug)",
+      "name": "Flutter Dev (Web)",
       "type": "dart",
       "request": "launch",
-      "program": "lib/main.dart",
-      "deviceId": "ios"
+      "program": "lib/main_dev.dart",
+      "deviceId": "web-server",
+      "args": ["--flavor", "dev", "--web-port", "3000"]
+    },
+
+    /* ================= PROD ================= */
+
+    {
+      "name": "Flutter Prod (Android)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_prod.dart",
+      "args": ["--flavor", "prod"],
+      "deviceId": "android"
+    },
+    {
+      "name": "Flutter Prod (Web)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_prod.dart",
+      "deviceId": "web-server",
+      "args": ["--flavor", "prod", "--web-port", "4000"]
     }
   ]
 }

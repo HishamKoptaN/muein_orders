@@ -18,7 +18,7 @@ class LocationPickerButton extends StatelessWidget {
   });
   final GenericFormzInput<double>? latitude;
   final GenericFormzInput<double>? longitude;
-  final ProductTypeEntity package;
+  final StatEntity package;
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);

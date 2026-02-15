@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UpdateProfileReqModel {
 
-@FileConverter() File? get image; String? get name; String? get phone;
+ String? get avatar; String? get name; String? get phone;
 /// Create a copy of UpdateProfileReqModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UpdateProfileReqModelCopyWith<UpdateProfileReqModel> get copyWith => _$UpdatePr
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileReqModel&&(identical(other.image, image) || other.image == image)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileReqModel&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,image,name,phone);
+int get hashCode => Object.hash(runtimeType,avatar,name,phone);
 
 @override
 String toString() {
-  return 'UpdateProfileReqModel(image: $image, name: $name, phone: $phone)';
+  return 'UpdateProfileReqModel(avatar: $avatar, name: $name, phone: $phone)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UpdateProfileReqModelCopyWith<$Res>  {
   factory $UpdateProfileReqModelCopyWith(UpdateProfileReqModel value, $Res Function(UpdateProfileReqModel) _then) = _$UpdateProfileReqModelCopyWithImpl;
 @useResult
 $Res call({
-@FileConverter() File? image, String? name, String? phone
+ String? avatar, String? name, String? phone
 });
 
 
@@ -65,10 +65,10 @@ class _$UpdateProfileReqModelCopyWithImpl<$Res>
 
 /// Create a copy of UpdateProfileReqModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? image = freezed,Object? name = freezed,Object? phone = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? avatar = freezed,Object? name = freezed,Object? phone = freezed,}) {
   return _then(_self.copyWith(
-image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as File?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -155,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@FileConverter()  File? image,  String? name,  String? phone)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? avatar,  String? name,  String? phone)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UpdateProfileReqModel() when $default != null:
-return $default(_that.image,_that.name,_that.phone);case _:
+return $default(_that.avatar,_that.name,_that.phone);case _:
   return orElse();
 
 }
@@ -176,10 +176,10 @@ return $default(_that.image,_that.name,_that.phone);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@FileConverter()  File? image,  String? name,  String? phone)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? avatar,  String? name,  String? phone)  $default,) {final _that = this;
 switch (_that) {
 case _UpdateProfileReqModel():
-return $default(_that.image,_that.name,_that.phone);case _:
+return $default(_that.avatar,_that.name,_that.phone);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +196,10 @@ return $default(_that.image,_that.name,_that.phone);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@FileConverter()  File? image,  String? name,  String? phone)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? avatar,  String? name,  String? phone)?  $default,) {final _that = this;
 switch (_that) {
 case _UpdateProfileReqModel() when $default != null:
-return $default(_that.image,_that.name,_that.phone);case _:
+return $default(_that.avatar,_that.name,_that.phone);case _:
   return null;
 
 }
@@ -211,10 +211,10 @@ return $default(_that.image,_that.name,_that.phone);case _:
 @JsonSerializable()
 
 class _UpdateProfileReqModel implements UpdateProfileReqModel {
-  const _UpdateProfileReqModel({@FileConverter() this.image, this.name, this.phone});
+  const _UpdateProfileReqModel({this.avatar, this.name, this.phone});
   factory _UpdateProfileReqModel.fromJson(Map<String, dynamic> json) => _$UpdateProfileReqModelFromJson(json);
 
-@override@FileConverter() final  File? image;
+@override final  String? avatar;
 @override final  String? name;
 @override final  String? phone;
 
@@ -231,16 +231,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileReqModel&&(identical(other.image, image) || other.image == image)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileReqModel&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,image,name,phone);
+int get hashCode => Object.hash(runtimeType,avatar,name,phone);
 
 @override
 String toString() {
-  return 'UpdateProfileReqModel(image: $image, name: $name, phone: $phone)';
+  return 'UpdateProfileReqModel(avatar: $avatar, name: $name, phone: $phone)';
 }
 
 
@@ -251,7 +251,7 @@ abstract mixin class _$UpdateProfileReqModelCopyWith<$Res> implements $UpdatePro
   factory _$UpdateProfileReqModelCopyWith(_UpdateProfileReqModel value, $Res Function(_UpdateProfileReqModel) _then) = __$UpdateProfileReqModelCopyWithImpl;
 @override @useResult
 $Res call({
-@FileConverter() File? image, String? name, String? phone
+ String? avatar, String? name, String? phone
 });
 
 
@@ -268,10 +268,10 @@ class __$UpdateProfileReqModelCopyWithImpl<$Res>
 
 /// Create a copy of UpdateProfileReqModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? image = freezed,Object? name = freezed,Object? phone = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? avatar = freezed,Object? name = freezed,Object? phone = freezed,}) {
   return _then(_UpdateProfileReqModel(
-image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as File?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

@@ -11,9 +11,7 @@ part of 'docs_api.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
 class _DocsApi implements DocsApi {
-  _DocsApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://hotpink-gnu-383634.hostingersite.com/mapi/api/';
-  }
+  _DocsApi(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -51,7 +49,7 @@ class _DocsApi implements DocsApi {
   }
 
   @override
-  Future<Doc> createDoc({
+  Future<DocModel> createDoc({
     required int orderId,
     File? videoOne,
     File? videoTwo,
@@ -115,7 +113,7 @@ class _DocsApi implements DocsApi {
     _data.fields.add(MapEntry('longitude', longitude));
     _data.fields.add(MapEntry('latitude', latitude));
     _data.fields.add(MapEntry('shipping_costs', shippingCosts));
-    final _options = _setStreamType<Doc>(
+    final _options = _setStreamType<DocModel>(
       Options(
             method: 'POST',
             headers: _headers,
@@ -132,9 +130,9 @@ class _DocsApi implements DocsApi {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late Doc _value;
+    late DocModel _value;
     try {
-      _value = Doc.fromJson(_result.data!);
+      _value = DocModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

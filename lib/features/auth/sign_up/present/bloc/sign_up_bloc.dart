@@ -5,7 +5,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/app/global_variable.dart';
+import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/errors/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../auth/present/bloc/auth_bloc.dart';
@@ -60,10 +60,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             final result = await signUpUseCases.signUp(signUpReq: signUpReq);
             await result.when(
               success: (_) async {
-                GlobalVariable.authBloc.add(
-                  const AuthEvent.emitAuthenticated(),
-                );
-
+                getIt<AuthBloc>().add(const AuthEvent.emitAuthenticated());
                 emit(const SignUpState.success());
               },
               failure: (apiErrorModel) {

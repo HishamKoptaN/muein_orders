@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UpdateProfileReqEntity {
 
- GenericFormzInput<File>? get image; GenericFormzInput<String>? get name; PhoneNumberInput? get phone;
+ GenericFormzInput<int>? get id; GenericFormzInput<File>? get avatar; String? get avatarPath; GenericFormzInput<String>? get name; PhoneNumberInput? get phone;
 /// Create a copy of UpdateProfileReqEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $UpdateProfileReqEntityCopyWith<UpdateProfileReqEntity> get copyWith => _$Update
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileReqEntity&&(identical(other.image, image) || other.image == image)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.avatarPath, avatarPath) || other.avatarPath == avatarPath)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,image,name,phone);
+int get hashCode => Object.hash(runtimeType,id,avatar,avatarPath,name,phone);
 
 @override
 String toString() {
-  return 'UpdateProfileReqEntity(image: $image, name: $name, phone: $phone)';
+  return 'UpdateProfileReqEntity(id: $id, avatar: $avatar, avatarPath: $avatarPath, name: $name, phone: $phone)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $UpdateProfileReqEntityCopyWith<$Res>  {
   factory $UpdateProfileReqEntityCopyWith(UpdateProfileReqEntity value, $Res Function(UpdateProfileReqEntity) _then) = _$UpdateProfileReqEntityCopyWithImpl;
 @useResult
 $Res call({
- GenericFormzInput<File>? image, GenericFormzInput<String>? name, PhoneNumberInput? phone
+ GenericFormzInput<int>? id, GenericFormzInput<File>? avatar, String? avatarPath, GenericFormzInput<String>? name, PhoneNumberInput? phone
 });
 
 
@@ -62,10 +62,12 @@ class _$UpdateProfileReqEntityCopyWithImpl<$Res>
 
 /// Create a copy of UpdateProfileReqEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? image = freezed,Object? name = freezed,Object? phone = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? avatar = freezed,Object? avatarPath = freezed,Object? name = freezed,Object? phone = freezed,}) {
   return _then(_self.copyWith(
-image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<File>?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<int>?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<File>?,avatarPath: freezed == avatarPath ? _self.avatarPath : avatarPath // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as GenericFormzInput<String>?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as PhoneNumberInput?,
   ));
@@ -152,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormzInput<File>? image,  GenericFormzInput<String>? name,  PhoneNumberInput? phone)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormzInput<int>? id,  GenericFormzInput<File>? avatar,  String? avatarPath,  GenericFormzInput<String>? name,  PhoneNumberInput? phone)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UpdateProfileReqEntity() when $default != null:
-return $default(_that.image,_that.name,_that.phone);case _:
+return $default(_that.id,_that.avatar,_that.avatarPath,_that.name,_that.phone);case _:
   return orElse();
 
 }
@@ -173,10 +175,10 @@ return $default(_that.image,_that.name,_that.phone);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormzInput<File>? image,  GenericFormzInput<String>? name,  PhoneNumberInput? phone)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormzInput<int>? id,  GenericFormzInput<File>? avatar,  String? avatarPath,  GenericFormzInput<String>? name,  PhoneNumberInput? phone)  $default,) {final _that = this;
 switch (_that) {
 case _UpdateProfileReqEntity():
-return $default(_that.image,_that.name,_that.phone);case _:
+return $default(_that.id,_that.avatar,_that.avatarPath,_that.name,_that.phone);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +195,10 @@ return $default(_that.image,_that.name,_that.phone);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormzInput<File>? image,  GenericFormzInput<String>? name,  PhoneNumberInput? phone)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormzInput<int>? id,  GenericFormzInput<File>? avatar,  String? avatarPath,  GenericFormzInput<String>? name,  PhoneNumberInput? phone)?  $default,) {final _that = this;
 switch (_that) {
 case _UpdateProfileReqEntity() when $default != null:
-return $default(_that.image,_that.name,_that.phone);case _:
+return $default(_that.id,_that.avatar,_that.avatarPath,_that.name,_that.phone);case _:
   return null;
 
 }
@@ -208,10 +210,12 @@ return $default(_that.image,_that.name,_that.phone);case _:
 
 
 class _UpdateProfileReqEntity implements UpdateProfileReqEntity {
-  const _UpdateProfileReqEntity({this.image, this.name, this.phone});
+  const _UpdateProfileReqEntity({this.id, this.avatar, this.avatarPath, this.name, this.phone});
   
 
-@override final  GenericFormzInput<File>? image;
+@override final  GenericFormzInput<int>? id;
+@override final  GenericFormzInput<File>? avatar;
+@override final  String? avatarPath;
 @override final  GenericFormzInput<String>? name;
 @override final  PhoneNumberInput? phone;
 
@@ -225,16 +229,16 @@ _$UpdateProfileReqEntityCopyWith<_UpdateProfileReqEntity> get copyWith => __$Upd
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileReqEntity&&(identical(other.image, image) || other.image == image)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.avatarPath, avatarPath) || other.avatarPath == avatarPath)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,image,name,phone);
+int get hashCode => Object.hash(runtimeType,id,avatar,avatarPath,name,phone);
 
 @override
 String toString() {
-  return 'UpdateProfileReqEntity(image: $image, name: $name, phone: $phone)';
+  return 'UpdateProfileReqEntity(id: $id, avatar: $avatar, avatarPath: $avatarPath, name: $name, phone: $phone)';
 }
 
 
@@ -245,7 +249,7 @@ abstract mixin class _$UpdateProfileReqEntityCopyWith<$Res> implements $UpdatePr
   factory _$UpdateProfileReqEntityCopyWith(_UpdateProfileReqEntity value, $Res Function(_UpdateProfileReqEntity) _then) = __$UpdateProfileReqEntityCopyWithImpl;
 @override @useResult
 $Res call({
- GenericFormzInput<File>? image, GenericFormzInput<String>? name, PhoneNumberInput? phone
+ GenericFormzInput<int>? id, GenericFormzInput<File>? avatar, String? avatarPath, GenericFormzInput<String>? name, PhoneNumberInput? phone
 });
 
 
@@ -262,10 +266,12 @@ class __$UpdateProfileReqEntityCopyWithImpl<$Res>
 
 /// Create a copy of UpdateProfileReqEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? image = freezed,Object? name = freezed,Object? phone = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? avatar = freezed,Object? avatarPath = freezed,Object? name = freezed,Object? phone = freezed,}) {
   return _then(_UpdateProfileReqEntity(
-image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<File>?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<int>?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<File>?,avatarPath: freezed == avatarPath ? _self.avatarPath : avatarPath // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as GenericFormzInput<String>?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as PhoneNumberInput?,
   ));

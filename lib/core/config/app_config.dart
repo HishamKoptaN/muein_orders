@@ -6,13 +6,6 @@ class AppConfig {
   static const String appVersion = '1.3.0';
   static const int buildNumber = 4;
 
-  // API Configuration
-  static const String baseUrl =
-      'https://hotpink-gnu-383634.hostingersite.com/mapi/';
-  // Base URLs
-  static const String apiAuthBaseUrl = '${baseUrl}auth/';
-  static const String apiBaseUrl = '${baseUrl}api/';
-
   // API Endpoints
   static const String summary = 'summary';
   static const Duration connectionTimeout = Duration(seconds: 30);
@@ -59,15 +52,4 @@ class AppConfig {
   // Logging Configuration
   static bool get enableDetailedLogging => !kReleaseMode;
   static bool get enableNetworkLogging => kDebugMode;
-
-  // Get environment-specific configuration
-  static Map<String, dynamic> getEnvironmentConfig() {
-    return {
-      'baseUrl': baseUrl,
-      'enableLogging': enableDetailedLogging,
-      'enableAnalytics': enableAnalytics,
-      'enableCrashReporting': enableCrashReporting,
-      'environment': isProduction ? 'production' : 'development',
-    };
-  }
 }

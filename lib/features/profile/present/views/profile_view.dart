@@ -1,15 +1,18 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get_utils/src/extensions/export.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../core/widgets/feedback/error_content.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
@@ -25,31 +28,17 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  final ImagePicker _imagePicker = ImagePicker();
+
   @override
   void initState() {
     super.initState();
     getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
   }
 
-  Future<void> _onEditImageTap({
-    required UpdateProfileReqEntity updateProfileReq,
-  }) async {
-    // final File? pickedImage = await pickImageFromGallery();
-    // if (pickedImage != null) {
-    //   context.read<ProfileBloc>().add(
-    //     ProfileEvent.dataChanged(
-    //       updateProfileReq: updateProfileReq.copyWith(
-    //         image: GenericFormzInput<File>.dirty(pickedImage),
-    //       ),
-    //     ),
-    //   );
-    // }
-  }
-
-  Future<File?> pickImageFromGallery() async {
+  Future<File?> _selectImageFromGallery() async {
     try {
-      final ImagePicker picker = ImagePicker();
-      final XFile? pickedFile = await picker.pickImage(
+      final XFile? pickedFile = await _imagePicker.pickImage(
         source: ImageSource.gallery,
         maxHeight: 800,
         maxWidth: 800,
@@ -73,134 +62,205 @@ class _ProfileViewState extends State<ProfileView> {
       body: Column(
         children: [
           _buildAppBar(context: context, t: t),
-          BlocBuilder<ProfileBloc, ProfileState>(
+          BlocConsumer<ProfileBloc, ProfileState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                success: () {
+                  context.showSuccessSnackBar(
+                    title: 'تم تحديث الملف الشخصي بنجاح',
+                  );
+                },
+                failure: (error) {
+                  context.showErrorSnackBar(title: error);
+                },
+              );
+            },
             builder: (context, state) {
-              return state.maybeWhen(
-                loaded:
-                    (
-                      profile,
-                      updateProfileReq,
-                      isEditing,
-                      formzSubmissionStatus,
-                    ) {
-                      return Expanded(
-                        child: SingleChildScrollView(
-                          padding: const EdgeInsets.symmetric(horizontal: 22),
-                          child: Column(
-                            children: [
-                              ProfileAvatar(
-                                profile: profile,
-                                updateProfileReq: updateProfileReq,
-                                isEditing: isEditing,
-                                onEditImageTap: () => _onEditImageTap(
-                                  updateProfileReq: updateProfileReq!,
-                                ),
-                              ),
-                              const SizedBox(height: 30),
-                              _buildInfoField(
-                                initialValue: isEditing
-                                    ? updateProfileReq?.name?.value ?? ''
-                                    : profile.name ?? '',
-                                icon: Icons.person_rounded,
-                                enabled: isEditing,
-                                readOnly: !isEditing,
-                                onChanged: (v) {
-                                  getIt<ProfileBloc>().add(
-                                    ProfileEvent.dataChanged(
-                                      updateProfileReq: updateProfileReq
+              return state.maybeMap(
+                loaded: (state) {
+                  return Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 22),
+                      child: Column(
+                        children: [
+                          ProfileAvatar(
+                            profile: state.profile,
+                            updateProfileReq: state.updateProfileReq,
+                            onEditImageTap: () async {
+                              final File? pickedImage =
+                                  await _selectImageFromGallery();
+                              if (pickedImage != null) {
+                                getIt<ProfileBloc>().add(
+                                  ProfileEvent.dataChanged(
+                                    loadedState: state.copyWith(
+                                      updateProfileReq: state.updateProfileReq
                                           ?.copyWith(
-                                            name:
-                                                GenericFormzInput<String>.dirty(
-                                                  v,
+                                            avatar:
+                                                GenericFormzInput<File>.dirty(
+                                                  pickedImage,
                                                 ),
                                           ),
                                     ),
-                                  );
-                                },
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            state.profile.name ?? '',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.chevron_left,
+                                color: Colors.grey[400],
+                                size: 20,
                               ),
-                              if (!isEditing)
-                                _buildInfoField(
-                                  key: const ValueKey('email_field'),
-                                  initialValue: profile.email ?? '',
-                                  icon: Icons.email_outlined,
-                                ),
-                              _buildInfoField(
-                                key: const ValueKey('phone_field'),
-                                initialValue: isEditing
-                                    ? updateProfileReq?.phone?.value ?? ''
-                                    : profile.phone ?? '',
-                                icon: Icons.phone_android_rounded,
-                                enabled: isEditing,
-                                readOnly: !isEditing,
-                                onChanged: (v) {
-                                  getIt<ProfileBloc>().add(
-                                    ProfileEvent.dataChanged(
-                                      updateProfileReq: updateProfileReq
-                                          ?.copyWith(
-                                            phone: PhoneNumberInput.dirty(v),
-                                          ),
-                                    ),
-                                  );
-                                },
+                              const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                                size: 18,
                               ),
-                              if (!isEditing)
-                                _buildInfoField(
-                                  key: const ValueKey('country_field'),
-                                  initialValue: 'السعودية',
-                                  icon: Icons.location_on_outlined,
-                                ),
-                              if (!isEditing)
-                                _buildSubmitButton(
-                                  text: 'تعديل البيانات',
-                                  onPressed: () {
-                                    context.read<ProfileBloc>().add(
-                                      const ProfileEvent.startEdit(),
-                                    );
-                                  },
-                                  formzSubmissionStatus: formzSubmissionStatus,
-                                  updateProfileReq: updateProfileReq,
-                                ),
-                              Gap(50.h),
-                              if (isEditing) ...[
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: _buildSubmitButton(
-                                        text: 'حفظ',
-                                        onPressed: () {
-                                          context.read<ProfileBloc>().add(
-                                            const ProfileEvent.updateProfile(),
-                                          );
-                                        },
-                                        formzSubmissionStatus:
-                                            formzSubmissionStatus,
-                                        updateProfileReq: updateProfileReq,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Expanded(
-                                      child: _buildSubmitButton(
-                                        text: 'إلغاء',
-                                        onPressed: () {
-                                          context.read<ProfileBloc>().add(
-                                            const ProfileEvent.cancelEdit(),
-                                          );
-                                        },
-                                        formzSubmissionStatus:
-                                            formzSubmissionStatus,
-                                        updateProfileReq: updateProfileReq,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Gap(50.h),
-                              ],
+                              const Text(
+                                ' 4.7',
+                                style: TextStyle(color: Colors.grey),
+                              ),
                             ],
                           ),
-                        ),
-                      );
-                    },
-                loading: () {
+                          const SizedBox(height: 30),
+                          _buildInfoField(
+                            initialValue:
+                                state.updateProfileReq?.isBlank == true
+                                // false
+                                ? state.updateProfileReq?.name?.value ?? ''
+                                : state.profile.name ?? '',
+                            icon: Icons.person_rounded,
+                            enabled: state.updateProfileReq != null,
+                            onChanged: (v) {
+                              getIt<ProfileBloc>().add(
+                                ProfileEvent.dataChanged(
+                                  loadedState: state.copyWith(
+                                    updateProfileReq: state.updateProfileReq
+                                        ?.copyWith(
+                                          name: GenericFormzInput<String>.dirty(
+                                            v,
+                                          ),
+                                        ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          if (state.updateProfileReq == null)
+                            _buildInfoField(
+                              key: const ValueKey('email_field'),
+                              initialValue: state.profile.email ?? '',
+                              icon: Icons.email_outlined,
+                            ),
+                          _buildInfoField(
+                            key: const ValueKey('phone_field'),
+                            initialValue:
+                                state.updateProfileReq?.isBlank == true
+                                ? state.updateProfileReq?.phone?.value ?? ''
+                                : state.profile.phone ?? '',
+                            keyboardType: TextInputType.phone,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            icon: Icons.phone_android_rounded,
+                            enabled: state.updateProfileReq != null,
+                            onChanged: (v) {
+                              getIt<ProfileBloc>().add(
+                                ProfileEvent.dataChanged(
+                                  loadedState: state.copyWith(
+                                    updateProfileReq: state.updateProfileReq
+                                        ?.copyWith(
+                                          phone: PhoneNumberInput.dirty(v),
+                                        ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          if (state.updateProfileReq == null)
+                            _buildSubmitButton(
+                              text: 'تعديل البيانات',
+                              onPressed: () {
+                                print(
+                                  'Button pressed! updateProfileReq is null: ${state.updateProfileReq == null}',
+                                );
+                                getIt<ProfileBloc>().add(
+                                  ProfileEvent.dataChanged(
+                                    loadedState: state.copyWith(
+                                      updateProfileReq: UpdateProfileReqEntity(
+                                        id: GenericFormzInput.dirty(
+                                          state.profile.id ?? 0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                              formzSubmissionStatus:
+                                  state.formzSubmissionStatus,
+                              updateProfileReq: state.updateProfileReq,
+                            ),
+                          Gap(50.h),
+                          if (state.updateProfileReq?.isBlank == true)
+                            const Text(
+                              'الرجاء ملء جميع الحقول',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          if (state.updateProfileReq != null) ...[
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: _buildSubmitButton(
+                                    text: 'حفظ',
+                                    onPressed: () {
+                                      context.read<ProfileBloc>().add(
+                                        const ProfileEvent.updateProfile(),
+                                      );
+                                    },
+                                    formzSubmissionStatus:
+                                        state.formzSubmissionStatus,
+                                    updateProfileReq: state.updateProfileReq,
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: _buildSubmitButton(
+                                    text: 'إلغاء',
+                                    onPressed: () {
+                                      getIt<ProfileBloc>().add(
+                                        ProfileEvent.dataChanged(
+                                          loadedState: state.copyWith(
+                                            updateProfileReq: null,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    formzSubmissionStatus:
+                                        state.formzSubmissionStatus,
+                                    updateProfileReq: state.updateProfileReq,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Gap(50.h),
+                          ],
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                loading: (state) {
                   return const Center(
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
@@ -209,9 +269,9 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   );
                 },
-                failure: (message) {
+                failure: (state) {
                   return ErrorContent(
-                    message: message,
+                    message: state.error,
                     onRetry: () => context.read<ProfileBloc>().add(
                       const ProfileEvent.getProfile(),
                     ),
@@ -224,32 +284,6 @@ class _ProfileViewState extends State<ProfileView> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildUserInfo({required String name, required String phone}) {
-    return Column(
-      children: [
-        const SizedBox(height: 16),
-        Text(
-          name,
-          style: const TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF262626),
-            fontFamily: 'Almarai',
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          phone,
-          style: const TextStyle(
-            fontSize: 16,
-            color: Color(0xFFA6A6A6),
-            fontFamily: 'Almarai',
-          ),
-        ),
-      ],
     );
   }
 
@@ -284,6 +318,8 @@ class _ProfileViewState extends State<ProfileView> {
     void Function(String)? onChanged,
     bool? enabled,
     bool? readOnly,
+    TextInputType? keyboardType,
+    List<TextInputFormatter>? inputFormatters,
   }) {
     return Container(
       key: key,
@@ -309,6 +345,8 @@ class _ProfileViewState extends State<ProfileView> {
           fontSize: 16,
           fontFamily: 'Almarai',
         ),
+        inputFormatters: inputFormatters,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           enabled: enabled ?? false,
           filled: true,

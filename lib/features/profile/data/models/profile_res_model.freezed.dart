@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProfileResModel {
 
-@JsonKey(name: 'id') int? get id;@JsonKey(name: 'name') String? get name;@JsonKey(name: 'image') String? get image;@JsonKey(name: 'phone') String? get phone; String? get email;@JsonKey(name: 'created_at') String? get createdAt;
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'avatar') String? get avatar;@JsonKey(name: 'name') String? get name;@JsonKey(name: 'phone') String? get phone;@JsonKey(name: 'created_at') String? get createdAt;
 /// Create a copy of ProfileResModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ProfileResModelCopyWith<ProfileResModel> get copyWith => _$ProfileResModelCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileResModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.image, image) || other.image == image)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileResModel&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,image,phone,email,createdAt);
+int get hashCode => Object.hash(runtimeType,id,avatar,name,phone,createdAt);
 
 @override
 String toString() {
-  return 'ProfileResModel(id: $id, name: $name, image: $image, phone: $phone, email: $email, createdAt: $createdAt)';
+  return 'ProfileResModel(id: $id, avatar: $avatar, name: $name, phone: $phone, createdAt: $createdAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ProfileResModelCopyWith<$Res>  {
   factory $ProfileResModelCopyWith(ProfileResModel value, $Res Function(ProfileResModel) _then) = _$ProfileResModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'image') String? image,@JsonKey(name: 'phone') String? phone, String? email,@JsonKey(name: 'created_at') String? createdAt
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'avatar') String? avatar,@JsonKey(name: 'name') String? name,@JsonKey(name: 'phone') String? phone,@JsonKey(name: 'created_at') String? createdAt
 });
 
 
@@ -65,13 +65,12 @@ class _$ProfileResModelCopyWithImpl<$Res>
 
 /// Create a copy of ProfileResModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,Object? image = freezed,Object? phone = freezed,Object? email = freezed,Object? createdAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? avatar = freezed,Object? name = freezed,Object? phone = freezed,Object? createdAt = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as int?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -158,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'image')  String? image, @JsonKey(name: 'phone')  String? phone,  String? email, @JsonKey(name: 'created_at')  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'avatar')  String? avatar, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'phone')  String? phone, @JsonKey(name: 'created_at')  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileResModel() when $default != null:
-return $default(_that.id,_that.name,_that.image,_that.phone,_that.email,_that.createdAt);case _:
+return $default(_that.id,_that.avatar,_that.name,_that.phone,_that.createdAt);case _:
   return orElse();
 
 }
@@ -179,10 +178,10 @@ return $default(_that.id,_that.name,_that.image,_that.phone,_that.email,_that.cr
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'image')  String? image, @JsonKey(name: 'phone')  String? phone,  String? email, @JsonKey(name: 'created_at')  String? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'avatar')  String? avatar, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'phone')  String? phone, @JsonKey(name: 'created_at')  String? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _ProfileResModel():
-return $default(_that.id,_that.name,_that.image,_that.phone,_that.email,_that.createdAt);case _:
+return $default(_that.id,_that.avatar,_that.name,_that.phone,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +198,10 @@ return $default(_that.id,_that.name,_that.image,_that.phone,_that.email,_that.cr
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'image')  String? image, @JsonKey(name: 'phone')  String? phone,  String? email, @JsonKey(name: 'created_at')  String? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'avatar')  String? avatar, @JsonKey(name: 'name')  String? name, @JsonKey(name: 'phone')  String? phone, @JsonKey(name: 'created_at')  String? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfileResModel() when $default != null:
-return $default(_that.id,_that.name,_that.image,_that.phone,_that.email,_that.createdAt);case _:
+return $default(_that.id,_that.avatar,_that.name,_that.phone,_that.createdAt);case _:
   return null;
 
 }
@@ -214,14 +213,13 @@ return $default(_that.id,_that.name,_that.image,_that.phone,_that.email,_that.cr
 @JsonSerializable()
 
 class _ProfileResModel implements ProfileResModel {
-  const _ProfileResModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'name') this.name, @JsonKey(name: 'image') this.image, @JsonKey(name: 'phone') this.phone, this.email, @JsonKey(name: 'created_at') this.createdAt});
+  const _ProfileResModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'avatar') this.avatar, @JsonKey(name: 'name') this.name, @JsonKey(name: 'phone') this.phone, @JsonKey(name: 'created_at') this.createdAt});
   factory _ProfileResModel.fromJson(Map<String, dynamic> json) => _$ProfileResModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int? id;
+@override@JsonKey(name: 'avatar') final  String? avatar;
 @override@JsonKey(name: 'name') final  String? name;
-@override@JsonKey(name: 'image') final  String? image;
 @override@JsonKey(name: 'phone') final  String? phone;
-@override final  String? email;
 @override@JsonKey(name: 'created_at') final  String? createdAt;
 
 /// Create a copy of ProfileResModel
@@ -237,16 +235,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileResModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.image, image) || other.image == image)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileResModel&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,image,phone,email,createdAt);
+int get hashCode => Object.hash(runtimeType,id,avatar,name,phone,createdAt);
 
 @override
 String toString() {
-  return 'ProfileResModel(id: $id, name: $name, image: $image, phone: $phone, email: $email, createdAt: $createdAt)';
+  return 'ProfileResModel(id: $id, avatar: $avatar, name: $name, phone: $phone, createdAt: $createdAt)';
 }
 
 
@@ -257,7 +255,7 @@ abstract mixin class _$ProfileResModelCopyWith<$Res> implements $ProfileResModel
   factory _$ProfileResModelCopyWith(_ProfileResModel value, $Res Function(_ProfileResModel) _then) = __$ProfileResModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int? id,@JsonKey(name: 'name') String? name,@JsonKey(name: 'image') String? image,@JsonKey(name: 'phone') String? phone, String? email,@JsonKey(name: 'created_at') String? createdAt
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'avatar') String? avatar,@JsonKey(name: 'name') String? name,@JsonKey(name: 'phone') String? phone,@JsonKey(name: 'created_at') String? createdAt
 });
 
 
@@ -274,13 +272,12 @@ class __$ProfileResModelCopyWithImpl<$Res>
 
 /// Create a copy of ProfileResModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,Object? image = freezed,Object? phone = freezed,Object? email = freezed,Object? createdAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? avatar = freezed,Object? name = freezed,Object? phone = freezed,Object? createdAt = freezed,}) {
   return _then(_ProfileResModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as int?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

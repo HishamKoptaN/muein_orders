@@ -4,32 +4,23 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart' show lazySingleton, factoryMethod;
 import 'package:retrofit/retrofit.dart';
 
-import '../../../../../core/config/app_config.dart';
 import '../../../../../core/constants/api_constants.dart';
 import '../../models/docs_res_model.dart';
 
 part 'docs_api.g.dart';
 
 @lazySingleton
-@RestApi(
-  baseUrl: AppConfig.apiBaseUrl,
-)
+@RestApi()
 abstract class DocsApi {
   @factoryMethod
-  factory DocsApi(
-    Dio dio,
-  ) = _DocsApi;
+  factory DocsApi(Dio dio) = _DocsApi;
   @GET('/docs/{orderId}')
-  Future<DocsResModel?> getClientDocs({
-    @Path('orderId') required int orderId,
-  });
+  Future<DocsResModel?> getClientDocs({@Path('orderId') required int orderId});
 
   //! createDoc
-  @POST(
-    ApiConstants.docs,
-  )
+  @POST(ApiConstants.docs)
   @MultiPart()
-  Future<Doc> createDoc({
+  Future<DocModel> createDoc({
     @Part(name: 'order_id') required int orderId,
     @Part(name: 'video_one') File? videoOne,
     @Part(name: 'video_two') File? videoTwo,

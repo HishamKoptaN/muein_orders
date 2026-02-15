@@ -7,10 +7,9 @@ part 'profile_res_model.g.dart';
 abstract class ProfileResModel with _$ProfileResModel {
   const factory ProfileResModel({
     @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'avatar') String? avatar,
     @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'image') String? image,
     @JsonKey(name: 'phone') String? phone,
-    String? email,
     @JsonKey(name: 'created_at') String? createdAt,
   }) = _ProfileResModel;
 

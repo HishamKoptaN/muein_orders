@@ -11,7 +11,7 @@ abstract class CachedDocEvent with _$CachedDocEvent {
     FileFormzInput? videoTwo,
     GenericFormzInput<double>? latitude,
     GenericFormzInput<double>? longitude,
-    ProductTypeEntity? package,
+    StatEntity? package,
   }) = _UpdateData;
   const factory CachedDocEvent.cachedDoc() = _CachedDoc;
 }

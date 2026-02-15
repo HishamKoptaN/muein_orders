@@ -54,8 +54,6 @@ class MueinOrdersApp extends StatelessWidget {
             builder: (context, languageState) {
               return BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, themeState) {
-                  const buttonSize = Size(332, 60);
-                  const primaryBtnColor = Color(0xFF83BEA8);
                   return MaterialApp.router(
                     title: AppConfig.appName,
                     debugShowCheckedModeBanner: false,
@@ -72,6 +70,15 @@ class MueinOrdersApp extends StatelessWidget {
                     localeResolutionCallback:
                         AppLocalizationSetup.localeResolutionCallback,
                     routerConfig: AppRouter.create(),
+                    builder: (context, child) {
+                      return SafeArea(
+                        top: true,
+                        bottom: true,
+                        left: true,
+                        right: true,
+                        child: child!,
+                      );
+                    },
                   );
                 },
               );
@@ -81,54 +88,4 @@ class MueinOrdersApp extends StatelessWidget {
       ),
     );
   }
-
-  static ThemeData _lightTheme(Size buttonSize, Color primaryBtnColor) =>
-      ThemeData(
-        colorScheme: ColorScheme.light(
-          primary: primaryBtnColor,
-          onPrimary: Colors.white,
-          secondary: primaryBtnColor,
-          onSecondary: Colors.white,
-          error: Colors.red,
-          onError: Colors.white,
-          surface: Colors.white,
-          onSurface: Colors.black,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            minimumSize: buttonSize,
-            fixedSize: buttonSize,
-            backgroundColor: primaryBtnColor,
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
-            ),
-          ),
-        ),
-      );
-
-  static ThemeData _darkTheme(Size buttonSize, Color primaryBtnColor) =>
-      ThemeData(
-        colorScheme: ColorScheme.dark(
-          primary: primaryBtnColor,
-          onPrimary: Colors.white,
-          secondary: primaryBtnColor,
-          onSecondary: Colors.white,
-          error: Colors.red,
-          onError: Colors.white,
-          surface: Colors.black,
-          onSurface: Colors.white,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            minimumSize: buttonSize,
-            fixedSize: buttonSize,
-            backgroundColor: primaryBtnColor,
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
-            ),
-          ),
-        ),
-      );
 }

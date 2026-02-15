@@ -10,7 +10,7 @@ import '../models/expenses_res_model.dart';
 part 'financial_api.g.dart';
 
 @singleton
-@RestApi(baseUrl: AppConfig.apiBaseUrl)
+@RestApi()
 abstract class FinancialApi {
   @factoryMethod
   factory FinancialApi(Dio dio) = _FinancialApi;

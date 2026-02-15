@@ -10,9 +10,7 @@ class NotificationsView extends StatefulWidget {
 }
 
 class _NotificationsViewState extends State<NotificationsView> {
-  int _selectedTab = 0; // 0: جديد, 1: الكل
-
-  // Simple data model
+  int _selectedTab = 0;
   static const _today = 'اليوم';
   static const _yesterday = 'أمس';
 
@@ -89,13 +87,13 @@ class _NotificationsViewState extends State<NotificationsView> {
                           onChanged: (i) => setState(() => _selectedTab = i),
                         ),
                         const SizedBox(height: 8),
-                        ...sectionsToShow.entries.expand((entry) => [
-                              _SectionLabel(text: entry.key),
-                              _NotificationsCard(
-                                items: entry.value,
-                              ),
-                              const SizedBox(height: 16),
-                            ]),
+                        ...sectionsToShow.entries.expand(
+                          (entry) => [
+                            _SectionLabel(text: entry.key),
+                            _NotificationsCard(items: entry.value),
+                            const SizedBox(height: 16),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -117,10 +115,10 @@ class _Header extends StatelessWidget {
     return Container(
       color: const Color(0xFFFFFFFF),
       padding: const EdgeInsets.only(bottom: 16, top: 24),
-      child: Center(
+      child: const Center(
         child: Text(
           'الإشعارات',
-          style: const TextStyle(
+          style: TextStyle(
             color: Color(0xFF222741),
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -171,12 +169,18 @@ class _TabButton extends StatelessWidget {
   final String text;
   final bool selected;
   final VoidCallback onTap;
-  const _TabButton({required this.text, required this.selected, required this.onTap});
+  const _TabButton({
+    required this.text,
+    required this.selected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final Color bg = selected ? const Color(0xFFFFFFFF) : Colors.transparent;
-    final Color fg = selected ? const Color(0xFF222741) : const Color(0xFFACAEBE);
+    final Color fg = selected
+        ? const Color(0xFF222741)
+        : const Color(0xFFACAEBE);
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
@@ -205,10 +209,7 @@ class _SectionLabel extends StatelessWidget {
         alignment: Alignment.centerRight,
         child: Text(
           text,
-          style: const TextStyle(
-            color: Color(0xFFACAEBE),
-            fontSize: 14,
-          ),
+          style: const TextStyle(color: Color(0xFFACAEBE), fontSize: 14),
           textAlign: TextAlign.right,
         ),
       ),
@@ -233,8 +234,12 @@ class _NotificationsCard extends StatelessWidget {
           for (int i = 0; i < items.length; i++) ...[
             _NotificationRow(item: items[i]),
             if (i != items.length - 1)
-              const Divider(height: 1, thickness: 0.5, color: Color(0xFFEFEFEF)),
-          ]
+              const Divider(
+                height: 1,
+                thickness: 0.5,
+                color: Color(0xFFEFEFEF),
+              ),
+          ],
         ],
       ),
     );
@@ -258,13 +263,19 @@ class _NotificationRow extends StatelessWidget {
               children: [
                 Text(
                   item.title,
-                  style: const TextStyle(color: Color(0xFF222741), fontSize: 14),
+                  style: const TextStyle(
+                    color: Color(0xFF222741),
+                    fontSize: 14,
+                  ),
                   textAlign: TextAlign.right,
                 ),
                 const SizedBox(height: 7),
                 Text(
                   item.time,
-                  style: const TextStyle(color: Color(0xFFA8A8A9), fontSize: 10),
+                  style: const TextStyle(
+                    color: Color(0xFFA8A8A9),
+                    fontSize: 10,
+                  ),
                   textAlign: TextAlign.right,
                 ),
               ],
@@ -286,5 +297,9 @@ class _NotificationItem {
   final String title;
   final String time;
   final String imageUrl;
-  const _NotificationItem({required this.title, required this.time, required this.imageUrl});
+  const _NotificationItem({
+    required this.title,
+    required this.time,
+    required this.imageUrl,
+  });
 }

@@ -10,12 +10,11 @@ import '../models/sign_up_res_model.dart';
 part 'sign_up_api.g.dart';
 
 @RestApi(
-  baseUrl: AppConfig.apiAuthBaseUrl,
 )
 @lazySingleton
 abstract class SignUpApi {
   @factoryMethod
-  factory SignUpApi(Dio dio) = _SignUpApi;
+  factory SignUpApi(@Named("authDio") Dio dio) = _SignUpApi;
   @POST('sign-up')
   Future<SignUpResModel> signUp(
     @Body() SignUpReqModel signUpReq,
