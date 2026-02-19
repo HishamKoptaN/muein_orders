@@ -154,7 +154,7 @@ class SelectLanguageView extends StatelessWidget {
                                   ElevatedButton(
                                     key: const Key('follow'),
                                     onPressed: () {
-                                      NavigationService.navigateTo(
+                                      NavigationService.pushNamed(
                                         context: context,
                                         routeName: AuthChoiceView.routeName,
                                       );

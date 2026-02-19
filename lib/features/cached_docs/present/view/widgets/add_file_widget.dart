@@ -1,28 +1,31 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../../data/datasources/local/drift/cached_docs_table.dart';
 
 enum AddDocWidgetType { image, video }
 
 class AddFileWidget extends StatefulWidget {
   const AddFileWidget({
     super.key,
-    required this.text,
+    this.initialValue,
+    required this.path,
+    required this.docFileStatus,
     this.onChanged,
     this.validator,
     this.errorText,
-    this.initialValue,
     required this.addDocWidgetType,
   });
-
-  final String text;
+  final String? path;
   final Function(File?)? onChanged;
   final String? Function(String?)? validator;
   final String? errorText;
   final String? initialValue;
   final AddDocWidgetType addDocWidgetType;
-
+  final FileUploadStatus docFileStatus;
   @override
   State<AddFileWidget> createState() => _AddFileWidgetState();
 }
@@ -30,7 +33,6 @@ class AddFileWidget extends StatefulWidget {
 class _AddFileWidgetState extends State<AddFileWidget> {
   VideoPlayerController? _videoController;
   bool _isVideo = false;
-
   @override
   void initState() {
     super.initState();
@@ -52,7 +54,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
     _videoController = null;
   }
 
-  void _initializePreview() async {
+  Future<void> _initializePreview() async {
     if (widget.initialValue?.isNotEmpty == true) {
       final file = File(widget.initialValue!);
       if (file.existsSync()) {
@@ -61,18 +63,20 @@ class _AddFileWidgetState extends State<AddFileWidget> {
           _isVideo = true;
           try {
             _videoController = VideoPlayerController.file(file)
-              ..initialize().then((_) {
-                if (mounted) {
-                  setState(() {
-                    // لا نحتاج إلى التكرار التلقائي لتجنب مشاكل الأداء
-                    // _videoController?.setLooping(true);
+              ..initialize()
+                  .then((_) {
+                    if (mounted) {
+                      setState(() {
+                        // لا نحتاج إلى التكرار التلقائي لتجنب مشاكل الأداء
+                        // _videoController?.setLooping(true);
+                      });
+                    }
+                  })
+                  .catchError((error) {
+                    debugPrint('خطأ في تحميل الفيديو: $error');
+                    _isVideo = false;
+                    if (mounted) setState(() {});
                   });
-                }
-              }).catchError((error) {
-                debugPrint('خطأ في تحميل الفيديو: $error');
-                _isVideo = false;
-                if (mounted) setState(() {});
-              });
           } catch (e) {
             debugPrint('خطأ في إنشاء متحكم الفيديو: $e');
             _isVideo = false;
@@ -99,36 +103,42 @@ class _AddFileWidgetState extends State<AddFileWidget> {
   @override
   Widget build(BuildContext context) {
     final hasPreview = widget.initialValue?.isNotEmpty == true;
-
     return Column(
       children: [
-        GestureDetector(
-          onTap: () async {
-            if (widget.onChanged != null) {
-              widget.onChanged!(null);
-            }
-          },
-          child: Container(
-            height: 160,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(
-                color: widget.errorText != null
-                    ? Colors.red
-                    : const Color(0xFFF0EFEF),
-              ),
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: const [
-                BoxShadow(
-                  blurRadius: 4,
-                  color: Colors.black12,
-                  offset: Offset(0, 2),
+        Stack(
+          children: [
+            GestureDetector(
+              onTap: () async {
+                if (widget.onChanged != null) {
+                  widget.onChanged!(null);
+                }
+              },
+              child: Container(
+                height: 160,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: widget.errorText != null
+                        ? Colors.red
+                        : const Color(0xFFF0EFEF),
+                  ),
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: const [
+                    BoxShadow(
+                      blurRadius: 4,
+                      color: Colors.black12,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
                 ),
-              ],
+                child: hasPreview ? _buildPreview() : _buildPlaceholder(),
+              ),
             ),
-            child: hasPreview ? _buildPreview() : _buildPlaceholder(),
-          ),
+
+            if (widget.path != null && widget.path!.isNotEmpty)
+              GestureDetector(child: buildStatusIndicator(docFileStatus: widget.docFileStatus)),
+          ],
         ),
         if (widget.errorText != null)
           Padding(
@@ -170,7 +180,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
             ),
           const SizedBox(height: 8),
           Text(
-            widget.text,
+            widget.path ?? '',
             style: TextStyle(
               fontFamily: 'Almarai',
               fontSize: 14,
@@ -203,13 +213,11 @@ class _AddFileWidgetState extends State<AddFileWidget> {
                   size: 50,
                 ),
                 onPressed: () {
-                  setState(
-                    () {
-                      _videoController!.value.isPlaying
-                          ? _videoController!.pause()
-                          : _videoController!.play();
-                    },
-                  );
+                  setState(() {
+                    _videoController!.value.isPlaying
+                        ? _videoController!.pause()
+                        : _videoController!.play();
+                  });
                 },
               ),
             ),
@@ -229,4 +237,54 @@ class _AddFileWidgetState extends State<AddFileWidget> {
     }
     return _buildPlaceholder();
   }
+}
+
+Widget buildStatusIndicator({required FileUploadStatus docFileStatus}) {
+  IconData icon;
+  Color color;
+  bool isRotating = false;
+  switch (docFileStatus) {
+    case FileUploadStatus.uploading:
+      icon = Icons.sync;
+      color = Colors.blue;
+      isRotating = true;
+      break;
+    case FileUploadStatus.uploaded:
+      icon = Icons.check_circle;
+      color = Colors.green;
+      break;
+    case FileUploadStatus.failed:
+      icon = Icons.error;
+      color = Colors.red;
+      break;
+    case FileUploadStatus.pending:
+    default:
+      icon = Icons.cloud_upload_outlined;
+      color = Colors.orange;
+      break;
+  }
+  return Positioned(
+    top: 8.h,
+    left: 8.w,
+    child: Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.9),
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4),
+        ],
+      ),
+      child: isRotating
+          ? buildRotatingIcon(icon, color)
+          : Icon(icon, color: color, size: 20),
+    ),
+  );
+}
+
+Widget buildRotatingIcon(IconData icon, Color color) {
+  return RotationTransition(
+    turns: AlwaysStoppedAnimation(DateTime.now().millisecond / 1000),
+    child: Icon(icon, color: color, size: 20),
+  );
 }

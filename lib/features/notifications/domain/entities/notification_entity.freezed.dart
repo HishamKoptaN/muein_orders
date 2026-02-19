@@ -13,22 +13,22 @@ part of 'notification_entity.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AppNotification {
+mixin _$NotificationEntity {
 
- String get id; String get title; String get body; DateTime get createdAt; String? get imageUrl; bool get read;
-/// Create a copy of AppNotification
+ String get id; String get title; String get body; String get createdAt; String? get imageUrl; bool get read;
+/// Create a copy of NotificationEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$AppNotificationCopyWith<AppNotification> get copyWith => _$AppNotificationCopyWithImpl<AppNotification>(this as AppNotification, _$identity);
+$NotificationEntityCopyWith<NotificationEntity> get copyWith => _$NotificationEntityCopyWithImpl<NotificationEntity>(this as NotificationEntity, _$identity);
 
-  /// Serializes this AppNotification to a JSON map.
+  /// Serializes this NotificationEntity to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppNotification&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.read, read) || other.read == read));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotificationEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.read, read) || other.read == read));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37,18 +37,18 @@ int get hashCode => Object.hash(runtimeType,id,title,body,createdAt,imageUrl,rea
 
 @override
 String toString() {
-  return 'AppNotification(id: $id, title: $title, body: $body, createdAt: $createdAt, imageUrl: $imageUrl, read: $read)';
+  return 'NotificationEntity(id: $id, title: $title, body: $body, createdAt: $createdAt, imageUrl: $imageUrl, read: $read)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $AppNotificationCopyWith<$Res>  {
-  factory $AppNotificationCopyWith(AppNotification value, $Res Function(AppNotification) _then) = _$AppNotificationCopyWithImpl;
+abstract mixin class $NotificationEntityCopyWith<$Res>  {
+  factory $NotificationEntityCopyWith(NotificationEntity value, $Res Function(NotificationEntity) _then) = _$NotificationEntityCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String body, DateTime createdAt, String? imageUrl, bool read
+ String id, String title, String body, String createdAt, String? imageUrl, bool read
 });
 
 
@@ -56,14 +56,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$AppNotificationCopyWithImpl<$Res>
-    implements $AppNotificationCopyWith<$Res> {
-  _$AppNotificationCopyWithImpl(this._self, this._then);
+class _$NotificationEntityCopyWithImpl<$Res>
+    implements $NotificationEntityCopyWith<$Res> {
+  _$NotificationEntityCopyWithImpl(this._self, this._then);
 
-  final AppNotification _self;
-  final $Res Function(AppNotification) _then;
+  final NotificationEntity _self;
+  final $Res Function(NotificationEntity) _then;
 
-/// Create a copy of AppNotification
+/// Create a copy of NotificationEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? body = null,Object? createdAt = null,Object? imageUrl = freezed,Object? read = null,}) {
   return _then(_self.copyWith(
@@ -71,7 +71,7 @@ id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,read: null == read ? _self.read : read // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -80,8 +80,8 @@ as bool,
 }
 
 
-/// Adds pattern-matching-related methods to [AppNotification].
-extension AppNotificationPatterns on AppNotification {
+/// Adds pattern-matching-related methods to [NotificationEntity].
+extension NotificationEntityPatterns on NotificationEntity {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -94,10 +94,10 @@ extension AppNotificationPatterns on AppNotification {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AppNotification value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NotificationEntity value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _AppNotification() when $default != null:
+case _NotificationEntity() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -116,10 +116,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AppNotification value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NotificationEntity value)  $default,){
 final _that = this;
 switch (_that) {
-case _AppNotification():
+case _NotificationEntity():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -137,10 +137,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AppNotification value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NotificationEntity value)?  $default,){
 final _that = this;
 switch (_that) {
-case _AppNotification() when $default != null:
+case _NotificationEntity() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -158,9 +158,9 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String body,  DateTime createdAt,  String? imageUrl,  bool read)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String body,  String createdAt,  String? imageUrl,  bool read)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _AppNotification() when $default != null:
+case _NotificationEntity() when $default != null:
 return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.imageUrl,_that.read);case _:
   return orElse();
 
@@ -179,9 +179,9 @@ return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.imageUrl,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String body,  DateTime createdAt,  String? imageUrl,  bool read)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String body,  String createdAt,  String? imageUrl,  bool read)  $default,) {final _that = this;
 switch (_that) {
-case _AppNotification():
+case _NotificationEntity():
 return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.imageUrl,_that.read);case _:
   throw StateError('Unexpected subclass');
 
@@ -199,9 +199,9 @@ return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.imageUrl,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String body,  DateTime createdAt,  String? imageUrl,  bool read)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String body,  String createdAt,  String? imageUrl,  bool read)?  $default,) {final _that = this;
 switch (_that) {
-case _AppNotification() when $default != null:
+case _NotificationEntity() when $default != null:
 return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.imageUrl,_that.read);case _:
   return null;
 
@@ -213,31 +213,31 @@ return $default(_that.id,_that.title,_that.body,_that.createdAt,_that.imageUrl,_
 /// @nodoc
 @JsonSerializable()
 
-class _AppNotification implements AppNotification {
-  const _AppNotification({required this.id, required this.title, required this.body, required this.createdAt, this.imageUrl, this.read = false});
-  factory _AppNotification.fromJson(Map<String, dynamic> json) => _$AppNotificationFromJson(json);
+class _NotificationEntity implements NotificationEntity {
+  const _NotificationEntity({required this.id, required this.title, required this.body, required this.createdAt, this.imageUrl, this.read = false});
+  factory _NotificationEntity.fromJson(Map<String, dynamic> json) => _$NotificationEntityFromJson(json);
 
 @override final  String id;
 @override final  String title;
 @override final  String body;
-@override final  DateTime createdAt;
+@override final  String createdAt;
 @override final  String? imageUrl;
 @override@JsonKey() final  bool read;
 
-/// Create a copy of AppNotification
+/// Create a copy of NotificationEntity
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$AppNotificationCopyWith<_AppNotification> get copyWith => __$AppNotificationCopyWithImpl<_AppNotification>(this, _$identity);
+_$NotificationEntityCopyWith<_NotificationEntity> get copyWith => __$NotificationEntityCopyWithImpl<_NotificationEntity>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$AppNotificationToJson(this, );
+  return _$NotificationEntityToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppNotification&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.read, read) || other.read == read));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NotificationEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.read, read) || other.read == read));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -246,18 +246,18 @@ int get hashCode => Object.hash(runtimeType,id,title,body,createdAt,imageUrl,rea
 
 @override
 String toString() {
-  return 'AppNotification(id: $id, title: $title, body: $body, createdAt: $createdAt, imageUrl: $imageUrl, read: $read)';
+  return 'NotificationEntity(id: $id, title: $title, body: $body, createdAt: $createdAt, imageUrl: $imageUrl, read: $read)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$AppNotificationCopyWith<$Res> implements $AppNotificationCopyWith<$Res> {
-  factory _$AppNotificationCopyWith(_AppNotification value, $Res Function(_AppNotification) _then) = __$AppNotificationCopyWithImpl;
+abstract mixin class _$NotificationEntityCopyWith<$Res> implements $NotificationEntityCopyWith<$Res> {
+  factory _$NotificationEntityCopyWith(_NotificationEntity value, $Res Function(_NotificationEntity) _then) = __$NotificationEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String body, DateTime createdAt, String? imageUrl, bool read
+ String id, String title, String body, String createdAt, String? imageUrl, bool read
 });
 
 
@@ -265,22 +265,22 @@ $Res call({
 
 }
 /// @nodoc
-class __$AppNotificationCopyWithImpl<$Res>
-    implements _$AppNotificationCopyWith<$Res> {
-  __$AppNotificationCopyWithImpl(this._self, this._then);
+class __$NotificationEntityCopyWithImpl<$Res>
+    implements _$NotificationEntityCopyWith<$Res> {
+  __$NotificationEntityCopyWithImpl(this._self, this._then);
 
-  final _AppNotification _self;
-  final $Res Function(_AppNotification) _then;
+  final _NotificationEntity _self;
+  final $Res Function(_NotificationEntity) _then;
 
-/// Create a copy of AppNotification
+/// Create a copy of NotificationEntity
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? body = null,Object? createdAt = null,Object? imageUrl = freezed,Object? read = null,}) {
-  return _then(_AppNotification(
+  return _then(_NotificationEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
 as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,read: null == read ? _self.read : read // ignore: cast_nullable_to_non_nullable
 as bool,
   ));

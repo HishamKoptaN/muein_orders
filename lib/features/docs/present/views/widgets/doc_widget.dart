@@ -4,8 +4,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../l10n/app_localizations.dart';
 import '../../../domain/entities/docs_res_entity.dart';
-import 'image_preview.dart';
-import 'video_widget.dart';
+import 'preview/image_preview.dart';
+import 'preview/video_widget.dart';
 
 class DocWidget extends StatelessWidget {
   const DocWidget({super.key, required this.orderEntity});
@@ -55,7 +55,7 @@ class DocWidget extends StatelessWidget {
                     flex: 2,
                     child: GestureDetector(
                       onTap: () async {
-                        Navigator.pushNamed(
+                        await Navigator.pushNamed(
                           context,
                           ImagePreview.routeName,
                           arguments: {'image_url': orderEntity?.imageOne ?? ''},

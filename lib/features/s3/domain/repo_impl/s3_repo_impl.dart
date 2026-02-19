@@ -1,9 +1,12 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../core/errors/app_error_handler.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../data/repo/s3_repo.dart';
-import 'package:dio/dio.dart';
-import 'dart:io';
 
 @LazySingleton(as: S3Repo)
 class S3RepoImpl implements S3Repo {
@@ -19,14 +22,16 @@ class S3RepoImpl implements S3Repo {
       await _dio.put(
         uploadUrl,
         data: file.openRead(),
-        options: Options(
-          headers: {
-            "Content-Type": contentType,
-            "Content-Length": await file.length(),
-          },
-        ),
+        options: Options(headers: {'Content-Type': contentType}),
+        onSendProgress: (sent, total) {
+          if (total > 0) {
+            print(
+              'Upload Progress: ${(sent / total * 100).toStringAsFixed(2)}%',
+            );
+          }
+        },
       );
-      return ApiResult.success(data: null);
+      return const ApiResult.success(data: null);
     } catch (e, st) {
       return ApiResult.failure(
         apiErrorModel: AppErrorHandler.toApiError(e, st),

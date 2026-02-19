@@ -7,13 +7,14 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl_standalone.dart';
-
 import 'config/env_config.dart';
 import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
 import 'core/app_observer.dart';
 import 'core/background/workmanager_initializer.dart';
 import 'core/config/app_initializer.dart';
+import 'core/database/shared_pref_helper.dart';
+import 'core/database/shared_pref_keys.dart';
 import 'core/di/dependency_injection.dart';
 
 Future<void> main() async {
@@ -31,10 +32,10 @@ Future<void> main() async {
     FlutterNativeSplash.remove();
     if (kDebugMode) {
       Bloc.observer = AppBlocObserver();
-      // await SharedPrefHelper.setSecuredString(
-      //   key: SharedPrefKeys.jwtToken,
-      //   value: '3|vhEJ96yP3OqTHAmbrtEJqZJOH2qfpMsRV3GkQ7yH399f99df',
-      // );
+      await SharedPrefHelper.setSecuredString(
+        key: SharedPrefKeys.jwtToken,
+        value: '3|vhEJ96yP3OqTHAmbrtEJqZJOH2qfpMsRV3GkQ7yH399f99df',
+      );
     }
     runApp(const MueinOrdersApp());
   } catch (error, stackTrace) {

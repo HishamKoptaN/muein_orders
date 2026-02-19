@@ -3,113 +3,66 @@
 part of 'app_database.dart';
 
 // ignore_for_file: type=lint
-class $CachedDocsTable extends CachedDocs
-    with TableInfo<$CachedDocsTable, CachedDoc> {
+class $CachedDocsTableTable extends CachedDocsTable
+    with TableInfo<$CachedDocsTableTable, CachedDocEntry> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $CachedDocsTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  $CachedDocsTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _docIdMeta = const VerificationMeta('docId');
   @override
-  late final GeneratedColumn<int> id = GeneratedColumn<int>(
-    'id',
-    aliasedName,
-    false,
-    hasAutoIncrement: true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
-  );
-  static const VerificationMeta _orderIdMeta = const VerificationMeta(
-    'orderId',
-  );
-  @override
-  late final GeneratedColumn<int> orderId = GeneratedColumn<int>(
-    'order_id',
+  late final GeneratedColumn<int> docId = GeneratedColumn<int>(
+    'doc_id',
     aliasedName,
     false,
     type: DriftSqlType.int,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _imageOneMeta = const VerificationMeta(
-    'imageOne',
-  );
-  @override
-  late final GeneratedColumn<String> imageOne = GeneratedColumn<String>(
-    'image_one',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
-  static const VerificationMeta _imageTwoMeta = const VerificationMeta(
-    'imageTwo',
-  );
   @override
-  late final GeneratedColumn<String> imageTwo = GeneratedColumn<String>(
-    'image_two',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _videoOneMeta = const VerificationMeta(
-    'videoOne',
-  );
+  late final GeneratedColumnWithTypeConverter<DocFile?, String> imageOne =
+      GeneratedColumn<String>(
+        'image_one',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<DocFile?>($CachedDocsTableTable.$converterimageOnen);
   @override
-  late final GeneratedColumn<String> videoOne = GeneratedColumn<String>(
-    'video_one',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _videoTwoMeta = const VerificationMeta(
-    'videoTwo',
-  );
+  late final GeneratedColumnWithTypeConverter<DocFile?, String> imageTwo =
+      GeneratedColumn<String>(
+        'image_two',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<DocFile?>($CachedDocsTableTable.$converterimageTwon);
   @override
-  late final GeneratedColumn<String> videoTwo = GeneratedColumn<String>(
-    'video_two',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _latitudeMeta = const VerificationMeta(
-    'latitude',
-  );
+  late final GeneratedColumnWithTypeConverter<DocFile?, String> videoOne =
+      GeneratedColumn<String>(
+        'video_one',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<DocFile?>($CachedDocsTableTable.$convertervideoOnen);
   @override
-  late final GeneratedColumn<double> latitude = GeneratedColumn<double>(
-    'latitude',
-    aliasedName,
-    true,
-    type: DriftSqlType.double,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _longitudeMeta = const VerificationMeta(
-    'longitude',
-  );
+  late final GeneratedColumnWithTypeConverter<DocFile?, String> videoTwo =
+      GeneratedColumn<String>(
+        'video_two',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<DocFile?>($CachedDocsTableTable.$convertervideoTwon);
   @override
-  late final GeneratedColumn<double> longitude = GeneratedColumn<double>(
-    'longitude',
-    aliasedName,
-    true,
-    type: DriftSqlType.double,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _shippingCostMeta = const VerificationMeta(
-    'shippingCost',
-  );
-  @override
-  late final GeneratedColumn<double> shippingCost = GeneratedColumn<double>(
-    'shipping_cost',
-    aliasedName,
-    true,
-    type: DriftSqlType.double,
-    requiredDuringInsert: false,
-  );
+  late final GeneratedColumnWithTypeConverter<LocationDoc?, String> location =
+      GeneratedColumn<String>(
+        'location',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      ).withConverter<LocationDoc?>($CachedDocsTableTable.$converterlocationn);
   static const VerificationMeta _uploadStatusMeta = const VerificationMeta(
     'uploadStatus',
   );
@@ -119,7 +72,8 @@ class $CachedDocsTable extends CachedDocs
     aliasedName,
     false,
     type: DriftSqlType.string,
-    requiredDuringInsert: true,
+    requiredDuringInsert: false,
+    defaultValue: Constant(FileUploadStatus.init.name),
   );
   static const VerificationMeta _uploadProgressMeta = const VerificationMeta(
     'uploadProgress',
@@ -135,15 +89,12 @@ class $CachedDocsTable extends CachedDocs
   );
   @override
   List<GeneratedColumn> get $columns => [
-    id,
-    orderId,
+    docId,
     imageOne,
     imageTwo,
     videoOne,
     videoTwo,
-    latitude,
-    longitude,
-    shippingCost,
+    location,
     uploadStatus,
     uploadProgress,
   ];
@@ -151,68 +102,18 @@ class $CachedDocsTable extends CachedDocs
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'cached_docs';
+  static const String $name = 'cached_docs_table';
   @override
   VerificationContext validateIntegrity(
-    Insertable<CachedDoc> instance, {
+    Insertable<CachedDocEntry> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('order_id')) {
+    if (data.containsKey('doc_id')) {
       context.handle(
-        _orderIdMeta,
-        orderId.isAcceptableOrUnknown(data['order_id']!, _orderIdMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_orderIdMeta);
-    }
-    if (data.containsKey('image_one')) {
-      context.handle(
-        _imageOneMeta,
-        imageOne.isAcceptableOrUnknown(data['image_one']!, _imageOneMeta),
-      );
-    }
-    if (data.containsKey('image_two')) {
-      context.handle(
-        _imageTwoMeta,
-        imageTwo.isAcceptableOrUnknown(data['image_two']!, _imageTwoMeta),
-      );
-    }
-    if (data.containsKey('video_one')) {
-      context.handle(
-        _videoOneMeta,
-        videoOne.isAcceptableOrUnknown(data['video_one']!, _videoOneMeta),
-      );
-    }
-    if (data.containsKey('video_two')) {
-      context.handle(
-        _videoTwoMeta,
-        videoTwo.isAcceptableOrUnknown(data['video_two']!, _videoTwoMeta),
-      );
-    }
-    if (data.containsKey('latitude')) {
-      context.handle(
-        _latitudeMeta,
-        latitude.isAcceptableOrUnknown(data['latitude']!, _latitudeMeta),
-      );
-    }
-    if (data.containsKey('longitude')) {
-      context.handle(
-        _longitudeMeta,
-        longitude.isAcceptableOrUnknown(data['longitude']!, _longitudeMeta),
-      );
-    }
-    if (data.containsKey('shipping_cost')) {
-      context.handle(
-        _shippingCostMeta,
-        shippingCost.isAcceptableOrUnknown(
-          data['shipping_cost']!,
-          _shippingCostMeta,
-        ),
+        _docIdMeta,
+        docId.isAcceptableOrUnknown(data['doc_id']!, _docIdMeta),
       );
     }
     if (data.containsKey('upload_status')) {
@@ -223,8 +124,6 @@ class $CachedDocsTable extends CachedDocs
           _uploadStatusMeta,
         ),
       );
-    } else if (isInserting) {
-      context.missing(_uploadStatusMeta);
     }
     if (data.containsKey('upload_progress')) {
       context.handle(
@@ -239,46 +138,44 @@ class $CachedDocsTable extends CachedDocs
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => {docId};
   @override
-  CachedDoc map(Map<String, dynamic> data, {String? tablePrefix}) {
+  CachedDocEntry map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return CachedDoc(
-      id: attachedDatabase.typeMapping.read(
+    return CachedDocEntry(
+      docId: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
-        data['${effectivePrefix}id'],
+        data['${effectivePrefix}doc_id'],
       )!,
-      orderId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}order_id'],
-      )!,
-      imageOne: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}image_one'],
+      imageOne: $CachedDocsTableTable.$converterimageOnen.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}image_one'],
+        ),
       ),
-      imageTwo: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}image_two'],
+      imageTwo: $CachedDocsTableTable.$converterimageTwon.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}image_two'],
+        ),
       ),
-      videoOne: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}video_one'],
+      videoOne: $CachedDocsTableTable.$convertervideoOnen.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}video_one'],
+        ),
       ),
-      videoTwo: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}video_two'],
+      videoTwo: $CachedDocsTableTable.$convertervideoTwon.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}video_two'],
+        ),
       ),
-      latitude: attachedDatabase.typeMapping.read(
-        DriftSqlType.double,
-        data['${effectivePrefix}latitude'],
-      ),
-      longitude: attachedDatabase.typeMapping.read(
-        DriftSqlType.double,
-        data['${effectivePrefix}longitude'],
-      ),
-      shippingCost: attachedDatabase.typeMapping.read(
-        DriftSqlType.double,
-        data['${effectivePrefix}shipping_cost'],
+      location: $CachedDocsTableTable.$converterlocationn.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}location'],
+        ),
       ),
       uploadStatus: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
@@ -292,71 +189,88 @@ class $CachedDocsTable extends CachedDocs
   }
 
   @override
-  $CachedDocsTable createAlias(String alias) {
-    return $CachedDocsTable(attachedDatabase, alias);
+  $CachedDocsTableTable createAlias(String alias) {
+    return $CachedDocsTableTable(attachedDatabase, alias);
   }
+
+  static TypeConverter<DocFile, String> $converterimageOne =
+      const DocFileConverter();
+  static TypeConverter<DocFile?, String?> $converterimageOnen =
+      NullAwareTypeConverter.wrap($converterimageOne);
+  static TypeConverter<DocFile, String> $converterimageTwo =
+      const DocFileConverter();
+  static TypeConverter<DocFile?, String?> $converterimageTwon =
+      NullAwareTypeConverter.wrap($converterimageTwo);
+  static TypeConverter<DocFile, String> $convertervideoOne =
+      const DocFileConverter();
+  static TypeConverter<DocFile?, String?> $convertervideoOnen =
+      NullAwareTypeConverter.wrap($convertervideoOne);
+  static TypeConverter<DocFile, String> $convertervideoTwo =
+      const DocFileConverter();
+  static TypeConverter<DocFile?, String?> $convertervideoTwon =
+      NullAwareTypeConverter.wrap($convertervideoTwo);
+  static TypeConverter<LocationDoc, String> $converterlocation =
+      const LocationDocConverter();
+  static TypeConverter<LocationDoc?, String?> $converterlocationn =
+      NullAwareTypeConverter.wrap($converterlocation);
 }
 
-class CachedDoc extends DataClass implements Insertable<CachedDoc> {
-  final int id;
-  final int orderId;
-  final String? imageOne;
-  final String? imageTwo;
-  final String? videoOne;
-  final String? videoTwo;
-  final double? latitude;
-  final double? longitude;
-  final double? shippingCost;
+class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
+  final int docId;
+  final DocFile? imageOne;
+  final DocFile? imageTwo;
+  final DocFile? videoOne;
+  final DocFile? videoTwo;
+  final LocationDoc? location;
   final String uploadStatus;
   final double uploadProgress;
-  const CachedDoc({
-    required this.id,
-    required this.orderId,
+  const CachedDocEntry({
+    required this.docId,
     this.imageOne,
     this.imageTwo,
     this.videoOne,
     this.videoTwo,
-    this.latitude,
-    this.longitude,
-    this.shippingCost,
+    this.location,
     required this.uploadStatus,
     required this.uploadProgress,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['id'] = Variable<int>(id);
-    map['order_id'] = Variable<int>(orderId);
+    map['doc_id'] = Variable<int>(docId);
     if (!nullToAbsent || imageOne != null) {
-      map['image_one'] = Variable<String>(imageOne);
+      map['image_one'] = Variable<String>(
+        $CachedDocsTableTable.$converterimageOnen.toSql(imageOne),
+      );
     }
     if (!nullToAbsent || imageTwo != null) {
-      map['image_two'] = Variable<String>(imageTwo);
+      map['image_two'] = Variable<String>(
+        $CachedDocsTableTable.$converterimageTwon.toSql(imageTwo),
+      );
     }
     if (!nullToAbsent || videoOne != null) {
-      map['video_one'] = Variable<String>(videoOne);
+      map['video_one'] = Variable<String>(
+        $CachedDocsTableTable.$convertervideoOnen.toSql(videoOne),
+      );
     }
     if (!nullToAbsent || videoTwo != null) {
-      map['video_two'] = Variable<String>(videoTwo);
+      map['video_two'] = Variable<String>(
+        $CachedDocsTableTable.$convertervideoTwon.toSql(videoTwo),
+      );
     }
-    if (!nullToAbsent || latitude != null) {
-      map['latitude'] = Variable<double>(latitude);
-    }
-    if (!nullToAbsent || longitude != null) {
-      map['longitude'] = Variable<double>(longitude);
-    }
-    if (!nullToAbsent || shippingCost != null) {
-      map['shipping_cost'] = Variable<double>(shippingCost);
+    if (!nullToAbsent || location != null) {
+      map['location'] = Variable<String>(
+        $CachedDocsTableTable.$converterlocationn.toSql(location),
+      );
     }
     map['upload_status'] = Variable<String>(uploadStatus);
     map['upload_progress'] = Variable<double>(uploadProgress);
     return map;
   }
 
-  CachedDocsCompanion toCompanion(bool nullToAbsent) {
-    return CachedDocsCompanion(
-      id: Value(id),
-      orderId: Value(orderId),
+  CachedDocsTableCompanion toCompanion(bool nullToAbsent) {
+    return CachedDocsTableCompanion(
+      docId: Value(docId),
       imageOne: imageOne == null && nullToAbsent
           ? const Value.absent()
           : Value(imageOne),
@@ -369,35 +283,26 @@ class CachedDoc extends DataClass implements Insertable<CachedDoc> {
       videoTwo: videoTwo == null && nullToAbsent
           ? const Value.absent()
           : Value(videoTwo),
-      latitude: latitude == null && nullToAbsent
+      location: location == null && nullToAbsent
           ? const Value.absent()
-          : Value(latitude),
-      longitude: longitude == null && nullToAbsent
-          ? const Value.absent()
-          : Value(longitude),
-      shippingCost: shippingCost == null && nullToAbsent
-          ? const Value.absent()
-          : Value(shippingCost),
+          : Value(location),
       uploadStatus: Value(uploadStatus),
       uploadProgress: Value(uploadProgress),
     );
   }
 
-  factory CachedDoc.fromJson(
+  factory CachedDocEntry.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return CachedDoc(
-      id: serializer.fromJson<int>(json['id']),
-      orderId: serializer.fromJson<int>(json['orderId']),
-      imageOne: serializer.fromJson<String?>(json['imageOne']),
-      imageTwo: serializer.fromJson<String?>(json['imageTwo']),
-      videoOne: serializer.fromJson<String?>(json['videoOne']),
-      videoTwo: serializer.fromJson<String?>(json['videoTwo']),
-      latitude: serializer.fromJson<double?>(json['latitude']),
-      longitude: serializer.fromJson<double?>(json['longitude']),
-      shippingCost: serializer.fromJson<double?>(json['shippingCost']),
+    return CachedDocEntry(
+      docId: serializer.fromJson<int>(json['docId']),
+      imageOne: serializer.fromJson<DocFile?>(json['imageOne']),
+      imageTwo: serializer.fromJson<DocFile?>(json['imageTwo']),
+      videoOne: serializer.fromJson<DocFile?>(json['videoOne']),
+      videoTwo: serializer.fromJson<DocFile?>(json['videoTwo']),
+      location: serializer.fromJson<LocationDoc?>(json['location']),
       uploadStatus: serializer.fromJson<String>(json['uploadStatus']),
       uploadProgress: serializer.fromJson<double>(json['uploadProgress']),
     );
@@ -406,58 +311,44 @@ class CachedDoc extends DataClass implements Insertable<CachedDoc> {
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'orderId': serializer.toJson<int>(orderId),
-      'imageOne': serializer.toJson<String?>(imageOne),
-      'imageTwo': serializer.toJson<String?>(imageTwo),
-      'videoOne': serializer.toJson<String?>(videoOne),
-      'videoTwo': serializer.toJson<String?>(videoTwo),
-      'latitude': serializer.toJson<double?>(latitude),
-      'longitude': serializer.toJson<double?>(longitude),
-      'shippingCost': serializer.toJson<double?>(shippingCost),
+      'docId': serializer.toJson<int>(docId),
+      'imageOne': serializer.toJson<DocFile?>(imageOne),
+      'imageTwo': serializer.toJson<DocFile?>(imageTwo),
+      'videoOne': serializer.toJson<DocFile?>(videoOne),
+      'videoTwo': serializer.toJson<DocFile?>(videoTwo),
+      'location': serializer.toJson<LocationDoc?>(location),
       'uploadStatus': serializer.toJson<String>(uploadStatus),
       'uploadProgress': serializer.toJson<double>(uploadProgress),
     };
   }
 
-  CachedDoc copyWith({
-    int? id,
-    int? orderId,
-    Value<String?> imageOne = const Value.absent(),
-    Value<String?> imageTwo = const Value.absent(),
-    Value<String?> videoOne = const Value.absent(),
-    Value<String?> videoTwo = const Value.absent(),
-    Value<double?> latitude = const Value.absent(),
-    Value<double?> longitude = const Value.absent(),
-    Value<double?> shippingCost = const Value.absent(),
+  CachedDocEntry copyWith({
+    int? docId,
+    Value<DocFile?> imageOne = const Value.absent(),
+    Value<DocFile?> imageTwo = const Value.absent(),
+    Value<DocFile?> videoOne = const Value.absent(),
+    Value<DocFile?> videoTwo = const Value.absent(),
+    Value<LocationDoc?> location = const Value.absent(),
     String? uploadStatus,
     double? uploadProgress,
-  }) => CachedDoc(
-    id: id ?? this.id,
-    orderId: orderId ?? this.orderId,
+  }) => CachedDocEntry(
+    docId: docId ?? this.docId,
     imageOne: imageOne.present ? imageOne.value : this.imageOne,
     imageTwo: imageTwo.present ? imageTwo.value : this.imageTwo,
     videoOne: videoOne.present ? videoOne.value : this.videoOne,
     videoTwo: videoTwo.present ? videoTwo.value : this.videoTwo,
-    latitude: latitude.present ? latitude.value : this.latitude,
-    longitude: longitude.present ? longitude.value : this.longitude,
-    shippingCost: shippingCost.present ? shippingCost.value : this.shippingCost,
+    location: location.present ? location.value : this.location,
     uploadStatus: uploadStatus ?? this.uploadStatus,
     uploadProgress: uploadProgress ?? this.uploadProgress,
   );
-  CachedDoc copyWithCompanion(CachedDocsCompanion data) {
-    return CachedDoc(
-      id: data.id.present ? data.id.value : this.id,
-      orderId: data.orderId.present ? data.orderId.value : this.orderId,
+  CachedDocEntry copyWithCompanion(CachedDocsTableCompanion data) {
+    return CachedDocEntry(
+      docId: data.docId.present ? data.docId.value : this.docId,
       imageOne: data.imageOne.present ? data.imageOne.value : this.imageOne,
       imageTwo: data.imageTwo.present ? data.imageTwo.value : this.imageTwo,
       videoOne: data.videoOne.present ? data.videoOne.value : this.videoOne,
       videoTwo: data.videoTwo.present ? data.videoTwo.value : this.videoTwo,
-      latitude: data.latitude.present ? data.latitude.value : this.latitude,
-      longitude: data.longitude.present ? data.longitude.value : this.longitude,
-      shippingCost: data.shippingCost.present
-          ? data.shippingCost.value
-          : this.shippingCost,
+      location: data.location.present ? data.location.value : this.location,
       uploadStatus: data.uploadStatus.present
           ? data.uploadStatus.value
           : this.uploadStatus,
@@ -469,16 +360,13 @@ class CachedDoc extends DataClass implements Insertable<CachedDoc> {
 
   @override
   String toString() {
-    return (StringBuffer('CachedDoc(')
-          ..write('id: $id, ')
-          ..write('orderId: $orderId, ')
+    return (StringBuffer('CachedDocEntry(')
+          ..write('docId: $docId, ')
           ..write('imageOne: $imageOne, ')
           ..write('imageTwo: $imageTwo, ')
           ..write('videoOne: $videoOne, ')
           ..write('videoTwo: $videoTwo, ')
-          ..write('latitude: $latitude, ')
-          ..write('longitude: $longitude, ')
-          ..write('shippingCost: $shippingCost, ')
+          ..write('location: $location, ')
           ..write('uploadStatus: $uploadStatus, ')
           ..write('uploadProgress: $uploadProgress')
           ..write(')'))
@@ -487,125 +375,97 @@ class CachedDoc extends DataClass implements Insertable<CachedDoc> {
 
   @override
   int get hashCode => Object.hash(
-    id,
-    orderId,
+    docId,
     imageOne,
     imageTwo,
     videoOne,
     videoTwo,
-    latitude,
-    longitude,
-    shippingCost,
+    location,
     uploadStatus,
     uploadProgress,
   );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is CachedDoc &&
-          other.id == this.id &&
-          other.orderId == this.orderId &&
+      (other is CachedDocEntry &&
+          other.docId == this.docId &&
           other.imageOne == this.imageOne &&
           other.imageTwo == this.imageTwo &&
           other.videoOne == this.videoOne &&
           other.videoTwo == this.videoTwo &&
-          other.latitude == this.latitude &&
-          other.longitude == this.longitude &&
-          other.shippingCost == this.shippingCost &&
+          other.location == this.location &&
           other.uploadStatus == this.uploadStatus &&
           other.uploadProgress == this.uploadProgress);
 }
 
-class CachedDocsCompanion extends UpdateCompanion<CachedDoc> {
-  final Value<int> id;
-  final Value<int> orderId;
-  final Value<String?> imageOne;
-  final Value<String?> imageTwo;
-  final Value<String?> videoOne;
-  final Value<String?> videoTwo;
-  final Value<double?> latitude;
-  final Value<double?> longitude;
-  final Value<double?> shippingCost;
+class CachedDocsTableCompanion extends UpdateCompanion<CachedDocEntry> {
+  final Value<int> docId;
+  final Value<DocFile?> imageOne;
+  final Value<DocFile?> imageTwo;
+  final Value<DocFile?> videoOne;
+  final Value<DocFile?> videoTwo;
+  final Value<LocationDoc?> location;
   final Value<String> uploadStatus;
   final Value<double> uploadProgress;
-  const CachedDocsCompanion({
-    this.id = const Value.absent(),
-    this.orderId = const Value.absent(),
+  const CachedDocsTableCompanion({
+    this.docId = const Value.absent(),
     this.imageOne = const Value.absent(),
     this.imageTwo = const Value.absent(),
     this.videoOne = const Value.absent(),
     this.videoTwo = const Value.absent(),
-    this.latitude = const Value.absent(),
-    this.longitude = const Value.absent(),
-    this.shippingCost = const Value.absent(),
+    this.location = const Value.absent(),
     this.uploadStatus = const Value.absent(),
     this.uploadProgress = const Value.absent(),
   });
-  CachedDocsCompanion.insert({
-    this.id = const Value.absent(),
-    required int orderId,
+  CachedDocsTableCompanion.insert({
+    this.docId = const Value.absent(),
     this.imageOne = const Value.absent(),
     this.imageTwo = const Value.absent(),
     this.videoOne = const Value.absent(),
     this.videoTwo = const Value.absent(),
-    this.latitude = const Value.absent(),
-    this.longitude = const Value.absent(),
-    this.shippingCost = const Value.absent(),
-    required String uploadStatus,
+    this.location = const Value.absent(),
+    this.uploadStatus = const Value.absent(),
     this.uploadProgress = const Value.absent(),
-  }) : orderId = Value(orderId),
-       uploadStatus = Value(uploadStatus);
-  static Insertable<CachedDoc> custom({
-    Expression<int>? id,
-    Expression<int>? orderId,
+  });
+  static Insertable<CachedDocEntry> custom({
+    Expression<int>? docId,
     Expression<String>? imageOne,
     Expression<String>? imageTwo,
     Expression<String>? videoOne,
     Expression<String>? videoTwo,
-    Expression<double>? latitude,
-    Expression<double>? longitude,
-    Expression<double>? shippingCost,
+    Expression<String>? location,
     Expression<String>? uploadStatus,
     Expression<double>? uploadProgress,
   }) {
     return RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (orderId != null) 'order_id': orderId,
+      if (docId != null) 'doc_id': docId,
       if (imageOne != null) 'image_one': imageOne,
       if (imageTwo != null) 'image_two': imageTwo,
       if (videoOne != null) 'video_one': videoOne,
       if (videoTwo != null) 'video_two': videoTwo,
-      if (latitude != null) 'latitude': latitude,
-      if (longitude != null) 'longitude': longitude,
-      if (shippingCost != null) 'shipping_cost': shippingCost,
+      if (location != null) 'location': location,
       if (uploadStatus != null) 'upload_status': uploadStatus,
       if (uploadProgress != null) 'upload_progress': uploadProgress,
     });
   }
 
-  CachedDocsCompanion copyWith({
-    Value<int>? id,
-    Value<int>? orderId,
-    Value<String?>? imageOne,
-    Value<String?>? imageTwo,
-    Value<String?>? videoOne,
-    Value<String?>? videoTwo,
-    Value<double?>? latitude,
-    Value<double?>? longitude,
-    Value<double?>? shippingCost,
+  CachedDocsTableCompanion copyWith({
+    Value<int>? docId,
+    Value<DocFile?>? imageOne,
+    Value<DocFile?>? imageTwo,
+    Value<DocFile?>? videoOne,
+    Value<DocFile?>? videoTwo,
+    Value<LocationDoc?>? location,
     Value<String>? uploadStatus,
     Value<double>? uploadProgress,
   }) {
-    return CachedDocsCompanion(
-      id: id ?? this.id,
-      orderId: orderId ?? this.orderId,
+    return CachedDocsTableCompanion(
+      docId: docId ?? this.docId,
       imageOne: imageOne ?? this.imageOne,
       imageTwo: imageTwo ?? this.imageTwo,
       videoOne: videoOne ?? this.videoOne,
       videoTwo: videoTwo ?? this.videoTwo,
-      latitude: latitude ?? this.latitude,
-      longitude: longitude ?? this.longitude,
-      shippingCost: shippingCost ?? this.shippingCost,
+      location: location ?? this.location,
       uploadStatus: uploadStatus ?? this.uploadStatus,
       uploadProgress: uploadProgress ?? this.uploadProgress,
     );
@@ -614,32 +474,33 @@ class CachedDocsCompanion extends UpdateCompanion<CachedDoc> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<int>(id.value);
-    }
-    if (orderId.present) {
-      map['order_id'] = Variable<int>(orderId.value);
+    if (docId.present) {
+      map['doc_id'] = Variable<int>(docId.value);
     }
     if (imageOne.present) {
-      map['image_one'] = Variable<String>(imageOne.value);
+      map['image_one'] = Variable<String>(
+        $CachedDocsTableTable.$converterimageOnen.toSql(imageOne.value),
+      );
     }
     if (imageTwo.present) {
-      map['image_two'] = Variable<String>(imageTwo.value);
+      map['image_two'] = Variable<String>(
+        $CachedDocsTableTable.$converterimageTwon.toSql(imageTwo.value),
+      );
     }
     if (videoOne.present) {
-      map['video_one'] = Variable<String>(videoOne.value);
+      map['video_one'] = Variable<String>(
+        $CachedDocsTableTable.$convertervideoOnen.toSql(videoOne.value),
+      );
     }
     if (videoTwo.present) {
-      map['video_two'] = Variable<String>(videoTwo.value);
+      map['video_two'] = Variable<String>(
+        $CachedDocsTableTable.$convertervideoTwon.toSql(videoTwo.value),
+      );
     }
-    if (latitude.present) {
-      map['latitude'] = Variable<double>(latitude.value);
-    }
-    if (longitude.present) {
-      map['longitude'] = Variable<double>(longitude.value);
-    }
-    if (shippingCost.present) {
-      map['shipping_cost'] = Variable<double>(shippingCost.value);
+    if (location.present) {
+      map['location'] = Variable<String>(
+        $CachedDocsTableTable.$converterlocationn.toSql(location.value),
+      );
     }
     if (uploadStatus.present) {
       map['upload_status'] = Variable<String>(uploadStatus.value);
@@ -652,16 +513,13 @@ class CachedDocsCompanion extends UpdateCompanion<CachedDoc> {
 
   @override
   String toString() {
-    return (StringBuffer('CachedDocsCompanion(')
-          ..write('id: $id, ')
-          ..write('orderId: $orderId, ')
+    return (StringBuffer('CachedDocsTableCompanion(')
+          ..write('docId: $docId, ')
           ..write('imageOne: $imageOne, ')
           ..write('imageTwo: $imageTwo, ')
           ..write('videoOne: $videoOne, ')
           ..write('videoTwo: $videoTwo, ')
-          ..write('latitude: $latitude, ')
-          ..write('longitude: $longitude, ')
-          ..write('shippingCost: $shippingCost, ')
+          ..write('location: $location, ')
           ..write('uploadStatus: $uploadStatus, ')
           ..write('uploadProgress: $uploadProgress')
           ..write(')'))
@@ -672,95 +530,81 @@ class CachedDocsCompanion extends UpdateCompanion<CachedDoc> {
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
-  late final $CachedDocsTable cachedDocs = $CachedDocsTable(this);
+  late final $CachedDocsTableTable cachedDocsTable = $CachedDocsTableTable(
+    this,
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [cachedDocs];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [cachedDocsTable];
 }
 
-typedef $$CachedDocsTableCreateCompanionBuilder =
-    CachedDocsCompanion Function({
-      Value<int> id,
-      required int orderId,
-      Value<String?> imageOne,
-      Value<String?> imageTwo,
-      Value<String?> videoOne,
-      Value<String?> videoTwo,
-      Value<double?> latitude,
-      Value<double?> longitude,
-      Value<double?> shippingCost,
-      required String uploadStatus,
+typedef $$CachedDocsTableTableCreateCompanionBuilder =
+    CachedDocsTableCompanion Function({
+      Value<int> docId,
+      Value<DocFile?> imageOne,
+      Value<DocFile?> imageTwo,
+      Value<DocFile?> videoOne,
+      Value<DocFile?> videoTwo,
+      Value<LocationDoc?> location,
+      Value<String> uploadStatus,
       Value<double> uploadProgress,
     });
-typedef $$CachedDocsTableUpdateCompanionBuilder =
-    CachedDocsCompanion Function({
-      Value<int> id,
-      Value<int> orderId,
-      Value<String?> imageOne,
-      Value<String?> imageTwo,
-      Value<String?> videoOne,
-      Value<String?> videoTwo,
-      Value<double?> latitude,
-      Value<double?> longitude,
-      Value<double?> shippingCost,
+typedef $$CachedDocsTableTableUpdateCompanionBuilder =
+    CachedDocsTableCompanion Function({
+      Value<int> docId,
+      Value<DocFile?> imageOne,
+      Value<DocFile?> imageTwo,
+      Value<DocFile?> videoOne,
+      Value<DocFile?> videoTwo,
+      Value<LocationDoc?> location,
       Value<String> uploadStatus,
       Value<double> uploadProgress,
     });
 
-class $$CachedDocsTableFilterComposer
-    extends Composer<_$AppDatabase, $CachedDocsTable> {
-  $$CachedDocsTableFilterComposer({
+class $$CachedDocsTableTableFilterComposer
+    extends Composer<_$AppDatabase, $CachedDocsTableTable> {
+  $$CachedDocsTableTableFilterComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
+  ColumnFilters<int> get docId => $composableBuilder(
+    column: $table.docId,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<int> get orderId => $composableBuilder(
-    column: $table.orderId,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnWithTypeConverterFilters<DocFile?, DocFile, String> get imageOne =>
+      $composableBuilder(
+        column: $table.imageOne,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
 
-  ColumnFilters<String> get imageOne => $composableBuilder(
-    column: $table.imageOne,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnWithTypeConverterFilters<DocFile?, DocFile, String> get imageTwo =>
+      $composableBuilder(
+        column: $table.imageTwo,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
 
-  ColumnFilters<String> get imageTwo => $composableBuilder(
-    column: $table.imageTwo,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnWithTypeConverterFilters<DocFile?, DocFile, String> get videoOne =>
+      $composableBuilder(
+        column: $table.videoOne,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
 
-  ColumnFilters<String> get videoOne => $composableBuilder(
-    column: $table.videoOne,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnWithTypeConverterFilters<DocFile?, DocFile, String> get videoTwo =>
+      $composableBuilder(
+        column: $table.videoTwo,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
 
-  ColumnFilters<String> get videoTwo => $composableBuilder(
-    column: $table.videoTwo,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<double> get latitude => $composableBuilder(
-    column: $table.latitude,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<double> get longitude => $composableBuilder(
-    column: $table.longitude,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<double> get shippingCost => $composableBuilder(
-    column: $table.shippingCost,
-    builder: (column) => ColumnFilters(column),
+  ColumnWithTypeConverterFilters<LocationDoc?, LocationDoc, String>
+  get location => $composableBuilder(
+    column: $table.location,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
   );
 
   ColumnFilters<String> get uploadStatus => $composableBuilder(
@@ -774,22 +618,17 @@ class $$CachedDocsTableFilterComposer
   );
 }
 
-class $$CachedDocsTableOrderingComposer
-    extends Composer<_$AppDatabase, $CachedDocsTable> {
-  $$CachedDocsTableOrderingComposer({
+class $$CachedDocsTableTableOrderingComposer
+    extends Composer<_$AppDatabase, $CachedDocsTableTable> {
+  $$CachedDocsTableTableOrderingComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get orderId => $composableBuilder(
-    column: $table.orderId,
+  ColumnOrderings<int> get docId => $composableBuilder(
+    column: $table.docId,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -813,18 +652,8 @@ class $$CachedDocsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<double> get latitude => $composableBuilder(
-    column: $table.latitude,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<double> get longitude => $composableBuilder(
-    column: $table.longitude,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<double> get shippingCost => $composableBuilder(
-    column: $table.shippingCost,
+  ColumnOrderings<String> get location => $composableBuilder(
+    column: $table.location,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -839,43 +668,32 @@ class $$CachedDocsTableOrderingComposer
   );
 }
 
-class $$CachedDocsTableAnnotationComposer
-    extends Composer<_$AppDatabase, $CachedDocsTable> {
-  $$CachedDocsTableAnnotationComposer({
+class $$CachedDocsTableTableAnnotationComposer
+    extends Composer<_$AppDatabase, $CachedDocsTableTable> {
+  $$CachedDocsTableTableAnnotationComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  GeneratedColumn<int> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
+  GeneratedColumn<int> get docId =>
+      $composableBuilder(column: $table.docId, builder: (column) => column);
 
-  GeneratedColumn<int> get orderId =>
-      $composableBuilder(column: $table.orderId, builder: (column) => column);
-
-  GeneratedColumn<String> get imageOne =>
+  GeneratedColumnWithTypeConverter<DocFile?, String> get imageOne =>
       $composableBuilder(column: $table.imageOne, builder: (column) => column);
 
-  GeneratedColumn<String> get imageTwo =>
+  GeneratedColumnWithTypeConverter<DocFile?, String> get imageTwo =>
       $composableBuilder(column: $table.imageTwo, builder: (column) => column);
 
-  GeneratedColumn<String> get videoOne =>
+  GeneratedColumnWithTypeConverter<DocFile?, String> get videoOne =>
       $composableBuilder(column: $table.videoOne, builder: (column) => column);
 
-  GeneratedColumn<String> get videoTwo =>
+  GeneratedColumnWithTypeConverter<DocFile?, String> get videoTwo =>
       $composableBuilder(column: $table.videoTwo, builder: (column) => column);
 
-  GeneratedColumn<double> get latitude =>
-      $composableBuilder(column: $table.latitude, builder: (column) => column);
-
-  GeneratedColumn<double> get longitude =>
-      $composableBuilder(column: $table.longitude, builder: (column) => column);
-
-  GeneratedColumn<double> get shippingCost => $composableBuilder(
-    column: $table.shippingCost,
-    builder: (column) => column,
-  );
+  GeneratedColumnWithTypeConverter<LocationDoc?, String> get location =>
+      $composableBuilder(column: $table.location, builder: (column) => column);
 
   GeneratedColumn<String> get uploadStatus => $composableBuilder(
     column: $table.uploadStatus,
@@ -888,84 +706,78 @@ class $$CachedDocsTableAnnotationComposer
   );
 }
 
-class $$CachedDocsTableTableManager
+class $$CachedDocsTableTableTableManager
     extends
         RootTableManager<
           _$AppDatabase,
-          $CachedDocsTable,
-          CachedDoc,
-          $$CachedDocsTableFilterComposer,
-          $$CachedDocsTableOrderingComposer,
-          $$CachedDocsTableAnnotationComposer,
-          $$CachedDocsTableCreateCompanionBuilder,
-          $$CachedDocsTableUpdateCompanionBuilder,
+          $CachedDocsTableTable,
+          CachedDocEntry,
+          $$CachedDocsTableTableFilterComposer,
+          $$CachedDocsTableTableOrderingComposer,
+          $$CachedDocsTableTableAnnotationComposer,
+          $$CachedDocsTableTableCreateCompanionBuilder,
+          $$CachedDocsTableTableUpdateCompanionBuilder,
           (
-            CachedDoc,
-            BaseReferences<_$AppDatabase, $CachedDocsTable, CachedDoc>,
+            CachedDocEntry,
+            BaseReferences<
+              _$AppDatabase,
+              $CachedDocsTableTable,
+              CachedDocEntry
+            >,
           ),
-          CachedDoc,
+          CachedDocEntry,
           PrefetchHooks Function()
         > {
-  $$CachedDocsTableTableManager(_$AppDatabase db, $CachedDocsTable table)
-    : super(
+  $$CachedDocsTableTableTableManager(
+    _$AppDatabase db,
+    $CachedDocsTableTable table,
+  ) : super(
         TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
-              $$CachedDocsTableFilterComposer($db: db, $table: table),
+              $$CachedDocsTableTableFilterComposer($db: db, $table: table),
           createOrderingComposer: () =>
-              $$CachedDocsTableOrderingComposer($db: db, $table: table),
+              $$CachedDocsTableTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
-              $$CachedDocsTableAnnotationComposer($db: db, $table: table),
+              $$CachedDocsTableTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
-                Value<int> id = const Value.absent(),
-                Value<int> orderId = const Value.absent(),
-                Value<String?> imageOne = const Value.absent(),
-                Value<String?> imageTwo = const Value.absent(),
-                Value<String?> videoOne = const Value.absent(),
-                Value<String?> videoTwo = const Value.absent(),
-                Value<double?> latitude = const Value.absent(),
-                Value<double?> longitude = const Value.absent(),
-                Value<double?> shippingCost = const Value.absent(),
+                Value<int> docId = const Value.absent(),
+                Value<DocFile?> imageOne = const Value.absent(),
+                Value<DocFile?> imageTwo = const Value.absent(),
+                Value<DocFile?> videoOne = const Value.absent(),
+                Value<DocFile?> videoTwo = const Value.absent(),
+                Value<LocationDoc?> location = const Value.absent(),
                 Value<String> uploadStatus = const Value.absent(),
                 Value<double> uploadProgress = const Value.absent(),
-              }) => CachedDocsCompanion(
-                id: id,
-                orderId: orderId,
+              }) => CachedDocsTableCompanion(
+                docId: docId,
                 imageOne: imageOne,
                 imageTwo: imageTwo,
                 videoOne: videoOne,
                 videoTwo: videoTwo,
-                latitude: latitude,
-                longitude: longitude,
-                shippingCost: shippingCost,
+                location: location,
                 uploadStatus: uploadStatus,
                 uploadProgress: uploadProgress,
               ),
           createCompanionCallback:
               ({
-                Value<int> id = const Value.absent(),
-                required int orderId,
-                Value<String?> imageOne = const Value.absent(),
-                Value<String?> imageTwo = const Value.absent(),
-                Value<String?> videoOne = const Value.absent(),
-                Value<String?> videoTwo = const Value.absent(),
-                Value<double?> latitude = const Value.absent(),
-                Value<double?> longitude = const Value.absent(),
-                Value<double?> shippingCost = const Value.absent(),
-                required String uploadStatus,
+                Value<int> docId = const Value.absent(),
+                Value<DocFile?> imageOne = const Value.absent(),
+                Value<DocFile?> imageTwo = const Value.absent(),
+                Value<DocFile?> videoOne = const Value.absent(),
+                Value<DocFile?> videoTwo = const Value.absent(),
+                Value<LocationDoc?> location = const Value.absent(),
+                Value<String> uploadStatus = const Value.absent(),
                 Value<double> uploadProgress = const Value.absent(),
-              }) => CachedDocsCompanion.insert(
-                id: id,
-                orderId: orderId,
+              }) => CachedDocsTableCompanion.insert(
+                docId: docId,
                 imageOne: imageOne,
                 imageTwo: imageTwo,
                 videoOne: videoOne,
                 videoTwo: videoTwo,
-                latitude: latitude,
-                longitude: longitude,
-                shippingCost: shippingCost,
+                location: location,
                 uploadStatus: uploadStatus,
                 uploadProgress: uploadProgress,
               ),
@@ -977,24 +789,27 @@ class $$CachedDocsTableTableManager
       );
 }
 
-typedef $$CachedDocsTableProcessedTableManager =
+typedef $$CachedDocsTableTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
-      $CachedDocsTable,
-      CachedDoc,
-      $$CachedDocsTableFilterComposer,
-      $$CachedDocsTableOrderingComposer,
-      $$CachedDocsTableAnnotationComposer,
-      $$CachedDocsTableCreateCompanionBuilder,
-      $$CachedDocsTableUpdateCompanionBuilder,
-      (CachedDoc, BaseReferences<_$AppDatabase, $CachedDocsTable, CachedDoc>),
-      CachedDoc,
+      $CachedDocsTableTable,
+      CachedDocEntry,
+      $$CachedDocsTableTableFilterComposer,
+      $$CachedDocsTableTableOrderingComposer,
+      $$CachedDocsTableTableAnnotationComposer,
+      $$CachedDocsTableTableCreateCompanionBuilder,
+      $$CachedDocsTableTableUpdateCompanionBuilder,
+      (
+        CachedDocEntry,
+        BaseReferences<_$AppDatabase, $CachedDocsTableTable, CachedDocEntry>,
+      ),
+      CachedDocEntry,
       PrefetchHooks Function()
     >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
   $AppDatabaseManager(this._db);
-  $$CachedDocsTableTableManager get cachedDocs =>
-      $$CachedDocsTableTableManager(_db, _db.cachedDocs);
+  $$CachedDocsTableTableTableManager get cachedDocsTable =>
+      $$CachedDocsTableTableTableManager(_db, _db.cachedDocsTable);
 }

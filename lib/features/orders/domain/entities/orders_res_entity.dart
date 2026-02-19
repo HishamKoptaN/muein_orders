@@ -1,33 +1,41 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../../core/entities/meta_entity.dart';
+import '../../../docs/domain/entities/docs_res_entity.dart';
 
-part 'orders_res_entity.freezed.dart';
-part 'orders_res_entity.g.dart';
-
-@freezed
-abstract class OrdersResEntity with _$OrdersResEntity {
-  const factory OrdersResEntity({
-    required List<OrderEntity>? orders,
-    required MetaEntity? meta,
-  }) = _OrdersResEntity;
-  factory OrdersResEntity.fromJson(Map<String, dynamic> json) =>
-      _$OrdersResEntityFromJson(json);
+class OrdersResEntity {
+  final List<OrderEntity>? orders;
+  final MetaEntity? meta;
+  OrdersResEntity({this.orders, this.meta});
+  OrdersResEntity copyWith({List<OrderEntity>? orders, MetaEntity? meta}) =>
+      OrdersResEntity(orders: orders ?? this.orders, meta: meta ?? this.meta);
 }
 
-@freezed
-abstract class OrderEntity with _$OrderEntity {
-  const factory OrderEntity({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'printed_name') String? printedName,
-    @JsonKey(name: 'salla_order_id') String? sallaOrderId,
-    @JsonKey(name: 'is_quran_photographed') bool? isQuranPhotographed,
-    @JsonKey(name: 'is_distribution_photographed')
-    bool? isDistributionPhotographed,
-  }) = _OrderEntity;
+class OrderEntity {
+  final int? id;
+  final int? sallaOrderId;
+  final int? sallaProductId;
+  final String? printedName;
+  final List<DocEntity>? docs;
+  OrderEntity({
+    this.id,
+    this.sallaOrderId,
+    this.sallaProductId,
+    this.printedName,
+    this.docs,
+  });
 
-  factory OrderEntity.fromJson(Map<String, dynamic> json) =>
-      _$OrderEntityFromJson(json);
+  OrderEntity copyWith({
+    int? id,
+    int? sallaOrderId,
+    int? sallaProductId,
+    String? printedName,
+    List<DocEntity>? docs,
+  }) => OrderEntity(
+    id: id ?? this.id,
+    sallaOrderId: sallaOrderId ?? this.sallaOrderId,
+    sallaProductId: sallaProductId ?? this.sallaProductId,
+    printedName: printedName ?? this.printedName,
+    docs: docs ?? this.docs,
+  );
 }
 
 enum DocUploadStatus { notStarted, uploading, success, failed }

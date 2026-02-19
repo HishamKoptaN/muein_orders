@@ -4,16 +4,16 @@ part 'notification_entity.freezed.dart';
 part 'notification_entity.g.dart';
 
 @freezed
-abstract class AppNotification with _$AppNotification {
-  const factory AppNotification({
+abstract class NotificationEntity with _$NotificationEntity {
+  const factory NotificationEntity({
     required String id,
     required String title,
     required String body,
-    required DateTime createdAt,
+    required String createdAt,
     String? imageUrl,
     @Default(false) bool read,
-  }) = _AppNotification;
+  }) = _NotificationEntity;
 
-  factory AppNotification.fromJson(Map<String, dynamic> json) =>
-      _$AppNotificationFromJson(json);
+  factory NotificationEntity.fromJson(Map<String, dynamic> json) =>
+      _$NotificationEntityFromJson(json);
 }

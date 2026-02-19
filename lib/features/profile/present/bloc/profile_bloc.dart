@@ -8,7 +8,7 @@ import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
-import '../../domain/use_cases/use_cases.dart';
+import '../../domain/use_cases/profile_use_cases.dart';
 
 part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';

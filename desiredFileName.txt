@@ -1,9 +1,5 @@
 {
-  "ar": [
-    "test_key"
-  ],
-
-  "fr": [
-    "test_key"
+  "yo": [
+    "show_documentation"
   ]
 }

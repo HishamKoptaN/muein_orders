@@ -20,9 +20,10 @@ class SubCategoryEntity {
 
   SubCategoryEntity({this.id, this.name, this.image});
 
-  SubCategoryEntity copyWith({int? id, String? name, String? image}) => SubCategoryEntity(
-    id: id ?? this.id,
-    name: name ?? this.name,
-    image: image ?? this.image,
-  );
+  SubCategoryEntity copyWith({int? id, String? name, String? image}) =>
+      SubCategoryEntity(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        image: image ?? this.image,
+      );
 }

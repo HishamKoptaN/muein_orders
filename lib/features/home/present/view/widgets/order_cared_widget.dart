@@ -15,7 +15,11 @@ class OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        NavigationService.push(context, OrdersView.routeName, extra: stat.id);
+        NavigationService.push(
+          context,
+          OrderDocsView.routeName,
+          extra: stat.id,
+        );
       },
       child: Container(
         decoration: BoxDecoration(

@@ -113,1192 +113,1192 @@ abstract class AppLocalizations {
   /// No description provided for @upload_videos.
   ///
   /// In en, this message translates to:
-  /// **'Download videos'**
+  /// **'تحميل مقاطع الفيديو'**
   String get upload_videos;
 
   /// No description provided for @welcometoMueinOrders.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Mobin Talabat'**
+  /// **'مرحباً بكم في طلبات موبين'**
   String get welcometoMueinOrders;
 
   /// No description provided for @welcome.
   ///
   /// In en, this message translates to:
-  /// **'Welcome'**
+  /// **'مرحباً'**
   String get welcome;
 
   /// No description provided for @indevedual.
   ///
   /// In en, this message translates to:
-  /// **'individual'**
+  /// **'فردي'**
   String get indevedual;
 
   /// No description provided for @instructions.
   ///
   /// In en, this message translates to:
-  /// **'Instructions'**
+  /// **'التعليمات'**
   String get instructions;
 
   /// No description provided for @indveduals.
   ///
   /// In en, this message translates to:
-  /// **'Vocabulary'**
+  /// **'المفردات'**
   String get indveduals;
 
   /// No description provided for @wearehappytohaveyoujoinourstore.
   ///
   /// In en, this message translates to:
-  /// **'We are glad to have you join our store.'**
+  /// **'نحن سعداء بانضمامك لمتجرنا.'**
   String get wearehappytohaveyoujoinourstore;
 
   /// No description provided for @gettoknowtheapplicationinterface.
   ///
   /// In en, this message translates to:
-  /// **'Get to know the application interface'**
+  /// **'تعرف على واجهة التطبيق'**
   String get gettoknowtheapplicationinterface;
 
   /// No description provided for @hereyouwillfindtasksrequestsalertsandfilters.
   ///
   /// In en, this message translates to:
-  /// **'Here you\'\'ll find tasks, requests, alerts, and filters.'**
+  /// **'ستجد هنا المهام والطلبات والتنبيهات والمرشحات.'**
   String get hereyouwillfindtasksrequestsalertsandfilters;
 
   /// No description provided for @documentationWithPhotosAndVideos.
   ///
   /// In en, this message translates to:
-  /// **'Documentation with photos and videos'**
+  /// **'التوثيق بالصور والفيديوهات'**
   String get documentationWithPhotosAndVideos;
 
   /// No description provided for @makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending.
   ///
   /// In en, this message translates to:
-  /// **'Ensure the clarity of the images, the number of copies of the Holy Quran, and the cost of the order before sending.'**
+  /// **'تأكد من وضوح الصور وعدد نسخ القرآن الكريم وتكاليف الطلب قبل الإرسال.'**
   String
   get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending;
 
   /// No description provided for @we_are_happy_to_have_you_join_our_store.
   ///
   /// In en, this message translates to:
-  /// **'We are happy to have you join our store.'**
+  /// **'سعيدين بانضمامك إلى متجر مبين'**
   String get we_are_happy_to_have_you_join_our_store;
 
   /// No description provided for @get_to_know_the_application_interface.
   ///
   /// In en, this message translates to:
-  /// **'Get to know the application interface'**
+  /// **'تعرف على واجهة التطبيق'**
   String get get_to_know_the_application_interface;
 
   /// No description provided for @here_you_will_find_tasks_requests_alerts_and_filters.
   ///
   /// In en, this message translates to:
-  /// **'Here you will find tasks, requests, alerts, and filters.'**
+  /// **'ستجد هنا المهام والطلبات والتنبيهات والمرشحات'**
   String get here_you_will_find_tasks_requests_alerts_and_filters;
 
   /// No description provided for @documentation_with_photos_and_videos.
   ///
   /// In en, this message translates to:
-  /// **'Documentation with photos and videos'**
+  /// **'التوثيق بالصور والفيديوهات'**
   String get documentation_with_photos_and_videos;
 
   /// No description provided for @send.
   ///
   /// In en, this message translates to:
-  /// **'send'**
+  /// **'أرسال'**
   String get send;
 
   /// No description provided for @uploadingDocument.
   ///
   /// In en, this message translates to:
-  /// **'Upload documentation'**
+  /// **'رفع التوثيق'**
   String get uploadingDocument;
 
   /// No description provided for @documentationIsBeingUploaded.
   ///
   /// In en, this message translates to:
-  /// **'Documentation is being uploaded'**
+  /// **'جاري رفع التوثيق'**
   String get documentationIsBeingUploaded;
 
   /// No description provided for @phone.
   ///
   /// In en, this message translates to:
-  /// **'Phone number'**
+  /// **'رقم التليفون'**
   String get phone;
 
   /// No description provided for @done.
   ///
   /// In en, this message translates to:
-  /// **'finished'**
+  /// **'منتهي'**
   String get done;
 
   /// No description provided for @orders.
   ///
   /// In en, this message translates to:
-  /// **'Requests'**
+  /// **'طلبات'**
   String get orders;
 
   /// No description provided for @package.
   ///
   /// In en, this message translates to:
-  /// **'pack'**
+  /// **'حزمة'**
   String get package;
 
   /// No description provided for @there_are_no_results_for_this_search.
   ///
   /// In en, this message translates to:
-  /// **'No results found for this search'**
+  /// **'لم يتم العثور على نتائج لهذا البحث'**
   String get there_are_no_results_for_this_search;
 
   /// No description provided for @documentations.
   ///
   /// In en, this message translates to:
-  /// **'Documents'**
+  /// **'الوثائق'**
   String get documentations;
 
   /// No description provided for @show_documentations.
   ///
   /// In en, this message translates to:
-  /// **'View documents'**
+  /// **'عرض الوثائق'**
   String get show_documentations;
+
+  /// No description provided for @show_documentation.
+  ///
+  /// In en, this message translates to:
+  /// **'عرض التوثيق'**
+  String get show_documentation;
 
   /// No description provided for @execution_number.
   ///
   /// In en, this message translates to:
-  /// **'Execution number'**
+  /// **'رقم التنفيذ'**
   String get execution_number;
 
   /// No description provided for @add_documentation.
   ///
   /// In en, this message translates to:
-  /// **'Add documents'**
+  /// **'إضافة الوثائق'**
   String get add_documentation;
 
   /// No description provided for @location.
   ///
   /// In en, this message translates to:
-  /// **'location'**
+  /// **'موقع'**
   String get location;
 
   /// No description provided for @selectLocation.
   ///
   /// In en, this message translates to:
-  /// **'Locate'**
+  /// **'تحديد الموقع'**
   String get selectLocation;
 
   /// No description provided for @select.
   ///
   /// In en, this message translates to:
-  /// **'to set'**
+  /// **'تحديد'**
   String get select;
 
   /// No description provided for @count.
   ///
   /// In en, this message translates to:
-  /// **'number'**
+  /// **'عدد'**
   String get count;
 
   /// No description provided for @registerAnAccount.
   ///
   /// In en, this message translates to:
-  /// **'Register an account'**
+  /// **'تسجيل حساب'**
   String get registerAnAccount;
 
   /// No description provided for @noMoreDocs.
   ///
   /// In en, this message translates to:
-  /// **'There are no other documentations.'**
+  /// **'لا يوجد توثيقات أخرى.'**
   String get noMoreDocs;
 
   /// No description provided for @kinia_name.
   ///
   /// In en, this message translates to:
-  /// **'Kenya'**
+  /// **'كينيا'**
   String get kinia_name;
 
   /// No description provided for @smoal_name.
   ///
   /// In en, this message translates to:
-  /// **'Somalia'**
+  /// **'الصومال'**
   String get smoal_name;
 
   /// No description provided for @tanzania.
   ///
   /// In en, this message translates to:
-  /// **'Tanzania'**
+  /// **'تنزانيا'**
   String get tanzania;
 
   /// No description provided for @home_title.
   ///
   /// In en, this message translates to:
-  /// **'house'**
+  /// **'بيت'**
   String get home_title;
 
   /// No description provided for @main.
   ///
   /// In en, this message translates to:
-  /// **'Home'**
+  /// **'الرئيسية'**
   String get main;
 
   /// No description provided for @add_order.
   ///
   /// In en, this message translates to:
-  /// **'Add a request'**
+  /// **'إضافة طلب'**
   String get add_order;
 
   /// No description provided for @order_place.
   ///
   /// In en, this message translates to:
-  /// **'place'**
+  /// **'مكان'**
   String get order_place;
 
   /// No description provided for @order_id.
   ///
   /// In en, this message translates to:
-  /// **'Order ID'**
+  /// **'معرف الطلب'**
   String get order_id;
 
   /// No description provided for @order_number.
   ///
   /// In en, this message translates to:
-  /// **'order number'**
+  /// **'رقم الطلب'**
   String get order_number;
 
   /// No description provided for @client_id.
   ///
   /// In en, this message translates to:
-  /// **'Customer ID'**
+  /// **'معرف العميل'**
   String get client_id;
 
   /// No description provided for @enter_order_id.
   ///
   /// In en, this message translates to:
-  /// **'Enter order ID'**
+  /// **'أدخل معرف الطلب'**
   String get enter_order_id;
 
   /// No description provided for @place_hint.
   ///
   /// In en, this message translates to:
-  /// **'Village/Mosque/School'**
+  /// **'قرية/مسجد/مدرسة'**
   String get place_hint;
 
   /// No description provided for @add_video.
   ///
   /// In en, this message translates to:
-  /// **'Add video'**
+  /// **'إضافة فيديو'**
   String get add_video;
 
   /// No description provided for @add_picure.
   ///
   /// In en, this message translates to:
-  /// **'Add a photo'**
+  /// **'أضف صورة'**
   String get add_picure;
 
   /// No description provided for @add.
   ///
   /// In en, this message translates to:
-  /// **'addition'**
+  /// **'اضافة'**
   String get add;
 
   /// No description provided for @loading.
   ///
   /// In en, this message translates to:
-  /// **'download...'**
+  /// **'تحميل...'**
   String get loading;
 
   /// No description provided for @changeLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Change language'**
+  /// **'تغيير اللغة'**
   String get changeLanguage;
 
   /// No description provided for @login_text.
   ///
   /// In en, this message translates to:
-  /// **'Log in'**
+  /// **'تسجيل الدخول'**
   String get login_text;
 
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
-  /// **'Log in'**
+  /// **'تسجيل الدخول'**
   String get login;
 
   /// No description provided for @emailHint.
   ///
   /// In en, this message translates to:
-  /// **'Email'**
+  /// **'البريد إلكتروني'**
   String get emailHint;
 
   /// No description provided for @emailRequired.
   ///
   /// In en, this message translates to:
-  /// **'Email required'**
+  /// **'البريد الإلكتروني مطلوب'**
   String get emailRequired;
 
   /// No description provided for @phoneNumberHint.
   ///
   /// In en, this message translates to:
-  /// **'phone number'**
+  /// **'رقم الهاتف'**
   String get phoneNumberHint;
 
   /// No description provided for @phoneNumber.
   ///
   /// In en, this message translates to:
-  /// **'phone number'**
+  /// **'رقم الهاتف'**
   String get phoneNumber;
 
   /// No description provided for @countryHint.
   ///
   /// In en, this message translates to:
-  /// **'nation'**
+  /// **'دولة'**
   String get countryHint;
 
   /// No description provided for @confirmPasswordHint.
   ///
   /// In en, this message translates to:
-  /// **'Confirm password'**
+  /// **'تأكيد كلمة المرور'**
   String get confirmPasswordHint;
 
   /// No description provided for @confirmPassword.
   ///
   /// In en, this message translates to:
-  /// **'Confirm password'**
+  /// **'تأكيد كلمة المرور'**
   String get confirmPassword;
 
   /// No description provided for @remember_me.
   ///
   /// In en, this message translates to:
-  /// **'Remember me'**
+  /// **'تذكرنى'**
   String get remember_me;
 
   /// No description provided for @log_out.
   ///
   /// In en, this message translates to:
-  /// **'Sign out'**
+  /// **'تسجيل الخروج'**
   String get log_out;
 
   /// No description provided for @areYouSure.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to log out?'**
+  /// **'هل أنت متأكد أنك تريد تسجيل الخروج؟'**
   String get areYouSure;
 
   /// No description provided for @file_pick_failed.
   ///
   /// In en, this message translates to:
-  /// **'File selection failed'**
+  /// **'فشل اختيار الملف'**
   String get file_pick_failed;
 
   /// No description provided for @order_saving.
   ///
   /// In en, this message translates to:
-  /// **'Saving request...'**
+  /// **'جاري حفظ الطلب...'**
   String get order_saving;
 
   /// No description provided for @order__is_sharing.
   ///
   /// In en, this message translates to:
-  /// **'Request for participation...'**
+  /// **'طلب المشاركة...'**
   String get order__is_sharing;
 
   /// No description provided for @failed.
   ///
   /// In en, this message translates to:
-  /// **'to fail'**
+  /// **'فشل'**
   String get failed;
 
   /// No description provided for @or.
   ///
   /// In en, this message translates to:
-  /// **'or'**
+  /// **'أو'**
   String get or;
 
   /// No description provided for @request_time_out.
   ///
   /// In en, this message translates to:
-  /// **'The request has expired.'**
+  /// **'انتهت مهلة الطلب'**
   String get request_time_out;
 
   /// No description provided for @change_language.
   ///
   /// In en, this message translates to:
-  /// **'Change language'**
+  /// **'تغيير اللغة'**
   String get change_language;
 
   /// No description provided for @arabic.
   ///
   /// In en, this message translates to:
-  /// **'Arab'**
+  /// **'عربي'**
   String get arabic;
 
   /// No description provided for @addDocumentation.
   ///
   /// In en, this message translates to:
-  /// **'Add documentation'**
+  /// **'إضافة توثيق'**
   String get addDocumentation;
 
   /// No description provided for @success.
   ///
   /// In en, this message translates to:
-  /// **'success'**
+  /// **'نجاح'**
   String get success;
 
   /// No description provided for @english.
   ///
   /// In en, this message translates to:
-  /// **'English'**
+  /// **'إنجليزي'**
   String get english;
 
   /// No description provided for @close.
   ///
   /// In en, this message translates to:
-  /// **'Closes'**
+  /// **'يغلق'**
   String get close;
 
   /// No description provided for @required.
   ///
   /// In en, this message translates to:
-  /// **'required'**
+  /// **'مطلوب'**
   String get required;
 
   /// No description provided for @order_added_successfully.
   ///
   /// In en, this message translates to:
-  /// **'The request has been added successfully.'**
+  /// **'تمت إضافة الطلب بنجاح'**
   String get order_added_successfully;
 
   /// No description provided for @order_addition_failed.
   ///
   /// In en, this message translates to:
-  /// **'Request addition failed'**
+  /// **'فشلت إضافة الطلب'**
   String get order_addition_failed;
 
   /// No description provided for @country.
   ///
   /// In en, this message translates to:
-  /// **'nation'**
+  /// **'دولة'**
   String get country;
 
   /// No description provided for @selectCountry.
   ///
   /// In en, this message translates to:
-  /// **'Select country'**
+  /// **'اختر البلد'**
   String get selectCountry;
 
   /// No description provided for @passwordsDontMatch.
   ///
   /// In en, this message translates to:
-  /// **'Passwords do not match'**
+  /// **'كلمات المرور غير متطابقة'**
   String get passwordsDontMatch;
 
   /// No description provided for @firstNameRequired.
   ///
   /// In en, this message translates to:
-  /// **'First name is required'**
+  /// **'الاسم الأول مطلوب'**
   String get firstNameRequired;
 
   /// No description provided for @secondNameRequired.
   ///
   /// In en, this message translates to:
-  /// **'Second name required'**
+  /// **'الاسم الثاني مطلوب'**
   String get secondNameRequired;
 
   /// No description provided for @reset_link_sent.
   ///
   /// In en, this message translates to:
-  /// **'Reset link sent'**
+  /// **'تم إرسال رابط إعادة التعيين'**
   String get reset_link_sent;
 
   /// No description provided for @enter_valid_email_password.
   ///
   /// In en, this message translates to:
-  /// **'Enter a valid email address and password.'**
+  /// **'أدخل بريدًا إلكترونيًا وكلمة مرور صالحين'**
   String get enter_valid_email_password;
 
   /// No description provided for @invalidEmail.
   ///
   /// In en, this message translates to:
-  /// **'Invalid email'**
+  /// **'بريد إلكتروني غير صالح'**
   String get invalidEmail;
 
   /// No description provided for @phoneRequired.
   ///
   /// In en, this message translates to:
-  /// **'Phone number required'**
+  /// **'رقم الهاتف مطلوب'**
   String get phoneRequired;
 
   /// No description provided for @passwordRequired.
   ///
   /// In en, this message translates to:
-  /// **'Password required'**
+  /// **'كلمة المرور مطلوبة'**
   String get passwordRequired;
 
   /// No description provided for @passwordMinLength.
   ///
   /// In en, this message translates to:
-  /// **'Password must be at least 8 characters long.'**
+  /// **'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل'**
   String get passwordMinLength;
 
   /// No description provided for @confirmPasswordRequired.
   ///
   /// In en, this message translates to:
-  /// **'Password confirmation required'**
+  /// **'تأكيد كلمة المرور مطلوب'**
   String get confirmPasswordRequired;
 
   /// No description provided for @alreadyHaveAnAccount.
   ///
   /// In en, this message translates to:
-  /// **'Do you already have an account?'**
+  /// **'هل لديك حساب بالفعل؟'**
   String get alreadyHaveAnAccount;
 
   /// No description provided for @confirmYourPassword.
   ///
   /// In en, this message translates to:
-  /// **'Confirm your password'**
+  /// **'تأكيد كلمة المرور الخاصة بك'**
   String get confirmYourPassword;
 
   /// No description provided for @request_saving.
   ///
   /// In en, this message translates to:
-  /// **'Saving request...'**
+  /// **'جاري حفظ الطلب...'**
   String get request_saving;
 
   /// No description provided for @order_is_sharing.
   ///
   /// In en, this message translates to:
-  /// **'Request for participation...'**
+  /// **'طلب المشاركة...'**
   String get order_is_sharing;
 
   /// No description provided for @successfully.
   ///
   /// In en, this message translates to:
-  /// **'Successfully'**
+  /// **'بنجاح'**
   String get successfully;
 
   /// No description provided for @data_dont_saved.
   ///
   /// In en, this message translates to:
-  /// **'Data not saved'**
+  /// **'لم يتم حفظ البيانات'**
   String get data_dont_saved;
 
   /// No description provided for @data_saved.
   ///
   /// In en, this message translates to:
-  /// **'Stored data'**
+  /// **'البيانات المحفوظة'**
   String get data_saved;
 
   /// No description provided for @order_id_exists.
   ///
   /// In en, this message translates to:
-  /// **'Order ID already exists'**
+  /// **'معرف الطلب موجود بالفعل'**
   String get order_id_exists;
 
   /// No description provided for @select_files.
   ///
   /// In en, this message translates to:
-  /// **'Select files'**
+  /// **'تحديد الملفات'**
   String get select_files;
 
   /// No description provided for @camera.
   ///
   /// In en, this message translates to:
-  /// **'camera'**
+  /// **'الكاميرا'**
   String get camera;
 
   /// No description provided for @gallery.
   ///
   /// In en, this message translates to:
-  /// **'Exhibition'**
+  /// **'المعرض'**
   String get gallery;
 
   /// No description provided for @cant_be_embty.
   ///
   /// In en, this message translates to:
-  /// **'It cannot be empty.'**
+  /// **'لا يمكن أن يكون فارغا'**
   String get cant_be_embty;
 
   /// No description provided for @please_enter_all_data.
   ///
   /// In en, this message translates to:
-  /// **'Please enter all data'**
+  /// **'الرجاء إدخال كافة البيانات'**
   String get please_enter_all_data;
 
   /// No description provided for @ok.
   ///
   /// In en, this message translates to:
-  /// **'Yes'**
+  /// **'نعم'**
   String get ok;
 
   /// No description provided for @swahili_kenya.
   ///
   /// In en, this message translates to:
-  /// **'Swahili - Kenya'**
+  /// **'السواحيلية - كينيا'**
   String get swahili_kenya;
 
   /// No description provided for @swahili_tanzania.
   ///
   /// In en, this message translates to:
-  /// **'Swahili - Tanzania'**
+  /// **'السواحيلية - تنزانيا'**
   String get swahili_tanzania;
 
   /// No description provided for @luganda_uganda.
   ///
   /// In en, this message translates to:
-  /// **'Luganda - Uganda'**
+  /// **'لوجاندا - أوغندا'**
   String get luganda_uganda;
 
   /// No description provided for @retry.
   ///
   /// In en, this message translates to:
-  /// **'Retry'**
+  /// **'إعادة المحاولة'**
   String get retry;
 
   /// No description provided for @unexpected_error.
   ///
   /// In en, this message translates to:
-  /// **'An unexpected error occurred.'**
+  /// **'حدث خطأ غير متوقع'**
   String get unexpected_error;
 
   /// No description provided for @notHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Don\'\'t have an account?'**
+  /// **'ليس لديك حساب؟'**
   String get notHaveAccount;
 
   /// No description provided for @passwordsDoNotMatch.
   ///
   /// In en, this message translates to:
-  /// **'Passwords do not match'**
+  /// **'كلمات المرور غير متطابقة'**
   String get passwordsDoNotMatch;
 
   /// No description provided for @enterYourEmailToResetPassword.
   ///
   /// In en, this message translates to:
-  /// **'Enter your email to receive a password reset link.'**
+  /// **'أدخل بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور'**
   String get enterYourEmailToResetPassword;
 
   /// No description provided for @follow.
   ///
   /// In en, this message translates to:
-  /// **'He follows'**
+  /// **'يتبع'**
   String get follow;
 
   /// No description provided for @confirm_password_hint.
   ///
   /// In en, this message translates to:
-  /// **'Confirm password'**
+  /// **'تأكيد كلمة المرور'**
   String get confirm_password_hint;
 
   /// No description provided for @instead.
   ///
   /// In en, this message translates to:
-  /// **'instead of'**
+  /// **'بدلاً من'**
   String get instead;
 
   /// No description provided for @skip.
   ///
   /// In en, this message translates to:
-  /// **'skip'**
+  /// **'تخطى'**
   String get skip;
 
   /// No description provided for @next.
   ///
   /// In en, this message translates to:
-  /// **'the next'**
+  /// **'التالي'**
   String get next;
 
   /// No description provided for @documentationAndReviewIsUnderway.
   ///
   /// In en, this message translates to:
-  /// **'Documented and under review'**
+  /// **'تم التوثيق وجاري المراجعه'**
   String get documentationAndReviewIsUnderway;
 
   /// No description provided for @not_have_account.
   ///
   /// In en, this message translates to:
-  /// **'Don\'\'t have an account?'**
+  /// **'ليس لديك حساب؟'**
   String get not_have_account;
 
   /// No description provided for @errorLoadingOnboarding.
   ///
   /// In en, this message translates to:
-  /// **'An error occurred while loading the directive content.'**
+  /// **'حدث خطأ أثناء تحميل محتوى التوجيه'**
   String get errorLoadingOnboarding;
 
   /// No description provided for @onboardingWelcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Mobin Talabat'**
+  /// **'مرحباً بكم في طلبات موبين'**
   String get onboardingWelcomeTitle;
 
   /// No description provided for @onboardingWelcomeDescription.
   ///
   /// In en, this message translates to:
-  /// **'The comprehensive solution for order management and documentation'**
+  /// **'الحل الشامل لإدارة الطلبات والتوثيق'**
   String get onboardingWelcomeDescription;
 
   /// No description provided for @onboardingTrackingTitle.
   ///
   /// In en, this message translates to:
-  /// **'Track your orders'**
+  /// **'تتبع طلباتك'**
   String get onboardingTrackingTitle;
 
   /// No description provided for @onboardingTrackingDescription.
   ///
   /// In en, this message translates to:
-  /// **'Monitor your orders in real time with our intuitive tracking system.'**
+  /// **'قم بمراقبة طلباتك في الوقت الفعلي باستخدام نظام التتبع البديهي لدينا'**
   String get onboardingTrackingDescription;
 
   /// No description provided for @doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration.
   ///
   /// In en, this message translates to:
-  /// **'Do not delete locally stored photo and video files used to document an application until they are approved by the administration.'**
+  /// **'لا تقم بحذف ملفات الصور والفيديو المخزنة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة'**
   String
   get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration;
 
   /// No description provided for @doNotDeleteTheDocumentationFiles.
   ///
   /// In en, this message translates to:
-  /// **'Do not delete the documentation files.'**
+  /// **'لا تقم بحذف ملفات التوثيق'**
   String get doNotDeleteTheDocumentationFiles;
 
   /// No description provided for @onboardingDocumentsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Document management'**
+  /// **'إدارة المستندات'**
   String get onboardingDocumentsTitle;
 
   /// No description provided for @onboardingDocumentsDescription.
   ///
   /// In en, this message translates to:
-  /// **'Store and access all your important documents in one secure place.'**
+  /// **'قم بتخزين جميع مستنداتك المهمة والوصول إليها في مكان واحد آمن'**
   String get onboardingDocumentsDescription;
 
   /// No description provided for @help.
   ///
   /// In en, this message translates to:
-  /// **'Helps'**
+  /// **'يساعد'**
   String get help;
 
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
+  /// **'إعدادات'**
   String get settings;
 
   /// No description provided for @createAccount.
   ///
   /// In en, this message translates to:
-  /// **'Create an account'**
+  /// **'إنشاء حساب'**
   String get createAccount;
 
   /// No description provided for @passwordResetEmailSentTo.
   ///
   /// In en, this message translates to:
-  /// **'A password reset email has been sent to {email}.'**
+  /// **'تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور إلى {email}'**
   String passwordResetEmailSentTo(Object email);
 
   /// No description provided for @alreadyHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Do you already have an account?'**
+  /// **'هل لديك حساب بالفعل؟'**
   String get alreadyHaveAccount;
 
   /// No description provided for @make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending.
   ///
   /// In en, this message translates to:
-  /// **'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending'**
+  /// **'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال'**
   String
   get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
 
   /// No description provided for @failure.
   ///
   /// In en, this message translates to:
-  /// **'to fail'**
+  /// **'فشل'**
   String get failure;
 
   /// No description provided for @accepted.
   ///
   /// In en, this message translates to:
-  /// **'Approved'**
+  /// **'تم الموافقة'**
   String get accepted;
 
   /// No description provided for @approval.
   ///
   /// In en, this message translates to:
-  /// **'Approved'**
+  /// **'تم الاعتماد'**
   String get approval;
 
   /// No description provided for @itHasNotBeenDocumentedUntilNow.
   ///
   /// In en, this message translates to:
-  /// **'Not yet verified'**
+  /// **'لم يتم التوثيق حتى الآن'**
   String get itHasNotBeenDocumentedUntilNow;
 
   /// No description provided for @signUp.
   ///
   /// In en, this message translates to:
-  /// **'subscription'**
+  /// **'اشتراك'**
   String get signUp;
 
   /// No description provided for @apPasswordResetLinkHasBeenSentToYourEmail.
   ///
   /// In en, this message translates to:
-  /// **'A password reset link has been sent to your email.'**
+  /// **'لقد تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني'**
   String get apPasswordResetLinkHasBeenSentToYourEmail;
 
   /// No description provided for @signUpTitle.
   ///
   /// In en, this message translates to:
-  /// **'Create a new account'**
+  /// **'إنشاء حساب جديد'**
   String get signUpTitle;
 
   /// No description provided for @firstName.
   ///
   /// In en, this message translates to:
-  /// **'first name'**
+  /// **'الاسم الأول'**
   String get firstName;
 
   /// No description provided for @lastName.
   ///
   /// In en, this message translates to:
-  /// **'last name'**
+  /// **'اسم العائلة'**
   String get lastName;
 
   /// No description provided for @fieldRequired.
   ///
   /// In en, this message translates to:
-  /// **'This field is required'**
+  /// **'هذه الخانة مطلوبه'**
   String get fieldRequired;
 
   /// No description provided for @accountCreated.
   ///
   /// In en, this message translates to:
-  /// **'Account created successfully'**
+  /// **'تم إنشاء الحساب بنجاح'**
   String get accountCreated;
 
   /// No description provided for @start.
   ///
   /// In en, this message translates to:
-  /// **'never'**
+  /// **'ابدأ'**
   String get start;
 
   /// No description provided for @email.
   ///
   /// In en, this message translates to:
-  /// **'e-mail'**
+  /// **'البريد الإلكتروني'**
   String get email;
 
   /// No description provided for @errorCreatingAccount.
   ///
   /// In en, this message translates to:
-  /// **'Account creation error'**
+  /// **'خطأ في إنشاء الحساب'**
   String get errorCreatingAccount;
 
   /// No description provided for @password.
   ///
   /// In en, this message translates to:
-  /// **'password'**
+  /// **'كلمة المرور'**
   String get password;
 
   /// No description provided for @forgotPassword.
   ///
   /// In en, this message translates to:
-  /// **'Forgot your password?'**
+  /// **'هل نسيت كلمة السر؟'**
   String get forgotPassword;
 
   /// No description provided for @selectLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Select language'**
+  /// **'اختر اللغة'**
   String get selectLanguage;
 
   /// No description provided for @numberOfRequests.
   ///
   /// In en, this message translates to:
-  /// **'Number of requests'**
+  /// **'عدد الطلبات'**
   String get numberOfRequests;
 
   /// No description provided for @name.
   ///
   /// In en, this message translates to:
-  /// **'the name'**
+  /// **'الاسم'**
   String get name;
 
   /// No description provided for @welcomeLine1.
   ///
   /// In en, this message translates to:
-  /// **'Welcome'**
+  /// **'مرحباً'**
   String get welcomeLine1;
 
   /// No description provided for @welcomeLine2.
   ///
   /// In en, this message translates to:
-  /// **'to'**
+  /// **'ل'**
   String get welcomeLine2;
 
   /// No description provided for @signIn.
   ///
   /// In en, this message translates to:
-  /// **'Log in'**
+  /// **'تسجيل الدخول'**
   String get signIn;
 
   /// No description provided for @followUp.
   ///
   /// In en, this message translates to:
-  /// **'tracking'**
+  /// **'متابعة'**
   String get followUp;
 
   /// No description provided for @aLinkWillBeSentToYouToResetYourPassword.
   ///
   /// In en, this message translates to:
-  /// **'A link will be sent to you to reset your password.'**
+  /// **'سيتم إرسال رابط إليك لإعادة تعيين كلمة المرور الخاصة بك'**
   String get aLinkWillBeSentToYouToResetYourPassword;
 
   /// No description provided for @onboardingPage1Title.
   ///
   /// In en, this message translates to:
-  /// **'Welcome'**
+  /// **'مرحباً'**
   String get onboardingPage1Title;
 
   /// No description provided for @onboardingPage1Description.
   ///
   /// In en, this message translates to:
-  /// **'We are pleased to have you join our store.'**
+  /// **'يسعدنا انضمامك إلى متجر مبين'**
   String get onboardingPage1Description;
 
   /// No description provided for @onboardingPage2Title.
   ///
   /// In en, this message translates to:
-  /// **'Explore the app interface'**
+  /// **'اكتشف واجهة التطبيق'**
   String get onboardingPage2Title;
 
   /// No description provided for @onboardingPage2Description.
   ///
   /// In en, this message translates to:
-  /// **'Here you will find tasks, commands, alerts, and filters.'**
+  /// **'ستجد هنا المهام والأوامر والتنبيهات والمرشحات'**
   String get onboardingPage2Description;
 
   /// No description provided for @aPasswordResetLinkHasBeenSentToYourEmail.
   ///
   /// In en, this message translates to:
-  /// **'A password reset link has been sent to your email.'**
+  /// **'لقد تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني'**
   String get aPasswordResetLinkHasBeenSentToYourEmail;
 
   /// No description provided for @onboardingPage3Title.
   ///
   /// In en, this message translates to:
-  /// **'Documentation with photos and videos'**
+  /// **'التوثيق بالصور والفيديوهات'**
   String get onboardingPage3Title;
 
   /// No description provided for @onboardingPage3Description.
   ///
   /// In en, this message translates to:
-  /// **'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending'**
+  /// **'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال'**
   String get onboardingPage3Description;
 
   /// No description provided for @sticker.
   ///
   /// In en, this message translates to:
-  /// **'poster'**
+  /// **'الملصق'**
   String get sticker;
 
   /// No description provided for @finished.
   ///
   /// In en, this message translates to:
-  /// **'finished'**
+  /// **'منتهي'**
   String get finished;
 
   /// No description provided for @current.
   ///
   /// In en, this message translates to:
-  /// **'Current'**
+  /// **'الحالية'**
   String get current;
 
   /// No description provided for @inProgress.
   ///
   /// In en, this message translates to:
-  /// **'Current'**
+  /// **'جاري'**
   String get inProgress;
 
   /// No description provided for @theEnd.
   ///
   /// In en, this message translates to:
-  /// **'The end'**
+  /// **'المنتهية'**
   String get theEnd;
 
   /// No description provided for @noOrders.
   ///
   /// In en, this message translates to:
-  /// **'No requests'**
+  /// **'لا يوجد طلبات'**
   String get noOrders;
 
   /// No description provided for @documented.
   ///
   /// In en, this message translates to:
-  /// **'Documented'**
+  /// **'تم التوثيق'**
   String get documented;
 
   /// No description provided for @order.
   ///
   /// In en, this message translates to:
-  /// **'to request'**
+  /// **'طلب'**
   String get order;
 
   /// No description provided for @expenses.
   ///
   /// In en, this message translates to:
-  /// **'expenses'**
+  /// **'مصاريف'**
   String get expenses;
 
   /// No description provided for @documentingTheRequest.
   ///
   /// In en, this message translates to:
-  /// **'Document the request'**
+  /// **'توثيق الطلب'**
   String get documentingTheRequest;
 
   /// No description provided for @documentationProgress.
   ///
   /// In en, this message translates to:
-  /// **'Documentation progress'**
+  /// **'تقدم التوثيق'**
   String get documentationProgress;
 
   /// No description provided for @notDocumented.
   ///
   /// In en, this message translates to:
-  /// **'Not verified'**
+  /// **'لم يتم التوثيق'**
   String get notDocumented;
 
   /// No description provided for @pending.
   ///
   /// In en, this message translates to:
-  /// **'hanging'**
+  /// **'معلق'**
   String get pending;
 
   /// No description provided for @uploading.
   ///
   /// In en, this message translates to:
-  /// **'Uploading'**
+  /// **'يتم الرفع'**
   String get uploading;
 
   /// No description provided for @completed.
   ///
   /// In en, this message translates to:
-  /// **'complete'**
+  /// **'مكتمل'**
   String get completed;
 
   /// No description provided for @error.
   ///
   /// In en, this message translates to:
-  /// **'mistake'**
+  /// **'خطأ'**
   String get error;
 
   /// No description provided for @retryFailedUploads.
   ///
   /// In en, this message translates to:
-  /// **'Retry'**
+  /// **'إعادة المحاولة'**
   String get retryFailedUploads;
 
   /// No description provided for @retryFailedUploadsDescription.
   ///
   /// In en, this message translates to:
-  /// **'Do you want to retry uploading all failed requests?'**
+  /// **'هل تريد إعادة محاولة رفع جميع الطلبات الفاشلة؟'**
   String get retryFailedUploadsDescription;
 
   /// No description provided for @unknown.
   ///
   /// In en, this message translates to:
-  /// **'unknown'**
+  /// **'غير معروف'**
   String get unknown;
 
   /// No description provided for @startUpload.
   ///
   /// In en, this message translates to:
-  /// **'Start uploading'**
+  /// **'بدء الرفع'**
   String get startUpload;
 
   /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'cancellation'**
+  /// **'إلغاء'**
   String get cancel;
 
   /// No description provided for @save.
   ///
   /// In en, this message translates to:
-  /// **'save'**
+  /// **'حفظ'**
   String get save;
 
   /// No description provided for @editProfile.
   ///
   /// In en, this message translates to:
-  /// **'Edit profile'**
+  /// **'تعديل الملف الشخصي'**
   String get editProfile;
 
   /// No description provided for @pendingDescription.
   ///
   /// In en, this message translates to:
-  /// **'Waiting to be uploaded'**
+  /// **'في انتظار الرفع'**
   String get pendingDescription;
 
   /// No description provided for @uploadingDescription.
   ///
   /// In en, this message translates to:
-  /// **'Uploading now'**
+  /// **'يتم الرفع الآن'**
   String get uploadingDescription;
 
   /// No description provided for @completedDescription.
   ///
   /// In en, this message translates to:
-  /// **'Uploaded successfully'**
+  /// **'تم الرفع بنجاح'**
   String get completedDescription;
 
   /// No description provided for @failedDescription.
   ///
   /// In en, this message translates to:
-  /// **'Failed to upload'**
+  /// **'فشل في الرفع'**
   String get failedDescription;
 
   /// No description provided for @unknownDescription.
   ///
   /// In en, this message translates to:
-  /// **'unknown'**
+  /// **'غير معروف'**
   String get unknownDescription;
 
   /// No description provided for @cancelAllUploads.
   ///
   /// In en, this message translates to:
-  /// **'Cancel all uploads'**
+  /// **'إلغاء جميع الرفع'**
   String get cancelAllUploads;
 
   /// No description provided for @stopMonitoring.
   ///
   /// In en, this message translates to:
-  /// **'Stop monitoring'**
+  /// **'إيقاف المراقبة'**
   String get stopMonitoring;
 
   /// No description provided for @language.
   ///
   /// In en, this message translates to:
-  /// **'the language'**
+  /// **'اللغة'**
   String get language;
 
   /// No description provided for @profile.
   ///
   /// In en, this message translates to:
-  /// **'Profile'**
+  /// **'الملف الشخصي'**
   String get profile;
-
-  /// No description provided for @test_key.
-  ///
-  /// In en, this message translates to:
-  /// **'New test key'**
-  String get test_key;
 
   /// No description provided for @welcomeLine.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to'**
+  /// **'مرحباً بكم \nفي'**
   String get welcomeLine;
 }
 

@@ -15,5 +15,5 @@ class AppRoutes {
   static const signIn = SignInView.routeName;
   static const signUp = SignUpView.routeName;
   static const forgotPass = ForgotPassView.routeName;
-  static const orders = OrdersView.routeName;
+  static const orders = OrderDocsView.routeName;
 }

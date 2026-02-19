@@ -94,6 +94,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get show_documentations => 'Tazama hati';
 
   @override
+  String get show_documentation => 'عرض التوثيق';
+
+  @override
   String get execution_number => 'Nambari ya utekelezaji';
 
   @override
@@ -625,9 +628,6 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get profile => 'Wasifu';
-
-  @override
-  String get test_key => 'Ufunguo mpya wa jaribio';
 
   @override
   String get welcomeLine => 'Karibu kwa';

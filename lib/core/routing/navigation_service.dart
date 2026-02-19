@@ -5,18 +5,17 @@ import 'package:go_router/go_router.dart';
 class NavigationService {
   NavigationService._();
 
-  /// Navigate to a named route
-  static Future<T?> navigateTo<T>({
+  static Future<T?> pushNamed<T>({
     required BuildContext context,
     required String routeName,
+    Map<String, String> pathParameters = const {},
     Map<String, dynamic>? arguments,
-    bool replace = false,
   }) async {
-    if (replace) {
-      context.goNamed(routeName, extra: arguments);
-      return null;
-    }
-    return await context.pushNamed<T?>(routeName, extra: arguments);
+    return await context.pushNamed<T?>(
+      routeName,
+      pathParameters: pathParameters,
+      extra: arguments,
+    );
   }
 
   /// Go back

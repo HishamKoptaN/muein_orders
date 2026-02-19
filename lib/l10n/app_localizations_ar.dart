@@ -91,6 +91,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get show_documentations => 'عرض الوثائق';
 
   @override
+  String get show_documentation => 'عرض التوثيق';
+
+  @override
   String get execution_number => 'رقم التنفيذ';
 
   @override
@@ -620,9 +623,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
-
-  @override
-  String get test_key => 'New test key';
 
   @override
   String get welcomeLine => 'مرحباً بكم \nفي';

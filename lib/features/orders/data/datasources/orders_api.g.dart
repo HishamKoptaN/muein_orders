@@ -22,13 +22,13 @@ class _OrdersApi implements OrdersApi {
   @override
   Future<OrdersResModel> getOrders({
     int? page,
-    required int productTypeId,
+    required int subCategoryId,
     String? query,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
-      r'product_type_id': productTypeId,
+      r'sub_category_id': subCategoryId,
       r'query': query,
     };
     queryParameters.removeWhere((k, v) => v == null);

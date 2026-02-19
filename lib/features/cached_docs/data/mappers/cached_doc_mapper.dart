@@ -1,21 +1,19 @@
 import '../../domain/entities/cached_doc_entity.dart';
-import '../models/cached_doc.dart';
+import '../datasources/local/drift/cached_docs_table.dart';
+import '../models/cached_doc_model.dart';
 
-extension CachedDocMapper on CachedDoc {
+extension CachedDocMapper on CachedDocModel {
   CachedDocEntity toEntity() {
     return CachedDocEntity(
-      id: id,
-      orderId: orderId,
+      docId: docId,
       imageOne: imageOne,
       imageTwo: imageTwo,
       videoOne: videoOne,
       videoTwo: videoTwo,
-      latitude: latitude,
-      longitude: longitude,
-      shippingCost: shippingCost,
-      uploadStatus: UploadStatus.values.firstWhere(
+      location: location,
+      uploadStatus: FileUploadStatus.values.firstWhere(
         (e) => e.name == uploadStatus,
-        orElse: () => UploadStatus.pending,
+        orElse: () => FileUploadStatus.pending,
       ),
       uploadProgress: uploadProgress,
     );

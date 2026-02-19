@@ -6,7 +6,7 @@ Widget buildColumnHeader({required String label, required int flex}) {
     fit: FlexFit.tight,
     child: Text(
       label,
-      style: TextStyle(
+      style: const TextStyle(
         fontWeight: FontWeight.w400,
         fontStyle: FontStyle.normal,
         fontSize: 14,
@@ -18,13 +18,10 @@ Widget buildColumnHeader({required String label, required int flex}) {
   );
 }
 
-Widget buildTransactionDetail({
-  required String text,
-  bool? isPrice = false,
-}) {
+Widget buildTransactionDetail({required String text, bool? isPrice = false}) {
   return Text(
     text,
-    style: TextStyle(
+    style: const TextStyle(
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
       fontSize: 14,

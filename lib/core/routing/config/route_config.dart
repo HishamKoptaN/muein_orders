@@ -7,17 +7,18 @@ import '../../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../../features/auth/sign_up/present/views/sign_up_views.dart';
+import '../../../features/cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../features/cached_docs/present/view/add_cached_doc_view.dart';
 import '../../../features/financial/present/view/create_expense.dart';
 import '../../../features/home/domain/entities/order_type_res_entity.dart';
 import '../../../features/home/present/view/home_view.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/language/view/select_language.dart';
+import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../../features/orders/present/views/orders_view.dart';
 import '../../../features/orders/present/views/sitcker_pd/sitcker_pdf_preview_view.dart';
 import '../../../features/profile/present/views/profile_view.dart';
 import '../../../features/splash/start_view.dart';
-import '../../present/views/notifications_view_clean.dart';
 
 class RouteConfig {
   static List<RouteBase> get routes {
@@ -54,36 +55,13 @@ class RouteConfig {
         routeName: SignUpView.routeName,
         builder: (context, state) => const SignUpView(),
       ),
+
       ShellRoute(
         builder: (context, state, child) {
           return HomeView(child: child);
         },
         routes: [
-          goRoute(
-            routeName: NotificationsView.routeName,
-            builder: (context, state) => const NotificationsView(),
-          ),
           //! Orders
-          goRoute(
-            routeName: OrdersView.routeName,
-            builder: (context, state) =>
-                OrdersView(stat: state.extra as StatEntity? ?? StatEntity()),
-            routes: [
-              goRoute(
-                routeName: PdfPreviewView.routeName,
-                builder: (context, state) {
-                  final printedName =
-                      state.pathParameters['printedName'] ?? '0';
-                  final executionNum =
-                      state.pathParameters['executionNum'] ?? '0';
-                  return PdfPreviewView(
-                    printedName: printedName,
-                    executionNum: executionNum,
-                  );
-                },
-              ),
-            ],
-          ),
           goRoute(
             routeName: ProfileView.routeName,
             builder: (context, state) => const ProfileView(),
@@ -91,17 +69,39 @@ class RouteConfig {
         ],
       ),
       goRoute(
+        routeName: OrderDocsView.routeName,
+        builder: (context, state) =>
+            OrderDocsView(stat: state.extra as StatEntity? ?? StatEntity()),
+        routes: [
+          goRoute(
+            routeName: PdfPreviewView.routeName,
+            builder: (context, state) {
+              final printedName = state.pathParameters['printedName'] ?? '0';
+              final executionNum = state.pathParameters['executionNum'] ?? '0';
+              return PdfPreviewView(
+                printedName: printedName,
+                executionNum: executionNum,
+              );
+            },
+          ),
+        ],
+      ),
+      goRoute(
+        routeName: NotificationsView.routeName,
+        builder: (context, state) => const NotificationsView(),
+      ),
+      goRoute(
         routeName: AddCachedDocView.routeName,
         builder: (context, state) {
           final args = state.extra as Map<String, dynamic>?;
-          final orderId = args?['orderId'] as int?;
-          final package = args?['package'] as StatEntity?;
-          if (orderId == null || orderId == 0) {
-            debugPrint('Invalid orderId: $orderId, using default value 0');
-          }
+          final docId = args?['docId'] as int? ?? 0;
+          final cachedDoc = args?['cachedDoc'] as CachedDocEntity?;
           return AddCachedDocView(
-            orderId: orderId ?? 0,
-            package: package ?? StatEntity(),
+            docId: docId,
+            cachedDoc: cachedDoc,
+            subCategory:
+                args?['subCategory'] as SubCategoryEntity? ??
+                SubCategoryEntity(),
           );
         },
       ),

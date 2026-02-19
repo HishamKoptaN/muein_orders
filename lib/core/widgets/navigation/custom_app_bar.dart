@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -34,7 +36,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       bottom: bottom,
-      leading: leading,
+      leading: GestureDetector(
+        onTap: () => context.pop(),
+        child:
+            leading ??
+            Icon(
+              Directionality.of(context) == TextDirection.rtl
+                  ? FontAwesomeIcons
+                        .arrowRight 
+                  : FontAwesomeIcons.arrowLeft,
+              color: Colors.black,
+              size: 25.w,
+            ),
+      ),
       actions: actions,
     );
   }

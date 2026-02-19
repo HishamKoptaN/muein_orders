@@ -2,16 +2,10 @@ part of 'cached_doc_bloc.dart';
 
 @freezed
 abstract class CachedDocEvent with _$CachedDocEvent {
-  const factory CachedDocEvent.initialize() = _Initialize;
+  const factory CachedDocEvent.initialize({required int docId}) = _Initialize;
   const factory CachedDocEvent.updateData({
-    GenericFormzInput<int>? orderId,
-    FileFormzInput? imageOne,
-    FileFormzInput? imageTwo,
-    FileFormzInput? videoOne,
-    FileFormzInput? videoTwo,
-    GenericFormzInput<double>? latitude,
-    GenericFormzInput<double>? longitude,
-    StatEntity? package,
+    Loaded? loaded,
+    required CreateCachedDocEntity createCachedDoc,
   }) = _UpdateData;
-  const factory CachedDocEvent.cachedDoc() = _CachedDoc;
+  const factory CachedDocEvent.cachedDoc({required Loaded loaded}) = _CachedDoc;
 }

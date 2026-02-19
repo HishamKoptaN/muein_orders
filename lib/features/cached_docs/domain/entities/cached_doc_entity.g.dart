@@ -8,39 +8,47 @@ part of 'cached_doc_entity.dart';
 
 _CachedDocEntity _$CachedDocEntityFromJson(Map<String, dynamic> json) =>
     _CachedDocEntity(
-      id: (json['id'] as num?)?.toInt(),
-      orderId: (json['orderId'] as num?)?.toInt(),
-      imageOne: json['imageOne'] as String?,
-      imageTwo: json['imageTwo'] as String?,
-      videoOne: json['videoOne'] as String?,
-      videoTwo: json['videoTwo'] as String?,
-      latitude: (json['latitude'] as num?)?.toDouble(),
-      longitude: (json['longitude'] as num?)?.toDouble(),
-      shippingCost: (json['shippingCost'] as num?)?.toDouble(),
+      docId: (json['docId'] as num?)?.toInt(),
+      imageOne: json['imageOne'] == null
+          ? null
+          : DocFile.fromJson(json['imageOne'] as Map<String, dynamic>),
+      imageTwo: json['imageTwo'] == null
+          ? null
+          : DocFile.fromJson(json['imageTwo'] as Map<String, dynamic>),
+      videoOne: json['videoOne'] == null
+          ? null
+          : DocFile.fromJson(json['videoOne'] as Map<String, dynamic>),
+      videoTwo: json['videoTwo'] == null
+          ? null
+          : DocFile.fromJson(json['videoTwo'] as Map<String, dynamic>),
+      location: json['location'] == null
+          ? null
+          : LocationDoc.fromJson(json['location'] as Map<String, dynamic>),
       uploadStatus:
-          $enumDecodeNullable(_$UploadStatusEnumMap, json['uploadStatus']) ??
-          UploadStatus.pending,
+          $enumDecodeNullable(
+            _$FileUploadStatusEnumMap,
+            json['uploadStatus'],
+          ) ??
+          FileUploadStatus.pending,
       uploadProgress: (json['uploadProgress'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$CachedDocEntityToJson(_CachedDocEntity instance) =>
     <String, dynamic>{
-      'id': ?instance.id,
-      'orderId': ?instance.orderId,
-      'imageOne': ?instance.imageOne,
-      'imageTwo': ?instance.imageTwo,
-      'videoOne': ?instance.videoOne,
-      'videoTwo': ?instance.videoTwo,
-      'latitude': ?instance.latitude,
-      'longitude': ?instance.longitude,
-      'shippingCost': ?instance.shippingCost,
-      'uploadStatus': _$UploadStatusEnumMap[instance.uploadStatus]!,
+      'docId': ?instance.docId,
+      'imageOne': ?instance.imageOne?.toJson(),
+      'imageTwo': ?instance.imageTwo?.toJson(),
+      'videoOne': ?instance.videoOne?.toJson(),
+      'videoTwo': ?instance.videoTwo?.toJson(),
+      'location': ?instance.location?.toJson(),
+      'uploadStatus': _$FileUploadStatusEnumMap[instance.uploadStatus]!,
       'uploadProgress': instance.uploadProgress,
     };
 
-const _$UploadStatusEnumMap = {
-  UploadStatus.pending: 'pending',
-  UploadStatus.uploading: 'uploading',
-  UploadStatus.success: 'success',
-  UploadStatus.failure: 'failure',
+const _$FileUploadStatusEnumMap = {
+  FileUploadStatus.init: 'init',
+  FileUploadStatus.pending: 'pending',
+  FileUploadStatus.uploading: 'uploading',
+  FileUploadStatus.uploaded: 'uploaded',
+  FileUploadStatus.failed: 'failed',
 };

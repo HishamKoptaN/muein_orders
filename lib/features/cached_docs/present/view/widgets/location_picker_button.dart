@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../../../l10n/app_localizations.dart';
-import '../../../../home/domain/entities/order_type_res_entity.dart';
+import '../../../data/datasources/local/drift/cached_docs_table.dart';
+import '../../../domain/entities/create_cached_doc_entity.dart';
 import '../../bloc/cached_doc_bloc.dart';
+import 'add_file_widget.dart';
 import 'pick_location_view.dart';
 
 class LocationPickerButton extends StatelessWidget {
-  const LocationPickerButton({
-    super.key,
-    required this.latitude,
-    required this.longitude,
-    required this.package,
-  });
-  final GenericFormzInput<double>? latitude;
-  final GenericFormzInput<double>? longitude;
-  final StatEntity package;
+  const LocationPickerButton({super.key, required this.loaded});
+  final Loaded loaded;
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-    final hasLocation = latitude?.value != null && longitude?.value != null;
+    final hasLocation =
+        loaded.createCachedDoc.location?.latitude != null &&
+        loaded.createCachedDoc.location?.longitude != null;
     final locationText = hasLocation
-        ? '${latitude?.value}, ${longitude?.value}'
+        ? '${loaded.createCachedDoc.location?.latitude}, ${loaded.createCachedDoc.location?.longitude}'
         : t.selectLocation;
     return Row(
       children: [
@@ -78,9 +74,13 @@ class LocationPickerButton extends StatelessWidget {
               final lng = result.longitude.toString();
               context.read<CachedDocBloc>().add(
                 CachedDocEvent.updateData(
-                  latitude: GenericFormzInput.dirty(double.parse(lat)),
-                  longitude: GenericFormzInput.dirty(double.parse(lng)),
-                  package: package,
+                  createCachedDoc: loaded.createCachedDoc.copyWith(
+                    location: LocationEntity(
+                      latitude: double.parse(lat),
+                      longitude: double.parse(lng),
+                    ),
+                  ),
+                  loaded: loaded,
                 ),
               );
             }
@@ -114,6 +114,11 @@ class LocationPickerButton extends StatelessWidget {
               ],
             ),
           ),
+        ),
+        buildStatusIndicator(
+          docFileStatus:
+              loaded.createCachedDoc.location?.status ??
+              FileUploadStatus.pending,
         ),
       ],
     );

@@ -70,7 +70,7 @@ class StartView extends StatelessWidget {
                       children: [
                         CustomTextIconBtnWidget(
                           onPressed: () {
-                            NavigationService.navigateTo(
+                            NavigationService.pushNamed(
                               context: context,
                               routeName: SelectLanguageView.routeName,
                             );

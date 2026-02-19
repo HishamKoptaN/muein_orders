@@ -12,6 +12,7 @@ import '../../features/financial/present/financial_rep_bloc/financial_bloc.dart'
 import '../../features/home/present/bloc/home_bloc.dart';
 import '../../features/instructions/present/bloc/instructions_bloc.dart';
 import '../../features/language/bloc/language_bloc.dart';
+import '../../features/notifications/present/bloc/notifications_bloc.dart';
 import '../../features/orders/present/bloc/orders_bloc.dart';
 import '../../features/profile/present/bloc/profile_bloc.dart';
 import '../../features/theme/blocs/theme_bloc.dart';
@@ -44,6 +45,9 @@ class MueinOrdersApp extends StatelessWidget {
         BlocProvider<CachedDocBloc>(create: (_) => getIt<CachedDocBloc>()),
         BlocProvider<FinancialBloc>(create: (_) => getIt<FinancialBloc>()),
         BlocProvider<ProfileBloc>(create: (_) => getIt<ProfileBloc>()),
+        BlocProvider<NotificationsBloc>(
+          create: (_) => getIt<NotificationsBloc>(),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(393, 852),

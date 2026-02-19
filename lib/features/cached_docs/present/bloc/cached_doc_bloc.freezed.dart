@@ -125,12 +125,12 @@ return cachedDoc(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initialize,TResult Function( GenericFormzInput<int>? orderId,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  StatEntity? package)?  updateData,TResult Function()?  cachedDoc,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int docId)?  initialize,TResult Function( Loaded? loaded,  CreateCachedDocEntity createCachedDoc)?  updateData,TResult Function( Loaded loaded)?  cachedDoc,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initialize() when initialize != null:
-return initialize();case _UpdateData() when updateData != null:
-return updateData(_that.orderId,_that.imageOne,_that.imageTwo,_that.videoOne,_that.videoTwo,_that.latitude,_that.longitude,_that.package);case _CachedDoc() when cachedDoc != null:
-return cachedDoc();case _:
+return initialize(_that.docId);case _UpdateData() when updateData != null:
+return updateData(_that.loaded,_that.createCachedDoc);case _CachedDoc() when cachedDoc != null:
+return cachedDoc(_that.loaded);case _:
   return orElse();
 
 }
@@ -148,12 +148,12 @@ return cachedDoc();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initialize,required TResult Function( GenericFormzInput<int>? orderId,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  StatEntity? package)  updateData,required TResult Function()  cachedDoc,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int docId)  initialize,required TResult Function( Loaded? loaded,  CreateCachedDocEntity createCachedDoc)  updateData,required TResult Function( Loaded loaded)  cachedDoc,}) {final _that = this;
 switch (_that) {
 case _Initialize():
-return initialize();case _UpdateData():
-return updateData(_that.orderId,_that.imageOne,_that.imageTwo,_that.videoOne,_that.videoTwo,_that.latitude,_that.longitude,_that.package);case _CachedDoc():
-return cachedDoc();case _:
+return initialize(_that.docId);case _UpdateData():
+return updateData(_that.loaded,_that.createCachedDoc);case _CachedDoc():
+return cachedDoc(_that.loaded);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -170,12 +170,12 @@ return cachedDoc();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initialize,TResult? Function( GenericFormzInput<int>? orderId,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  StatEntity? package)?  updateData,TResult? Function()?  cachedDoc,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int docId)?  initialize,TResult? Function( Loaded? loaded,  CreateCachedDocEntity createCachedDoc)?  updateData,TResult? Function( Loaded loaded)?  cachedDoc,}) {final _that = this;
 switch (_that) {
 case _Initialize() when initialize != null:
-return initialize();case _UpdateData() when updateData != null:
-return updateData(_that.orderId,_that.imageOne,_that.imageTwo,_that.videoOne,_that.videoTwo,_that.latitude,_that.longitude,_that.package);case _CachedDoc() when cachedDoc != null:
-return cachedDoc();case _:
+return initialize(_that.docId);case _UpdateData() when updateData != null:
+return updateData(_that.loaded,_that.createCachedDoc);case _CachedDoc() when cachedDoc != null:
+return cachedDoc(_that.loaded);case _:
   return null;
 
 }
@@ -187,49 +187,77 @@ return cachedDoc();case _:
 
 
 class _Initialize implements CachedDocEvent {
-  const _Initialize();
+  const _Initialize({required this.docId});
   
 
+ final  int docId;
 
-
+/// Create a copy of CachedDocEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$InitializeCopyWith<_Initialize> get copyWith => __$InitializeCopyWithImpl<_Initialize>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initialize);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initialize&&(identical(other.docId, docId) || other.docId == docId));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,docId);
 
 @override
 String toString() {
-  return 'CachedDocEvent.initialize()';
+  return 'CachedDocEvent.initialize(docId: $docId)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$InitializeCopyWith<$Res> implements $CachedDocEventCopyWith<$Res> {
+  factory _$InitializeCopyWith(_Initialize value, $Res Function(_Initialize) _then) = __$InitializeCopyWithImpl;
+@useResult
+$Res call({
+ int docId
+});
 
 
+
+
+}
+/// @nodoc
+class __$InitializeCopyWithImpl<$Res>
+    implements _$InitializeCopyWith<$Res> {
+  __$InitializeCopyWithImpl(this._self, this._then);
+
+  final _Initialize _self;
+  final $Res Function(_Initialize) _then;
+
+/// Create a copy of CachedDocEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? docId = null,}) {
+  return _then(_Initialize(
+docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
 
 class _UpdateData implements CachedDocEvent {
-  const _UpdateData({this.orderId, this.imageOne, this.imageTwo, this.videoOne, this.videoTwo, this.latitude, this.longitude, this.package});
+  const _UpdateData({this.loaded, required this.createCachedDoc});
   
 
- final  GenericFormzInput<int>? orderId;
- final  FileFormzInput? imageOne;
- final  FileFormzInput? imageTwo;
- final  FileFormzInput? videoOne;
- final  FileFormzInput? videoTwo;
- final  GenericFormzInput<double>? latitude;
- final  GenericFormzInput<double>? longitude;
- final  StatEntity? package;
+ final  Loaded? loaded;
+ final  CreateCachedDocEntity createCachedDoc;
 
 /// Create a copy of CachedDocEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +269,16 @@ _$UpdateDataCopyWith<_UpdateData> get copyWith => __$UpdateDataCopyWithImpl<_Upd
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&(identical(other.orderId, orderId) || other.orderId == orderId)&&(identical(other.imageOne, imageOne) || other.imageOne == imageOne)&&(identical(other.imageTwo, imageTwo) || other.imageTwo == imageTwo)&&(identical(other.videoOne, videoOne) || other.videoOne == videoOne)&&(identical(other.videoTwo, videoTwo) || other.videoTwo == videoTwo)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.package, package) || other.package == package));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&const DeepCollectionEquality().equals(other.loaded, loaded)&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,orderId,imageOne,imageTwo,videoOne,videoTwo,latitude,longitude,package);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(loaded),createCachedDoc);
 
 @override
 String toString() {
-  return 'CachedDocEvent.updateData(orderId: $orderId, imageOne: $imageOne, imageTwo: $imageTwo, videoOne: $videoOne, videoTwo: $videoTwo, latitude: $latitude, longitude: $longitude, package: $package)';
+  return 'CachedDocEvent.updateData(loaded: $loaded, createCachedDoc: $createCachedDoc)';
 }
 
 
@@ -261,11 +289,11 @@ abstract mixin class _$UpdateDataCopyWith<$Res> implements $CachedDocEventCopyWi
   factory _$UpdateDataCopyWith(_UpdateData value, $Res Function(_UpdateData) _then) = __$UpdateDataCopyWithImpl;
 @useResult
 $Res call({
- GenericFormzInput<int>? orderId, FileFormzInput? imageOne, FileFormzInput? imageTwo, FileFormzInput? videoOne, FileFormzInput? videoTwo, GenericFormzInput<double>? latitude, GenericFormzInput<double>? longitude, StatEntity? package
+ Loaded? loaded, CreateCachedDocEntity createCachedDoc
 });
 
 
-
+$CreateCachedDocEntityCopyWith<$Res> get createCachedDoc;
 
 }
 /// @nodoc
@@ -278,54 +306,91 @@ class __$UpdateDataCopyWithImpl<$Res>
 
 /// Create a copy of CachedDocEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? orderId = freezed,Object? imageOne = freezed,Object? imageTwo = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? package = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? loaded = freezed,Object? createCachedDoc = null,}) {
   return _then(_UpdateData(
-orderId: freezed == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<int>?,imageOne: freezed == imageOne ? _self.imageOne : imageOne // ignore: cast_nullable_to_non_nullable
-as FileFormzInput?,imageTwo: freezed == imageTwo ? _self.imageTwo : imageTwo // ignore: cast_nullable_to_non_nullable
-as FileFormzInput?,videoOne: freezed == videoOne ? _self.videoOne : videoOne // ignore: cast_nullable_to_non_nullable
-as FileFormzInput?,videoTwo: freezed == videoTwo ? _self.videoTwo : videoTwo // ignore: cast_nullable_to_non_nullable
-as FileFormzInput?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<double>?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<double>?,package: freezed == package ? _self.package : package // ignore: cast_nullable_to_non_nullable
-as StatEntity?,
+loaded: freezed == loaded ? _self.loaded : loaded // ignore: cast_nullable_to_non_nullable
+as Loaded?,createCachedDoc: null == createCachedDoc ? _self.createCachedDoc : createCachedDoc // ignore: cast_nullable_to_non_nullable
+as CreateCachedDocEntity,
   ));
 }
 
-
+/// Create a copy of CachedDocEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CreateCachedDocEntityCopyWith<$Res> get createCachedDoc {
+  
+  return $CreateCachedDocEntityCopyWith<$Res>(_self.createCachedDoc, (value) {
+    return _then(_self.copyWith(createCachedDoc: value));
+  });
+}
 }
 
 /// @nodoc
 
 
 class _CachedDoc implements CachedDocEvent {
-  const _CachedDoc();
+  const _CachedDoc({required this.loaded});
   
 
+ final  Loaded loaded;
 
-
+/// Create a copy of CachedDocEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CachedDocCopyWith<_CachedDoc> get copyWith => __$CachedDocCopyWithImpl<_CachedDoc>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CachedDoc);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CachedDoc&&const DeepCollectionEquality().equals(other.loaded, loaded));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(loaded));
 
 @override
 String toString() {
-  return 'CachedDocEvent.cachedDoc()';
+  return 'CachedDocEvent.cachedDoc(loaded: $loaded)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$CachedDocCopyWith<$Res> implements $CachedDocEventCopyWith<$Res> {
+  factory _$CachedDocCopyWith(_CachedDoc value, $Res Function(_CachedDoc) _then) = __$CachedDocCopyWithImpl;
+@useResult
+$Res call({
+ Loaded loaded
+});
 
 
+
+
+}
+/// @nodoc
+class __$CachedDocCopyWithImpl<$Res>
+    implements _$CachedDocCopyWith<$Res> {
+  __$CachedDocCopyWithImpl(this._self, this._then);
+
+  final _CachedDoc _self;
+  final $Res Function(_CachedDoc) _then;
+
+/// Create a copy of CachedDocEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? loaded = freezed,}) {
+  return _then(_CachedDoc(
+loaded: freezed == loaded ? _self.loaded : loaded // ignore: cast_nullable_to_non_nullable
+as Loaded,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$CachedDocState {
@@ -371,11 +436,11 @@ extension CachedDocStatePatterns on CachedDocState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Success value)?  success,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Loading value)?  loading,TResult Function( Loaded value)?  loaded,TResult Function( _Success value)?  success,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
-return loading(_that);case _Loaded() when loaded != null:
+return loading(_that);case Loaded() when loaded != null:
 return loaded(_that);case _Success() when success != null:
 return success(_that);case _Failure() when failure != null:
 return failure(_that);case _:
@@ -396,11 +461,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Success value)  success,required TResult Function( _Failure value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Loading value)  loading,required TResult Function( Loaded value)  loaded,required TResult Function( _Success value)  success,required TResult Function( _Failure value)  failure,}){
 final _that = this;
 switch (_that) {
 case _Loading():
-return loading(_that);case _Loaded():
+return loading(_that);case Loaded():
 return loaded(_that);case _Success():
 return success(_that);case _Failure():
 return failure(_that);case _:
@@ -420,11 +485,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Success value)?  success,TResult? Function( _Failure value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Loading value)?  loading,TResult? Function( Loaded value)?  loaded,TResult? Function( _Success value)?  success,TResult? Function( _Failure value)?  failure,}){
 final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
-return loading(_that);case _Loaded() when loaded != null:
+return loading(_that);case Loaded() when loaded != null:
 return loaded(_that);case _Success() when success != null:
 return success(_that);case _Failure() when failure != null:
 return failure(_that);case _:
@@ -444,11 +509,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( GenericFormzInput<int>? orderId,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  FormzSubmissionStatus formzSubmissionStatus,  double? cachedProgress)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( CreateCachedDocEntity createCachedDoc,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
-return loading();case _Loaded() when loaded != null:
-return loaded(_that.orderId,_that.videoOne,_that.videoTwo,_that.imageOne,_that.imageTwo,_that.latitude,_that.longitude,_that.formzSubmissionStatus,_that.cachedProgress);case _Success() when success != null:
+return loading();case Loaded() when loaded != null:
+return loaded(_that.createCachedDoc,_that.formzSubmissionStatus);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.error);case _:
   return orElse();
@@ -468,11 +533,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( GenericFormzInput<int>? orderId,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  FormzSubmissionStatus formzSubmissionStatus,  double? cachedProgress)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( CreateCachedDocEntity createCachedDoc,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
 switch (_that) {
 case _Loading():
-return loading();case _Loaded():
-return loaded(_that.orderId,_that.videoOne,_that.videoTwo,_that.imageOne,_that.imageTwo,_that.latitude,_that.longitude,_that.formzSubmissionStatus,_that.cachedProgress);case _Success():
+return loading();case Loaded():
+return loaded(_that.createCachedDoc,_that.formzSubmissionStatus);case _Success():
 return success();case _Failure():
 return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
@@ -491,11 +556,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( GenericFormzInput<int>? orderId,  FileFormzInput? videoOne,  FileFormzInput? videoTwo,  FileFormzInput? imageOne,  FileFormzInput? imageTwo,  GenericFormzInput<double>? latitude,  GenericFormzInput<double>? longitude,  FormzSubmissionStatus formzSubmissionStatus,  double? cachedProgress)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( CreateCachedDocEntity createCachedDoc,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
-return loading();case _Loaded() when loaded != null:
-return loaded(_that.orderId,_that.videoOne,_that.videoTwo,_that.imageOne,_that.imageTwo,_that.latitude,_that.longitude,_that.formzSubmissionStatus,_that.cachedProgress);case _Success() when success != null:
+return loading();case Loaded() when loaded != null:
+return loaded(_that.createCachedDoc,_that.formzSubmissionStatus);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.error);case _:
   return null;
@@ -540,83 +605,78 @@ String toString() {
 /// @nodoc
 
 
-class _Loaded implements CachedDocState {
-  const _Loaded({required this.orderId, required this.videoOne, required this.videoTwo, required this.imageOne, required this.imageTwo, required this.latitude, required this.longitude, required this.formzSubmissionStatus, required this.cachedProgress});
+class Loaded implements CachedDocState {
+  const Loaded({required this.createCachedDoc, required this.formzSubmissionStatus});
   
 
- final  GenericFormzInput<int>? orderId;
- final  FileFormzInput? videoOne;
- final  FileFormzInput? videoTwo;
- final  FileFormzInput? imageOne;
- final  FileFormzInput? imageTwo;
- final  GenericFormzInput<double>? latitude;
- final  GenericFormzInput<double>? longitude;
+ final  CreateCachedDocEntity createCachedDoc;
  final  FormzSubmissionStatus formzSubmissionStatus;
- final  double? cachedProgress;
 
 /// Create a copy of CachedDocState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+$LoadedCopyWith<Loaded> get copyWith => _$LoadedCopyWithImpl<Loaded>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.orderId, orderId) || other.orderId == orderId)&&(identical(other.videoOne, videoOne) || other.videoOne == videoOne)&&(identical(other.videoTwo, videoTwo) || other.videoTwo == videoTwo)&&(identical(other.imageOne, imageOne) || other.imageOne == imageOne)&&(identical(other.imageTwo, imageTwo) || other.imageTwo == imageTwo)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus)&&(identical(other.cachedProgress, cachedProgress) || other.cachedProgress == cachedProgress));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Loaded&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,orderId,videoOne,videoTwo,imageOne,imageTwo,latitude,longitude,formzSubmissionStatus,cachedProgress);
+int get hashCode => Object.hash(runtimeType,createCachedDoc,formzSubmissionStatus);
 
 @override
 String toString() {
-  return 'CachedDocState.loaded(orderId: $orderId, videoOne: $videoOne, videoTwo: $videoTwo, imageOne: $imageOne, imageTwo: $imageTwo, latitude: $latitude, longitude: $longitude, formzSubmissionStatus: $formzSubmissionStatus, cachedProgress: $cachedProgress)';
+  return 'CachedDocState.loaded(createCachedDoc: $createCachedDoc, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$LoadedCopyWith<$Res> implements $CachedDocStateCopyWith<$Res> {
-  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+abstract mixin class $LoadedCopyWith<$Res> implements $CachedDocStateCopyWith<$Res> {
+  factory $LoadedCopyWith(Loaded value, $Res Function(Loaded) _then) = _$LoadedCopyWithImpl;
 @useResult
 $Res call({
- GenericFormzInput<int>? orderId, FileFormzInput? videoOne, FileFormzInput? videoTwo, FileFormzInput? imageOne, FileFormzInput? imageTwo, GenericFormzInput<double>? latitude, GenericFormzInput<double>? longitude, FormzSubmissionStatus formzSubmissionStatus, double? cachedProgress
+ CreateCachedDocEntity createCachedDoc, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
-
+$CreateCachedDocEntityCopyWith<$Res> get createCachedDoc;
 
 }
 /// @nodoc
-class __$LoadedCopyWithImpl<$Res>
-    implements _$LoadedCopyWith<$Res> {
-  __$LoadedCopyWithImpl(this._self, this._then);
+class _$LoadedCopyWithImpl<$Res>
+    implements $LoadedCopyWith<$Res> {
+  _$LoadedCopyWithImpl(this._self, this._then);
 
-  final _Loaded _self;
-  final $Res Function(_Loaded) _then;
+  final Loaded _self;
+  final $Res Function(Loaded) _then;
 
 /// Create a copy of CachedDocState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? orderId = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? imageOne = freezed,Object? imageTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? formzSubmissionStatus = null,Object? cachedProgress = freezed,}) {
-  return _then(_Loaded(
-orderId: freezed == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<int>?,videoOne: freezed == videoOne ? _self.videoOne : videoOne // ignore: cast_nullable_to_non_nullable
-as FileFormzInput?,videoTwo: freezed == videoTwo ? _self.videoTwo : videoTwo // ignore: cast_nullable_to_non_nullable
-as FileFormzInput?,imageOne: freezed == imageOne ? _self.imageOne : imageOne // ignore: cast_nullable_to_non_nullable
-as FileFormzInput?,imageTwo: freezed == imageTwo ? _self.imageTwo : imageTwo // ignore: cast_nullable_to_non_nullable
-as FileFormzInput?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<double>?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<double>?,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
-as FormzSubmissionStatus,cachedProgress: freezed == cachedProgress ? _self.cachedProgress : cachedProgress // ignore: cast_nullable_to_non_nullable
-as double?,
+@pragma('vm:prefer-inline') $Res call({Object? createCachedDoc = null,Object? formzSubmissionStatus = null,}) {
+  return _then(Loaded(
+createCachedDoc: null == createCachedDoc ? _self.createCachedDoc : createCachedDoc // ignore: cast_nullable_to_non_nullable
+as CreateCachedDocEntity,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+as FormzSubmissionStatus,
   ));
 }
 
-
+/// Create a copy of CachedDocState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CreateCachedDocEntityCopyWith<$Res> get createCachedDoc {
+  
+  return $CreateCachedDocEntityCopyWith<$Res>(_self.createCachedDoc, (value) {
+    return _then(_self.copyWith(createCachedDoc: value));
+  });
+}
 }
 
 /// @nodoc

@@ -26,7 +26,7 @@ class DrawerMenuItems extends StatelessWidget {
           icon: Icons.person_outline_rounded,
           title: 'ملفي الشخصي',
           onTap: () {
-            NavigationService.navigateTo(
+            NavigationService.pushNamed(
               context: context,
               routeName: ProfileView.routeName,
             );
@@ -36,7 +36,7 @@ class DrawerMenuItems extends StatelessWidget {
           icon: Icons.account_balance_wallet_outlined,
           title: 'مصروفات',
           onTap: () {
-            NavigationService.navigateTo(
+            NavigationService.pushNamed(
               context: context,
               routeName: CreateExpenseView.routeName,
             );
@@ -46,7 +46,7 @@ class DrawerMenuItems extends StatelessWidget {
           icon: FontAwesomeIcons.language,
           title: t.language,
           onTap: () {
-            NavigationService.navigateTo(
+            NavigationService.pushNamed(
               context: context,
               routeName: SelectLanguageView.routeName,
             );
@@ -56,7 +56,7 @@ class DrawerMenuItems extends StatelessWidget {
           icon: Icons.info,
           title: t.instructions,
           onTap: () {
-            NavigationService.navigateTo(
+            NavigationService.pushNamed(
               context: context,
               routeName: InstructionsView.routeName,
             );
@@ -66,7 +66,7 @@ class DrawerMenuItems extends StatelessWidget {
           icon: Icons.lock_outline_rounded,
           title: 'تغيير كلمة المرور',
           onTap: () {
-            NavigationService.navigateTo(
+            NavigationService.pushNamed(
               context: context,
               routeName: ChangePassView.routeName,
             );

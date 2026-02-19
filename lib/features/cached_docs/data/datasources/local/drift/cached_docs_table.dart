@@ -1,15 +1,98 @@
+import 'dart:convert';
+
 import 'package:drift/drift.dart';
 
-class CachedDocs extends Table {
-  IntColumn get id => integer().autoIncrement()();
-  IntColumn get orderId => integer()();
-  TextColumn get imageOne => text().nullable()();
-  TextColumn get imageTwo => text().nullable()();
-  TextColumn get videoOne => text().nullable()();
-  TextColumn get videoTwo => text().nullable()();
-  RealColumn get latitude => real().nullable()();
-  RealColumn get longitude => real().nullable()();
-  RealColumn get shippingCost => real().nullable()();
-  TextColumn get uploadStatus => text()(); 
+enum DocFileType { imageOne, imageTwo, videoOne, videoTwo }
+
+enum FileUploadStatus { init, pending, uploading, uploaded, failed }
+
+@DataClassName('CachedDocEntry')
+class CachedDocsTable extends Table {
+  IntColumn get docId => integer()();
+  TextColumn get imageOne => text().map(const DocFileConverter()).nullable()();
+  TextColumn get imageTwo => text().map(const DocFileConverter()).nullable()();
+  TextColumn get videoOne => text().map(const DocFileConverter()).nullable()();
+  TextColumn get videoTwo => text().map(const DocFileConverter()).nullable()();
+  TextColumn get location =>
+      text().map(const LocationDocConverter()).nullable()();
+  TextColumn get uploadStatus =>
+      text().withDefault(Constant(FileUploadStatus.init.name))();
   RealColumn get uploadProgress => real().withDefault(const Constant(0.0))();
+  @override
+  Set<Column> get primaryKey => {docId};
+}
+
+class DocFile {
+  final String? path;
+  final DocFileType type;
+  final FileUploadStatus status;
+  DocFile({required this.path, required this.type, this.status = FileUploadStatus.init});
+  factory DocFile.fromJson(Map<String, dynamic> json) => DocFile(
+    path: json['path'],
+    type: DocFileType.values.firstWhere(
+      (e) => e.name == json['type'],
+      orElse: () => DocFileType.imageOne,
+    ),
+    status: FileUploadStatus.values.firstWhere(
+      (e) => e.name == json['status'],
+      orElse: () => FileUploadStatus.init,
+    ),
+  );
+  Map<String, dynamic> toJson() => {
+    'path': path,
+    'type': type.name,
+    'status': status.name,
+  };
+  DocFile copyWith({
+    String? path,
+    FileUploadStatus? status,
+    DocFileType? type,
+  }) {
+    return DocFile(
+      path: path ?? this.path,
+      status: status ?? this.status,
+      type: type ?? this.type,
+    );
+  }
+}
+
+class DocFileConverter extends TypeConverter<DocFile, String> {
+  const DocFileConverter();
+  @override
+  DocFile fromSql(String fromDb) => DocFile.fromJson(jsonDecode(fromDb));
+  @override
+  String toSql(DocFile value) => jsonEncode(value.toJson());
+}
+
+class LocationDoc {
+  final double? latitude;
+  final double? longitude;
+  final FileUploadStatus status;
+  LocationDoc({
+    this.latitude,
+    this.longitude,
+    this.status = FileUploadStatus.init,
+  });
+  factory LocationDoc.fromJson(Map<String, dynamic> json) => LocationDoc(
+    latitude: json['latitude']?.toDouble(),
+    longitude: json['longitude']?.toDouble(),
+    status: FileUploadStatus.values.firstWhere(
+      (e) => e.name == json['status'],
+      orElse: () => FileUploadStatus.init,
+    ),
+  );
+  Map<String, dynamic> toJson() => {
+    'latitude': latitude,
+    'longitude': longitude,
+    'status': status.name,
+  };
+}
+
+class LocationDocConverter extends TypeConverter<LocationDoc, String> {
+  const LocationDocConverter();
+  @override
+  LocationDoc fromSql(String fromDb) =>
+      LocationDoc.fromJson(jsonDecode(fromDb));
+  @override
+  String toSql(LocationDoc value) => jsonEncode(value.toJson());
 }

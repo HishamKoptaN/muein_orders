@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../home/domain/entities/order_type_res_entity.dart';
-import '../../domain/entities/orders_res_entity.dart';
 import '../bloc/orders_bloc.dart';
-import 'widgets/build_order_card.dart';
+import 'order_docs_widget.dart';
 import 'widgets/orders_tabs .dart';
-import 'widgets/shimmer/shimmer_client_row.dart';
 
-class OrdersView extends StatefulWidget {
+class OrderDocsView extends StatefulWidget {
   StatEntity stat;
-  OrdersView({super.key, required this.stat});
+  OrderDocsView({super.key, required this.stat});
 
   static const String routeName = 'orders';
   @override
-  State<OrdersView> createState() => _OrdersViewState();
+  State<OrderDocsView> createState() => _OrderDocsViewState();
 }
 
-class _OrdersViewState extends State<OrdersView> {
+class _OrderDocsViewState extends State<OrderDocsView> {
   final ScrollController _scrollController = ScrollController();
   int selectedTab = 1;
   @override
@@ -46,7 +43,7 @@ class _OrdersViewState extends State<OrdersView> {
     super.initState();
     context.read<OrdersBloc>().add(
       OrdersEvent.getOrders(
-        subCategoryId: widget.stat.subCategory?.id ?? 0,
+        subCategoryId: widget.stat.subCategory?.id ?? 1,
         loadMore: false,
         isQuranPhotographed: selectedTab == 0,
       ),
@@ -74,12 +71,6 @@ class _OrdersViewState extends State<OrdersView> {
   }
 
   @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     return CustomScaffold(
@@ -87,10 +78,9 @@ class _OrdersViewState extends State<OrdersView> {
       body: BlocBuilder<OrdersBloc, OrdersState>(
         builder: (context, state) {
           return Column(
+            spacing: 15.h,
             children: [
-              const SizedBox(height: 16),
               OrdersTabs(onTap: _onTabSelected, t: t, selectedTab: selectedTab),
-              const SizedBox(height: 16),
               Row(
                 children: [
                   SizedBox(
@@ -115,142 +105,22 @@ class _OrdersViewState extends State<OrdersView> {
                 ],
               ),
               const SizedBox(height: 6),
-              Expanded(
-                child: BlocBuilder<OrdersBloc, OrdersState>(
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      loaded: (orders, hasMore) {
-                        if (orders?.isEmpty == true) {
-                          return RefreshIndicator(
-                            onRefresh: () async {
-                              context.read<OrdersBloc>().add(
-                                OrdersEvent.getOrders(
-                                  subCategoryId: widget.stat.id ?? 0,
-                                  loadMore: false,
-                                  isQuranPhotographed: selectedTab == 0,
-                                ),
-                              );
-                            },
-                            child: Center(
-                              child: Text(
-                                t.noOrders,
-                                style: Theme.of(context).textTheme.titleLarge
-                                    ?.copyWith(
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.onSecondary,
-                                    ),
-                              ),
-                            ),
-                          );
-                        }
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            context.read<OrdersBloc>().add(
-                              OrdersEvent.getOrders(
-                                subCategoryId: widget.stat.id ?? 0,
-                                loadMore: false,
-                                isQuranPhotographed: selectedTab == 0,
-                              ),
-                            );
-                          },
-                          child: Column(
-                            children: [
-                              Gap(15.h),
-                              Expanded(
-                                child: ListView.builder(
-                                  controller: _scrollController,
-                                  itemCount: orders?.length,
-                                  itemBuilder: (context, index) {
-                                    final order = orders?[index];
-                                    return buildDocOrderCard(
-                                      t: t,
-                                      context: context,
-                                      orderEntity: order ?? const OrderEntity(),
-                                      orderDocsCount: widget.stat.id ?? 1,
-                                      package: widget.stat,
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-
-                      loading: () {
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            context.read<OrdersBloc>().add(
-                              OrdersEvent.getOrders(
-                                subCategoryId: widget.stat.id ?? 0,
-                                loadMore: false,
-                                isQuranPhotographed: selectedTab == 0,
-                              ),
-                            );
-                          },
-                          child: ListView.builder(
-                            itemCount: 10,
-                            itemBuilder: (context, index) =>
-                                ShimmerClientRow(height: 100.h),
-                          ),
-                        );
-                      },
-
-                      failure: (e) {
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            context.read<OrdersBloc>().add(
-                              OrdersEvent.getOrders(
-                                subCategoryId: widget.stat.id ?? 0,
-                                loadMore: false,
-                                isQuranPhotographed: selectedTab == 0,
-                              ),
-                            );
-                          },
-                          child: ListView(
-                            children: [
-                              Center(
-                                child: Text(
-                                  e.error ?? '',
-                                  style: Theme.of(context).textTheme.titleLarge
-                                      ?.copyWith(
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onSecondary,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                      orElse: () {
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            context.read<OrdersBloc>().add(
-                              OrdersEvent.getOrders(
-                                subCategoryId: widget.stat.id ?? 0,
-                                loadMore: false,
-                                isQuranPhotographed: selectedTab == 0,
-                              ),
-                            );
-                          },
-                          child: ListView.builder(
-                            itemCount: 10,
-                            itemBuilder: (context, index) =>
-                                ShimmerClientRow(height: 100.h),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
+              OrderDocsWidget(
+                widget: widget,
+                selectedTab: selectedTab,
+                t: t,
+                scrollController: _scrollController,
               ),
             ],
           );
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }

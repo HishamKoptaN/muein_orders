@@ -16,7 +16,7 @@ abstract class OrdersApi {
   @GET(ApiConstants.orders)
   Future<OrdersResModel> getOrders({
     @Query('page') int? page,
-    @Query('product_type_id') required int productTypeId,
+    @Query('sub_category_id') required int subCategoryId,
     @Query('query') String? query,
     // @Query('is_distribution_photographed') bool? isDistributionPhotographed,
   });

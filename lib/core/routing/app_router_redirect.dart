@@ -15,10 +15,9 @@ class AppRouterRedirect {
   };
   static const Set<String> authenticatedOnly = {
     HomeView.routeName,
-    OrdersView.routeName,
+    OrderDocsView.routeName,
     InstructionsView.routeName,
     ProfileView.routeName,
     AddCachedDocView.routeName,
   };
- 
 }

@@ -24,33 +24,60 @@ Map<String, dynamic> _$DocsResEntityToJson(_DocsResEntity instance) =>
 
 _DocEntity _$DocEntityFromJson(Map<String, dynamic> json) => _DocEntity(
   id: (json['id'] as num?)?.toInt(),
-  videoOne: json['video_one'] as String?,
-  videoTwo: json['video_two'] as String?,
-  thumbnailUrlOne: json['thumbnail_url_one'] as String?,
-  thumbnailUrlTwo: json['thumbnail_url_two'] as String?,
-  imageOne: json['image_one'] as String?,
-  imageTwo: json['image_two'] as String?,
-  updatedAt: json['updated_at'] as String?,
+  videoOne: json['videoOne'] as String?,
+  videoTwo: json['videoTwo'] as String?,
+  thumbnailUrlOne: json['thumbnailUrlOne'] as String?,
+  thumbnailUrlTwo: json['thumbnailUrlTwo'] as String?,
+  imageOne: json['imageOne'] as String?,
+  imageTwo: json['imageTwo'] as String?,
+  updatedAt: json['updatedAt'] as String?,
   latitude: json['latitude'] as String?,
-  docStatusModel: json['doc_status'] == null
+  docStatusModel: json['docStatusModel'] == null
       ? null
-      : DocStatusModel.fromJson(json['doc_status'] as Map<String, dynamic>),
+      : DocStatusEntity.fromJson(
+          json['docStatusModel'] as Map<String, dynamic>,
+        ),
   longitude: json['longitude'] as String?,
-  createdAt: json['created_at'] as String?,
+  createdAt: json['createdAt'] as String?,
 );
 
 Map<String, dynamic> _$DocEntityToJson(_DocEntity instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'video_one': ?instance.videoOne,
-      'video_two': ?instance.videoTwo,
-      'thumbnail_url_one': ?instance.thumbnailUrlOne,
-      'thumbnail_url_two': ?instance.thumbnailUrlTwo,
-      'image_one': ?instance.imageOne,
-      'image_two': ?instance.imageTwo,
-      'updated_at': ?instance.updatedAt,
+      'videoOne': ?instance.videoOne,
+      'videoTwo': ?instance.videoTwo,
+      'thumbnailUrlOne': ?instance.thumbnailUrlOne,
+      'thumbnailUrlTwo': ?instance.thumbnailUrlTwo,
+      'imageOne': ?instance.imageOne,
+      'imageTwo': ?instance.imageTwo,
+      'updatedAt': ?instance.updatedAt,
       'latitude': ?instance.latitude,
-      'doc_status': ?instance.docStatusModel?.toJson(),
+      'docStatusModel': ?instance.docStatusModel?.toJson(),
       'longitude': ?instance.longitude,
-      'created_at': ?instance.createdAt,
+      'createdAt': ?instance.createdAt,
     };
+
+_DocStatusEntity _$DocStatusEntityFromJson(Map<String, dynamic> json) =>
+    _DocStatusEntity(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      textColor: const ColorConverter().fromJson(json['textColor'] as String?),
+      backgroundColor: const ColorConverter().fromJson(
+        json['backgroundColor'] as String?,
+      ),
+      iconColor: const ColorConverter().fromJson(json['iconColor'] as String?),
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
+    );
+
+Map<String, dynamic> _$DocStatusEntityToJson(
+  _DocStatusEntity instance,
+) => <String, dynamic>{
+  'id': ?instance.id,
+  'name': ?instance.name,
+  'textColor': ?const ColorConverter().toJson(instance.textColor),
+  'backgroundColor': ?const ColorConverter().toJson(instance.backgroundColor),
+  'iconColor': ?const ColorConverter().toJson(instance.iconColor),
+  'createdAt': ?instance.createdAt,
+  'updatedAt': ?instance.updatedAt,
+};

@@ -1,5 +1,5 @@
 import '../../../../core/entities/meta_entity.dart';
-import '../../../../core/mapper/meta_mapper.dart';
+import '../../../docs/data/mapper/docs_mapper.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../models/orders_res_model.dart';
 
@@ -17,8 +17,8 @@ extension OrderMapper on OrderModel {
     return OrderEntity(
       id: id ?? 0,
       printedName: printedName ?? '',
-      sallaOrderId: sallaOrderId?.toString() ?? '',
-      isDistributionPhotographed: false,
+      sallaOrderId: sallaOrderId,
+      docs: docs!.map((c) => c.toEntity()).toList(),
     );
   }
 }

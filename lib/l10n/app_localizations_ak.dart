@@ -9,630 +9,621 @@ class AppLocalizationsAk extends AppLocalizations {
   AppLocalizationsAk([String locale = 'ak']) : super(locale);
 
   @override
-  String get upload_videos => 'Twe video ahorow';
+  String get upload_videos => 'تحميل مقاطع الفيديو';
 
   @override
-  String get welcometoMueinOrders => 'Yɛma wo akwaaba ba Mobin Talabat';
+  String get welcometoMueinOrders => 'مرحباً بكم في طلبات موبين';
 
   @override
-  String get welcome => 'Akwaaba';
+  String get welcome => 'مرحباً';
 
   @override
-  String get indevedual => 'ankorɛankorɛ';
+  String get indevedual => 'فردي';
 
   @override
-  String get instructions => 'Akwankyerɛ';
+  String get instructions => 'التعليمات';
 
   @override
-  String get indveduals => 'Asɛmfua';
+  String get indveduals => 'المفردات';
 
   @override
-  String get wearehappytohaveyoujoinourstore =>
-      'Yɛn ani agye sɛ yɛama woabɛka yɛn sotɔɔ no ho.';
+  String get wearehappytohaveyoujoinourstore => 'نحن سعداء بانضمامك لمتجرنا.';
 
   @override
-  String get gettoknowtheapplicationinterface =>
-      'Hu application no ntam nkitahodi';
+  String get gettoknowtheapplicationinterface => 'تعرف على واجهة التطبيق';
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Ɛha na wobɛhunu nnwuma, abisadeɛ, kɔkɔbɔ, ne filters.';
+      'ستجد هنا المهام والطلبات والتنبيهات والمرشحات.';
 
   @override
-  String get documentationWithPhotosAndVideos =>
-      'Nwoma a wɔde mfonini ne video ahorow ayɛ';
+  String get documentationWithPhotosAndVideos => 'التوثيق بالصور والفيديوهات';
 
   @override
   String
   get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-      'Hwɛ sɛ mfonini ahorow no mu da hɔ, Kuran Kronkron no dodow, ne ɛka a wɔbɔ wɔ nea wɔkra no ho ansa na wode amena.';
+      'تأكد من وضوح الصور وعدد نسخ القرآن الكريم وتكاليف الطلب قبل الإرسال.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'Yɛn ani agye sɛ yɛama woabɛka yɛn sotɔɔ no ho.';
+      'سعيدين بانضمامك إلى متجر مبين';
 
   @override
-  String get get_to_know_the_application_interface =>
-      'Hu application no ntam nkitahodi';
+  String get get_to_know_the_application_interface => 'تعرف على واجهة التطبيق';
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Ɛha na wobɛhunu nnwuma, abisadeɛ, kɔkɔbɔ, ne filters.';
+      'ستجد هنا المهام والطلبات والتنبيهات والمرشحات';
 
   @override
   String get documentation_with_photos_and_videos =>
-      'Nwoma a wɔde mfonini ne video ahorow ayɛ';
+      'التوثيق بالصور والفيديوهات';
 
   @override
-  String get send => 'mane';
+  String get send => 'أرسال';
 
   @override
-  String get uploadingDocument => 'Fa nkrataa a wɔde kyerɛw nsɛm gu so';
+  String get uploadingDocument => 'رفع التوثيق';
 
   @override
-  String get documentationIsBeingUploaded =>
-      'Wɔde nkrataa a wɔde kyerɛw nneɛma rekɔ so';
+  String get documentationIsBeingUploaded => 'جاري رفع التوثيق';
 
   @override
-  String get phone => 'Telefon nɔma';
+  String get phone => 'رقم التليفون';
 
   @override
-  String get done => 'wieeɛ';
+  String get done => 'منتهي';
 
   @override
-  String get orders => 'Abisade ahorow';
+  String get orders => 'طلبات';
 
   @override
-  String get package => 'hyehyɛ';
+  String get package => 'حزمة';
 
   @override
   String get there_are_no_results_for_this_search =>
-      'Wonhuu nea efii nhwehwɛmu yi mu bae biara';
+      'لم يتم العثور على نتائج لهذا البحث';
 
   @override
-  String get documentations => 'Nwoma a wɔde kyerɛw';
+  String get documentations => 'الوثائق';
 
   @override
-  String get show_documentations => 'Hwɛ nkrataa ahorow';
+  String get show_documentations => 'عرض الوثائق';
 
   @override
-  String get execution_number => 'Nnɔmba a wɔde kum obi';
+  String get show_documentation => 'عرض التوثيق';
 
   @override
-  String get add_documentation => 'Fa nkrataa ka ho';
+  String get execution_number => 'رقم التنفيذ';
 
   @override
-  String get location => 'beaeɛ';
+  String get add_documentation => 'إضافة الوثائق';
 
   @override
-  String get selectLocation => 'Hwehwɛ baabi a wowɔ';
+  String get location => 'موقع';
 
   @override
-  String get select => 'sɛ wɔde besi hɔ';
+  String get selectLocation => 'تحديد الموقع';
 
   @override
-  String get count => 'nɔma';
+  String get select => 'تحديد';
 
   @override
-  String get registerAnAccount => 'Kyerɛw wo akontaabu bi din';
+  String get count => 'عدد';
 
   @override
-  String get noMoreDocs => 'Nwoma foforɔ biara nni hɔ.';
+  String get registerAnAccount => 'تسجيل حساب';
 
   @override
-  String get kinia_name => 'Kenya';
+  String get noMoreDocs => 'لا يوجد توثيقات أخرى.';
 
   @override
-  String get smoal_name => 'Somalia na ɛwɔ hɔ';
+  String get kinia_name => 'كينيا';
 
   @override
-  String get tanzania => 'Tanzania na ɛwɔ hɔ';
+  String get smoal_name => 'الصومال';
 
   @override
-  String get home_title => 'fie';
+  String get tanzania => 'تنزانيا';
 
   @override
-  String get main => 'Fie';
+  String get home_title => 'بيت';
 
   @override
-  String get add_order => 'Fa abisade bi ka ho';
+  String get main => 'الرئيسية';
 
   @override
-  String get order_place => 'beaeɛ';
+  String get add_order => 'إضافة طلب';
 
   @override
-  String get order_id => 'ID a wɔde kra nneɛma';
+  String get order_place => 'مكان';
 
   @override
-  String get order_number => 'nɔma a wɔde kra nneɛma';
+  String get order_id => 'معرف الطلب';
 
   @override
-  String get client_id => 'Adetɔfo ID';
+  String get order_number => 'رقم الطلب';
 
   @override
-  String get enter_order_id => 'Hyehyɛ order ID no mu';
+  String get client_id => 'معرف العميل';
 
   @override
-  String get place_hint => 'Akuraa/Asɔredan/Sukuu';
+  String get enter_order_id => 'أدخل معرف الطلب';
 
   @override
-  String get add_video => 'Fa video ka ho';
+  String get place_hint => 'قرية/مسجد/مدرسة';
 
   @override
-  String get add_picure => 'Fa mfonini bi ka ho';
+  String get add_video => 'إضافة فيديو';
 
   @override
-  String get add => 'nkabom';
+  String get add_picure => 'أضف صورة';
 
   @override
-  String get loading => 'twe...';
+  String get add => 'اضافة';
 
   @override
-  String get changeLanguage => 'Sesa kasa';
+  String get loading => 'تحميل...';
 
   @override
-  String get login_text => 'Kɔ mu';
+  String get changeLanguage => 'تغيير اللغة';
 
   @override
-  String get login => 'Kɔ mu';
+  String get login_text => 'تسجيل الدخول';
 
   @override
-  String get emailHint => 'Email a wɔde mena';
+  String get login => 'تسجيل الدخول';
 
   @override
-  String get emailRequired => 'Email ho hia';
+  String get emailHint => 'البريد إلكتروني';
 
   @override
-  String get phoneNumberHint => 'telefon nɔma';
+  String get emailRequired => 'البريد الإلكتروني مطلوب';
 
   @override
-  String get phoneNumber => 'telefon nɔma';
+  String get phoneNumberHint => 'رقم الهاتف';
 
   @override
-  String get countryHint => 'ɔman';
+  String get phoneNumber => 'رقم الهاتف';
 
   @override
-  String get confirmPasswordHint => 'Si password no so dua';
+  String get countryHint => 'دولة';
 
   @override
-  String get confirmPassword => 'Si password no so dua';
+  String get confirmPasswordHint => 'تأكيد كلمة المرور';
 
   @override
-  String get remember_me => 'Kae me';
+  String get confirmPassword => 'تأكيد كلمة المرور';
 
   @override
-  String get log_out => 'Fa wo nsa hyɛ ase';
+  String get remember_me => 'تذكرنى';
 
   @override
-  String get areYouSure => 'So wugye di sɛ wopɛ sɛ wufi mu?';
+  String get log_out => 'تسجيل الخروج';
 
   @override
-  String get file_pick_failed => 'Fael a wɔpaw no antumi';
+  String get areYouSure => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
 
   @override
-  String get order_saving => 'Sikakorabea abisade...';
+  String get file_pick_failed => 'فشل اختيار الملف';
 
   @override
-  String get order__is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
+  String get order_saving => 'جاري حفظ الطلب...';
 
   @override
-  String get failed => 'sɛ wobedi nkogu';
+  String get order__is_sharing => 'طلب المشاركة...';
 
   @override
-  String get or => 'anaasɛ';
+  String get failed => 'فشل';
 
   @override
-  String get request_time_out => 'Abisade no atwam.';
+  String get or => 'أو';
 
   @override
-  String get change_language => 'Sesa kasa';
+  String get request_time_out => 'انتهت مهلة الطلب';
 
   @override
-  String get arabic => 'Arabfoɔ';
+  String get change_language => 'تغيير اللغة';
 
   @override
-  String get addDocumentation => 'Fa nkrataa ka ho';
+  String get arabic => 'عربي';
 
   @override
-  String get success => 'nkunimdie';
+  String get addDocumentation => 'إضافة توثيق';
 
   @override
-  String get english => 'Borɔfo';
+  String get success => 'نجاح';
 
   @override
-  String get close => 'Wɔto mu';
+  String get english => 'إنجليزي';
 
   @override
-  String get required => 'ɛhia';
+  String get close => 'يغلق';
 
   @override
-  String get order_added_successfully => 'Wɔde abisade no aka ho yiye.';
+  String get required => 'مطلوب';
 
   @override
-  String get order_addition_failed => 'Abisade a wɔde bɛka ho no antumi';
+  String get order_added_successfully => 'تمت إضافة الطلب بنجاح';
 
   @override
-  String get country => 'ɔman';
+  String get order_addition_failed => 'فشلت إضافة الطلب';
 
   @override
-  String get selectCountry => 'Paw ɔman';
+  String get country => 'دولة';
 
   @override
-  String get passwordsDontMatch => 'Passwords nhyia';
+  String get selectCountry => 'اختر البلد';
 
   @override
-  String get firstNameRequired => 'Edin a edi kan a wɔhwehwɛ';
+  String get passwordsDontMatch => 'كلمات المرور غير متطابقة';
 
   @override
-  String get secondNameRequired => 'Edin a ɛto so abien a wɔhwehwɛ';
+  String get firstNameRequired => 'الاسم الأول مطلوب';
 
   @override
-  String get reset_link_sent => 'Reset link a wɔde amena';
+  String get secondNameRequired => 'الاسم الثاني مطلوب';
+
+  @override
+  String get reset_link_sent => 'تم إرسال رابط إعادة التعيين';
 
   @override
   String get enter_valid_email_password =>
-      'Hyehyɛ email address ne password a ɛfata.';
+      'أدخل بريدًا إلكترونيًا وكلمة مرور صالحين';
 
   @override
-  String get invalidEmail => 'Email a ɛnteɛ';
+  String get invalidEmail => 'بريد إلكتروني غير صالح';
 
   @override
-  String get phoneRequired => 'Telefon nɔma a wɔhwehwɛ';
+  String get phoneRequired => 'رقم الهاتف مطلوب';
 
   @override
-  String get passwordRequired => 'Password a wɔhwehwɛ';
+  String get passwordRequired => 'كلمة المرور مطلوبة';
 
   @override
   String get passwordMinLength =>
-      'Anyɛ yiye koraa no, ɛsɛ sɛ password no tenten yɛ nkyerɛwde 8.';
+      'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل';
 
   @override
-  String get confirmPasswordRequired => 'Password a wɔde si so dua ho hia';
+  String get confirmPasswordRequired => 'تأكيد كلمة المرور مطلوب';
 
   @override
-  String get alreadyHaveAnAccount => 'So wowɔ akontaabu dedaw?';
+  String get alreadyHaveAnAccount => 'هل لديك حساب بالفعل؟';
 
   @override
-  String get confirmYourPassword => 'Si wo password no so dua';
+  String get confirmYourPassword => 'تأكيد كلمة المرور الخاصة بك';
 
   @override
-  String get request_saving => 'Sikakorabea abisade...';
+  String get request_saving => 'جاري حفظ الطلب...';
 
   @override
-  String get order_is_sharing => 'Abisade a ɛne sɛ wɔmfa wɔn ho nhyɛ mu...';
+  String get order_is_sharing => 'طلب المشاركة...';
 
   @override
-  String get successfully => 'Ɛyɛɛ yiye';
+  String get successfully => 'بنجاح';
 
   @override
-  String get data_dont_saved => 'Data a wɔankora so';
+  String get data_dont_saved => 'لم يتم حفظ البيانات';
 
   @override
-  String get data_saved => 'Data a wɔde asie';
+  String get data_saved => 'البيانات المحفوظة';
 
   @override
-  String get order_id_exists => 'Order ID wɔ hɔ dedaw';
+  String get order_id_exists => 'معرف الطلب موجود بالفعل';
 
   @override
-  String get select_files => 'Paw fael ahorow';
+  String get select_files => 'تحديد الملفات';
 
   @override
-  String get camera => 'mfoninitwa afiri';
+  String get camera => 'الكاميرا';
 
   @override
-  String get gallery => 'Adida';
+  String get gallery => 'المعرض';
 
   @override
-  String get cant_be_embty => 'Ɛrentumi nyɛ hunu.';
+  String get cant_be_embty => 'لا يمكن أن يكون فارغا';
 
   @override
-  String get please_enter_all_data => 'Yɛsrɛ sɛ kyerɛw data nyinaa';
+  String get please_enter_all_data => 'الرجاء إدخال كافة البيانات';
 
   @override
-  String get ok => 'Aane';
+  String get ok => 'نعم';
 
   @override
-  String get swahili_kenya => 'Swahili kasa - Kenya kasa';
+  String get swahili_kenya => 'السواحيلية - كينيا';
 
   @override
-  String get swahili_tanzania => 'Swahili kasa - Tanzania kasa';
+  String get swahili_tanzania => 'السواحيلية - تنزانيا';
 
   @override
-  String get luganda_uganda => 'Luganda - Uganda';
+  String get luganda_uganda => 'لوجاندا - أوغندا';
 
   @override
-  String get retry => 'San bɔ mmɔden bio';
+  String get retry => 'إعادة المحاولة';
 
   @override
-  String get unexpected_error => 'Mfomso bi a na wɔnhwɛ kwan sii.';
+  String get unexpected_error => 'حدث خطأ غير متوقع';
 
   @override
-  String get notHaveAccount => 'Wonni akontaabu biara?';
+  String get notHaveAccount => 'ليس لديك حساب؟';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords nhyia';
+  String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
 
   @override
   String get enterYourEmailToResetPassword =>
-      'Hyehyɛ wo email na woanya password reset link.';
+      'أدخل بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور';
 
   @override
-  String get follow => 'Ɔdi n’akyi';
+  String get follow => 'يتبع';
 
   @override
-  String get confirm_password_hint => 'Si password no so dua';
+  String get confirm_password_hint => 'تأكيد كلمة المرور';
 
   @override
-  String get instead => 'sɛ anka';
+  String get instead => 'بدلاً من';
 
   @override
-  String get skip => 'bɔ tra';
+  String get skip => 'تخطى';
 
   @override
-  String get next => 'nea edi hɔ no';
+  String get next => 'التالي';
 
   @override
-  String get documentationAndReviewIsUnderway =>
-      'Wɔakyerɛw ato hɔ na wɔrehwɛ mu';
+  String get documentationAndReviewIsUnderway => 'تم التوثيق وجاري المراجعه';
 
   @override
-  String get not_have_account => 'Wonni akontaabu biara?';
+  String get not_have_account => 'ليس لديك حساب؟';
 
   @override
-  String get errorLoadingOnboarding =>
-      'Mfomso bi sii bere a wɔrehyɛ akwankyerɛ no mu nsɛm no mu.';
+  String get errorLoadingOnboarding => 'حدث خطأ أثناء تحميل محتوى التوجيه';
 
   @override
-  String get onboardingWelcomeTitle => 'Yɛma wo akwaaba ba Mobin Talabat';
+  String get onboardingWelcomeTitle => 'مرحباً بكم في طلبات موبين';
 
   @override
   String get onboardingWelcomeDescription =>
-      'Ano aduru a edi mũ a wɔde hwɛ nneɛma a wɔkra ne nkrataa a wɔkyerɛw so';
+      'الحل الشامل لإدارة الطلبات والتوثيق';
 
   @override
-  String get onboardingTrackingTitle => 'Di w’ahyɛde ahorow akyi';
+  String get onboardingTrackingTitle => 'تتبع طلباتك';
 
   @override
   String get onboardingTrackingDescription =>
-      'Monitor wo orders wɔ bere ankasa mu denam yɛn intuitive tracking nhyehyɛe.';
+      'قم بمراقبة طلباتك في الوقت الفعلي باستخدام نظام التتبع البديهي لدينا';
 
   @override
   String
   get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
-      'Mpopa mfonini ne video fael a wɔde asie wɔ wo mpɔtam hɔ a wɔde kyerɛw application bi kosi sɛ adwumayɛfo no bɛpene so.';
+      'لا تقم بحذف ملفات الصور والفيديو المخزنة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة';
 
   @override
-  String get doNotDeleteTheDocumentationFiles =>
-      'Mpopa nkrataa fael ahorow no.';
+  String get doNotDeleteTheDocumentationFiles => 'لا تقم بحذف ملفات التوثيق';
 
   @override
-  String get onboardingDocumentsTitle => 'Nwoma a wɔde di dwuma';
+  String get onboardingDocumentsTitle => 'إدارة المستندات';
 
   @override
   String get onboardingDocumentsDescription =>
-      'Fa wo nkrataa a ɛho hia nyinaa sie na kɔ baabiara a ahobammɔ wɔ.';
+      'قم بتخزين جميع مستنداتك المهمة والوصول إليها في مكان واحد آمن';
 
   @override
-  String get help => 'Ɛboa';
+  String get help => 'يساعد';
 
   @override
-  String get settings => 'Nsiesiei a Wɔde Yɛ Adwuma';
+  String get settings => 'إعدادات';
 
   @override
-  String get createAccount => 'Yɛ akontaabu bi';
+  String get createAccount => 'إنشاء حساب';
 
   @override
   String passwordResetEmailSentTo(Object email) {
-    return 'Wɔde password reset email akɔma $email.';
+    return 'تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور إلى $email';
   }
 
   @override
-  String get alreadyHaveAccount => 'So wowɔ akontaabu dedaw?';
+  String get alreadyHaveAccount => 'هل لديك حساب بالفعل؟';
 
   @override
   String
   get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Hwɛ sɛ mfonini ahorow no mu da hɔ na Kuran Kronkron no dodow a ɛfata ansa na wode amena';
+      'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال';
 
   @override
-  String get failure => 'sɛ wobedi nkogu';
+  String get failure => 'فشل';
 
   @override
-  String get accepted => 'Agye atom';
+  String get accepted => 'تم الموافقة';
 
   @override
-  String get approval => 'Agye atom';
+  String get approval => 'تم الاعتماد';
 
   @override
-  String get itHasNotBeenDocumentedUntilNow => 'Wɔnnya nhuu sɛ ɛyɛ nokware';
+  String get itHasNotBeenDocumentedUntilNow => 'لم يتم التوثيق حتى الآن';
 
   @override
-  String get signUp => 'nkrataahyɛ a wɔde kra';
+  String get signUp => 'اشتراك';
 
   @override
   String get apPasswordResetLinkHasBeenSentToYourEmail =>
-      'Wɔde password reset link bi akɔ wo email so.';
+      'لقد تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني';
 
   @override
-  String get signUpTitle => 'Yɛ akontaabu foforo';
+  String get signUpTitle => 'إنشاء حساب جديد';
 
   @override
-  String get firstName => 'fie din';
+  String get firstName => 'الاسم الأول';
 
   @override
-  String get lastName => 'abusuadin';
+  String get lastName => 'اسم العائلة';
 
   @override
-  String get fieldRequired => 'Saa afuw yi na wɔhwehwɛ';
+  String get fieldRequired => 'هذه الخانة مطلوبه';
 
   @override
-  String get accountCreated => 'Akontaabu a wɔyɛe no yiye';
+  String get accountCreated => 'تم إنشاء الحساب بنجاح';
 
   @override
-  String get start => 'da';
+  String get start => 'ابدأ';
 
   @override
-  String get email => 'e-mail a wɔde mena';
+  String get email => 'البريد الإلكتروني';
 
   @override
-  String get errorCreatingAccount => 'Mfomso a ɛfa akontaabu a wɔbɔe ho';
+  String get errorCreatingAccount => 'خطأ في إنشاء الحساب';
 
   @override
-  String get password => 'paswɛde';
+  String get password => 'كلمة المرور';
 
   @override
-  String get forgotPassword => 'Wo werɛ afi wo password?';
+  String get forgotPassword => 'هل نسيت كلمة السر؟';
 
   @override
-  String get selectLanguage => 'Paw kasa';
+  String get selectLanguage => 'اختر اللغة';
 
   @override
-  String get numberOfRequests => 'Nnipa dodow a wɔsrɛɛ';
+  String get numberOfRequests => 'عدد الطلبات';
 
   @override
-  String get name => 'edin no';
+  String get name => 'الاسم';
 
   @override
-  String get welcomeLine1 => 'Akwaaba';
+  String get welcomeLine1 => 'مرحباً';
 
   @override
-  String get welcomeLine2 => 'kɔ';
+  String get welcomeLine2 => 'ل';
 
   @override
-  String get signIn => 'Kɔ mu';
+  String get signIn => 'تسجيل الدخول';
 
   @override
-  String get followUp => 'tracking a wɔde di dwuma';
+  String get followUp => 'متابعة';
 
   @override
   String get aLinkWillBeSentToYouToResetYourPassword =>
-      'Wɔde link bi bɛmena wo sɛ wobɛsan asiesie wo password no.';
+      'سيتم إرسال رابط إليك لإعادة تعيين كلمة المرور الخاصة بك';
 
   @override
-  String get onboardingPage1Title => 'Akwaaba';
+  String get onboardingPage1Title => 'مرحباً';
 
   @override
-  String get onboardingPage1Description =>
-      'Yɛn ani agye sɛ yɛama woabɛka yɛn sotɔɔ no ho.';
+  String get onboardingPage1Description => 'يسعدنا انضمامك إلى متجر مبين';
 
   @override
-  String get onboardingPage2Title => 'Hwehwɛ app no ​​interface no mu';
+  String get onboardingPage2Title => 'اكتشف واجهة التطبيق';
 
   @override
   String get onboardingPage2Description =>
-      'Ɛha na wobɛhunu nnwuma, ahyɛdeɛ, kɔkɔbɔ, ne filters.';
+      'ستجد هنا المهام والأوامر والتنبيهات والمرشحات';
 
   @override
   String get aPasswordResetLinkHasBeenSentToYourEmail =>
-      'Wɔde password reset link bi akɔ wo email so.';
+      'لقد تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني';
 
   @override
-  String get onboardingPage3Title => 'Nwoma a wɔde mfonini ne video ahorow ayɛ';
+  String get onboardingPage3Title => 'التوثيق بالصور والفيديوهات';
 
   @override
   String get onboardingPage3Description =>
-      'Hwɛ sɛ mfonini ahorow no mu da hɔ na Kuran Kronkron no dodow a ɛfata ansa na wode amena';
+      'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال';
 
   @override
-  String get sticker => 'poster a wɔde kyerɛw nsɛm';
+  String get sticker => 'الملصق';
 
   @override
-  String get finished => 'wieeɛ';
+  String get finished => 'منتهي';
 
   @override
-  String get current => 'Foforɔ';
+  String get current => 'الحالية';
 
   @override
-  String get inProgress => 'Foforɔ';
+  String get inProgress => 'جاري';
 
   @override
-  String get theEnd => 'Awiei no';
+  String get theEnd => 'المنتهية';
 
   @override
-  String get noOrders => 'Adesrɛ biara nni hɔ';
+  String get noOrders => 'لا يوجد طلبات';
 
   @override
-  String get documented => 'Wɔakyerɛw ho asɛm';
+  String get documented => 'تم التوثيق';
 
   @override
-  String get order => 'sɛ wobɛbisa';
+  String get order => 'طلب';
 
   @override
-  String get expenses => 'ɛka';
+  String get expenses => 'مصاريف';
 
   @override
-  String get documentingTheRequest => 'Abisade no ho nkrataa a wɔkyerɛw';
+  String get documentingTheRequest => 'توثيق الطلب';
 
   @override
-  String get documentationProgress => 'Nkɔso a ɛwɔ nkrataakyerɛw mu';
+  String get documentationProgress => 'تقدم التوثيق';
 
   @override
-  String get notDocumented => 'Ɛnyɛ nea wɔagye atom';
+  String get notDocumented => 'لم يتم التوثيق';
 
   @override
-  String get pending => 'a wɔde sɛn hɔ';
+  String get pending => 'معلق';
 
   @override
-  String get uploading => 'Wɔde reto so';
+  String get uploading => 'يتم الرفع';
 
   @override
-  String get completed => 'wie';
+  String get completed => 'مكتمل';
 
   @override
-  String get error => 'mfomsoɔ';
+  String get error => 'خطأ';
 
   @override
-  String get retryFailedUploads => 'San bɔ mmɔden bio';
+  String get retryFailedUploads => 'إعادة المحاولة';
 
   @override
   String get retryFailedUploadsDescription =>
-      'So wopɛ sɛ wosan bɔ mmɔden sɛ wode abisade ahorow a entumi nyɛ yiye nyinaa bɛto so?';
+      'هل تريد إعادة محاولة رفع جميع الطلبات الفاشلة؟';
 
   @override
-  String get unknown => 'nnim';
+  String get unknown => 'غير معروف';
 
   @override
-  String get startUpload => 'Fi ase fa upload gu so';
+  String get startUpload => 'بدء الرفع';
 
   @override
-  String get cancel => 'a wɔtwa mu';
+  String get cancel => 'إلغاء';
 
   @override
-  String get save => 'kora';
+  String get save => 'حفظ';
 
   @override
-  String get editProfile => 'Sesa profile no';
+  String get editProfile => 'تعديل الملف الشخصي';
 
   @override
-  String get pendingDescription => 'Wɔretwɛn sɛ wɔde bɛto so';
+  String get pendingDescription => 'في انتظار الرفع';
 
   @override
-  String get uploadingDescription => 'Uploading mprempren';
+  String get uploadingDescription => 'يتم الرفع الآن';
 
   @override
-  String get completedDescription => 'Wɔde too so yiye';
+  String get completedDescription => 'تم الرفع بنجاح';
 
   @override
-  String get failedDescription => 'Wɔantumi ankɔ so ankɔ so';
+  String get failedDescription => 'فشل في الرفع';
 
   @override
-  String get unknownDescription => 'nnim';
+  String get unknownDescription => 'غير معروف';
 
   @override
-  String get cancelAllUploads => 'Twa nneɛma a wode akɔ so nyinaa mu';
+  String get cancelAllUploads => 'إلغاء جميع الرفع';
 
   @override
-  String get stopMonitoring => 'Gyae sɛ wobɛhwɛ nneɛma so';
+  String get stopMonitoring => 'إيقاف المراقبة';
 
   @override
-  String get language => 'kasa no';
+  String get language => 'اللغة';
 
   @override
-  String get profile => 'Ho asɛm';
+  String get profile => 'الملف الشخصي';
 
   @override
-  String get test_key => 'Sɔhwɛ safoa foforo';
-
-  @override
-  String get welcomeLine => 'Yɛma wo akwaaba ba';
+  String get welcomeLine => 'مرحباً بكم \nفي';
 }

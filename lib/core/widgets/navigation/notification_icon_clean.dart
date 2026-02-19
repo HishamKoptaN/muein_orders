@@ -21,7 +21,7 @@ class _NotificationIconState extends State<NotificationIcon> {
   void initState() {
     super.initState();
     _db = getIt<AppDatabase>();
-    _notificationCountStream = _db.watchUploadingDocsCount();
+    // _notificationCountStream = _db.watchUploadingDocsCount();
   }
 
   @override

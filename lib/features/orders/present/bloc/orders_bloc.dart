@@ -5,6 +5,8 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../../cached_docs/domain/repo/cached_docs_repo.dart';
+import '../../data/mappers/orders_res_mapper.dart';
+import '../../data/models/orders_res_model.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/usecases/orders_use_cases.dart';
 
@@ -115,7 +117,10 @@ class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
           final hasMore = json['hasMore'] as bool? ?? false;
           final orders = ordersJson
               .where((e) => e != null)
-              .map((e) => OrderEntity.fromJson(e as Map<String, dynamic>))
+              .map(
+                (e) =>
+                    OrderModel.fromJson(e as Map<String, dynamic>).toEntity(),
+              )
               .toList();
           return OrdersState.loaded(orders: orders, hasMore: hasMore);
         case 'failure':
@@ -137,7 +142,7 @@ class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
       loading: () => {'type': 'loading'},
       loaded: (orders, hasMore) => {
         'type': 'loaded',
-        'orders': orders?.map((e) => e.toJson()).toList() ?? [],
+        // 'orders': orders?.map((e) => e.toJson()).toList() ?? [],
         'hasMore': hasMore,
       },
       failure: (apiErrorModel) => {

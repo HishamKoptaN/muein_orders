@@ -94,6 +94,9 @@ class AppLocalizationsYo extends AppLocalizations {
   String get show_documentations => 'Wo awọn iwe aṣẹ';
 
   @override
+  String get show_documentation => 'عرض التوثيق';
+
+  @override
   String get execution_number => 'Nọmba ipaniyan';
 
   @override
@@ -627,9 +630,6 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get profile => 'Profaili';
-
-  @override
-  String get test_key => 'Bọtini idanwo tuntun';
 
   @override
   String get welcomeLine => 'Kaabo si';

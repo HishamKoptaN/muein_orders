@@ -6,14 +6,15 @@ part 'notification_model.g.dart';
 @freezed
 abstract class NotificationModel with _$NotificationModel {
   const factory NotificationModel({
-    required String id,
-    required String title,
-    @Default('') String body,
-    @JsonKey(name: 'created_at') required DateTime createdAt,
-    @JsonKey(name: 'image_url') String? imageUrl,
-    @Default(false) bool read,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'body') String? body,
+    @JsonKey(name: 'type') String? type,
+    @JsonKey(name: 'read_at') String? readAt,
+    @JsonKey(name: 'created_at') String? createdAt,
+    @JsonKey(name: 'updated_at') String? updatedAt,
   }) = _NotificationModel;
 
-  factory NotificationModel.fromJson(Map<String, dynamic> json) =>
+  factory NotificationModel.fromJson(Map<String, Object?> json) =>
       _$NotificationModelFromJson(json);
 }

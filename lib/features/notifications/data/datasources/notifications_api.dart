@@ -1,28 +1,20 @@
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart' show factoryMethod, injectable, singleton;
+import 'package:injectable/injectable.dart' show factoryMethod, singleton;
 import 'package:retrofit/retrofit.dart';
-import '../../../../core/config/app_config.dart';
+
 import '../../../../core/constants/api_constants.dart';
 import '../models/notification_model.dart';
 
 part 'notifications_api.g.dart';
 
-@RestApi(
-)
+@RestApi()
 @singleton
 abstract class NotificationsApi {
   @factoryMethod
-  factory NotificationsApi(
-    Dio dio,
-  ) = _NotificationsApi;
-
-  // Get notifications
+  factory NotificationsApi(Dio dio) = _NotificationsApi;
+  //! Get
   @GET(ApiConstants.notifications)
-  Future<List<NotificationModel>> getNotifications({
-    @Query('page') int? page,
-  });
-  // TODO: confirm mark-as-read endpoint before enabling
-  // Example (do not enable until confirmed):
-  // @POST('${ApiConstants.notifications}/{id}/read')
-  // Future<void> markAsRead(@Path('id') String id);
+  Future<List<NotificationModel>> get();
+  @POST('${ApiConstants.notifications}/{id}/read')
+  Future<void> markAsRead(@Path('id') String id);
 }

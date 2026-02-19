@@ -1,19 +1,15 @@
 import '../../../../core/networking/api_result.dart';
+import '../../data/datasources/local/drift/cached_docs_table.dart';
 import '../entities/cached_doc_entity.dart';
 
 abstract class CachedDocsRepo {
+  Stream<CachedDocEntity?> watchDoc(int docId);
+  Future<ApiResult<CachedDocEntity>> getCachedDoc({required int docId});
   Future<({double lat, double lng})> getCurrentLocation();
-
-  Future<ApiResult<void>> cachedDoc({
-    required CachedDocEntity doc,
-  });
-  Stream<CachedDocEntity?> watchDoc(int orderId);
-  Future<ApiResult<CachedDocEntity?>> getDoc({required int orderId});
-  Future<ApiResult<bool>> deleteDoc({required int orderId});
+  Future<ApiResult<void>> cachedDoc({required CachedDocEntity doc});
   Future<ApiResult<void>> updateProgress({
     required int docId,
-    required UploadStatus status,
+    required FileUploadStatus status,
     required double? progress,
   });
-  Stream<List<CachedDocEntity>> watchUploadingDocs();
 }

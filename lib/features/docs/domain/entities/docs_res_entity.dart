@@ -1,39 +1,105 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/material.dart';
 
-import '../../../../core/entities/meta_entity.dart';
-import '../../data/models/docs_res_model.dart';
+class DocEntity {
+  final int? id;
+  final String? imageOne;
+  final String? imageTwo;
+  final String? thumbnailUrlOne;
+  final String? thumbnailUrlTwo;
+  final String? videoOne;
+  final String? videoTwo;
+  final String? latitude;
+  final String? longitude;
+  final int? sallaOrderProductId;
+  final int? docStatusId;
+  final String? adminNotes;
+  final String? createdAt;
+  final String? updatedAt;
+  final DocStatusEntity? docStatus;
 
-part 'docs_res_entity.freezed.dart';
-part 'docs_res_entity.g.dart';
+  DocEntity({
+    this.id,
+    this.imageOne,
+    this.imageTwo,
+    this.thumbnailUrlOne,
+    this.thumbnailUrlTwo,
+    this.videoOne,
+    this.videoTwo,
+    this.latitude,
+    this.longitude,
+    this.sallaOrderProductId,
+    this.docStatusId,
+    this.adminNotes,
+    this.createdAt,
+    this.updatedAt,
+    this.docStatus,
+  });
 
-@freezed
-abstract class DocsResEntity with _$DocsResEntity {
-  const factory DocsResEntity({
-    @JsonKey(name: 'docs') List<DocEntity>? docs,
-    @JsonKey(name: 'meta') MetaEntity? meta,
-  }) = _DocsResEntity;
-
-  factory DocsResEntity.fromJson(Map<String, dynamic> json) =>
-      _$DocsResEntityFromJson(json);
+  DocEntity copyWith({
+    int? id,
+    String? imageOne,
+    String? imageTwo,
+    String? videoOne,
+    String? videoTwo,
+    String? latitude,
+    String? longitude,
+    int? sallaOrderProductId,
+    int? docStatusId,
+    String? adminNotes,
+    String? createdAt,
+    String? updatedAt,
+    DocStatusEntity? docStatus,
+  }) => DocEntity(
+    id: id ?? this.id,
+    imageOne: imageOne ?? this.imageOne,
+    imageTwo: imageTwo ?? this.imageTwo,
+    videoOne: videoOne ?? this.videoOne,
+    videoTwo: videoTwo ?? this.videoTwo,
+    latitude: latitude ?? this.latitude,
+    longitude: longitude ?? this.longitude,
+    sallaOrderProductId: sallaOrderProductId ?? this.sallaOrderProductId,
+    docStatusId: docStatusId ?? this.docStatusId,
+    adminNotes: adminNotes ?? this.adminNotes,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    docStatus: docStatus ?? this.docStatus,
+  );
 }
 
-@freezed
-abstract class DocEntity with _$DocEntity {
-  const factory DocEntity({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'video_one') String? videoOne,
-    @JsonKey(name: 'video_two') String? videoTwo,
-    @JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,
-    @JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,
-    @JsonKey(name: 'image_one') String? imageOne,
-    @JsonKey(name: 'image_two') String? imageTwo,
-    @JsonKey(name: 'updated_at') String? updatedAt,
-    @JsonKey(name: 'latitude') String? latitude,
-    @JsonKey(name: 'doc_status') DocStatusModel? docStatusModel,
-    @JsonKey(name: 'longitude') String? longitude,
-    @JsonKey(name: 'created_at') String? createdAt,
-  }) = _DocEntity;
+class DocStatusEntity {
+  final int? id;
+  final String? name;
+  final Color? textColor;
+  final Color? backgroundColor;
+  final Color? iconColor;
+  final String? createdAt;
+  final String? updatedAt;
 
-  factory DocEntity.fromJson(Map<String, dynamic> json) =>
-      _$DocEntityFromJson(json);
+  DocStatusEntity({
+    this.id,
+    this.name,
+    this.textColor,
+    this.backgroundColor,
+    this.iconColor,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  DocStatusEntity copyWith({
+    int? id,
+    String? name,
+    Color? textColor,
+    Color? backgroundColor,
+    Color? iconColor,
+    String? createdAt,
+    String? updatedAt,
+  }) => DocStatusEntity(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    textColor: textColor ?? this.textColor,
+    backgroundColor: backgroundColor ?? this.backgroundColor,
+    iconColor: iconColor ?? this.iconColor,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
 }

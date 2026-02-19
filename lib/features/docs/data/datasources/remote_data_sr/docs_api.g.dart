@@ -20,12 +20,12 @@ class _DocsApi implements DocsApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<DocsResModel?> getClientDocs({required int orderId}) async {
+  Future<List<DocModel>?> get({required int orderId}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<DocsResModel?>(
+    final _options = _setStreamType<List<DocModel>?>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -35,12 +35,12 @@ class _DocsApi implements DocsApi {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
-    late DocsResModel? _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<DocModel>? _value;
     try {
-      _value = _result.data == null
-          ? null
-          : DocsResModel.fromJson(_result.data!);
+      _value = _result.data
+          ?.map((dynamic i) => DocModel.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -49,83 +49,47 @@ class _DocsApi implements DocsApi {
   }
 
   @override
-  Future<DocModel> createDoc({
-    required int orderId,
-    File? videoOne,
-    File? videoTwo,
-    File? imageOne,
-    File? imageTwo,
-    required String longitude,
-    required String latitude,
-    required String shippingCosts,
-    required void Function(int, int)? onSendProgress,
+  Future<PresignedUrlModel> presigned({
+    required PresignedDocUrlReqModel presignedDocUrlReqModel,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry('order_id', orderId.toString()));
-    if (videoOne != null) {
-      _data.files.add(
-        MapEntry(
-          'video_one',
-          MultipartFile.fromFileSync(
-            videoOne.path,
-            filename: videoOne.path.split(Platform.pathSeparator).last,
-          ),
-        ),
-      );
-    }
-    if (videoTwo != null) {
-      _data.files.add(
-        MapEntry(
-          'video_two',
-          MultipartFile.fromFileSync(
-            videoTwo.path,
-            filename: videoTwo.path.split(Platform.pathSeparator).last,
-          ),
-        ),
-      );
-    }
-    if (imageOne != null) {
-      _data.files.add(
-        MapEntry(
-          'image_one',
-          MultipartFile.fromFileSync(
-            imageOne.path,
-            filename: imageOne.path.split(Platform.pathSeparator).last,
-          ),
-        ),
-      );
-    }
-    if (imageTwo != null) {
-      _data.files.add(
-        MapEntry(
-          'image_two',
-          MultipartFile.fromFileSync(
-            imageTwo.path,
-            filename: imageTwo.path.split(Platform.pathSeparator).last,
-          ),
-        ),
-      );
-    }
-    _data.fields.add(MapEntry('longitude', longitude));
-    _data.fields.add(MapEntry('latitude', latitude));
-    _data.fields.add(MapEntry('shipping_costs', shippingCosts));
-    final _options = _setStreamType<DocModel>(
-      Options(
-            method: 'POST',
-            headers: _headers,
-            extra: _extra,
-            contentType: 'multipart/form-data',
+    final _data = presignedDocUrlReqModel;
+    final _options = _setStreamType<PresignedUrlModel>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/docs/presigned',
+            queryParameters: queryParameters,
+            data: _data,
           )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
+    late PresignedUrlModel _value;
+    try {
+      _value = PresignedUrlModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<DocModel> createDoc({required CreateDocReqModel createDocReq}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = createDocReq;
+    final _options = _setStreamType<DocModel>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
             'docs',
             queryParameters: queryParameters,
             data: _data,
-            onSendProgress: onSendProgress,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );

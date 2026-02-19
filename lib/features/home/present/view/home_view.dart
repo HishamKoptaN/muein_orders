@@ -31,31 +31,6 @@ class _HomeViewState extends State<HomeView> {
     context.read<ProfileBloc>().add(const ProfileEvent.getProfile());
   }
 
-  // String _getProductImage(int? productId) {
-  //   switch (productId) {
-  //     case 1:
-  //       return 'assets/images/25.png';
-  //     case 2:
-  //       return 'assets/images/45.png';
-  //     case 3:
-  //       return 'assets/images/90.png';
-  //     case 4:
-  //       return 'assets/images/1.png';
-  //     default:
-  //       return 'assets/images/1.png';
-  //   }
-  // }
-
-  Future<String> _getTranslatedText({required String text}) async {
-    if (text.isEmpty) return text;
-    try {
-      return await translateText(context, text);
-    } catch (e) {
-      debugPrint('Translation error: $e');
-      return text;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final t = Localizations.of<AppLocalizations>(context, AppLocalizations);
@@ -82,7 +57,7 @@ class _HomeViewState extends State<HomeView> {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: InkWell(
               onTap: () {
-                context.go('/${NotificationsView.routeName}');
+                context.push('/${NotificationsView.routeName}');
               },
               child: SvgPicture.asset(
                 Assets.icons.baseCart,

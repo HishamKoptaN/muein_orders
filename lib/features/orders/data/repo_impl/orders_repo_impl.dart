@@ -23,7 +23,7 @@ class OrdersRepoImpl implements OrdersRepo {
   }) async {
     try {
       final res = await ordersApi.getOrders(
-        productTypeId: productTypeId,
+        subCategoryId: productTypeId,
         page: !loadMore ? 1 : (_cachedResOrders?.meta?.currentPage ?? 0) + 1,
         query: query,
         // isDistributionPhotographed: isDistributionPhotographed,

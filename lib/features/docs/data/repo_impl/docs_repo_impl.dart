@@ -1,50 +1,177 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:drift/drift.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/app/global_variable.dart';
-import '../../../../core/config/upload_settings.dart';
 import '../../../../core/errors/api_error_handler.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
+import '../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
+import '../../../cached_docs/data/models/cached_doc_model.dart';
+import '../../../s3/data/repo/s3_repo.dart';
+import '../../domain/entities/create_doc_entity.dart';
 import '../../domain/entities/docs_res_entity.dart';
 import '../../domain/repo/docs_repo.dart';
-import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../datasources/remote_data_sr/docs_api.dart';
 import '../mapper/docs_mapper.dart';
+import '../models/create_doc_req_model.dart';
+import '../models/presigned_doc_url_req_model.dart';
 
 @LazySingleton(as: DocsRepo)
 class DocsRepoImpl implements DocsRepo {
-  final DocsApi postsApi;
+  final DocsApi docsApi;
   final AppDatabase db;
   final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
+  final S3Repo s3Repo;
 
-  DocsRepoImpl({
-    required this.postsApi,
-    required this.db,
-  });
+  DocsRepoImpl({required this.docsApi, required this.db, required this.s3Repo});
   @override
-  Future<ApiResult<DocsResEntity?>> getDocs({required int orderId}) async {
+  Future<ApiResult<List<DocEntity>?>> get({required int orderId}) async {
     try {
-      final res = await postsApi.getClientDocs(orderId: orderId);
-      final result = res?.toEntity();
-      return ApiResult.success(
-        data: result,
-      );
+      final res = await docsApi.get(orderId: orderId);
+      final result = res?.map((e) => e.toEntity()).toList();
+      return ApiResult.success(data: result);
     } catch (error) {
       return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(
-          error: error,
-        ),
+        apiErrorModel: ApiErrorHandler.handle(error: error),
       );
     }
   }
 
+  @override
+  Future<ApiResult<DocEntity?>> createDoc({
+    required CreateDocEntity doc,
+  }) async {
+    log(doc.docId.toString());
+    await db.updateDocStatus(
+      docId: doc.docId,
+      status: FileUploadStatus.uploading,
+    );
+    for (int index = 0; index < doc.files.length; index++) {
+      final file = doc.files[index];
+      if (file.status == FileUploadStatus.uploaded ||
+          file.status == FileUploadStatus.init) {
+        continue;
+      }
+      await db.updateDocFileStatus(
+        docId: doc.docId,
+        path: file.path,
+        fileType: file.type,
+        status: FileUploadStatus.uploading,
+      );
+      final finalUrl = await _uploadSingleFile(
+        docId: doc.docId,
+        filePath: file.path,
+      );
+      try {
+        await docsApi.createDoc(
+          createDocReq: CreateDocReqModel(
+            docId: doc.docId,
+            imageOne: file.type == DocFileType.imageOne ? finalUrl : null,
+            imageTwo: file.type == DocFileType.imageTwo ? finalUrl : null,
+            videoOne: file.type == DocFileType.videoOne ? finalUrl : null,
+            videoTwo: file.type == DocFileType.videoTwo ? finalUrl : null,
+            latitude: doc.location?.latitude.toString(),
+            longitude: doc.location?.longitude.toString(),
+          ),
+        );
+        await db.updateDocFileStatus(
+          docId: doc.docId,
+          path: file.path,
+          fileType: file.type,
+          status: FileUploadStatus.uploaded,
+        );
+      } catch (error) {
+        await db.updateDocFileStatus(
+          docId: doc.docId,
+          path: file.path,
+          fileType: file.type,
+          status: FileUploadStatus.failed,
+        );
+        return ApiResult.failure(
+          apiErrorModel: ApiErrorHandler.handle(error: error),
+        );
+      }
+    }
+    await _uploadLocationIfNeeded(doc);
+    return const ApiResult.success(data: null);
+  }
+
+  Future<void> _uploadLocationIfNeeded(CreateDocEntity doc) async {
+    if (doc.location == null) return;
+    final cachedDoc = await (db.select(
+      db.cachedDocsTable,
+    )..where((t) => t.docId.equals(doc.docId))).getSingleOrNull();
+    if (cachedDoc?.location != null &&
+        cachedDoc!.location!.status != FileUploadStatus.uploaded) {
+      try {
+        await db.updateDocLocationStatus(
+          docId: doc.docId,
+          status: FileUploadStatus.uploading,
+        );
+        await docsApi.createDoc(
+          createDocReq: CreateDocReqModel(
+            docId: doc.docId,
+            latitude: doc.location!.latitude.toString(),
+            longitude: doc.location!.longitude.toString(),
+          ),
+        );
+        await db.updateDocLocationStatus(
+          docId: doc.docId,
+          status: FileUploadStatus.uploaded,
+        );
+      } catch (error) {
+        await db.updateDocLocationStatus(
+          docId: doc.docId,
+          status: FileUploadStatus.failed,
+        );
+      }
+    }
+  }
+
+  Future<String?> _uploadSingleFile({
+    required int docId,
+    required String? filePath,
+  }) async {
+    if (filePath == null || filePath.isEmpty) return null;
+    final file = File(filePath);
+    if (!file.existsSync()) return null;
+    final presignedInfo = await docsApi.presigned(
+      presignedDocUrlReqModel: PresignedDocUrlReqModel(
+        docId: docId,
+        extension: filePath.split('.').last,
+        fileType: '',
+      ),
+    );
+    await s3Repo.uploadFile(
+      file: file,
+      uploadUrl: presignedInfo.uploadUrl ?? '',
+      contentType: presignedInfo.contentType ?? '',
+    );
+    return presignedInfo.filePath;
+  }
+
+  Future<void> uploadLocation({required CreateDocEntity doc}) async {
+    await docsApi.createDoc(
+      createDocReq: CreateDocReqModel(
+        docId: doc.docId,
+        latitude: doc.location?.latitude.toString(),
+        longitude: doc.location?.longitude.toString(),
+      ),
+    );
+    await db.updateDocLocationStatus(
+      docId: doc.docId,
+      status: FileUploadStatus.uploaded,
+    );
+  }
+
+  // await _initializeNotifications();
   Future<void> _initializeNotifications() async {
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
     const initSettings = InitializationSettings(android: androidInit);
@@ -52,7 +179,7 @@ class DocsRepoImpl implements DocsRepo {
   }
 
   Future<void> _showProgressNotification({
-    required CachedDoc doc,
+    required CachedDocModel doc,
     required double progress,
   }) async {
     final t = AppLocalizations.of(GlobalVariable.navState.currentContext!);
@@ -78,164 +205,45 @@ class DocsRepoImpl implements DocsRepo {
       styleInformation: style,
     );
     await _notifications.show(
-      doc.id,
+      doc.docId ?? 0,
       title,
       '$body',
       NotificationDetails(android: androidDetails),
     );
   }
-  @override
-  Future<ApiResult<DocEntity?>> createDoc({
-    required CachedDoc doc,
-  }) async {
-    try {
-      await _initializeNotifications();
-      await db.update(db.cachedDocs).replace(
-            doc.copyWith(
-              uploadStatus: 'uploading',
-            ),
-          );
-      final imageOneFile = fileFromPath(doc.imageOne);
-      final imageTwoFile = fileFromPath(doc.imageTwo);
-      final videoOneFile = fileFromPath(doc.videoOne);
-      final videoTwoFile = fileFromPath(doc.videoTwo);
-      if (UploadSpeedSettings.enableDetailedLogging) {
-        print('📤 ملفات الرفع جاهزة لبدء العملية');
-      }
-
-      final res = await postsApi.createDoc(
-        orderId: doc.orderId,
-        videoOne: videoOneFile,
-        videoTwo: videoTwoFile,
-        imageOne: imageOneFile,
-        imageTwo: imageTwoFile,
-        longitude: doc.longitude.toString(),
-        latitude: doc.latitude.toString(),
-        shippingCosts: doc.shippingCost.toString(),
-        onSendProgress: (sent, total) async {
-          final progress = total != 0 ? ((sent / total) * 100).toDouble() : 0.0;
-          if (kDebugMode &&
-              progress >= UploadSpeedSettings.debugCancelPercentage) {
-            throw Exception(
-              'تم إلغاء الطلب في وضع التطوير عند ${UploadSpeedSettings.debugCancelPercentage}% لمراقبة الحالة',
-            );
-          }
-          await db.update(db.cachedDocs).replace(
-                doc.copyWith(
-                  uploadStatus: 'uploading',
-                  uploadProgress: progress,
-                ),
-              );
-          await _showProgressNotification(
-            doc: doc,
-            progress: progress,
-          );
-          if (UploadSpeedSettings.enableDetailedLogging) {
-            print(
-              '📤 تقدم الرفع: ${progress.toStringAsFixed(1)}% ($sent/$total bytes) - ${doc.orderId}',
-            );
-          }
-        },
-      );
-      final result = res.toEntity();
-      await db.update(db.cachedDocs).replace(
-            doc.copyWith(
-              uploadStatus: 'success',
-              uploadProgress: 100.0,
-            ),
-          );
-      return ApiResult.success(
-        data: result,
-      );
-    } catch (error) {
-      await db.update(db.cachedDocs).replace(
-            doc.copyWith(uploadStatus: 'failure'),
-          );
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(
-          error: error,
-        ),
-      );
-    }
-  }
 
   @override
-  Future<ApiResult<void>> startUpload({required int orderId}) async {
+  Future<ApiResult<void>> startUpload({required int docId}) async {
     try {
-      final docs = await (db.cachedDocs.select()
-            ..where((tbl) => tbl.orderId.equals(orderId)))
-          .get();
-
+      final docs =
+          await (db.cachedDocsTable.select()
+                ..where((tbl) => tbl.docId.equals(docId)))
+              .get();
       for (final doc in docs) {
-        await postsApi.createDoc(
-          orderId: doc.orderId,
-          videoOne: fileFromPath(doc.videoOne),
-          videoTwo: fileFromPath(doc.videoTwo),
-          imageOne: fileFromPath(doc.imageOne),
-          imageTwo: fileFromPath(doc.imageTwo),
-          longitude: doc.longitude.toString(),
-          latitude: doc.latitude.toString(),
-          shippingCosts: doc.shippingCost.toString(),
-          onSendProgress: (int count, int total) {
-            final progress =
-                total != 0 ? ((count / total) * 100).toDouble() : 0.0;
-            db.update(db.cachedDocs).replace(
-                  doc.copyWith(
-                      uploadStatus: 'uploading', uploadProgress: progress,),
-                );
-          },
+        await docsApi.createDoc(
+          createDocReq: CreateDocReqModel(docId: doc.docId),
         );
       }
       return const ApiResult.success(data: null);
     } catch (error) {
       return ApiResult.failure(
-          apiErrorModel: ApiErrorHandler.handle(error: error),);
+        apiErrorModel: ApiErrorHandler.handle(error: error),
+      );
     }
   }
 
   @override
   Future<ApiResult<void>> retryUpload({required int docId}) async {
     try {
-      final doc = await (db.select(db.cachedDocs)
-            ..where((tbl) => tbl.id.equals(docId)))
-          .getSingle();
-
-      await postsApi.createDoc(
-        orderId: doc.orderId,
-        videoOne: fileFromPath(doc.videoOne),
-        videoTwo: fileFromPath(doc.videoTwo),
-        imageOne: fileFromPath(doc.imageOne),
-        imageTwo: fileFromPath(doc.imageTwo),
-        longitude: doc.longitude.toString(),
-        latitude: doc.latitude.toString(),
-        shippingCosts: doc.shippingCost.toString(),
-        onSendProgress: (int count, int total) {
-          final progress =
-              total != 0 ? ((count / total) * 100).toDouble() : 0.0;
-          db.update(db.cachedDocs).replace(
-                doc.copyWith(uploadProgress: progress),
-              );
-
-          // إضافة نفس التأخير البطيء للمراقبة في retryUpload
-          // نستخدم Timer بدلاً من await داخل الـ callback
-          if (UploadSpeedSettings.enableSimulatedProgress) {
-            Future.delayed(
-                const Duration(
-                    milliseconds: UploadSpeedSettings.progressSimulationSpeed,),
-                () {},);
-          }
-          Future.delayed(
-              const Duration(milliseconds: UploadSpeedSettings.progressDelayMs),
-              () {},);
-        },
+      final doc = await (db.select(
+        db.cachedDocsTable,
+      )..where((tbl) => tbl.docId.equals(docId))).getSingle();
+      await docsApi.createDoc(
+        createDocReq: CreateDocReqModel(docId: doc.docId),
       );
       return const ApiResult.success(data: null);
     } catch (e) {
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(
-          error: e,
-        ),
-      );
+      return ApiResult.failure(apiErrorModel: ApiErrorHandler.handle(error: e));
     }
   }
 

@@ -16,6 +16,7 @@ abstract class ProfileApi {
   factory ProfileApi(Dio dio) = _ProfileApi;
   @GET('/profile')
   Future<ProfileResModel> getProfile();
+  //! presignedAvatarUrl
   @POST('/profile')
   Future<PresignedUrlModel> presignedAvatarUrl({
     @Body() required PresignedUrlReqModel presignedUrlReqModel,

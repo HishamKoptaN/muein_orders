@@ -20,10 +20,9 @@ class _NotificationsApi implements NotificationsApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<NotificationModel>> getNotifications({int? page}) async {
+  Future<List<NotificationModel>> get() async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<List<NotificationModel>>(
@@ -50,6 +49,25 @@ class _NotificationsApi implements NotificationsApi {
       rethrow;
     }
     return _value;
+  }
+
+  @override
+  Future<void> markAsRead(String id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'notifications/${id}/read',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    await _dio.fetch<void>(_options);
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

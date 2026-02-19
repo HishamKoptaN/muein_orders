@@ -1,44 +1,29 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/networking/api_result.dart';
-// import '../../data/models/cached_doc.dart';
-// import '../entities/cached_doc_entity.dart';
-// import '../entities/docs_res_entity.dart';
-import '../../../cached_docs/domain/entities/cached_doc_entity.dart';
-import '../entities/docs_res_entity.dart' show DocEntity, DocsResEntity;
 import '../../../cached_docs/domain/repo/cached_docs_repo.dart';
+import '../entities/create_doc_entity.dart';
+import '../entities/docs_res_entity.dart' show DocEntity;
 import '../repo/docs_repo.dart';
-import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
 
 @lazySingleton
 class DocsUseCase {
   final DocsRepo docsRepo;
   final CachedDocsRepo cachedDocsRepo;
-  DocsUseCase({
-    required this.docsRepo,
-    required this.cachedDocsRepo,
-  });
-  Future<ApiResult<DocsResEntity?>> getDocs({required int orderId}) async {
-    return await docsRepo.getDocs(orderId: orderId);
+  DocsUseCase({required this.docsRepo, required this.cachedDocsRepo});
+  Future<ApiResult<List<DocEntity>?>> get({required int orderId}) async {
+    return await docsRepo.get(orderId: orderId);
   }
-
-  Future<ApiResult<DocEntity?>> createDoc({
-    required CachedDoc doc,
-  }) async {
-    return await docsRepo.createDoc(
-      doc: doc,
-    );
+  Future<ApiResult<DocEntity?>> createDoc({required CreateDocEntity doc}) async {
+    return await docsRepo.createDoc(doc: doc);
   }
-
-  Future<ApiResult<void>> startUpload({required int orderId}) async {
-    return await docsRepo.startUpload(orderId: orderId);
+  Future<ApiResult<void>> startUpload({required int docId}) async {
+    return await docsRepo.startUpload(docId: docId);
   }
-
   Future<ApiResult<void>> retryUpload({required int docId}) async {
     return await docsRepo.retryUpload(docId: docId);
   }
-
-  Stream<List<CachedDocEntity>> watchUploadingDocs() {
-    return cachedDocsRepo.watchUploadingDocs();
-  }
+  // Stream<List<CachedDocEntity>> watchUploadingDocs() {
+  //   return cachedDocsRepo.watchUploadingDocs();
+  // }
 }

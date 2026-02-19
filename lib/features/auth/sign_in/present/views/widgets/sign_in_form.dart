@@ -84,7 +84,7 @@ class SignInForm extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    NavigationService.navigateTo(
+                    NavigationService.pushNamed(
                       context: context,
                       routeName: ForgotPassView.routeName,
                     );

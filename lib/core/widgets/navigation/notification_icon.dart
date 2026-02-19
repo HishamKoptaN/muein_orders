@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../features/cached_docs/data/datasources/local/drift/app_database.dart';
+import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../di/dependency_injection.dart';
-import '../../present/views/notifications_view_clean.dart';
 import '../../services/notification_manager.dart';
 
 class NotificationIcon extends StatefulWidget {
@@ -32,7 +32,7 @@ class _NotificationIconState extends State<NotificationIcon> {
     try {
       final db = getIt<AppDatabase>();
       final activeDocs = await (db.select(
-        db.cachedDocs,
+        db.cachedDocsTable,
       )..where((tbl) => tbl.uploadStatus.equals('uploading'))).get();
 
       return activeDocs.length;

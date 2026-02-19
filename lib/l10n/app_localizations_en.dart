@@ -9,629 +9,621 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get upload_videos => 'Download videos';
+  String get upload_videos => 'تحميل مقاطع الفيديو';
 
   @override
-  String get welcometoMueinOrders => 'Welcome to Mobin Talabat';
+  String get welcometoMueinOrders => 'مرحباً بكم في طلبات موبين';
 
   @override
-  String get welcome => 'Welcome';
+  String get welcome => 'مرحباً';
 
   @override
-  String get indevedual => 'individual';
+  String get indevedual => 'فردي';
 
   @override
-  String get instructions => 'Instructions';
+  String get instructions => 'التعليمات';
 
   @override
-  String get indveduals => 'Vocabulary';
+  String get indveduals => 'المفردات';
 
   @override
-  String get wearehappytohaveyoujoinourstore =>
-      'We are glad to have you join our store.';
+  String get wearehappytohaveyoujoinourstore => 'نحن سعداء بانضمامك لمتجرنا.';
 
   @override
-  String get gettoknowtheapplicationinterface =>
-      'Get to know the application interface';
+  String get gettoknowtheapplicationinterface => 'تعرف على واجهة التطبيق';
 
   @override
   String get hereyouwillfindtasksrequestsalertsandfilters =>
-      'Here you\'ll find tasks, requests, alerts, and filters.';
+      'ستجد هنا المهام والطلبات والتنبيهات والمرشحات.';
 
   @override
-  String get documentationWithPhotosAndVideos =>
-      'Documentation with photos and videos';
+  String get documentationWithPhotosAndVideos => 'التوثيق بالصور والفيديوهات';
 
   @override
   String
   get makeSureTheImagesAreClearTheNumberOfCopiesOfTheQuranAndTheOrderCostsAreClearBeforeSending =>
-      'Ensure the clarity of the images, the number of copies of the Holy Quran, and the cost of the order before sending.';
+      'تأكد من وضوح الصور وعدد نسخ القرآن الكريم وتكاليف الطلب قبل الإرسال.';
 
   @override
   String get we_are_happy_to_have_you_join_our_store =>
-      'We are happy to have you join our store.';
+      'سعيدين بانضمامك إلى متجر مبين';
 
   @override
-  String get get_to_know_the_application_interface =>
-      'Get to know the application interface';
+  String get get_to_know_the_application_interface => 'تعرف على واجهة التطبيق';
 
   @override
   String get here_you_will_find_tasks_requests_alerts_and_filters =>
-      'Here you will find tasks, requests, alerts, and filters.';
+      'ستجد هنا المهام والطلبات والتنبيهات والمرشحات';
 
   @override
   String get documentation_with_photos_and_videos =>
-      'Documentation with photos and videos';
+      'التوثيق بالصور والفيديوهات';
 
   @override
-  String get send => 'send';
+  String get send => 'أرسال';
 
   @override
-  String get uploadingDocument => 'Upload documentation';
+  String get uploadingDocument => 'رفع التوثيق';
 
   @override
-  String get documentationIsBeingUploaded => 'Documentation is being uploaded';
+  String get documentationIsBeingUploaded => 'جاري رفع التوثيق';
 
   @override
-  String get phone => 'Phone number';
+  String get phone => 'رقم التليفون';
 
   @override
-  String get done => 'finished';
+  String get done => 'منتهي';
 
   @override
-  String get orders => 'Requests';
+  String get orders => 'طلبات';
 
   @override
-  String get package => 'pack';
+  String get package => 'حزمة';
 
   @override
   String get there_are_no_results_for_this_search =>
-      'No results found for this search';
+      'لم يتم العثور على نتائج لهذا البحث';
 
   @override
-  String get documentations => 'Documents';
+  String get documentations => 'الوثائق';
 
   @override
-  String get show_documentations => 'View documents';
+  String get show_documentations => 'عرض الوثائق';
 
   @override
-  String get execution_number => 'Execution number';
+  String get show_documentation => 'عرض التوثيق';
 
   @override
-  String get add_documentation => 'Add documents';
+  String get execution_number => 'رقم التنفيذ';
 
   @override
-  String get location => 'location';
+  String get add_documentation => 'إضافة الوثائق';
 
   @override
-  String get selectLocation => 'Locate';
+  String get location => 'موقع';
 
   @override
-  String get select => 'to set';
+  String get selectLocation => 'تحديد الموقع';
 
   @override
-  String get count => 'number';
+  String get select => 'تحديد';
 
   @override
-  String get registerAnAccount => 'Register an account';
+  String get count => 'عدد';
 
   @override
-  String get noMoreDocs => 'There are no other documentations.';
+  String get registerAnAccount => 'تسجيل حساب';
 
   @override
-  String get kinia_name => 'Kenya';
+  String get noMoreDocs => 'لا يوجد توثيقات أخرى.';
 
   @override
-  String get smoal_name => 'Somalia';
+  String get kinia_name => 'كينيا';
 
   @override
-  String get tanzania => 'Tanzania';
+  String get smoal_name => 'الصومال';
 
   @override
-  String get home_title => 'house';
+  String get tanzania => 'تنزانيا';
 
   @override
-  String get main => 'Home';
+  String get home_title => 'بيت';
 
   @override
-  String get add_order => 'Add a request';
+  String get main => 'الرئيسية';
 
   @override
-  String get order_place => 'place';
+  String get add_order => 'إضافة طلب';
 
   @override
-  String get order_id => 'Order ID';
+  String get order_place => 'مكان';
 
   @override
-  String get order_number => 'order number';
+  String get order_id => 'معرف الطلب';
 
   @override
-  String get client_id => 'Customer ID';
+  String get order_number => 'رقم الطلب';
 
   @override
-  String get enter_order_id => 'Enter order ID';
+  String get client_id => 'معرف العميل';
 
   @override
-  String get place_hint => 'Village/Mosque/School';
+  String get enter_order_id => 'أدخل معرف الطلب';
 
   @override
-  String get add_video => 'Add video';
+  String get place_hint => 'قرية/مسجد/مدرسة';
 
   @override
-  String get add_picure => 'Add a photo';
+  String get add_video => 'إضافة فيديو';
 
   @override
-  String get add => 'addition';
+  String get add_picure => 'أضف صورة';
 
   @override
-  String get loading => 'download...';
+  String get add => 'اضافة';
 
   @override
-  String get changeLanguage => 'Change language';
+  String get loading => 'تحميل...';
 
   @override
-  String get login_text => 'Log in';
+  String get changeLanguage => 'تغيير اللغة';
 
   @override
-  String get login => 'Log in';
+  String get login_text => 'تسجيل الدخول';
 
   @override
-  String get emailHint => 'Email';
+  String get login => 'تسجيل الدخول';
 
   @override
-  String get emailRequired => 'Email required';
+  String get emailHint => 'البريد إلكتروني';
 
   @override
-  String get phoneNumberHint => 'phone number';
+  String get emailRequired => 'البريد الإلكتروني مطلوب';
 
   @override
-  String get phoneNumber => 'phone number';
+  String get phoneNumberHint => 'رقم الهاتف';
 
   @override
-  String get countryHint => 'nation';
+  String get phoneNumber => 'رقم الهاتف';
 
   @override
-  String get confirmPasswordHint => 'Confirm password';
+  String get countryHint => 'دولة';
 
   @override
-  String get confirmPassword => 'Confirm password';
+  String get confirmPasswordHint => 'تأكيد كلمة المرور';
 
   @override
-  String get remember_me => 'Remember me';
+  String get confirmPassword => 'تأكيد كلمة المرور';
 
   @override
-  String get log_out => 'Sign out';
+  String get remember_me => 'تذكرنى';
 
   @override
-  String get areYouSure => 'Are you sure you want to log out?';
+  String get log_out => 'تسجيل الخروج';
 
   @override
-  String get file_pick_failed => 'File selection failed';
+  String get areYouSure => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
 
   @override
-  String get order_saving => 'Saving request...';
+  String get file_pick_failed => 'فشل اختيار الملف';
 
   @override
-  String get order__is_sharing => 'Request for participation...';
+  String get order_saving => 'جاري حفظ الطلب...';
 
   @override
-  String get failed => 'to fail';
+  String get order__is_sharing => 'طلب المشاركة...';
 
   @override
-  String get or => 'or';
+  String get failed => 'فشل';
 
   @override
-  String get request_time_out => 'The request has expired.';
+  String get or => 'أو';
 
   @override
-  String get change_language => 'Change language';
+  String get request_time_out => 'انتهت مهلة الطلب';
 
   @override
-  String get arabic => 'Arab';
+  String get change_language => 'تغيير اللغة';
 
   @override
-  String get addDocumentation => 'Add documentation';
+  String get arabic => 'عربي';
 
   @override
-  String get success => 'success';
+  String get addDocumentation => 'إضافة توثيق';
 
   @override
-  String get english => 'English';
+  String get success => 'نجاح';
 
   @override
-  String get close => 'Closes';
+  String get english => 'إنجليزي';
 
   @override
-  String get required => 'required';
+  String get close => 'يغلق';
 
   @override
-  String get order_added_successfully =>
-      'The request has been added successfully.';
+  String get required => 'مطلوب';
 
   @override
-  String get order_addition_failed => 'Request addition failed';
+  String get order_added_successfully => 'تمت إضافة الطلب بنجاح';
 
   @override
-  String get country => 'nation';
+  String get order_addition_failed => 'فشلت إضافة الطلب';
 
   @override
-  String get selectCountry => 'Select country';
+  String get country => 'دولة';
 
   @override
-  String get passwordsDontMatch => 'Passwords do not match';
+  String get selectCountry => 'اختر البلد';
 
   @override
-  String get firstNameRequired => 'First name is required';
+  String get passwordsDontMatch => 'كلمات المرور غير متطابقة';
 
   @override
-  String get secondNameRequired => 'Second name required';
+  String get firstNameRequired => 'الاسم الأول مطلوب';
 
   @override
-  String get reset_link_sent => 'Reset link sent';
+  String get secondNameRequired => 'الاسم الثاني مطلوب';
+
+  @override
+  String get reset_link_sent => 'تم إرسال رابط إعادة التعيين';
 
   @override
   String get enter_valid_email_password =>
-      'Enter a valid email address and password.';
+      'أدخل بريدًا إلكترونيًا وكلمة مرور صالحين';
 
   @override
-  String get invalidEmail => 'Invalid email';
+  String get invalidEmail => 'بريد إلكتروني غير صالح';
 
   @override
-  String get phoneRequired => 'Phone number required';
+  String get phoneRequired => 'رقم الهاتف مطلوب';
 
   @override
-  String get passwordRequired => 'Password required';
+  String get passwordRequired => 'كلمة المرور مطلوبة';
 
   @override
   String get passwordMinLength =>
-      'Password must be at least 8 characters long.';
+      'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل';
 
   @override
-  String get confirmPasswordRequired => 'Password confirmation required';
+  String get confirmPasswordRequired => 'تأكيد كلمة المرور مطلوب';
 
   @override
-  String get alreadyHaveAnAccount => 'Do you already have an account?';
+  String get alreadyHaveAnAccount => 'هل لديك حساب بالفعل؟';
 
   @override
-  String get confirmYourPassword => 'Confirm your password';
+  String get confirmYourPassword => 'تأكيد كلمة المرور الخاصة بك';
 
   @override
-  String get request_saving => 'Saving request...';
+  String get request_saving => 'جاري حفظ الطلب...';
 
   @override
-  String get order_is_sharing => 'Request for participation...';
+  String get order_is_sharing => 'طلب المشاركة...';
 
   @override
-  String get successfully => 'Successfully';
+  String get successfully => 'بنجاح';
 
   @override
-  String get data_dont_saved => 'Data not saved';
+  String get data_dont_saved => 'لم يتم حفظ البيانات';
 
   @override
-  String get data_saved => 'Stored data';
+  String get data_saved => 'البيانات المحفوظة';
 
   @override
-  String get order_id_exists => 'Order ID already exists';
+  String get order_id_exists => 'معرف الطلب موجود بالفعل';
 
   @override
-  String get select_files => 'Select files';
+  String get select_files => 'تحديد الملفات';
 
   @override
-  String get camera => 'camera';
+  String get camera => 'الكاميرا';
 
   @override
-  String get gallery => 'Exhibition';
+  String get gallery => 'المعرض';
 
   @override
-  String get cant_be_embty => 'It cannot be empty.';
+  String get cant_be_embty => 'لا يمكن أن يكون فارغا';
 
   @override
-  String get please_enter_all_data => 'Please enter all data';
+  String get please_enter_all_data => 'الرجاء إدخال كافة البيانات';
 
   @override
-  String get ok => 'Yes';
+  String get ok => 'نعم';
 
   @override
-  String get swahili_kenya => 'Swahili - Kenya';
+  String get swahili_kenya => 'السواحيلية - كينيا';
 
   @override
-  String get swahili_tanzania => 'Swahili - Tanzania';
+  String get swahili_tanzania => 'السواحيلية - تنزانيا';
 
   @override
-  String get luganda_uganda => 'Luganda - Uganda';
+  String get luganda_uganda => 'لوجاندا - أوغندا';
 
   @override
-  String get retry => 'Retry';
+  String get retry => 'إعادة المحاولة';
 
   @override
-  String get unexpected_error => 'An unexpected error occurred.';
+  String get unexpected_error => 'حدث خطأ غير متوقع';
 
   @override
-  String get notHaveAccount => 'Don\'t have an account?';
+  String get notHaveAccount => 'ليس لديك حساب؟';
 
   @override
-  String get passwordsDoNotMatch => 'Passwords do not match';
+  String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
 
   @override
   String get enterYourEmailToResetPassword =>
-      'Enter your email to receive a password reset link.';
+      'أدخل بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور';
 
   @override
-  String get follow => 'He follows';
+  String get follow => 'يتبع';
 
   @override
-  String get confirm_password_hint => 'Confirm password';
+  String get confirm_password_hint => 'تأكيد كلمة المرور';
 
   @override
-  String get instead => 'instead of';
+  String get instead => 'بدلاً من';
 
   @override
-  String get skip => 'skip';
+  String get skip => 'تخطى';
 
   @override
-  String get next => 'the next';
+  String get next => 'التالي';
 
   @override
-  String get documentationAndReviewIsUnderway => 'Documented and under review';
+  String get documentationAndReviewIsUnderway => 'تم التوثيق وجاري المراجعه';
 
   @override
-  String get not_have_account => 'Don\'t have an account?';
+  String get not_have_account => 'ليس لديك حساب؟';
 
   @override
-  String get errorLoadingOnboarding =>
-      'An error occurred while loading the directive content.';
+  String get errorLoadingOnboarding => 'حدث خطأ أثناء تحميل محتوى التوجيه';
 
   @override
-  String get onboardingWelcomeTitle => 'Welcome to Mobin Talabat';
+  String get onboardingWelcomeTitle => 'مرحباً بكم في طلبات موبين';
 
   @override
   String get onboardingWelcomeDescription =>
-      'The comprehensive solution for order management and documentation';
+      'الحل الشامل لإدارة الطلبات والتوثيق';
 
   @override
-  String get onboardingTrackingTitle => 'Track your orders';
+  String get onboardingTrackingTitle => 'تتبع طلباتك';
 
   @override
   String get onboardingTrackingDescription =>
-      'Monitor your orders in real time with our intuitive tracking system.';
+      'قم بمراقبة طلباتك في الوقت الفعلي باستخدام نظام التتبع البديهي لدينا';
 
   @override
   String
   get doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration =>
-      'Do not delete locally stored photo and video files used to document an application until they are approved by the administration.';
+      'لا تقم بحذف ملفات الصور والفيديو المخزنة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة';
 
   @override
-  String get doNotDeleteTheDocumentationFiles =>
-      'Do not delete the documentation files.';
+  String get doNotDeleteTheDocumentationFiles => 'لا تقم بحذف ملفات التوثيق';
 
   @override
-  String get onboardingDocumentsTitle => 'Document management';
+  String get onboardingDocumentsTitle => 'إدارة المستندات';
 
   @override
   String get onboardingDocumentsDescription =>
-      'Store and access all your important documents in one secure place.';
+      'قم بتخزين جميع مستنداتك المهمة والوصول إليها في مكان واحد آمن';
 
   @override
-  String get help => 'Helps';
+  String get help => 'يساعد';
 
   @override
-  String get settings => 'Settings';
+  String get settings => 'إعدادات';
 
   @override
-  String get createAccount => 'Create an account';
+  String get createAccount => 'إنشاء حساب';
 
   @override
   String passwordResetEmailSentTo(Object email) {
-    return 'A password reset email has been sent to $email.';
+    return 'تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور إلى $email';
   }
 
   @override
-  String get alreadyHaveAccount => 'Do you already have an account?';
+  String get alreadyHaveAccount => 'هل لديك حساب بالفعل؟';
 
   @override
   String
   get make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending =>
-      'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending';
+      'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال';
 
   @override
-  String get failure => 'to fail';
+  String get failure => 'فشل';
 
   @override
-  String get accepted => 'Approved';
+  String get accepted => 'تم الموافقة';
 
   @override
-  String get approval => 'Approved';
+  String get approval => 'تم الاعتماد';
 
   @override
-  String get itHasNotBeenDocumentedUntilNow => 'Not yet verified';
+  String get itHasNotBeenDocumentedUntilNow => 'لم يتم التوثيق حتى الآن';
 
   @override
-  String get signUp => 'subscription';
+  String get signUp => 'اشتراك';
 
   @override
   String get apPasswordResetLinkHasBeenSentToYourEmail =>
-      'A password reset link has been sent to your email.';
+      'لقد تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني';
 
   @override
-  String get signUpTitle => 'Create a new account';
+  String get signUpTitle => 'إنشاء حساب جديد';
 
   @override
-  String get firstName => 'first name';
+  String get firstName => 'الاسم الأول';
 
   @override
-  String get lastName => 'last name';
+  String get lastName => 'اسم العائلة';
 
   @override
-  String get fieldRequired => 'This field is required';
+  String get fieldRequired => 'هذه الخانة مطلوبه';
 
   @override
-  String get accountCreated => 'Account created successfully';
+  String get accountCreated => 'تم إنشاء الحساب بنجاح';
 
   @override
-  String get start => 'never';
+  String get start => 'ابدأ';
 
   @override
-  String get email => 'e-mail';
+  String get email => 'البريد الإلكتروني';
 
   @override
-  String get errorCreatingAccount => 'Account creation error';
+  String get errorCreatingAccount => 'خطأ في إنشاء الحساب';
 
   @override
-  String get password => 'password';
+  String get password => 'كلمة المرور';
 
   @override
-  String get forgotPassword => 'Forgot your password?';
+  String get forgotPassword => 'هل نسيت كلمة السر؟';
 
   @override
-  String get selectLanguage => 'Select language';
+  String get selectLanguage => 'اختر اللغة';
 
   @override
-  String get numberOfRequests => 'Number of requests';
+  String get numberOfRequests => 'عدد الطلبات';
 
   @override
-  String get name => 'the name';
+  String get name => 'الاسم';
 
   @override
-  String get welcomeLine1 => 'Welcome';
+  String get welcomeLine1 => 'مرحباً';
 
   @override
-  String get welcomeLine2 => 'to';
+  String get welcomeLine2 => 'ل';
 
   @override
-  String get signIn => 'Log in';
+  String get signIn => 'تسجيل الدخول';
 
   @override
-  String get followUp => 'tracking';
+  String get followUp => 'متابعة';
 
   @override
   String get aLinkWillBeSentToYouToResetYourPassword =>
-      'A link will be sent to you to reset your password.';
+      'سيتم إرسال رابط إليك لإعادة تعيين كلمة المرور الخاصة بك';
 
   @override
-  String get onboardingPage1Title => 'Welcome';
+  String get onboardingPage1Title => 'مرحباً';
 
   @override
-  String get onboardingPage1Description =>
-      'We are pleased to have you join our store.';
+  String get onboardingPage1Description => 'يسعدنا انضمامك إلى متجر مبين';
 
   @override
-  String get onboardingPage2Title => 'Explore the app interface';
+  String get onboardingPage2Title => 'اكتشف واجهة التطبيق';
 
   @override
   String get onboardingPage2Description =>
-      'Here you will find tasks, commands, alerts, and filters.';
+      'ستجد هنا المهام والأوامر والتنبيهات والمرشحات';
 
   @override
   String get aPasswordResetLinkHasBeenSentToYourEmail =>
-      'A password reset link has been sent to your email.';
+      'لقد تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني';
 
   @override
-  String get onboardingPage3Title => 'Documentation with photos and videos';
+  String get onboardingPage3Title => 'التوثيق بالصور والفيديوهات';
 
   @override
   String get onboardingPage3Description =>
-      'Ensure the clarity of the images and the correct number of copies of the Holy Quran before sending';
+      'تأكد من وضوح الصور و صحة عدد نسخ القرآن الكريم قبل الإرسال';
 
   @override
-  String get sticker => 'poster';
+  String get sticker => 'الملصق';
 
   @override
-  String get finished => 'finished';
+  String get finished => 'منتهي';
 
   @override
-  String get current => 'Current';
+  String get current => 'الحالية';
 
   @override
-  String get inProgress => 'Current';
+  String get inProgress => 'جاري';
 
   @override
-  String get theEnd => 'The end';
+  String get theEnd => 'المنتهية';
 
   @override
-  String get noOrders => 'No requests';
+  String get noOrders => 'لا يوجد طلبات';
 
   @override
-  String get documented => 'Documented';
+  String get documented => 'تم التوثيق';
 
   @override
-  String get order => 'to request';
+  String get order => 'طلب';
 
   @override
-  String get expenses => 'expenses';
+  String get expenses => 'مصاريف';
 
   @override
-  String get documentingTheRequest => 'Document the request';
+  String get documentingTheRequest => 'توثيق الطلب';
 
   @override
-  String get documentationProgress => 'Documentation progress';
+  String get documentationProgress => 'تقدم التوثيق';
 
   @override
-  String get notDocumented => 'Not verified';
+  String get notDocumented => 'لم يتم التوثيق';
 
   @override
-  String get pending => 'hanging';
+  String get pending => 'معلق';
 
   @override
-  String get uploading => 'Uploading';
+  String get uploading => 'يتم الرفع';
 
   @override
-  String get completed => 'complete';
+  String get completed => 'مكتمل';
 
   @override
-  String get error => 'mistake';
+  String get error => 'خطأ';
 
   @override
-  String get retryFailedUploads => 'Retry';
+  String get retryFailedUploads => 'إعادة المحاولة';
 
   @override
   String get retryFailedUploadsDescription =>
-      'Do you want to retry uploading all failed requests?';
+      'هل تريد إعادة محاولة رفع جميع الطلبات الفاشلة؟';
 
   @override
-  String get unknown => 'unknown';
+  String get unknown => 'غير معروف';
 
   @override
-  String get startUpload => 'Start uploading';
+  String get startUpload => 'بدء الرفع';
 
   @override
-  String get cancel => 'cancellation';
+  String get cancel => 'إلغاء';
 
   @override
-  String get save => 'save';
+  String get save => 'حفظ';
 
   @override
-  String get editProfile => 'Edit profile';
+  String get editProfile => 'تعديل الملف الشخصي';
 
   @override
-  String get pendingDescription => 'Waiting to be uploaded';
+  String get pendingDescription => 'في انتظار الرفع';
 
   @override
-  String get uploadingDescription => 'Uploading now';
+  String get uploadingDescription => 'يتم الرفع الآن';
 
   @override
-  String get completedDescription => 'Uploaded successfully';
+  String get completedDescription => 'تم الرفع بنجاح';
 
   @override
-  String get failedDescription => 'Failed to upload';
+  String get failedDescription => 'فشل في الرفع';
 
   @override
-  String get unknownDescription => 'unknown';
+  String get unknownDescription => 'غير معروف';
 
   @override
-  String get cancelAllUploads => 'Cancel all uploads';
+  String get cancelAllUploads => 'إلغاء جميع الرفع';
 
   @override
-  String get stopMonitoring => 'Stop monitoring';
+  String get stopMonitoring => 'إيقاف المراقبة';
 
   @override
-  String get language => 'the language';
+  String get language => 'اللغة';
 
   @override
-  String get profile => 'Profile';
+  String get profile => 'الملف الشخصي';
 
   @override
-  String get test_key => 'New test key';
-
-  @override
-  String get welcomeLine => 'Welcome to';
+  String get welcomeLine => 'مرحباً بكم \nفي';
 }
