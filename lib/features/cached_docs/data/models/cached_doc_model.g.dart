@@ -9,18 +9,9 @@ part of 'cached_doc_model.dart';
 _CachedDocModel _$CachedDocModelFromJson(Map<String, dynamic> json) =>
     _CachedDocModel(
       docId: (json['docId'] as num?)?.toInt(),
-      imageOne: json['imageOne'] == null
-          ? null
-          : DocFile.fromJson(json['imageOne'] as Map<String, dynamic>),
-      imageTwo: json['imageTwo'] == null
-          ? null
-          : DocFile.fromJson(json['imageTwo'] as Map<String, dynamic>),
-      videoOne: json['videoOne'] == null
-          ? null
-          : DocFile.fromJson(json['videoOne'] as Map<String, dynamic>),
-      videoTwo: json['videoTwo'] == null
-          ? null
-          : DocFile.fromJson(json['videoTwo'] as Map<String, dynamic>),
+      files: (json['files'] as List<dynamic>?)
+          ?.map((e) => DocFile.fromJson(e as Map<String, dynamic>))
+          .toList(),
       location: json['location'] == null
           ? null
           : LocationDoc.fromJson(json['location'] as Map<String, dynamic>),
@@ -36,10 +27,7 @@ _CachedDocModel _$CachedDocModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$CachedDocModelToJson(_CachedDocModel instance) =>
     <String, dynamic>{
       'docId': ?instance.docId,
-      'imageOne': ?instance.imageOne?.toJson(),
-      'imageTwo': ?instance.imageTwo?.toJson(),
-      'videoOne': ?instance.videoOne?.toJson(),
-      'videoTwo': ?instance.videoTwo?.toJson(),
+      'files': ?instance.files?.map((e) => e.toJson()).toList(),
       'location': ?instance.location?.toJson(),
       'uploadStatus': _$FileUploadStatusEnumMap[instance.uploadStatus]!,
       'uploadProgress': instance.uploadProgress,

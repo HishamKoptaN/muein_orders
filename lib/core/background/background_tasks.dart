@@ -5,7 +5,6 @@ import '../../features/docs/data/mapper/docs_mapper.dart';
 import '../../features/docs/domain/usecases/docs_use_cases.dart';
 import '../config/upload_settings.dart';
 import '../di/dependency_injection.dart';
-
 Future<void> startUploadDocs() async {
   final db = getIt<AppDatabase>();
   final docsUseCase = getIt<DocsUseCase>();

@@ -9,10 +9,7 @@ enum FileUploadStatus { init, pending, uploading, uploaded, failed }
 @DataClassName('CachedDocEntry')
 class CachedDocsTable extends Table {
   IntColumn get docId => integer()();
-  TextColumn get imageOne => text().map(const DocFileConverter()).nullable()();
-  TextColumn get imageTwo => text().map(const DocFileConverter()).nullable()();
-  TextColumn get videoOne => text().map(const DocFileConverter()).nullable()();
-  TextColumn get videoTwo => text().map(const DocFileConverter()).nullable()();
+  TextColumn get files => text().map(const DocFilesConverter()).nullable()();
   TextColumn get location =>
       text().map(const LocationDocConverter()).nullable()();
   TextColumn get uploadStatus =>
@@ -26,7 +23,11 @@ class DocFile {
   final String? path;
   final DocFileType type;
   final FileUploadStatus status;
-  DocFile({required this.path, required this.type, this.status = FileUploadStatus.init});
+  DocFile({
+    required this.path,
+    required this.type,
+    this.status = FileUploadStatus.init,
+  });
   factory DocFile.fromJson(Map<String, dynamic> json) => DocFile(
     path: json['path'],
     type: DocFileType.values.firstWhere(
@@ -56,12 +57,31 @@ class DocFile {
   }
 }
 
-class DocFileConverter extends TypeConverter<DocFile, String> {
-  const DocFileConverter();
+class DocFilesConverter extends TypeConverter<List<DocFile>, String> {
+  const DocFilesConverter();
   @override
-  DocFile fromSql(String fromDb) => DocFile.fromJson(jsonDecode(fromDb));
+  List<DocFile> fromSql(String fromDb) {
+    if (fromDb.isEmpty) return [];
+    try {
+      final List<dynamic> list = jsonDecode(fromDb);
+      return list.map((e) => DocFile.fromJson(e)).toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
   @override
-  String toSql(DocFile value) => jsonEncode(value.toJson());
+  String toSql(List<DocFile> value) =>
+      jsonEncode(value.map((e) => e.toJson()).toList());
+}
+
+class LocationDocConverter extends TypeConverter<LocationDoc, String> {
+  const LocationDocConverter();
+  @override
+  LocationDoc fromSql(String fromDb) =>
+      LocationDoc.fromJson(jsonDecode(fromDb));
+  @override
+  String toSql(LocationDoc value) => jsonEncode(value.toJson());
 }
 
 class LocationDoc {
@@ -86,13 +106,4 @@ class LocationDoc {
     'longitude': longitude,
     'status': status.name,
   };
-}
-
-class LocationDocConverter extends TypeConverter<LocationDoc, String> {
-  const LocationDocConverter();
-  @override
-  LocationDoc fromSql(String fromDb) =>
-      LocationDoc.fromJson(jsonDecode(fromDb));
-  @override
-  String toSql(LocationDoc value) => jsonEncode(value.toJson());
 }

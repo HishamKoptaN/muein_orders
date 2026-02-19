@@ -10,10 +10,7 @@ part 'cached_doc_model.g.dart';
 abstract class CachedDocModel with _$CachedDocModel {
   const factory CachedDocModel({
     int? docId,
-    DocFile? imageOne,
-    DocFile? imageTwo,
-    DocFile? videoOne,
-    DocFile? videoTwo,
+    List<DocFile>? files,
     LocationDoc? location,
     @Default(FileUploadStatus.pending) FileUploadStatus uploadStatus,
     @Default(0.0) double uploadProgress,
@@ -21,10 +18,7 @@ abstract class CachedDocModel with _$CachedDocModel {
   factory CachedDocModel.fromDb(CachedDocEntry data) {
     return CachedDocModel(
       docId: data.docId,
-      imageOne: data.imageOne,
-      imageTwo: data.imageTwo,
-      videoOne: data.videoOne,
-      videoTwo: data.videoTwo,
+      files: data.files,
       location: data.location,
       uploadStatus: FileUploadStatus.values.firstWhere(
         (e) => e.name == data.uploadStatus,

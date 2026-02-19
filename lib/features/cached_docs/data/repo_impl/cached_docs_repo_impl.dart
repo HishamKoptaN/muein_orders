@@ -1,15 +1,16 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
 
 import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/cached_doc_entity.dart';
+import '../../domain/entities/create_cached_doc_entity.dart';
 import '../../domain/repo/cached_docs_repo.dart';
 import '../datasources/local/drift/app_database.dart';
 import '../datasources/local/drift/cached_docs_table.dart';
-import '../mappers/cached_doc_mapper.dart';
 
 @Singleton(as: CachedDocsRepo)
 class CachedDocsRepoImpl implements CachedDocsRepo {
@@ -31,7 +32,7 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
     try {
       final row = await _db.getCachedDoc(docId: docId);
       if (row == null) return const ApiResult.success(data: null);
-      return ApiResult.success(data: row.toEntity());
+      return ApiResult.success(data: CachedDocEntity.fromDb(row));
     } catch (e) {
       return ApiResult.failure(
         apiErrorModel: ApiErrorModel(message: e.toString()),
@@ -59,11 +60,29 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
   }
 
   @override
-  Future<ApiResult<void>> cachedDoc({required CachedDocEntity doc}) async {
+  Future<ApiResult<void>> cachedDoc({
+    required CreateCachedDocEntity doc,
+  }) async {
+    debugPrint('=== DEBUG: Repo cachedDoc START ===');
+    debugPrint('Doc files count: ${doc.files.length}');
+
+    for (int i = 0; i < doc.files.length; i++) {
+      final file = doc.files[i];
+      debugPrint(
+        'Repo File $i: path=${file.docFile?.path}, status=${file.docFileStatus}, hasFile=${file.file != null}',
+      );
+    }
+
     try {
-      await _db.cachedDoc(doc: doc);
+      final companion = doc.toCachedDocsTableCompanion();
+      debugPrint('Table companion: ${companion.toString()}');
+
+      await _db.cachedDoc(cachedDocsTableCompanion: companion);
+
+      debugPrint('Database save successful!');
       return const ApiResult.success(data: null);
     } catch (e) {
+      debugPrint('Database save failed: $e');
       return ApiResult.failure(
         apiErrorModel: ApiErrorModel(message: e.toString()),
       );

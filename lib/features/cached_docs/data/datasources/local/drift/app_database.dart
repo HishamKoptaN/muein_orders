@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -36,71 +37,73 @@ class AppDatabase extends _$AppDatabase {
     );
   }
 
-  Future<CachedDocModel?> getCachedDoc({required int docId}) {
-    return (select(cachedDocsTable)..where((t) => t.docId.equals(docId)))
-        .watchSingle()
-        .map(CachedDocModel.fromDb)
-        .first;
+  Future<CachedDocEntry?> getCachedDoc({required int docId}) async {
+    debugPrint('=== DEBUG: getCachedDoc START ===');
+    debugPrint('docId: $docId');
+
+    try {
+      final result = await (select(
+        cachedDocsTable,
+      )..where((t) => t.docId.equals(docId))).getSingleOrNull();
+
+      debugPrint('Database result: ${result != null ? "found" : "not found"}');
+      if (result != null) {
+        debugPrint('Files count: ${result.files?.length ?? 0}');
+        debugPrint(
+          'Location: ${result.location?.latitude}, ${result.location?.longitude}',
+        );
+      }
+
+      return result;
+    } catch (e) {
+      debugPrint('Error getting cached doc: $e');
+      return null;
+    }
   }
 
-  Future<void> cachedDoc({required CachedDocEntity doc}) async {
+  Future<void> cachedDoc({
+    required CachedDocsTableCompanion cachedDocsTableCompanion,
+  }) async {
+    log('=== DEBUG: Database cachedDoc START ===');
+    log('cachedDocsTableCompanion: ${cachedDocsTableCompanion.toString()}');
+
+    try {
+      await into(
+        cachedDocsTable,
+      ).insertOnConflictUpdate(cachedDocsTableCompanion);
+
+      log('Database insert successful!');
+    } catch (e) {
+      log('Database insert failed: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> updateOrAddFile({
+    required int docId,
+    required DocFile newFile,
+  }) async {
+    final existing = await (select(
+      cachedDocsTable,
+    )..where((t) => t.docId.equals(docId))).getSingleOrNull();
+    List<DocFile> updatedFiles = [];
+    if (existing != null && existing.files != null) {
+      updatedFiles = List<DocFile>.from(existing.files!);
+      final index = updatedFiles.indexWhere((f) => f.type == newFile.type);
+      if (index != -1) {
+        updatedFiles[index] = newFile;
+      } else {
+        updatedFiles.add(newFile);
+      }
+    } else {
+      updatedFiles = [newFile];
+    }
     await into(cachedDocsTable).insertOnConflictUpdate(
       CachedDocsTableCompanion(
-        docId: Value(doc.docId ?? 0),
-        imageOne: Value(
-          DocFile(
-            path: doc.imageOne?.path,
-            status: doc.imageOne?.status ?? FileUploadStatus.pending,
-            type: DocFileType.imageOne,
-          ),
-        ),
-        imageTwo: doc.imageTwo != null
-            ? Value(doc.imageTwo)
-            : const Value.absent(),
-        videoOne: doc.videoOne != null
-            ? Value(doc.videoOne)
-            : const Value.absent(),
-        videoTwo: doc.videoTwo != null
-            ? Value(doc.videoTwo)
-            : const Value.absent(),
-        location: doc.location != null
-            ? Value(doc.location)
-            : const Value.absent(),
-        uploadStatus: const Value('pending'),
-        uploadProgress: const Value(0.0),
+        docId: Value(docId),
+        files: Value(updatedFiles),
+        uploadStatus: Value(FileUploadStatus.pending.name),
       ),
-    );
-  }
-
-  Future<void> updateDocFile({
-    required int docId,
-    required DocFileType fileType,
-    required DocFile fileData,
-  }) async {
-    await (update(cachedDocsTable)..where((t) => t.docId.equals(docId))).write(
-      CachedDocsTableCompanion(
-        imageOne: fileType == DocFileType.imageOne
-            ? Value(fileData)
-            : const Value.absent(),
-        imageTwo: fileType == DocFileType.imageTwo
-            ? Value(fileData)
-            : const Value.absent(),
-        videoOne: fileType == DocFileType.videoOne
-            ? Value(fileData)
-            : const Value.absent(),
-        videoTwo: fileType == DocFileType.videoTwo
-            ? Value(fileData)
-            : const Value.absent(),
-      ),
-    );
-  }
-
-  Future<void> updateDocLocation({
-    required int docId,
-    required LocationDoc locationData,
-  }) async {
-    await (update(cachedDocsTable)..where((t) => t.docId.equals(docId))).write(
-      CachedDocsTableCompanion(location: Value(locationData)),
     );
   }
 
@@ -132,121 +135,10 @@ class AppDatabase extends _$AppDatabase {
     );
   }
 
-  Future<void> updateDocFileStatus({
-    required int docId,
-    required FileUploadStatus status,
-    required DocFileType fileType,
-    String? path,
-  }) {
-    switch (fileType) {
-      case DocFileType.imageOne:
-        return (update(
-          cachedDocsTable,
-        )..where((t) => t.docId.equals(docId))).write(
-          CachedDocsTableCompanion(
-            imageOne: Value(
-              DocFile(path: path, status: status, type: DocFileType.imageOne),
-            ),
-          ),
-        );
-      case DocFileType.imageTwo:
-        return (update(
-          cachedDocsTable,
-        )..where((t) => t.docId.equals(docId))).write(
-          CachedDocsTableCompanion(
-            imageTwo: Value(
-              DocFile(path: path, status: status, type: DocFileType.imageTwo),
-            ),
-          ),
-        );
-      case DocFileType.videoOne:
-        return (update(
-          cachedDocsTable,
-        )..where((t) => t.docId.equals(docId))).write(
-          CachedDocsTableCompanion(
-            videoOne: Value(
-              DocFile(path: path, status: status, type: DocFileType.videoOne),
-            ),
-          ),
-        );
-      case DocFileType.videoTwo:
-        return (update(
-          cachedDocsTable,
-        )..where((t) => t.docId.equals(docId))).write(
-          CachedDocsTableCompanion(
-            videoTwo: Value(
-              DocFile(path: path, status: status, type: DocFileType.videoTwo),
-            ),
-          ),
-        );
-    }
-  }
-
-  Future<void> updateDocLocationStatus({
-    required int docId,
-    required FileUploadStatus status,
-  }) async {
-    final currentDoc = await (select(
-      cachedDocsTable,
-    )..where((t) => t.docId.equals(docId))).getSingleOrNull();
-    if (currentDoc != null && currentDoc.location != null) {
-      await (update(
-        cachedDocsTable,
-      )..where((t) => t.docId.equals(docId))).write(
-        CachedDocsTableCompanion(
-          location: Value(
-            LocationDoc(
-              latitude: currentDoc.location!.latitude,
-              longitude: currentDoc.location!.longitude,
-              status: status,
-            ),
-          ),
-        ),
-      );
-    }
-  }
-
-  Future<void> updateDocStatus({
-    required int docId,
-    required FileUploadStatus status,
-  }) {
-    return (update(cachedDocsTable)..where((t) => t.docId.equals(docId))).write(
-      CachedDocsTableCompanion(uploadStatus: Value(status.name)),
-    );
-  }
-
   Future<int> deleteDoc({required int docId}) {
     return (delete(cachedDocsTable)..where((t) => t.docId.equals(docId))).go();
   }
 
-  // Future updateDocStatus({required int docId, required String status, String?   remotePath}) {
-  //   return (update(cachedDocs)..where((t) => t.docId.equals(docId))).write(
-  //     CachedDocsCompanion(
-  //       uploadStatus: Value(status),
-  //       // إذا كان هناك مسار قادم من أمازون نقوم بتحديثه
-  //       ...(remotePath != null ? {remotePath: Value(remotePath)} : {}),
-  //     ),
-  //   );
-  // }
-  //! Monitor all
-  // Future<List<CachedDocModel>> getAllDocs() {
-  //   return select(cachedDocsTable).get();
-  // }
-  // Stream<List<CachedDocModel>> watchAllDocs() {
-  //   return select(cachedDocsTable).watch();
-  // }
-
-  // Stream<List<CachedDocModel>> watchDocs({required int docId}) {
-  //   return (select(
-  //     cachedDocsTable,
-  //   )..where((t) => t.docId.equals(docId))).watch();
-  // }
-  // Stream<int> watchUploadingDocsCount() {
-  //   return (select(cachedDocsTable)
-  //         ..where((t) => t.uploadStatus.equals('uploading')))
-  //       .watch()
-  //       .map((docs) => docs.length);
-  // }
   static LazyDatabase _openConnection() {
     return LazyDatabase(() async {
       final dir = await getApplicationDocumentsDirectory();

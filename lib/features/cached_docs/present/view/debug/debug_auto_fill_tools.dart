@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
@@ -57,8 +55,10 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
                 ListTile(
                   leading: const Icon(Icons.restore, color: Colors.orange),
                   title: const Text('استرجاع البيانات المحفوظة'),
-                  subtitle: Text(
-                    'استرجاع البيانات المحفوظة في ${DocsDebuge().loadSavedData()}',
+                  subtitle: FutureBuilder<String>(
+                    future: DocsDebuge().getSavedTimestamp(),
+                    builder: (context, snapshot) =>
+                        Text('آخر حفظ: ${snapshot.data ?? "..."}'),
                   ),
                   onTap: () {
                     Navigator.of(context).pop();
@@ -106,19 +106,32 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
   @override
   Widget build(BuildContext context) {
     if (kReleaseMode) return widget.child;
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () => _handleTap(context),
-      child: widget.child,
+    return Stack(
+      children: [
+        widget.child,
+        Positioned(
+          top: 10,
+          right: 10,
+          child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: () => _handleTap(context),
+            child: Container(width: 20, height: 20, color: Colors.transparent),
+          ),
+        ),
+      ],
     );
   }
 }
 
 class DocsDebuge {
-  Future<Map<String, dynamic>> loadSavedData() async {
+  static const String _storageKey = 'debug_auto_fill_data';
+
+  Future<String> getSavedTimestamp() async {
     final prefs = await SharedPreferences.getInstance();
-    final savedDataString = prefs.getString('debug_auto_fill_data');
-    return jsonDecode(savedDataString ?? '');
+    final savedDataString = prefs.getString(_storageKey);
+    if (savedDataString == null) return 'لا يوجد';
+    final Map<String, dynamic> data = jsonDecode(savedDataString);
+    return data['timestamp_human'] ?? 'غير معروف';
   }
 
   Future<void> saveCurrentData({
@@ -126,32 +139,20 @@ class DocsDebuge {
     required Loaded loadedState,
   }) async {
     try {
-      final currentData = {'timestamp': DateTime.now().toIso8601String()}
-        ..addAll({
-          'imageOne':
-              loadedState.createCachedDoc.imageOne?.file?.value?.path ?? '',
-          'imageTwo':
-              loadedState.createCachedDoc.imageTwo?.file?.value?.path ?? '',
-          'videoOne':
-              loadedState.createCachedDoc.videoOne?.file?.value?.path ?? '',
-          'videoTwo':
-              loadedState.createCachedDoc.videoTwo?.file?.value?.path ?? '',
-          'latitude':
-              loadedState.createCachedDoc.location?.latitude?.toString() ?? '',
-          'longitude':
-              loadedState.createCachedDoc.location?.longitude?.toString() ?? '',
-        });
+      final Map<String, dynamic> debugData = {
+        'timestamp_human': DateTime.now().toString().split('.').first,
+        'entity': loadedState.createCachedDoc.toDebugMap(),
+      };
+
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('debug_auto_fill_data', jsonEncode(currentData));
+      await prefs.setString(_storageKey, jsonEncode(debugData));
+
       context.showSuccessSnackBar(
         title: 'تم الحفظ',
-        message: '✅ تم حفظ البيانات الحالية بنجاح',
+        message: '✅ تم حفظ الحالة الكاملة للنموذج',
       );
     } catch (e) {
-      context.showErrorSnackBar(
-        title: 'خطأ',
-        message: 'فشل في حفظ البيانات: $e',
-      );
+      context.showErrorSnackBar(title: 'خطأ', message: 'فشل الحفظ: $e');
     }
   }
 
@@ -160,39 +161,29 @@ class DocsDebuge {
     required Loaded loadedState,
   }) async {
     try {
-      final savedData = await loadSavedData();
+      final prefs = await SharedPreferences.getInstance();
+      final savedDataString = prefs.getString(_storageKey);
+
+      if (savedDataString == null) throw 'لا توجد بيانات محفوظة';
+
+      final Map<String, dynamic> savedMap = jsonDecode(savedDataString);
+      final restoredEntity = CreateCachedDocEntity.fromDebugMap(
+        savedMap['entity'],
+      );
+
       getIt<CachedDocBloc>().add(
         CachedDocEvent.updateData(
-          createCachedDoc: loadedState.createCachedDoc.copyWith(
-            imageOne: loadedState.createCachedDoc.imageOne?.copyWith(
-              file: FileFormzInput.dirty(File(savedData['imageOne'])),
-            ),
-            imageTwo: loadedState.createCachedDoc.imageTwo?.copyWith(
-              file: FileFormzInput.dirty(File(savedData['imageTwo'])),
-            ),
-            videoOne: loadedState.createCachedDoc.videoOne?.copyWith(
-              file: FileFormzInput.dirty(File(savedData['videoOne'])),
-            ),
-            videoTwo: loadedState.createCachedDoc.videoTwo?.copyWith(
-              file: FileFormzInput.dirty(File(savedData['videoTwo'])),
-            ),
-            location: LocationEntity(
-              latitude: double.tryParse(savedData['latitude']) ?? 0.0,
-              longitude: double.tryParse(savedData['longitude']) ?? 0.0,
-            ),
-          ),
           loaded: loadedState,
+          createCachedDoc: restoredEntity,
         ),
       );
+
       context.showSuccessSnackBar(
         title: 'تم الاسترجاع',
-        message: '✅ تم استرجاع البيانات المحفوظة',
+        message: '✅ تم استعادة البيانات والملفات بنجاح',
       );
     } catch (e) {
-      context.showErrorSnackBar(
-        title: 'خطأ',
-        message: 'فشل في استرجاع البيانات: $e',
-      );
+      context.showErrorSnackBar(title: 'خطأ', message: 'فشل الاسترجاع: $e');
     }
   }
 }

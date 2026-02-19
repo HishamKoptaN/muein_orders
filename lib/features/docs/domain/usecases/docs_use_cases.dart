@@ -23,7 +23,4 @@ class DocsUseCase {
   Future<ApiResult<void>> retryUpload({required int docId}) async {
     return await docsRepo.retryUpload(docId: docId);
   }
-  // Stream<List<CachedDocEntity>> watchUploadingDocs() {
-  //   return cachedDocsRepo.watchUploadingDocs();
-  // }
 }

@@ -15,10 +15,7 @@ abstract class CachedDocEntity with _$CachedDocEntity {
   const CachedDocEntity._();
   const factory CachedDocEntity({
     int? docId,
-    DocFile? imageOne,
-    DocFile? imageTwo,
-    DocFile? videoOne,
-    DocFile? videoTwo,
+    List<DocFile>? files,
     LocationDoc? location,
     @Default(FileUploadStatus.pending) FileUploadStatus uploadStatus,
     @Default(0.0) double uploadProgress,
@@ -29,10 +26,7 @@ abstract class CachedDocEntity with _$CachedDocEntity {
   factory CachedDocEntity.fromDb(CachedDocEntry cachedDoc) {
     return CachedDocEntity(
       docId: cachedDoc.docId,
-      imageOne: cachedDoc.imageOne,
-      imageTwo: cachedDoc.imageTwo,
-      videoOne: cachedDoc.videoOne,
-      videoTwo: cachedDoc.videoTwo,
+      files: cachedDoc.files,
       location: cachedDoc.location,
       uploadStatus: FileUploadStatus.values.firstWhere(
         (e) => e.name == cachedDoc.uploadStatus,
@@ -44,22 +38,16 @@ abstract class CachedDocEntity with _$CachedDocEntity {
   CreateCachedDocEntity toCreateCachedDocEntity() {
     return CreateCachedDocEntity(
       docId: GenericFormzInput.dirty(docId),
-      imageOne: DocFileEntity(
-        file: FileFormzInput.dirty(_fileFromPath(imageOne?.path)),
-        docFileStatus: imageOne?.status ?? FileUploadStatus.init,
-      ),
-      imageTwo: DocFileEntity(
-        file: FileFormzInput.dirty(_fileFromPath(imageTwo?.path)),
-        docFileStatus: imageTwo?.status ?? FileUploadStatus.init,
-      ),
-      videoOne: DocFileEntity(
-        file: FileFormzInput.dirty(_fileFromPath(videoOne?.path)),
-        docFileStatus: videoOne?.status ?? FileUploadStatus.init,
-      ),
-      videoTwo: DocFileEntity(
-        file: FileFormzInput.dirty(_fileFromPath(videoTwo?.path)),
-        docFileStatus: videoTwo?.status ?? FileUploadStatus.init,
-      ),
+      files:
+          files
+              ?.map(
+                (file) => DocFileEntity(
+                  file: FileFormzInput.dirty(_fileFromPath(file.path)),
+                  docFileStatus: file.status,
+                ),
+              )
+              .toList() ??
+          [],
       location: LocationEntity(
         latitude: location?.latitude,
         longitude: location?.longitude,

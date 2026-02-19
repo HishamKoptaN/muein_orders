@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../data/datasources/local/drift/cached_docs_table.dart';
@@ -105,6 +104,14 @@ class _AddFileWidgetState extends State<AddFileWidget> {
     final hasPreview = widget.initialValue?.isNotEmpty == true;
     return Column(
       children: [
+        // Text(
+        //   widget.path!,
+        //   style: const TextStyle(
+        //     color: Colors.red,
+        //     fontSize: 12,
+        //     fontFamily: 'Almarai',
+        //   ),
+        // ),
         Stack(
           children: [
             GestureDetector(
@@ -137,7 +144,13 @@ class _AddFileWidgetState extends State<AddFileWidget> {
             ),
 
             if (widget.path != null && widget.path!.isNotEmpty)
-              GestureDetector(child: buildStatusIndicator(docFileStatus: widget.docFileStatus)),
+              Positioned(
+                top: 8,
+                left: 8,
+                child: buildStatusIndicator(
+                  docFileStatus: widget.docFileStatus,
+                ),
+              ),
           ],
         ),
         if (widget.errorText != null)
@@ -263,22 +276,18 @@ Widget buildStatusIndicator({required FileUploadStatus docFileStatus}) {
       color = Colors.orange;
       break;
   }
-  return Positioned(
-    top: 8.h,
-    left: 8.w,
-    child: Container(
-      padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.9),
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4),
-        ],
-      ),
-      child: isRotating
-          ? buildRotatingIcon(icon, color)
-          : Icon(icon, color: color, size: 20),
+  return Container(
+    padding: const EdgeInsets.all(4),
+    decoration: BoxDecoration(
+      color: Colors.white.withValues(alpha: 0.9),
+      shape: BoxShape.circle,
+      boxShadow: [
+        BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 4),
+      ],
     ),
+    child: isRotating
+        ? buildRotatingIcon(icon, color)
+        : Icon(icon, color: color, size: 20),
   );
 }
 

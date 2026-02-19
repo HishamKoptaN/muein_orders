@@ -6,8 +6,13 @@ import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
+import '../../../../cached_docs/domain/entities/cached_doc_entity.dart';
+import '../../../../cached_docs/present/view/debug/debug_auto_fill_tools.dart';
 
-void showTestMenu({required BuildContext context, required int docId}) {
+void showTestMenu({
+  required BuildContext context,
+  required CachedDocEntity cachedDoc,
+}) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
@@ -25,49 +30,23 @@ void showTestMenu({required BuildContext context, required int docId}) {
               leading: const Icon(Icons.add),
               title: const Text('اضافة التوثيق'),
               onTap: () async {
-                // final savedData = await DocsDebuge().loadSavedData();
-                //   await getIt<AppDatabase>().cachedDoc(
-                //     doc: CachedDocEntity(
-                //       docId: Value(docId),
-                //       imageOne: Value(
-                //         DocFile(
-                //           path: savedData['imageOne'],
-                //           type: DocFileType.imageOne,
-                //           status: FileUploadStatus.pending,
-                //         ),
-                //       ),
-                //       imageTwo: Value(
-                //         DocFile(
-                //           path: savedData['imageTwo'],
-                //           type: DocFileType.imageTwo,
-                //           status: FileUploadStatus.pending,
-                //         ),
-                //       ),
-                //       videoOne: Value(
-                //         DocFile(
-                //           path: savedData['videoOne'],
-                //           type: DocFileType.videoOne,
-                //           status: FileUploadStatus.pending,
-                //         ),
-                //       ),
-                //       videoTwo: Value(
-                //         DocFile(
-                //           path: savedData['videoTwo'],
-                //           type: DocFileType.videoTwo,
-                //           status: FileUploadStatus.pending,
-                //         ),
-                //       ),
-                //       location: Value(
-                //         LocationDoc(
-                //           latitude: 37.7749,
-                //           longitude: -122.4194,
-                //           status: FileUploadStatus.pending,
-                //         ),
-                //       ),
-                //       uploadStatus: const Value('pending'),
-                //       uploadProgress: const Value(0),
-                //     ),
-                //   );
+                final savedData = await DocsDebuge().getSavedTimestamp();
+                // 1. تحويل البيانات من Map/List إلى قائمة من كائنات DocFile
+                // final List<DocFile> filesList =
+                //     (savedData['files'] as List? ?? []).map((path) {
+                //       return DocFile(
+                //         path: path.toString(),
+                //         type: DocFileType
+                //             .imageOne, // أو قم بتحديد النوع بناءً على الامتداد
+                //         status: FileUploadStatus.pending,
+                //       );
+                //     }).toList();
+                // await getIt<AppDatabase>().cachedDoc(
+                //   cachedDocsTableCompanion: CachedDocsTableCompanion(
+                //     docId: Value(cachedDoc.docId ?? 0),
+                //     files: Value(filesList),
+                //   ),
+                // );
               },
             ),
             ListTile(
@@ -77,7 +56,7 @@ void showTestMenu({required BuildContext context, required int docId}) {
                 Navigator.pop(context);
                 _changeOrderStatus(
                   context: context,
-                  docId: docId,
+                  cachedDoc: cachedDoc,
                   db: getIt<AppDatabase>(),
                 );
               },
@@ -87,11 +66,11 @@ void showTestMenu({required BuildContext context, required int docId}) {
               title: const Text('تغيير نسبة التقدم'),
               onTap: () {
                 Navigator.pop(context);
-                _changeUploadProgress(
-                  context: context,
-                  docId: docId,
-                  db: getIt<AppDatabase>(),
-                );
+                // _changeUploadProgress(
+                //   context: context,
+                //   docId: docId,
+                //   db: getIt<AppDatabase>(),
+                // );
               },
             ),
             ListTile(
@@ -99,11 +78,11 @@ void showTestMenu({required BuildContext context, required int docId}) {
               title: const Text('مسح  التوثيق'),
               onTap: () {
                 Navigator.pop(context);
-                _clearOrderDocs(
-                  context: context,
-                  docId: docId,
-                  db: getIt<AppDatabase>(),
-                );
+                // _clearOrderDocs(
+                //   context: context,
+                //   docId: docId,
+                //   db: getIt<AppDatabase>(),
+                // );
               },
             ),
           ],
@@ -115,7 +94,7 @@ void showTestMenu({required BuildContext context, required int docId}) {
 
 void _changeOrderStatus({
   required BuildContext context,
-  required int docId,
+  required CachedDocEntity cachedDoc,
   required AppDatabase db,
 }) {
   showDialog(
@@ -130,11 +109,11 @@ void _changeOrderStatus({
               title: const Text('معلق'),
               onTap: () {
                 Navigator.pop(context);
-                _updateOrderStatus(
-                  db: db,
-                  docId: docId,
-                  uploadStatus: FileUploadStatus.pending,
-                );
+                // _updateOrderStatus(
+                //   db: db,
+                //   docId: docId,
+                //   uploadStatus: FileUploadStatus.pending,
+                // );
                 context.showSuccessSnackBar(
                   title: 'تم تغيير حالة الطلب',
                   message: FileUploadStatus.pending.name,
@@ -145,11 +124,11 @@ void _changeOrderStatus({
               title: const Text('قيد التنفيذ'),
               onTap: () {
                 Navigator.pop(context);
-                _updateOrderStatus(
-                  db: db,
-                  docId: docId,
-                  uploadStatus: FileUploadStatus.uploading,
-                );
+                // _updateOrderStatus(
+                //   db: db,
+                //   docId: docId,
+                //   uploadStatus: FileUploadStatus.uploading,
+                // );
                 context.showSuccessSnackBar(
                   title: 'تم تغيير حالة الطلب',
                   message: FileUploadStatus.uploading.name,
@@ -160,11 +139,11 @@ void _changeOrderStatus({
               title: const Text('مكتمل'),
               onTap: () {
                 Navigator.pop(context);
-                _updateOrderStatus(
-                  db: db,
-                  docId: docId,
-                  uploadStatus: FileUploadStatus.uploaded,
-                );
+                // _updateOrderStatus(
+                //   db: db,
+                //   docId: docId,
+                //   uploadStatus: FileUploadStatus.uploaded,
+                // );
                 context.showSuccessSnackBar(
                   title: 'تم تغيير حالة الطلب',
                   message: FileUploadStatus.uploaded.name,
@@ -173,13 +152,19 @@ void _changeOrderStatus({
             ),
             ListTile(
               title: const Text('فاشل'),
-              onTap: () {
+              onTap: () async {
                 Navigator.pop(context);
-                _updateOrderStatus(
-                  db: db,
-                  docId: docId,
-                  uploadStatus: FileUploadStatus.failed,
+                await db.cachedDoc(
+                  cachedDocsTableCompanion: cachedDoc
+                      .toCreateCachedDocEntity()
+                      .toCachedDocsTableCompanion(),
                 );
+                // db.cachedDoc
+                // _updateOrderStatus(
+                //   db: db,
+                //   docId: docId,
+                //   uploadStatus: FileUploadStatus.failed,
+                // );
                 context.showSuccessSnackBar(
                   title: 'تم تغيير حالة الطلب',
                   message: FileUploadStatus.failed.name,
@@ -205,18 +190,6 @@ void _changeUploadProgress({
     title: 'تم تغيير نسبة التقدم',
     message: 'تم تغيير نسبة التقدم',
   );
-}
-
-Future<void> _updateOrderStatus({
-  required AppDatabase db,
-  required int docId,
-  required FileUploadStatus uploadStatus,
-}) async {
-  try {
-    await db.updateDocStatus(docId: docId, status: uploadStatus);
-  } catch (e) {
-    debugPrint('خطأ في تحديث حالة الطلب: $e');
-  }
 }
 
 Future<void> _updateUploadProgress({

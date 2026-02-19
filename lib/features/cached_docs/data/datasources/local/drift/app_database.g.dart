@@ -19,41 +19,14 @@ class $CachedDocsTableTable extends CachedDocsTable
     requiredDuringInsert: false,
   );
   @override
-  late final GeneratedColumnWithTypeConverter<DocFile?, String> imageOne =
+  late final GeneratedColumnWithTypeConverter<List<DocFile>?, String> files =
       GeneratedColumn<String>(
-        'image_one',
+        'files',
         aliasedName,
         true,
         type: DriftSqlType.string,
         requiredDuringInsert: false,
-      ).withConverter<DocFile?>($CachedDocsTableTable.$converterimageOnen);
-  @override
-  late final GeneratedColumnWithTypeConverter<DocFile?, String> imageTwo =
-      GeneratedColumn<String>(
-        'image_two',
-        aliasedName,
-        true,
-        type: DriftSqlType.string,
-        requiredDuringInsert: false,
-      ).withConverter<DocFile?>($CachedDocsTableTable.$converterimageTwon);
-  @override
-  late final GeneratedColumnWithTypeConverter<DocFile?, String> videoOne =
-      GeneratedColumn<String>(
-        'video_one',
-        aliasedName,
-        true,
-        type: DriftSqlType.string,
-        requiredDuringInsert: false,
-      ).withConverter<DocFile?>($CachedDocsTableTable.$convertervideoOnen);
-  @override
-  late final GeneratedColumnWithTypeConverter<DocFile?, String> videoTwo =
-      GeneratedColumn<String>(
-        'video_two',
-        aliasedName,
-        true,
-        type: DriftSqlType.string,
-        requiredDuringInsert: false,
-      ).withConverter<DocFile?>($CachedDocsTableTable.$convertervideoTwon);
+      ).withConverter<List<DocFile>?>($CachedDocsTableTable.$converterfilesn);
   @override
   late final GeneratedColumnWithTypeConverter<LocationDoc?, String> location =
       GeneratedColumn<String>(
@@ -90,10 +63,7 @@ class $CachedDocsTableTable extends CachedDocsTable
   @override
   List<GeneratedColumn> get $columns => [
     docId,
-    imageOne,
-    imageTwo,
-    videoOne,
-    videoTwo,
+    files,
     location,
     uploadStatus,
     uploadProgress,
@@ -147,28 +117,10 @@ class $CachedDocsTableTable extends CachedDocsTable
         DriftSqlType.int,
         data['${effectivePrefix}doc_id'],
       )!,
-      imageOne: $CachedDocsTableTable.$converterimageOnen.fromSql(
+      files: $CachedDocsTableTable.$converterfilesn.fromSql(
         attachedDatabase.typeMapping.read(
           DriftSqlType.string,
-          data['${effectivePrefix}image_one'],
-        ),
-      ),
-      imageTwo: $CachedDocsTableTable.$converterimageTwon.fromSql(
-        attachedDatabase.typeMapping.read(
-          DriftSqlType.string,
-          data['${effectivePrefix}image_two'],
-        ),
-      ),
-      videoOne: $CachedDocsTableTable.$convertervideoOnen.fromSql(
-        attachedDatabase.typeMapping.read(
-          DriftSqlType.string,
-          data['${effectivePrefix}video_one'],
-        ),
-      ),
-      videoTwo: $CachedDocsTableTable.$convertervideoTwon.fromSql(
-        attachedDatabase.typeMapping.read(
-          DriftSqlType.string,
-          data['${effectivePrefix}video_two'],
+          data['${effectivePrefix}files'],
         ),
       ),
       location: $CachedDocsTableTable.$converterlocationn.fromSql(
@@ -193,22 +145,10 @@ class $CachedDocsTableTable extends CachedDocsTable
     return $CachedDocsTableTable(attachedDatabase, alias);
   }
 
-  static TypeConverter<DocFile, String> $converterimageOne =
-      const DocFileConverter();
-  static TypeConverter<DocFile?, String?> $converterimageOnen =
-      NullAwareTypeConverter.wrap($converterimageOne);
-  static TypeConverter<DocFile, String> $converterimageTwo =
-      const DocFileConverter();
-  static TypeConverter<DocFile?, String?> $converterimageTwon =
-      NullAwareTypeConverter.wrap($converterimageTwo);
-  static TypeConverter<DocFile, String> $convertervideoOne =
-      const DocFileConverter();
-  static TypeConverter<DocFile?, String?> $convertervideoOnen =
-      NullAwareTypeConverter.wrap($convertervideoOne);
-  static TypeConverter<DocFile, String> $convertervideoTwo =
-      const DocFileConverter();
-  static TypeConverter<DocFile?, String?> $convertervideoTwon =
-      NullAwareTypeConverter.wrap($convertervideoTwo);
+  static TypeConverter<List<DocFile>, String> $converterfiles =
+      const DocFilesConverter();
+  static TypeConverter<List<DocFile>?, String?> $converterfilesn =
+      NullAwareTypeConverter.wrap($converterfiles);
   static TypeConverter<LocationDoc, String> $converterlocation =
       const LocationDocConverter();
   static TypeConverter<LocationDoc?, String?> $converterlocationn =
@@ -217,19 +157,13 @@ class $CachedDocsTableTable extends CachedDocsTable
 
 class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
   final int docId;
-  final DocFile? imageOne;
-  final DocFile? imageTwo;
-  final DocFile? videoOne;
-  final DocFile? videoTwo;
+  final List<DocFile>? files;
   final LocationDoc? location;
   final String uploadStatus;
   final double uploadProgress;
   const CachedDocEntry({
     required this.docId,
-    this.imageOne,
-    this.imageTwo,
-    this.videoOne,
-    this.videoTwo,
+    this.files,
     this.location,
     required this.uploadStatus,
     required this.uploadProgress,
@@ -238,24 +172,9 @@ class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['doc_id'] = Variable<int>(docId);
-    if (!nullToAbsent || imageOne != null) {
-      map['image_one'] = Variable<String>(
-        $CachedDocsTableTable.$converterimageOnen.toSql(imageOne),
-      );
-    }
-    if (!nullToAbsent || imageTwo != null) {
-      map['image_two'] = Variable<String>(
-        $CachedDocsTableTable.$converterimageTwon.toSql(imageTwo),
-      );
-    }
-    if (!nullToAbsent || videoOne != null) {
-      map['video_one'] = Variable<String>(
-        $CachedDocsTableTable.$convertervideoOnen.toSql(videoOne),
-      );
-    }
-    if (!nullToAbsent || videoTwo != null) {
-      map['video_two'] = Variable<String>(
-        $CachedDocsTableTable.$convertervideoTwon.toSql(videoTwo),
+    if (!nullToAbsent || files != null) {
+      map['files'] = Variable<String>(
+        $CachedDocsTableTable.$converterfilesn.toSql(files),
       );
     }
     if (!nullToAbsent || location != null) {
@@ -271,18 +190,9 @@ class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
   CachedDocsTableCompanion toCompanion(bool nullToAbsent) {
     return CachedDocsTableCompanion(
       docId: Value(docId),
-      imageOne: imageOne == null && nullToAbsent
+      files: files == null && nullToAbsent
           ? const Value.absent()
-          : Value(imageOne),
-      imageTwo: imageTwo == null && nullToAbsent
-          ? const Value.absent()
-          : Value(imageTwo),
-      videoOne: videoOne == null && nullToAbsent
-          ? const Value.absent()
-          : Value(videoOne),
-      videoTwo: videoTwo == null && nullToAbsent
-          ? const Value.absent()
-          : Value(videoTwo),
+          : Value(files),
       location: location == null && nullToAbsent
           ? const Value.absent()
           : Value(location),
@@ -298,10 +208,7 @@ class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return CachedDocEntry(
       docId: serializer.fromJson<int>(json['docId']),
-      imageOne: serializer.fromJson<DocFile?>(json['imageOne']),
-      imageTwo: serializer.fromJson<DocFile?>(json['imageTwo']),
-      videoOne: serializer.fromJson<DocFile?>(json['videoOne']),
-      videoTwo: serializer.fromJson<DocFile?>(json['videoTwo']),
+      files: serializer.fromJson<List<DocFile>?>(json['files']),
       location: serializer.fromJson<LocationDoc?>(json['location']),
       uploadStatus: serializer.fromJson<String>(json['uploadStatus']),
       uploadProgress: serializer.fromJson<double>(json['uploadProgress']),
@@ -312,10 +219,7 @@ class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'docId': serializer.toJson<int>(docId),
-      'imageOne': serializer.toJson<DocFile?>(imageOne),
-      'imageTwo': serializer.toJson<DocFile?>(imageTwo),
-      'videoOne': serializer.toJson<DocFile?>(videoOne),
-      'videoTwo': serializer.toJson<DocFile?>(videoTwo),
+      'files': serializer.toJson<List<DocFile>?>(files),
       'location': serializer.toJson<LocationDoc?>(location),
       'uploadStatus': serializer.toJson<String>(uploadStatus),
       'uploadProgress': serializer.toJson<double>(uploadProgress),
@@ -324,19 +228,13 @@ class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
 
   CachedDocEntry copyWith({
     int? docId,
-    Value<DocFile?> imageOne = const Value.absent(),
-    Value<DocFile?> imageTwo = const Value.absent(),
-    Value<DocFile?> videoOne = const Value.absent(),
-    Value<DocFile?> videoTwo = const Value.absent(),
+    Value<List<DocFile>?> files = const Value.absent(),
     Value<LocationDoc?> location = const Value.absent(),
     String? uploadStatus,
     double? uploadProgress,
   }) => CachedDocEntry(
     docId: docId ?? this.docId,
-    imageOne: imageOne.present ? imageOne.value : this.imageOne,
-    imageTwo: imageTwo.present ? imageTwo.value : this.imageTwo,
-    videoOne: videoOne.present ? videoOne.value : this.videoOne,
-    videoTwo: videoTwo.present ? videoTwo.value : this.videoTwo,
+    files: files.present ? files.value : this.files,
     location: location.present ? location.value : this.location,
     uploadStatus: uploadStatus ?? this.uploadStatus,
     uploadProgress: uploadProgress ?? this.uploadProgress,
@@ -344,10 +242,7 @@ class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
   CachedDocEntry copyWithCompanion(CachedDocsTableCompanion data) {
     return CachedDocEntry(
       docId: data.docId.present ? data.docId.value : this.docId,
-      imageOne: data.imageOne.present ? data.imageOne.value : this.imageOne,
-      imageTwo: data.imageTwo.present ? data.imageTwo.value : this.imageTwo,
-      videoOne: data.videoOne.present ? data.videoOne.value : this.videoOne,
-      videoTwo: data.videoTwo.present ? data.videoTwo.value : this.videoTwo,
+      files: data.files.present ? data.files.value : this.files,
       location: data.location.present ? data.location.value : this.location,
       uploadStatus: data.uploadStatus.present
           ? data.uploadStatus.value
@@ -362,10 +257,7 @@ class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
   String toString() {
     return (StringBuffer('CachedDocEntry(')
           ..write('docId: $docId, ')
-          ..write('imageOne: $imageOne, ')
-          ..write('imageTwo: $imageTwo, ')
-          ..write('videoOne: $videoOne, ')
-          ..write('videoTwo: $videoTwo, ')
+          ..write('files: $files, ')
           ..write('location: $location, ')
           ..write('uploadStatus: $uploadStatus, ')
           ..write('uploadProgress: $uploadProgress')
@@ -374,25 +266,14 @@ class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
   }
 
   @override
-  int get hashCode => Object.hash(
-    docId,
-    imageOne,
-    imageTwo,
-    videoOne,
-    videoTwo,
-    location,
-    uploadStatus,
-    uploadProgress,
-  );
+  int get hashCode =>
+      Object.hash(docId, files, location, uploadStatus, uploadProgress);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is CachedDocEntry &&
           other.docId == this.docId &&
-          other.imageOne == this.imageOne &&
-          other.imageTwo == this.imageTwo &&
-          other.videoOne == this.videoOne &&
-          other.videoTwo == this.videoTwo &&
+          other.files == this.files &&
           other.location == this.location &&
           other.uploadStatus == this.uploadStatus &&
           other.uploadProgress == this.uploadProgress);
@@ -400,49 +281,34 @@ class CachedDocEntry extends DataClass implements Insertable<CachedDocEntry> {
 
 class CachedDocsTableCompanion extends UpdateCompanion<CachedDocEntry> {
   final Value<int> docId;
-  final Value<DocFile?> imageOne;
-  final Value<DocFile?> imageTwo;
-  final Value<DocFile?> videoOne;
-  final Value<DocFile?> videoTwo;
+  final Value<List<DocFile>?> files;
   final Value<LocationDoc?> location;
   final Value<String> uploadStatus;
   final Value<double> uploadProgress;
   const CachedDocsTableCompanion({
     this.docId = const Value.absent(),
-    this.imageOne = const Value.absent(),
-    this.imageTwo = const Value.absent(),
-    this.videoOne = const Value.absent(),
-    this.videoTwo = const Value.absent(),
+    this.files = const Value.absent(),
     this.location = const Value.absent(),
     this.uploadStatus = const Value.absent(),
     this.uploadProgress = const Value.absent(),
   });
   CachedDocsTableCompanion.insert({
     this.docId = const Value.absent(),
-    this.imageOne = const Value.absent(),
-    this.imageTwo = const Value.absent(),
-    this.videoOne = const Value.absent(),
-    this.videoTwo = const Value.absent(),
+    this.files = const Value.absent(),
     this.location = const Value.absent(),
     this.uploadStatus = const Value.absent(),
     this.uploadProgress = const Value.absent(),
   });
   static Insertable<CachedDocEntry> custom({
     Expression<int>? docId,
-    Expression<String>? imageOne,
-    Expression<String>? imageTwo,
-    Expression<String>? videoOne,
-    Expression<String>? videoTwo,
+    Expression<String>? files,
     Expression<String>? location,
     Expression<String>? uploadStatus,
     Expression<double>? uploadProgress,
   }) {
     return RawValuesInsertable({
       if (docId != null) 'doc_id': docId,
-      if (imageOne != null) 'image_one': imageOne,
-      if (imageTwo != null) 'image_two': imageTwo,
-      if (videoOne != null) 'video_one': videoOne,
-      if (videoTwo != null) 'video_two': videoTwo,
+      if (files != null) 'files': files,
       if (location != null) 'location': location,
       if (uploadStatus != null) 'upload_status': uploadStatus,
       if (uploadProgress != null) 'upload_progress': uploadProgress,
@@ -451,20 +317,14 @@ class CachedDocsTableCompanion extends UpdateCompanion<CachedDocEntry> {
 
   CachedDocsTableCompanion copyWith({
     Value<int>? docId,
-    Value<DocFile?>? imageOne,
-    Value<DocFile?>? imageTwo,
-    Value<DocFile?>? videoOne,
-    Value<DocFile?>? videoTwo,
+    Value<List<DocFile>?>? files,
     Value<LocationDoc?>? location,
     Value<String>? uploadStatus,
     Value<double>? uploadProgress,
   }) {
     return CachedDocsTableCompanion(
       docId: docId ?? this.docId,
-      imageOne: imageOne ?? this.imageOne,
-      imageTwo: imageTwo ?? this.imageTwo,
-      videoOne: videoOne ?? this.videoOne,
-      videoTwo: videoTwo ?? this.videoTwo,
+      files: files ?? this.files,
       location: location ?? this.location,
       uploadStatus: uploadStatus ?? this.uploadStatus,
       uploadProgress: uploadProgress ?? this.uploadProgress,
@@ -477,24 +337,9 @@ class CachedDocsTableCompanion extends UpdateCompanion<CachedDocEntry> {
     if (docId.present) {
       map['doc_id'] = Variable<int>(docId.value);
     }
-    if (imageOne.present) {
-      map['image_one'] = Variable<String>(
-        $CachedDocsTableTable.$converterimageOnen.toSql(imageOne.value),
-      );
-    }
-    if (imageTwo.present) {
-      map['image_two'] = Variable<String>(
-        $CachedDocsTableTable.$converterimageTwon.toSql(imageTwo.value),
-      );
-    }
-    if (videoOne.present) {
-      map['video_one'] = Variable<String>(
-        $CachedDocsTableTable.$convertervideoOnen.toSql(videoOne.value),
-      );
-    }
-    if (videoTwo.present) {
-      map['video_two'] = Variable<String>(
-        $CachedDocsTableTable.$convertervideoTwon.toSql(videoTwo.value),
+    if (files.present) {
+      map['files'] = Variable<String>(
+        $CachedDocsTableTable.$converterfilesn.toSql(files.value),
       );
     }
     if (location.present) {
@@ -515,10 +360,7 @@ class CachedDocsTableCompanion extends UpdateCompanion<CachedDocEntry> {
   String toString() {
     return (StringBuffer('CachedDocsTableCompanion(')
           ..write('docId: $docId, ')
-          ..write('imageOne: $imageOne, ')
-          ..write('imageTwo: $imageTwo, ')
-          ..write('videoOne: $videoOne, ')
-          ..write('videoTwo: $videoTwo, ')
+          ..write('files: $files, ')
           ..write('location: $location, ')
           ..write('uploadStatus: $uploadStatus, ')
           ..write('uploadProgress: $uploadProgress')
@@ -543,10 +385,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
 typedef $$CachedDocsTableTableCreateCompanionBuilder =
     CachedDocsTableCompanion Function({
       Value<int> docId,
-      Value<DocFile?> imageOne,
-      Value<DocFile?> imageTwo,
-      Value<DocFile?> videoOne,
-      Value<DocFile?> videoTwo,
+      Value<List<DocFile>?> files,
       Value<LocationDoc?> location,
       Value<String> uploadStatus,
       Value<double> uploadProgress,
@@ -554,10 +393,7 @@ typedef $$CachedDocsTableTableCreateCompanionBuilder =
 typedef $$CachedDocsTableTableUpdateCompanionBuilder =
     CachedDocsTableCompanion Function({
       Value<int> docId,
-      Value<DocFile?> imageOne,
-      Value<DocFile?> imageTwo,
-      Value<DocFile?> videoOne,
-      Value<DocFile?> videoTwo,
+      Value<List<DocFile>?> files,
       Value<LocationDoc?> location,
       Value<String> uploadStatus,
       Value<double> uploadProgress,
@@ -577,29 +413,11 @@ class $$CachedDocsTableTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnWithTypeConverterFilters<DocFile?, DocFile, String> get imageOne =>
-      $composableBuilder(
-        column: $table.imageOne,
-        builder: (column) => ColumnWithTypeConverterFilters(column),
-      );
-
-  ColumnWithTypeConverterFilters<DocFile?, DocFile, String> get imageTwo =>
-      $composableBuilder(
-        column: $table.imageTwo,
-        builder: (column) => ColumnWithTypeConverterFilters(column),
-      );
-
-  ColumnWithTypeConverterFilters<DocFile?, DocFile, String> get videoOne =>
-      $composableBuilder(
-        column: $table.videoOne,
-        builder: (column) => ColumnWithTypeConverterFilters(column),
-      );
-
-  ColumnWithTypeConverterFilters<DocFile?, DocFile, String> get videoTwo =>
-      $composableBuilder(
-        column: $table.videoTwo,
-        builder: (column) => ColumnWithTypeConverterFilters(column),
-      );
+  ColumnWithTypeConverterFilters<List<DocFile>?, List<DocFile>, String>
+  get files => $composableBuilder(
+    column: $table.files,
+    builder: (column) => ColumnWithTypeConverterFilters(column),
+  );
 
   ColumnWithTypeConverterFilters<LocationDoc?, LocationDoc, String>
   get location => $composableBuilder(
@@ -632,23 +450,8 @@ class $$CachedDocsTableTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get imageOne => $composableBuilder(
-    column: $table.imageOne,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get imageTwo => $composableBuilder(
-    column: $table.imageTwo,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get videoOne => $composableBuilder(
-    column: $table.videoOne,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get videoTwo => $composableBuilder(
-    column: $table.videoTwo,
+  ColumnOrderings<String> get files => $composableBuilder(
+    column: $table.files,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -680,17 +483,8 @@ class $$CachedDocsTableTableAnnotationComposer
   GeneratedColumn<int> get docId =>
       $composableBuilder(column: $table.docId, builder: (column) => column);
 
-  GeneratedColumnWithTypeConverter<DocFile?, String> get imageOne =>
-      $composableBuilder(column: $table.imageOne, builder: (column) => column);
-
-  GeneratedColumnWithTypeConverter<DocFile?, String> get imageTwo =>
-      $composableBuilder(column: $table.imageTwo, builder: (column) => column);
-
-  GeneratedColumnWithTypeConverter<DocFile?, String> get videoOne =>
-      $composableBuilder(column: $table.videoOne, builder: (column) => column);
-
-  GeneratedColumnWithTypeConverter<DocFile?, String> get videoTwo =>
-      $composableBuilder(column: $table.videoTwo, builder: (column) => column);
+  GeneratedColumnWithTypeConverter<List<DocFile>?, String> get files =>
+      $composableBuilder(column: $table.files, builder: (column) => column);
 
   GeneratedColumnWithTypeConverter<LocationDoc?, String> get location =>
       $composableBuilder(column: $table.location, builder: (column) => column);
@@ -744,19 +538,13 @@ class $$CachedDocsTableTableTableManager
           updateCompanionCallback:
               ({
                 Value<int> docId = const Value.absent(),
-                Value<DocFile?> imageOne = const Value.absent(),
-                Value<DocFile?> imageTwo = const Value.absent(),
-                Value<DocFile?> videoOne = const Value.absent(),
-                Value<DocFile?> videoTwo = const Value.absent(),
+                Value<List<DocFile>?> files = const Value.absent(),
                 Value<LocationDoc?> location = const Value.absent(),
                 Value<String> uploadStatus = const Value.absent(),
                 Value<double> uploadProgress = const Value.absent(),
               }) => CachedDocsTableCompanion(
                 docId: docId,
-                imageOne: imageOne,
-                imageTwo: imageTwo,
-                videoOne: videoOne,
-                videoTwo: videoTwo,
+                files: files,
                 location: location,
                 uploadStatus: uploadStatus,
                 uploadProgress: uploadProgress,
@@ -764,19 +552,13 @@ class $$CachedDocsTableTableTableManager
           createCompanionCallback:
               ({
                 Value<int> docId = const Value.absent(),
-                Value<DocFile?> imageOne = const Value.absent(),
-                Value<DocFile?> imageTwo = const Value.absent(),
-                Value<DocFile?> videoOne = const Value.absent(),
-                Value<DocFile?> videoTwo = const Value.absent(),
+                Value<List<DocFile>?> files = const Value.absent(),
                 Value<LocationDoc?> location = const Value.absent(),
                 Value<String> uploadStatus = const Value.absent(),
                 Value<double> uploadProgress = const Value.absent(),
               }) => CachedDocsTableCompanion.insert(
                 docId: docId,
-                imageOne: imageOne,
-                imageTwo: imageTwo,
-                videoOne: videoOne,
-                videoTwo: videoTwo,
+                files: files,
                 location: location,
                 uploadStatus: uploadStatus,
                 uploadProgress: uploadProgress,

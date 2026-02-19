@@ -1,9 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../docs/domain/entities/docs_res_entity.dart';
-import '../debug/doc_debuge.dart';
 import 'doc_widget.dart';
 
 class DocCardWidget extends StatelessWidget {
@@ -12,28 +9,17 @@ class DocCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (kDebugMode) {
-          showTestMenu(context: context, docId: doc.id ?? 0);
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.all(4.sp),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: const Color(0xFFF0EFEF)),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 4,
-              offset: Offset(0, 2),
-            ),
-          ],
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: docWidget(context: context, docId: doc.id ?? 0),
+    return Container(
+      padding: EdgeInsets.all(4.sp),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: const Color(0xFFF0EFEF)),
+        boxShadow: const [
+          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
+        ],
+        borderRadius: BorderRadius.circular(15),
       ),
+      child: docWidget(context: context, docId: doc.id ?? 0),
     );
   }
 }

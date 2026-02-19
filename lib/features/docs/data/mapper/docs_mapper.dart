@@ -53,12 +53,7 @@ extension CachedDocEntryMapper on CachedDocEntry {
   CreateDocEntity toCreateEntity() {
     return CreateDocEntity(
       docId: docId,
-      files: [
-        if (imageOne != null) imageOne!,
-        if (imageTwo != null) imageTwo!,
-        if (videoOne != null) videoOne!,
-        if (videoTwo != null) videoTwo!,
-      ],
+      files: files ?? [],
       location: location,
     );
   }

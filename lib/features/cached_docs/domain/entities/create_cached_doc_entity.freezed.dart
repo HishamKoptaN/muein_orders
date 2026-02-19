@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateCachedDocEntity {
 
- GenericFormzInput<int>? get docId; DocFileEntity? get imageOne; DocFileEntity? get imageTwo; DocFileEntity? get videoOne; DocFileEntity? get videoTwo; LocationEntity? get location; StatEntity? get subCategory;
+ GenericFormzInput<int>? get docId; List<DocFileEntity> get files; LocationEntity? get location; StatEntity? get subCategory;
 /// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $CreateCachedDocEntityCopyWith<CreateCachedDocEntity> get copyWith => _$CreateCa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateCachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.imageOne, imageOne) || other.imageOne == imageOne)&&(identical(other.imageTwo, imageTwo) || other.imageTwo == imageTwo)&&(identical(other.videoOne, videoOne) || other.videoOne == videoOne)&&(identical(other.videoTwo, videoTwo) || other.videoTwo == videoTwo)&&(identical(other.location, location) || other.location == location)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateCachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.location, location) || other.location == location)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,docId,imageOne,imageTwo,videoOne,videoTwo,location,subCategory);
+int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(files),location,subCategory);
 
 @override
 String toString() {
-  return 'CreateCachedDocEntity(docId: $docId, imageOne: $imageOne, imageTwo: $imageTwo, videoOne: $videoOne, videoTwo: $videoTwo, location: $location, subCategory: $subCategory)';
+  return 'CreateCachedDocEntity(docId: $docId, files: $files, location: $location, subCategory: $subCategory)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $CreateCachedDocEntityCopyWith<$Res>  {
   factory $CreateCachedDocEntityCopyWith(CreateCachedDocEntity value, $Res Function(CreateCachedDocEntity) _then) = _$CreateCachedDocEntityCopyWithImpl;
 @useResult
 $Res call({
- GenericFormzInput<int>? docId, DocFileEntity? imageOne, DocFileEntity? imageTwo, DocFileEntity? videoOne, DocFileEntity? videoTwo, LocationEntity? location, StatEntity? subCategory
+ GenericFormzInput<int>? docId, List<DocFileEntity> files, LocationEntity? location, StatEntity? subCategory
 });
 
 
-$DocFileEntityCopyWith<$Res>? get imageOne;$DocFileEntityCopyWith<$Res>? get imageTwo;$DocFileEntityCopyWith<$Res>? get videoOne;$DocFileEntityCopyWith<$Res>? get videoTwo;$LocationEntityCopyWith<$Res>? get location;
+$LocationEntityCopyWith<$Res>? get location;
 
 }
 /// @nodoc
@@ -62,67 +62,16 @@ class _$CreateCachedDocEntityCopyWithImpl<$Res>
 
 /// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? docId = freezed,Object? imageOne = freezed,Object? imageTwo = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? location = freezed,Object? subCategory = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? docId = freezed,Object? files = null,Object? location = freezed,Object? subCategory = freezed,}) {
   return _then(_self.copyWith(
 docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<int>?,imageOne: freezed == imageOne ? _self.imageOne : imageOne // ignore: cast_nullable_to_non_nullable
-as DocFileEntity?,imageTwo: freezed == imageTwo ? _self.imageTwo : imageTwo // ignore: cast_nullable_to_non_nullable
-as DocFileEntity?,videoOne: freezed == videoOne ? _self.videoOne : videoOne // ignore: cast_nullable_to_non_nullable
-as DocFileEntity?,videoTwo: freezed == videoTwo ? _self.videoTwo : videoTwo // ignore: cast_nullable_to_non_nullable
-as DocFileEntity?,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<int>?,files: null == files ? _self.files : files // ignore: cast_nullable_to_non_nullable
+as List<DocFileEntity>,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as LocationEntity?,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
 as StatEntity?,
   ));
 }
 /// Create a copy of CreateCachedDocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocFileEntityCopyWith<$Res>? get imageOne {
-    if (_self.imageOne == null) {
-    return null;
-  }
-
-  return $DocFileEntityCopyWith<$Res>(_self.imageOne!, (value) {
-    return _then(_self.copyWith(imageOne: value));
-  });
-}/// Create a copy of CreateCachedDocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocFileEntityCopyWith<$Res>? get imageTwo {
-    if (_self.imageTwo == null) {
-    return null;
-  }
-
-  return $DocFileEntityCopyWith<$Res>(_self.imageTwo!, (value) {
-    return _then(_self.copyWith(imageTwo: value));
-  });
-}/// Create a copy of CreateCachedDocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocFileEntityCopyWith<$Res>? get videoOne {
-    if (_self.videoOne == null) {
-    return null;
-  }
-
-  return $DocFileEntityCopyWith<$Res>(_self.videoOne!, (value) {
-    return _then(_self.copyWith(videoOne: value));
-  });
-}/// Create a copy of CreateCachedDocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocFileEntityCopyWith<$Res>? get videoTwo {
-    if (_self.videoTwo == null) {
-    return null;
-  }
-
-  return $DocFileEntityCopyWith<$Res>(_self.videoTwo!, (value) {
-    return _then(_self.copyWith(videoTwo: value));
-  });
-}/// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -216,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormzInput<int>? docId,  DocFileEntity? imageOne,  DocFileEntity? imageTwo,  DocFileEntity? videoOne,  DocFileEntity? videoTwo,  LocationEntity? location,  StatEntity? subCategory)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormzInput<int>? docId,  List<DocFileEntity> files,  LocationEntity? location,  StatEntity? subCategory)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateCachedDocEntity() when $default != null:
-return $default(_that.docId,_that.imageOne,_that.imageTwo,_that.videoOne,_that.videoTwo,_that.location,_that.subCategory);case _:
+return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _:
   return orElse();
 
 }
@@ -237,10 +186,10 @@ return $default(_that.docId,_that.imageOne,_that.imageTwo,_that.videoOne,_that.v
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormzInput<int>? docId,  DocFileEntity? imageOne,  DocFileEntity? imageTwo,  DocFileEntity? videoOne,  DocFileEntity? videoTwo,  LocationEntity? location,  StatEntity? subCategory)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormzInput<int>? docId,  List<DocFileEntity> files,  LocationEntity? location,  StatEntity? subCategory)  $default,) {final _that = this;
 switch (_that) {
 case _CreateCachedDocEntity():
-return $default(_that.docId,_that.imageOne,_that.imageTwo,_that.videoOne,_that.videoTwo,_that.location,_that.subCategory);case _:
+return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -257,10 +206,10 @@ return $default(_that.docId,_that.imageOne,_that.imageTwo,_that.videoOne,_that.v
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormzInput<int>? docId,  DocFileEntity? imageOne,  DocFileEntity? imageTwo,  DocFileEntity? videoOne,  DocFileEntity? videoTwo,  LocationEntity? location,  StatEntity? subCategory)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormzInput<int>? docId,  List<DocFileEntity> files,  LocationEntity? location,  StatEntity? subCategory)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateCachedDocEntity() when $default != null:
-return $default(_that.docId,_that.imageOne,_that.imageTwo,_that.videoOne,_that.videoTwo,_that.location,_that.subCategory);case _:
+return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _:
   return null;
 
 }
@@ -272,14 +221,17 @@ return $default(_that.docId,_that.imageOne,_that.imageTwo,_that.videoOne,_that.v
 
 
 class _CreateCachedDocEntity extends CreateCachedDocEntity {
-  const _CreateCachedDocEntity({this.docId, this.imageOne, this.imageTwo, this.videoOne, this.videoTwo, this.location, this.subCategory}): super._();
+  const _CreateCachedDocEntity({this.docId, final  List<DocFileEntity> files = const [], this.location, this.subCategory}): _files = files,super._();
   
 
 @override final  GenericFormzInput<int>? docId;
-@override final  DocFileEntity? imageOne;
-@override final  DocFileEntity? imageTwo;
-@override final  DocFileEntity? videoOne;
-@override final  DocFileEntity? videoTwo;
+ final  List<DocFileEntity> _files;
+@override@JsonKey() List<DocFileEntity> get files {
+  if (_files is EqualUnmodifiableListView) return _files;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_files);
+}
+
 @override final  LocationEntity? location;
 @override final  StatEntity? subCategory;
 
@@ -293,16 +245,16 @@ _$CreateCachedDocEntityCopyWith<_CreateCachedDocEntity> get copyWith => __$Creat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateCachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.imageOne, imageOne) || other.imageOne == imageOne)&&(identical(other.imageTwo, imageTwo) || other.imageTwo == imageTwo)&&(identical(other.videoOne, videoOne) || other.videoOne == videoOne)&&(identical(other.videoTwo, videoTwo) || other.videoTwo == videoTwo)&&(identical(other.location, location) || other.location == location)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateCachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.location, location) || other.location == location)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,docId,imageOne,imageTwo,videoOne,videoTwo,location,subCategory);
+int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(_files),location,subCategory);
 
 @override
 String toString() {
-  return 'CreateCachedDocEntity(docId: $docId, imageOne: $imageOne, imageTwo: $imageTwo, videoOne: $videoOne, videoTwo: $videoTwo, location: $location, subCategory: $subCategory)';
+  return 'CreateCachedDocEntity(docId: $docId, files: $files, location: $location, subCategory: $subCategory)';
 }
 
 
@@ -313,11 +265,11 @@ abstract mixin class _$CreateCachedDocEntityCopyWith<$Res> implements $CreateCac
   factory _$CreateCachedDocEntityCopyWith(_CreateCachedDocEntity value, $Res Function(_CreateCachedDocEntity) _then) = __$CreateCachedDocEntityCopyWithImpl;
 @override @useResult
 $Res call({
- GenericFormzInput<int>? docId, DocFileEntity? imageOne, DocFileEntity? imageTwo, DocFileEntity? videoOne, DocFileEntity? videoTwo, LocationEntity? location, StatEntity? subCategory
+ GenericFormzInput<int>? docId, List<DocFileEntity> files, LocationEntity? location, StatEntity? subCategory
 });
 
 
-@override $DocFileEntityCopyWith<$Res>? get imageOne;@override $DocFileEntityCopyWith<$Res>? get imageTwo;@override $DocFileEntityCopyWith<$Res>? get videoOne;@override $DocFileEntityCopyWith<$Res>? get videoTwo;@override $LocationEntityCopyWith<$Res>? get location;
+@override $LocationEntityCopyWith<$Res>? get location;
 
 }
 /// @nodoc
@@ -330,68 +282,17 @@ class __$CreateCachedDocEntityCopyWithImpl<$Res>
 
 /// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? docId = freezed,Object? imageOne = freezed,Object? imageTwo = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? location = freezed,Object? subCategory = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? docId = freezed,Object? files = null,Object? location = freezed,Object? subCategory = freezed,}) {
   return _then(_CreateCachedDocEntity(
 docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput<int>?,imageOne: freezed == imageOne ? _self.imageOne : imageOne // ignore: cast_nullable_to_non_nullable
-as DocFileEntity?,imageTwo: freezed == imageTwo ? _self.imageTwo : imageTwo // ignore: cast_nullable_to_non_nullable
-as DocFileEntity?,videoOne: freezed == videoOne ? _self.videoOne : videoOne // ignore: cast_nullable_to_non_nullable
-as DocFileEntity?,videoTwo: freezed == videoTwo ? _self.videoTwo : videoTwo // ignore: cast_nullable_to_non_nullable
-as DocFileEntity?,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as GenericFormzInput<int>?,files: null == files ? _self._files : files // ignore: cast_nullable_to_non_nullable
+as List<DocFileEntity>,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as LocationEntity?,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
 as StatEntity?,
   ));
 }
 
 /// Create a copy of CreateCachedDocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocFileEntityCopyWith<$Res>? get imageOne {
-    if (_self.imageOne == null) {
-    return null;
-  }
-
-  return $DocFileEntityCopyWith<$Res>(_self.imageOne!, (value) {
-    return _then(_self.copyWith(imageOne: value));
-  });
-}/// Create a copy of CreateCachedDocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocFileEntityCopyWith<$Res>? get imageTwo {
-    if (_self.imageTwo == null) {
-    return null;
-  }
-
-  return $DocFileEntityCopyWith<$Res>(_self.imageTwo!, (value) {
-    return _then(_self.copyWith(imageTwo: value));
-  });
-}/// Create a copy of CreateCachedDocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocFileEntityCopyWith<$Res>? get videoOne {
-    if (_self.videoOne == null) {
-    return null;
-  }
-
-  return $DocFileEntityCopyWith<$Res>(_self.videoOne!, (value) {
-    return _then(_self.copyWith(videoOne: value));
-  });
-}/// Create a copy of CreateCachedDocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DocFileEntityCopyWith<$Res>? get videoTwo {
-    if (_self.videoTwo == null) {
-    return null;
-  }
-
-  return $DocFileEntityCopyWith<$Res>(_self.videoTwo!, (value) {
-    return _then(_self.copyWith(videoTwo: value));
-  });
-}/// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

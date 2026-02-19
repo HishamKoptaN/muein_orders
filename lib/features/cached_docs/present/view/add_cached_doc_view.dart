@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../core/di/dependency_injection.dart';
@@ -13,7 +16,7 @@ import '../../domain/entities/cached_doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
 import '../bloc/cached_doc_bloc.dart';
 import 'debug/debug_auto_fill_tools.dart';
-import 'widgets/add_doc_fields.dart';
+import 'widgets/add_cached_doc_fields.dart';
 
 class AddCachedDocView extends StatefulWidget {
   const AddCachedDocView({
@@ -23,7 +26,7 @@ class AddCachedDocView extends StatefulWidget {
     required this.subCategory,
   });
   static const String routeName = 'add-cached-doc';
-  final int? docId;
+  final int docId;
   final CachedDocEntity? cachedDoc;
   final SubCategoryEntity subCategory;
   @override
@@ -34,13 +37,42 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
   @override
   void initState() {
     super.initState();
-    getIt<CachedDocBloc>().add(
-      CachedDocEvent.updateData(
-        createCachedDoc:
-            widget.cachedDoc?.toCreateCachedDocEntity() ??
-            const CreateCachedDocEntity(),
-      ),
-    );
+
+    debugPrint('=== DEBUG: AddCachedDocView initState ===');
+    debugPrint('widget.docId: ${widget.docId}');
+    debugPrint('widget.cachedDoc: ${widget.cachedDoc}');
+
+    if (widget.cachedDoc != null) {
+      // إذا كان هناك توثيق محفوظ مسبقاً، استخدمه مباشرة
+      debugPrint('Using existing cached doc data');
+      getIt<CachedDocBloc>().add(
+        CachedDocEvent.updateData(
+          createCachedDoc: widget.cachedDoc!.toCreateCachedDocEntity().copyWith(
+            docId: GenericFormzInput.dirty(widget.docId),
+            // احتفظ بالملفات الأصلية كما هي، لا تقم بتحديثها
+            files:
+                widget.cachedDoc!.files
+                    ?.map(
+                      (file) => DocFileEntity(
+                        file: file.path != null
+                            ? FileFormzInput.dirty(File(file.path!))
+                            : null,
+                        docFile: file,
+                        docFileStatus: file.status,
+                      ),
+                    )
+                    .toList() ??
+                [],
+          ),
+        ),
+      );
+    } else {
+      // إذا لم يكن هناك توثيق محفوظ، حاول جلبه من قاعدة البيانات
+      debugPrint('Fetching cached doc from database');
+      getIt<CachedDocBloc>().add(
+        CachedDocEvent.initialize(docId: widget.docId),
+      );
+    }
   }
 
   @override
@@ -72,7 +104,7 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        AddDocFieldWidget(state: state),
+                        AddDocFieldsWidget(state: state),
                         const SizedBox(height: 15),
                         CustomBtnWidget(
                           key: const Key('button'),
@@ -84,10 +116,40 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                               ? Colors.green
                               : Colors.grey,
                           onPressed: () {
+                            debugPrint('=== DEBUG: Save Button Pressed ===');
+                            debugPrint(
+                              'FormzSubmissionStatus: ${state.formzSubmissionStatus}',
+                            );
+                            debugPrint(
+                              'IsSuccess: ${state.formzSubmissionStatus.isSuccess}',
+                            );
+
+                            // طباعة تفاصيل الملفات الحالية
+                            for (
+                              int i = 0;
+                              i < state.createCachedDoc.files.length;
+                              i++
+                            ) {
+                              final file = state.createCachedDoc.files[i];
+                              debugPrint(
+                                'File $i: path=${file.docFile?.path}, status=${file.docFileStatus}, isValid=${file.file?.isValid}',
+                              );
+                              if (file.file?.isNotValid == true) {
+                                debugPrint(
+                                  'File $i error: ${file.file?.errorMessage}',
+                                );
+                              }
+                            }
+
                             if (state.formzSubmissionStatus.isSuccess) {
+                              debugPrint(
+                                'Form is valid, proceeding with save...',
+                              );
                               getIt<CachedDocBloc>().add(
                                 CachedDocEvent.cachedDoc(loaded: state),
                               );
+                            } else {
+                              debugPrint('Form validation failed!');
                             }
                           },
                           formzSubmissionStatus: state.formzSubmissionStatus,

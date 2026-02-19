@@ -6,6 +6,7 @@ import '../../../cached_docs/domain/repo/cached_docs_repo.dart';
 import '../../../docs/domain/repo/docs_repo.dart';
 import '../../data/datasources/local/drift/cached_docs_table.dart';
 import '../entities/cached_doc_entity.dart';
+import '../entities/create_cached_doc_entity.dart';
 
 @singleton
 class CachedDocsUseCases {
@@ -19,7 +20,9 @@ class CachedDocsUseCases {
     required this.fileManager,
   });
 
-  Future<ApiResult<void>> cachedDoc({required CachedDocEntity doc}) async {
+  Future<ApiResult<void>> cachedDoc({
+    required CreateCachedDocEntity doc,
+  }) async {
     return await cachedDocsRepo.cachedDoc(doc: doc);
   }
 
@@ -63,6 +66,4 @@ class CachedDocsUseCases {
 
     return result;
   }
-
-  
 }
