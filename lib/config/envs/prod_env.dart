@@ -12,5 +12,3 @@ class ProdEnv implements Env {
   @override
   String get authBaseUrl => 'https://auth.example.com';
 }
-
-final Env env = ProdEnv();

@@ -21,7 +21,12 @@ import 'core/di/dependency_injection.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
+  try {
+    await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
+  } catch (e, st) {
+    debugPrint('🔥 Firebase init error: $e');
+    debugPrint('$st');
+  }
   await AppInitializer.initialize();
   await configureDependencies();
   final workManager = getIt<WorkManagerInitializer>();
