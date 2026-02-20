@@ -38,6 +38,8 @@ Future<void> main() async {
     intl.Intl.defaultLocale = 'en';
     FlutterNativeSplash.remove();
     if (kDebugMode) {
+      const String? flavor = String.fromEnvironment('FLUTTER_APP_FLAVOR');
+      print('Current Flavor: $flavor');
       Bloc.observer = AppBlocObserver();
       await SharedPrefHelper.setSecuredString(
         key: SharedPrefKeys.jwtToken,

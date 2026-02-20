@@ -1,5 +1,3 @@
-
-
 plugins {
     id("com.android.application")
     // START: FlutterFire Configuration
@@ -9,30 +7,25 @@ plugins {
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
-
 android {
-    namespace = "com.example.mueinorders"
+    namespace = "com.muein.orders"
     compileSdk = 36
     ndkVersion = flutter.ndkVersion
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
         isCoreLibraryDesugaringEnabled = true
     }
-
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-
     defaultConfig {
-        applicationId = "com.example.mueinorders"
+        applicationId = "com.muein.orders"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }
-
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("debug")
@@ -44,6 +37,20 @@ android {
             )
         }
     }
+    flavorDimensions += "default"
+    productFlavors {
+      productFlavors {
+              create("dev") {
+                  dimension = "default"
+                  applicationIdSuffix = ".dev"
+                  resValue("string", "app_name", "Muein Orders Dev")
+              }
+              create("prod") {
+                  dimension = "default"
+                  resValue("string", "app_name", "Muein Orders")
+              }
+          }
+      }
 }
 
 dependencies {

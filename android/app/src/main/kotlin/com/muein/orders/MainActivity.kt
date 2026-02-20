@@ -1,4 +1,4 @@
-package com.example.mueinorders
+package com.muein.orders
 
 import io.flutter.embedding.android.FlutterActivity
 

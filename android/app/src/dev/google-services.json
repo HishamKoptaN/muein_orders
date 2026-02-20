@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "448994699498",
+    "project_id": "muein-f36d0",
+    "storage_bucket": "muein-f36d0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448994699498:android:c5cc61ad71aec472c00f93",
+        "android_client_info": {
+          "package_name": "com.muein.orders.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448994699498-kttgga93k2fhsvj3os49r2k19jp5ls90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeTLNT48KM6kwGJSWnU4BSqwM4cMGsv-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448994699498-kttgga93k2fhsvj3os49r2k19jp5ls90.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "448994699498-l36od2grm7dk41p5f0a4ddhoituv26e3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mueinorders"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

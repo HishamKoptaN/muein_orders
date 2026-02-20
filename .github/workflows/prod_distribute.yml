@@ -6,6 +6,7 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment: prod
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -25,13 +26,18 @@ jobs:
         run: flutter upgrade
       - name: Install Dependencies
         run: flutter pub get
-      - name: Build v7a APK
-        run: flutter build apk --release --target-platform android-arm --no-tree-shake-icons
+      - name: Build Dev v7a APK
+        run: |
+          flutter build apk --release \
+          --flavor dev \
+          --target-platform android-arm \
+          --no-tree-shake-icons \
+          -t lib/main.dart  # أو مسار ملف الـ main الخاص ببيئة التطوير إذا وجد
       - name: Upload to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: ${{ secrets.PROD_FIREBASE_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.PROD_CREDENTIAL_FILE_CONTENT }}
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: "armeabi-v7a"
           file: build/app/outputs/flutter-apk/app-release.apk
           releaseNotes: |

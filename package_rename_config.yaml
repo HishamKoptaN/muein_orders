@@ -2,18 +2,18 @@
 package_rename_config:
   android:
     app_name: "muein orders" # اسم التطبيق
-    package_name: "com.example.mueinorders" # اسم الحزمة  
+    package_name: "com.muein.orders" # اسم الحزمة  
     override_old_package: true # لتجاهل الحزمة القديمة
-    lang: "en" # لغة التطبيق (اختياري)
+    lang: "ar" # لغة التطبيق (اختياري)
 
   ios:
     app_name: "muein orders" # اسم التطبيق
-    bundle_name: "com.example.mueinorders" # اسم الحزمة  
-    package_name: "com.example.mueinorders" # اسم الحزمة
+    bundle_name: "com.muein.orders" # اسم الحزمة  
+    package_name: "com.muein.orders" # اسم الحزمة
 
   linux:
     app_name: "muein orders" # اسم التطبيق
-    package_name: "com.example.mueinorders" # اسم الحزمة
+    package_name: "com.muein.orders" # اسم الحزمة
     exe_name: "muein_orders" # اسم ملف التنفيذ
 
   macos:
@@ -24,7 +24,7 @@ package_rename_config:
   web:
     app_name: "muein orders" # اسم التطبيق
     short_app_name: "muein_orders" # اسم التطبيق المختصر (اختياري)
-    description: "aquan App dev" # وصف التطبيق (اختياري)
+    description: "muein orders App" # وصف التطبيق (اختياري)
 
   windows:
     app_name: "muein orders" # اسم التطبيق
