@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:drift/drift.dart';
@@ -48,25 +47,22 @@ class DocsRepoImpl implements DocsRepo {
   Future<ApiResult<DocEntity?>> createDoc({
     required CreateDocEntity doc,
   }) async {
-    log(doc.docId.toString());
-    // await db.cachedDoc(
-    //   cachedDocsTableCompanion:doc. ,
-    // );
+    await (db.update(
+      db.cachedDocsTable,
+    )..where((t) => t.docId.equals(doc.docId))).write(
+      CachedDocsTableCompanion(
+        uploadStatus: Value(FileUploadStatus.uploading.name),
+      ),
+    );
     for (int index = 0; index < doc.files.length; index++) {
       final file = doc.files[index];
-      if (file.status == FileUploadStatus.uploaded ||
-          file.status == FileUploadStatus.init) {
+      if (file.status == FileUploadStatus.uploaded) {
         continue;
       }
-      // await db.updateDocFileStatus(
-      //   docId: doc.docId,
-      //   path: file.path,
-      //   fileType: file.type,
-      //   status: FileUploadStatus.uploading,
-      // );
       final finalUrl = await _uploadSingleFile(
         docId: doc.docId,
         filePath: file.path,
+        fileType: file.type,
       );
       try {
         await docsApi.createDoc(
@@ -76,29 +72,25 @@ class DocsRepoImpl implements DocsRepo {
             imageTwo: file.type == DocFileType.imageTwo ? finalUrl : null,
             videoOne: file.type == DocFileType.videoOne ? finalUrl : null,
             videoTwo: file.type == DocFileType.videoTwo ? finalUrl : null,
-            latitude: doc.location?.latitude.toString(),
-            longitude: doc.location?.longitude.toString(),
+            latitude: doc.location?.latitude?.toString(),
+            longitude: doc.location?.longitude?.toString(),
           ),
         );
-        // await db.updateDocFileStatus(
-        //   docId: doc.docId,
-        //   path: file.path,
-        //   fileType: file.type,
-        //   status: FileUploadStatus.uploaded,
-        // );
+        await (db.update(
+          db.cachedDocsTable,
+        )..where((t) => t.docId.equals(doc.docId))).write(
+          CachedDocsTableCompanion(
+            uploadStatus: Value(FileUploadStatus.uploaded.name),
+          ),
+        );
       } catch (error) {
-        // await db.updateDocFileStatus(
-        //   docId: doc.docId,
-        //   path: file.path,
-        //   fileType: file.type,
-        //   status: FileUploadStatus.failed,
-        // );
         return ApiResult.failure(
           apiErrorModel: ApiErrorHandler.handle(error: error),
         );
       }
     }
     await _uploadLocationIfNeeded(doc);
+    await _updateDocStatusBasedOnUpload(doc: doc);
     return const ApiResult.success(data: null);
   }
 
@@ -108,35 +100,61 @@ class DocsRepoImpl implements DocsRepo {
       db.cachedDocsTable,
     )..where((t) => t.docId.equals(doc.docId))).getSingleOrNull();
     if (cachedDoc?.location != null &&
-        cachedDoc!.location!.status != FileUploadStatus.uploaded) {
+        cachedDoc!.location!.status != FileUploadStatus.uploaded &&
+        (cachedDoc.location!.latitude != 0.0 ||
+            cachedDoc.location!.longitude != 0.0)) {
       try {
-        // await db.updateDocLocationStatus(
-        //   docId: doc.docId,
-        //   status: FileUploadStatus.uploading,
-        // );
         await docsApi.createDoc(
           createDocReq: CreateDocReqModel(
             docId: doc.docId,
-            latitude: doc.location!.latitude.toString(),
-            longitude: doc.location!.longitude.toString(),
+            latitude: doc.location!.latitude?.toString(),
+            longitude: doc.location!.longitude?.toString(),
           ),
         );
-        // await db.updateDocLocationStatus(
-        //   docId: doc.docId,
-        //   status: FileUploadStatus.uploaded,
-        // );
+        await db.updateDocLocationStatus(
+          docId: doc.docId,
+          status: FileUploadStatus.uploaded,
+        );
       } catch (error) {
-        // await db.updateDocLocationStatus(
-        //   docId: doc.docId,
-        //   status: FileUploadStatus.failed,
-        // );
+        await db.updateDocLocationStatus(
+          docId: doc.docId,
+          status: FileUploadStatus.failed,
+        );
       }
     }
+  }
+
+  Future<void> _updateDocStatusBasedOnUpload({
+    required CreateDocEntity doc,
+  }) async {
+    final isAllUploaded = await _isAllContentUploaded(doc: doc);
+    final newStatus = isAllUploaded
+        ? FileUploadStatus.uploaded
+        : FileUploadStatus.pending;
+    await (db.update(db.cachedDocsTable)
+          ..where((t) => t.docId.equals(doc.docId)))
+        .write(CachedDocsTableCompanion(uploadStatus: Value(newStatus.name)));
+    print('📊 تحديث حالة التوثيق ${doc.docId} إلى: ${newStatus.name}');
+  }
+
+  Future<bool> _isAllContentUploaded({required CreateDocEntity doc}) async {
+    for (final file in doc.files) {
+      if (file.status != FileUploadStatus.uploaded) {
+        return false;
+      }
+    }
+    if (doc.location != null &&
+        doc.location!.status != FileUploadStatus.uploaded) {
+      return false;
+    }
+
+    return true;
   }
 
   Future<String?> _uploadSingleFile({
     required int docId,
     required String? filePath,
+    required DocFileType fileType,
   }) async {
     if (filePath == null || filePath.isEmpty) return null;
     final file = File(filePath);
@@ -145,7 +163,7 @@ class DocsRepoImpl implements DocsRepo {
       presignedDocUrlReqModel: PresignedDocUrlReqModel(
         docId: docId,
         extension: filePath.split('.').last,
-        fileType: '',
+        fileType: fileType.name,
       ),
     );
     await s3Repo.uploadFile(
@@ -155,7 +173,6 @@ class DocsRepoImpl implements DocsRepo {
     );
     return presignedInfo.filePath;
   }
-
   Future<void> uploadLocation({required CreateDocEntity doc}) async {
     await docsApi.createDoc(
       createDocReq: CreateDocReqModel(
@@ -164,10 +181,6 @@ class DocsRepoImpl implements DocsRepo {
         longitude: doc.location?.longitude.toString(),
       ),
     );
-    // await db.updateDocLocationStatus(
-    //   docId: doc.docId,
-    //   status: FileUploadStatus.uploaded,
-    // );
   }
 
   // await _initializeNotifications();

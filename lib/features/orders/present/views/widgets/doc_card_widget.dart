@@ -23,28 +23,3 @@ class DocCardWidget extends StatelessWidget {
     );
   }
 }
-
-Widget buildStatusMessage({
-  required String text,
-  required DocStatusEntity? docStatus,
-}) {
-  return Container(
-    height: 70.h,
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          width: 13,
-          height: 13,
-          decoration: BoxDecoration(
-            color: docStatus?.textColor,
-            shape: BoxShape.circle,
-          ),
-        ),
-        SizedBox(width: 5.w),
-        Text(text, style: TextStyle(color: docStatus?.textColor)),
-      ],
-    ),
-  );
-}

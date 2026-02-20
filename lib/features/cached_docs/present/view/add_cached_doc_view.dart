@@ -49,7 +49,6 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
         CachedDocEvent.updateData(
           createCachedDoc: widget.cachedDoc!.toCreateCachedDocEntity().copyWith(
             docId: GenericFormzInput.dirty(widget.docId),
-            // احتفظ بالملفات الأصلية كما هي، لا تقم بتحديثها
             files:
                 widget.cachedDoc!.files
                     ?.map(
@@ -63,6 +62,13 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                     )
                     .toList() ??
                 [],
+            location: widget.cachedDoc?.location != null
+                ? LocationEntity(
+                    latitude: widget.cachedDoc!.location!.latitude,
+                    longitude: widget.cachedDoc!.location!.longitude,
+                    status: widget.cachedDoc!.location!.status,
+                  )
+                : null,
           ),
         ),
       );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart' show SizeExtension;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../../../core/build_context_extension.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/routing/navigation_service.dart';
@@ -10,6 +11,7 @@ import '../../../../cached_docs/data/datasources/local/drift/cached_docs_table.d
 import '../../../../cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../../cached_docs/present/view/add_cached_doc_view.dart';
 import '../../../../home/domain/entities/order_type_res_entity.dart';
+
 Widget docWidget({
   required BuildContext context,
   required int docId,
@@ -26,85 +28,17 @@ Widget docWidget({
       }
       final cachedDoc = snapshot.data;
       return GestureDetector(
-        onTap: () {
-     
-        },
+        onTap: () {},
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
-                  child: Builder(
-                    builder: (context) {
-                      switch (cachedDoc?.uploadStatus) {
-                        case FileUploadStatus.init:
-                          return _cachedDocStatusMessage(
-                            key: const ValueKey('init'),
-                            text: context.t.pending,
-                            uploadStatus: FileUploadStatus.init,
-                          );
-                        case FileUploadStatus.pending:
-                          return _cachedDocStatusMessage(
-                            key: const ValueKey('pending'),
-                            text: context.t.pending,
-                            uploadStatus: FileUploadStatus.pending,
-                          );
-                        case FileUploadStatus.uploading:
-                          return Column(
-                            key: const ValueKey('uploading'),
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              _cachedDocStatusMessage(
-                                key: const ValueKey('uploading'),
-                                text: context.t.uploading,
-                                uploadStatus: FileUploadStatus.uploading,
-                              ),
-                              // Text(
-                              //   '${cachedDoc?.uploadProgress.toStringAsFixed(1)}%',
-                              //   style: const TextStyle(color: Color(0xFF4CAF50)),
-                              // ),
-                            ],
-                          );
-                        case FileUploadStatus.uploaded:
-                          return _cachedDocStatusMessage(
-                            key: const ValueKey('success'),
-                            text: context.t.success,
-                            uploadStatus: FileUploadStatus.uploaded,
-                          );
-                        case FileUploadStatus.failed:
-                          return Row(
-                            key: const ValueKey('failure'),
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              _cachedDocStatusMessage(
-                                key: const ValueKey('failure'),
-                                text: context.t.failure,
-                                uploadStatus: FileUploadStatus.failed,
-                              ),
-                              const SizedBox(width: 8),
-                              IconButton(
-                                key: const ValueKey('retry'),
-                                onPressed: onRetry ?? () {},
-                                icon: const Icon(
-                                  Icons.refresh,
-                                  color: Color(0xFFD8091E),
-                                  size: 20,
-                                ),
-                                tooltip: 'إعادة المحاولة',
-                              ),
-                            ],
-                          );
-                        default:
-                          return _cachedDocStatusMessage(
-                            key: const ValueKey('initial'),
-                            text: context.t.pending,
-                            uploadStatus: FileUploadStatus.pending,
-                          );
-                      }
-                    },
+                  child: getStatus(
+                    context: context,
+                    uploadStatus:
+                        cachedDoc?.uploadStatus ?? FileUploadStatus.init,
                   ),
                 ),
                 Flexible(
@@ -163,6 +97,19 @@ Widget docWidget({
                 ),
               ],
             ),
+            Text(
+              '${cachedDoc?.uploadStatus.name ?? ''}\n'
+              '${cachedDoc?.files?[0].status.name ?? ''}\n'
+              '${cachedDoc?.files?[1].status.name ?? ''}\n'
+              '${cachedDoc?.files?[2].status.name ?? ''}\n'
+              '${cachedDoc?.files?[3].status.name ?? ''}\n'
+              '${cachedDoc?.location?.status.name ?? ''}\n',
+              style: TextStyle(
+                color: const Color(0xFF00B769),
+                fontWeight: FontWeight.w700,
+                fontSize: 12.sp,
+              ),
+            ),
           ],
         ),
       );
@@ -170,100 +117,94 @@ Widget docWidget({
   );
 }
 
-Widget _cachedDocStatusMessage({
-  required Key key,
-  required String text,
-  FileUploadStatus? uploadStatus,
+Widget getStatus({
+  required FileUploadStatus uploadStatus,
+  required BuildContext context,
 }) {
-  Color getStatusColor() {
-    switch (uploadStatus) {
-      case FileUploadStatus.failed:
-        return const Color(0xFFD8091E);
-      case FileUploadStatus.pending:
-        return const Color(0xFFFF6B35);
-      case FileUploadStatus.uploading:
-        return const Color(0xFF4CAF50);
-      case FileUploadStatus.uploaded:
-        return const Color(0xFF0062B7);
-      default:
-        return const Color(0xFFBDBDBD);
-    }
+  switch (uploadStatus) {
+    case FileUploadStatus.pending:
+      return StatusWidget(
+        icon: FontAwesomeIcons.hourglassHalf,
+        text: context.t.pending,
+        color: Colors.orange,
+      );
+    case FileUploadStatus.uploading:
+      return StatusWidget(
+        text: context.t.uploading,
+        icon: FontAwesomeIcons.upload,
+        color: Colors.green,
+      );
+    case FileUploadStatus.uploaded:
+      return StatusWidget(
+        text: context.t.uploading,
+        icon: FontAwesomeIcons.cloud,
+        color: Colors.blue,
+      );
+    case FileUploadStatus.failed:
+      return StatusWidget(
+        text: context.t.failed,
+        icon: FontAwesomeIcons.cloudscale,
+        color: Colors.red,
+      );
+    default:
+      return StatusWidget(
+        text: context.t.unknown,
+        icon: FontAwesomeIcons.cloudArrowUp,
+        color: Colors.grey,
+      );
   }
-
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      if (uploadStatus == FileUploadStatus.uploading)
-        const ContinuousFillIcon(
-          icon: FontAwesomeIcons.upload,
-          color: Colors.green,
-        )
-      else
-        Container(
-          width: 13.w,
-          height: 13.w,
-          decoration: BoxDecoration(
-            color: getStatusColor(),
-            shape: BoxShape.circle,
-          ),
-        ),
-      SizedBox(width: 5.w),
-      Text(text, softWrap: true, style: TextStyle(color: getStatusColor())),
-    ],
-  );
 }
 
-class ContinuousFillIcon extends StatefulWidget {
-  final IconData icon;
-  final Color color;
-
-  const ContinuousFillIcon({
+class StatusWidget extends StatelessWidget {
+  const StatusWidget({
     super.key,
     required this.icon,
+    required this.text,
     required this.color,
   });
-
-  @override
-  State<ContinuousFillIcon> createState() => _ContinuousFillIconState();
-}
-
-class _ContinuousFillIconState extends State<ContinuousFillIcon>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    )..repeat();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+  final IconData? icon;
+  final String text;
+  final Color color;
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return ShaderMask(
-          shaderCallback: (rect) {
-            return LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [widget.color, widget.color.withOpacity(0.1)],
-              stops: [_controller.value, _controller.value],
-            ).createShader(rect);
-          },
-          child: Icon(widget.icon, size: 20, color: Colors.white),
-        );
-      },
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        FaIcon(icon, color: color, size: 22.w),
+        SizedBox(width: 5.w),
+        Text(text, softWrap: true, style: TextStyle(color: color)),
+      ],
     );
   }
 }
+                  // Text(
+                  //   '${cachedDoc?.uploadProgress.toStringAsFixed(1)}%',
+                  //   style: const TextStyle(color: Color(0xFF4CAF50)),
+                  // ),
+                  //           ],
+                  //         );
+                  //       case FileUploadStatus.failed:
+                  //         return Row(
+                  //           key: const ValueKey('failure'),
+                  //           mainAxisSize: MainAxisSize.min,
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           children: [
+                  //             _cachedDocStatusMessage(
+                  //               key: const ValueKey('failure'),
+                  //               text: context.t.failure,
+                  //               uploadStatus: FileUploadStatus.failed,
+                  //             ),
+                  //             const SizedBox(width: 8),
+                  //             IconButton(
+                  //               key: const ValueKey('retry'),
+                  //               onPressed: onRetry ?? () {},
+                  //               icon: const Icon(
+                  //                 Icons.refresh,
+                  //                 color: Color(0xFFD8091E),
+                  //                 size: 20,
+                  //               ),
+                  //               tooltip: 'إعادة المحاولة',
+                  //             ),
+                  //           ],
+                  //         );

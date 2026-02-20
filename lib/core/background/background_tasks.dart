@@ -1,14 +1,16 @@
 import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
+
 import '../../features/cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../features/docs/data/mapper/docs_mapper.dart';
 import '../../features/docs/domain/usecases/docs_use_cases.dart';
 import '../config/upload_settings.dart';
 import '../di/dependency_injection.dart';
+
 Future<void> startUploadDocs() async {
   final db = getIt<AppDatabase>();
   final docsUseCase = getIt<DocsUseCase>();
-  final statuses = ['pending', 'uploading'];
+  final statuses = ['pending', 'uploading', 'uploaded'];
   final query = db.select(db.cachedDocsTable)
     ..where((tbl) {
       Expression<bool>? condition;
@@ -31,12 +33,15 @@ Future<void> startUploadDocs() async {
     try {
       debugPrint('🚀 بدء رفع الطلب ${doc.docId}...');
       await docsUseCase.createDoc(doc: doc.toCreateEntity());
-      debugPrint('✅ تم رفع الطلب ${doc.docId} بنجاح');
       if (i < pendingDocs.length - 1) {
         await Future.delayed(
           const Duration(seconds: UploadSpeedSettings.successDelaySeconds),
         );
       }
-    } catch (e) {}
+    } on Exception {
+      await (db.update(db.cachedDocsTable)
+            ..where((t) => t.docId.equals(doc.docId)))
+          .write(const CachedDocsTableCompanion(uploadStatus: Value('failed')));
+    }
   }
 }

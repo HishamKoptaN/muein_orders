@@ -20,10 +20,6 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
 
   @override
   Stream<CachedDocEntity?> watchDoc(int docId) {
-    // return (_db.select(_db.cachedDocsTable)
-    //       ..where((t) => t.docId.equals(orderId)))
-    //     .watchSingleOrNull()
-    //     .map((doc) => doc?.toEntity());
     return const Stream<CachedDocEntity?>.empty();
   }
 

@@ -9,7 +9,6 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 import '../../../../domain/entities/cached_doc_entity.dart';
-import '../../../models/cached_doc_model.dart';
 import 'cached_docs_table.dart';
 
 part 'app_database.g.dart';
@@ -137,6 +136,31 @@ class AppDatabase extends _$AppDatabase {
 
   Future<int> deleteDoc({required int docId}) {
     return (delete(cachedDocsTable)..where((t) => t.docId.equals(docId))).go();
+  }
+
+  Future<void> updateDocLocationStatus({
+    required int docId,
+    required FileUploadStatus status,
+  }) async {
+    final cachedDoc = await (select(cachedDocsTable)
+      ..where((t) => t.docId.equals(docId)))
+        .getSingleOrNull();
+    
+    if (cachedDoc?.location != null) {
+      final updatedLocation = LocationDoc(
+        latitude: cachedDoc!.location!.latitude,
+        longitude: cachedDoc.location!.longitude,
+        status: status,
+      );
+      
+      await (update(cachedDocsTable)
+            ..where((t) => t.docId.equals(docId)))
+          .write(
+            CachedDocsTableCompanion(
+              location: Value(updatedLocation),
+            ),
+          );
+    }
   }
 
   static LazyDatabase _openConnection() {
