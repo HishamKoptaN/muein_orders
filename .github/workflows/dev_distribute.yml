@@ -1,4 +1,4 @@
-name: Build and Distribute (v7a Optimized)
+name: dev_distribute
 on:
   push:
     branches:

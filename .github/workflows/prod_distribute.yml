@@ -1,4 +1,4 @@
-name: Distribute (v7a Optimized)
+name: prod_distribute
 on:
   push:
     branches:
