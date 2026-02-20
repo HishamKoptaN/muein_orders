@@ -26,13 +26,13 @@ jobs:
         run: flutter upgrade
       - name: Install Dependencies
         run: flutter pub get
-      - name: Build Dev v7a APK
+      - name: Build Prod v7a APK
         run: |
           flutter build apk --release \
-          --flavor dev \
+          --flavor prod \
           --target-platform android-arm \
           --no-tree-shake-icons \
-          -t lib/main.dart  # أو مسار ملف الـ main الخاص ببيئة التطوير إذا وجد
+          -t lib/main.dart 
       - name: Upload to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
