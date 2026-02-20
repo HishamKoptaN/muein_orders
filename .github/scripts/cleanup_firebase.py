@@ -1,52 +1,51 @@
 import os
 import requests
+import json
 
 def delete_all_releases():
     project_number = os.getenv('FIREBASE_PROJECT_NUMBER')
     app_id = os.getenv('FIREBASE_APP_ID')
     token = os.getenv('GOOGLE_ACCESS_TOKEN')
 
-    # ملاحظة: استخدمنا v1 للبحث و v1 للـ Base
-    base_api = "https://firebaseappdistribution.googleapis.com/v1"
-    
+    base_url = "https://firebaseappdistribution.googleapis.com/v1"
     headers = {
         "Authorization": f"Bearer {token}",
-        "Accept": "application/json"
+        "Content-Type": "application/json"
     }
 
-    # 1. جلب النسخ (هذا يعمل بنجاح كما رأينا في الـ Logs)
-    fetch_url = f"{base_api}/projects/{project_number}/apps/{app_id}/releases"
-    response = requests.get(fetch_url, headers=headers)
+    # 1. جلب قائمة النسخ أولاً للحصول على أسمائها
+    list_url = f"{base_url}/projects/{project_number}/apps/{app_id}/releases"
+    response = requests.get(list_url, headers=headers)
     
     if response.status_code != 200:
-        print(f"❌ Failed to fetch: {response.text}")
+        print(f"❌ Failed to fetch releases: {response.text}")
         return
 
     releases = response.json().get('releases', [])
-    print(f"✅ Found {len(releases)} releases.")
+    if not releases:
+        print("✅ No releases found to delete.")
+        return
 
-    for release in releases:
-        release_path = release['name']
-        
-        # التغيير الجوهري: إضافة "?alt=json" أو التأكد من المسار
-        # الـ API الفعلي للحذف يتطلب أحياناً التوجيه المباشر للمورد
-        delete_url = f"https://firebaseappdistribution.googleapis.com/v1/{release_path}"
-        
-        print(f"--- Attempting to delete: {release_path} ---")
-        
-        # تنفيذ الحذف
-        del_res = requests.delete(delete_url, headers=headers)
-        
-        # إذا استمر الـ 404، سنحاول الرابط البديل (v1test) وهو السري الذي يعمل للحذف
-        if del_res.status_code == 404:
-            test_url = f"https://firebaseappdistribution.googleapis.com/v1test/{release_path}"
-            print(f"Got 404, trying tester API: {test_url}")
-            del_res = requests.delete(test_url, headers=headers)
+    # 2. تحضير قائمة الأسماء المطلوبة للحذف
+    # الاسم يكون بتنسيق: projects/{project_number}/apps/{app_id}/releases/{release_id}
+    release_names = [r['name'] for r in releases]
+    print(f"Found {len(release_names)} releases. Preparing batchDelete...")
 
-        if del_res.status_code in [200, 204]:
-            print(f"✅ Successfully deleted: {release_path}")
-        else:
-            print(f"❌ Failed. Status: {del_res.status_code}, Response: {del_res.text}")
+    # 3. تنفيذ عملية batchDelete (POST وليس DELETE)
+    batch_delete_url = f"{base_url}/projects/{project_number}/apps/{app_id}/releases:batchDelete"
+    
+    payload = {
+        "names": release_names
+    }
+
+    print(f"Sending batchDelete request to: {batch_delete_url}")
+    del_res = requests.post(batch_delete_url, headers=headers, data=json.dumps(payload))
+
+    if del_res.status_code == 200:
+        print("✅ Successfully deleted all releases via batchDelete!")
+    else:
+        print(f"❌ Batch delete failed. Status: {del_res.status_code}")
+        print(f"Response: {del_res.text}")
 
 if __name__ == "__main__":
     delete_all_releases()
