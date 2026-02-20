@@ -37,8 +37,8 @@ class AppRouter {
         return getIt<AuthBloc>().state.maybeWhen(
           authenticated: () {
             if (isGuestRoute || location == '/${AuthView.routeName}') {
-              return '/${OrderDocsView.routeName}';
-              // return '/${HomeView.routeName}';
+              return '/${HomeView.routeName}';
+              // return '/${OrderDocsView.routeName}';
             }
             return null;
           },
