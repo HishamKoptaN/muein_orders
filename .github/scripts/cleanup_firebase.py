@@ -19,21 +19,20 @@ def delete_all_releases():
     print(f"Found {len(releases)} releases to delete.")
 
     for release in releases:
-        # التعديل هنا: release['name'] يحتوي بالفعل على "projects/xxx/apps/xxx/releases/xxx"
-        # لذا نضيف فقط الدومين الرئيسي في البداية
+        # استخراج الـ release ID من الـ name
+        # release['name'] يكون بالشكل: "projects/xxx/apps/xxx/releases/xxx"
         release_name = release['name']
-        del_url = f"https://firebaseappdistribution.googleapis.com/v1/{release_name}"
+        release_id = release_name.split('/')[-1]  # استخراج الـ ID الأخير
         
-        # ملاحظة: إذا كان الـ release_name يبدأ بكلمة projects، الرابط الصحيح هو:
-        full_del_url = f"https://firebaseappdistribution.googleapis.com/v1/{release_name}"
+        # بناء الرابط الصحيح للحذف
+        del_url = f"https://firebaseappdistribution.googleapis.com/v1/projects/{project_number}/apps/{app_id}/releases/{release_id}"
         
-        del_res = requests.delete(full_del_url, headers=headers)
+        del_res = requests.delete(del_url, headers=headers)
         
         if del_res.status_code == 200:
-            print(f"Successfully deleted: {release_name}")
+            print(f"Successfully deleted: {release_id}")
         else:
-            # مطبوعة للتأكد من الرابط في حال الفشل
-            print(f"Failed to delete. URL: {full_del_url}")
+            print(f"Failed to delete. URL: {del_url}")
             print(f"Status: {del_res.status_code}, Response: {del_res.text}")
 
 if __name__ == "__main__":
