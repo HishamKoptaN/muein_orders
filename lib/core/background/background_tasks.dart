@@ -1,7 +1,8 @@
 import 'package:drift/drift.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../features/cached_docs/data/datasources/local/drift/app_database.dart';
+import '../../features/cached_docs/data/datasources/local/drift/cached_docs_table.dart';
 import '../../features/docs/data/mapper/docs_mapper.dart';
 import '../../features/docs/domain/usecases/docs_use_cases.dart';
 import '../config/upload_settings.dart';
@@ -10,12 +11,17 @@ import '../di/dependency_injection.dart';
 Future<void> startUploadDocs() async {
   final db = getIt<AppDatabase>();
   final docsUseCase = getIt<DocsUseCase>();
-  final statuses = ['pending', 'uploading', 'failed', 'uploaded'];
+  final statuses = [
+    FileUploadStatus.pending,
+    FileUploadStatus.uploading,
+    FileUploadStatus.failed,
+   if (!kReleaseMode) FileUploadStatus.uploaded,
+  ];
   final query = db.select(db.cachedDocsTable)
     ..where((tbl) {
       Expression<bool>? condition;
       for (final status in statuses) {
-        final expr = tbl.uploadStatus.equals(status);
+        final expr = tbl.uploadStatus.equals(status.name);
         condition = condition == null ? expr : condition | expr;
       }
       return condition!;
