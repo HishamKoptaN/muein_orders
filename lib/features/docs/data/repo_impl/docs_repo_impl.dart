@@ -54,44 +54,85 @@ class DocsRepoImpl implements DocsRepo {
         uploadStatus: Value(FileUploadStatus.uploading.name),
       ),
     );
-    for (int index = 0; index < doc.files.length; index++) {
-      final file = doc.files[index];
-      if (file.status == FileUploadStatus.uploaded) {
-        continue;
-      }
-      final finalUrl = await _uploadSingleFile(
-        docId: doc.docId,
-        filePath: file.path,
-        fileType: file.type,
-      );
-      try {
-        await docsApi.createDoc(
-          createDocReq: CreateDocReqModel(
+    final cachedDocs = await (db.select(
+      db.cachedDocsTable,
+    )..where((t) => t.docId.equals(doc.docId))).get();
+    if (cachedDocs.isNotEmpty) {
+      final cachedDoc = cachedDocs.first;
+      final files = cachedDoc.files ?? [];
+      for (int index = 0; index < doc.files.length; index++) {
+        final file = doc.files[index];
+        if (file.status == FileUploadStatus.uploaded) {
+          continue;
+        }
+        await updateFileStatus(
+          files: files,
+          file: file,
+          docId: doc.docId,
+          status: FileUploadStatus.uploading,
+        );
+        final finalUrl = await _uploadSingleFile(
+          docId: doc.docId,
+          filePath: file.path,
+          fileType: file.type,
+        );
+        try {
+          await docsApi.createDoc(
+            createDocReq: CreateDocReqModel(
+              docId: doc.docId,
+              imageOne: file.type == DocFileType.image_one ? finalUrl : null,
+              imageTwo: file.type == DocFileType.image_two ? finalUrl : null,
+              videoOne: file.type == DocFileType.video_one ? finalUrl : null,
+              videoTwo: file.type == DocFileType.video_two ? finalUrl : null,
+              latitude: doc.location?.latitude?.toString(),
+              longitude: doc.location?.longitude?.toString(),
+            ),
+          );
+          await updateFileStatus(
+            files: files,
+            file: file,
             docId: doc.docId,
-            imageOne: file.type == DocFileType.imageOne ? finalUrl : null,
-            imageTwo: file.type == DocFileType.imageTwo ? finalUrl : null,
-            videoOne: file.type == DocFileType.videoOne ? finalUrl : null,
-            videoTwo: file.type == DocFileType.videoTwo ? finalUrl : null,
-            latitude: doc.location?.latitude?.toString(),
-            longitude: doc.location?.longitude?.toString(),
-          ),
-        );
-        await (db.update(
-          db.cachedDocsTable,
-        )..where((t) => t.docId.equals(doc.docId))).write(
-          CachedDocsTableCompanion(
-            uploadStatus: Value(FileUploadStatus.uploaded.name),
-          ),
-        );
-      } catch (error) {
-        return ApiResult.failure(
-          apiErrorModel: ApiErrorHandler.handle(error: error),
-        );
+            status: FileUploadStatus.uploaded,
+          );
+        } catch (error) {
+          await updateFileStatus(
+            files: files,
+            file: file,
+            docId: doc.docId,
+            status: FileUploadStatus.failed,
+          );
+          return ApiResult.failure(
+            apiErrorModel: ApiErrorHandler.handle(error: error),
+          );
+        }
       }
     }
     await _uploadLocationIfNeeded(doc);
     await _updateDocStatusBasedOnUpload(doc: doc);
+    await (db.update(
+      db.cachedDocsTable,
+    )..where((t) => t.docId.equals(doc.docId))).write(
+      CachedDocsTableCompanion(
+        uploadStatus: Value(FileUploadStatus.uploaded.name),
+      ),
+    );
     return const ApiResult.success(data: null);
+  }
+
+  Future<void> updateFileStatus({
+    required List<DocFile> files,
+    required DocFile file,
+    required int docId,
+    required FileUploadStatus status,
+  }) async {
+    final fileIndex = files.indexWhere((f) => f.path == file.path);
+    final updatedFiles = List<DocFile>.from(files);
+    updatedFiles[fileIndex] = updatedFiles[fileIndex].copyWith(status: status);
+    await (db.update(db.cachedDocsTable)..where((t) => t.docId.equals(docId)))
+        .write(CachedDocsTableCompanion(files: Value(updatedFiles)));
+    files
+      ..clear()
+      ..addAll(updatedFiles);
   }
 
   Future<void> _uploadLocationIfNeeded(CreateDocEntity doc) async {
@@ -173,6 +214,7 @@ class DocsRepoImpl implements DocsRepo {
     );
     return presignedInfo.filePath;
   }
+
   Future<void> uploadLocation({required CreateDocEntity doc}) async {
     await docsApi.createDoc(
       createDocReq: CreateDocReqModel(
@@ -182,7 +224,6 @@ class DocsRepoImpl implements DocsRepo {
       ),
     );
   }
-
   // await _initializeNotifications();
   Future<void> _initializeNotifications() async {
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');

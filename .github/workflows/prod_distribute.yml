@@ -1,0 +1,41 @@
+name: Distribute (v7a Optimized)
+on:
+  push:
+    branches:
+      - prod
+jobs:
+  build_and_deploy:
+    if: contains(github.event.head_commit.message, 'build')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: "gradle"
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.32.0"
+          channel: stable
+          cache: true
+      - name: Upgrade Flutter
+        run: flutter upgrade
+      - name: Install Dependencies
+        run: flutter pub get
+      - name: Build v7a APK
+        run: flutter build apk --release --target-platform android-arm --no-tree-shake-icons
+      - name: Upload to Firebase
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.PROD_FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.PROD_CREDENTIAL_FILE_CONTENT }}
+          groups: "armeabi-v7a"
+          file: build/app/outputs/flutter-apk/app-release.apk
+          releaseNotes: |
+            Build: armeabi-v7a
+            Message: ${{ github.event.head_commit.message }}
+            Date: ${{ github.event.head_commit.author.date }}

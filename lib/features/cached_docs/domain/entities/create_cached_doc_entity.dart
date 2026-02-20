@@ -49,7 +49,7 @@ abstract class CreateCachedDocEntity with _$CreateCachedDocEntity {
         return DocFileEntity(
           file: path != null ? FileFormzInput.dirty(File(path)) : null,
           docFile: path != null
-              ? DocFile(path: path, type: DocFileType.imageOne)
+              ? DocFile(path: path, type: DocFileType.image_one)
               : null,
           docFileStatus: FileUploadStatus.values.firstWhere(
             (e) => e.name == f['status'],
@@ -66,7 +66,7 @@ abstract class CreateCachedDocEntity with _$CreateCachedDocEntity {
               (entity.file?.value != null
                   ? DocFile(
                       path: entity.file!.value!.path,
-                      type: DocFileType.imageOne,
+                      type: DocFileType.image_one,
                       status: FileUploadStatus.pending,
                     )
                   : null);
@@ -97,31 +97,38 @@ abstract class CreateCachedDocEntity with _$CreateCachedDocEntity {
   }
 
   bool hasChanged({required CachedDocEntity? original}) {
-    debugPrint('=== DEBUG: hasChanged Check ===');
-    debugPrint('original: ${original?.docId}');
-    debugPrint('current files count: ${files.length}');
-    debugPrint('original files count: ${original?.files?.length ?? 0}');
-
+    // 1. إذا لم يكن هناك بيانات أصلية، نتحقق هل أضاف المستخدم أي ملفات أو موقع
     if (original == null) {
-      final hasAnyFiles = files.any((f) => f.docFile != null);
-      debugPrint('No original doc. Has any files: $hasAnyFiles');
-      return hasAnyFiles;
+      final bool hasFiles = files.any(
+        (f) => f.file?.value != null || f.docFile != null,
+      );
+      final bool hasLocation = location?.latitude != null;
+      return hasFiles || hasLocation;
     }
 
-    final currentEntity = toCachedDocEntity();
-    final docIdChanged = currentEntity.docId != original.docId;
-    final filesCountChanged =
-        currentEntity.files?.length != original.files?.length;
-    final locationChanged = currentEntity.location != original.location;
+    // 2. مقارنة عدد الملفات
+    final currentFilesCount = files.length;
+    final originalFilesCount = original.files?.length ?? 0;
+    if (currentFilesCount != originalFilesCount) return true;
 
-    debugPrint('docId changed: $docIdChanged');
-    debugPrint('files count changed: $filesCountChanged');
-    debugPrint('location changed: $locationChanged');
+    // 3. مقارنة محتوى الملفات (المسارات)
+    // نستخدم القوائم المرتبة لضمان دقة المقارنة
+    for (int i = 0; i < files.length; i++) {
+      final currentPath = files[i].docFile?.path ?? files[i].file?.value?.path;
+      final originalPath = original.files?[i].path;
 
-    final hasChanged = docIdChanged || filesCountChanged || locationChanged;
-    debugPrint('Overall has changed: $hasChanged');
+      if (currentPath != originalPath) return true;
+    }
 
-    return hasChanged;
+    // 4. مقارنة الموقع (Latitude & Longitude) بدقة
+    final latitudeChanged = location?.latitude != original.location?.latitude;
+    final longitudeChanged =
+        location?.longitude != original.location?.longitude;
+
+    if (latitudeChanged || longitudeChanged) return true;
+
+    // إذا وصلنا هنا، يعني لا يوجد تغيير
+    return false;
   }
 }
 

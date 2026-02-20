@@ -37,13 +37,10 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
   @override
   void initState() {
     super.initState();
-
     debugPrint('=== DEBUG: AddCachedDocView initState ===');
     debugPrint('widget.docId: ${widget.docId}');
     debugPrint('widget.cachedDoc: ${widget.cachedDoc}');
-
     if (widget.cachedDoc != null) {
-      // إذا كان هناك توثيق محفوظ مسبقاً، استخدمه مباشرة
       debugPrint('Using existing cached doc data');
       getIt<CachedDocBloc>().add(
         CachedDocEvent.updateData(
@@ -73,8 +70,6 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
         ),
       );
     } else {
-      // إذا لم يكن هناك توثيق محفوظ، حاول جلبه من قاعدة البيانات
-      debugPrint('Fetching cached doc from database');
       getIt<CachedDocBloc>().add(
         CachedDocEvent.initialize(docId: widget.docId),
       );
@@ -129,8 +124,6 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                             debugPrint(
                               'IsSuccess: ${state.formzSubmissionStatus.isSuccess}',
                             );
-
-                            // طباعة تفاصيل الملفات الحالية
                             for (
                               int i = 0;
                               i < state.createCachedDoc.files.length;
@@ -146,7 +139,6 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                                 );
                               }
                             }
-
                             if (state.formzSubmissionStatus.isSuccess) {
                               debugPrint(
                                 'Form is valid, proceeding with save...',

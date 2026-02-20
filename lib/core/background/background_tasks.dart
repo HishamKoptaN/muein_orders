@@ -10,7 +10,7 @@ import '../di/dependency_injection.dart';
 Future<void> startUploadDocs() async {
   final db = getIt<AppDatabase>();
   final docsUseCase = getIt<DocsUseCase>();
-  final statuses = ['pending', 'uploading', 'uploaded'];
+  final statuses = ['pending', 'uploading', 'failed', 'uploaded'];
   final query = db.select(db.cachedDocsTable)
     ..where((tbl) {
       Expression<bool>? condition;

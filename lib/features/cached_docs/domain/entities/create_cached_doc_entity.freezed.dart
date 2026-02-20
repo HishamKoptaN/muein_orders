@@ -12,7 +12,7 @@ part of 'create_cached_doc_entity.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$CreateCachedDocEntity {
+mixin _$CreateCachedDocEntity implements DiagnosticableTreeMixin {
 
  GenericFormzInput<int>? get docId; List<DocFileEntity> get files; LocationEntity? get location; StatEntity? get subCategory;
 /// Create a copy of CreateCachedDocEntity
@@ -22,6 +22,12 @@ mixin _$CreateCachedDocEntity {
 $CreateCachedDocEntityCopyWith<CreateCachedDocEntity> get copyWith => _$CreateCachedDocEntityCopyWithImpl<CreateCachedDocEntity>(this as CreateCachedDocEntity, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CreateCachedDocEntity'))
+    ..add(DiagnosticsProperty('docId', docId))..add(DiagnosticsProperty('files', files))..add(DiagnosticsProperty('location', location))..add(DiagnosticsProperty('subCategory', subCategory));
+}
 
 @override
 bool operator ==(Object other) {
@@ -33,7 +39,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(files),location,subCategory);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CreateCachedDocEntity(docId: $docId, files: $files, location: $location, subCategory: $subCategory)';
 }
 
@@ -220,7 +226,7 @@ return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _
 /// @nodoc
 
 
-class _CreateCachedDocEntity extends CreateCachedDocEntity {
+class _CreateCachedDocEntity extends CreateCachedDocEntity with DiagnosticableTreeMixin {
   const _CreateCachedDocEntity({this.docId, final  List<DocFileEntity> files = const [], this.location, this.subCategory}): _files = files,super._();
   
 
@@ -242,6 +248,12 @@ class _CreateCachedDocEntity extends CreateCachedDocEntity {
 _$CreateCachedDocEntityCopyWith<_CreateCachedDocEntity> get copyWith => __$CreateCachedDocEntityCopyWithImpl<_CreateCachedDocEntity>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CreateCachedDocEntity'))
+    ..add(DiagnosticsProperty('docId', docId))..add(DiagnosticsProperty('files', files))..add(DiagnosticsProperty('location', location))..add(DiagnosticsProperty('subCategory', subCategory));
+}
 
 @override
 bool operator ==(Object other) {
@@ -253,7 +265,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(_files),location,subCategory);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CreateCachedDocEntity(docId: $docId, files: $files, location: $location, subCategory: $subCategory)';
 }
 
@@ -308,7 +320,7 @@ $LocationEntityCopyWith<$Res>? get location {
 }
 
 /// @nodoc
-mixin _$DocFileEntity {
+mixin _$DocFileEntity implements DiagnosticableTreeMixin {
 
  FileFormzInput? get file; DocFile? get docFile; FileUploadStatus get docFileStatus;
 /// Create a copy of DocFileEntity
@@ -318,6 +330,12 @@ mixin _$DocFileEntity {
 $DocFileEntityCopyWith<DocFileEntity> get copyWith => _$DocFileEntityCopyWithImpl<DocFileEntity>(this as DocFileEntity, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'DocFileEntity'))
+    ..add(DiagnosticsProperty('file', file))..add(DiagnosticsProperty('docFile', docFile))..add(DiagnosticsProperty('docFileStatus', docFileStatus));
+}
 
 @override
 bool operator ==(Object other) {
@@ -329,7 +347,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,file,docFile,docFileStatus);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'DocFileEntity(file: $file, docFile: $docFile, docFileStatus: $docFileStatus)';
 }
 
@@ -503,7 +521,7 @@ return $default(_that.file,_that.docFile,_that.docFileStatus);case _:
 /// @nodoc
 
 
-class _DocFileEntity implements DocFileEntity {
+class _DocFileEntity with DiagnosticableTreeMixin implements DocFileEntity {
   const _DocFileEntity({this.file, this.docFile, this.docFileStatus = FileUploadStatus.init});
   
 
@@ -518,6 +536,12 @@ class _DocFileEntity implements DocFileEntity {
 _$DocFileEntityCopyWith<_DocFileEntity> get copyWith => __$DocFileEntityCopyWithImpl<_DocFileEntity>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'DocFileEntity'))
+    ..add(DiagnosticsProperty('file', file))..add(DiagnosticsProperty('docFile', docFile))..add(DiagnosticsProperty('docFileStatus', docFileStatus));
+}
 
 @override
 bool operator ==(Object other) {
@@ -529,7 +553,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,file,docFile,docFileStatus);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'DocFileEntity(file: $file, docFile: $docFile, docFileStatus: $docFileStatus)';
 }
 
@@ -571,7 +595,7 @@ as FileUploadStatus,
 }
 
 /// @nodoc
-mixin _$LocationEntity {
+mixin _$LocationEntity implements DiagnosticableTreeMixin {
 
  double? get latitude; double? get longitude; FileUploadStatus get status;
 /// Create a copy of LocationEntity
@@ -581,6 +605,12 @@ mixin _$LocationEntity {
 $LocationEntityCopyWith<LocationEntity> get copyWith => _$LocationEntityCopyWithImpl<LocationEntity>(this as LocationEntity, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LocationEntity'))
+    ..add(DiagnosticsProperty('latitude', latitude))..add(DiagnosticsProperty('longitude', longitude))..add(DiagnosticsProperty('status', status));
+}
 
 @override
 bool operator ==(Object other) {
@@ -592,7 +622,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,latitude,longitude,status);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'LocationEntity(latitude: $latitude, longitude: $longitude, status: $status)';
 }
 
@@ -766,7 +796,7 @@ return $default(_that.latitude,_that.longitude,_that.status);case _:
 /// @nodoc
 
 
-class _LocationEntity extends LocationEntity {
+class _LocationEntity extends LocationEntity with DiagnosticableTreeMixin {
   const _LocationEntity({this.latitude, this.longitude, this.status = FileUploadStatus.init}): super._();
   
 
@@ -781,6 +811,12 @@ class _LocationEntity extends LocationEntity {
 _$LocationEntityCopyWith<_LocationEntity> get copyWith => __$LocationEntityCopyWithImpl<_LocationEntity>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'LocationEntity'))
+    ..add(DiagnosticsProperty('latitude', latitude))..add(DiagnosticsProperty('longitude', longitude))..add(DiagnosticsProperty('status', status));
+}
 
 @override
 bool operator ==(Object other) {
@@ -792,7 +828,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,latitude,longitude,status);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'LocationEntity(latitude: $latitude, longitude: $longitude, status: $status)';
 }
 

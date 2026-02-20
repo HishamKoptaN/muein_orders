@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:drift/drift.dart';
 
-enum DocFileType { imageOne, imageTwo, videoOne, videoTwo }
+enum DocFileType { image_one, image_two, video_one, video_two }
 
 enum FileUploadStatus { init, pending, uploading, uploaded, failed }
 
@@ -32,7 +32,7 @@ class DocFile {
     path: json['path'],
     type: DocFileType.values.firstWhere(
       (e) => e.name == json['type'],
-      orElse: () => DocFileType.imageOne,
+      orElse: () => DocFileType.image_one,
     ),
     status: FileUploadStatus.values.firstWhere(
       (e) => e.name == json['status'],

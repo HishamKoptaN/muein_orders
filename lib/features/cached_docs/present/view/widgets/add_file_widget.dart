@@ -180,11 +180,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
               width: 34,
               height: 34,
             ),
-          // SvgPicture.asset(
-          //   'assets/icons/video.svg',
-          //   width: 34,
-          //   height: 34,
-          // ),
+      
           if (widget.addDocWidgetType == AddDocWidgetType.image)
             const Icon(
               Icons.add_photo_alternate_outlined,

@@ -103,9 +103,9 @@ class AddDocFieldsWidget extends StatelessWidget {
   }
 
   DocFileType _getDocTypeByIndex(int index) {
-    if (index == 0) return DocFileType.imageOne;
-    if (index == 1) return DocFileType.imageTwo;
-    if (index == 2) return DocFileType.videoOne;
-    return DocFileType.videoTwo;
+    if (index == 0) return DocFileType.image_one;
+    if (index == 1) return DocFileType.image_two;
+    if (index == 2) return DocFileType.video_one;
+    return DocFileType.video_two;
   }
 }

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateDocReqModel {
 
-@JsonKey(name: 'doc_id') int? get docId;@JsonKey(name: 'video_one') String? get videoOne;@JsonKey(name: 'video_two') String? get videoTwo;@JsonKey(name: 'thumbnail_url_one') String? get thumbnailUrlOne;@JsonKey(name: 'thumbnail_url_two') String? get thumbnailUrlTwo;@JsonKey(name: 'image_one') String? get imageOne;@JsonKey(name: 'image_two') String? get imageTwo;@JsonKey(name: 'latitude') String? get latitude;@JsonKey(name: 'longitude') String? get longitude;
+@JsonKey(name: 'doc_id') int get docId;@JsonKey(name: 'video_one') String? get videoOne;@JsonKey(name: 'video_two') String? get videoTwo;@JsonKey(name: 'thumbnail_url_one') String? get thumbnailUrlOne;@JsonKey(name: 'thumbnail_url_two') String? get thumbnailUrlTwo;@JsonKey(name: 'image_one') String? get imageOne;@JsonKey(name: 'image_two') String? get imageTwo;@JsonKey(name: 'latitude', includeIfNull: false) String? get latitude;@JsonKey(name: 'longitude', includeIfNull: false) String? get longitude;
 /// Create a copy of CreateDocReqModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $CreateDocReqModelCopyWith<$Res>  {
   factory $CreateDocReqModelCopyWith(CreateDocReqModel value, $Res Function(CreateDocReqModel) _then) = _$CreateDocReqModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'doc_id') int? docId,@JsonKey(name: 'video_one') String? videoOne,@JsonKey(name: 'video_two') String? videoTwo,@JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,@JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,@JsonKey(name: 'image_one') String? imageOne,@JsonKey(name: 'image_two') String? imageTwo,@JsonKey(name: 'latitude') String? latitude,@JsonKey(name: 'longitude') String? longitude
+@JsonKey(name: 'doc_id') int docId,@JsonKey(name: 'video_one') String? videoOne,@JsonKey(name: 'video_two') String? videoTwo,@JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,@JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,@JsonKey(name: 'image_one') String? imageOne,@JsonKey(name: 'image_two') String? imageTwo,@JsonKey(name: 'latitude', includeIfNull: false) String? latitude,@JsonKey(name: 'longitude', includeIfNull: false) String? longitude
 });
 
 
@@ -65,10 +65,10 @@ class _$CreateDocReqModelCopyWithImpl<$Res>
 
 /// Create a copy of CreateDocReqModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? docId = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? thumbnailUrlOne = freezed,Object? thumbnailUrlTwo = freezed,Object? imageOne = freezed,Object? imageTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? docId = null,Object? videoOne = freezed,Object? videoTwo = freezed,Object? thumbnailUrlOne = freezed,Object? thumbnailUrlTwo = freezed,Object? imageOne = freezed,Object? imageTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,}) {
   return _then(_self.copyWith(
-docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int?,videoOne: freezed == videoOne ? _self.videoOne : videoOne // ignore: cast_nullable_to_non_nullable
+docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
+as int,videoOne: freezed == videoOne ? _self.videoOne : videoOne // ignore: cast_nullable_to_non_nullable
 as String?,videoTwo: freezed == videoTwo ? _self.videoTwo : videoTwo // ignore: cast_nullable_to_non_nullable
 as String?,thumbnailUrlOne: freezed == thumbnailUrlOne ? _self.thumbnailUrlOne : thumbnailUrlOne // ignore: cast_nullable_to_non_nullable
 as String?,thumbnailUrlTwo: freezed == thumbnailUrlTwo ? _self.thumbnailUrlTwo : thumbnailUrlTwo // ignore: cast_nullable_to_non_nullable
@@ -161,7 +161,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int? docId, @JsonKey(name: 'video_one')  String? videoOne, @JsonKey(name: 'video_two')  String? videoTwo, @JsonKey(name: 'thumbnail_url_one')  String? thumbnailUrlOne, @JsonKey(name: 'thumbnail_url_two')  String? thumbnailUrlTwo, @JsonKey(name: 'image_one')  String? imageOne, @JsonKey(name: 'image_two')  String? imageTwo, @JsonKey(name: 'latitude')  String? latitude, @JsonKey(name: 'longitude')  String? longitude)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int docId, @JsonKey(name: 'video_one')  String? videoOne, @JsonKey(name: 'video_two')  String? videoTwo, @JsonKey(name: 'thumbnail_url_one')  String? thumbnailUrlOne, @JsonKey(name: 'thumbnail_url_two')  String? thumbnailUrlTwo, @JsonKey(name: 'image_one')  String? imageOne, @JsonKey(name: 'image_two')  String? imageTwo, @JsonKey(name: 'latitude', includeIfNull: false)  String? latitude, @JsonKey(name: 'longitude', includeIfNull: false)  String? longitude)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateDocReqModel() when $default != null:
 return $default(_that.docId,_that.videoOne,_that.videoTwo,_that.thumbnailUrlOne,_that.thumbnailUrlTwo,_that.imageOne,_that.imageTwo,_that.latitude,_that.longitude);case _:
@@ -182,7 +182,7 @@ return $default(_that.docId,_that.videoOne,_that.videoTwo,_that.thumbnailUrlOne,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int? docId, @JsonKey(name: 'video_one')  String? videoOne, @JsonKey(name: 'video_two')  String? videoTwo, @JsonKey(name: 'thumbnail_url_one')  String? thumbnailUrlOne, @JsonKey(name: 'thumbnail_url_two')  String? thumbnailUrlTwo, @JsonKey(name: 'image_one')  String? imageOne, @JsonKey(name: 'image_two')  String? imageTwo, @JsonKey(name: 'latitude')  String? latitude, @JsonKey(name: 'longitude')  String? longitude)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int docId, @JsonKey(name: 'video_one')  String? videoOne, @JsonKey(name: 'video_two')  String? videoTwo, @JsonKey(name: 'thumbnail_url_one')  String? thumbnailUrlOne, @JsonKey(name: 'thumbnail_url_two')  String? thumbnailUrlTwo, @JsonKey(name: 'image_one')  String? imageOne, @JsonKey(name: 'image_two')  String? imageTwo, @JsonKey(name: 'latitude', includeIfNull: false)  String? latitude, @JsonKey(name: 'longitude', includeIfNull: false)  String? longitude)  $default,) {final _that = this;
 switch (_that) {
 case _CreateDocReqModel():
 return $default(_that.docId,_that.videoOne,_that.videoTwo,_that.thumbnailUrlOne,_that.thumbnailUrlTwo,_that.imageOne,_that.imageTwo,_that.latitude,_that.longitude);case _:
@@ -202,7 +202,7 @@ return $default(_that.docId,_that.videoOne,_that.videoTwo,_that.thumbnailUrlOne,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'doc_id')  int? docId, @JsonKey(name: 'video_one')  String? videoOne, @JsonKey(name: 'video_two')  String? videoTwo, @JsonKey(name: 'thumbnail_url_one')  String? thumbnailUrlOne, @JsonKey(name: 'thumbnail_url_two')  String? thumbnailUrlTwo, @JsonKey(name: 'image_one')  String? imageOne, @JsonKey(name: 'image_two')  String? imageTwo, @JsonKey(name: 'latitude')  String? latitude, @JsonKey(name: 'longitude')  String? longitude)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'doc_id')  int docId, @JsonKey(name: 'video_one')  String? videoOne, @JsonKey(name: 'video_two')  String? videoTwo, @JsonKey(name: 'thumbnail_url_one')  String? thumbnailUrlOne, @JsonKey(name: 'thumbnail_url_two')  String? thumbnailUrlTwo, @JsonKey(name: 'image_one')  String? imageOne, @JsonKey(name: 'image_two')  String? imageTwo, @JsonKey(name: 'latitude', includeIfNull: false)  String? latitude, @JsonKey(name: 'longitude', includeIfNull: false)  String? longitude)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateDocReqModel() when $default != null:
 return $default(_that.docId,_that.videoOne,_that.videoTwo,_that.thumbnailUrlOne,_that.thumbnailUrlTwo,_that.imageOne,_that.imageTwo,_that.latitude,_that.longitude);case _:
@@ -217,18 +217,18 @@ return $default(_that.docId,_that.videoOne,_that.videoTwo,_that.thumbnailUrlOne,
 @JsonSerializable()
 
 class _CreateDocReqModel implements CreateDocReqModel {
-  const _CreateDocReqModel({@JsonKey(name: 'doc_id') required this.docId, @JsonKey(name: 'video_one') this.videoOne, @JsonKey(name: 'video_two') this.videoTwo, @JsonKey(name: 'thumbnail_url_one') this.thumbnailUrlOne, @JsonKey(name: 'thumbnail_url_two') this.thumbnailUrlTwo, @JsonKey(name: 'image_one') this.imageOne, @JsonKey(name: 'image_two') this.imageTwo, @JsonKey(name: 'latitude') this.latitude, @JsonKey(name: 'longitude') this.longitude});
+  const _CreateDocReqModel({@JsonKey(name: 'doc_id') required this.docId, @JsonKey(name: 'video_one') this.videoOne, @JsonKey(name: 'video_two') this.videoTwo, @JsonKey(name: 'thumbnail_url_one') this.thumbnailUrlOne, @JsonKey(name: 'thumbnail_url_two') this.thumbnailUrlTwo, @JsonKey(name: 'image_one') this.imageOne, @JsonKey(name: 'image_two') this.imageTwo, @JsonKey(name: 'latitude', includeIfNull: false) this.latitude, @JsonKey(name: 'longitude', includeIfNull: false) this.longitude});
   factory _CreateDocReqModel.fromJson(Map<String, dynamic> json) => _$CreateDocReqModelFromJson(json);
 
-@override@JsonKey(name: 'doc_id') final  int? docId;
+@override@JsonKey(name: 'doc_id') final  int docId;
 @override@JsonKey(name: 'video_one') final  String? videoOne;
 @override@JsonKey(name: 'video_two') final  String? videoTwo;
 @override@JsonKey(name: 'thumbnail_url_one') final  String? thumbnailUrlOne;
 @override@JsonKey(name: 'thumbnail_url_two') final  String? thumbnailUrlTwo;
 @override@JsonKey(name: 'image_one') final  String? imageOne;
 @override@JsonKey(name: 'image_two') final  String? imageTwo;
-@override@JsonKey(name: 'latitude') final  String? latitude;
-@override@JsonKey(name: 'longitude') final  String? longitude;
+@override@JsonKey(name: 'latitude', includeIfNull: false) final  String? latitude;
+@override@JsonKey(name: 'longitude', includeIfNull: false) final  String? longitude;
 
 /// Create a copy of CreateDocReqModel
 /// with the given fields replaced by the non-null parameter values.
@@ -263,7 +263,7 @@ abstract mixin class _$CreateDocReqModelCopyWith<$Res> implements $CreateDocReqM
   factory _$CreateDocReqModelCopyWith(_CreateDocReqModel value, $Res Function(_CreateDocReqModel) _then) = __$CreateDocReqModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'doc_id') int? docId,@JsonKey(name: 'video_one') String? videoOne,@JsonKey(name: 'video_two') String? videoTwo,@JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,@JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,@JsonKey(name: 'image_one') String? imageOne,@JsonKey(name: 'image_two') String? imageTwo,@JsonKey(name: 'latitude') String? latitude,@JsonKey(name: 'longitude') String? longitude
+@JsonKey(name: 'doc_id') int docId,@JsonKey(name: 'video_one') String? videoOne,@JsonKey(name: 'video_two') String? videoTwo,@JsonKey(name: 'thumbnail_url_one') String? thumbnailUrlOne,@JsonKey(name: 'thumbnail_url_two') String? thumbnailUrlTwo,@JsonKey(name: 'image_one') String? imageOne,@JsonKey(name: 'image_two') String? imageTwo,@JsonKey(name: 'latitude', includeIfNull: false) String? latitude,@JsonKey(name: 'longitude', includeIfNull: false) String? longitude
 });
 
 
@@ -280,10 +280,10 @@ class __$CreateDocReqModelCopyWithImpl<$Res>
 
 /// Create a copy of CreateDocReqModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? docId = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? thumbnailUrlOne = freezed,Object? thumbnailUrlTwo = freezed,Object? imageOne = freezed,Object? imageTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? docId = null,Object? videoOne = freezed,Object? videoTwo = freezed,Object? thumbnailUrlOne = freezed,Object? thumbnailUrlTwo = freezed,Object? imageOne = freezed,Object? imageTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,}) {
   return _then(_CreateDocReqModel(
-docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int?,videoOne: freezed == videoOne ? _self.videoOne : videoOne // ignore: cast_nullable_to_non_nullable
+docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
+as int,videoOne: freezed == videoOne ? _self.videoOne : videoOne // ignore: cast_nullable_to_non_nullable
 as String?,videoTwo: freezed == videoTwo ? _self.videoTwo : videoTwo // ignore: cast_nullable_to_non_nullable
 as String?,thumbnailUrlOne: freezed == thumbnailUrlOne ? _self.thumbnailUrlOne : thumbnailUrlOne // ignore: cast_nullable_to_non_nullable
 as String?,thumbnailUrlTwo: freezed == thumbnailUrlTwo ? _self.thumbnailUrlTwo : thumbnailUrlTwo // ignore: cast_nullable_to_non_nullable

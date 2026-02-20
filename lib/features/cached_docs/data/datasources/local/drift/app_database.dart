@@ -142,24 +142,19 @@ class AppDatabase extends _$AppDatabase {
     required int docId,
     required FileUploadStatus status,
   }) async {
-    final cachedDoc = await (select(cachedDocsTable)
-      ..where((t) => t.docId.equals(docId)))
-        .getSingleOrNull();
-    
+    final cachedDoc = await (select(
+      cachedDocsTable,
+    )..where((t) => t.docId.equals(docId))).getSingleOrNull();
+
     if (cachedDoc?.location != null) {
       final updatedLocation = LocationDoc(
         latitude: cachedDoc!.location!.latitude,
         longitude: cachedDoc.location!.longitude,
         status: status,
       );
-      
-      await (update(cachedDocsTable)
-            ..where((t) => t.docId.equals(docId)))
-          .write(
-            CachedDocsTableCompanion(
-              location: Value(updatedLocation),
-            ),
-          );
+
+      await (update(cachedDocsTable)..where((t) => t.docId.equals(docId)))
+          .write(CachedDocsTableCompanion(location: Value(updatedLocation)));
     }
   }
 

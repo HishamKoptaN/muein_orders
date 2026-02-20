@@ -8,7 +8,7 @@ part of 'create_doc_req_model.dart';
 
 _CreateDocReqModel _$CreateDocReqModelFromJson(Map<String, dynamic> json) =>
     _CreateDocReqModel(
-      docId: (json['doc_id'] as num?)?.toInt(),
+      docId: (json['doc_id'] as num).toInt(),
       videoOne: json['video_one'] as String?,
       videoTwo: json['video_two'] as String?,
       thumbnailUrlOne: json['thumbnail_url_one'] as String?,
@@ -21,7 +21,7 @@ _CreateDocReqModel _$CreateDocReqModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$CreateDocReqModelToJson(_CreateDocReqModel instance) =>
     <String, dynamic>{
-      'doc_id': ?instance.docId,
+      'doc_id': instance.docId,
       'video_one': ?instance.videoOne,
       'video_two': ?instance.videoTwo,
       'thumbnail_url_one': ?instance.thumbnailUrlOne,

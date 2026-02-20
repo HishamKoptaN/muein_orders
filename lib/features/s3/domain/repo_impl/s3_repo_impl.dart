@@ -19,10 +19,17 @@ class S3RepoImpl implements S3Repo {
     required String contentType,
   }) async {
     try {
+      final int fileLength = await file.length();
       await _dio.put(
         uploadUrl,
         data: file.openRead(),
-        options: Options(headers: {'Content-Type': contentType}),
+        options: Options(
+          headers: {
+            'Content-Type': contentType,
+            'Content-Length': fileLength,
+            'Accept': '*/*',
+          },
+        ),
         onSendProgress: (sent, total) {
           if (total > 0) {
             print(

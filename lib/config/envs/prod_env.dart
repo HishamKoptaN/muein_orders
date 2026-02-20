@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 
-import '../../firebase_options.dart';
 import '../env.dart';
+import '../firebase/prod_firebase_options.dart';
 
 class ProdEnv implements Env {
   @override
-  FirebaseOptions get firebaseOptions => DefaultFirebaseOptions.currentPlatform;
+  FirebaseOptions get firebaseOptions => ProdFirebaseOptions.currentPlatform;
   @override
   String get baseUrl => 'https://api.example.com';
 

@@ -78,22 +78,18 @@ abstract class DioModule {
   //! s3 dio
   @singleton
   @Named('s3Dio')
-  Dio s3Dio(LoggingInterceptor loggingInterceptor) {
+  Dio s3Dio() {
     final dio = Dio(
       BaseOptions(
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
         sendTimeout: const Duration(days: 1),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
       ),
     );
     dio.interceptors.addAll([
       PrettyDioLogger(
         requestHeader: true,
-        requestBody: true,
+        requestBody: false,
         responseBody: true,
         error: true,
         compact: true,

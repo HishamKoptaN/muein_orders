@@ -57,8 +57,6 @@ class LocationPickerButton extends StatelessWidget {
                     maxLines: 1,
                   ),
                 ),
-                if (hasLocation)
-                  const Icon(Icons.check_circle, color: Colors.green),
               ],
             ),
           ),

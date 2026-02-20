@@ -12,11 +12,17 @@ part of 'cached_doc_bloc.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$CachedDocEvent {
+mixin _$CachedDocEvent implements DiagnosticableTreeMixin {
 
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CachedDocEvent'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -28,7 +34,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CachedDocEvent()';
 }
 
@@ -186,7 +192,7 @@ return cachedDoc(_that.loaded);case _:
 /// @nodoc
 
 
-class _Initialize implements CachedDocEvent {
+class _Initialize with DiagnosticableTreeMixin implements CachedDocEvent {
   const _Initialize({required this.docId});
   
 
@@ -199,6 +205,12 @@ class _Initialize implements CachedDocEvent {
 _$InitializeCopyWith<_Initialize> get copyWith => __$InitializeCopyWithImpl<_Initialize>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CachedDocEvent.initialize'))
+    ..add(DiagnosticsProperty('docId', docId));
+}
 
 @override
 bool operator ==(Object other) {
@@ -210,7 +222,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,docId);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CachedDocEvent.initialize(docId: $docId)';
 }
 
@@ -252,7 +264,7 @@ as int,
 /// @nodoc
 
 
-class _UpdateData implements CachedDocEvent {
+class _UpdateData with DiagnosticableTreeMixin implements CachedDocEvent {
   const _UpdateData({this.loaded, required this.createCachedDoc});
   
 
@@ -266,6 +278,12 @@ class _UpdateData implements CachedDocEvent {
 _$UpdateDataCopyWith<_UpdateData> get copyWith => __$UpdateDataCopyWithImpl<_UpdateData>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CachedDocEvent.updateData'))
+    ..add(DiagnosticsProperty('loaded', loaded))..add(DiagnosticsProperty('createCachedDoc', createCachedDoc));
+}
 
 @override
 bool operator ==(Object other) {
@@ -277,7 +295,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(loaded),createCachedDoc);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CachedDocEvent.updateData(loaded: $loaded, createCachedDoc: $createCachedDoc)';
 }
 
@@ -329,7 +347,7 @@ $CreateCachedDocEntityCopyWith<$Res> get createCachedDoc {
 /// @nodoc
 
 
-class _CachedDoc implements CachedDocEvent {
+class _CachedDoc with DiagnosticableTreeMixin implements CachedDocEvent {
   const _CachedDoc({required this.loaded});
   
 
@@ -342,6 +360,12 @@ class _CachedDoc implements CachedDocEvent {
 _$CachedDocCopyWith<_CachedDoc> get copyWith => __$CachedDocCopyWithImpl<_CachedDoc>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CachedDocEvent.cachedDoc'))
+    ..add(DiagnosticsProperty('loaded', loaded));
+}
 
 @override
 bool operator ==(Object other) {
@@ -353,7 +377,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(loaded));
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CachedDocEvent.cachedDoc(loaded: $loaded)';
 }
 
@@ -393,11 +417,17 @@ as Loaded,
 }
 
 /// @nodoc
-mixin _$CachedDocState {
+mixin _$CachedDocState implements DiagnosticableTreeMixin {
 
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CachedDocState'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -409,7 +439,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CachedDocState()';
 }
 
@@ -573,7 +603,7 @@ return failure(_that.error);case _:
 /// @nodoc
 
 
-class _Loading implements CachedDocState {
+class _Loading with DiagnosticableTreeMixin implements CachedDocState {
   const _Loading();
   
 
@@ -581,6 +611,12 @@ class _Loading implements CachedDocState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CachedDocState.loading'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -592,7 +628,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CachedDocState.loading()';
 }
 
@@ -605,7 +641,7 @@ String toString() {
 /// @nodoc
 
 
-class Loaded implements CachedDocState {
+class Loaded with DiagnosticableTreeMixin implements CachedDocState {
   const Loaded({required this.createCachedDoc, required this.formzSubmissionStatus});
   
 
@@ -619,6 +655,12 @@ class Loaded implements CachedDocState {
 $LoadedCopyWith<Loaded> get copyWith => _$LoadedCopyWithImpl<Loaded>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CachedDocState.loaded'))
+    ..add(DiagnosticsProperty('createCachedDoc', createCachedDoc))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
+}
 
 @override
 bool operator ==(Object other) {
@@ -630,7 +672,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,createCachedDoc,formzSubmissionStatus);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CachedDocState.loaded(createCachedDoc: $createCachedDoc, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
@@ -682,7 +724,7 @@ $CreateCachedDocEntityCopyWith<$Res> get createCachedDoc {
 /// @nodoc
 
 
-class _Success implements CachedDocState {
+class _Success with DiagnosticableTreeMixin implements CachedDocState {
   const _Success();
   
 
@@ -690,6 +732,12 @@ class _Success implements CachedDocState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CachedDocState.success'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -701,7 +749,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CachedDocState.success()';
 }
 
@@ -714,7 +762,7 @@ String toString() {
 /// @nodoc
 
 
-class _Failure implements CachedDocState {
+class _Failure with DiagnosticableTreeMixin implements CachedDocState {
   const _Failure({required this.error});
   
 
@@ -727,6 +775,12 @@ class _Failure implements CachedDocState {
 _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'CachedDocState.failure'))
+    ..add(DiagnosticsProperty('error', error));
+}
 
 @override
 bool operator ==(Object other) {
@@ -738,7 +792,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,error);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'CachedDocState.failure(error: $error)';
 }
 

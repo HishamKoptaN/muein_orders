@@ -158,6 +158,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i307.ThemeBloc>(() => _i307.ThemeBloc());
   gh.lazySingleton<_i804.TokenStorage>(() => _i804.TokenStorage());
   gh.lazySingleton<_i158.TokenStorage>(() => _i158.TokenStorage());
+  gh.singleton<_i361.Dio>(() => dioModule.s3Dio(), instanceName: 's3Dio');
   gh.singleton<_i804.AuthInterceptor>(
     () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()),
   );
@@ -166,10 +167,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i281.CachedDocsRepo>(
     () => _i240.CachedDocsRepoImpl(gh<_i523.AppDatabase>()),
-  );
-  gh.singleton<_i361.Dio>(
-    () => dioModule.s3Dio(gh<_i158.LoggingInterceptor>()),
-    instanceName: 's3Dio',
   );
   gh.lazySingleton<_i105.NotificationManager>(
     () =>
