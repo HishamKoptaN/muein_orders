@@ -1,32 +1,37 @@
-name: Cleanup Old Firebase Releases
+name: Firebase Distribution CI
+
 on:
   push:
     branches:
       - dev
-
 jobs:
-  delete_old_releases:
+  cleanup_old_releases:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Authenticate with Google Cloud
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: "${{ secrets.GCP_CREDENTIALS_JSON }}"
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+          credentials_json: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
 
-      - name: Get Firebase releases and prepare deletion list
+      - name: Get Access Token
+        id: get_token
         run: |
-          firebase appdistribution:releases:list --app "${{ secrets.FIREBASE_APP_ID }}" --json > all_releases.json
-          jq -r '.[].releaseId' all_releases.json | tail -n +6 > to_delete.txt
+          echo "token=$(gcloud auth print-access-token)" >> $GITHUB_OUTPUT
 
-      - name: Delete old releases
-        run: |
-          while IFS= read -r release_id; do
-            echo "🗑️ Deleting release $release_id"
-            firebase appdistribution:releases:delete --app "${{ secrets.FIREBASE_APP_ID }}" "$release_id"
-          done < to_delete.txt
+      - name: Run Cleanup Script
+        env:
+          FIREBASE_PROJECT_NUMBER: "448994699498"
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+          GOOGLE_ACCESS_TOKEN: ${{ steps.get_token.outputs.token }}
+        run: python .github/scripts/cleanup_firebase.py
