@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - dev
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -10,36 +11,55 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
           java-version: "17"
           distribution: "temurin"
           cache: "gradle"
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.32.0"
           channel: stable
           cache: true
-      - name: Upgrade Flutter
-        run: flutter upgrade
+
       - name: Install Dependencies
         run: flutter pub get
-      - name: Build Dev v7a APK
+
+      # خطوة البناء الموحدة والمقسمة (هذه الخطوة تغني عن أي بناء آخر)
+      - name: Build Split APKs (v7a & v8a)
         run: |
           flutter build apk --release \
           --flavor dev \
-          --target-platform android-arm \
+          --target-platform android-arm,android-arm64 \
+          --split-per-abi \
           --no-tree-shake-icons \
           -t lib/main.dart
-      - name: Upload to Firebase
+
+      # رفع نسخة الـ 32 بت (v7a)
+      - name: Upload v7a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: "armeabi-v7a"
-          file: build/app/outputs/flutter-apk/app-dev-release.apk
+          # المسار يتغير عند استخدام --split-per-abi
+          file: build/app/outputs/flutter-apk/app-dev-armeabi-v7a-release.apk
           releaseNotes: |
-            Build: armeabi-v7a
+            Build: armeabi-v7a (Optimized Size)
             Message: ${{ github.event.head_commit.message }}
+
+      # رفع نسخة الـ 64 بت (v8a) المخصصة لأجهزة مثل Honor 15
+      - name: Upload v8a to Firebase
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          groups: "testers"
+          file: build/app/outputs/flutter-apk/app-dev-arm64-v8a-release.apk
+          releaseNotes: |
+            Build: arm64-v8a (High Performance)
+            Device Target: Honor 15 / Modern Devices
