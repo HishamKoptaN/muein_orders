@@ -35,16 +35,15 @@ jobs:
           --split-per-abi \
           --no-tree-shake-icons \
           -t lib/main.dart
+      - name: List Files for debugging
+        run: ls -R build/app/outputs/flutter-apk/
       - name: Upload v7a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: "armeabi-v7a"
-          file: build/app/outputs/flutter-apk/app-dev-armeabi-v7a-release.apk
-          releaseNotes: |
-            Build: armeabi-v7a (Optimized Size)
-            Message: ${{ github.event.head_commit.message }}
+          file: build/app/outputs/flutter-apk/*-v7a-release.apk
 
       - name: Upload v8a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -52,7 +51,4 @@ jobs:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: "arm64-v8a"
-          file: build/app/outputs/flutter-apk/app-dev-arm64-v8a-release.apk
-          releaseNotes: |
-            Build: arm64-v8a (High Performance)
-            Device Target: Honor 15 / Modern Devices
+          file: build/app/outputs/flutter-apk/*-v8a-release.apk
