@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - dev
-
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -28,8 +27,6 @@ jobs:
 
       - name: Install Dependencies
         run: flutter pub get
-
-      # خطوة البناء الموحدة والمقسمة (هذه الخطوة تغني عن أي بناء آخر)
       - name: Build Split APKs (v7a & v8a)
         run: |
           flutter build apk --release \
@@ -38,21 +35,17 @@ jobs:
           --split-per-abi \
           --no-tree-shake-icons \
           -t lib/main.dart
-
-      # رفع نسخة الـ 32 بت (v7a)
       - name: Upload v7a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: "armeabi-v7a"
-          # المسار يتغير عند استخدام --split-per-abi
           file: build/app/outputs/flutter-apk/app-dev-armeabi-v7a-release.apk
           releaseNotes: |
             Build: armeabi-v7a (Optimized Size)
             Message: ${{ github.event.head_commit.message }}
 
-      # رفع نسخة الـ 64 بت (v8a) المخصصة لأجهزة مثل Honor 15
       - name: Upload v8a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
