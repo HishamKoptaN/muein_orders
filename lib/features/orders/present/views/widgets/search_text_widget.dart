@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../core/di/dependency_injection.dart';
 import '../../bloc/orders_bloc.dart';
 
 class SearchTextWidget extends StatefulWidget {
@@ -18,7 +20,7 @@ class _SearchTextWidgetState extends State<SearchTextWidget> {
     controller: widget._controller,
     style: const TextStyle(color: Colors.white),
     onChanged: (v) {
-      context.read<OrdersBloc>().add(
+      getIt<OrdersBloc>().add(
         v.trim().isNotEmpty
             ? OrdersEvent.searchOrders(query: v)
             : const OrdersEvent.disposeSearch(),
@@ -36,7 +38,7 @@ class _SearchTextWidgetState extends State<SearchTextWidget> {
               icon: const Icon(Icons.clear, color: Colors.white),
               onPressed: () {
                 widget._controller.clear();
-                context.read<OrdersBloc>().add(
+                getIt<OrdersBloc>().add(
                   const OrdersEvent.disposeSearch(),
                 );
                 setState(() {});

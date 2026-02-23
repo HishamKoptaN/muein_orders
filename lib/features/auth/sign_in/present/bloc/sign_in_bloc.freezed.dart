@@ -12,11 +12,17 @@ part of 'sign_in_bloc.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$SignInEvent {
+mixin _$SignInEvent implements DiagnosticableTreeMixin {
 
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInEvent'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -28,7 +34,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInEvent()';
 }
 
@@ -180,7 +186,7 @@ return signInWithCredentialsPressed();case _:
 /// @nodoc
 
 
-class _DataChanged implements SignInEvent {
+class _DataChanged with DiagnosticableTreeMixin implements SignInEvent {
   const _DataChanged({this.email, this.password, this.obscurePassword});
   
 
@@ -195,6 +201,12 @@ class _DataChanged implements SignInEvent {
 _$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_DataChanged>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInEvent.dataChanged'))
+    ..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('password', password))..add(DiagnosticsProperty('obscurePassword', obscurePassword));
+}
 
 @override
 bool operator ==(Object other) {
@@ -206,7 +218,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,email,password,obscurePassword);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInEvent.dataChanged(email: $email, password: $password, obscurePassword: $obscurePassword)';
 }
 
@@ -250,7 +262,7 @@ as GenericFormzInput?,
 /// @nodoc
 
 
-class _SignInWithCredentialsPressed implements SignInEvent {
+class _SignInWithCredentialsPressed with DiagnosticableTreeMixin implements SignInEvent {
   const _SignInWithCredentialsPressed();
   
 
@@ -258,6 +270,12 @@ class _SignInWithCredentialsPressed implements SignInEvent {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInEvent.signInWithCredentialsPressed'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -269,7 +287,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInEvent.signInWithCredentialsPressed()';
 }
 
@@ -280,11 +298,17 @@ String toString() {
 
 
 /// @nodoc
-mixin _$SignInState {
+mixin _$SignInState implements DiagnosticableTreeMixin {
 
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInState'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -296,7 +320,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInState()';
 }
 
@@ -472,7 +496,7 @@ return unauthenticated();case _:
 /// @nodoc
 
 
-class _Initial implements SignInState {
+class _Initial with DiagnosticableTreeMixin implements SignInState {
   const _Initial();
   
 
@@ -480,6 +504,12 @@ class _Initial implements SignInState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInState.initial'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -491,7 +521,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInState.initial()';
 }
 
@@ -504,7 +534,7 @@ String toString() {
 /// @nodoc
 
 
-class _Loading implements SignInState {
+class _Loading with DiagnosticableTreeMixin implements SignInState {
   const _Loading();
   
 
@@ -512,6 +542,12 @@ class _Loading implements SignInState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInState.loading'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -523,7 +559,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInState.loading()';
 }
 
@@ -536,7 +572,7 @@ String toString() {
 /// @nodoc
 
 
-class _Loaded implements SignInState {
+class _Loaded with DiagnosticableTreeMixin implements SignInState {
   const _Loaded({required this.email, required this.password, required this.obscurePassword, required this.formzSubmissionStatus});
   
 
@@ -552,6 +588,12 @@ class _Loaded implements SignInState {
 _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInState.loaded'))
+    ..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('password', password))..add(DiagnosticsProperty('obscurePassword', obscurePassword))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
+}
 
 @override
 bool operator ==(Object other) {
@@ -563,7 +605,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,email,password,obscurePassword,formzSubmissionStatus);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInState.loaded(email: $email, password: $password, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
@@ -608,7 +650,7 @@ as FormzSubmissionStatus,
 /// @nodoc
 
 
-class _Success implements SignInState {
+class _Success with DiagnosticableTreeMixin implements SignInState {
   const _Success();
   
 
@@ -616,6 +658,12 @@ class _Success implements SignInState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInState.success'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -627,7 +675,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInState.success()';
 }
 
@@ -640,7 +688,7 @@ String toString() {
 /// @nodoc
 
 
-class _Failure implements SignInState {
+class _Failure with DiagnosticableTreeMixin implements SignInState {
   const _Failure({this.errorMessage = ''});
   
 
@@ -653,6 +701,12 @@ class _Failure implements SignInState {
 _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInState.failure'))
+    ..add(DiagnosticsProperty('errorMessage', errorMessage));
+}
 
 @override
 bool operator ==(Object other) {
@@ -664,7 +718,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,errorMessage);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInState.failure(errorMessage: $errorMessage)';
 }
 
@@ -706,7 +760,7 @@ as String,
 /// @nodoc
 
 
-class _Unauthenticated implements SignInState {
+class _Unauthenticated with DiagnosticableTreeMixin implements SignInState {
   const _Unauthenticated();
   
 
@@ -714,6 +768,12 @@ class _Unauthenticated implements SignInState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SignInState.unauthenticated'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -725,7 +785,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'SignInState.unauthenticated()';
 }
 

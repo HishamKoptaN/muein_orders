@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'app_routes.dart';
+import '../../features/splash/start_view.dart';
 
 class ErrorPageBuilder {
   static Widget build(BuildContext context, {String? message}) {
@@ -10,7 +10,7 @@ class ErrorPageBuilder {
         title: const Text('Error'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go(AppRoutes.start),
+          onPressed: () => context.go(StartView.routeName),
         ),
       ),
       body: Center(
@@ -26,7 +26,7 @@ class ErrorPageBuilder {
             ),
             const SizedBox(height: 24),
             ElevatedButton(
-              onPressed: () => context.go(AppRoutes.start),
+              onPressed: () => context.go(StartView.routeName),
               child: const Text('Back to Home'),
             ),
           ],

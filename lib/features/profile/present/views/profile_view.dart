@@ -224,7 +224,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   child: _buildSubmitButton(
                                     text: 'حفظ',
                                     onPressed: () {
-                                      context.read<ProfileBloc>().add(
+                                      getIt<ProfileBloc>().add(
                                         const ProfileEvent.updateProfile(),
                                       );
                                     },
@@ -272,7 +272,7 @@ class _ProfileViewState extends State<ProfileView> {
                 failure: (state) {
                   return ErrorContent(
                     message: state.error,
-                    onRetry: () => context.read<ProfileBloc>().add(
+                    onRetry: () => getIt<ProfileBloc>().add(
                       const ProfileEvent.getProfile(),
                     ),
                     retryText: t.retry,

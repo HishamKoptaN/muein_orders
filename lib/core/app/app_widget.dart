@@ -30,9 +30,7 @@ class MueinOrdersApp extends StatelessWidget {
       providers: [
         BlocProvider<LanguageBloc>(create: (_) => getIt<LanguageBloc>()),
         BlocProvider<ThemeBloc>(create: (_) => getIt<ThemeBloc>()),
-        BlocProvider<AuthBloc>(
-          create: (_) => getIt<AuthBloc>()..add(const AuthEvent.check()),
-        ),
+        BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
         BlocProvider<InstructionsBloc>(
           create: (_) => getIt<InstructionsBloc>(),
         ),

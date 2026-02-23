@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_inputs/form_inputs.dart';
 
+import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../bloc/sign_up_bloc.dart';
@@ -39,7 +40,7 @@ class SignUpForm extends StatelessWidget {
           initialValue: name.value,
           hintText: t.name,
           prefixIcon: const Icon(Icons.person_outline, color: Colors.white),
-          onChanged: (v) => context.read<SignUpBloc>().add(
+          onChanged: (v) => getIt<SignUpBloc>().add(
             SignUpEvent.dataChanged(name: GenericFormzInput.dirty(v)),
           ),
           validator: (value) =>
@@ -51,7 +52,7 @@ class SignUpForm extends StatelessWidget {
           hintText: t.emailHint,
           prefixIcon: const Icon(Icons.email_outlined, color: Colors.white),
           keyboardType: TextInputType.emailAddress,
-          onChanged: (v) => context.read<SignUpBloc>().add(
+          onChanged: (v) => getIt<SignUpBloc>().add(
             SignUpEvent.dataChanged(email: EmailInput.dirty(v)),
           ),
           validator: (value) => EmailInput.dirty(value ?? '').error?.message,
@@ -61,7 +62,7 @@ class SignUpForm extends StatelessWidget {
           initialValue: phone.value,
           hintText: t.phone,
           prefixIcon: const Icon(Icons.phone_outlined, color: Colors.white),
-          onChanged: (v) => context.read<SignUpBloc>().add(
+          onChanged: (v) =>getIt<SignUpBloc>().add(
             SignUpEvent.dataChanged(phone: PhoneNumberInput.dirty(v)),
           ),
         ),
@@ -73,7 +74,7 @@ class SignUpForm extends StatelessWidget {
           isPassword: true,
           obscureText: obscurePassword,
           showPasswordToggle: true,
-          onChanged: (v) => context.read<SignUpBloc>().add(
+          onChanged: (v) => getIt<SignUpBloc>().add(
             SignUpEvent.dataChanged(password: PasswordInput.dirty(v)),
           ),
         ),
@@ -85,7 +86,7 @@ class SignUpForm extends StatelessWidget {
           isPassword: true,
           obscureText: obscurePassword,
           showPasswordToggle: true,
-          onChanged: (v) => context.read<SignUpBloc>().add(
+          onChanged: (v) => getIt<SignUpBloc>().add(
             SignUpEvent.dataChanged(confirmPassword: PasswordInput.dirty(v)),
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -29,7 +30,7 @@ class _InstructionsViewState extends State<InstructionsView> {
       if (_pageController.hasClients) {
         _pageController.jumpToPage(0);
       }
-      context.read<InstructionsBloc>().add(
+      getIt<InstructionsBloc>().add(
         const InstructionsEvent.pageChanged(pageIndex: 0),
       );
     });
@@ -93,7 +94,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                           controller: _pageController,
                           physics: const NeverScrollableScrollPhysics(),
                           onPageChanged: (i) {
-                            context.read<InstructionsBloc>().add(
+                            getIt<InstructionsBloc>().add(
                               InstructionsEvent.pageChanged(pageIndex: i),
                             );
                           },
@@ -191,7 +192,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                               routeName: HomeView.routeName,
                             );
                           } else {
-                            context.read<InstructionsBloc>().add(
+                            getIt<InstructionsBloc>().add(
                               InstructionsEvent.pageChanged(
                                 pageIndex: currentPageIndex + 1,
                               ),

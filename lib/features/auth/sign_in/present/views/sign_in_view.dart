@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import '../../../../../core/debug_widget.dart';
+import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../bloc/sign_in_bloc.dart';
@@ -15,7 +16,7 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return DebugTapTrigger(
       onTriggered: () {
-        context.read<SignInBloc>()
+        getIt<SignInBloc>()
           ..add(
             const SignInEvent.dataChanged(
               email: EmailInput.dirty('waleed@gmail.com'),

@@ -1,16 +1,24 @@
+import '../../../docs/domain/entities/docs_res_entity.dart';
+
 class StatEntity {
   final int? id;
   final int? docsCount;
   final SubCategoryEntity? subCategory;
+  final DocEntity? doc;
 
-  StatEntity({this.id, this.docsCount, this.subCategory});
+  StatEntity({this.id, this.docsCount, this.subCategory, this.doc});
 
-  StatEntity copyWith({int? id, int? docsCount, SubCategoryEntity? subCategory}) =>
-      StatEntity(
-        id: id ?? this.id,
-        docsCount: docsCount ?? this.docsCount,
-        subCategory: subCategory ?? this.subCategory,
-      );
+  StatEntity copyWith({
+    int? id,
+    int? docsCount,
+    SubCategoryEntity? subCategory,
+    DocEntity? doc,
+  }) => StatEntity(
+    id: id ?? this.id,
+    docsCount: docsCount ?? this.docsCount,
+    subCategory: subCategory ?? this.subCategory,
+    doc: doc ?? this.doc,
+  );
 }
 
 class SubCategoryEntity {

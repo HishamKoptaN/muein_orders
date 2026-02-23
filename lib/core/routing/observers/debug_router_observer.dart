@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Debug observer for router navigation events
 class DebugRouterObserver extends NavigatorObserver {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {

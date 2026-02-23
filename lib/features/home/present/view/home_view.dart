@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:translator/translator.dart';
 
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/extensions/locale_extensions.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
@@ -27,8 +28,8 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
-    context.read<HomeBloc>().add(const HomeEvent.getSummary());
-    context.read<ProfileBloc>().add(const ProfileEvent.getProfile());
+    getIt<HomeBloc>().add(const HomeEvent.getSummary());
+    getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
   }
 
   @override

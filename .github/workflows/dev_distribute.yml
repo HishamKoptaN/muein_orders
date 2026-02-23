@@ -10,21 +10,18 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
           java-version: "17"
           distribution: "temurin"
           cache: "gradle"
-
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.32.0"
           channel: stable
           cache: true
-
       - name: Install Dependencies
         run: flutter pub get
       - name: Build Split APKs (v7a & v8a)
@@ -35,23 +32,17 @@ jobs:
           --split-per-abi \
           --no-tree-shake-icons \
           -t lib/main.dart
-
       - name: Upload v7a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: "armeabi-v7a"
-          # الاسم كما ظهر عندك في المجلد تماماً
           file: build/app/outputs/flutter-apk/app-armeabi-v7a-dev-release.apk
-          releaseNotes: "Build: armeabi-v7a - Size: 121MB"
-
       - name: Upload v8a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-          groups: "testers"
-          # الاسم كما ظهر عندك في المجلد تماماً
+          groups: "arm64-v8a"
           file: build/app/outputs/flutter-apk/app-arm64-v8a-dev-release.apk
-          releaseNotes: "Build: arm64-v8a - Size: 86MB - Optimized for Honor 15"

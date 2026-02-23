@@ -24,52 +24,38 @@ class AddDocFieldsWidget extends StatelessWidget {
         ? state.createCachedDoc.files
         : List.generate(4, (_) => const DocFileEntity());
     Future<void> onFileSelected(int index, bool isImage) async {
-      debugPrint('=== DEBUG: onFileSelected START ===');
-      debugPrint('Index: $index, IsImage: $isImage');
-
-      final file = await filePicker.selectFilesPath(
-        context: context,
-        fileType: isImage ? FileType.image : FileType.video,
-      );
-
-      debugPrint('Selected file: ${file?.path}');
-
-      if (file != null) {
-        debugPrint('File exists: ${file.existsSync()}');
-        debugPrint('File size: ${file.lengthSync()} bytes');
-
-        final List<DocFileEntity> updatedList = List.from(currentFiles);
-        final oldFile = updatedList[index];
-
-        updatedList[index] = updatedList[index].copyWith(
-          file: FileFormzInput.dirty(file),
-          docFile:
-              (updatedList[index].docFile ??
-                      DocFile(path: file.path, type: _getDocTypeByIndex(index)))
-                  .copyWith(path: file.path),
-          docFileStatus: FileUploadStatus.pending,
+      try {
+        final file = await filePicker.selectFilesPath(
+          context: context,
+          fileType: isImage ? FileType.image : FileType.video,
         );
-
-        debugPrint('Old file status: ${oldFile.docFileStatus}');
-        debugPrint('New file status: ${updatedList[index].docFileStatus}');
-        debugPrint('File path in docFile: ${updatedList[index].docFile?.path}');
-        debugPrint(
-          'File path in file input: ${updatedList[index].file?.value?.path}',
-        );
-
-        bloc.add(
-          CachedDocEvent.updateData(
-            loaded: state,
-            createCachedDoc: state.createCachedDoc.copyWith(files: updatedList),
-          ),
-        );
-
-        debugPrint('Bloc event sent for updateData');
-      } else {
-        debugPrint('No file selected');
+        if (file != null) {
+          final List<DocFileEntity> updatedList = List.from(currentFiles);
+          final oldFile = updatedList[index];
+          updatedList[index] = updatedList[index].copyWith(
+            file: FileFormzInput.dirty(file),
+            docFile:
+                (updatedList[index].docFile ??
+                        DocFile(
+                          path: file.path,
+                          type: _getDocTypeByIndex(index),
+                        ))
+                    .copyWith(path: file.path),
+            docFileStatus: FileUploadStatus.pending,
+          );
+          bloc.add(
+            CachedDocEvent.updateData(
+              loaded: state,
+              createCachedDoc: state.createCachedDoc.copyWith(
+                files: updatedList,
+              ),
+            ),
+          );
+        }
+      } catch (e) {
+        debugPrint('Error selecting file: $e');
+        // يمكن إضافة رسالة خطأ للمستخدم هنا إذا لزم الأمر
       }
-
-      debugPrint('=== DEBUG: onFileSelected END ===');
     }
 
     return Wrap(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../l10n/app_localizations.dart';
+import '../../../core/di/dependency_injection.dart';
 import '../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../core/routing/navigation_service.dart';
 import '../../../core/widgets/navigation/custom_app_bar.dart';
@@ -103,7 +104,7 @@ class SelectLanguageView extends StatelessWidget {
                                           final parts = language['code']!.split(
                                             '-',
                                           );
-                                          context.read<LanguageBloc>().add(
+                                          getIt<LanguageBloc>().add(
                                             LanguageEvent.changeLanguage(
                                               languageCode: parts[0],
                                               countryCode: parts.length > 1

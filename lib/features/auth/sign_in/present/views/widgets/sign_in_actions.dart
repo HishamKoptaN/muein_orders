@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
+import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../../l10n/app_localizations.dart';
@@ -23,7 +24,7 @@ class SignInActions extends StatelessWidget {
               formzSubmissionStatus: formzSubmissionStatus,
               onPressed: () {
                 if (formzSubmissionStatus.isSuccess) {
-                  context.read<SignInBloc>().add(
+                  getIt<SignInBloc>().add(
                     const SignInEvent.signInWithCredentialsPressed(),
                   );
                 }

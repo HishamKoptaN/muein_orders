@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:formz/formz.dart';
 
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
@@ -63,7 +64,7 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                       hintText: 'المبلغ',
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
-                        context.read<FinancialBloc>().add(
+                        getIt<FinancialBloc>().add(
                           FinancialEvent.updateData(
                             createExpenseReqEntity:
                                 createExpenseReqEntity?.copyWith(
@@ -82,7 +83,7 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                       hintText: 'الملاحظات',
                       keyboardType: TextInputType.text,
                       onChanged: (value) {
-                        context.read<FinancialBloc>().add(
+                        getIt<FinancialBloc>().add(
                           FinancialEvent.updateData(
                             createExpenseReqEntity:
                                 createExpenseReqEntity?.copyWith(
@@ -100,7 +101,7 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                       key: const Key('button'),
                       text: t.add,
                       onPressed: () {
-                        // context.read<FinancialBloc>().add(
+                        // getItFinancialBloc>().add(
                         //   FinancialEvent.updateData(
                         //     createExpenseReqEntity:
                         //         createExpenseReqEntity?.copyWith(
@@ -116,7 +117,7 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                         //   ),
                         // );
                         if (formzSubmissionStatus?.isSuccess == true) {
-                          context.read<FinancialBloc>().add(
+                          getIt<FinancialBloc>().add(
                             const FinancialEvent.create(),
                           );
                         }

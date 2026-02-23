@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -29,7 +30,7 @@ class _OrderDocsViewState extends State<OrderDocsView> {
 
   void _onTabSelected(int index) {
     setState(() => selectedTab = index);
-    context.read<OrdersBloc>().add(
+    getIt<OrdersBloc>().add(
       OrdersEvent.getOrders(
         subCategoryId: widget.stat.id ?? 1,
         loadMore: false,
@@ -41,7 +42,7 @@ class _OrderDocsViewState extends State<OrderDocsView> {
   @override
   void initState() {
     super.initState();
-    context.read<OrdersBloc>().add(
+    getIt<OrdersBloc>().add(
       OrdersEvent.getOrders(
         subCategoryId: widget.stat.subCategory?.id ?? 1,
         loadMore: false,
@@ -54,10 +55,10 @@ class _OrderDocsViewState extends State<OrderDocsView> {
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 100) {
-      context.read<OrdersBloc>().state.whenOrNull(
+      getIt<OrdersBloc>().state.whenOrNull(
         loaded: (clients, hasMore) {
           if (hasMore == true) {
-            context.read<OrdersBloc>().add(
+            getIt<OrdersBloc>().add(
               OrdersEvent.getOrders(
                 subCategoryId: widget.stat.subCategory?.id ?? 0,
                 loadMore: true,

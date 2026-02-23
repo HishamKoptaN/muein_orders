@@ -1,10 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-
 import '../../../data/datasources/local/drift/cached_docs_table.dart';
-
 enum AddDocWidgetType { image, video }
 
 class AddFileWidget extends StatefulWidget {
@@ -57,28 +54,35 @@ class _AddFileWidgetState extends State<AddFileWidget> {
     if (widget.initialValue?.isNotEmpty == true) {
       final file = File(widget.initialValue!);
       if (file.existsSync()) {
-        if (file.path.toLowerCase().endsWith('.mp4') ||
-            file.path.toLowerCase().endsWith('.mov')) {
+        final fileExtension = file.path.toLowerCase().split('.').last;
+        final isVideoFile = [
+          'mp4',
+          'mov',
+          'avi',
+          'mkv',
+          'wmv',
+          'flv',
+          'webm',
+        ].contains(fileExtension);
+        if (isVideoFile) {
           _isVideo = true;
           try {
-            _videoController = VideoPlayerController.file(file)
-              ..initialize()
-                  .then((_) {
-                    if (mounted) {
-                      setState(() {
-                        // لا نحتاج إلى التكرار التلقائي لتجنب مشاكل الأداء
-                        // _videoController?.setLooping(true);
-                      });
-                    }
-                  })
-                  .catchError((error) {
-                    debugPrint('خطأ في تحميل الفيديو: $error');
-                    _isVideo = false;
-                    if (mounted) setState(() {});
-                  });
-          } catch (e) {
-            debugPrint('خطأ في إنشاء متحكم الفيديو: $e');
+            await Future.delayed(const Duration(milliseconds: 100));
+            _videoController = VideoPlayerController.file(file);
+            await _videoController!.initialize();
+            if (_videoController!.value.size.width > 720) {
+              await _videoController!.setVolume(
+                0,
+              ); 
+            }
+            if (mounted) {
+              setState(() {});
+            }
+          } catch (error) {
+            debugPrint('خطأ في تحميل الفيديو: $error');
             _isVideo = false;
+            _disposeVideoController();
+            if (mounted) setState(() {});
           }
         } else {
           _isVideo = false;
@@ -98,7 +102,6 @@ class _AddFileWidgetState extends State<AddFileWidget> {
     _disposeVideoController();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     final hasPreview = widget.initialValue?.isNotEmpty == true;
@@ -180,7 +183,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
               width: 34,
               height: 34,
             ),
-      
+
           if (widget.addDocWidgetType == AddDocWidgetType.image)
             const Icon(
               Icons.add_photo_alternate_outlined,
@@ -208,9 +211,13 @@ class _AddFileWidgetState extends State<AddFileWidget> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            AspectRatio(
-              aspectRatio: _videoController!.value.aspectRatio,
-              child: VideoPlayer(_videoController!),
+            FittedBox(
+              fit: BoxFit.cover,
+              child: SizedBox(
+                width: _videoController!.value.size.width,
+                height: _videoController!.value.size.height,
+                child: VideoPlayer(_videoController!),
+              ),
             ),
             Center(
               child: IconButton(
@@ -241,6 +248,8 @@ class _AddFileWidgetState extends State<AddFileWidget> {
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
+          cacheWidth: 720,
+          cacheHeight: 1280,
         ),
       );
     }

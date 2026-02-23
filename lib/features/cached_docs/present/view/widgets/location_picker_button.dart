@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../data/datasources/local/drift/cached_docs_table.dart';
 import '../../../domain/entities/create_cached_doc_entity.dart';
@@ -70,7 +71,7 @@ class LocationPickerButton extends StatelessWidget {
             if (result != null) {
               final lat = result.latitude.toString();
               final lng = result.longitude.toString();
-              context.read<CachedDocBloc>().add(
+              getIt<CachedDocBloc>().add(
                 CachedDocEvent.updateData(
                   createCachedDoc: loaded.createCachedDoc.copyWith(
                     location: LocationEntity(

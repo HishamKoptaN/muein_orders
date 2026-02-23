@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../docs/data/models/docs_res_model.dart';
+
 part 'stat_model.freezed.dart';
 part 'stat_model.g.dart';
 
@@ -10,6 +12,7 @@ abstract class StatModel with _$StatModel {
     @JsonKey(name: 'id') int? id,
     @JsonKey(name: 'docs_count') int? docsCount,
     @JsonKey(name: 'sub_category') SubCategoryModel? subCategory,
+    @JsonKey(name: 'doc') DocModel? doc,
   }) = _StatModel;
 
   factory StatModel.fromJson(Map<String, Object?> json) =>

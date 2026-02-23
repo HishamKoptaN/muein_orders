@@ -27,6 +27,8 @@ android {
         versionName = "1.0"
     }
     buildTypes {
+       debug {
+        }
         release {
             signingConfig = signingConfigs.getByName("debug")
             isMinifyEnabled = false
@@ -37,19 +39,18 @@ android {
             )
         }
     }
-    flavorDimensions += "default"
+    flavorDimensions += "env"
     productFlavors {
-      productFlavors {
-              create("dev") {
-                  dimension = "default"
+      create("dev") {
+                  dimension = "env"
                   applicationIdSuffix = ".dev"
+                  versionNameSuffix = "-dev"
                   resValue("string", "app_name", "Muein Orders Dev")
               }
               create("prod") {
-                  dimension = "default"
+                  dimension = "env"
                   resValue("string", "app_name", "Muein Orders")
               }
-          }
       }
 }
 

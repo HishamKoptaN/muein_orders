@@ -1,6 +1,5 @@
 import 'dart:async';
 
-/// StreamController مع throttling لتقليل عدد مرات إعادة البناء
 class ThrottledStreamController<T> {
   final Duration throttleDuration;
   Timer? _throttleTimer;
@@ -30,7 +29,6 @@ class ThrottledStreamController<T> {
   }
 }
 
-/// دالة مساعدة لإنشاء Stream مع throttling
 Stream<T> createThrottledStream<T>(
   Stream<T> source, {
   Duration throttleDuration = const Duration(milliseconds: 500),

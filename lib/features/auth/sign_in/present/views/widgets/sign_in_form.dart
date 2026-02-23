@@ -6,6 +6,7 @@ import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:form_inputs/form_inputs/password_input.dart';
 import 'package:formz/formz.dart';
 
+import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../../l10n/app_localizations.dart';
@@ -38,7 +39,7 @@ class SignInForm extends StatelessWidget {
               initialValue: email.value,
               hintText: t.emailHint,
               keyboardType: TextInputType.emailAddress,
-              onChanged: (value) => context.read<SignInBloc>().add(
+              onChanged: (value) => getIt<SignInBloc>().add(
                 SignInEvent.dataChanged(email: EmailInput.dirty(value)),
               ),
             ),
@@ -50,14 +51,14 @@ class SignInForm extends StatelessWidget {
               isPassword: true,
               obscureText: obscurePassword.value ?? true,
               showPasswordToggle: true,
-              onToggleObscure: () => context.read<SignInBloc>().add(
+              onToggleObscure: () => getIt<SignInBloc>().add(
                 SignInEvent.dataChanged(
                   obscurePassword: GenericFormzInput.dirty(
                     obscurePassword.value ?? true,
                   ),
                 ),
               ),
-              onChanged: (v) => context.read<SignInBloc>().add(
+              onChanged: (v) => getIt<SignInBloc>().add(
                 SignInEvent.dataChanged(password: PasswordInput.dirty(v)),
               ),
               suffixIcon: IconButton(
@@ -69,7 +70,7 @@ class SignInForm extends StatelessWidget {
                   size: 24.sp,
                 ),
                 onPressed: () {
-                  context.read<SignInBloc>().add(
+                  getIt<SignInBloc>().add(
                     SignInEvent.dataChanged(
                       obscurePassword: GenericFormzInput.dirty(
                         obscurePassword.value ?? true,

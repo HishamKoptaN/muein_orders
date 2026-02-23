@@ -5,6 +5,7 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:form_inputs/form_inputs/email_input.dart';
 import 'package:formz/formz.dart';
 
+import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
@@ -53,7 +54,7 @@ class ForgotPassView extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         labelText: t.emailHint,
                         onChanged: (value) {
-                          context.read<ForgotPassBloc>().add(
+                          getIt<ForgotPassBloc>().add(
                             ForgotPassEvent.dataChanged(
                               email: EmailInput.dirty(value),
                             ),
@@ -101,7 +102,7 @@ class ForgotPassView extends StatelessWidget {
                         formzSubmissionStatus: formzSubmissionStatus,
                         onPressed: () {
                           if (formzSubmissionStatus.isSuccess) {
-                            context.read<ForgotPassBloc>().add(
+                            getIt<ForgotPassBloc>().add(
                               const ForgotPassEvent.sendPassResetEmail(),
                             );
                           }
@@ -163,7 +164,7 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
 
     final testEmail = testEmails[0];
 
-    context.read<ForgotPassBloc>()
+    getIt<ForgotPassBloc>()
       ..add(ForgotPassEvent.dataChanged(email: EmailInput.dirty(testEmail)))
       ..add(const ForgotPassEvent.sendPassResetEmail());
 

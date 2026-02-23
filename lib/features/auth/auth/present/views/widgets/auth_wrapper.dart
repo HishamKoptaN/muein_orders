@@ -31,7 +31,7 @@
 //                   const SizedBox(height: 16),
 //                   ElevatedButton(
 //                     onPressed: () {
-//                       context.read<AuthBloc>().add(const AuthEvent.check());
+//                       conte  xt.read<AuthBloc>().add(const AuthEvent.check());
 //                     },
 //                     child: const Text('Retry'),
 //                   ),

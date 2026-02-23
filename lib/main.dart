@@ -36,12 +36,10 @@ Future<void> main() async {
     intl.Intl.defaultLocale = 'en';
     FlutterNativeSplash.remove();
     if (kDebugMode) {
-      const String? flavor = String.fromEnvironment('FLUTTER_APP_FLAVOR');
-      print('Current Flavor: $flavor');
       Bloc.observer = AppBlocObserver();
       await SharedPrefHelper.setSecuredString(
         key: SharedPrefKeys.jwtToken,
-        value: '3|vhEJ96yP3OqTHAmbrtEJqZJOH2qfpMsRV3GkQ7yH399f99df',
+        value: '31|QMmDNPE3tTz5HOBgBlIFW6J60JoqXFBn72L1Us7L4f4129b5',
       );
     }
     runApp(const MueinOrdersApp());

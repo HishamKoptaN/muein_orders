@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
+import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../../l10n/app_localizations.dart';
@@ -22,7 +23,7 @@ class SignUpActions extends StatelessWidget {
             key: const Key('signUp_button'),
             onPressed: () {
               if (formzSubmissionStatus.isSuccess) {
-                context.read<SignUpBloc>().add(const SignUpEvent.signUp());
+               getIt<SignUpBloc>().add(const SignUpEvent.signUp());
               }
             },
             text: t.registerAnAccount,

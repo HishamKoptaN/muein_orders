@@ -27,35 +27,30 @@ class AppRouter {
       navigatorKey: GlobalVariable.navState,
       debugLogDiagnostics: true,
       redirect: (context, state) {
-        final String location = state.matchedLocation;
-        final bool isGuestRoute = AppRouterRedirect.authenticatedOnly.any(
-          location.startsWith,
-        );
-        final bool isAuthRoute = AppRouterRedirect.public.any(
-          location.startsWith,
+        final String currentLocation = state.matchedLocation.replaceFirst(
+          '/',
+          '',
         );
         return getIt<AuthBloc>().state.maybeWhen(
           authenticated: () {
-            if (isGuestRoute || location == '/${AuthView.routeName}') {
+            if (AppRouterRedirect.public.contains(currentLocation)) {
               return '/${HomeView.routeName}';
-              // return '/${OrderDocsView.routeName}';
             }
             return null;
           },
           unauthenticated: () {
-            if (isAuthRoute) return '/${SignInView.routeName}';
-            if (location == '/${AuthView.routeName}') {
-              return '/${SignInView.routeName}';
+            if (AppRouterRedirect.public.any(
+              state.matchedLocation.startsWith,
+            )) {
+              return null;
             }
-            return null;
+            return '/${SignInView.routeName}';
           },
+          loading: () {
+            return '/${AuthView.routeName}';
+          },
+          failure: (_) => '/${SignInView.routeName}',
           orElse: () => null,
-        );
-      },
-      errorBuilder: (context, state) {
-        return ErrorPageBuilder.build(
-          context,
-          message: state.error?.toString(),
         );
       },
     );

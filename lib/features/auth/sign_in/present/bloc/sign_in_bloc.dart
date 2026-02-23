@@ -1,6 +1,5 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:form_inputs/form_inputs/email_input.dart';
 import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:form_inputs/form_inputs/password_input.dart' show PasswordInput;
@@ -49,11 +48,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             email: _email!.value,
             password: _password!.value,
           );
-          result.when(
-            success: (data) {
+          await result.when(
+            success: (data) async {
+              debugPrint('🔥 SignInBloc: Sending emitAuthenticated event');
               getIt<AuthBloc>().add(const AuthEvent.emitAuthenticated());
-              Future.delayed(const Duration(seconds: 3));
-              emit(const SignInState.success());
+              // انتظر قليلاً للسماح لـ AuthBloc بتغيير حالته
+              await Future.delayed(const Duration(milliseconds: 100));
               _emitCustomLoaded(emit: emit);
             },
             failure: (error) {

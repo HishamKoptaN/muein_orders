@@ -81,7 +81,7 @@ class _ChangePassViewState extends State<ChangePassView> {
                           hintText: 'كلمة المرور الجديدة',
                           obscureText: true,
                           onChanged: (v) {
-                            context.read<ChangePassBloc>().add(
+                            getIt<ChangePassBloc>().add(
                               ChangePassEvent.dataChanged(
                                 password: PasswordInput.dirty(v),
                               ),
@@ -93,7 +93,7 @@ class _ChangePassViewState extends State<ChangePassView> {
                           hintText: 'تأكيد كلمة المرور الجديدة',
                           obscureText: true,
                           onChanged: (v) {
-                            context.read<ChangePassBloc>().add(
+                            getIt<ChangePassBloc>().add(
                               ChangePassEvent.dataChanged(
                                 confirmPassword: PasswordInput.dirty(v),
                               ),
@@ -106,7 +106,7 @@ class _ChangePassViewState extends State<ChangePassView> {
                           formzSubmissionStatus: formzSubmissionStatus,
                           onPressed: () {
                             if (formzSubmissionStatus.isSuccess) {
-                              context.read<ChangePassBloc>().add(
+                              getIt<ChangePassBloc>().add(
                                 const ChangePassEvent.update(),
                               );
                             }
@@ -213,7 +213,7 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
 
     final testEmail = testEmails[0];
 
-    context.read<ChangePassBloc>()
+    getIt<ChangePassBloc>()
       ..add(
         ChangePassEvent.dataChanged(password: PasswordInput.dirty(testEmail)),
       )

@@ -12,6 +12,9 @@ _StatModel _$StatModelFromJson(Map<String, dynamic> json) => _StatModel(
   subCategory: json['sub_category'] == null
       ? null
       : SubCategoryModel.fromJson(json['sub_category'] as Map<String, dynamic>),
+  doc: json['doc'] == null
+      ? null
+      : DocModel.fromJson(json['doc'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$StatModelToJson(_StatModel instance) =>
@@ -19,6 +22,7 @@ Map<String, dynamic> _$StatModelToJson(_StatModel instance) =>
       'id': ?instance.id,
       'docs_count': ?instance.docsCount,
       'sub_category': ?instance.subCategory?.toJson(),
+      'doc': ?instance.doc?.toJson(),
     };
 
 _SubCategoryModel _$SubCategoryModelFromJson(Map<String, dynamic> json) =>

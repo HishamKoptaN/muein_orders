@@ -23,7 +23,7 @@ class AuthRepoImpl implements AuthRepo {
   Future<ApiResult<bool>> check() async {
     try {
       await _api.check();
-      return const ApiResult.success(data: true);
+      return ApiResult.success(data: true);
     } catch (e, _) {
       return ApiResult.failure(
         apiErrorModel: ApiErrorModel(
@@ -59,8 +59,9 @@ class AuthRepoImpl implements AuthRepo {
         throw Exception('No Firebase user');
       }
       final idToken = await user.getIdToken(true);
-      final res =
-          await _api.exchangeIdTokenForJwt(refreshData: {'id_token': idToken});
+      final res = await _api.exchangeIdTokenForJwt(
+        refreshData: {'id_token': idToken},
+      );
       return ApiResult.success(data: res);
     } catch (e) {
       return ApiResult.failure(
@@ -83,11 +84,10 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<ApiResult<void>> signOut() async {
     try {
+      await _api.logout();
       await _fa.signOut();
       await SharedPrefHelper.clearAllSecuredData();
-      await _api.logout();
       await SharedPrefHelper.clearAllData();
-      await SharedPrefHelper.clearAllSecuredData();
       return const ApiResult.success(data: null);
     } catch (e) {
       return ApiResult.failure(

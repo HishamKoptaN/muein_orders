@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
+import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
@@ -174,7 +175,7 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
 
   void _runLoginScenario(BuildContext context) {
     debugPrint('🚀 Running Debug AutoFill Login with BLoC...');
-    context.read<SignUpBloc>().add(
+    getIt<SignUpBloc>().add(
       const SignUpEvent.dataChanged(
         email: EmailInput.dirty('heshamkoptan@gmail.com'),
         name: GenericFormzInput.dirty('hisham'),
