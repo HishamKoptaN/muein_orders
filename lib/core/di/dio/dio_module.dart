@@ -30,7 +30,12 @@ abstract class DioModule {
     dio.interceptors.addAll([
       authInterceptor,
       authInterceptor,
-      LogInterceptor(responseBody: true),
+      LogInterceptor(
+        responseBody: true,
+        logPrint: (obj) {
+          debugPrint(obj.toString());
+        },
+      ),
       PrettyDioLogger(
         requestBody: true,
         requestHeader: true,
@@ -38,6 +43,9 @@ abstract class DioModule {
         responseBody: true,
         error: true,
         compact: true,
+        logPrint: (obj) {
+          debugPrint(obj.toString());
+        },
       ),
     ]);
     if (kDebugMode) {
@@ -70,6 +78,9 @@ abstract class DioModule {
         responseBody: true,
         error: true,
         compact: true,
+        logPrint: (obj) {
+          debugPrint(obj.toString());
+        },
       ),
     ]);
     return dio;
@@ -93,6 +104,9 @@ abstract class DioModule {
         responseBody: true,
         error: true,
         compact: true,
+        logPrint: (obj) {
+          debugPrint(obj.toString());
+        },
       ),
     ]);
     return dio;

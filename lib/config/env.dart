@@ -4,4 +4,5 @@ abstract class Env {
   FirebaseOptions get firebaseOptions;
   String get baseUrl;
   String get authBaseUrl;
+  String get envName;
 }

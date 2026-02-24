@@ -30,6 +30,7 @@ jobs:
         run: |
           flutter build apk --release \
           --flavor prod \
+          --dart-define=FLUTTER_ENV=prod \
           --target-platform android-arm \
           --no-tree-shake-icons \
           -t lib/main.dart 

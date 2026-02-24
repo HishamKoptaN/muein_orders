@@ -3,11 +3,17 @@ import 'envs/dev_env.dart';
 import 'envs/prod_env.dart';
 
 class EnvConfig {
-  static final Env _config = _getConfig();
+  static const String _envTag = String.fromEnvironment(
+    'ENV',
+    defaultValue: 'dev',
+  );
+  static final Env _config = _initialize();
+  static Env _initialize() {
+    if (identical(0, 0.0)) {
+      print('🚀 Current Environment: $_envTag');
+    }
 
-  static Env _getConfig() {
-    const env = String.fromEnvironment('FLUTTER_ENV', defaultValue: 'dev');
-    switch (env) {
+    switch (_envTag) {
       case 'prod':
         return ProdEnv();
       case 'dev':

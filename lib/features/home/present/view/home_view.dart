@@ -17,17 +17,28 @@ import '../bloc/home_bloc.dart';
 import 'widgets/order_cared_widget.dart';
 
 class HomeView extends StatefulWidget {
-  final Widget? child;
-  const HomeView({super.key, this.child});
+  const HomeView({super.key});
   static const String routeName = 'home';
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
+  bool _initialized = false;
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_initialized) {
+        _initializeData();
+        _initialized = true;
+      }
+    });
+  }
+
+  void _initializeData() {
+    debugPrint('🏠 Initializing Home data...');
     getIt<HomeBloc>().add(const HomeEvent.getSummary());
     getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
   }
@@ -71,40 +82,31 @@ class _HomeViewState extends State<HomeView> {
         ],
       ),
       drawer: const CustomSideDrawer(),
-      body:
-          widget.child ??
-          Column(
-            children: [
-              const SizedBox(height: 16),
-              Expanded(
-                child: BlocBuilder<HomeBloc, HomeState>(
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      loaded: (stats) {
-                        return GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 1,
-                                mainAxisSpacing: 16,
-                                crossAxisSpacing: 16,
-                                childAspectRatio: 1.5,
-                              ),
-                          padding: const EdgeInsets.all(8),
-                          itemCount: stats.length,
-                          itemBuilder: (context, index) {
-                            final stat = stats[index];
-                            return OrderCard(stat: stat);
-                          },
-                        );
-                      },
-                      orElse: () => const SizedBox(),
-                    );
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            loaded: (stats) {
+              return Padding(
+                padding: const EdgeInsets.all(8),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: 1.5,
+                  ),
+                  itemCount: stats.length,
+                  itemBuilder: (context, index) {
+                    final stat = stats[index];
+                    return OrderCard(stat: stat);
                   },
                 ),
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
+              );
+            },
+            orElse: () => const SizedBox(),
+          );
+        },
+      ),
     );
   }
 }

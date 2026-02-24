@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,6 @@ import 'package:formz/formz.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_utils/src/extensions/export.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';

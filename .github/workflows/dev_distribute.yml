@@ -28,10 +28,12 @@ jobs:
         run: |
           flutter build apk --release \
           --flavor dev \
+          --dart-define=ENV=dev \
           --target-platform android-arm,android-arm64 \
           --split-per-abi \
-          --no-tree-shake-icons \
           -t lib/main.dart
+
+          flutter build apk --release --flavor dev --dart-define=ENV=dev -t lib/main.dart
       - name: Upload v7a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
@@ -39,6 +41,7 @@ jobs:
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: "armeabi-v7a"
           file: build/app/outputs/flutter-apk/app-armeabi-v7a-dev-release.apk
+          releaseNotes: "armeabi-v7a"
       - name: Upload v8a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
@@ -46,3 +49,12 @@ jobs:
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: "arm64-v8a"
           file: build/app/outputs/flutter-apk/app-arm64-v8a-dev-release.apk
+          releaseNotes: "arm64-v8a"
+      - name: Upload Universal APK to Firebase
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          groups: "apk"
+          file: build/app/outputs/flutter-apk/app-dev-release.apk
+          releaseNotes: "apk"
