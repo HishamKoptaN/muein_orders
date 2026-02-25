@@ -78,6 +78,7 @@ Widget docWidget({
               ),
               Gap(40.w),
               Flexible(
+                flex: 2,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,7 +113,11 @@ Widget docWidget({
                               : Colors.grey[700],
                           fontWeight: FontWeight.w700,
                           fontSize: 12.sp,
+
+                          overflow: TextOverflow.ellipsis,
                         ),
+                        softWrap: true,
+                        maxLines: 2,
                       ),
                       icon: Icon(
                         cachedDoc?.uploadStatus != FileUploadStatus.init

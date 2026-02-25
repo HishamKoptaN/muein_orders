@@ -89,7 +89,8 @@ class RouteConfig {
         builder: (context, state) {
           final args = state.extra as Map<String, dynamic>;
           return AddCachedDocView(
-            cachedDoc: args['cachedDoc'] as CachedDocEntity,
+            cachedDoc:
+                args['cachedDoc'] as CachedDocEntity,
             subCategoryId: args['subCategoryId'] as int,
           );
         },

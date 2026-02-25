@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../core/widgets/translated_text.dart';
 import '../../../data/datasources/local/drift/cached_docs_table.dart';
+
 enum AddDocWidgetType { image, video }
 
 class AddFileWidget extends StatefulWidget {
@@ -74,9 +76,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
             _videoController = VideoPlayerController.file(file);
             await _videoController!.initialize();
             if (_videoController!.value.size.width > 720) {
-              await _videoController!.setVolume(
-                0,
-              ); 
+              await _videoController!.setVolume(0);
             }
             if (mounted) {
               setState(() {});
@@ -105,19 +105,12 @@ class _AddFileWidgetState extends State<AddFileWidget> {
     _disposeVideoController();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final hasPreview = widget.initialValue?.isNotEmpty == true;
     return Column(
       children: [
-        // TrText(
-        //   widget.path!,
-        //   style: const TextStyle(
-        //     color: Colors.red,
-        //     fontSize: 12,
-        //     fontFamily: 'Almarai',
-        //   ),
-        // ),
         Stack(
           children: [
             GestureDetector(
@@ -148,11 +141,11 @@ class _AddFileWidgetState extends State<AddFileWidget> {
                 child: hasPreview ? _buildPreview() : _buildPlaceholder(),
               ),
             ),
-
             if (widget.path != null && widget.path!.isNotEmpty)
-              Positioned(
+              Positioned.directional(
+                textDirection: Directionality.of(context),
                 top: 8,
-                left: 8,
+                start: 8,
                 child: buildStatusIndicator(
                   docFileStatus: widget.docFileStatus,
                 ),
@@ -285,6 +278,8 @@ Widget buildStatusIndicator({required FileUploadStatus docFileStatus}) {
       break;
   }
   return Container(
+    // height: 20.w,
+    // width: 20.w,
     padding: const EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white.withValues(alpha: 0.9),
@@ -295,13 +290,13 @@ Widget buildStatusIndicator({required FileUploadStatus docFileStatus}) {
     ),
     child: isRotating
         ? buildRotatingIcon(icon, color)
-        : Icon(icon, color: color, size: 20),
+        : Icon(icon, color: color, size: 15.sp),
   );
 }
 
 Widget buildRotatingIcon(IconData icon, Color color) {
   return RotationTransition(
     turns: AlwaysStoppedAnimation(DateTime.now().millisecond / 1000),
-    child: Icon(icon, color: color, size: 20),
+    child: Icon(icon, color: color, size: 15.sp),
   );
 }

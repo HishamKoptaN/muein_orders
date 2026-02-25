@@ -7,9 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../domain/entities/create_cached_doc_entity.dart';
 import '../../bloc/cached_doc_bloc.dart';
-import '../../../../../core/widgets/translated_text.dart';
 
 class DebugAutoFillDoc extends StatefulWidget {
   final Widget child;
@@ -176,6 +176,7 @@ class DocsDebuge {
         CachedDocEvent.updateData(
           loaded: loadedState,
           createCachedDoc: restoredEntity,
+          subCategoryId: loadedState.subCategoryId ?? 1,
         ),
       );
 

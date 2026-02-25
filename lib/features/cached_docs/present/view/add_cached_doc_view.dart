@@ -10,7 +10,6 @@ import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
-import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/cached_doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
 import '../bloc/cached_doc_bloc.dart';
@@ -59,13 +58,13 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                 )
               : null,
         ),
+        subCategoryId: widget.subCategoryId,
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
     return CustomScaffold(
       appBar: const CustomAppBar(title: 'توثيق'),
       body: BlocConsumer<CachedDocBloc, CachedDocState>(
@@ -101,9 +100,10 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                           key: const Key('button'),
                           text: 'حفظ',
                           backgroundColor:
-                              state.createCachedDoc.hasChanged(
-                                original: widget.cachedDoc,
-                              )
+                              (state.createCachedDoc.hasChanged(
+                                    original: widget.cachedDoc,
+                                  ) &&
+                                  state.formzSubmissionStatus.isSuccess)
                               ? Colors.green
                               : Colors.grey,
                           onPressed: () {

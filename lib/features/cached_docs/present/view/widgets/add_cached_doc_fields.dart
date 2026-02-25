@@ -50,6 +50,7 @@ class AddDocFieldsWidget extends StatelessWidget {
               createCachedDoc: state.createCachedDoc.copyWith(
                 files: updatedList,
               ),
+              subCategoryId: subCategoryId,
             ),
           );
         }
@@ -87,10 +88,10 @@ class AddDocFieldsWidget extends StatelessWidget {
           AddFileWidget(
             key: const ValueKey('file_field'),
             initialValue: currentFiles[2].docFile?.path,
-            path: currentFiles[2].docFile?.path ?? '',
+            path: currentFiles[2].docFile?.path ?? 'اضف فيديو',
             addDocWidgetType: AddDocWidgetType.video,
             docFileStatus: currentFiles[2].docFileStatus,
-            onChanged: (_) => onFileSelected(2, true),
+            onChanged: (_) => onFileSelected(2, false),
             validator: (_) => currentFiles[2].file?.isNotValid ?? false
                 ? currentFiles[2].file?.errorMessage
                 : null,

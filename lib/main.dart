@@ -27,7 +27,6 @@ Future<void> main() async {
   }
   await AppInitializer.initialize();
   await configureDependencies(environment: EnvConfig.config.envName);
-  await Future.microtask(_initializeWorkManager);
   try {
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';
@@ -50,20 +49,6 @@ Future<void> main() async {
     );
   }
 }
-
-Future<void> _initializeWorkManager() async {
-  try {
-    final workManager = getIt<WorkManagerInitializer>();
-    await workManager.initialize();
-    await workManager.registerSystemUploadTask();
-    await Future.microtask(workManager.startPendingUploads);
-    debugPrint('✅ Work manager initialized');
-  } catch (e, st) {
-    debugPrint('⚠️ Work manager error: $e');
-    debugPrint(st.toString());
-  }
-}
-
 void _handleError({
   required Object error,
   required StackTrace stackTrace,

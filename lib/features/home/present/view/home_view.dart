@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:translator/translator.dart';
 
+import '../../../../core/background/workmanager_initializer.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/extensions/locale_extensions.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
@@ -28,12 +29,20 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
+    Future.microtask(_initializeWorkManager);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!_initialized) {
         _initializeData();
         _initialized = true;
       }
     });
+  }
+
+  Future<void> _initializeWorkManager() async {
+    final workManager = getIt<WorkManagerInitializer>();
+    await workManager.initialize();
+    await workManager.registerSystemUploadTask();
+    await Future.microtask(workManager.startPendingUploads);
   }
 
   void _initializeData() {

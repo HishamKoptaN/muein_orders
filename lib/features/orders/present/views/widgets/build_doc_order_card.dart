@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/build_context_extension.dart';
 import '../../../../../core/widgets/translated_text.dart';
 import '../../../../docs/domain/entities/docs_res_entity.dart';
 import '../../../../home/domain/entities/order_type_res_entity.dart';

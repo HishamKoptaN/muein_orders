@@ -58,7 +58,6 @@ abstract class CreateCachedDocEntity with _$CreateCachedDocEntity {
     );
   }
   CachedDocsTableCompanion toCachedDocsTableCompanion() {
-    // نقوم أولاً بتحويل القائمة وتصفيتها
     final convertedFiles = files
         .map((entity) {
           return entity.docFile ??
