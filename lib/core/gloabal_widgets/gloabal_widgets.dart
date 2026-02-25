@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/translated_text.dart';
+
 class MyText extends StatelessWidget {
   const MyText({
     super.key,
@@ -13,9 +15,8 @@ class MyText extends StatelessWidget {
   final Color color;
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return TrText(
       fieldName,
-      maxLines: 2,
       style: TextStyle(
           fontSize: fontSize, fontWeight: FontWeight.bold, color: color,
           ),

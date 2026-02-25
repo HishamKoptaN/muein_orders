@@ -29,7 +29,7 @@
 //         child: Column(
 //           crossAxisAlignment: CrossAxisAlignment.start,
 //           children: [
-//             // Text(
+//             // TrText(
 //             //   t.uploadStatistics ?? 'إحصائيات الرفع',
 //             //   style: Theme.of(context).textTheme.titleLarge,
 //             // ),
@@ -93,14 +93,14 @@
 //         children: [
 //           Icon(icon, color: color, size: 24.w),
 //           SizedBox(height: 4.h),
-//           Text(
+//           TrText(
 //             value,
 //             style: Theme.of(context).textTheme.titleLarge?.copyWith(
 //                   color: color,
 //                   fontWeight: FontWeight.bold,
 //                 ),
 //           ),
-//           Text(
+//           TrText(
 //             label,
 //             style: Theme.of(context).textTheme.bodySmall,
 //             textAlign: TextAlign.center,

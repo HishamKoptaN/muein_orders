@@ -8,6 +8,7 @@ import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
+import '../../../../core/widgets/translated_text.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../home/present/view/home_view.dart';
 import '../bloc/instructions_bloc.dart';
@@ -53,8 +54,8 @@ class _InstructionsViewState extends State<InstructionsView> {
               backgroundColor: Colors.white,
               foregroundColor: Colors.black,
               iconTheme: const IconThemeData(color: Colors.black),
-              title: Text(
-                t.instructions,
+              title: TrText(
+                'التعليمات',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 25.sp,
@@ -113,7 +114,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                                 ),
                                 Gap(32.h),
                                 // Title
-                                Text(
+                                TrText(
                                   t.byKey(page.titleKey),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -127,7 +128,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                                 ),
                                 Gap(16.h),
                                 // Description
-                                Text(
+                                TrText(
                                   t.byKey(page.descriptionKey),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -174,8 +175,8 @@ class _InstructionsViewState extends State<InstructionsView> {
                                     routeName: HomeView.routeName,
                                   );
                                 },
-                                child: Text(
-                                  t.skip,
+                                child: TrText(
+                                  'تخطي',
                                   style: TextStyle(
                                     color: AppColors.primary,
                                     fontSize: 16,
@@ -199,7 +200,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                             );
                           }
                         },
-                        text: isLastPage ? t.start : t.next,
+                        text: isLastPage ? 'ابدأ' : 'التالي',
                       ),
                       Gap(24.h),
                     ],
@@ -210,9 +211,12 @@ class _InstructionsViewState extends State<InstructionsView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(errorMessage),
+                      TrText(errorMessage),
                       const SizedBox(height: 16),
-                      ElevatedButton(onPressed: () {}, child: Text(t.retry)),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const TrText('إعادة المحاولة'),
+                      ),
                     ],
                   ),
                 ),
@@ -230,21 +234,21 @@ extension LocalizationHelper on AppLocalizations {
   String byKey(String key) {
     switch (key) {
       case 'welcome':
-        return welcome;
+        return 'مرحبا';
       case 'we_are_happy_to_have_you_join_our_store':
-        return we_are_happy_to_have_you_join_our_store;
+        return 'نحن سعداء بانضمامك لمتجرنا';
       case 'get_to_know_the_application_interface':
-        return get_to_know_the_application_interface;
+        return 'تعرف على واجهة التطبيق';
       case 'here_you_will_find_tasks_requests_alerts_and_filters':
-        return here_you_will_find_tasks_requests_alerts_and_filters;
+        return 'ستجد هنا المهام والطلبات والتنبيهات والفلاتر';
       case 'documentation_with_photos_and_videos':
-        return documentation_with_photos_and_videos;
+        return 'توثيق مع صور ومقاطع فيديو';
       case 'make_sure_the_images_are_clear_and_correct':
-        return make_sure_the_images_are_clear_and_the_number_of_copies_of_the_quran_is_correct_before_sending;
+        return 'تأكد من أن الصور واضحة والعدد الصحيح من النسخ من القرآن قبل الإرسال';
       case 'doNotDeleteTheDocumentationFiles':
-        return doNotDeleteTheDocumentationFiles;
+        return 'لا تقم بحذف ملفات التوثيق المحفوظة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة';
       case 'doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration':
-        return doNotDeleteTheLocallyStoredPhotoAndVideoFilesUsedToDocumentAnApplicationUntilTheyAreApprovedByTheAdministration;
+        return 'لا تقم بحذف ملفات التوثيق المحفوظة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة';
       default:
         return key;
     }

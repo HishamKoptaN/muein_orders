@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
+
 import '../../../../../core/debug_widget.dart';
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/widgets/feedback/app_snackbar.dart';
-import '../../../../../core/widgets/loading/custom_circular_progress.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../bloc/sign_in_bloc.dart';
-import 'widgets/sign_in_background.dart';
 import 'widgets/sign_in_body.dart';
 
 class SignInView extends StatelessWidget {
@@ -31,20 +30,24 @@ class SignInView extends StatelessWidget {
       },
       child: BlocConsumer<SignInBloc, SignInState>(
         listener: (context, state) async {
-          await state.whenOrNull(
-            failure: (failure) {
-              context.showErrorSnackBar(title: 'خطأ', message: failure);
+          await state.maybeMap(
+            success: (s) async {},
+            failure: (f) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: TrText(f.errorMessage),
+                  backgroundColor: Colors.red,
+                ),
+              );
             },
+            orElse: () {},
           );
         },
         builder: (context, state) {
-          state.whenOrNull(
-            loading: () => const Center(child: CustomCircularProgress()),
-          );
           return const Scaffold(
             backgroundColor: Color(0xFF003A46),
             resizeToAvoidBottomInset: false,
-            body: SignInBackground(child: SignInBody()),
+            body: SignInBody(),
           );
         },
       ),

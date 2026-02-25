@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../../core/build_context_extension.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/utils/stream_utils.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../../cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../../cached_docs/present/view/add_cached_doc_view.dart';
@@ -30,20 +30,21 @@ class OrderCard extends StatelessWidget {
         final cachedDoc = snapshot.data;
         return GestureDetector(
           onTap: () {
-            if (stat.subCategory?.id != 4) {
-              NavigationService.push(
-                context,
-                OrderDocsView.routeName,
-                extra: stat.id,
-              );
-            } else if (stat.subCategory?.id == 4) {
+            if (stat.subCategory?.id != 5) {
+              if (stat.docsCount != 0) {
+                NavigationService.pushNamed(
+                  context: context,
+                  routeName: OrderDocsView.routeName,
+                  extra: {'stat': stat},
+                );
+              }
+            } else if (stat.subCategory?.id == 5) {
               NavigationService.pushNamed(
                 context: context,
                 routeName: AddCachedDocView.routeName,
-                arguments: {
-                  'docId': stat.doc,
+                extra: {
                   'cachedDoc': cachedDoc?.copyWith(docId: stat.doc?.id ?? 0),
-                  'subCategory': stat.subCategory,
+                  'subCategoryId': stat.subCategory?.id,
                 },
               );
             }
@@ -56,7 +57,7 @@ class OrderCard extends StatelessWidget {
                   stat.subCategory?.image ?? '',
                   cacheKey: stat.subCategory?.image,
                 ),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
             child: Container(
@@ -86,40 +87,53 @@ class OrderCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          stat.subCategory?.name ?? '',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Almarai',
+                        Flexible(
+                          child: TrText(
+                            stat.subCategory?.name ?? '',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Almarai',
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              context.t.numberOfRequests,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Jost',
+                        Flexible(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                child: TrText(
+                                  'عدد الطلبات',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'Jost',
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                            ),
-                            Gap(5.w),
-                            Text(
-                              '(${stat.docsCount ?? ''})',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Jost',
+                              Gap(5.w),
+                              Flexible(
+                                child: TrText(
+                                  '(${stat.docsCount ?? ''})',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'Jost',
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),

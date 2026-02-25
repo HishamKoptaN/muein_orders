@@ -8,8 +8,10 @@ import 'package:gap/gap.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/gloabal_widgets/custom_scaffold.dart';
+import '../../../../../core/localization/auto_localizer.dart';
 import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../bloc/change_pass_bloc.dart';
 
@@ -38,7 +40,7 @@ class _ChangePassViewState extends State<ChangePassView> {
     return DebugAutoFill(
       child: CustomScaffold(
         appBar: AppBar(
-          title: const Text(
+          title: const TrText(
             'تغيير كلمة المرور',
             style: TextStyle(color: Colors.black),
           ),
@@ -56,12 +58,12 @@ class _ChangePassViewState extends State<ChangePassView> {
                   _passwordController.clear();
                   _confirmPasswordController.clear();
                   context.showSuccessSnackBar(
-                    title: t.success,
+                    title: 'نجاح',
                     message: 'تم تغيير كلمة المرور',
                   );
                 },
                 failure: (error) {
-                  context.showErrorSnackBar(title: t.error, message: error);
+                  context.showErrorSnackBar(title: 'خطأ', message: error);
                 },
               );
             },
@@ -144,28 +146,36 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = Localizations.localeOf(context).languageCode;
+
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xFFF8F8F8),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: const Color(0xFFF0EFEF)),
       ),
-      child: TextFormField(
-        controller: controller,
-        onChanged: onChanged,
-        obscureText: obscureText,
-        textAlign: TextAlign.right,
-        decoration: InputDecoration(
-          hintText: hintText,
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 18,
-          ),
-          border: InputBorder.none,
-          suffixIcon: suffixIcon != null
-              ? Icon(suffixIcon, color: Colors.grey)
-              : null,
-        ),
+      child: FutureBuilder(
+        future: AutoLocalizer.translate(hintText, lang),
+        initialData: hintText,
+        builder: (context, asyncSnapshot) {
+          return TextFormField(
+            controller: controller,
+            onChanged: onChanged,
+            obscureText: obscureText,
+            textAlign: TextAlign.right,
+            decoration: InputDecoration(
+              hintText: asyncSnapshot.data ?? '',
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 18,
+              ),
+              border: InputBorder.none,
+              suffixIcon: suffixIcon != null
+                  ? Icon(suffixIcon, color: Colors.grey)
+                  : null,
+            ),
+          );
+        },
       ),
     );
   }

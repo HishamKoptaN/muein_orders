@@ -4,7 +4,6 @@ import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../core/widgets/forms/auth_text_form_field.dart';
@@ -38,15 +37,14 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
           await state.whenOrNull(
             success: () {
               context.showSuccessSnackBar(
-                title: t.success,
-                message: 'تم اضافة العملية بنجاح',
+                title: 'نجاح',
+                message: 'تم اضافة العملية',
               );
-              NavigationService.goBack(context);
             },
             failure: (e) {
               context.showErrorSnackBar(
                 title: 'فشل',
-                message: 'فشل في اضافة العملية',
+                message: e?.message ?? '',
               );
             },
           );
@@ -99,7 +97,7 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                     const SizedBox(height: 15),
                     CustomBtnWidget(
                       key: const Key('button'),
-                      text: t.add,
+                      text: 'إضافة',
                       onPressed: () {
                         // getItFinancialBloc>().add(
                         //   FinancialEvent.updateData(

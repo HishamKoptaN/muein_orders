@@ -7,6 +7,7 @@ import '../../features/auth/auth/present/views/auth_view.dart';
 import '../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_views.dart';
+import '../../features/cached_docs/present/view/add_cached_doc_view.dart';
 import '../../features/home/present/view/home_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/orders/present/views/orders_view.dart';
@@ -34,7 +35,11 @@ class AppRouter {
         return getIt<AuthBloc>().state.maybeWhen(
           authenticated: () {
             if (AppRouterRedirect.public.contains(currentLocation)) {
-              return '/${HomeView.routeName}';
+              if (kReleaseMode) {
+                return '/${HomeView.routeName}';
+              } else {
+                return '/${HomeView.routeName}';
+              }
             }
             return null;
           },

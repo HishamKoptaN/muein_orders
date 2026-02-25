@@ -19,14 +19,9 @@ class CustomScaffold extends StatelessWidget {
       appBar: appBar,
       drawer: drawer,
       backgroundColor: backgroundColor ?? Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            right: 15,
-            left: 15,
-          ),
-          child: body,
-        ),
+      body: Padding(
+        padding: const EdgeInsets.only(right: 15, left: 15),
+        child: body,
       ),
     );
   }

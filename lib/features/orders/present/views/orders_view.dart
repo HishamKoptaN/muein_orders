@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
+import '../../../../core/widgets/translated_text.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../home/domain/entities/order_type_res_entity.dart';
 import '../bloc/orders_bloc.dart';
@@ -14,7 +15,6 @@ import 'widgets/orders_tabs .dart';
 class OrderDocsView extends StatefulWidget {
   StatEntity stat;
   OrderDocsView({super.key, required this.stat});
-
   static const String routeName = 'orders';
   @override
   State<OrderDocsView> createState() => _OrderDocsViewState();
@@ -75,7 +75,7 @@ class _OrderDocsViewState extends State<OrderDocsView> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     return CustomScaffold(
-      appBar: CustomAppBar(title: t.orders),
+      appBar: CustomAppBar(title: 'طلبات'),
       body: BlocBuilder<OrdersBloc, OrdersState>(
         builder: (context, state) {
           return Column(
@@ -87,8 +87,8 @@ class _OrderDocsViewState extends State<OrderDocsView> {
                   SizedBox(
                     width: 69,
                     height: 18,
-                    child: Text(
-                      '${t.orders} ( ${state.maybeWhen(loaded: (orders, hasMore) {
+                    child: TrText(
+                      '${'طلبات'} ( ${state.maybeWhen(loaded: (orders, hasMore) {
                         return orders?.length.toString() ?? '0';
                       }, orElse: () {
                         return '0';
@@ -109,7 +109,6 @@ class _OrderDocsViewState extends State<OrderDocsView> {
               OrderDocsWidget(
                 widget: widget,
                 selectedTab: selectedTab,
-                t: t,
                 scrollController: _scrollController,
               ),
             ],

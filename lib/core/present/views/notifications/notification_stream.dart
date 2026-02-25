@@ -20,7 +20,7 @@
 
 //         if (snapshot.hasError) {
 //           return Center(
-//             child: Text('خطأ في تحميل البيانات: ${snapshot.error}'),
+//             child: TrText('خطأ في تحميل البيانات: ${snapshot.error}'),
 //           );
 //         }
 
@@ -28,7 +28,7 @@
 
 //         if (docs.isEmpty) {
 //           return const Center(
-//             child: Text('لا توجد إشعارات حالياً'),
+//             child: TrText('لا توجد إشعارات حالياً'),
 //           );
 //         }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../widgets/translated_text.dart';
+
 class LoadingView extends StatelessWidget {
   const LoadingView({super.key});
 
@@ -40,7 +42,7 @@ class LoadingView extends StatelessWidget {
             SizedBox(height: 32.h),
 
             // نص التحميل
-            Text(
+            TrText(
               'جاري التحميل...',
               style: TextStyle(
                 fontSize: 18.sp,
@@ -67,7 +69,7 @@ class LoadingView extends StatelessWidget {
             SizedBox(height: 16.h),
 
             // نص إضافي اختياري
-            Text(
+            TrText(
               'الرجاء الانتظار قليلاً',
               style: TextStyle(
                 fontSize: 14.sp,

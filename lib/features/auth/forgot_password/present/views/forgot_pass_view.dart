@@ -11,6 +11,7 @@ import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../core/widgets/navigation/custom_app_bar.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../bloc/forgot_pass_bloc.dart';
 
@@ -24,18 +25,19 @@ class ForgotPassView extends StatelessWidget {
     return DebugAutoFill(
       child: CustomScaffold(
         backgroundColor: const Color(0xFF003A46),
-        appBar: CustomAppBar(title: t.forgotPassword),
+        appBar: const CustomAppBar(title: 'نسيت كلمة المرور'),
         body: BlocConsumer<ForgotPassBloc, ForgotPassState>(
           listener: (context, state) {
             state.whenOrNull(
               success: () {
                 context.showSuccessSnackBar(
-                  title: t.success,
-                  message: t.apPasswordResetLinkHasBeenSentToYourEmail,
+                  title: 'نجاح',
+                  message:
+                      'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
                 );
               },
               failure: (error) {
-                context.showErrorSnackBar(title: t.error, message: error);
+                context.showErrorSnackBar(title: 'خطأ', message: error);
               },
             );
           },
@@ -52,7 +54,7 @@ class ForgotPassView extends StatelessWidget {
                       CustomAuthTextFormField(
                         initialValue: email.value,
                         keyboardType: TextInputType.emailAddress,
-                        labelText: t.emailHint,
+                        labelText: 'البريد الإلكتروني',
                         onChanged: (value) {
                           getIt<ForgotPassBloc>().add(
                             ForgotPassEvent.dataChanged(
@@ -62,18 +64,18 @@ class ForgotPassView extends StatelessWidget {
                         },
                         validator: (val) {
                           if (val == null || val.isEmpty) {
-                            return t.required;
+                            return 'البريد الإلكتروني مطلوب';
                           }
                           if (!val.contains('@')) {
-                            return t.invalidEmail;
+                            return 'البريد الإلكتروني غير صحيح';
                           }
                           return null;
                         },
                       ),
-                      Row(
+                      const Row(
                         children: [
-                          const SizedBox(width: 10),
-                          const Text(
+                          SizedBox(width: 10),
+                          TrText(
                             '*',
                             style: TextStyle(
                               color: Colors.red,
@@ -81,9 +83,9 @@ class ForgotPassView extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
-                            t.aLinkWillBeSentToYouToResetYourPassword,
-                            style: const TextStyle(
+                          TrText(
+                            'سيتم إرسال رابط لإعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
+                            style: TextStyle(
                               fontFamily: 'Almarai',
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w400,
@@ -98,7 +100,7 @@ class ForgotPassView extends StatelessWidget {
                       ),
                       const SizedBox(height: 24),
                       CustomBtnWidget(
-                        text: t.send,
+                        text: 'إرسال',
                         formzSubmissionStatus: formzSubmissionStatus,
                         onPressed: () {
                           if (formzSubmissionStatus.isSuccess) {

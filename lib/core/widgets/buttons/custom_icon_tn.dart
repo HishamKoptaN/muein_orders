@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../translated_text.dart';
+
 class CustomTextIconBtnWidget extends StatelessWidget {
   CustomTextIconBtnWidget({
     super.key,
@@ -29,7 +31,7 @@ class CustomTextIconBtnWidget extends StatelessWidget {
           child: ElevatedButton.icon(
             onPressed: onPressed,
             icon: icon,
-            label: Text(
+            label: TrText(
               text,
               style: TextStyle(
                 color: Colors.white,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../l10n/app_localizations.dart';
+import '../../../../core/widgets/translated_text.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../bloc/orders_bloc.dart';
 import 'orders_view.dart';
@@ -14,13 +14,11 @@ class OrderDocsWidget extends StatelessWidget {
     super.key,
     required this.widget,
     required this.selectedTab,
-    required this.t,
     required ScrollController scrollController,
   }) : _scrollController = scrollController;
 
   final OrderDocsView widget;
   final int selectedTab;
-  final AppLocalizations t;
   final ScrollController _scrollController;
 
   @override
@@ -40,7 +38,7 @@ class OrderDocsWidget extends StatelessWidget {
                     context: context,
                     order: order ?? OrderEntity(),
                     orderDocsCount: widget.stat.id ?? 1,
-                    package: widget.stat,
+                    stat: widget.stat,
                   );
                 },
               );
@@ -53,7 +51,7 @@ class OrderDocsWidget extends StatelessWidget {
               );
             },
             failure: (e) {
-              return Text(
+              return TrText(
                 e.error ?? '',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onSecondary,

@@ -25,7 +25,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   bool _initialized = false;
-
   @override
   void initState() {
     super.initState();
@@ -49,7 +48,7 @@ class _HomeViewState extends State<HomeView> {
     return CustomScaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        title: t?.main ?? 'Home',
+        title: 'الرئيسية',
         leading: Builder(
           builder: (context) => GestureDetector(
             onTap: () => Scaffold.of(context).openDrawer(),

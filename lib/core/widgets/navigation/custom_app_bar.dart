@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
+import '../translated_text.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final PreferredSize? bottom;
@@ -27,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       foregroundColor: Colors.black,
       iconTheme: const IconThemeData(color: Colors.black),
       automaticallyImplyLeading: automaticallyImplyLeading,
-      title: Text(
+      title: TrText(
         title,
         style: TextStyle(
           color: Colors.black,

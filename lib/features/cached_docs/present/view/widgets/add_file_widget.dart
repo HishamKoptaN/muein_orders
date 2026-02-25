@@ -1,6 +1,9 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../data/datasources/local/drift/cached_docs_table.dart';
 enum AddDocWidgetType { image, video }
 
@@ -107,7 +110,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
     final hasPreview = widget.initialValue?.isNotEmpty == true;
     return Column(
       children: [
-        // Text(
+        // TrText(
         //   widget.path!,
         //   style: const TextStyle(
         //     color: Colors.red,
@@ -159,7 +162,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
         if (widget.errorText != null)
           Padding(
             padding: const EdgeInsets.only(top: 4.0, right: 8.0),
-            child: Text(
+            child: TrText(
               widget.errorText!,
               style: const TextStyle(
                 color: Colors.red,
@@ -191,7 +194,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
               color: Colors.grey,
             ),
           const SizedBox(height: 8),
-          Text(
+          TrText(
             widget.path ?? '',
             style: TextStyle(
               fontFamily: 'Almarai',

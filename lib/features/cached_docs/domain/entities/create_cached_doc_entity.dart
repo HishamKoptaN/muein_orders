@@ -19,7 +19,6 @@ abstract class CreateCachedDocEntity with _$CreateCachedDocEntity {
     GenericFormzInput<int>? docId,
     @Default([]) List<DocFileEntity> files,
     LocationEntity? location,
-    StatEntity? subCategory,
   }) = _CreateCachedDocEntity;
   Map<String, dynamic> toDebugMap() {
     return {

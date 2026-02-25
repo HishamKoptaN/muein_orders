@@ -23,7 +23,6 @@ import '../routing/app_router.dart';
 
 class MueinOrdersApp extends StatelessWidget {
   const MueinOrdersApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -72,15 +71,6 @@ class MueinOrdersApp extends StatelessWidget {
                     localeResolutionCallback:
                         AppLocalizationSetup.localeResolutionCallback,
                     routerConfig: AppRouter.create(),
-                    builder: (context, child) {
-                      return SafeArea(
-                        top: true,
-                        bottom: true,
-                        left: true,
-                        right: true,
-                        child: child!,
-                      );
-                    },
                   );
                 },
               );

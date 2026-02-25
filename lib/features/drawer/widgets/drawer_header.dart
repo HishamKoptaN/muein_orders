@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/widgets/translated_text.dart';
 import '../../profile/present/bloc/profile_bloc.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
@@ -38,7 +39,7 @@ class CustomDrawerHeader extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  Text(
+                  TrText(
                     profile.name ?? '',
                     style: const TextStyle(
                       fontSize: 18,
@@ -46,7 +47,7 @@ class CustomDrawerHeader extends StatelessWidget {
                       color: Color(0xFF003A46),
                     ),
                   ),
-                  Text(
+                  TrText(
                     '${profile.id.toString()}654321' ?? '',
                     style: const TextStyle(color: Colors.grey, fontSize: 14),
                   ),
@@ -60,7 +61,7 @@ class CustomDrawerHeader extends StatelessWidget {
                   //     children: [
                   //       Icon(Icons.copy_outlined, size: 14, color: Colors.grey),
                   //       SizedBox(width: 5),
-                  //       Text(
+                  //       TrText(
                   //         'رابط الملف الشخصي',
                   //         style: TextStyle(color: Colors.grey, fontSize: 12),
                   //       ),

@@ -9,7 +9,16 @@
       "request": "launch",
       "program": "lib/main.dart",
       "flutterMode": "debug",
-      "args": ["--flavor", "dev", "--dart-define=ENV=dev"]
+      "args": [
+        "--flavor",
+        "dev",
+        "--dart-define=ENV=dev",
+        "--track-widget-creation",
+        "--no-enable-impeller"
+      ],
+      "deviceId": "CPH2325",
+      "attachToExistingApp": false,
+      "showDebuggerOnStart": true
     },
     /* ================= PROD ================= */
     {

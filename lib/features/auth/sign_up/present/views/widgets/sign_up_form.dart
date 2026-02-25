@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_inputs/form_inputs.dart';
 
@@ -38,7 +37,7 @@ class SignUpForm extends StatelessWidget {
         CustomAuthTextFormField(
           key: const Key('name_field'),
           initialValue: name.value,
-          hintText: t.name,
+          hintText: 'الاسم',
           prefixIcon: const Icon(Icons.person_outline, color: Colors.white),
           onChanged: (v) => getIt<SignUpBloc>().add(
             SignUpEvent.dataChanged(name: GenericFormzInput.dirty(v)),
@@ -49,7 +48,7 @@ class SignUpForm extends StatelessWidget {
         CustomAuthTextFormField(
           key: const Key('email_field'),
           initialValue: email.value,
-          hintText: t.emailHint,
+          hintText: 'البريد الإلكتروني',
           prefixIcon: const Icon(Icons.email_outlined, color: Colors.white),
           keyboardType: TextInputType.emailAddress,
           onChanged: (v) => getIt<SignUpBloc>().add(
@@ -60,9 +59,9 @@ class SignUpForm extends StatelessWidget {
         CustomAuthTextFormField(
           key: const Key('phone_field'),
           initialValue: phone.value,
-          hintText: t.phone,
+          hintText: 'رقم الهاتف',
           prefixIcon: const Icon(Icons.phone_outlined, color: Colors.white),
-          onChanged: (v) =>getIt<SignUpBloc>().add(
+          onChanged: (v) => getIt<SignUpBloc>().add(
             SignUpEvent.dataChanged(phone: PhoneNumberInput.dirty(v)),
           ),
         ),

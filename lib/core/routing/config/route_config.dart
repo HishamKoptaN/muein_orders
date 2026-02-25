@@ -8,7 +8,6 @@ import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../../features/auth/sign_up/present/views/sign_up_views.dart';
 import '../../../features/cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../features/cached_docs/present/view/add_cached_doc_view.dart';
-import '../../../features/docs/domain/entities/docs_res_entity.dart';
 import '../../../features/financial/present/view/create_expense.dart';
 import '../../../features/home/domain/entities/order_type_res_entity.dart';
 import '../../../features/home/present/view/home_view.dart';
@@ -62,25 +61,22 @@ class RouteConfig {
       ),
       RouteBuilder.goRoute(
         routeName: ProfileView.routeName,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) => const ProfileView(),
       ),
       RouteBuilder.goRoute(
         routeName: OrderDocsView.routeName,
         builder: (context, state) {
-          final statId = state.extra as int?;
-          return OrderDocsView(
-            stat: statId != null ? StatEntity(id: statId) : StatEntity(),
-          );
+          final args = state.extra as Map<String, dynamic>;
+
+          return OrderDocsView(stat: args['stat'] as StatEntity);
         },
       ),
       RouteBuilder.goRoute(
         routeName: PdfPreviewView.routeName,
         builder: (context, state) {
-          final printedName = state.pathParameters['printedName'] ?? '0';
-          final executionNum = state.pathParameters['executionNum'] ?? '0';
           return PdfPreviewView(
-            printedName: printedName,
-            executionNum: executionNum,
+            printedName: state.pathParameters['printedName'] ?? '0',
+            executionNum: state.pathParameters['executionNum'] ?? '0',
           );
         },
       ),
@@ -91,16 +87,10 @@ class RouteConfig {
       RouteBuilder.goRoute(
         routeName: AddCachedDocView.routeName,
         builder: (context, state) {
-          final args = state.extra as Map<String, dynamic>?;
-          final doc = args?['docId'] as DocEntity?;
-          final docId = doc?.id ?? 0;
-          final cachedDoc = args?['cachedDoc'] as CachedDocEntity?;
+          final args = state.extra as Map<String, dynamic>;
           return AddCachedDocView(
-            docId: docId,
-            cachedDoc: cachedDoc,
-            subCategory:
-                args?['subCategory'] as SubCategoryEntity? ??
-                SubCategoryEntity(),
+            cachedDoc: args['cachedDoc'] as CachedDocEntity,
+            subCategoryId: args['subCategoryId'] as int,
           );
         },
       ),

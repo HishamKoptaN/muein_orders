@@ -237,15 +237,15 @@ class DocsRepoImpl implements DocsRepo {
   }) async {
     final t = AppLocalizations.of(GlobalVariable.navState.currentContext!);
     final clampedProgress = progress.clamp(0, 100).toInt();
-    final title = t.uploadingDocument;
-    final body = t.documentationIsBeingUploaded;
+    final title = 'جاري رفع المستند';
+    final body = 'جاري رفع المستند';
     final style = BigTextStyleInformation(
       '$body\n${clampedProgress.toString()}%',
       htmlFormatBigText: false,
     );
     final androidDetails = AndroidNotificationDetails(
       'upload_channel',
-      t.uploadingDocument,
+      'جاري رفع المستند',
       channelDescription: 'عرض تقدم الرفع',
       importance: Importance.low,
       priority: Priority.low,

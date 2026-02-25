@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:form_inputs/form_inputs.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../l10n/app_localizations.dart';
 import '../../../data/datasources/local/drift/cached_docs_table.dart';
 import '../../../domain/entities/create_cached_doc_entity.dart';
 import '../../bloc/cached_doc_bloc.dart';
@@ -11,13 +10,16 @@ import 'file_picker_utils.dart';
 import 'location_picker_button.dart';
 
 class AddDocFieldsWidget extends StatelessWidget {
-  const AddDocFieldsWidget({super.key, required this.state});
+  const AddDocFieldsWidget({
+    super.key,
+    required this.state,
+    required this.subCategoryId,
+  });
   final Loaded state;
-
+  final int subCategoryId;
   @override
   Widget build(BuildContext context) {
     final FilePickerUtils filePicker = FilePickerUtils();
-    final t = AppLocalizations.of(context);
     final bloc = getIt<CachedDocBloc>();
     final List<DocFileEntity> currentFiles =
         (state.createCachedDoc.files.isNotEmpty)
@@ -31,7 +33,6 @@ class AddDocFieldsWidget extends StatelessWidget {
         );
         if (file != null) {
           final List<DocFileEntity> updatedList = List.from(currentFiles);
-          final oldFile = updatedList[index];
           updatedList[index] = updatedList[index].copyWith(
             file: FileFormzInput.dirty(file),
             docFile:
@@ -54,7 +55,6 @@ class AddDocFieldsWidget extends StatelessWidget {
         }
       } catch (e) {
         debugPrint('Error selecting file: $e');
-        // يمكن إضافة رسالة خطأ للمستخدم هنا إذا لزم الأمر
       }
     }
 
@@ -62,28 +62,40 @@ class AddDocFieldsWidget extends StatelessWidget {
       spacing: 10,
       runSpacing: 10,
       children: [
-        ...currentFiles.asMap().entries.map((entry) {
-          final index = entry.key;
-          final fileEntity = entry.value;
-          final bool isImage = index < 2;
-          return AddFileWidget(
-            key: ValueKey('file_field_$index'),
-            initialValue: fileEntity.docFile?.path,
-            path:
-                fileEntity.docFile?.path ??
-                (isImage ? t.add_picure : t.add_video),
-            addDocWidgetType: isImage
-                ? AddDocWidgetType.image
-                : AddDocWidgetType.video,
-            docFileStatus: fileEntity.docFileStatus,
-            onChanged: (_) => onFileSelected(index, isImage),
-            validator: (_) => fileEntity.file?.isNotValid ?? false
-                ? fileEntity.file?.errorMessage
+        if (subCategoryId != 5)
+          ...currentFiles.asMap().entries.map((entry) {
+            final index = entry.key;
+            final fileEntity = entry.value;
+            final bool isImage = index < 2;
+            return AddFileWidget(
+              key: ValueKey('file_field_$index'),
+              initialValue: fileEntity.docFile?.path,
+              path:
+                  fileEntity.docFile?.path ??
+                  (isImage ? 'إضافة صورة' : 'إضافة فيديو'),
+              addDocWidgetType: isImage
+                  ? AddDocWidgetType.image
+                  : AddDocWidgetType.video,
+              docFileStatus: fileEntity.docFileStatus,
+              onChanged: (_) => onFileSelected(index, isImage),
+              validator: (_) => fileEntity.file?.isNotValid ?? false
+                  ? fileEntity.file?.errorMessage
+                  : null,
+            );
+          })
+        else
+          AddFileWidget(
+            key: const ValueKey('file_field'),
+            initialValue: currentFiles[2].docFile?.path,
+            path: currentFiles[2].docFile?.path ?? '',
+            addDocWidgetType: AddDocWidgetType.video,
+            docFileStatus: currentFiles[2].docFileStatus,
+            onChanged: (_) => onFileSelected(2, true),
+            validator: (_) => currentFiles[2].file?.isNotValid ?? false
+                ? currentFiles[2].file?.errorMessage
                 : null,
-          );
-        }),
-        if (state.createCachedDoc.subCategory?.id != 4)
-          LocationPickerButton(loaded: state),
+          ),
+        if (subCategoryId != 5) LocationPickerButton(loaded: state),
       ],
     );
   }

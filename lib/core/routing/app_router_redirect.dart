@@ -6,7 +6,6 @@ import '../../features/cached_docs/present/view/add_cached_doc_view.dart';
 import '../../features/home/present/view/home_view.dart';
 import '../../features/instructions/present/view/instructions_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
-import '../../features/orders/present/views/orders_view.dart';
 import '../../features/profile/present/views/profile_view.dart';
 
 class AppRouterRedirect {
@@ -19,7 +18,7 @@ class AppRouterRedirect {
   static const Set<String> authenticatedOnly = {
     HomeView.routeName,
     NotificationsView.routeName,
-    OrderDocsView.routeName,
+    'docs',
     InstructionsView.routeName,
     ProfileView.routeName,
     AddCachedDocView.routeName,

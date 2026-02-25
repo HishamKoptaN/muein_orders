@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import '../widgets/translated_text.dart';
 
 class ErrorApp extends StatelessWidget {
   final FlutterErrorDetails? errorDetails;
@@ -22,9 +24,9 @@ class ErrorApp extends StatelessWidget {
                 size: 80,
               ),
               const SizedBox(height: 20),
-              const Text(
+              TrText(
                 'حدث خطأ غير متوقع',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -33,7 +35,7 @@ class ErrorApp extends StatelessWidget {
               const SizedBox(height: 16),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32.0),
-                child: Text(
+                child: TrText(
                   'عذراً، حدث خطأ ما. يرجى إعادة تشغيل التطبيق.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16),
@@ -42,7 +44,7 @@ class ErrorApp extends StatelessWidget {
               ),
               if (kDebugMode && errorDetails != null) ...[
                 const SizedBox(height: 24),
-                const Text(
+                const TrText(
                   'تفاصيل الخطأ (لتطوير فقط):',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -65,7 +67,7 @@ class ErrorApp extends StatelessWidget {
                 onPressed: () {
                   // Add restart logic if needed
                 },
-                child: const Text('إعادة المحاولة'),
+                child: const TrText('إعادة المحاولة'),
               ),
             ],
           ),

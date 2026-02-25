@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
 import '../../../../cached_docs/domain/entities/cached_doc_entity.dart';
@@ -21,14 +22,14 @@ void showTestMenu({
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
+            const TrText(
               'اختبار التوثيق',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             ListTile(
               leading: const Icon(Icons.add),
-              title: const Text('اضافة التوثيق'),
+              title: const TrText('اضافة التوثيق'),
               onTap: () async {
                 final savedData = await DocsDebuge().getSavedTimestamp();
                 // 1. تحويل البيانات من Map/List إلى قائمة من كائنات DocFile
@@ -51,7 +52,7 @@ void showTestMenu({
             ),
             ListTile(
               leading: const Icon(Icons.sync),
-              title: const Text('تغيير حالة التوثيق'),
+              title: const TrText('تغيير حالة التوثيق'),
               onTap: () {
                 Navigator.pop(context);
                 _changeOrderStatus(
@@ -63,7 +64,7 @@ void showTestMenu({
             ),
             ListTile(
               leading: const Icon(Icons.trending_up),
-              title: const Text('تغيير نسبة التقدم'),
+              title: const TrText('تغيير نسبة التقدم'),
               onTap: () {
                 Navigator.pop(context);
                 // _changeUploadProgress(
@@ -75,7 +76,7 @@ void showTestMenu({
             ),
             ListTile(
               leading: const Icon(Icons.refresh),
-              title: const Text('مسح  التوثيق'),
+              title: const TrText('مسح  التوثيق'),
               onTap: () {
                 Navigator.pop(context);
                 // _clearOrderDocs(
@@ -101,12 +102,12 @@ void _changeOrderStatus({
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('تغيير حالة الطلب'),
+        title: const TrText('تغيير حالة الطلب'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: const Text('معلق'),
+              title: const TrText('معلق'),
               onTap: () {
                 Navigator.pop(context);
                 // _updateOrderStatus(
@@ -121,7 +122,7 @@ void _changeOrderStatus({
               },
             ),
             ListTile(
-              title: const Text('قيد التنفيذ'),
+              title: const TrText('قيد التنفيذ'),
               onTap: () {
                 Navigator.pop(context);
                 // _updateOrderStatus(
@@ -136,7 +137,7 @@ void _changeOrderStatus({
               },
             ),
             ListTile(
-              title: const Text('مكتمل'),
+              title: const TrText('مكتمل'),
               onTap: () {
                 Navigator.pop(context);
                 // _updateOrderStatus(
@@ -151,7 +152,7 @@ void _changeOrderStatus({
               },
             ),
             ListTile(
-              title: const Text('فاشل'),
+              title: const TrText('فاشل'),
               onTap: () async {
                 Navigator.pop(context);
                 await db.cachedDoc(

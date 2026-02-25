@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong2/latlong.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../data/datasources/local/drift/cached_docs_table.dart';
 import '../../../domain/entities/create_cached_doc_entity.dart';
@@ -22,7 +22,7 @@ class LocationPickerButton extends StatelessWidget {
         loaded.createCachedDoc.location?.longitude != null;
     final locationText = hasLocation
         ? '${loaded.createCachedDoc.location?.latitude}, ${loaded.createCachedDoc.location?.longitude}'
-        : t.selectLocation;
+        : 'اختر الموقع';
     return Row(
       children: [
         Expanded(
@@ -45,7 +45,7 @@ class LocationPickerButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text(
+                  child: TrText(
                     locationText,
                     style: TextStyle(
                       fontFamily: 'Almarai',
@@ -97,19 +97,19 @@ class LocationPickerButton extends StatelessWidget {
               color: Color(0xFF013B46),
             ),
             alignment: Alignment.center,
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  t.select,
-                  style: const TextStyle(
+                TrText(
+                  'اختر',
+                  style: TextStyle(
                     fontFamily: 'Almarai',
                     fontSize: 16,
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(width: 4),
-                const Icon(Icons.location_on, color: Colors.white, size: 18),
+                SizedBox(width: 4),
+                Icon(Icons.location_on, color: Colors.white, size: 18),
               ],
             ),
           ),

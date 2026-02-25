@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/build_context_extension.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../docs/domain/entities/docs_res_entity.dart';
 import '../../../../home/domain/entities/order_type_res_entity.dart';
 import '../../../domain/entities/orders_res_entity.dart';
@@ -12,7 +13,7 @@ Widget buildDocOrderCard({
   required BuildContext context,
   required OrderEntity order,
   required int orderDocsCount,
-  required StatEntity package,
+  required StatEntity stat,
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -22,11 +23,7 @@ Widget buildDocOrderCard({
         color: Colors.white,
         border: Border.all(color: const Color(0xFFF0EFEF)),
         boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4,
-            offset: Offset(0, 2),
-          ),
+          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
         ],
         borderRadius: BorderRadius.circular(15),
       ),
@@ -54,7 +51,10 @@ Widget buildDocOrderCard({
             itemCount: order.docs?.length,
             itemBuilder: (context, index) {
               final doc = order.docs?[index];
-              return DocCardWidget(doc: doc ?? DocEntity());
+              return DocCardWidget(
+                doc: doc ?? DocEntity(),
+                subCategoryId: stat.subCategory?.id ?? 0,
+              );
             },
           ),
           MakeStickerPdfBtn(order: order),
@@ -91,9 +91,9 @@ class MakeStickerPdfBtn extends StatelessWidget {
             ),
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           ),
-          child: Text(
-            context.t.sticker,
-            style: const TextStyle(
+          child: const TrText(
+            'الملصق',
+            style: TextStyle(
               color: Color(0xFF0062B7),
               fontWeight: FontWeight.w700,
             ),

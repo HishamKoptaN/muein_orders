@@ -34,7 +34,7 @@
 //                   size: 24.w,
 //                 ),
 //                 SizedBox(width: 8.w),
-//                 // Text(
+//                 // TrText(
 //                 //   '${t.currentUpload ?? 'الرفع الحالي'} - طلب رقم ${currentDoc.orderId}',
 //                 //   style: Theme.of(context).textTheme.titleMedium,
 //                 // ),
@@ -58,13 +58,13 @@
 //             Row(
 //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //               children: [
-//                 Text(
+//                 TrText(
 //                   '${progressPercentage.toStringAsFixed(1)}%',
 //                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
 //                         fontWeight: FontWeight.bold,
 //                       ),
 //                 ),
-//                 Text(
+//                 TrText(
 //                   _getStatusText(t, currentDoc.uploadStatus),
 //                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
 //                         color: _getStatusColor(currentDoc.uploadStatus),
@@ -74,7 +74,7 @@
 //             ),
 //             if (currentDoc.uploadStatus == UploadStatus.uploading) ...[
 //               SizedBox(height: 8.h),
-//               Text(
+//               TrText(
 //                 t.uploading ?? 'يتم الرفع...',
 //                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
 //                       color: Theme.of(context).colorScheme.primary,
@@ -140,7 +140,7 @@
 //           width: 1.w,
 //         ),
 //       ),
-//       child: Text(
+//       child: TrText(
 //         _getStatusText(status),
 //         style: Theme.of(context).textTheme.bodySmall?.copyWith(
 //               color: _getStatusColor(status),

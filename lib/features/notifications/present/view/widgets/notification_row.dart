@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../domain/entities/notification_entity.dart';
 
 class NotificationRow extends StatelessWidget {
@@ -30,7 +31,7 @@ class NotificationRow extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                TrText(
                   item.title,
                   style: TextStyle(
                     color: const Color(0xFF222741),
@@ -39,7 +40,7 @@ class NotificationRow extends StatelessWidget {
                   textAlign: TextAlign.right,
                 ),
                 const SizedBox(height: 7),
-                Text(
+                TrText(
                   item.createdAt,
                   style: TextStyle(
                     color: const Color(0xFFA8A8A9),

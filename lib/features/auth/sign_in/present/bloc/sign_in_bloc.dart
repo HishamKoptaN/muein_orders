@@ -19,9 +19,6 @@ part 'sign_in_state.dart';
 @lazySingleton
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final SignInUseCases signInUseCases;
-  EmailInput? _email;
-  PasswordInput? _password;
-  GenericFormzInput? _obscurePassword;
   SignInBloc({required this.signInUseCases})
     : super(
         const SignInState.loaded(
@@ -34,36 +31,54 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SignInEvent>((event, emit) async {
       await event.map(
         dataChanged: (e) async {
-          _email = e.email ?? _email;
-          _password = e.password ?? _password;
-          _obscurePassword = e.obscurePassword ?? _obscurePassword;
-          _emitCustomLoaded(emit: emit);
-        },
-        signInWithCredentialsPressed: (_) async {
-          _emitCustomLoaded(
-            emit: emit,
-            formzSubmissionStatus: FormzSubmissionStatus.inProgress,
-          );
-          final result = await signInUseCases.signInWithEmailAndPassword(
-            email: _email!.value,
-            password: _password!.value,
-          );
-          await result.when(
-            success: (data) async {
-              debugPrint('🔥 SignInBloc: Sending emitAuthenticated event');
-              getIt<AuthBloc>().add(const AuthEvent.emitAuthenticated());
-              // انتظر قليلاً للسماح لـ AuthBloc بتغيير حالته
-              await Future.delayed(const Duration(milliseconds: 100));
-              _emitCustomLoaded(emit: emit);
-            },
-            failure: (error) {
-              emit(
-                SignInState.failure(
-                  errorMessage: error.message ?? 'Login failed',
-                ),
+          await state.maybeMap(
+            loaded: (loaded) {
+              _emitCustomLoaded(
+                emit: emit,
+                loaded: loaded,
+                email: e.email,
+                password: e.password,
+                obscurePassword: e.obscurePassword,
               );
-              _emitCustomLoaded(emit: emit);
             },
+            orElse: () {},
+          );
+        },
+        signInWithCredentialsPressed: (e) async {
+          await state.maybeMap(
+            loaded: (loaded) async {
+              _emitCustomLoaded(
+                emit: emit,
+                loaded: loaded,
+                formzSubmissionStatus: FormzSubmissionStatus.inProgress,
+              );
+              final result = await signInUseCases.signInWithEmailAndPassword(
+                email: loaded.email.value,
+                password: loaded.password.value,
+              );
+              await result.when(
+                success: (data) async {
+                  getIt<AuthBloc>().add(const AuthEvent.emitAuthenticated());
+                  emit(
+                    const SignInState.loaded(
+                      email: EmailInput.pure(),
+                      password: PasswordInput.pure(),
+                      obscurePassword: GenericFormzInput.pure(),
+                      formzSubmissionStatus: FormzSubmissionStatus.initial,
+                    ),
+                  );
+                },
+                failure: (error) {
+                  emit(
+                    SignInState.failure(
+                      errorMessage: error.message ?? 'Login failed',
+                    ),
+                  );
+                  _emitCustomLoaded(emit: emit, loaded: loaded);
+                },
+              );
+            },
+            orElse: () {},
           );
         },
       );
@@ -72,22 +87,28 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   void _emitCustomLoaded({
     required Emitter<SignInState> emit,
+    required _Loaded? loaded,
+    EmailInput? email,
+    PasswordInput? password,
+    GenericFormzInput? obscurePassword,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
-    emit(
-      SignInState.loaded(
-        email: _email ?? const EmailInput.pure(),
-        password: _password ?? const PasswordInput.pure(),
-        obscurePassword: _obscurePassword ?? const GenericFormzInput.pure(),
-        formzSubmissionStatus:
-            formzSubmissionStatus ??
-            (Formz.validate([
-                  _email ?? const EmailInput.pure(),
-                  _password ?? const PasswordInput.pure(),
-                ])
-                ? FormzSubmissionStatus.success
-                : FormzSubmissionStatus.failure),
-      ),
-    );
+    if (loaded != null) {
+      emit(
+        SignInState.loaded(
+          email: email ?? loaded.email,
+          password: password ?? loaded.password,
+          obscurePassword: obscurePassword ?? loaded.obscurePassword,
+          formzSubmissionStatus:
+              formzSubmissionStatus ??
+              (Formz.validate([
+                    password ?? loaded.password,
+                    email ?? loaded.email,
+                  ])
+                  ? FormzSubmissionStatus.success
+                  : FormzSubmissionStatus.failure),
+        ),
+      );
+    }
   }
 }

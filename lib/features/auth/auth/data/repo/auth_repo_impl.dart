@@ -23,8 +23,9 @@ class AuthRepoImpl implements AuthRepo {
   Future<ApiResult<bool>> check() async {
     try {
       await _api.check();
-      return ApiResult.success(data: true);
-    } catch (e, _) {
+      final hasUser = await hasFirebaseUser();
+      return ApiResult.success(data: hasUser);
+    } catch (e) {
       return ApiResult.failure(
         apiErrorModel: ApiErrorModel(
           message: AppErrorHandler.getErrorMessage(e),

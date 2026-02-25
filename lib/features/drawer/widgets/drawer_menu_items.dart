@@ -44,7 +44,7 @@ class DrawerMenuItems extends StatelessWidget {
         ),
         MenuTile(
           icon: FontAwesomeIcons.language,
-          title: t.language,
+          title: 'اللغة',
           onTap: () {
             NavigationService.pushNamed(
               context: context,
@@ -54,7 +54,7 @@ class DrawerMenuItems extends StatelessWidget {
         ),
         MenuTile(
           icon: Icons.info,
-          title: t.instructions,
+          title: 'التعليمات',
           onTap: () {
             NavigationService.pushNamed(
               context: context,
@@ -78,7 +78,7 @@ class DrawerMenuItems extends StatelessWidget {
         ),
         MenuTile(
           icon: Icons.logout_rounded,
-          title: t.log_out,
+          title: 'تسجيل الخروج',
           onTap: () {
             showLogoutBottomSheet(context);
           },

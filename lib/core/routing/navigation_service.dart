@@ -7,12 +7,12 @@ class NavigationService {
     required BuildContext context,
     required String routeName,
     Map<String, String> pathParameters = const {},
-    Map<String, dynamic>? arguments,
+    Map<String, dynamic>? extra,
   }) async {
     return await context.pushNamed<T?>(
       routeName,
       pathParameters: pathParameters,
-      extra: arguments,
+      extra: extra,
     );
   }
 
@@ -25,9 +25,9 @@ class NavigationService {
   static void replaceWith({
     required BuildContext context,
     required String routeName,
-    Map<String, dynamic>? arguments,
+    Map<String, dynamic>? extra,
   }) {
-    context.goNamed(routeName, extra: arguments);
+    context.goNamed(routeName, extra: extra);
   }
 
   static void navigateAndRemoveUntil({
@@ -38,12 +38,12 @@ class NavigationService {
     context.goNamed(routeName, extra: arguments);
   }
 
-  static Future<T?> push<T>(
-    BuildContext context,
-    String routeName, {
+  static Future<T?> push<T>({
+    required BuildContext context,
+    required String routeName,
     Object? extra,
   }) {
-    return context.pushNamed<T>(routeName, extra: extra);
+    return context.push<T>(routeName, extra: extra);
   }
 
   static void pushReplacement(

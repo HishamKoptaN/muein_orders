@@ -19,8 +19,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         check: () async {
           final res = await authUseCases.check();
           res.when(
-            success: (_) {
-              emit(const AuthState.authenticated());
+            success: (isAuthenticated) {
+              if (isAuthenticated ?? false) {
+                emit(const AuthState.authenticated());
+              } else {
+                emit(const AuthState.unauthenticated());
+              }
             },
             failure: (error) => emit(const AuthState.unauthenticated()),
           );
@@ -28,14 +32,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         forceRefresh: () async {
           final res = await authUseCases.check();
           res.when(
-            success: (_) {
-              emit(const AuthState.authenticated());
+            success: (isAuthenticated) {
+              if (isAuthenticated ?? false) {
+                emit(const AuthState.authenticated());
+              } else {
+                emit(const AuthState.unauthenticated());
+              }
             },
             failure: (error) => emit(const AuthState.unauthenticated()),
           );
         },
         emitAuthenticated: () async {
-          debugPrint('🔥 AuthBloc: Received emitAuthenticated event');
           emit(const AuthState.authenticated());
         },
         signedOut: () async {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../../l10n/app_localizations.dart';
 
 typedef TabSelectedCallback = void Function(int tabIndex);
@@ -42,8 +43,8 @@ class _OrdersTabsState extends State<OrdersTabs> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
-                  child: Text(
-                    widget.t.current,
+                  child: TrText(
+                    'الحالية',
                     style: TextStyle(
                       fontFamily: 'Almarai',
                       fontSize: 16,
@@ -69,8 +70,8 @@ class _OrdersTabsState extends State<OrdersTabs> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
-                  child: Text(
-                    widget.t.theEnd,
+                  child: TrText(
+                    'المنتهية',
                     style: TextStyle(
                       fontFamily: 'Almarai',
                       fontSize: 16,

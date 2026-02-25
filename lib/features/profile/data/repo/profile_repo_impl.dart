@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/errors/app_error_handler.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/presigned_url_entity.dart';
@@ -22,10 +23,24 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   Future<ApiResult<ProfileResEntity>> getProfile() async {
     try {
+      // Get profile from backend
       final result = await _profileApi.getProfile();
+
+      // Check Firebase authentication
       final firebaseUser = _firebaseAuth.currentUser;
-      final email = firebaseUser?.email;
+      if (firebaseUser == null) {
+        return const ApiResult.failure(
+          apiErrorModel: ApiErrorModel(
+            message: 'User not authenticated in Firebase',
+            statusCode: 401,
+          ),
+        );
+      }
+
+      // Merge backend data with Firebase email
+      final email = firebaseUser.email;
       final profileEntity = result.toEntity().copyWith(email: email ?? '');
+
       return ApiResult.success(data: profileEntity);
     } catch (e, st) {
       return ApiResult.failure(

@@ -5,8 +5,13 @@ import '../../../../docs/domain/entities/docs_res_entity.dart';
 import 'doc_widget.dart';
 
 class DocCardWidget extends StatelessWidget {
-  const DocCardWidget({super.key, required this.doc});
+  const DocCardWidget({
+    super.key,
+    required this.doc,
+    required this.subCategoryId,
+  });
   final DocEntity doc;
+  final int subCategoryId;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,11 @@ class DocCardWidget extends StatelessWidget {
         ],
         borderRadius: BorderRadius.circular(15),
       ),
-      child: docWidget(context: context,doc:doc,),
+      child: docWidget(
+        context: context,
+        doc: doc,
+        subCategoryId: subCategoryId,
+      ),
     );
   }
 }

@@ -49,13 +49,13 @@
 //             child: Column(
 //               mainAxisAlignment: MainAxisAlignment.center,
 //               children: [
-//                 Text('Error: $message'),
+//                 TrText('Error: $message'),
 //                 const SizedBox(height: 16),
 //                 ElevatedButton(
 //                   onPressed: () => context
 //                       .read<AuthBloc>()
 //                       .add(const AuthEvent.check()),
-//                   child: const Text('Retry'),
+//                   child: const TrText('Retry'),
 //                 ),
 //               ],
 //             ),

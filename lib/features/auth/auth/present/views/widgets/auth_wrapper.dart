@@ -27,13 +27,13 @@
 //               child: Column(
 //                 mainAxisAlignment: MainAxisAlignment.center,
 //                 children: [
-//                   Text('Authentication Error: $message'),
+//                   TrText('Authentication Error: $message'),
 //                   const SizedBox(height: 16),
 //                   ElevatedButton(
 //                     onPressed: () {
 //                       conte  xt.read<AuthBloc>().add(const AuthEvent.check());
 //                     },
-//                     child: const Text('Retry'),
+//                     child: const TrText('Retry'),
 //                   ),
 //                 ],
 //               ),

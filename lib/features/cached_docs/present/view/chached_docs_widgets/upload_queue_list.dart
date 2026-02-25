@@ -77,7 +77,7 @@
 //                   size: 20.w,
 //                 ),
 //                 SizedBox(width: 8.w),
-//                 Text(
+//                 TrText(
 //                   'طلب رقم ${doc.orderId}',
 //                   style: Theme.of(context).textTheme.titleMedium,
 //                 ),
@@ -86,7 +86,7 @@
 //               ],
 //             ),
 //             SizedBox(height: 8.h),
-//             Text(
+//             TrText(
 //               _getStatusDescription(t, doc.uploadStatus),
 //               style: Theme.of(context).textTheme.bodySmall?.copyWith(
 //                     color: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -103,7 +103,7 @@
 //                 ),
 //               ),
 //               SizedBox(height: 4.h),
-//               Text(
+//               TrText(
 //                 '${doc.uploadProgress!.toStringAsFixed(1)}%',
 //                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
 //                       fontWeight: FontWeight.bold,
@@ -118,21 +118,21 @@
 //                   TextButton.icon(
 //                     onPressed: isProcessing ? null : onStartUpload,
 //                     icon: const Icon(Icons.play_arrow),
-//                     label: Text(t.startUpload ?? 'بدء الرفع'),
+//                     label: TrText(t.startUpload ?? 'بدء الرفع'),
 //                   ),
 //                 ],
 //                 if (doc.uploadStatus == UploadStatus.uploading) ...[
 //                   TextButton.icon(
 //                     onPressed: onCancelUpload,
 //                     icon: const Icon(Icons.cancel),
-//                     label: Text(t.cancel ?? 'إلغاء'),
+//                     label: TrText(t.cancel ?? 'إلغاء'),
 //                   ),
 //                 ],
 //                 if (doc.uploadStatus == UploadStatus.failure) ...[
 //                   TextButton.icon(
 //                     onPressed: onRetryUpload,
 //                     icon: const Icon(Icons.refresh),
-//                     label: Text(t.retry ?? 'إعادة المحاولة'),
+//                     label: TrText(t.retry ?? 'إعادة المحاولة'),
 //                   ),
 //                 ],
 //               ],
@@ -207,7 +207,7 @@
 //           width: 1.w,
 //         ),
 //       ),
-//       child: Text(
+//       child: TrText(
 //         _getStatusText(status),
 //         style: Theme.of(context).textTheme.bodySmall?.copyWith(
 //               color: _getStatusColor(status),

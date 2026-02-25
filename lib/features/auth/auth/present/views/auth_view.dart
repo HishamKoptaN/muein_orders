@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../bloc/auth_bloc.dart';
 
 class AuthView extends StatefulWidget {
@@ -33,7 +34,7 @@ class _AuthViewState extends State<AuthView> {
             unauthenticated: () => const CustomCircularProgress(),
             loading: () => const CustomCircularProgress(),
             failure: (message) => Center(
-              child: Text(
+              child: TrText(
                 'خطأ: $message',
                 style: const TextStyle(color: Colors.red),
               ),

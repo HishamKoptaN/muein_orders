@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../widgets/translated_text.dart';
+
 class RouteBuilder {
   static GoRoute goRoute({
     required String routeName,
@@ -22,7 +24,7 @@ class RouteBuilder {
     return NoTransitionPage(
       key: state.pageKey,
       child: Scaffold(
-        body: Center(child: Text('Page not found: ${state.uri.path}')),
+        body: Center(child: TrText('Page not found: ${state.uri.path}')),
       ),
     );
   }

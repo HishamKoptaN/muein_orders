@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/routing/navigation_service.dart';
 import '../../core/widgets/buttons/custom_icon_tn.dart';
+import '../../core/widgets/translated_text.dart';
 import '../../l10n/app_localizations.dart';
 import '../language/view/select_language.dart';
 
@@ -37,18 +38,18 @@ class StartView extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          t.welcomeLine1,
-                          style: const TextStyle(
+                        const TrText(
+                          'مرحبا بك',
+                          style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        Text(
-                          t.welcomeLine2,
-                          style: const TextStyle(
+                        const TrText(
+                          'في',
+                          style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -84,7 +85,7 @@ class StartView extends StatelessWidget {
                               BlendMode.srcIn,
                             ),
                           ),
-                          text: t.selectLanguage,
+                          text: 'اختر اللغة',
                         ),
                       ],
                     ),

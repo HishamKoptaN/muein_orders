@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/widgets/translated_text.dart';
+
 class SimpleLoadingView extends StatelessWidget {
   const SimpleLoadingView({
     super.key,
@@ -37,7 +39,7 @@ class SimpleLoadingView extends StatelessWidget {
             SizedBox(height: 32.h),
 
             // نص التحميل
-            Text(
+            TrText(
               loadingText,
               style: TextStyle(
                 fontSize: 16.sp,

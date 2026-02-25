@@ -38,7 +38,7 @@
 //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //             children: [
 //               Expanded(
-//                 child: Text(
+//                 child: TrText(
 //                   'طلب رقم ${doc.orderId}',
 //                   style: TextStyle(
 //                     fontSize: 16.sp,
@@ -60,7 +60,7 @@
 //                     width: 1,
 //                   ),
 //                 ),
-//                 child: Text(
+//                 child: TrText(
 //                   _getStatusText(uploadStatus),
 //                   style: TextStyle(
 //                     fontSize: 12.sp,
@@ -73,7 +73,7 @@
 //           ),
 //           SizedBox(height: 12.h),
 //           if (uploadStatus == UploadStatus.uploading) ...[
-//             Text(
+//             TrText(
 //               'جاري رفع التوثيق...',
 //               style: TextStyle(
 //                 fontSize: 14.sp,
@@ -88,7 +88,7 @@
 //               minHeight: 6.h,
 //             ),
 //             SizedBox(height: 4.h),
-//             Text(
+//             TrText(
 //               '${(doc.uploadProgress ?? 0.0).toStringAsFixed(0)}%',
 //               style: TextStyle(
 //                 fontSize: 12.sp,
@@ -97,7 +97,7 @@
 //               ),
 //             ),
 //           ] else ...[
-//             Text(
+//             TrText(
 //               _getStatusDescription(uploadStatus),
 //               style: TextStyle(
 //                 fontSize: 14.sp,
