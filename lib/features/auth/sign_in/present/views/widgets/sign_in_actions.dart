@@ -34,7 +34,7 @@ class SignInActions extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  NavigationService.go(
+                  NavigationService.push(
                     context: context,
                     routeName: SignUpView.routeName,
                   );

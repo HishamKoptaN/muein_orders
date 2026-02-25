@@ -28,6 +28,10 @@ class AppRouter {
       navigatorKey: GlobalVariable.navState,
       debugLogDiagnostics: true,
       redirect: (context, state) {
+        final String matchedLocation = state.matchedLocation;
+        final String cleanLocation = matchedLocation.startsWith('/')
+            ? matchedLocation.substring(1)
+            : matchedLocation;
         final String currentLocation = state.matchedLocation.replaceFirst(
           '/',
           '',
@@ -44,9 +48,10 @@ class AppRouter {
             return null;
           },
           unauthenticated: () {
-            if (AppRouterRedirect.public.any(
-              state.matchedLocation.startsWith,
-            )) {
+            if (cleanLocation == AuthView.routeName || cleanLocation.isEmpty) {
+              return '/${SignInView.routeName}';
+            }
+            if (AppRouterRedirect.public.contains(currentLocation)) {
               return null;
             }
             return '/${SignInView.routeName}';

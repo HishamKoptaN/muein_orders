@@ -22,12 +22,12 @@ class NavigationService {
     }
   }
 
-  static void replaceWith({
+  static void replace({
     required BuildContext context,
     required String routeName,
     Map<String, dynamic>? extra,
   }) {
-    context.goNamed(routeName, extra: extra);
+    context.replace(routeName, extra: extra);
   }
 
   static void navigateAndRemoveUntil({
@@ -43,10 +43,10 @@ class NavigationService {
     required String routeName,
     Object? extra,
   }) {
-    return context.push<T>(routeName, extra: extra);
+    return context.push<T>('/$routeName', extra: extra);
   }
 
-  static void pushReplacement(
+  static void pushReplacementNamed(
     BuildContext context,
     String routeName, {
     Object? extra,
@@ -59,6 +59,6 @@ class NavigationService {
     required String routeName,
     Object? extra,
   }) {
-    context.goNamed(routeName, extra: extra);
+    context.go('/$routeName', extra: extra);
   }
 }
