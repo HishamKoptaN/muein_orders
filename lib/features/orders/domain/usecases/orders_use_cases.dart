@@ -12,12 +12,10 @@ class OrdersUseCases {
     required int productTypeId,
     String? query,
     bool loadMore = false,
-    bool? isDistributionPhotographed,
   }) async {
     return await ordersRepo.getOrders(
       productTypeId: productTypeId,
       loadMore: loadMore,
-      // isDistributionPhotographed: isDistributionPhotographed,
     );
   }
 

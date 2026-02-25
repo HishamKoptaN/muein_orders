@@ -22,12 +22,11 @@ class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
     : super(const OrdersState.initial()) {
     on<OrdersEvent>((event, emit) async {
       await event.when(
-        getOrders: (productTypeId, loadMore, isQuranPhotographed) async {
+        getOrders: (productTypeId, loadMore) async {
           try {
             emit(const OrdersState.loading());
             final result = await ordersUseCases.getOrders(
               productTypeId: productTypeId,
-              isDistributionPhotographed: isQuranPhotographed,
               loadMore: loadMore,
             );
             result.when(

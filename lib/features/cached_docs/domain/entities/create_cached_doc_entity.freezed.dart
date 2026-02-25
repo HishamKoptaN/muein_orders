@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateCachedDocEntity implements DiagnosticableTreeMixin {
 
- GenericFormzInput<int>? get docId; List<DocFileEntity> get files; LocationEntity? get location; StatEntity? get subCategory;
+ GenericFormzInput<int>? get docId; List<DocFileEntity> get files; LocationEntity? get location;
 /// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,21 +26,21 @@ $CreateCachedDocEntityCopyWith<CreateCachedDocEntity> get copyWith => _$CreateCa
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'CreateCachedDocEntity'))
-    ..add(DiagnosticsProperty('docId', docId))..add(DiagnosticsProperty('files', files))..add(DiagnosticsProperty('location', location))..add(DiagnosticsProperty('subCategory', subCategory));
+    ..add(DiagnosticsProperty('docId', docId))..add(DiagnosticsProperty('files', files))..add(DiagnosticsProperty('location', location));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateCachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.location, location) || other.location == location)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateCachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.location, location) || other.location == location));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(files),location,subCategory);
+int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(files),location);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CreateCachedDocEntity(docId: $docId, files: $files, location: $location, subCategory: $subCategory)';
+  return 'CreateCachedDocEntity(docId: $docId, files: $files, location: $location)';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $CreateCachedDocEntityCopyWith<$Res>  {
   factory $CreateCachedDocEntityCopyWith(CreateCachedDocEntity value, $Res Function(CreateCachedDocEntity) _then) = _$CreateCachedDocEntityCopyWithImpl;
 @useResult
 $Res call({
- GenericFormzInput<int>? docId, List<DocFileEntity> files, LocationEntity? location, StatEntity? subCategory
+ GenericFormzInput<int>? docId, List<DocFileEntity> files, LocationEntity? location
 });
 
 
@@ -68,13 +68,12 @@ class _$CreateCachedDocEntityCopyWithImpl<$Res>
 
 /// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? docId = freezed,Object? files = null,Object? location = freezed,Object? subCategory = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? docId = freezed,Object? files = null,Object? location = freezed,}) {
   return _then(_self.copyWith(
 docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as GenericFormzInput<int>?,files: null == files ? _self.files : files // ignore: cast_nullable_to_non_nullable
 as List<DocFileEntity>,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as LocationEntity?,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
-as StatEntity?,
+as LocationEntity?,
   ));
 }
 /// Create a copy of CreateCachedDocEntity
@@ -171,10 +170,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormzInput<int>? docId,  List<DocFileEntity> files,  LocationEntity? location,  StatEntity? subCategory)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormzInput<int>? docId,  List<DocFileEntity> files,  LocationEntity? location)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateCachedDocEntity() when $default != null:
-return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _:
+return $default(_that.docId,_that.files,_that.location);case _:
   return orElse();
 
 }
@@ -192,10 +191,10 @@ return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormzInput<int>? docId,  List<DocFileEntity> files,  LocationEntity? location,  StatEntity? subCategory)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormzInput<int>? docId,  List<DocFileEntity> files,  LocationEntity? location)  $default,) {final _that = this;
 switch (_that) {
 case _CreateCachedDocEntity():
-return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _:
+return $default(_that.docId,_that.files,_that.location);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -212,10 +211,10 @@ return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormzInput<int>? docId,  List<DocFileEntity> files,  LocationEntity? location,  StatEntity? subCategory)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormzInput<int>? docId,  List<DocFileEntity> files,  LocationEntity? location)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateCachedDocEntity() when $default != null:
-return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _:
+return $default(_that.docId,_that.files,_that.location);case _:
   return null;
 
 }
@@ -227,7 +226,7 @@ return $default(_that.docId,_that.files,_that.location,_that.subCategory);case _
 
 
 class _CreateCachedDocEntity extends CreateCachedDocEntity with DiagnosticableTreeMixin {
-  const _CreateCachedDocEntity({this.docId, final  List<DocFileEntity> files = const [], this.location, this.subCategory}): _files = files,super._();
+  const _CreateCachedDocEntity({this.docId, final  List<DocFileEntity> files = const [], this.location}): _files = files,super._();
   
 
 @override final  GenericFormzInput<int>? docId;
@@ -239,7 +238,6 @@ class _CreateCachedDocEntity extends CreateCachedDocEntity with DiagnosticableTr
 }
 
 @override final  LocationEntity? location;
-@override final  StatEntity? subCategory;
 
 /// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -252,21 +250,21 @@ _$CreateCachedDocEntityCopyWith<_CreateCachedDocEntity> get copyWith => __$Creat
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'CreateCachedDocEntity'))
-    ..add(DiagnosticsProperty('docId', docId))..add(DiagnosticsProperty('files', files))..add(DiagnosticsProperty('location', location))..add(DiagnosticsProperty('subCategory', subCategory));
+    ..add(DiagnosticsProperty('docId', docId))..add(DiagnosticsProperty('files', files))..add(DiagnosticsProperty('location', location));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateCachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.location, location) || other.location == location)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateCachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.location, location) || other.location == location));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(_files),location,subCategory);
+int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(_files),location);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CreateCachedDocEntity(docId: $docId, files: $files, location: $location, subCategory: $subCategory)';
+  return 'CreateCachedDocEntity(docId: $docId, files: $files, location: $location)';
 }
 
 
@@ -277,7 +275,7 @@ abstract mixin class _$CreateCachedDocEntityCopyWith<$Res> implements $CreateCac
   factory _$CreateCachedDocEntityCopyWith(_CreateCachedDocEntity value, $Res Function(_CreateCachedDocEntity) _then) = __$CreateCachedDocEntityCopyWithImpl;
 @override @useResult
 $Res call({
- GenericFormzInput<int>? docId, List<DocFileEntity> files, LocationEntity? location, StatEntity? subCategory
+ GenericFormzInput<int>? docId, List<DocFileEntity> files, LocationEntity? location
 });
 
 
@@ -294,13 +292,12 @@ class __$CreateCachedDocEntityCopyWithImpl<$Res>
 
 /// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? docId = freezed,Object? files = null,Object? location = freezed,Object? subCategory = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? docId = freezed,Object? files = null,Object? location = freezed,}) {
   return _then(_CreateCachedDocEntity(
 docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as GenericFormzInput<int>?,files: null == files ? _self._files : files // ignore: cast_nullable_to_non_nullable
 as List<DocFileEntity>,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as LocationEntity?,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
-as StatEntity?,
+as LocationEntity?,
   ));
 }
 

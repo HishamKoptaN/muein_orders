@@ -5,7 +5,6 @@ abstract class OrdersEvent with _$OrdersEvent {
   const factory OrdersEvent.getOrders({
     required int subCategoryId,
     required bool loadMore,
-    bool? isQuranPhotographed,
   }) = _GetOrders;
   const factory OrdersEvent.updateIsDistributionPhotographed({
     required int orderId,

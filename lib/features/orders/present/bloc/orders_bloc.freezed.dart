@@ -128,10 +128,10 @@ return disposeSearch(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId,  bool loadMore,  bool? isQuranPhotographed)?  getOrders,TResult Function( int orderId)?  updateIsDistributionPhotographed,TResult Function( String query,  bool getMore)?  searchOrders,TResult Function()?  disposeSearch,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId,  bool loadMore)?  getOrders,TResult Function( int orderId)?  updateIsDistributionPhotographed,TResult Function( String query,  bool getMore)?  searchOrders,TResult Function()?  disposeSearch,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetOrders() when getOrders != null:
-return getOrders(_that.subCategoryId,_that.loadMore,_that.isQuranPhotographed);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
+return getOrders(_that.subCategoryId,_that.loadMore);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
 return updateIsDistributionPhotographed(_that.orderId);case _SearchOrders() when searchOrders != null:
 return searchOrders(_that.query,_that.getMore);case _DisposeSearch() when disposeSearch != null:
 return disposeSearch();case _:
@@ -152,10 +152,10 @@ return disposeSearch();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId,  bool loadMore,  bool? isQuranPhotographed)  getOrders,required TResult Function( int orderId)  updateIsDistributionPhotographed,required TResult Function( String query,  bool getMore)  searchOrders,required TResult Function()  disposeSearch,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId,  bool loadMore)  getOrders,required TResult Function( int orderId)  updateIsDistributionPhotographed,required TResult Function( String query,  bool getMore)  searchOrders,required TResult Function()  disposeSearch,}) {final _that = this;
 switch (_that) {
 case _GetOrders():
-return getOrders(_that.subCategoryId,_that.loadMore,_that.isQuranPhotographed);case _UpdateIsDistributionPhotographed():
+return getOrders(_that.subCategoryId,_that.loadMore);case _UpdateIsDistributionPhotographed():
 return updateIsDistributionPhotographed(_that.orderId);case _SearchOrders():
 return searchOrders(_that.query,_that.getMore);case _DisposeSearch():
 return disposeSearch();case _:
@@ -175,10 +175,10 @@ return disposeSearch();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId,  bool loadMore,  bool? isQuranPhotographed)?  getOrders,TResult? Function( int orderId)?  updateIsDistributionPhotographed,TResult? Function( String query,  bool getMore)?  searchOrders,TResult? Function()?  disposeSearch,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId,  bool loadMore)?  getOrders,TResult? Function( int orderId)?  updateIsDistributionPhotographed,TResult? Function( String query,  bool getMore)?  searchOrders,TResult? Function()?  disposeSearch,}) {final _that = this;
 switch (_that) {
 case _GetOrders() when getOrders != null:
-return getOrders(_that.subCategoryId,_that.loadMore,_that.isQuranPhotographed);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
+return getOrders(_that.subCategoryId,_that.loadMore);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
 return updateIsDistributionPhotographed(_that.orderId);case _SearchOrders() when searchOrders != null:
 return searchOrders(_that.query,_that.getMore);case _DisposeSearch() when disposeSearch != null:
 return disposeSearch();case _:
@@ -193,12 +193,11 @@ return disposeSearch();case _:
 
 
 class _GetOrders implements OrdersEvent {
-  const _GetOrders({required this.subCategoryId, required this.loadMore, this.isQuranPhotographed});
+  const _GetOrders({required this.subCategoryId, required this.loadMore});
   
 
  final  int subCategoryId;
  final  bool loadMore;
- final  bool? isQuranPhotographed;
 
 /// Create a copy of OrdersEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -210,16 +209,16 @@ _$GetOrdersCopyWith<_GetOrders> get copyWith => __$GetOrdersCopyWithImpl<_GetOrd
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetOrders&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore)&&(identical(other.isQuranPhotographed, isQuranPhotographed) || other.isQuranPhotographed == isQuranPhotographed));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetOrders&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,subCategoryId,loadMore,isQuranPhotographed);
+int get hashCode => Object.hash(runtimeType,subCategoryId,loadMore);
 
 @override
 String toString() {
-  return 'OrdersEvent.getOrders(subCategoryId: $subCategoryId, loadMore: $loadMore, isQuranPhotographed: $isQuranPhotographed)';
+  return 'OrdersEvent.getOrders(subCategoryId: $subCategoryId, loadMore: $loadMore)';
 }
 
 
@@ -230,7 +229,7 @@ abstract mixin class _$GetOrdersCopyWith<$Res> implements $OrdersEventCopyWith<$
   factory _$GetOrdersCopyWith(_GetOrders value, $Res Function(_GetOrders) _then) = __$GetOrdersCopyWithImpl;
 @useResult
 $Res call({
- int subCategoryId, bool loadMore, bool? isQuranPhotographed
+ int subCategoryId, bool loadMore
 });
 
 
@@ -247,12 +246,11 @@ class __$GetOrdersCopyWithImpl<$Res>
 
 /// Create a copy of OrdersEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? subCategoryId = null,Object? loadMore = null,Object? isQuranPhotographed = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? subCategoryId = null,Object? loadMore = null,}) {
   return _then(_GetOrders(
 subCategoryId: null == subCategoryId ? _self.subCategoryId : subCategoryId // ignore: cast_nullable_to_non_nullable
 as int,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
-as bool,isQuranPhotographed: freezed == isQuranPhotographed ? _self.isQuranPhotographed : isQuranPhotographed // ignore: cast_nullable_to_non_nullable
-as bool?,
+as bool,
   ));
 }
 
