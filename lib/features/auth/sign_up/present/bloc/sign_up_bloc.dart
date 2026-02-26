@@ -49,13 +49,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               emit: emit,
               formzSubmissionStatus: FormzSubmissionStatus.inProgress,
             );
-            const fcmToken = '';
             final signUpReq = SignUpReqEntity(
               name: _name!.value,
               phone: _phone!.value,
               email: _email!.value,
               password: _password!.value,
-              fcmToken: fcmToken,
             );
             final result = await signUpUseCases.signUp(signUpReq: signUpReq);
             await result.when(

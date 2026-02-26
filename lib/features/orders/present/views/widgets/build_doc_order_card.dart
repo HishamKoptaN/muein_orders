@@ -5,7 +5,7 @@ import '../../../../../core/widgets/translated_text.dart';
 import '../../../../docs/domain/entities/docs_res_entity.dart';
 import '../../../../home/domain/entities/order_type_res_entity.dart';
 import '../../../domain/entities/orders_res_entity.dart';
-import '../sitcker_pd/sitcker_pdf_preview_view.dart';
+import '../sitcker_pdf/sitcker_pdf_preview_view.dart';
 import 'doc_card_widget.dart';
 
 Widget buildDocOrderCard({

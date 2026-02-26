@@ -11,8 +11,9 @@ _SignUpReqModel _$SignUpReqModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       phone: json['phone'] as String?,
       countryId: (json['country_id'] as num?)?.toInt(),
-      fcmToken: json['fcm_token'] as String?,
-      idToken: json['id_token'] as String?,
+      idToken: json['id_token'] as String,
+      fcmToken: json['fcm_token'] as String,
+      deviceType: json['device_type'] as String,
     );
 
 Map<String, dynamic> _$SignUpReqModelToJson(_SignUpReqModel instance) =>
@@ -20,6 +21,7 @@ Map<String, dynamic> _$SignUpReqModelToJson(_SignUpReqModel instance) =>
       'name': ?instance.name,
       'phone': ?instance.phone,
       'country_id': ?instance.countryId,
-      'fcm_token': ?instance.fcmToken,
-      'id_token': ?instance.idToken,
+      'id_token': instance.idToken,
+      'fcm_token': instance.fcmToken,
+      'device_type': instance.deviceType,
     };

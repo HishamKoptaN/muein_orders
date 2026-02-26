@@ -113,6 +113,9 @@ import '../../features/s3/domain/repo_impl/s3_repo_impl.dart' as _i758;
 import '../../features/theme/blocs/theme_bloc.dart' as _i307;
 import '../background/workmanager_initializer.dart' as _i996;
 import '../networking/network_info.dart' as _i303;
+import '../services/auth_storage_service.dart' as _i250;
+import '../services/firebase_messaging/firebase_messaging_service.dart'
+    as _i183;
 import '../services/notification_manager.dart' as _i105;
 import '../utils/app_file_manager.dart' as _i246;
 import 'api_module.dart' as _i804;
@@ -134,6 +137,7 @@ Future<_i174.GetIt> $initGetIt(
     () => injectionModule.prefs,
     preResolve: true,
   );
+  gh.factory<_i250.AuthStorageService>(() => _i250.AuthStorageService());
   gh.singleton<_i996.WorkManagerInitializer>(
     () => _i996.WorkManagerInitializer(),
   );
@@ -151,6 +155,9 @@ Future<_i174.GetIt> $initGetIt(
     () => injectionModule.firebaseMessaging,
   );
   gh.singleton<_i558.FlutterSecureStorage>(() => injectionModule.secureStorage);
+  gh.singleton<_i183.FirebaseMessagingService>(
+    () => _i183.FirebaseMessagingService(),
+  );
   gh.singleton<_i246.AppFileManager>(() => _i246.AppFileManager());
   gh.singleton<_i523.AppDatabase>(() => _i523.AppDatabase());
   gh.singleton<_i197.InstructionsBloc>(() => _i197.InstructionsBloc());

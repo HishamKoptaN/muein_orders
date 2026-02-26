@@ -11,9 +11,11 @@ import '../../features/cached_docs/present/view/add_cached_doc_view.dart';
 import '../../features/home/present/view/home_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/orders/present/views/orders_view.dart';
+import '../../features/orders/present/views/sitcker_pdf/sitcker_pdf_preview_view.dart';
 import '../../features/profile/present/views/profile_view.dart';
 import '../app/global_variable.dart';
 import '../di/dependency_injection.dart';
+import '../services/firebase_messaging/firebase_messaging_service.dart';
 import 'app_router_redirect.dart';
 import 'config/route_config.dart';
 import 'error_page.dart';
@@ -27,42 +29,87 @@ class AppRouter {
       refreshListenable: GoRouterRefreshStream(getIt<AuthBloc>().stream),
       navigatorKey: GlobalVariable.navState,
       debugLogDiagnostics: true,
+      // دعم الروابط العميقة
       redirect: (context, state) {
-        final String matchedLocation = state.matchedLocation;
-        final String cleanLocation = matchedLocation.startsWith('/')
-            ? matchedLocation.substring(1)
-            : matchedLocation;
-        final String currentLocation = state.matchedLocation.replaceFirst(
-          '/',
-          '',
-        );
-        return getIt<AuthBloc>().state.maybeWhen(
-          authenticated: () {
-            if (AppRouterRedirect.public.contains(currentLocation)) {
-              if (kReleaseMode) {
-                return '/${HomeView.routeName}';
-              } else {
-                return '/${HomeView.routeName}';
+        // معالجة منطق الروابط العميقة
+        if (state.uri.hasAbsolutePath) {
+          final String matchedLocation = state.matchedLocation;
+          final String cleanLocation = matchedLocation.startsWith('/')
+              ? matchedLocation.substring(1)
+              : matchedLocation;
+          final String currentLocation = state.matchedLocation.replaceFirst(
+            '/',
+            '',
+          );
+          return getIt<AuthBloc>().state.maybeWhen(
+            authenticated: () {
+              Future.microtask(
+                () => getIt<FirebaseMessagingService>().initialize(),
+              );
+              if (AppRouterRedirect.public.contains(currentLocation)) {
+                if (kReleaseMode) {
+                  return '/${HomeView.routeName}';
+                } else {
+                  return '/${HomeView.routeName}';
+                }
               }
-            }
-            return null;
-          },
-          unauthenticated: () {
-            if (cleanLocation == AuthView.routeName || cleanLocation.isEmpty) {
-              return '/${SignInView.routeName}';
-            }
-            if (AppRouterRedirect.public.contains(currentLocation)) {
               return null;
-            }
-            return '/${SignInView.routeName}';
-          },
-          loading: () {
-            return '/${AuthView.routeName}';
-          },
-          failure: (_) => '/${SignInView.routeName}',
-          orElse: () => null,
-        );
+            },
+            unauthenticated: () {
+              if (cleanLocation == AuthView.routeName ||
+                  cleanLocation.isEmpty) {
+                return '/${SignInView.routeName}';
+              }
+              if (AppRouterRedirect.public.contains(currentLocation)) {
+                return null;
+              }
+              return '/${SignInView.routeName}';
+            },
+            loading: () {
+              return '/${AuthView.routeName}';
+            },
+            failure: (_) => '/${SignInView.routeName}',
+            orElse: () => null,
+          );
+        }
+
+        return _handleNormalRedirect(state);
       },
+    );
+  }
+
+  static String? _handleNormalRedirect(GoRouterState state) {
+    final String matchedLocation = state.matchedLocation;
+    final String cleanLocation = matchedLocation.startsWith('/')
+        ? matchedLocation.substring(1)
+        : matchedLocation;
+    final String currentLocation = state.matchedLocation.replaceFirst('/', '');
+    return getIt<AuthBloc>().state.maybeWhen(
+      authenticated: () {
+        Future.microtask(() => getIt<FirebaseMessagingService>().initialize());
+        if (AppRouterRedirect.public.contains(currentLocation)) {
+          if (kReleaseMode) {
+            return '/${HomeView.routeName}';
+          } else {
+            return '/${HomeView.routeName}';
+          }
+        }
+        return null;
+      },
+      unauthenticated: () {
+        if (cleanLocation == AuthView.routeName || cleanLocation.isEmpty) {
+          return '/${SignInView.routeName}';
+        }
+        if (AppRouterRedirect.public.contains(currentLocation)) {
+          return null;
+        }
+        return '/${SignInView.routeName}';
+      },
+      loading: () {
+        return '/${AuthView.routeName}';
+      },
+      failure: (_) => '/${SignInView.routeName}',
+      orElse: () => null,
     );
   }
 }

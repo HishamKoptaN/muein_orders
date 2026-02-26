@@ -24,7 +24,6 @@ class LoadingView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // شعار التطبيق أو أيقونة التحميل
             Container(
               width: 120.w,
               height: 120.h,
@@ -38,10 +37,7 @@ class LoadingView extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-
             SizedBox(height: 32.h),
-
-            // نص التحميل
             TrText(
               'جاري التحميل...',
               style: TextStyle(
@@ -51,10 +47,7 @@ class LoadingView extends StatelessWidget {
                 fontFamily: 'Almarai',
               ),
             ),
-
             SizedBox(height: 24.h),
-
-            // مؤشر التحميل الدائري
             SizedBox(
               width: 40.w,
               height: 40.h,

@@ -15,7 +15,7 @@ import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../../features/orders/present/views/orders_view.dart';
-import '../../../features/orders/present/views/sitcker_pd/sitcker_pdf_preview_view.dart';
+import '../../../features/orders/present/views/sitcker_pdf/sitcker_pdf_preview_view.dart';
 import '../../../features/profile/present/views/profile_view.dart';
 import '../../../features/splash/start_view.dart';
 import '../utils/route_builder.dart' show RouteBuilder;
@@ -75,8 +75,8 @@ class RouteConfig {
         routeName: PdfPreviewView.routeName,
         builder: (context, state) {
           return PdfPreviewView(
-            printedName: state.pathParameters['printedName'] ?? '0',
-            executionNum: state.pathParameters['executionNum'] ?? '0',
+            printedName: state.pathParameters['printedName'] ?? '',
+            executionNum: state.pathParameters['executionNum'] ?? '',
           );
         },
       ),
@@ -89,8 +89,7 @@ class RouteConfig {
         builder: (context, state) {
           final args = state.extra as Map<String, dynamic>;
           return AddCachedDocView(
-            cachedDoc:
-                args['cachedDoc'] as CachedDocEntity,
+            cachedDoc: args['cachedDoc'] as CachedDocEntity,
             subCategoryId: args['subCategoryId'] as int,
           );
         },

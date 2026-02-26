@@ -36,13 +36,10 @@ class SignInRepoImpl implements SignInRepo {
     required String password,
   }) async {
     try {
-      // 1. Sign in with Firebase
       final userCredential = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-
-      // 2. Get the Firebase ID token
       final idToken = await userCredential.user?.getIdToken();
       developer.log('Firebase ID Token: $idToken');
       if (idToken == null) {
@@ -54,16 +51,14 @@ class SignInRepoImpl implements SignInRepo {
           ),
         );
       }
-
-      // 3. Send token to Laravel backend to get JWT
+      final fcmToken = await _firebaseMessaging.getToken();
       final res = await signInApi.authToken(
         SignInReqBodyModel(
           idToken: idToken,
+          fcmToken: fcmToken ?? '',
+          deviceType: 'android',
         ),
       );
-
-      // 4. Get FCM token
-      final fcmToken = await _firebaseMessaging.getToken();
       if (res.token.isEmpty) {
         return const ApiResult.failure(
           apiErrorModel: ApiErrorModel(
@@ -73,18 +68,13 @@ class SignInRepoImpl implements SignInRepo {
           ),
         );
       }
-      // Store the JWT token in SharedPreferencesAsync
       await SharedPrefHelper.setSecuredString(
         key: SharedPrefKeys.jwtToken,
         value: res.token,
       );
       await getIt<AuthInterceptor>().updateToken();
-      // 7. Return success with the user data
       return ApiResult.success(
-        data: UserData(
-          token: res.token,
-          fcmToken: fcmToken,
-        ),
+        data: UserData(token: res.token, fcmToken: fcmToken),
       );
     } on FirebaseAuthException catch (e) {
       return ApiResult.failure(

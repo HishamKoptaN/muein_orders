@@ -21,7 +21,6 @@ class SimpleLoadingView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // أيقونة التطبيق
             Container(
               width: 100.w,
               height: 100.h,
@@ -35,10 +34,7 @@ class SimpleLoadingView extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-
             SizedBox(height: 32.h),
-
-            // نص التحميل
             TrText(
               loadingText,
               style: TextStyle(
