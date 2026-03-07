@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../docs/domain/entities/docs_res_entity.dart';
+import '../../../domain/entities/orders_res_entity.dart';
 import 'doc_widget.dart';
 
 class DocCardWidget extends StatelessWidget {
@@ -17,6 +17,7 @@ class DocCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10.sp),
+      margin: EdgeInsets.all(5.sp),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: const Color(0xFFF0EFEF)),

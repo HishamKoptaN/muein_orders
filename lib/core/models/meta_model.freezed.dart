@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MetaModel {
 
-@JsonKey(name: 'current_page') int? get currentPage;@JsonKey(name: 'total_pages') int? get totalPages;@JsonKey(name: 'per_page') int? get perPage;@JsonKey(name: 'has_next_page') bool? get hasNextPage;@JsonKey(name: 'has_previous_page') bool? get hasPreviousPage;
+@JsonKey(name: 'total') int? get total;@JsonKey(name: 'current_page') int? get currentPage;@JsonKey(name: 'total_pages') int? get totalPages;@JsonKey(name: 'per_page') int? get perPage;@JsonKey(name: 'has_next_page') bool? get hasNextPage;@JsonKey(name: 'has_previous_page') bool? get hasPreviousPage;
 /// Create a copy of MetaModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $MetaModelCopyWith<MetaModel> get copyWith => _$MetaModelCopyWithImpl<MetaModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaModel&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.hasPreviousPage, hasPreviousPage) || other.hasPreviousPage == hasPreviousPage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaModel&&(identical(other.total, total) || other.total == total)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.hasPreviousPage, hasPreviousPage) || other.hasPreviousPage == hasPreviousPage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentPage,totalPages,perPage,hasNextPage,hasPreviousPage);
+int get hashCode => Object.hash(runtimeType,total,currentPage,totalPages,perPage,hasNextPage,hasPreviousPage);
 
 @override
 String toString() {
-  return 'MetaModel(currentPage: $currentPage, totalPages: $totalPages, perPage: $perPage, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage)';
+  return 'MetaModel(total: $total, currentPage: $currentPage, totalPages: $totalPages, perPage: $perPage, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $MetaModelCopyWith<$Res>  {
   factory $MetaModelCopyWith(MetaModel value, $Res Function(MetaModel) _then) = _$MetaModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'current_page') int? currentPage,@JsonKey(name: 'total_pages') int? totalPages,@JsonKey(name: 'per_page') int? perPage,@JsonKey(name: 'has_next_page') bool? hasNextPage,@JsonKey(name: 'has_previous_page') bool? hasPreviousPage
+@JsonKey(name: 'total') int? total,@JsonKey(name: 'current_page') int? currentPage,@JsonKey(name: 'total_pages') int? totalPages,@JsonKey(name: 'per_page') int? perPage,@JsonKey(name: 'has_next_page') bool? hasNextPage,@JsonKey(name: 'has_previous_page') bool? hasPreviousPage
 });
 
 
@@ -65,9 +65,10 @@ class _$MetaModelCopyWithImpl<$Res>
 
 /// Create a copy of MetaModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? currentPage = freezed,Object? totalPages = freezed,Object? perPage = freezed,Object? hasNextPage = freezed,Object? hasPreviousPage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? total = freezed,Object? currentPage = freezed,Object? totalPages = freezed,Object? perPage = freezed,Object? hasNextPage = freezed,Object? hasPreviousPage = freezed,}) {
   return _then(_self.copyWith(
-currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
+total: freezed == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
+as int?,currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
 as int?,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
 as int?,perPage: freezed == perPage ? _self.perPage : perPage // ignore: cast_nullable_to_non_nullable
 as int?,hasNextPage: freezed == hasNextPage ? _self.hasNextPage : hasNextPage // ignore: cast_nullable_to_non_nullable
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'current_page')  int? currentPage, @JsonKey(name: 'total_pages')  int? totalPages, @JsonKey(name: 'per_page')  int? perPage, @JsonKey(name: 'has_next_page')  bool? hasNextPage, @JsonKey(name: 'has_previous_page')  bool? hasPreviousPage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'total')  int? total, @JsonKey(name: 'current_page')  int? currentPage, @JsonKey(name: 'total_pages')  int? totalPages, @JsonKey(name: 'per_page')  int? perPage, @JsonKey(name: 'has_next_page')  bool? hasNextPage, @JsonKey(name: 'has_previous_page')  bool? hasPreviousPage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MetaModel() when $default != null:
-return $default(_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPage,_that.hasPreviousPage);case _:
+return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPage,_that.hasPreviousPage);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPa
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'current_page')  int? currentPage, @JsonKey(name: 'total_pages')  int? totalPages, @JsonKey(name: 'per_page')  int? perPage, @JsonKey(name: 'has_next_page')  bool? hasNextPage, @JsonKey(name: 'has_previous_page')  bool? hasPreviousPage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'total')  int? total, @JsonKey(name: 'current_page')  int? currentPage, @JsonKey(name: 'total_pages')  int? totalPages, @JsonKey(name: 'per_page')  int? perPage, @JsonKey(name: 'has_next_page')  bool? hasNextPage, @JsonKey(name: 'has_previous_page')  bool? hasPreviousPage)  $default,) {final _that = this;
 switch (_that) {
 case _MetaModel():
-return $default(_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPage,_that.hasPreviousPage);case _:
+return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPage,_that.hasPreviousPage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +199,10 @@ return $default(_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPa
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'current_page')  int? currentPage, @JsonKey(name: 'total_pages')  int? totalPages, @JsonKey(name: 'per_page')  int? perPage, @JsonKey(name: 'has_next_page')  bool? hasNextPage, @JsonKey(name: 'has_previous_page')  bool? hasPreviousPage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'total')  int? total, @JsonKey(name: 'current_page')  int? currentPage, @JsonKey(name: 'total_pages')  int? totalPages, @JsonKey(name: 'per_page')  int? perPage, @JsonKey(name: 'has_next_page')  bool? hasNextPage, @JsonKey(name: 'has_previous_page')  bool? hasPreviousPage)?  $default,) {final _that = this;
 switch (_that) {
 case _MetaModel() when $default != null:
-return $default(_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPage,_that.hasPreviousPage);case _:
+return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPage,_that.hasPreviousPage);case _:
   return null;
 
 }
@@ -213,9 +214,10 @@ return $default(_that.currentPage,_that.totalPages,_that.perPage,_that.hasNextPa
 @JsonSerializable()
 
 class _MetaModel implements MetaModel {
-  const _MetaModel({@JsonKey(name: 'current_page') this.currentPage, @JsonKey(name: 'total_pages') this.totalPages, @JsonKey(name: 'per_page') this.perPage, @JsonKey(name: 'has_next_page') this.hasNextPage, @JsonKey(name: 'has_previous_page') this.hasPreviousPage});
+  const _MetaModel({@JsonKey(name: 'total') this.total, @JsonKey(name: 'current_page') this.currentPage, @JsonKey(name: 'total_pages') this.totalPages, @JsonKey(name: 'per_page') this.perPage, @JsonKey(name: 'has_next_page') this.hasNextPage, @JsonKey(name: 'has_previous_page') this.hasPreviousPage});
   factory _MetaModel.fromJson(Map<String, dynamic> json) => _$MetaModelFromJson(json);
 
+@override@JsonKey(name: 'total') final  int? total;
 @override@JsonKey(name: 'current_page') final  int? currentPage;
 @override@JsonKey(name: 'total_pages') final  int? totalPages;
 @override@JsonKey(name: 'per_page') final  int? perPage;
@@ -235,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaModel&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.hasPreviousPage, hasPreviousPage) || other.hasPreviousPage == hasPreviousPage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaModel&&(identical(other.total, total) || other.total == total)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.hasPreviousPage, hasPreviousPage) || other.hasPreviousPage == hasPreviousPage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,currentPage,totalPages,perPage,hasNextPage,hasPreviousPage);
+int get hashCode => Object.hash(runtimeType,total,currentPage,totalPages,perPage,hasNextPage,hasPreviousPage);
 
 @override
 String toString() {
-  return 'MetaModel(currentPage: $currentPage, totalPages: $totalPages, perPage: $perPage, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage)';
+  return 'MetaModel(total: $total, currentPage: $currentPage, totalPages: $totalPages, perPage: $perPage, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$MetaModelCopyWith<$Res> implements $MetaModelCopyWith<$Re
   factory _$MetaModelCopyWith(_MetaModel value, $Res Function(_MetaModel) _then) = __$MetaModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'current_page') int? currentPage,@JsonKey(name: 'total_pages') int? totalPages,@JsonKey(name: 'per_page') int? perPage,@JsonKey(name: 'has_next_page') bool? hasNextPage,@JsonKey(name: 'has_previous_page') bool? hasPreviousPage
+@JsonKey(name: 'total') int? total,@JsonKey(name: 'current_page') int? currentPage,@JsonKey(name: 'total_pages') int? totalPages,@JsonKey(name: 'per_page') int? perPage,@JsonKey(name: 'has_next_page') bool? hasNextPage,@JsonKey(name: 'has_previous_page') bool? hasPreviousPage
 });
 
 
@@ -272,9 +274,10 @@ class __$MetaModelCopyWithImpl<$Res>
 
 /// Create a copy of MetaModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? currentPage = freezed,Object? totalPages = freezed,Object? perPage = freezed,Object? hasNextPage = freezed,Object? hasPreviousPage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? total = freezed,Object? currentPage = freezed,Object? totalPages = freezed,Object? perPage = freezed,Object? hasNextPage = freezed,Object? hasPreviousPage = freezed,}) {
   return _then(_MetaModel(
-currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
+total: freezed == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
+as int?,currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
 as int?,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
 as int?,perPage: freezed == perPage ? _self.perPage : perPage // ignore: cast_nullable_to_non_nullable
 as int?,hasNextPage: freezed == hasNextPage ? _self.hasNextPage : hasNextPage // ignore: cast_nullable_to_non_nullable

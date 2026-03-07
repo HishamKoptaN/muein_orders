@@ -12,18 +12,11 @@ part 'orders_api.g.dart';
 abstract class OrdersApi {
   @factoryMethod
   factory OrdersApi(Dio dio) = _OrdersApi;
-  // ! Get orders for a specific package
+  // ! Get
   @GET(ApiConstants.orders)
   Future<OrdersResModel> getOrders({
     @Query('page') int? page,
     @Query('sub_category_id') required int subCategoryId,
     @Query('query') String? query,
-    // @Query('is_distribution_photographed') bool? isDistributionPhotographed,
-  });
-  // ! updateClientField
-  @POST(ApiConstants.orders)
-  Future<OrderModel> updateClientField({
-    required int clientId,
-    required bool isQuranPhotographed,
   });
 }

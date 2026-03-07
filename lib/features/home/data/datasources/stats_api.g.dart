@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_api.dart';
+part of 'stats_api.dart';
 
 // dart format off
 
@@ -10,8 +10,8 @@ part of 'home_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
-class _HomeApi implements HomeApi {
-  _HomeApi(this._dio, {this.baseUrl, this.errorLogger});
+class _StatsApi implements StatsApi {
+  _StatsApi(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -20,7 +20,7 @@ class _HomeApi implements HomeApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<StatModel>> getSummary() async {
+  Future<List<StatModel>> stats() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -29,7 +29,7 @@ class _HomeApi implements HomeApi {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'summary',
+            'stats',
             queryParameters: queryParameters,
             data: _data,
           )

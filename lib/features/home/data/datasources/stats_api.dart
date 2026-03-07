@@ -5,14 +5,14 @@ import 'package:retrofit/retrofit.dart';
 import '../../../../core/constants/api_constants.dart';
 import '../models/stat_model.dart';
 
-part 'home_api.g.dart';
+part 'stats_api.g.dart';
 
 @singleton
 @RestApi()
-abstract class HomeApi {
+abstract class StatsApi {
   @factoryMethod
-  factory HomeApi(Dio dio) = _HomeApi;
-  // ! Get
-  @GET(ApiConstants.summary)
-  Future<List<StatModel>> getSummary();
+  factory StatsApi(Dio dio) = _StatsApi;
+  //! Get
+  @GET(ApiConstants.stats)
+  Future<List<StatModel>> stats();
 }

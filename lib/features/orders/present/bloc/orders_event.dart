@@ -6,12 +6,4 @@ abstract class OrdersEvent with _$OrdersEvent {
     required int subCategoryId,
     required bool loadMore,
   }) = _GetOrders;
-  const factory OrdersEvent.updateIsDistributionPhotographed({
-    required int orderId,
-  }) = _UpdateIsDistributionPhotographed;
-  const factory OrdersEvent.searchOrders({
-    required String query,
-    @Default(false) bool getMore,
-  }) = _SearchOrders;
-  const factory OrdersEvent.disposeSearch() = _DisposeSearch;
 }

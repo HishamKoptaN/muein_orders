@@ -43,7 +43,7 @@ class InstructionsBloc extends Bloc<InstructionsEvent, InstructionsState> {
       InstructionPageEntity(
         titleKey: 'welcome',
         descriptionKey: 'we_are_happy_to_have_you_join_our_store',
-        imagePath: 'assets/images/onboarding/onboarding1.png',
+        imagePath: 'assets/images/onboarding/welcome.png',
       ),
       InstructionPageEntity(
         titleKey: 'get_to_know_the_application_interface',

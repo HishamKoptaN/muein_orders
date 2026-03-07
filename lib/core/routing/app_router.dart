@@ -8,7 +8,7 @@ import '../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_views.dart';
 import '../../features/cached_docs/present/view/add_cached_doc_view.dart';
-import '../../features/home/present/view/home_view.dart';
+import '../../features/home/present/view/stats_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/orders/present/views/orders_view.dart';
 import '../../features/orders/present/views/sitcker_pdf/sitcker_pdf_preview_view.dart';
@@ -29,9 +29,7 @@ class AppRouter {
       refreshListenable: GoRouterRefreshStream(getIt<AuthBloc>().stream),
       navigatorKey: GlobalVariable.navState,
       debugLogDiagnostics: true,
-      // دعم الروابط العميقة
       redirect: (context, state) {
-        // معالجة منطق الروابط العميقة
         if (state.uri.hasAbsolutePath) {
           final String matchedLocation = state.matchedLocation;
           final String cleanLocation = matchedLocation.startsWith('/')
@@ -48,9 +46,9 @@ class AppRouter {
               );
               if (AppRouterRedirect.public.contains(currentLocation)) {
                 if (kReleaseMode) {
-                  return '/${HomeView.routeName}';
+                  return '/${StatsView.routeName}';
                 } else {
-                  return '/${HomeView.routeName}';
+                  return '/${StatsView.routeName}';
                 }
               }
               return null;
@@ -89,9 +87,9 @@ class AppRouter {
         Future.microtask(() => getIt<FirebaseMessagingService>().initialize());
         if (AppRouterRedirect.public.contains(currentLocation)) {
           if (kReleaseMode) {
-            return '/${HomeView.routeName}';
+            return '/${StatsView.routeName}';
           } else {
-            return '/${HomeView.routeName}';
+            return '/${StatsView.routeName}';
           }
         }
         return null;

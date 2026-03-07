@@ -14,30 +14,62 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OrdersEvent {
 
-
+ int get subCategoryId; bool get loadMore;
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$OrdersEventCopyWith<OrdersEvent> get copyWith => _$OrdersEventCopyWithImpl<OrdersEvent>(this as OrdersEvent, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersEvent);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersEvent&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,subCategoryId,loadMore);
 
 @override
 String toString() {
-  return 'OrdersEvent()';
+  return 'OrdersEvent(subCategoryId: $subCategoryId, loadMore: $loadMore)';
 }
 
 
 }
 
 /// @nodoc
-class $OrdersEventCopyWith<$Res>  {
-$OrdersEventCopyWith(OrdersEvent _, $Res Function(OrdersEvent) __);
+abstract mixin class $OrdersEventCopyWith<$Res>  {
+  factory $OrdersEventCopyWith(OrdersEvent value, $Res Function(OrdersEvent) _then) = _$OrdersEventCopyWithImpl;
+@useResult
+$Res call({
+ int subCategoryId, bool loadMore
+});
+
+
+
+
+}
+/// @nodoc
+class _$OrdersEventCopyWithImpl<$Res>
+    implements $OrdersEventCopyWith<$Res> {
+  _$OrdersEventCopyWithImpl(this._self, this._then);
+
+  final OrdersEvent _self;
+  final $Res Function(OrdersEvent) _then;
+
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? subCategoryId = null,Object? loadMore = null,}) {
+  return _then(_self.copyWith(
+subCategoryId: null == subCategoryId ? _self.subCategoryId : subCategoryId // ignore: cast_nullable_to_non_nullable
+as int,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
 }
 
 
@@ -55,14 +87,11 @@ extension OrdersEventPatterns on OrdersEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetOrders value)?  getOrders,TResult Function( _UpdateIsDistributionPhotographed value)?  updateIsDistributionPhotographed,TResult Function( _SearchOrders value)?  searchOrders,TResult Function( _DisposeSearch value)?  disposeSearch,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetOrders value)?  getOrders,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _GetOrders() when getOrders != null:
-return getOrders(_that);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
-return updateIsDistributionPhotographed(_that);case _SearchOrders() when searchOrders != null:
-return searchOrders(_that);case _DisposeSearch() when disposeSearch != null:
-return disposeSearch(_that);case _:
+return getOrders(_that);case _:
   return orElse();
 
 }
@@ -80,14 +109,11 @@ return disposeSearch(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetOrders value)  getOrders,required TResult Function( _UpdateIsDistributionPhotographed value)  updateIsDistributionPhotographed,required TResult Function( _SearchOrders value)  searchOrders,required TResult Function( _DisposeSearch value)  disposeSearch,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetOrders value)  getOrders,}){
 final _that = this;
 switch (_that) {
 case _GetOrders():
-return getOrders(_that);case _UpdateIsDistributionPhotographed():
-return updateIsDistributionPhotographed(_that);case _SearchOrders():
-return searchOrders(_that);case _DisposeSearch():
-return disposeSearch(_that);case _:
+return getOrders(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -104,14 +130,11 @@ return disposeSearch(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetOrders value)?  getOrders,TResult? Function( _UpdateIsDistributionPhotographed value)?  updateIsDistributionPhotographed,TResult? Function( _SearchOrders value)?  searchOrders,TResult? Function( _DisposeSearch value)?  disposeSearch,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetOrders value)?  getOrders,}){
 final _that = this;
 switch (_that) {
 case _GetOrders() when getOrders != null:
-return getOrders(_that);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
-return updateIsDistributionPhotographed(_that);case _SearchOrders() when searchOrders != null:
-return searchOrders(_that);case _DisposeSearch() when disposeSearch != null:
-return disposeSearch(_that);case _:
+return getOrders(_that);case _:
   return null;
 
 }
@@ -128,13 +151,10 @@ return disposeSearch(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId,  bool loadMore)?  getOrders,TResult Function( int orderId)?  updateIsDistributionPhotographed,TResult Function( String query,  bool getMore)?  searchOrders,TResult Function()?  disposeSearch,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId,  bool loadMore)?  getOrders,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetOrders() when getOrders != null:
-return getOrders(_that.subCategoryId,_that.loadMore);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
-return updateIsDistributionPhotographed(_that.orderId);case _SearchOrders() when searchOrders != null:
-return searchOrders(_that.query,_that.getMore);case _DisposeSearch() when disposeSearch != null:
-return disposeSearch();case _:
+return getOrders(_that.subCategoryId,_that.loadMore);case _:
   return orElse();
 
 }
@@ -152,13 +172,10 @@ return disposeSearch();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId,  bool loadMore)  getOrders,required TResult Function( int orderId)  updateIsDistributionPhotographed,required TResult Function( String query,  bool getMore)  searchOrders,required TResult Function()  disposeSearch,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId,  bool loadMore)  getOrders,}) {final _that = this;
 switch (_that) {
 case _GetOrders():
-return getOrders(_that.subCategoryId,_that.loadMore);case _UpdateIsDistributionPhotographed():
-return updateIsDistributionPhotographed(_that.orderId);case _SearchOrders():
-return searchOrders(_that.query,_that.getMore);case _DisposeSearch():
-return disposeSearch();case _:
+return getOrders(_that.subCategoryId,_that.loadMore);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +192,10 @@ return disposeSearch();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId,  bool loadMore)?  getOrders,TResult? Function( int orderId)?  updateIsDistributionPhotographed,TResult? Function( String query,  bool getMore)?  searchOrders,TResult? Function()?  disposeSearch,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId,  bool loadMore)?  getOrders,}) {final _that = this;
 switch (_that) {
 case _GetOrders() when getOrders != null:
-return getOrders(_that.subCategoryId,_that.loadMore);case _UpdateIsDistributionPhotographed() when updateIsDistributionPhotographed != null:
-return updateIsDistributionPhotographed(_that.orderId);case _SearchOrders() when searchOrders != null:
-return searchOrders(_that.query,_that.getMore);case _DisposeSearch() when disposeSearch != null:
-return disposeSearch();case _:
+return getOrders(_that.subCategoryId,_that.loadMore);case _:
   return null;
 
 }
@@ -196,12 +210,12 @@ class _GetOrders implements OrdersEvent {
   const _GetOrders({required this.subCategoryId, required this.loadMore});
   
 
- final  int subCategoryId;
- final  bool loadMore;
+@override final  int subCategoryId;
+@override final  bool loadMore;
 
 /// Create a copy of OrdersEvent
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 _$GetOrdersCopyWith<_GetOrders> get copyWith => __$GetOrdersCopyWithImpl<_GetOrders>(this, _$identity);
 
@@ -227,7 +241,7 @@ String toString() {
 /// @nodoc
 abstract mixin class _$GetOrdersCopyWith<$Res> implements $OrdersEventCopyWith<$Res> {
   factory _$GetOrdersCopyWith(_GetOrders value, $Res Function(_GetOrders) _then) = __$GetOrdersCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
  int subCategoryId, bool loadMore
 });
@@ -246,7 +260,7 @@ class __$GetOrdersCopyWithImpl<$Res>
 
 /// Create a copy of OrdersEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? subCategoryId = null,Object? loadMore = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? subCategoryId = null,Object? loadMore = null,}) {
   return _then(_GetOrders(
 subCategoryId: null == subCategoryId ? _self.subCategoryId : subCategoryId // ignore: cast_nullable_to_non_nullable
 as int,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
@@ -256,172 +270,6 @@ as bool,
 
 
 }
-
-/// @nodoc
-
-
-class _UpdateIsDistributionPhotographed implements OrdersEvent {
-  const _UpdateIsDistributionPhotographed({required this.orderId});
-  
-
- final  int orderId;
-
-/// Create a copy of OrdersEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$UpdateIsDistributionPhotographedCopyWith<_UpdateIsDistributionPhotographed> get copyWith => __$UpdateIsDistributionPhotographedCopyWithImpl<_UpdateIsDistributionPhotographed>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateIsDistributionPhotographed&&(identical(other.orderId, orderId) || other.orderId == orderId));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,orderId);
-
-@override
-String toString() {
-  return 'OrdersEvent.updateIsDistributionPhotographed(orderId: $orderId)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$UpdateIsDistributionPhotographedCopyWith<$Res> implements $OrdersEventCopyWith<$Res> {
-  factory _$UpdateIsDistributionPhotographedCopyWith(_UpdateIsDistributionPhotographed value, $Res Function(_UpdateIsDistributionPhotographed) _then) = __$UpdateIsDistributionPhotographedCopyWithImpl;
-@useResult
-$Res call({
- int orderId
-});
-
-
-
-
-}
-/// @nodoc
-class __$UpdateIsDistributionPhotographedCopyWithImpl<$Res>
-    implements _$UpdateIsDistributionPhotographedCopyWith<$Res> {
-  __$UpdateIsDistributionPhotographedCopyWithImpl(this._self, this._then);
-
-  final _UpdateIsDistributionPhotographed _self;
-  final $Res Function(_UpdateIsDistributionPhotographed) _then;
-
-/// Create a copy of OrdersEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? orderId = null,}) {
-  return _then(_UpdateIsDistributionPhotographed(
-orderId: null == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _SearchOrders implements OrdersEvent {
-  const _SearchOrders({required this.query, this.getMore = false});
-  
-
- final  String query;
-@JsonKey() final  bool getMore;
-
-/// Create a copy of OrdersEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SearchOrdersCopyWith<_SearchOrders> get copyWith => __$SearchOrdersCopyWithImpl<_SearchOrders>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchOrders&&(identical(other.query, query) || other.query == query)&&(identical(other.getMore, getMore) || other.getMore == getMore));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,query,getMore);
-
-@override
-String toString() {
-  return 'OrdersEvent.searchOrders(query: $query, getMore: $getMore)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SearchOrdersCopyWith<$Res> implements $OrdersEventCopyWith<$Res> {
-  factory _$SearchOrdersCopyWith(_SearchOrders value, $Res Function(_SearchOrders) _then) = __$SearchOrdersCopyWithImpl;
-@useResult
-$Res call({
- String query, bool getMore
-});
-
-
-
-
-}
-/// @nodoc
-class __$SearchOrdersCopyWithImpl<$Res>
-    implements _$SearchOrdersCopyWith<$Res> {
-  __$SearchOrdersCopyWithImpl(this._self, this._then);
-
-  final _SearchOrders _self;
-  final $Res Function(_SearchOrders) _then;
-
-/// Create a copy of OrdersEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? query = null,Object? getMore = null,}) {
-  return _then(_SearchOrders(
-query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
-as String,getMore: null == getMore ? _self.getMore : getMore // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _DisposeSearch implements OrdersEvent {
-  const _DisposeSearch();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DisposeSearch);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'OrdersEvent.disposeSearch()';
-}
-
-
-}
-
-
-
 
 /// @nodoc
 mixin _$OrdersState {
@@ -540,12 +388,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<OrderEntity>? orders,  bool? hasMore)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( OrdersResEntity ordersRes)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.orders,_that.hasMore);case _Failure() when failure != null:
+return loaded(_that.ordersRes);case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
   return orElse();
 
@@ -564,12 +412,12 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<OrderEntity>? orders,  bool? hasMore)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( OrdersResEntity ordersRes)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
-return loaded(_that.orders,_that.hasMore);case _Failure():
+return loaded(_that.ordersRes);case _Failure():
 return failure(_that.apiErrorModel);case _:
   throw StateError('Unexpected subclass');
 
@@ -587,12 +435,12 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<OrderEntity>? orders,  bool? hasMore)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( OrdersResEntity ordersRes)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.orders,_that.hasMore);case _Failure() when failure != null:
+return loaded(_that.ordersRes);case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
   return null;
 
@@ -669,19 +517,10 @@ String toString() {
 
 
 class _Loaded implements OrdersState {
-  const _Loaded({required final  List<OrderEntity>? orders, required this.hasMore}): _orders = orders;
+  const _Loaded({required this.ordersRes});
   
 
- final  List<OrderEntity>? _orders;
- List<OrderEntity>? get orders {
-  final value = _orders;
-  if (value == null) return null;
-  if (_orders is EqualUnmodifiableListView) return _orders;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
-
- final  bool? hasMore;
+ final  OrdersResEntity ordersRes;
 
 /// Create a copy of OrdersState
 /// with the given fields replaced by the non-null parameter values.
@@ -693,16 +532,16 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._orders, _orders)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.ordersRes, ordersRes) || other.ordersRes == ordersRes));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_orders),hasMore);
+int get hashCode => Object.hash(runtimeType,ordersRes);
 
 @override
 String toString() {
-  return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore)';
+  return 'OrdersState.loaded(ordersRes: $ordersRes)';
 }
 
 
@@ -713,11 +552,11 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $OrdersStateCopyWith<$Res
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- List<OrderEntity>? orders, bool? hasMore
+ OrdersResEntity ordersRes
 });
 
 
-
+$OrdersResEntityCopyWith<$Res> get ordersRes;
 
 }
 /// @nodoc
@@ -730,15 +569,23 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of OrdersState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? orders = freezed,Object? hasMore = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? ordersRes = null,}) {
   return _then(_Loaded(
-orders: freezed == orders ? _self._orders : orders // ignore: cast_nullable_to_non_nullable
-as List<OrderEntity>?,hasMore: freezed == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
-as bool?,
+ordersRes: null == ordersRes ? _self.ordersRes : ordersRes // ignore: cast_nullable_to_non_nullable
+as OrdersResEntity,
   ));
 }
 
-
+/// Create a copy of OrdersState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$OrdersResEntityCopyWith<$Res> get ordersRes {
+  
+  return $OrdersResEntityCopyWith<$Res>(_self.ordersRes, (value) {
+    return _then(_self.copyWith(ordersRes: value));
+  });
+}
 }
 
 /// @nodoc

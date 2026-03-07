@@ -3,7 +3,7 @@ import '../../features/auth/forgot_password/present/views/forgot_pass_view.dart'
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_views.dart';
 import '../../features/cached_docs/present/view/add_cached_doc_view.dart';
-import '../../features/home/present/view/home_view.dart';
+import '../../features/home/present/view/stats_view.dart';
 import '../../features/instructions/present/view/instructions_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/profile/present/views/profile_view.dart';
@@ -16,7 +16,7 @@ class AppRouterRedirect {
     ForgotPassView.routeName,
   };
   static const Set<String> authenticatedOnly = {
-    HomeView.routeName,
+    StatsView.routeName,
     NotificationsView.routeName,
     'docs',
     InstructionsView.routeName,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
@@ -10,7 +9,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../core/widgets/translated_text.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../home/present/view/home_view.dart';
+import '../../../home/present/view/stats_view.dart';
 import '../bloc/instructions_bloc.dart';
 
 class InstructionsView extends StatefulWidget {
@@ -172,7 +171,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                                 onPressed: () {
                                   NavigationService.navigateAndRemoveUntil(
                                     context: context,
-                                    routeName: HomeView.routeName,
+                                    routeName: StatsView.routeName,
                                   );
                                 },
                                 child: TrText(
@@ -190,7 +189,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                           if (isLastPage) {
                             NavigationService.navigateAndRemoveUntil(
                               context: context,
-                              routeName: HomeView.routeName,
+                              routeName: StatsView.routeName,
                             );
                           } else {
                             getIt<InstructionsBloc>().add(
@@ -236,7 +235,7 @@ extension LocalizationHelper on AppLocalizations {
       case 'welcome':
         return 'مرحبا';
       case 'we_are_happy_to_have_you_join_our_store':
-        return 'نحن سعداء بانضمامك لمتجرنا';
+        return 'اهلا  بانضمامك الي معين';
       case 'get_to_know_the_application_interface':
         return 'تعرف على واجهة التطبيق';
       case 'here_you_will_find_tasks_requests_alerts_and_filters':

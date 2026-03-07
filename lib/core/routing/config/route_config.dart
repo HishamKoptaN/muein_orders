@@ -10,7 +10,7 @@ import '../../../features/cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../features/cached_docs/present/view/add_cached_doc_view.dart';
 import '../../../features/financial/present/view/create_expense.dart';
 import '../../../features/home/domain/entities/order_type_res_entity.dart';
-import '../../../features/home/present/view/home_view.dart';
+import '../../../features/home/present/view/stats_view.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
@@ -56,8 +56,8 @@ class RouteConfig {
         builder: (context, state) => const SignUpView(),
       ),
       RouteBuilder.goRoute(
-        routeName: HomeView.routeName,
-        builder: (context, state) => const HomeView(),
+        routeName: StatsView.routeName,
+        builder: (context, state) => const StatsView(),
       ),
       RouteBuilder.goRoute(
         routeName: ProfileView.routeName,
@@ -87,10 +87,12 @@ class RouteConfig {
       RouteBuilder.goRoute(
         routeName: AddCachedDocView.routeName,
         builder: (context, state) {
-          final args = state.extra as Map<String, dynamic>;
+          final args = state.extra as Map<String, dynamic>?;
           return AddCachedDocView(
-            cachedDoc: args['cachedDoc'] as CachedDocEntity,
-            subCategoryId: args['subCategoryId'] as int,
+            cachedDoc:
+                args?['cachedDoc'] as CachedDocEntity? ??
+                CachedDocEntity.empty(),
+            subCategoryId: args?['subCategoryId'] as int? ?? 0,
           );
         },
       ),

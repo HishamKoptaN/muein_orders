@@ -6,6 +6,7 @@ part 'meta_entity.g.dart';
 @freezed
 abstract class MetaEntity with _$MetaEntity {
   const factory MetaEntity({
+    int? total,
     int? currentPage,
     int? totalPages,
     int? perPage,

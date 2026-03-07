@@ -1,4 +1,4 @@
-import '../../../docs/domain/entities/docs_res_entity.dart';
+import '../../../orders/domain/entities/orders_res_entity.dart';
 
 class StatEntity {
   final int? id;

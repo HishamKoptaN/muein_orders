@@ -7,6 +7,7 @@ part of 'meta_entity.dart';
 // **************************************************************************
 
 _MetaEntity _$MetaEntityFromJson(Map<String, dynamic> json) => _MetaEntity(
+  total: (json['total'] as num?)?.toInt(),
   currentPage: (json['currentPage'] as num?)?.toInt(),
   totalPages: (json['totalPages'] as num?)?.toInt(),
   perPage: (json['perPage'] as num?)?.toInt(),
@@ -16,6 +17,7 @@ _MetaEntity _$MetaEntityFromJson(Map<String, dynamic> json) => _MetaEntity(
 
 Map<String, dynamic> _$MetaEntityToJson(_MetaEntity instance) =>
     <String, dynamic>{
+      'total': ?instance.total,
       'currentPage': ?instance.currentPage,
       'totalPages': ?instance.totalPages,
       'perPage': ?instance.perPage,

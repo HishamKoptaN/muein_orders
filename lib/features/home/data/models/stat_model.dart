@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../docs/data/models/docs_res_model.dart';
-
 part 'stat_model.freezed.dart';
 part 'stat_model.g.dart';
 

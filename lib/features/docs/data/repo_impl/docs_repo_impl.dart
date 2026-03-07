@@ -12,9 +12,9 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
 import '../../../cached_docs/data/models/cached_doc_model.dart';
+import '../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../s3/data/repo/s3_repo.dart';
 import '../../domain/entities/create_doc_entity.dart';
-import '../../domain/entities/docs_res_entity.dart';
 import '../../domain/repo/docs_repo.dart';
 import '../datasources/remote_data_sr/docs_api.dart';
 import '../mapper/docs_mapper.dart';
@@ -224,6 +224,7 @@ class DocsRepoImpl implements DocsRepo {
       ),
     );
   }
+
   // await _initializeNotifications();
   Future<void> _initializeNotifications() async {
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -237,8 +238,8 @@ class DocsRepoImpl implements DocsRepo {
   }) async {
     final t = AppLocalizations.of(GlobalVariable.navState.currentContext!);
     final clampedProgress = progress.clamp(0, 100).toInt();
-    final title = 'جاري رفع المستند';
-    final body = 'جاري رفع المستند';
+    const title = 'جاري رفع المستند';
+    const body = 'جاري رفع المستند';
     final style = BigTextStyleInformation(
       '$body\n${clampedProgress.toString()}%',
       htmlFormatBigText: false,

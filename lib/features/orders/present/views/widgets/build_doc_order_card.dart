@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/widgets/translated_text.dart';
-import '../../../../docs/domain/entities/docs_res_entity.dart';
 import '../../../../home/domain/entities/order_type_res_entity.dart';
 import '../../../domain/entities/orders_res_entity.dart';
 import '../sitcker_pdf/sitcker_pdf_preview_view.dart';
@@ -47,15 +46,16 @@ Widget buildDocOrderCard({
           ),
           ListView.builder(
             shrinkWrap: true,
-            itemCount: order.docs?.length,
+            itemCount: order.docs.length,
             itemBuilder: (context, index) {
-              final doc = order.docs?[index];
+              final doc = order.docs[index];
               return DocCardWidget(
-                doc: doc ?? DocEntity(),
+                doc: doc,
                 subCategoryId: stat.subCategory?.id ?? 0,
               );
             },
           ),
+
           MakeStickerPdfBtn(order: order),
         ],
       ),
@@ -77,8 +77,8 @@ class MakeStickerPdfBtn extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => PdfPreviewView(
-                  printedName: order.printedName ?? 'غير معروف',
-                  executionNum: order.id?.toString() ?? '0',
+                  printedName: order.printedName,
+                  executionNum: order.executionNumber ?? '0',
                 ),
               ),
             );

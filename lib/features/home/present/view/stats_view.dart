@@ -10,21 +10,20 @@ import '../../../../core/extensions/locale_extensions.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../gen/assets.gen.dart';
-import '../../../../l10n/app_localizations.dart';
 import '../../../drawer/my_drawer.dart';
 import '../../../notifications/present/view/notifications_view.dart';
 import '../../../profile/present/bloc/profile_bloc.dart';
-import '../bloc/home_bloc.dart';
+import '../bloc/stats_bloc.dart';
 import 'widgets/order_cared_widget.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
-  static const String routeName = 'home';
+class StatsView extends StatefulWidget {
+  const StatsView({super.key});
+  static const String routeName = 'stats';
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<StatsView> createState() => _StatsViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _StatsViewState extends State<StatsView> {
   bool _initialized = false;
   @override
   void initState() {
@@ -47,13 +46,12 @@ class _HomeViewState extends State<HomeView> {
 
   void _initializeData() {
     debugPrint('🏠 Initializing Home data...');
-    getIt<HomeBloc>().add(const HomeEvent.getSummary());
+    getIt<StatsBloc>().add(const StatsEvent.getStats());
     getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
   }
 
   @override
   Widget build(BuildContext context) {
-    final t = Localizations.of<AppLocalizations>(context, AppLocalizations);
     return CustomScaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
@@ -90,7 +88,7 @@ class _HomeViewState extends State<HomeView> {
         ],
       ),
       drawer: const CustomSideDrawer(),
-      body: BlocBuilder<HomeBloc, HomeState>(
+      body: BlocBuilder<StatsBloc, StatsState>(
         builder: (context, state) {
           return state.maybeWhen(
             loaded: (stats) {
@@ -106,7 +104,7 @@ class _HomeViewState extends State<HomeView> {
                   itemCount: stats.length,
                   itemBuilder: (context, index) {
                     final stat = stats[index];
-                    return OrderCard(stat: stat);
+                    return StatCard(stat: stat);
                   },
                 ),
               );

@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
-import 'package:uni_links/uni_links.dart';
 
 import '../app/global_variable.dart';
 
@@ -11,6 +11,7 @@ class DeepLinkService {
   static DeepLinkService get instance => _instance;
   DeepLinkService._internal();
 
+  final AppLinks _appLinks = AppLinks();
   StreamSubscription? _linkSubscription;
   final List<Function(String)> _linkListeners = [];
 
@@ -18,18 +19,14 @@ class DeepLinkService {
   Future<void> initialize() async {
     try {
       // مراقبة الروابط العميقة عند بدء التطبيق
-      final initialLink = await getInitialLink();
+      final initialLink = await _appLinks.getInitialLink();
       if (initialLink != null) {
-        _handleDeepLink(initialLink);
+        _handleDeepLink(initialLink.toString());
       }
 
       // مراقبة الروابط العميقة أثناء تشغيل التطبيق
-      _linkSubscription = linkStream.listen(
-        (String? link) {
-          if (link != null) {
-            _handleDeepLink(link);
-          }
-        },
+      _linkSubscription = _appLinks.stringLinkStream.listen(
+        _handleDeepLink,
         onError: (err) {
           if (kDebugMode) {
             print('خطأ في مراقبة الروابط العميقة: $err');

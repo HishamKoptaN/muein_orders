@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
@@ -15,7 +13,6 @@ import '../../domain/entities/create_cached_doc_entity.dart';
 import '../bloc/cached_doc_bloc.dart';
 import 'debug/debug_auto_fill_tools.dart';
 import 'widgets/add_cached_doc_fields.dart';
-
 class AddCachedDocView extends StatefulWidget {
   const AddCachedDocView({
     super.key,
@@ -28,7 +25,6 @@ class AddCachedDocView extends StatefulWidget {
   @override
   State<AddCachedDocView> createState() => _AddCachedDocViewState();
 }
-
 class _AddCachedDocViewState extends State<AddCachedDocView> {
   @override
   void initState() {
@@ -62,7 +58,6 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
       ),
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(

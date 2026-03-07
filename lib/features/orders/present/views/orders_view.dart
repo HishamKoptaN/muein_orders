@@ -7,7 +7,6 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../core/widgets/translated_text.dart';
-import '../../../../l10n/app_localizations.dart';
 import '../../../home/domain/entities/order_type_res_entity.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../bloc/orders_bloc.dart';
@@ -30,16 +29,6 @@ class _OrderDocsViewState extends State<OrderDocsView> {
     super.didChangeDependencies();
   }
 
-  void _onTabSelected(int index) {
-    setState(() => selectedTab = index);
-    getIt<OrdersBloc>().add(
-      OrdersEvent.getOrders(
-        subCategoryId: widget.stat.id ?? 1,
-        loadMore: false,
-      ),
-    );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -56,8 +45,9 @@ class _OrderDocsViewState extends State<OrderDocsView> {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 100) {
       getIt<OrdersBloc>().state.whenOrNull(
-        loaded: (clients, hasMore) {
-          if (hasMore == true) {
+        loaded: (ordersRes) {
+          if (ordersRes.mapOrNull(orders: (value) => value.meta.hasNextPage) ==
+              true) {
             getIt<OrdersBloc>().add(
               OrdersEvent.getOrders(
                 subCategoryId: widget.stat.subCategory?.id ?? 0,
@@ -72,70 +62,149 @@ class _OrderDocsViewState extends State<OrderDocsView> {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
     return CustomScaffold(
       appBar: const CustomAppBar(title: 'طلبات'),
       body: BlocBuilder<OrdersBloc, OrdersState>(
         builder: (context, state) {
           return state.maybeWhen(
-            loaded: (orders, hasMore) {
-              return Column(
-                spacing: 15.h,
-                children: [
-                  // OrdersTabs(
-                  //   onTap: _onTabSelected,
-                  //   t: t,
-                  //   selectedTab: selectedTab,
-                  // ),
-                  Row(
-                    children: [
-                      TrText(
-                        '${'طلبات'} ( ${state.maybeWhen(loaded: (orders, hasMore) {
-                          return orders?.length.toString() ?? '0';
-                        }, orElse: () {
-                          return '0';
-                        })} )',
-                        textAlign: TextAlign.right,
-                        style: const TextStyle(
-                          fontFamily: 'Almarai',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          height: 16 / 14,
-                          color: Color(0xFF757575),
+            loaded: (ordersRes) {
+              return ordersRes.when(
+                orders: (orders, meta) {
+                  return CustomScrollView(
+                    controller: _scrollController,
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15.h),
+                          child: Row(
+                            children: [
+                              TrText(
+                                '${'طلبات'} ( ${ordersRes.mapOrNull(orders: (value) => value.orders.length) ?? 0} )',
+                                textAlign: TextAlign.right,
+                                style: const TextStyle(
+                                  fontFamily: 'Almarai',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  height: 16 / 14,
+                                  color: Color(0xFF757575),
+                                ),
+                              ),
+                              Gap(70.w),
+                              TrText(
+                                '${widget.stat.subCategory?.name ?? 0} ',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontFamily: 'Almarai',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16.sp,
+                                  height: 16 / 14,
+                                  color: const Color(0xFF757575),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      Gap(70.w),
-                      TrText(
-                        '${widget.stat.subCategory?.name ?? 0} ',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          fontFamily: 'Almarai',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16.sp,
-                          height: 16 / 14,
-                          color: const Color(0xFF757575),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, i) {
+                            final order = ordersRes.mapOrNull(
+                              orders: (value) => value.orders[i],
+                            );
+                            return buildDocOrderCard(
+                              context: context,
+                              order:
+                                  order ??
+                                  const OrderEntity(
+                                    id: 0,
+                                    sallaOrderId: 0,
+                                    printedName: '',
+                                    executionNumber: '',
+                                    docs: [],
+                                  ),
+                              orderDocsCount: widget.stat.id ?? 1,
+                              stat: widget.stat,
+                            );
+                          },
+                          childCount:
+                              ordersRes
+                                  .mapOrNull(orders: (value) => value.orders)
+                                  ?.length ??
+                              0,
                         ),
+                      ),
+                      if (ordersRes.mapOrNull(
+                            orders: (value) => value.meta.hasNextPage,
+                          ) ==
+                          true)
+                        SliverToBoxAdapter(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.h),
+                            child: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
+                individualDocs: (docs) {
+                  return CustomScrollView(
+                    controller: _scrollController,
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15.h),
+                          child: Row(
+                            children: [
+                              TrText(
+                                '${'توثيقات'} ( ${docs.length} )',
+                                textAlign: TextAlign.right,
+                                style: const TextStyle(
+                                  fontFamily: 'Almarai',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  height: 16 / 14,
+                                  color: Color(0xFF757575),
+                                ),
+                              ),
+                              Gap(70.w),
+                              TrText(
+                                '${widget.stat.subCategory?.name ?? 0} ',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontFamily: 'Almarai',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16.sp,
+                                  height: 16 / 14,
+                                  color: const Color(0xFF757575),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate((context, i) {
+                          final doc = docs[i];
+                          final order = OrderEntity(
+                            id: doc.id,
+                            sallaOrderId: 0,
+                            printedName: '',
+                            executionNumber: '',
+                            docs: [doc],
+                          );
+                          return buildDocOrderCard(
+                            context: context,
+                            order: order,
+                            orderDocsCount: widget.stat.id ?? 1,
+                            stat: widget.stat,
+                          );
+                        }, childCount: docs.length),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 6),
-                  Expanded(
-                    child: ListView.builder(
-                      controller: _scrollController,
-                      shrinkWrap: true,
-                      itemCount: orders?.length,
-                      itemBuilder: (context, index) {
-                        final order = orders?[index];
-                        return buildDocOrderCard(
-                          context: context,
-                          order: order ?? OrderEntity(),
-                          orderDocsCount: widget.stat.id ?? 1,
-                          stat: widget.stat,
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                  );
+                },
               );
             },
             loading: () {

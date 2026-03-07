@@ -9,23 +9,13 @@ class OrdersUseCases {
   final OrdersRepo ordersRepo;
   OrdersUseCases(this.ordersRepo);
   Future<ApiResult<OrdersResEntity?>> getOrders({
-    required int productTypeId,
+    required int subCategoryId,
     String? query,
     bool loadMore = false,
   }) async {
     return await ordersRepo.getOrders(
-      productTypeId: productTypeId,
+      subCategoryId: subCategoryId,
       loadMore: loadMore,
-    );
-  }
-
-  Future<ApiResult<OrderEntity?>> updateClientField({
-    required int clientId,
-    required bool isQuranPhotographed,
-  }) async {
-    return await ordersRepo.updateClientField(
-      clientId: clientId,
-      isQuranPhotographed: isQuranPhotographed,
     );
   }
 }

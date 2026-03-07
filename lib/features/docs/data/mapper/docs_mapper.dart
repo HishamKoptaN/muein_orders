@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/entities/meta_entity.dart';
-import '../../../../core/models/meta_model.dart';
 import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
+import '../../../orders/domain/entities/orders_res_entity.dart';
 import '../../domain/entities/create_doc_entity.dart';
 import '../../domain/entities/docs_res_entity.dart';
 import '../models/docs_res_model.dart';
 
-extension MetaModelMapper on MetaModel {
-  MetaEntity toEntity() => MetaEntity(
-    perPage: perPage,
-    currentPage: currentPage,
-    totalPages: totalPages,
-    hasNextPage: hasNextPage,
-    hasPreviousPage: hasPreviousPage,
-  );
-}
-
 extension DocModelMapper on DocModel {
   DocEntity toEntity() => DocEntity(
-    id: id,
-    videoOne: videoOne,
+    id: id ?? 0,
     videoTwo: videoTwo,
     thumbnailUrlOne: thumbnailUrlOne,
     thumbnailUrlTwo: thumbnailUrlTwo,
@@ -30,6 +18,11 @@ extension DocModelMapper on DocModel {
     longitude: longitude,
     docStatus: docStatus?.toEntity(),
     createdAt: createdAt,
+    copiesCount: copiesCount,
+    reviewedBy: reviewedBy,
+    reviewedAt: reviewedAt,
+    adminNotes: adminNotes,
+    updatedAt: updatedAt,
   );
 }
 

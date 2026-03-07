@@ -11,7 +11,7 @@ import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
 import '../../../../cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../../cached_docs/present/view/add_cached_doc_view.dart';
-import '../../../../docs/domain/entities/docs_res_entity.dart';
+import '../../../domain/entities/orders_res_entity.dart';
 
 Widget docWidget({
   required BuildContext context,
@@ -21,7 +21,7 @@ Widget docWidget({
 }) {
   return StreamBuilder<CachedDocEntity>(
     stream: createThrottledStream(
-      getIt<AppDatabase>().watchDoc(docId: doc.id ?? 0).distinct(),
+      getIt<AppDatabase>().watchDoc(docId: doc.id).distinct(),
       throttleDuration: const Duration(milliseconds: 800),
     ),
     builder: (context, snapshot) {
@@ -45,34 +45,37 @@ Widget docWidget({
                   mainAxisSize: MainAxisSize.min,
                   spacing: 5.h,
                   children: [
-                    Icon(
-                      Icons.add_photo_alternate_outlined,
-                      color: getStatusColor(cachedDoc?.files?[0].status),
-                      size: 24.sp,
-                    ),
-                    Icon(
-                      Icons.add_photo_alternate_outlined,
-                      color: getStatusColor(cachedDoc?.files?[1].status),
-                      size: 24.sp,
-                    ),
+                    if (subCategoryId != 5) ...[
+                      Icon(
+                        Icons.add_photo_alternate_outlined,
+                        color: getStatusColor(cachedDoc?.files?[0].status),
+                        size: 24.sp,
+                      ),
+                      Icon(
+                        Icons.add_photo_alternate_outlined,
+                        color: getStatusColor(cachedDoc?.files?[1].status),
+                        size: 24.sp,
+                      ),
+
+                      Image.asset(
+                        'assets/icons/iconoir_add-media-video.png',
+                        color: getStatusColor(cachedDoc?.files?[3].status),
+                        width: 24.sp,
+                        height: 24.sp,
+                      ),
+                    ],
                     Image.asset(
                       'assets/icons/iconoir_add-media-video.png',
                       color: getStatusColor(cachedDoc?.files?[2].status),
                       width: 24.sp,
                       height: 24.sp,
                     ),
-                    Image.asset(
-                      'assets/icons/iconoir_add-media-video.png',
-                      color: getStatusColor(cachedDoc?.files?[3].status),
-                      width: 24.sp,
-                      height: 24.sp,
-                    ),
-
-                    Icon(
-                      Icons.location_on_rounded,
-                      color: getStatusColor(cachedDoc?.location?.status),
-                      size: 24.sp,
-                    ),
+                    if (subCategoryId != 5)
+                      Icon(
+                        Icons.location_on_rounded,
+                        color: getStatusColor(cachedDoc?.location?.status),
+                        size: 24.sp,
+                      ),
                   ],
                 ),
               ),
@@ -96,8 +99,7 @@ Widget docWidget({
                           context: context,
                           routeName: AddCachedDocView.routeName,
                           extra: {
-                            'docId': doc,
-                            'cachedDoc': cachedDoc?.copyWith(docId: doc.id),
+                            'cachedDoc': cachedDoc,
                             'subCategoryId': subCategoryId,
                           },
                         );
@@ -156,6 +158,16 @@ Widget docWidget({
                         fontSize: 12.sp,
                       ),
                     ),
+                    if (doc.copiesCount != null && doc.copiesCount! > 0)
+                      Text(
+                        'مصحف${doc.copiesCount}',
+                        style: const TextStyle(
+                          fontFamily: 'Almarai',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF323232),
+                        ),
+                      ),
                   ],
                 ),
               ),
@@ -189,31 +201,26 @@ Widget getStatus({
   switch (uploadStatus) {
     case FileUploadStatus.pending:
       return const StatusWidget(
-        text: 'قيد الانتظار',
         icon: FontAwesomeIcons.hourglassHalf,
         color: Colors.orange,
       );
     case FileUploadStatus.uploading:
       return const StatusWidget(
-        text: 'جاري التحميل',
         icon: FontAwesomeIcons.upload,
         color: Colors.green,
       );
     case FileUploadStatus.uploaded:
       return const StatusWidget(
-        text: 'تم التحميل',
         icon: Icons.cloud_done,
         color: Color(0xFF003A46),
       );
     case FileUploadStatus.failed:
       return const StatusWidget(
-        text: 'فشل التحميل',
         icon: FontAwesomeIcons.cloudscale,
         color: Colors.red,
       );
     default:
       return const StatusWidget(
-        text: 'غير معروف',
         icon: FontAwesomeIcons.cloudArrowUp,
         color: Colors.grey,
       );
@@ -224,11 +231,11 @@ class StatusWidget extends StatelessWidget {
   const StatusWidget({
     super.key,
     required this.icon,
-    required this.text,
+    this.text,
     required this.color,
   });
   final IconData? icon;
-  final String text;
+  final String? text;
   final Color color;
   @override
   Widget build(BuildContext context) {
@@ -238,46 +245,17 @@ class StatusWidget extends StatelessWidget {
       children: [
         FaIcon(icon, color: color, size: 22.w),
         SizedBox(width: 5.w),
-        Flexible(
-          child: TrText(
-            text,
-            softWrap: true,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: color),
+        if (text != null)
+          Flexible(
+            child: TrText(
+              text ?? '',
+              softWrap: true,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: color),
+            ),
           ),
-        ),
       ],
     );
   }
 }
-                  // TrText(
-                  //   '${cachedDoc?.uploadProgress.toStringAsFixed(1)}%',
-                  //   style: const TextStyle(color: Color(0xFF4CAF50)),
-                  // ),
-                  //           ],
-                  //         );
-                  //       case FileUploadStatus.failed:
-                  //         return Row(
-                  //           key: const ValueKey('failure'),
-                  //           mainAxisSize: MainAxisSize.min,
-                  //           mainAxisAlignment: MainAxisAlignment.start,
-                  //           children: [
-                  //             _cachedDocStatusMessage(
-                  //               key: const ValueKey('failure'),
-                  //               text: context.t.failure,
-                  //               uploadStatus: FileUploadStatus.failed,
-                  //             ),
-                  //             const SizedBox(width: 8),
-                  //             IconButton(
-                  //               key: const ValueKey('retry'),
-                  //               onPressed: onRetry ?? () {},
-                  //               icon: const Icon(
-                  //                 Icons.refresh,
-                  //                 color: Color(0xFFD8091E),
-                  //                 size: 20,
-                  //               ),
-                  //               tooltip: 'إعادة المحاولة',
-                  //             ),
-                  //           ],
-                  //         );

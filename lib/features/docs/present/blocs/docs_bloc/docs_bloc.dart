@@ -8,7 +8,7 @@ import '../../../../../core/entities/meta_entity.dart';
 import '../../../../../core/errors/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
-import '../../../domain/entities/docs_res_entity.dart';
+import '../../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
 
 part 'docs_bloc.freezed.dart';

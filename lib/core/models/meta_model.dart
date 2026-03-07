@@ -6,6 +6,7 @@ part 'meta_model.g.dart';
 @freezed
 abstract class MetaModel with _$MetaModel {
   const factory MetaModel({
+    @JsonKey(name: 'total') int? total,
     @JsonKey(name: 'current_page') int? currentPage,
     @JsonKey(name: 'total_pages') int? totalPages,
     @JsonKey(name: 'per_page') int? perPage,

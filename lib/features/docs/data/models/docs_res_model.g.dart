@@ -35,6 +35,10 @@ _DocModel _$DocModelFromJson(Map<String, dynamic> json) => _DocModel(
   docStatus: json['doc_status'] == null
       ? null
       : DocStatusModel.fromJson(json['doc_status'] as Map<String, dynamic>),
+  copiesCount: (json['copies_count'] as num?)?.toInt(),
+  reviewedBy: json['reviewed_by'] as String?,
+  reviewedAt: json['reviewed_at'] as String?,
+  adminNotes: json['admin_notes'] as String?,
   createdAt: json['created_at'] as String?,
   updatedAt: json['updated_at'] as String?,
 );
@@ -50,6 +54,10 @@ Map<String, dynamic> _$DocModelToJson(_DocModel instance) => <String, dynamic>{
   'latitude': ?instance.latitude,
   'longitude': ?instance.longitude,
   'doc_status': ?instance.docStatus?.toJson(),
+  'copies_count': ?instance.copiesCount,
+  'reviewed_by': ?instance.reviewedBy,
+  'reviewed_at': ?instance.reviewedAt,
+  'admin_notes': ?instance.adminNotes,
   'created_at': ?instance.createdAt,
   'updated_at': ?instance.updatedAt,
 };

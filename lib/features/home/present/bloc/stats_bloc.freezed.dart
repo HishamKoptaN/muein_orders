@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'home_bloc.dart';
+part of 'stats_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,68 +12,37 @@ part of 'home_bloc.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$HomeEvent {
+mixin _$StatsEvent {
 
- bool get getMore;
-/// Create a copy of HomeEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$HomeEventCopyWith<HomeEvent> get copyWith => _$HomeEventCopyWithImpl<HomeEvent>(this as HomeEvent, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeEvent&&(identical(other.getMore, getMore) || other.getMore == getMore));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatsEvent);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,getMore);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomeEvent(getMore: $getMore)';
+  return 'StatsEvent()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $HomeEventCopyWith<$Res>  {
-  factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) _then) = _$HomeEventCopyWithImpl;
-@useResult
-$Res call({
- bool getMore
-});
-
-
-
-
-}
-/// @nodoc
-class _$HomeEventCopyWithImpl<$Res>
-    implements $HomeEventCopyWith<$Res> {
-  _$HomeEventCopyWithImpl(this._self, this._then);
-
-  final HomeEvent _self;
-  final $Res Function(HomeEvent) _then;
-
-/// Create a copy of HomeEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? getMore = null,}) {
-  return _then(_self.copyWith(
-getMore: null == getMore ? _self.getMore : getMore // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
+class $StatsEventCopyWith<$Res>  {
+$StatsEventCopyWith(StatsEvent _, $Res Function(StatsEvent) __);
 }
 
 
-/// Adds pattern-matching-related methods to [HomeEvent].
-extension HomeEventPatterns on HomeEvent {
+/// Adds pattern-matching-related methods to [StatsEvent].
+extension StatsEventPatterns on StatsEvent {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -86,11 +55,11 @@ extension HomeEventPatterns on HomeEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetSummary value)?  getSummary,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetStats value)?  getStats,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _GetSummary() when getSummary != null:
-return getSummary(_that);case _:
+case _GetStats() when getStats != null:
+return getStats(_that);case _:
   return orElse();
 
 }
@@ -108,11 +77,11 @@ return getSummary(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetSummary value)  getSummary,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetStats value)  getStats,}){
 final _that = this;
 switch (_that) {
-case _GetSummary():
-return getSummary(_that);case _:
+case _GetStats():
+return getStats(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -129,11 +98,11 @@ return getSummary(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetSummary value)?  getSummary,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetStats value)?  getStats,}){
 final _that = this;
 switch (_that) {
-case _GetSummary() when getSummary != null:
-return getSummary(_that);case _:
+case _GetStats() when getStats != null:
+return getStats(_that);case _:
   return null;
 
 }
@@ -150,10 +119,10 @@ return getSummary(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( bool getMore)?  getSummary,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getStats,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _GetSummary() when getSummary != null:
-return getSummary(_that.getMore);case _:
+case _GetStats() when getStats != null:
+return getStats();case _:
   return orElse();
 
 }
@@ -171,10 +140,10 @@ return getSummary(_that.getMore);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( bool getMore)  getSummary,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getStats,}) {final _that = this;
 switch (_that) {
-case _GetSummary():
-return getSummary(_that.getMore);case _:
+case _GetStats():
+return getStats();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +160,10 @@ return getSummary(_that.getMore);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( bool getMore)?  getSummary,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getStats,}) {final _that = this;
 switch (_that) {
-case _GetSummary() when getSummary != null:
-return getSummary(_that.getMore);case _:
+case _GetStats() when getStats != null:
+return getStats();case _:
   return null;
 
 }
@@ -205,71 +174,10 @@ return getSummary(_that.getMore);case _:
 /// @nodoc
 
 
-class _GetSummary implements HomeEvent {
-  const _GetSummary({this.getMore = false});
+class _GetStats implements StatsEvent {
+  const _GetStats();
   
 
-@override@JsonKey() final  bool getMore;
-
-/// Create a copy of HomeEvent
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$GetSummaryCopyWith<_GetSummary> get copyWith => __$GetSummaryCopyWithImpl<_GetSummary>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetSummary&&(identical(other.getMore, getMore) || other.getMore == getMore));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,getMore);
-
-@override
-String toString() {
-  return 'HomeEvent.getSummary(getMore: $getMore)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$GetSummaryCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
-  factory _$GetSummaryCopyWith(_GetSummary value, $Res Function(_GetSummary) _then) = __$GetSummaryCopyWithImpl;
-@override @useResult
-$Res call({
- bool getMore
-});
-
-
-
-
-}
-/// @nodoc
-class __$GetSummaryCopyWithImpl<$Res>
-    implements _$GetSummaryCopyWith<$Res> {
-  __$GetSummaryCopyWithImpl(this._self, this._then);
-
-  final _GetSummary _self;
-  final $Res Function(_GetSummary) _then;
-
-/// Create a copy of HomeEvent
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? getMore = null,}) {
-  return _then(_GetSummary(
-getMore: null == getMore ? _self.getMore : getMore // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-
-}
-
-/// @nodoc
-mixin _$HomeState {
 
 
 
@@ -277,7 +185,7 @@ mixin _$HomeState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetStats);
 }
 
 
@@ -286,20 +194,47 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomeState()';
+  return 'StatsEvent.getStats()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+mixin _$StatsState {
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatsState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'StatsState()';
 }
 
 
 }
 
 /// @nodoc
-class $HomeStateCopyWith<$Res>  {
-$HomeStateCopyWith(HomeState _, $Res Function(HomeState) __);
+class $StatsStateCopyWith<$Res>  {
+$StatsStateCopyWith(StatsState _, $Res Function(StatsState) __);
 }
 
 
-/// Adds pattern-matching-related methods to [HomeState].
-extension HomeStatePatterns on HomeState {
+/// Adds pattern-matching-related methods to [StatsState].
+extension StatsStatePatterns on StatsState {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -382,11 +317,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( List<StatEntity> orderTypeResEntity)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( List<StatEntity> stats)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.orderTypeResEntity);case _Failure() when failure != null:
+return loaded(_that.stats);case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
   return orElse();
 
@@ -405,11 +340,11 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( List<StatEntity> orderTypeResEntity)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( List<StatEntity> stats)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
 switch (_that) {
 case _Loading():
 return loading();case _Loaded():
-return loaded(_that.orderTypeResEntity);case _Failure():
+return loaded(_that.stats);case _Failure():
 return failure(_that.apiErrorModel);case _:
   throw StateError('Unexpected subclass');
 
@@ -427,11 +362,11 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( List<StatEntity> orderTypeResEntity)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( List<StatEntity> stats)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.orderTypeResEntity);case _Failure() when failure != null:
+return loaded(_that.stats);case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
   return null;
 
@@ -443,7 +378,7 @@ return failure(_that.apiErrorModel);case _:
 /// @nodoc
 
 
-class _Loading implements HomeState {
+class _Loading implements StatsState {
   const _Loading();
   
 
@@ -463,7 +398,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'HomeState.loading()';
+  return 'StatsState.loading()';
 }
 
 
@@ -475,19 +410,19 @@ String toString() {
 /// @nodoc
 
 
-class _Loaded implements HomeState {
-  const _Loaded({required final  List<StatEntity> orderTypeResEntity}): _orderTypeResEntity = orderTypeResEntity;
+class _Loaded implements StatsState {
+  const _Loaded({required final  List<StatEntity> stats}): _stats = stats;
   
 
- final  List<StatEntity> _orderTypeResEntity;
- List<StatEntity> get orderTypeResEntity {
-  if (_orderTypeResEntity is EqualUnmodifiableListView) return _orderTypeResEntity;
+ final  List<StatEntity> _stats;
+ List<StatEntity> get stats {
+  if (_stats is EqualUnmodifiableListView) return _stats;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_orderTypeResEntity);
+  return EqualUnmodifiableListView(_stats);
 }
 
 
-/// Create a copy of HomeState
+/// Create a copy of StatsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -497,27 +432,27 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._orderTypeResEntity, _orderTypeResEntity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._stats, _stats));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_orderTypeResEntity));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_stats));
 
 @override
 String toString() {
-  return 'HomeState.loaded(orderTypeResEntity: $orderTypeResEntity)';
+  return 'StatsState.loaded(stats: $stats)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$LoadedCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+abstract mixin class _$LoadedCopyWith<$Res> implements $StatsStateCopyWith<$Res> {
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- List<StatEntity> orderTypeResEntity
+ List<StatEntity> stats
 });
 
 
@@ -532,11 +467,11 @@ class __$LoadedCopyWithImpl<$Res>
   final _Loaded _self;
   final $Res Function(_Loaded) _then;
 
-/// Create a copy of HomeState
+/// Create a copy of StatsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? orderTypeResEntity = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? stats = null,}) {
   return _then(_Loaded(
-orderTypeResEntity: null == orderTypeResEntity ? _self._orderTypeResEntity : orderTypeResEntity // ignore: cast_nullable_to_non_nullable
+stats: null == stats ? _self._stats : stats // ignore: cast_nullable_to_non_nullable
 as List<StatEntity>,
   ));
 }
@@ -547,13 +482,13 @@ as List<StatEntity>,
 /// @nodoc
 
 
-class _Failure implements HomeState {
+class _Failure implements StatsState {
   const _Failure({required this.apiErrorModel});
   
 
  final  ApiErrorModel apiErrorModel;
 
-/// Create a copy of HomeState
+/// Create a copy of StatsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -572,14 +507,14 @@ int get hashCode => Object.hash(runtimeType,apiErrorModel);
 
 @override
 String toString() {
-  return 'HomeState.failure(apiErrorModel: $apiErrorModel)';
+  return 'StatsState.failure(apiErrorModel: $apiErrorModel)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$FailureCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+abstract mixin class _$FailureCopyWith<$Res> implements $StatsStateCopyWith<$Res> {
   factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
 @useResult
 $Res call({
@@ -598,7 +533,7 @@ class __$FailureCopyWithImpl<$Res>
   final _Failure _self;
   final $Res Function(_Failure) _then;
 
-/// Create a copy of HomeState
+/// Create a copy of StatsState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = null,}) {
   return _then(_Failure(

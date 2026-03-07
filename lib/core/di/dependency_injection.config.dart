@@ -78,11 +78,11 @@ import '../../features/financial/domain/usecases/financial_use_cases.dart'
     as _i868;
 import '../../features/financial/present/financial_rep_bloc/financial_bloc.dart'
     as _i578;
-import '../../features/home/data/datasources/home_api.dart' as _i11;
-import '../../features/home/data/repo_impl/home_repo_impl.dart' as _i886;
-import '../../features/home/domain/repo/home_repo.dart' as _i280;
-import '../../features/home/domain/usecases/home_use_cases.dart' as _i583;
-import '../../features/home/present/bloc/home_bloc.dart' as _i481;
+import '../../features/home/data/datasources/stats_api.dart' as _i144;
+import '../../features/home/data/repo_impl/stats_repo_impl.dart' as _i860;
+import '../../features/home/domain/repo/stats_repo.dart' as _i733;
+import '../../features/home/domain/usecases/stats_use_cases.dart' as _i261;
+import '../../features/home/present/bloc/stats_bloc.dart' as _i840;
 import '../../features/instructions/present/bloc/instructions_bloc.dart'
     as _i197;
 import '../../features/language/bloc/language_bloc.dart' as _i724;
@@ -210,7 +210,7 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i191.ProfileApi>(() => _i191.ProfileApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i335.S3Api>(() => _i335.S3Api(gh<_i361.Dio>()));
   gh.singleton<_i252.FinancialApi>(() => _i252.FinancialApi(gh<_i361.Dio>()));
-  gh.singleton<_i11.HomeApi>(() => _i11.HomeApi(gh<_i361.Dio>()));
+  gh.singleton<_i144.StatsApi>(() => _i144.StatsApi(gh<_i361.Dio>()));
   gh.singleton<_i352.NotificationsApi>(
     () => _i352.NotificationsApi(gh<_i361.Dio>()),
   );
@@ -230,9 +230,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i552.SignUpApi>(
     () => _i552.SignUpApi(gh<_i361.Dio>(instanceName: 'authDio')),
-  );
-  gh.lazySingleton<_i280.HomeRepo>(
-    () => _i886.HomeRepoImpl(gh<_i11.HomeApi>()),
   );
   gh.singleton<_i1011.FinancialRepo>(
     () => _i58.FinancialRepoImpl(gh<_i252.FinancialApi>()),
@@ -255,8 +252,8 @@ Future<_i174.GetIt> $initGetIt(
       cachedDocsRepo: gh<_i281.CachedDocsRepo>(),
     ),
   );
-  gh.singleton<_i583.HomeUseCases>(
-    () => _i583.HomeUseCases(gh<_i280.HomeRepo>()),
+  gh.lazySingleton<_i733.StatsRepo>(
+    () => _i860.StatsRepoImpl(gh<_i144.StatsApi>()),
   );
   gh.lazySingleton<_i494.ChangePassBloc>(
     () => _i494.ChangePassBloc(gh<_i146.SendPassResetEmailUseCase>()),
@@ -307,14 +304,17 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i802.OrdersUseCases>(
     () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()),
   );
-  gh.singleton<_i481.HomeBloc>(
-    () => _i481.HomeBloc(homeUseCases: gh<_i583.HomeUseCases>()),
-  );
   gh.lazySingleton<_i941.SignInUseCases>(
     () => _i941.SignInUseCases(gh<_i305.SignInRepo>(), gh<_i59.FirebaseAuth>()),
   );
   gh.lazySingleton<_i251.SignUpUseCases>(
     () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()),
+  );
+  gh.singleton<_i261.StatsUseCases>(
+    () => _i261.StatsUseCases(gh<_i733.StatsRepo>()),
+  );
+  gh.singleton<_i840.StatsBloc>(
+    () => _i840.StatsBloc(statsUseCases: gh<_i261.StatsUseCases>()),
   );
   gh.singleton<_i151.AuthUseCase>(
     () => _i151.AuthUseCase(authRepo: gh<_i610.AuthRepo>()),
