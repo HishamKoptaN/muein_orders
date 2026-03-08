@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/entities/meta_entity.dart';
-import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/create_expense_entity.dart';
 import '../../domain/entities/expenses_res_entity.dart';

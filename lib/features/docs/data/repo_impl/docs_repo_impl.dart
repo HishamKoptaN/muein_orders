@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/app/global_variable.dart';
-import '../../../../core/errors/api_error_handler.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
@@ -37,9 +37,7 @@ class DocsRepoImpl implements DocsRepo {
       final result = res?.map((e) => e.toEntity()).toList();
       return ApiResult.success(data: result);
     } catch (error) {
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(error: error),
-      );
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
     }
   }
 
@@ -101,9 +99,7 @@ class DocsRepoImpl implements DocsRepo {
             docId: doc.docId,
             status: FileUploadStatus.failed,
           );
-          return ApiResult.failure(
-            apiErrorModel: ApiErrorHandler.handle(error: error),
-          );
+          return const ApiResult.failure(apiErrorModel: ApiErrorModel());
         }
       }
     }
@@ -280,9 +276,7 @@ class DocsRepoImpl implements DocsRepo {
       }
       return const ApiResult.success(data: null);
     } catch (error) {
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(error: error),
-      );
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
     }
   }
 
@@ -297,7 +291,7 @@ class DocsRepoImpl implements DocsRepo {
       );
       return const ApiResult.success(data: null);
     } catch (e) {
-      return ApiResult.failure(apiErrorModel: ApiErrorHandler.handle(error: e));
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
     }
   }
 

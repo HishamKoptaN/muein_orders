@@ -9,7 +9,7 @@ import '../../../../../core/database/shared_pref_helper.dart';
 import '../../../../../core/database/shared_pref_keys.dart';
 import '../../../../../core/di/api_module.dart';
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/errors/api_error_model.dart';
+import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../../core/services/device_service.dart';
 import '../../domain/entities/signup_req_entity.dart';
@@ -67,7 +67,6 @@ class SignUpRepoImpl implements SignUpRepo {
       return ApiResult.failure(
         apiErrorModel: ApiErrorModel(
           message: e.message ?? 'Firebase authentication failed',
-          statusCode: 400,
         ),
       );
     } on DioException catch (error) {
@@ -78,7 +77,6 @@ class SignUpRepoImpl implements SignUpRepo {
         apiErrorModel: ApiErrorModel(
           message:
               error.response?.data?['message']?.toString() ?? 'Sign up failed',
-          statusCode: error.response?.statusCode ?? 400,
         ),
       );
     } catch (e) {
@@ -86,10 +84,7 @@ class SignUpRepoImpl implements SignUpRepo {
         await userCredential!.user!.delete();
       }
       return const ApiResult.failure(
-        apiErrorModel: ApiErrorModel(
-          message: 'An unexpected error occurred',
-          statusCode: 500,
-        ),
+        apiErrorModel: ApiErrorModel(message: 'An unexpected error occurred'),
       );
     }
   }

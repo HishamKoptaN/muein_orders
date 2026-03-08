@@ -41,7 +41,7 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
               }
             },
             failure: (apiErrorModel) async {
-              emit(CachedDocState.failure(error: apiErrorModel.error ?? ''));
+              emit(CachedDocState.failure(error: apiErrorModel.message ?? ''));
               emitCustomLoaded(emit: emit, loaded: null);
             },
           );
@@ -71,7 +71,9 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
                 emitCustomLoaded(emit: emit, loaded: loaded);
               },
               failure: (apiErrorModel) async {
-                emit(CachedDocState.failure(error: apiErrorModel.error ?? ''));
+                emit(
+                  CachedDocState.failure(error: apiErrorModel.message ?? ''),
+                );
                 emitCustomLoaded(emit: emit, loaded: null);
               },
             );

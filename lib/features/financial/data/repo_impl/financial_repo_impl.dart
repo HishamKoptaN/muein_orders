@@ -1,7 +1,8 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/networking/api_result.dart';
-import '../../../../core/errors/api_error_handler.dart';
+import '../../../../core/errors/handlers/api_error_handler/api_error_handler.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../domain/entities/create_expense_entity.dart';
 import '../../domain/entities/expenses_res_entity.dart';
 import '../../domain/repo/orders_repo.dart';
@@ -18,12 +19,7 @@ class FinancialRepoImpl implements FinancialRepo {
       final res = await financialApi.get(page: page);
       return ApiResult.success(data: res.toEntity());
     } catch (error, stackTrace) {
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(
-          error: error,
-          stackTrace: stackTrace,
-        ),
-      );
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
     }
   }
 

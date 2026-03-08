@@ -214,9 +214,9 @@ class _OrderDocsViewState extends State<OrderDocsView> {
                     ShimmerClientRow(height: 100.h),
               );
             },
-            failure: (e) {
+            failure: (apiErrorModel) {
               return TrText(
-                e.error ?? '',
+                apiErrorModel.message ?? '',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onSecondary,
                 ),

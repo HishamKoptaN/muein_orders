@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../../s3/data/repo/s3_repo.dart';
 import '../entities/profile_res_entity.dart';
@@ -40,7 +40,7 @@ class ProfileUseCases {
             );
           } catch (e) {
             return const ApiResult.failure(
-              apiErrorModel: ApiErrorModel(error: 'Failed to upload avatar'),
+              apiErrorModel: ApiErrorModel(message: 'Failed to upload avatar'),
             );
           }
         },

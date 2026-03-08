@@ -46,8 +46,9 @@ class ErrorContent extends StatelessWidget {
           const SizedBox(height: 16),
           TrText(
             message,
+            overflow: TextOverflow.fade,
             style: AppTextStyles.bodyLarge.copyWith(
-              color: textColor ?? AppColors.error,
+              color: textColor ?? Colors.red,
             ),
             textAlign: TextAlign.center,
           ),

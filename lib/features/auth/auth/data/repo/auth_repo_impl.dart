@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/database/shared_pref_helper.dart';
-import '../../../../../core/errors/api_error_model.dart';
-import '../../../../../core/errors/error_handler.dart';
+import '../../../../../core/errors/handlers/api_error_handler/api_error_handler.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../domain/repo/auth_repo.dart';
 import '../datasources/auth_api.dart';
@@ -22,12 +21,7 @@ class AuthRepoImpl implements AuthRepo {
       final hasUser = await hasFirebaseUser();
       return ApiResult.success(data: hasUser);
     } catch (e) {
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorModel(
-          message: AppErrorHandler.getErrorMessage(e),
-          statusCode: 401,
-        ),
-      );
+      return ApiResult.failure(apiErrorModel: ApiErrorHandler.handle(error: e));
     }
   }
 
@@ -40,12 +34,7 @@ class AuthRepoImpl implements AuthRepo {
       await SharedPrefHelper.clearAllData();
       return const ApiResult.success(data: null);
     } catch (e) {
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorModel(
-          message: AppErrorHandler.getErrorMessage(e),
-          statusCode: 401,
-        ),
-      );
+      return ApiResult.failure(apiErrorModel: ApiErrorHandler.handle(error: e));
     }
   }
 }

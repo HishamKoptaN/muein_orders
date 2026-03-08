@@ -3,7 +3,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/entities/meta_entity.dart';
-import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../../cached_docs/domain/repo/cached_docs_repo.dart';
 import '../../domain/entities/orders_res_entity.dart';
@@ -22,37 +22,30 @@ class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
     on<OrdersEvent>((event, emit) async {
       await event.when(
         getOrders: (subCategoryId, loadMore) async {
-          try {
-            if (!loadMore) {
-              emit(const OrdersState.loading());
-            }
-            final result = await ordersUseCases.getOrders(
-              subCategoryId: subCategoryId,
-              loadMore: loadMore,
-            );
-            result.when(
-              success: (res) {
-                emit(
-                  OrdersState.loaded(
-                    ordersRes:
-                        res ??
-                        const OrdersResEntity.orders(
-                          orders: [],
-                          meta: MetaEntity(),
-                        ),
-                  ),
-                );
-              },
-              failure: (error) =>
-                  emit(OrdersState.failure(apiErrorModel: error)),
-            );
-          } catch (e, stackTrace) {
-            emit(
-              OrdersState.failure(
-                apiErrorModel: ApiErrorModel(error: e.toString()),
-              ),
-            );
+          if (!loadMore) {
+            emit(const OrdersState.loading());
           }
+          final result = await ordersUseCases.getOrders(
+            subCategoryId: subCategoryId,
+            loadMore: loadMore,
+          );
+          result.when(
+            success: (res) {
+              emit(
+                OrdersState.loaded(
+                  ordersRes:
+                      res ??
+                      const OrdersResEntity.orders(
+                        orders: [],
+                        meta: MetaEntity(),
+                      ),
+                ),
+              );
+            },
+            failure: (apiErrorModel) {
+              emit(OrdersState.failure(apiErrorModel: apiErrorModel));
+            },
+          );
         },
       );
     });

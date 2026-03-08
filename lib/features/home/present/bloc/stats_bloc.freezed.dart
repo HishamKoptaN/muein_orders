@@ -522,7 +522,7 @@ $Res call({
 });
 
 
-
+$ApiErrorModelCopyWith<$Res> get apiErrorModel;
 
 }
 /// @nodoc
@@ -542,7 +542,16 @@ as ApiErrorModel,
   ));
 }
 
-
+/// Create a copy of StatsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ApiErrorModelCopyWith<$Res> get apiErrorModel {
+  
+  return $ApiErrorModelCopyWith<$Res>(_self.apiErrorModel, (value) {
+    return _then(_self.copyWith(apiErrorModel: value));
+  });
+}
 }
 
 // dart format on

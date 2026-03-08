@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:translator/translator.dart';
 
 import '../../../../core/background/workmanager_initializer.dart';
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/extensions/locale_extensions.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
+import '../../../../core/widgets/feedback/error_content.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../drawer/my_drawer.dart';
@@ -109,27 +108,13 @@ class _StatsViewState extends State<StatsView> {
                 ),
               );
             },
+            failure: (apiError) {
+              return ErrorContent(message: apiError.message ?? '');
+            },
             orElse: () => const SizedBox(),
           );
         },
       ),
     );
-  }
-}
-
-Future<String> translateText(
-  BuildContext context,
-  String input, {
-  String? to,
-}) async {
-  if (input.isEmpty) return input;
-  final translator = GoogleTranslator();
-  try {
-    final targetLanguage = to ?? context.currentLocale.languageCode;
-    final translation = await translator.translate(input, to: targetLanguage);
-    return translation.text;
-  } catch (e) {
-    debugPrint('Translation error: $e');
-    return input;
   }
 }

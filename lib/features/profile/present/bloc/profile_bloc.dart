@@ -4,7 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
@@ -119,6 +119,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     required Emitter<ProfileState> emit,
     required ApiErrorModel apiErrorModel,
   }) {
-    return emit(ProfileState.failure(error: apiErrorModel.error ?? ''));
+    return emit(ProfileState.failure(error: apiErrorModel.message ?? ''));
   }
 }

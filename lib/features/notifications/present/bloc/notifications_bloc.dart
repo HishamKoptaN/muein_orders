@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../../domain/usecases/notifications_use_cases.dart';
@@ -32,7 +32,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
           } catch (e) {
             emit(
               NotificationsState.failure(
-                apiErrorModel: ApiErrorModel(error: e.toString()),
+                apiErrorModel: ApiErrorModel(message: e.toString()),
               ),
             );
           }

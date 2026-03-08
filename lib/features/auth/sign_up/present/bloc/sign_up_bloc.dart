@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/errors/api_error_model.dart';
+import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/entities/signup_req_entity.dart';
@@ -70,7 +70,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             emitCustomFailure(
               emit: emit,
               apiErrorModel: const ApiErrorModel(
-                error: 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى',
+                message: 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى',
               ),
             );
           } finally {
@@ -128,6 +128,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     required Emitter<SignUpState> emit,
     required ApiErrorModel apiErrorModel,
   }) {
-    return emit(SignUpState.failure(error: apiErrorModel.error ?? ''));
+    return emit(SignUpState.failure(error: apiErrorModel.message ?? ''));
   }
 }

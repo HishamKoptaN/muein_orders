@@ -5,14 +5,10 @@ abstract class NetworkInfo {
   Future<bool> get isConnected;
 }
 
-@Singleton(
-  as: NetworkInfo,
-)
+@Singleton(as: NetworkInfo)
 class NetworkInfoImpl implements NetworkInfo {
   final InternetConnection connectionChecker;
-  NetworkInfoImpl({
-    required this.connectionChecker,
-  });
+  NetworkInfoImpl({required this.connectionChecker});
   @override
   Future<bool> get isConnected async =>
       await connectionChecker.hasInternetAccess;

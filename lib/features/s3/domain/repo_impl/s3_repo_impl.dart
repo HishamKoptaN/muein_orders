@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/errors/app_error_handler.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../data/repo/s3_repo.dart';
 
@@ -40,9 +40,7 @@ class S3RepoImpl implements S3Repo {
       );
       return const ApiResult.success(data: null);
     } catch (e, st) {
-      return ApiResult.failure(
-        apiErrorModel: AppErrorHandler.toApiError(e, st),
-      );
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
     }
   }
 }
