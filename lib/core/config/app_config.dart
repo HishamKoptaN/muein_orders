@@ -7,7 +7,6 @@ class AppConfig {
   static const int buildNumber = 4;
 
   // API Endpoints
-  static const String summary = 'summary';
   static const Duration connectionTimeout = Duration(seconds: 30);
   static const Duration receiveTimeout = Duration(seconds: 30);
   static const Duration sendTimeout = Duration(seconds: 30);

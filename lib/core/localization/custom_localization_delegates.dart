@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -19,8 +18,10 @@ class CustomMaterialLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) {
-    return _supportedLocales.any((l) => l.languageCode == locale.languageCode) ||
-           GlobalMaterialLocalizations.delegate.isSupported(locale);
+    return _supportedLocales.any(
+          (l) => l.languageCode == locale.languageCode,
+        ) ||
+        GlobalMaterialLocalizations.delegate.isSupported(locale);
   }
 
   @override
@@ -28,7 +29,9 @@ class CustomMaterialLocalizationsDelegate
     try {
       return await GlobalMaterialLocalizations.delegate.load(locale);
     } catch (e) {
-      return await GlobalMaterialLocalizations.delegate.load(const Locale('en'));
+      return await GlobalMaterialLocalizations.delegate.load(
+        const Locale('en'),
+      );
     }
   }
 

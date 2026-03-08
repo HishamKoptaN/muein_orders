@@ -7,6 +7,7 @@ import '../../../../core/background/workmanager_initializer.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/feedback/error_content.dart';
+import '../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../drawer/my_drawer.dart';
@@ -108,10 +109,11 @@ class _StatsViewState extends State<StatsView> {
                 ),
               );
             },
+            loading: () => const CustomCircularProgress(color: Colors.black),
             failure: (apiError) {
               return ErrorContent(message: apiError.message ?? '');
             },
-            orElse: () => const SizedBox(),
+            orElse: () => const CustomCircularProgress(color: Colors.black),
           );
         },
       ),

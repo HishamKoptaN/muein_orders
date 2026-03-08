@@ -27,15 +27,15 @@ class AppLocalizationSetup {
 
   static LocaleResolutionCallback localeResolutionCallback =
       (locale, supportedLocales) {
-    if (locale != null) {
-      for (final supportedLocale in supportedLocales) {
-        if (supportedLocale.languageCode == locale.languageCode) {
-          return supportedLocale;
+        if (locale != null) {
+          for (final supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode) {
+              return supportedLocale;
+            }
+          }
         }
-      }
-    }
-    return const Locale('en');
-  };
+        return const Locale('en');
+      };
 }
 
 class FallbackLocalizationDelegate
@@ -93,18 +93,11 @@ class FallbackLocalizationDelegate
 
   @override
   bool shouldReload(
-          covariant LocalizationsDelegate<WidgetsLocalizations> old) =>
-      false;
+    covariant LocalizationsDelegate<WidgetsLocalizations> old,
+  ) => false;
 }
 
 class _BasicLocalizedTexts extends DefaultWidgetsLocalizations {
   final Map<String, String> texts;
   const _BasicLocalizedTexts(this.texts);
-
-  @override
-  String get okButtonLabel => texts['ok'] ?? 'OK';
-  @override
-  String get cancelButtonLabel => texts['cancel'] ?? 'Cancel';
-  @override
-  String get backButtonTooltip => texts['back'] ?? 'Back';
 }
