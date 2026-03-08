@@ -46,6 +46,7 @@ Widget buildDocOrderCard({
           ),
           ListView.builder(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: order.docs.length,
             itemBuilder: (context, index) {
               final doc = order.docs[index];

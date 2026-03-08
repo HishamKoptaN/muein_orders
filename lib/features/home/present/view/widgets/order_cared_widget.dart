@@ -48,10 +48,11 @@ class StatCard extends StatelessWidget {
             children: [
               Container(
                 height: 70.h,
+                constraints: BoxConstraints(minWidth: 150.w),
                 margin: const EdgeInsets.only(bottom: 16),
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.35),
+                  color: Colors.black.withValues(alpha: 0.25),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Column(
@@ -73,40 +74,41 @@ class StatCard extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Flexible(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Flexible(
-                            child: TrText(
-                              'عدد الطلبات',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Jost',
+                    if (stat.id != 5)
+                      Flexible(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: TrText(
+                                'عدد الطلبات',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Jost',
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                          Gap(5.w),
-                          Flexible(
-                            child: TrText(
-                              '(${stat.docsCount ?? ''})',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Jost',
+                            Gap(5.w),
+                            Flexible(
+                              child: TrText(
+                                '(${stat.docsCount ?? ''})',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Jost',
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
