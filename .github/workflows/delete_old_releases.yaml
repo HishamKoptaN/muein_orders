@@ -1,12 +1,12 @@
-name: dev_clean_releases
+name: clean_releases
 on:
   push:
     branches:
-      - dev
+      - test
 jobs:
   cleanup_old_releases:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: ${{ github.ref_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,4 +29,4 @@ jobs:
           FIREBASE_PROJECT_NUMBER: "448994699498"
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           GOOGLE_ACCESS_TOKEN: ${{ steps.get_token.outputs.token }}
-        run: python .github/scripts/cleanup_firebase.py
+        run: dart .github/scripts/cleanup_firebase.dart

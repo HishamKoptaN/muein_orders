@@ -1,12 +1,13 @@
-name: dev_distribute
+name: distribute
 on:
   push:
     branches:
-      - dev
+      - prodt
+      - devt
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: ${{ github.ref_name }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -24,37 +25,29 @@ jobs:
           cache: true
       - name: Install Dependencies
         run: flutter pub get
-      - name: Build Split APKs (v7a & v8a)
-        run: |
-          flutter build apk --release \
-          --flavor dev \
-          --dart-define=ENV=dev \
-          --target-platform android-arm,android-arm64 \
-          --split-per-abi \
-          -t lib/main.dart
-
-          flutter build apk --release --flavor dev --dart-define=ENV=dev -t lib/main.dart
-      - name: Upload v7a to Firebase
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
+      - env:
+          FLAVOR: ${{ github.ref_name }}
+        run: dart .github/scripts/build_android.dart
+      - uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_ADMIN_SDK }}
           groups: "armeabi-v7a"
-          file: build/app/outputs/flutter-apk/app-armeabi-v7a-dev-release.apk
+          file: build/app/outputs/flutter-apk/app-armeabi-v7a-${{ github.ref_name }}-release.apk
           releaseNotes: "armeabi-v7a"
       - name: Upload v8a to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_ADMIN_SDK }}
           groups: "arm64-v8a"
-          file: build/app/outputs/flutter-apk/app-arm64-v8a-dev-release.apk
+          file: build/app/outputs/flutter-apk/app-arm64-v8a-${{ github.ref_name }}-release.apk
           releaseNotes: "arm64-v8a"
       - name: Upload Universal APK to Firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_ADMIN_SDK }}
           groups: "apk"
-          file: build/app/outputs/flutter-apk/app-dev-release.apk
+          file: build/app/outputs/flutter-apk/app-${{ github.ref_name }}-release.apk
           releaseNotes: "apk"
