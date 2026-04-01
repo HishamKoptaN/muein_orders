@@ -72,18 +72,22 @@ jobs:
           # Try patch first (with force), if fails do release
           $versionChanged = $false
 
+          $baseVersion = ($version -split '\+')[0]
+          $buildNumber = ($version -split '\+')[1]
+          if (-not $buildNumber) { $buildNumber = "1" }
+
           # ---------------- ANDROID ----------------
           Write-Host "📱 Processing ANDROID..." -ForegroundColor Cyan
           Write-Host "🚀 Trying PATCH for Android..." -ForegroundColor Cyan
 
-          shorebird patch android --release-version=$version --dart-define=ENV=$flavor --verbose 2>&1 | Tee-Object -Variable patchOutput
+          shorebird patch android --release-version=$version --dart-define=ENV=$flavor 2>&1 | Tee-Object -Variable patchOutput
           $patchExitCode = $LASTEXITCODE
 
           if ($patchExitCode -ne 0) {
             # Check if it's "no release" error or other error
             if ($patchOutput -match "Release not found" -or $patchOutput -match "No release exists") {
               Write-Host "🚀 Release not found, creating new RELEASE for Android..." -ForegroundColor Cyan
-              shorebird release android --dart-define=ENV=$flavor --verbose
+              shorebird release android --dart-define=ENV=$flavor
               if ($LASTEXITCODE -ne 0) {
                 Write-Host "❌ Android release failed" -ForegroundColor Red
                 exit 1
@@ -101,13 +105,13 @@ jobs:
           Write-Host "🖥️ Processing WINDOWS..." -ForegroundColor Cyan
           Write-Host "🚀 Trying PATCH for Windows..." -ForegroundColor Cyan
 
-          shorebird patch windows --release-version=$version --dart-define=ENV=$flavor --verbose 2>&1 | Tee-Object -Variable patchOutput
+          shorebird patch windows --release-version=$version --dart-define=ENV=$flavor 2>&1 | Tee-Object -Variable patchOutput
           $patchExitCode = $LASTEXITCODE
 
           if ($patchExitCode -ne 0) {
             if ($patchOutput -match "Release not found" -or $patchOutput -match "No release exists") {
               Write-Host "🚀 Release not found, creating new RELEASE for Windows..." -ForegroundColor Cyan
-              shorebird release windows --dart-define=ENV=$flavor --verbose
+              shorebird release windows --dart-define=ENV=$flavor
               if ($LASTEXITCODE -ne 0) {
                 Write-Host "❌ Windows release failed" -ForegroundColor Red
                 exit 1
