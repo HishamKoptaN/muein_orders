@@ -4,7 +4,7 @@ package_rename_config:
     app_name: "muein orders" # اسم التطبيق
     package_name: "com.muein.orders" # اسم الحزمة  
     override_old_package: true # لتجاهل الحزمة القديمة
-    lang: "ar" # لغة التطبيق (اختياري)
+    lang: "ar" 
 
   ios:
     app_name: "muein orders" # اسم التطبيق
