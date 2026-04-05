@@ -1,6 +1,7 @@
-platform :ios, '14.0' # هنا حددنا الإصدار المطلوب لحل مشكلة workmanager
+# The following lines are required to link Flutter with CocoaPods
+load File.join(File.dirname(File.realpath(__FILE__)), 'Flutter', 'podhelper.rb')
 
-prepare_command = "node --version"
+platform :ios, '14.0'
 
 target 'Runner' do
   use_frameworks!
@@ -13,7 +14,6 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
     target.build_configurations.each do |config|
-      # هذا السطر يضمن أن كل المكتبات ستعمل على إصدار 14.0
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
     end
   end
