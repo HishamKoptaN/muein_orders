@@ -1,33 +1,33 @@
 #! dart run package_rename --path="package_rename_config.yaml"
 package_rename_config:
   android:
-    app_name: "muein orders" # اسم التطبيق
-    package_name: "com.muein.orders" # اسم الحزمة  
-    override_old_package: true # لتجاهل الحزمة القديمة
+    app_name: "muein orders" 
+    package_name: "com.muein.orders" 
+    override_old_package: true 
     lang: "ar" 
 
   ios:
-    app_name: "muein orders" # اسم التطبيق
-    bundle_name: "com.muein.orders" # اسم الحزمة  
-    package_name: "com.muein.orders" # اسم الحزمة
+    app_name: "muein orders" 
+    bundle_name: "com.muein.orders" 
+    package_name: "com.muein.orders" 
 
   linux:
-    app_name: "muein orders" # اسم التطبيق
-    package_name: "com.muein.orders" # اسم الحزمة
-    exe_name: "muein_orders" # اسم ملف التنفيذ
+    app_name: "muein orders" 
+    package_name: "com.muein.orders" 
+    exe_name: "muein_orders" 
 
   macos:
-    app_name: "muein orders" # اسم التطبيق
-    package_name: "com.muein.app.orders" # اسم الحزمة
-    copyright_notice: "© 2024 IMolds" # حقوق الطبع والنشر (اختياري)
+    app_name: "muein orders" 
+    package_name: "com.muein.app.orders" 
+    copyright_notice: "© 2024 IMolds" 
 
   web:
-    app_name: "muein orders" # اسم التطبيق
-    short_app_name: "muein_orders" # اسم التطبيق المختصر (اختياري)
-    description: "muein orders App" # وصف التطبيق (اختياري)
+    app_name: "muein orders" 
+    short_app_name: "muein_orders" 
+    description: "muein orders App" 
 
   windows:
-    app_name: "muein orders" # اسم التطبيق
-    organization: "muein_orders" # اسم المؤسسة (اختياري)
-    copyright_notice: "© 2026 muein_orders" # حقوق الطبع والنشر (اختياري)
-    exe_name: "muein_orders" # اسم ملف التنفيذ
+    app_name: "muein orders" 
+    organization: "muein_orders" 
+    copyright_notice: "© 2026 muein_orders" 
+    exe_name: "muein_orders"
