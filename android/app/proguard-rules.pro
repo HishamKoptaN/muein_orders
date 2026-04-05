@@ -1,5 +1,6 @@
 # Flutter-specific rules
 -keep class io.flutter.** { *; }
+-dontwarn io.flutter.**
 -keep class androidx.** { *; }
 -keep class com.google.** { *; }
 
@@ -9,6 +10,7 @@
 
 # Keep Google Play Core classes (required for Flutter app bundles)
 -keep class com.google.android.play.core.** { *; }
+-dontwarn com.google.android.play.core.**
 -keep class io.flutter.embedding.android.FlutterPlayStoreSplitApplication { *; }
 -keep class io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager { *; }
 -keep class io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager$* { *; }
