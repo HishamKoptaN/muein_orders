@@ -46,8 +46,8 @@ android {
               create("prod") {
                 dimension = "env"
                 resValue("string", "app_name", "Muein Orders")
+            }
         }
-      }
 }
 
 dependencies {
