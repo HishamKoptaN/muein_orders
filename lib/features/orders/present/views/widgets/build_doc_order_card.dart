@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/build_context_extension.dart';
-import '../../../../docs/domain/entities/docs_res_entity.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../home/domain/entities/order_type_res_entity.dart';
 import '../../../domain/entities/orders_res_entity.dart';
-import '../sitcker_pd/sitcker_pdf_preview_view.dart';
+import '../sitcker_pdf/sitcker_pdf_preview_view.dart';
 import 'doc_card_widget.dart';
 
 Widget buildDocOrderCard({
   required BuildContext context,
   required OrderEntity order,
   required int orderDocsCount,
-  required StatEntity package,
+  required StatEntity stat,
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -22,11 +21,7 @@ Widget buildDocOrderCard({
         color: Colors.white,
         border: Border.all(color: const Color(0xFFF0EFEF)),
         boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 4,
-            offset: Offset(0, 2),
-          ),
+          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2)),
         ],
         borderRadius: BorderRadius.circular(15),
       ),
@@ -51,12 +46,17 @@ Widget buildDocOrderCard({
           ),
           ListView.builder(
             shrinkWrap: true,
-            itemCount: order.docs?.length,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: order.docs.length,
             itemBuilder: (context, index) {
-              final doc = order.docs?[index];
-              return DocCardWidget(doc: doc ?? DocEntity());
+              final doc = order.docs[index];
+              return DocCardWidget(
+                doc: doc,
+                subCategoryId: stat.subCategory?.id ?? 0,
+              );
             },
           ),
+
           MakeStickerPdfBtn(order: order),
         ],
       ),
@@ -78,8 +78,8 @@ class MakeStickerPdfBtn extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => PdfPreviewView(
-                  printedName: order.printedName ?? 'غير معروف',
-                  executionNum: order.id?.toString() ?? '0',
+                  printedName: order.printedName,
+                  executionNum: order.executionNumber ?? '0',
                 ),
               ),
             );
@@ -91,9 +91,9 @@ class MakeStickerPdfBtn extends StatelessWidget {
             ),
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           ),
-          child: Text(
-            context.t.sticker,
-            style: const TextStyle(
+          child: const TrText(
+            'الملصق',
+            style: TextStyle(
               color: Color(0xFF0062B7),
               fontWeight: FontWeight.w700,
             ),

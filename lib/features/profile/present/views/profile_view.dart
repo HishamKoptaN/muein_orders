@@ -14,6 +14,7 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../core/widgets/feedback/error_content.dart';
+import '../../../../core/widgets/translated_text.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
 import '../bloc/profile_bloc.dart';
@@ -61,6 +62,7 @@ class _ProfileViewState extends State<ProfileView> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
+          Gap(15.h),
           _buildAppBar(context: context, t: t),
           BlocConsumer<ProfileBloc, ProfileState>(
             listener: (context, state) {
@@ -107,7 +109,7 @@ class _ProfileViewState extends State<ProfileView> {
                             },
                           ),
                           const SizedBox(height: 12),
-                          Text(
+                          TrText(
                             state.profile.name ?? '',
                             style: const TextStyle(
                               fontSize: 20,
@@ -127,7 +129,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 color: Colors.amber,
                                 size: 18,
                               ),
-                              const Text(
+                              const TrText(
                                 ' 4.7',
                                 style: TextStyle(color: Colors.grey),
                               ),
@@ -213,7 +215,7 @@ class _ProfileViewState extends State<ProfileView> {
                             ),
                           Gap(50.h),
                           if (state.updateProfileReq?.isBlank == true)
-                            const Text(
+                            const TrText(
                               'الرجاء ملء جميع الحقول',
                               style: TextStyle(color: Colors.red),
                             ),
@@ -224,7 +226,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   child: _buildSubmitButton(
                                     text: 'حفظ',
                                     onPressed: () {
-                                      context.read<ProfileBloc>().add(
+                                      getIt<ProfileBloc>().add(
                                         const ProfileEvent.updateProfile(),
                                       );
                                     },
@@ -272,10 +274,10 @@ class _ProfileViewState extends State<ProfileView> {
                 failure: (state) {
                   return ErrorContent(
                     message: state.error,
-                    onRetry: () => context.read<ProfileBloc>().add(
+                    onRetry: () => getIt<ProfileBloc>().add(
                       const ProfileEvent.getProfile(),
                     ),
-                    retryText: t.retry,
+                    retryText: 'إعادة المحاولة',
                   );
                 },
                 orElse: () => const SizedBox(),
@@ -300,9 +302,9 @@ class _ProfileViewState extends State<ProfileView> {
             icon: const Icon(Icons.arrow_back_ios_new, size: 20),
             onPressed: () => Navigator.pop(context),
           ),
-          Text(
-            t.profile,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          const TrText(
+            'الملف الشخصي',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(width: 40),
         ],
@@ -387,7 +389,7 @@ class _ProfileViewState extends State<ProfileView> {
           elevation: 0,
         ),
         onPressed: onPressed,
-        child: Text(
+        child: TrText(
           text,
           style: const TextStyle(
             color: Colors.white,

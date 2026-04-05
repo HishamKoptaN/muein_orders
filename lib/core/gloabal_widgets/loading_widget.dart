@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../widgets/translated_text.dart';
+
 class LoadingWidget extends StatelessWidget {
   final double height;
   final double width;
@@ -30,7 +32,7 @@ class LoadingWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            TrText(
               text,
               style: const TextStyle(
                 color: Colors.white,

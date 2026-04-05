@@ -1,40 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-/// Centralized navigation service using only GoRouter (name-based)
 class NavigationService {
   NavigationService._();
-
   static Future<T?> pushNamed<T>({
     required BuildContext context,
     required String routeName,
     Map<String, String> pathParameters = const {},
-    Map<String, dynamic>? arguments,
+    Map<String, dynamic>? extra,
   }) async {
     return await context.pushNamed<T?>(
       routeName,
       pathParameters: pathParameters,
-      extra: arguments,
+      extra: extra,
     );
   }
 
-  /// Go back
   static void goBack<T>(BuildContext context, [T? result]) {
     if (context.canPop()) {
       context.pop<T>(result);
     }
   }
 
-  /// Replace current route with a named one
-  static void replaceWith({
+  static void replace({
     required BuildContext context,
     required String routeName,
-    Map<String, dynamic>? arguments,
+    Map<String, dynamic>? extra,
   }) {
-    context.goNamed(routeName, extra: arguments);
+    context.replace(routeName, extra: extra);
   }
 
-  /// Navigate and clear previous stack
   static void navigateAndRemoveUntil({
     required BuildContext context,
     required String routeName,
@@ -43,17 +38,15 @@ class NavigationService {
     context.goNamed(routeName, extra: arguments);
   }
 
-  /// Push new named route
-  static Future<T?> push<T>(
-    BuildContext context,
-    String routeName, {
+  static Future<T?> push<T>({
+    required BuildContext context,
+    required String routeName,
     Object? extra,
   }) {
-    return context.pushNamed<T>(routeName, extra: extra);
+    return context.push<T>('/$routeName', extra: extra);
   }
 
-  /// Push replacement with named route
-  static void pushReplacement(
+  static void pushReplacementNamed(
     BuildContext context,
     String routeName, {
     Object? extra,
@@ -61,12 +54,11 @@ class NavigationService {
     context.pushReplacementNamed(routeName, extra: extra);
   }
 
-  /// Go to a named route (replace stack)
   static void go({
     required BuildContext context,
     required String routeName,
     Object? extra,
   }) {
-    context.goNamed(routeName, extra: extra);
+    context.go('/$routeName', extra: extra);
   }
 }

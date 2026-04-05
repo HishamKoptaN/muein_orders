@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,15 +13,14 @@ part 'auth_state.dart';
 @singleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthUseCase authUseCases;
-
   AuthBloc({required this.authUseCases}) : super(const AuthState.loading()) {
     on<AuthEvent>((event, emit) async {
       await event.when(
         check: () async {
           final res = await authUseCases.check();
-          res?.when(
-            success: (data) {
-              if (data == true) {
+          res.when(
+            success: (isAuthenticated) {
+              if (isAuthenticated ?? false) {
                 emit(const AuthState.authenticated());
               } else {
                 emit(const AuthState.unauthenticated());
@@ -31,9 +31,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         },
         forceRefresh: () async {
           final res = await authUseCases.check();
-          res?.when(
-            success: (_) {
-              emit(const AuthState.authenticated());
+          res.when(
+            success: (isAuthenticated) {
+              if (isAuthenticated ?? false) {
+                emit(const AuthState.authenticated());
+              } else {
+                emit(const AuthState.unauthenticated());
+              }
             },
             failure: (error) => emit(const AuthState.unauthenticated()),
           );

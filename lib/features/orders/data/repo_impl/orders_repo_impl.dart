@@ -1,8 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/networking/api_result.dart';
-import '../../../../core/errors/api_error_handler.dart';
-import '../../../../core/mapper/meta_mapper.dart';
+import '../../../../core/errors/handlers/api_error_handler/api_error_handler.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/repo/orders_repo.dart';
 import '../datasources/orders_api.dart';
@@ -16,52 +15,42 @@ class OrdersRepoImpl implements OrdersRepo {
 
   @override
   Future<ApiResult<OrdersResEntity?>> getOrders({
-    required int productTypeId,
+    required int subCategoryId,
     String? query,
     bool loadMore = false,
     bool? isDistributionPhotographed,
   }) async {
     try {
-      final res = await ordersApi.getOrders(
-        subCategoryId: productTypeId,
-        page: !loadMore ? 1 : (_cachedResOrders?.meta?.currentPage ?? 0) + 1,
-        query: query,
-        // isDistributionPhotographed: isDistributionPhotographed,
-      );
-      final orders = res.orders!.map((model) {
-        return model.toEntity();
-      }).toList();
+      int page = 1;
       if (loadMore && _cachedResOrders != null) {
-        _cachedResOrders!.orders!.addAll(orders);
-      } else {
-        _cachedResOrders = OrdersResEntity(
-          orders: orders,
-          meta: res.meta?.toEntity(),
+        _cachedResOrders!.maybeWhen(
+          orders: (orders, meta) => page = (meta.currentPage ?? 0) + 1,
+          orElse: () => page = 1,
         );
       }
+      final res = await ordersApi.getOrders(
+        subCategoryId: subCategoryId,
+        page: page,
+        query: query,
+      );
+      final newEntity = res.toEntity();
+      if (loadMore && _cachedResOrders != null) {
+        _cachedResOrders = _cachedResOrders!.map(
+          orders: (currentPaginated) {
+            return newEntity.maybeWhen(
+              orders: (newOrders, newMeta) => currentPaginated.copyWith(
+                orders: [...currentPaginated.orders, ...newOrders],
+                meta: newMeta,
+              ),
+              orElse: () => newEntity,
+            );
+          },
+          individualDocs: (_) => newEntity,
+        );
+      } else {
+        _cachedResOrders = newEntity;
+      }
       return ApiResult.success(data: _cachedResOrders);
-    } catch (error, stackTrace) {
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(
-          error: error,
-          stackTrace: stackTrace,
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<ApiResult<OrderEntity?>> updateClientField({
-    required int clientId,
-    required bool isQuranPhotographed,
-  }) async {
-    try {
-      final res = await ordersApi.updateClientField(
-        clientId: clientId,
-        isQuranPhotographed: isQuranPhotographed,
-      );
-      res.toEntity();
-      return const ApiResult.success(data: null);
     } catch (error) {
       return ApiResult.failure(
         apiErrorModel: ApiErrorHandler.handle(error: error),

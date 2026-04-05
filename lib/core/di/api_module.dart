@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../database/shared_pref_helper.dart';
 import '../database/shared_pref_keys.dart';
+import '../errors/api_error_model/api_error_model.dart';
 
 @singleton
 class AuthInterceptor extends Interceptor {
@@ -35,24 +36,30 @@ class AuthInterceptor extends Interceptor {
 @singleton
 class LoggingInterceptor extends Interceptor {
   //! onRequest
-  @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    log('Request[${options.method}] => PATH: ${options.path}');
-    super.onRequest(options, handler);
-  }
 
   //! onRequest
-  @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log('Response[${response.statusCode}]: ${response.data}');
-    super.onResponse(response, handler);
-  }
 
-  //! onError
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    log('Error[${err.response?.statusCode}]: ${err.message}');
-    super.onError(err, handler);
+    final response = err.response;
+    if (response != null &&
+        response.data != null &&
+        response.data is Map<String, dynamic>) {
+      try {
+        final errorModel = ApiErrorModel.fromJson(response.data);
+        final finalErrorModel = errorModel.copyWith(
+          statusCode: response.statusCode,
+        );
+        final customError = err.copyWith(
+          message: finalErrorModel.message,
+          error: finalErrorModel,
+        );
+        return handler.next(customError);
+      } on Exception catch (e) {
+        log('Error parsing custom error message: $e');
+      }
+    }
+    return handler.next(err);
   }
 }
 

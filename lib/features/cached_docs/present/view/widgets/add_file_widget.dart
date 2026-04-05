@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../data/datasources/local/drift/cached_docs_table.dart';
 
 enum AddDocWidgetType { image, video }
@@ -57,28 +59,33 @@ class _AddFileWidgetState extends State<AddFileWidget> {
     if (widget.initialValue?.isNotEmpty == true) {
       final file = File(widget.initialValue!);
       if (file.existsSync()) {
-        if (file.path.toLowerCase().endsWith('.mp4') ||
-            file.path.toLowerCase().endsWith('.mov')) {
+        final fileExtension = file.path.toLowerCase().split('.').last;
+        final isVideoFile = [
+          'mp4',
+          'mov',
+          'avi',
+          'mkv',
+          'wmv',
+          'flv',
+          'webm',
+        ].contains(fileExtension);
+        if (isVideoFile) {
           _isVideo = true;
           try {
-            _videoController = VideoPlayerController.file(file)
-              ..initialize()
-                  .then((_) {
-                    if (mounted) {
-                      setState(() {
-                        // لا نحتاج إلى التكرار التلقائي لتجنب مشاكل الأداء
-                        // _videoController?.setLooping(true);
-                      });
-                    }
-                  })
-                  .catchError((error) {
-                    debugPrint('خطأ في تحميل الفيديو: $error');
-                    _isVideo = false;
-                    if (mounted) setState(() {});
-                  });
-          } catch (e) {
-            debugPrint('خطأ في إنشاء متحكم الفيديو: $e');
+            await Future.delayed(const Duration(milliseconds: 100));
+            _videoController = VideoPlayerController.file(file);
+            await _videoController!.initialize();
+            if (_videoController!.value.size.width > 720) {
+              await _videoController!.setVolume(0);
+            }
+            if (mounted) {
+              setState(() {});
+            }
+          } catch (error) {
+            debugPrint('خطأ في تحميل الفيديو: $error');
             _isVideo = false;
+            _disposeVideoController();
+            if (mounted) setState(() {});
           }
         } else {
           _isVideo = false;
@@ -104,14 +111,6 @@ class _AddFileWidgetState extends State<AddFileWidget> {
     final hasPreview = widget.initialValue?.isNotEmpty == true;
     return Column(
       children: [
-        // Text(
-        //   widget.path!,
-        //   style: const TextStyle(
-        //     color: Colors.red,
-        //     fontSize: 12,
-        //     fontFamily: 'Almarai',
-        //   ),
-        // ),
         Stack(
           children: [
             GestureDetector(
@@ -142,11 +141,11 @@ class _AddFileWidgetState extends State<AddFileWidget> {
                 child: hasPreview ? _buildPreview() : _buildPlaceholder(),
               ),
             ),
-
             if (widget.path != null && widget.path!.isNotEmpty)
-              Positioned(
+              Positioned.directional(
+                textDirection: Directionality.of(context),
                 top: 8,
-                left: 8,
+                start: 8,
                 child: buildStatusIndicator(
                   docFileStatus: widget.docFileStatus,
                 ),
@@ -156,7 +155,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
         if (widget.errorText != null)
           Padding(
             padding: const EdgeInsets.only(top: 4.0, right: 8.0),
-            child: Text(
+            child: TrText(
               widget.errorText!,
               style: const TextStyle(
                 color: Colors.red,
@@ -180,7 +179,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
               width: 34,
               height: 34,
             ),
-      
+
           if (widget.addDocWidgetType == AddDocWidgetType.image)
             const Icon(
               Icons.add_photo_alternate_outlined,
@@ -188,7 +187,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
               color: Colors.grey,
             ),
           const SizedBox(height: 8),
-          Text(
+          TrText(
             widget.path ?? '',
             style: TextStyle(
               fontFamily: 'Almarai',
@@ -208,9 +207,13 @@ class _AddFileWidgetState extends State<AddFileWidget> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            AspectRatio(
-              aspectRatio: _videoController!.value.aspectRatio,
-              child: VideoPlayer(_videoController!),
+            FittedBox(
+              fit: BoxFit.cover,
+              child: SizedBox(
+                width: _videoController!.value.size.width,
+                height: _videoController!.value.size.height,
+                child: VideoPlayer(_videoController!),
+              ),
             ),
             Center(
               child: IconButton(
@@ -241,6 +244,8 @@ class _AddFileWidgetState extends State<AddFileWidget> {
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
+          cacheWidth: 720,
+          cacheHeight: 1280,
         ),
       );
     }
@@ -273,6 +278,8 @@ Widget buildStatusIndicator({required FileUploadStatus docFileStatus}) {
       break;
   }
   return Container(
+    // height: 20.w,
+    // width: 20.w,
     padding: const EdgeInsets.all(4),
     decoration: BoxDecoration(
       color: Colors.white.withValues(alpha: 0.9),
@@ -283,13 +290,13 @@ Widget buildStatusIndicator({required FileUploadStatus docFileStatus}) {
     ),
     child: isRotating
         ? buildRotatingIcon(icon, color)
-        : Icon(icon, color: color, size: 20),
+        : Icon(icon, color: color, size: 15.sp),
   );
 }
 
 Widget buildRotatingIcon(IconData icon, Color color) {
   return RotationTransition(
     turns: AlwaysStoppedAnimation(DateTime.now().millisecond / 1000),
-    child: Icon(icon, color: color, size: 20),
+    child: Icon(icon, color: color, size: 15.sp),
   );
 }

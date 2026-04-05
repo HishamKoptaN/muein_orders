@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
 
 import '../loading/custom_circular_progress.dart';
+import '../translated_text.dart';
 
 class CustomBtnWidget extends StatelessWidget {
   const CustomBtnWidget({
@@ -50,7 +51,7 @@ class CustomBtnWidget extends StatelessWidget {
             ),
         child: formzSubmissionStatus?.isInProgress ?? false
             ? const CustomCircularProgress()
-            : Text(
+            : TrText(
                 text,
                 style: TextStyle(
                   fontFamily: 'Almarai',
@@ -92,7 +93,7 @@ class CustomButton extends StatelessWidget {
       child: TextButton(
         style: TextButton.styleFrom(backgroundColor: backgroundColor),
         onPressed: onPressed,
-        child: widget ?? Text(text ?? ''),
+        child: widget ?? TrText(text ?? ''),
       ),
     );
   }

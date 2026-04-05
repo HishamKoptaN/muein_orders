@@ -9,7 +9,7 @@ import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart';
 import '../../features/cached_docs/present/bloc/cached_doc_bloc.dart';
 import '../../features/docs/present/blocs/docs_bloc/docs_bloc.dart';
 import '../../features/financial/present/financial_rep_bloc/financial_bloc.dart';
-import '../../features/home/present/bloc/home_bloc.dart';
+import '../../features/home/present/bloc/stats_bloc.dart';
 import '../../features/instructions/present/bloc/instructions_bloc.dart';
 import '../../features/language/bloc/language_bloc.dart';
 import '../../features/notifications/present/bloc/notifications_bloc.dart';
@@ -23,23 +23,20 @@ import '../routing/app_router.dart';
 
 class MueinOrdersApp extends StatelessWidget {
   const MueinOrdersApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LanguageBloc>(create: (_) => getIt<LanguageBloc>()),
         BlocProvider<ThemeBloc>(create: (_) => getIt<ThemeBloc>()),
-        BlocProvider<AuthBloc>(
-          create: (_) => getIt<AuthBloc>()..add(const AuthEvent.check()),
-        ),
+        BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
         BlocProvider<InstructionsBloc>(
           create: (_) => getIt<InstructionsBloc>(),
         ),
         BlocProvider<SignInBloc>(create: (_) => getIt<SignInBloc>()),
         BlocProvider<SignUpBloc>(create: (_) => getIt<SignUpBloc>()),
         BlocProvider<ForgotPassBloc>(create: (_) => getIt<ForgotPassBloc>()),
-        BlocProvider<HomeBloc>(create: (_) => getIt<HomeBloc>()),
+        BlocProvider<StatsBloc>(create: (_) => getIt<StatsBloc>()),
         BlocProvider<OrdersBloc>(create: (_) => getIt<OrdersBloc>()),
         BlocProvider<DocsBloc>(create: (_) => getIt<DocsBloc>()),
         BlocProvider<CachedDocBloc>(create: (_) => getIt<CachedDocBloc>()),
@@ -74,15 +71,6 @@ class MueinOrdersApp extends StatelessWidget {
                     localeResolutionCallback:
                         AppLocalizationSetup.localeResolutionCallback,
                     routerConfig: AppRouter.create(),
-                    builder: (context, child) {
-                      return SafeArea(
-                        top: true,
-                        bottom: true,
-                        left: true,
-                        right: true,
-                        child: child!,
-                      );
-                    },
                   );
                 },
               );

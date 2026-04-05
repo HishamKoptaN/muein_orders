@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "configurations": [
     /* ================= DEV ================= */
 
@@ -7,36 +7,27 @@
       "name": "Flutter Dev (Android)",
       "type": "dart",
       "request": "launch",
-      "program": "lib/main_dev.dart",
-      "args": ["--flavor", "dev"],
-      "deviceId": "android"
+      "program": "lib/main.dart",
+      "flutterMode": "debug",
+      "args": [
+        "--flavor",
+        "dev",
+        "--dart-define=ENV=dev",
+        "--track-widget-creation",
+        "--no-enable-impeller"
+      ],
+      "deviceId": "CPH2325",
+      "attachToExistingApp": false,
+      "showDebuggerOnStart": true
     },
-    {
-      "name": "Flutter Dev (Web)",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib/main_dev.dart",
-      "deviceId": "web-server",
-      "args": ["--flavor", "dev", "--web-port", "3000"]
-    },
-
     /* ================= PROD ================= */
-
     {
       "name": "Flutter Prod (Android)",
       "type": "dart",
       "request": "launch",
-      "program": "lib/main_prod.dart",
-      "args": ["--flavor", "prod"],
-      "deviceId": "android"
-    },
-    {
-      "name": "Flutter Prod (Web)",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib/main_prod.dart",
-      "deviceId": "web-server",
-      "args": ["--flavor", "prod", "--web-port", "4000"]
+      "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": ["--flavor", "prod", "--dart-define=ENV=prod"]
     }
   ]
 }

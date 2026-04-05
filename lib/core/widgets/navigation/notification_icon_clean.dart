@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../features/cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../di/dependency_injection.dart';
+import '../translated_text.dart';
 
 class NotificationIcon extends StatefulWidget {
   const NotificationIcon({super.key});
@@ -33,7 +34,7 @@ class _NotificationIconState extends State<NotificationIcon> {
 
         return IconButton(
           icon: badges.Badge(
-            badgeContent: Text(
+            badgeContent: TrText(
               count.toString(),
               style: TextStyle(color: Colors.white, fontSize: 10.sp),
             ),

@@ -10,7 +10,7 @@ class ApiConstants {
 
   // Other endpoints
   static const String orders = 'orders';
-  static const String summary = 'summary';
+  static const String stats = 'stats';
   static const String docs = 'docs';
   static const String notifications = 'notifications';
   static const String externalNotifications = 'external-notifications';

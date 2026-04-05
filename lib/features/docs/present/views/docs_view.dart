@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/Layouts/app_container.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
+import '../../../../core/widgets/translated_text.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../blocs/docs_bloc/docs_bloc.dart';
 import 'shimmer_widgets.dart/build_shimmer_order_placeholder.dart';
@@ -12,7 +14,7 @@ import 'widgets/doc_widget.dart';
 class DocsView extends StatefulWidget {
   const DocsView({super.key, required this.orderId});
   final int orderId;
-  static const String routeName = 'DocsView';
+  static const String routeName = 'docs';
   @override
   State<DocsView> createState() => _DocsViewState();
 }
@@ -22,14 +24,14 @@ class _DocsViewState extends State<DocsView> {
   @override
   void initState() {
     super.initState();
-    context.read<DocsBloc>().add(DocsEvent.getDocs(orderId: widget.orderId));
+    getIt<DocsBloc>().add(DocsEvent.getDocs(orderId: widget.orderId));
     _scrollController.addListener(_onScroll);
   }
 
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent) {
-      context.read<DocsBloc>().add(DocsEvent.getDocs(orderId: widget.orderId));
+      getIt<DocsBloc>().add(DocsEvent.getDocs(orderId: widget.orderId));
     }
   }
 
@@ -44,7 +46,7 @@ class _DocsViewState extends State<DocsView> {
     final double height = MediaQuery.of(context).size.height;
     final t = AppLocalizations.of(context);
     return CustomScaffold(
-      appBar: CustomAppBar(title: t.documentations),
+      appBar: const CustomAppBar(title: 'توثيقات'),
       body: BlocBuilder<DocsBloc, DocsState>(
         builder: (context, state) {
           return state.maybeWhen(
@@ -66,7 +68,9 @@ class _DocsViewState extends State<DocsView> {
                     if (hasMore!) {
                       return const OrderShimmerWidget();
                     } else if (docs.isNotEmpty && !hasMore) {
-                      return Center(child: Text(t.noMoreDocs));
+                      return const Center(
+                        child: TrText('لا توجد وثائق إضافية'),
+                      );
                     }
                     return const CircularProgressIndicator();
                   }

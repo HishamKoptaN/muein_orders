@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/widgets/translated_text.dart';
+
 class SimpleLoadingView extends StatelessWidget {
   const SimpleLoadingView({
     super.key,
@@ -19,7 +21,6 @@ class SimpleLoadingView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // أيقونة التطبيق
             Container(
               width: 100.w,
               height: 100.h,
@@ -33,11 +34,8 @@ class SimpleLoadingView extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-
             SizedBox(height: 32.h),
-
-            // نص التحميل
-            Text(
+            TrText(
               loadingText,
               style: TextStyle(
                 fontSize: 16.sp,

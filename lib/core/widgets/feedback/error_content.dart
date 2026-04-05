@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
 import '../../theme/app_text_styles.dart';
+import '../translated_text.dart';
 
 class ErrorContent extends StatelessWidget {
   final String message;
@@ -43,10 +44,11 @@ class ErrorContent extends StatelessWidget {
             color: iconColor ?? AppColors.error,
           ),
           const SizedBox(height: 16),
-          Text(
+          TrText(
             message,
+            overflow: TextOverflow.fade,
             style: AppTextStyles.bodyLarge.copyWith(
-              color: textColor ?? AppColors.error,
+              color: textColor ?? Colors.red,
             ),
             textAlign: TextAlign.center,
           ),
@@ -61,7 +63,7 @@ class ErrorContent extends StatelessWidget {
                   borderRadius: BorderRadius.circular(buttonBorderRadius ?? 12),
                 ),
               ),
-              child: Text(retryText ?? 'Retry'),
+              child: TrText(retryText ?? 'Retry'),
             ),
           ],
         ],

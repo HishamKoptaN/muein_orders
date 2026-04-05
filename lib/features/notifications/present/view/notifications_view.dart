@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
+import '../../../../core/widgets/translated_text.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../bloc/notifications_bloc.dart';
 import 'widgets/notification_row.dart';
@@ -143,7 +144,7 @@ class _TabButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         alignment: Alignment.center,
-        child: Text(text, style: TextStyle(color: fg, fontSize: 16)),
+        child: TrText(text, style: TextStyle(color: fg, fontSize: 16)),
       ),
     );
   }
@@ -159,7 +160,7 @@ class _SectionLabel extends StatelessWidget {
       padding: const EdgeInsets.only(right: 32, top: 16, bottom: 8),
       child: Align(
         alignment: Alignment.centerRight,
-        child: Text(
+        child: TrText(
           text,
           style: const TextStyle(color: Color(0xFFACAEBE), fontSize: 14),
           textAlign: TextAlign.right,

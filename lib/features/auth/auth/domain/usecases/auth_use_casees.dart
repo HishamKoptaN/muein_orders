@@ -6,10 +6,8 @@ import '../repo/auth_repo.dart';
 @singleton
 class AuthUseCase {
   final AuthRepo authRepo;
-  AuthUseCase({
-    required this.authRepo,
-  });
-  Future<ApiResult<bool>?> check() async {
+  AuthUseCase({required this.authRepo});
+  Future<ApiResult<bool>> check() async {
     return await authRepo.check();
   }
 

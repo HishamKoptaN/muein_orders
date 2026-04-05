@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../translated_text.dart';
+
 enum AppSnackBarType { success, error, warning, info }
 
 class AppSnackBar {
@@ -50,18 +52,18 @@ class AppSnackBar {
     final snackBar = SnackBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      behavior: SnackBarBehavior.floating, // لجعلها تطفو فوق المحتوى
+      behavior: SnackBarBehavior.floating,
       duration: duration ?? const Duration(seconds: 4),
       content: Container(
         width: 343.w,
         height: 82.h,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: const Color(0xFF242C32), // background: #242C32
-          borderRadius: BorderRadius.circular(8.r), // border-radius: 8px
+          color: const Color(0xFF242C32),
+          borderRadius: BorderRadius.circular(8.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.34), // rgba(0, 0, 0, 0.34)
+              color: Colors.black.withOpacity(0.34),
               blurRadius: 4.r,
               offset: const Offset(0, 4),
             ),
@@ -69,7 +71,6 @@ class AppSnackBar {
         ),
         child: Stack(
           children: [
-            // الخط المتوهج في الأسفل (Rectangle 1 & 2)
             Positioned(
               bottom: 0,
               left: 0,
@@ -129,7 +130,7 @@ class AppSnackBar {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        TrText(
                           title,
                           style: TextStyle(
                             fontFamily: 'Almarai',
@@ -139,7 +140,7 @@ class AppSnackBar {
                           ),
                         ),
                         if (message != null) ...[
-                          Text(
+                          TrText(
                             message,
                             style: TextStyle(
                               fontFamily: 'Almarai',

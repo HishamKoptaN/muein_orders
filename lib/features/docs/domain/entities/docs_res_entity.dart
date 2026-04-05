@@ -1,71 +1,5 @@
 import 'package:flutter/material.dart';
 
-class DocEntity {
-  final int? id;
-  final String? imageOne;
-  final String? imageTwo;
-  final String? thumbnailUrlOne;
-  final String? thumbnailUrlTwo;
-  final String? videoOne;
-  final String? videoTwo;
-  final String? latitude;
-  final String? longitude;
-  final int? sallaOrderProductId;
-  final int? docStatusId;
-  final String? adminNotes;
-  final String? createdAt;
-  final String? updatedAt;
-  final DocStatusEntity? docStatus;
-
-  DocEntity({
-    this.id,
-    this.imageOne,
-    this.imageTwo,
-    this.thumbnailUrlOne,
-    this.thumbnailUrlTwo,
-    this.videoOne,
-    this.videoTwo,
-    this.latitude,
-    this.longitude,
-    this.sallaOrderProductId,
-    this.docStatusId,
-    this.adminNotes,
-    this.createdAt,
-    this.updatedAt,
-    this.docStatus,
-  });
-
-  DocEntity copyWith({
-    int? id,
-    String? imageOne,
-    String? imageTwo,
-    String? videoOne,
-    String? videoTwo,
-    String? latitude,
-    String? longitude,
-    int? sallaOrderProductId,
-    int? docStatusId,
-    String? adminNotes,
-    String? createdAt,
-    String? updatedAt,
-    DocStatusEntity? docStatus,
-  }) => DocEntity(
-    id: id ?? this.id,
-    imageOne: imageOne ?? this.imageOne,
-    imageTwo: imageTwo ?? this.imageTwo,
-    videoOne: videoOne ?? this.videoOne,
-    videoTwo: videoTwo ?? this.videoTwo,
-    latitude: latitude ?? this.latitude,
-    longitude: longitude ?? this.longitude,
-    sallaOrderProductId: sallaOrderProductId ?? this.sallaOrderProductId,
-    docStatusId: docStatusId ?? this.docStatusId,
-    adminNotes: adminNotes ?? this.adminNotes,
-    createdAt: createdAt ?? this.createdAt,
-    updatedAt: updatedAt ?? this.updatedAt,
-    docStatus: docStatus ?? this.docStatus,
-  );
-}
-
 class DocStatusEntity {
   final int? id;
   final String? name;
@@ -102,4 +36,52 @@ class DocStatusEntity {
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? this.updatedAt,
   );
+
+  factory DocStatusEntity.fromJson(Map<String, dynamic> json) {
+    return DocStatusEntity(
+      id: json['id'],
+      name: json['name'],
+      textColor: json['text_color'] != null
+          ? _colorFromString(json['text_color'])
+          : null,
+      backgroundColor: json['background_color'] != null
+          ? _colorFromString(json['background_color'])
+          : null,
+      iconColor: json['icon_color'] != null
+          ? _colorFromString(json['icon_color'])
+          : null,
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'text_color': textColor?.value
+          .toRadixString(16)
+          .padLeft(8, '0')
+          .replaceFirst('ff', '#'),
+      'background_color': backgroundColor?.value
+          .toRadixString(16)
+          .padLeft(8, '0')
+          .replaceFirst('ff', '#'),
+      'icon_color': iconColor?.value
+          .toRadixString(16)
+          .padLeft(8, '0')
+          .replaceFirst('ff', '#'),
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+    };
+  }
+
+  static Color? _colorFromString(String? colorString) {
+    if (colorString == null) return null;
+    try {
+      return Color(int.parse(colorString.replaceFirst('#', '0xFF')));
+    } catch (e) {
+      return null;
+    }
+  }
 }

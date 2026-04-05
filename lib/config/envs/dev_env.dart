@@ -12,4 +12,6 @@ class DevEnv extends Env {
   @override
   String get authBaseUrl =>
       'https://hotpink-gnu-383634.hostingersite.com/mapi/auth/';
+  @override
+  String get envName => 'dev';
 }

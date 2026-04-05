@@ -6,6 +6,7 @@ abstract class CachedDocEvent with _$CachedDocEvent {
   const factory CachedDocEvent.updateData({
     Loaded? loaded,
     required CreateCachedDocEntity createCachedDoc,
+    required int subCategoryId,
   }) = _UpdateData;
   const factory CachedDocEvent.cachedDoc({required Loaded loaded}) = _CachedDoc;
 }

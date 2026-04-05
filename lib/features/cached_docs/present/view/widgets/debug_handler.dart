@@ -60,6 +60,7 @@ class DebugHandler {
                   .toList() ??
               [],
         ),
+        subCategoryId: 1,
       ),
     );
   }

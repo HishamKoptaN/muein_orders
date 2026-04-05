@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/di/dependency_injection.dart';
+import '../../../core/widgets/translated_text.dart';
 import '../../auth/auth/present/bloc/auth_bloc.dart';
 
 void showLogoutBottomSheet(BuildContext context) {
@@ -25,7 +26,7 @@ void showLogoutBottomSheet(BuildContext context) {
               ),
             ),
             const SizedBox(height: 24),
-            const Text(
+            const TrText(
               'تسجيل الخروج من معين',
               style: TextStyle(
                 fontSize: 18,
@@ -34,7 +35,7 @@ void showLogoutBottomSheet(BuildContext context) {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            const TrText(
               'هل تريد تسجيل الخروج ؟',
               style: TextStyle(color: Colors.grey),
             ),
@@ -45,13 +46,12 @@ void showLogoutBottomSheet(BuildContext context) {
                   child: ElevatedButton(
                     onPressed: () {
                       getIt<AuthBloc>().add(const AuthEvent.signedOut());
-                      Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF83BEA8),
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: const Text(
+                    child: const TrText(
                       'نعم',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -65,7 +65,7 @@ void showLogoutBottomSheet(BuildContext context) {
                       side: const BorderSide(color: Color(0xFF83BEA8)),
                       padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                    child: const Text(
+                    child: const TrText(
                       'لا',
                       style: TextStyle(color: Color(0xFF83BEA8)),
                     ),

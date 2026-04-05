@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../../l10n/app_localizations.dart';
 
 enum FileType { image, video }
@@ -21,9 +22,9 @@ class FilePickerUtils {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          content: Text(
-            t.select_files,
-            style: const TextStyle(
+          content: const TrText(
+            'اختر الملف',
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.black,
@@ -33,19 +34,16 @@ class FilePickerUtils {
             _buildIconButton(
               context,
               icon: Icons.camera_alt,
-              label: t.camera,
+              label: 'الكاميرا',
               onPressed: () =>
                   _pickAndPop(context, fileType, ImageSource.camera),
             ),
             _buildIconButton(
               context,
               icon: Icons.photo_library,
-              label: t.gallery,
-              onPressed: () => _pickAndPop(
-                context,
-                fileType,
-                ImageSource.gallery,
-              ),
+              label: 'المعرض',
+              onPressed: () =>
+                  _pickAndPop(context, fileType, ImageSource.gallery),
             ),
           ],
         );
@@ -62,7 +60,7 @@ class FilePickerUtils {
   }) {
     return TextButton.icon(
       icon: Icon(icon),
-      label: Text(label),
+      label: TrText(label),
       onPressed: onPressed,
     );
   }

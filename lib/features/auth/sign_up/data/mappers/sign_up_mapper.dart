@@ -5,15 +5,14 @@ import '../models/sign_up_res_model.dart';
 
 extension SignUpReqMapper on SignUpReqEntity {
   SignUpReqModel toModel({required String idToken}) => SignUpReqModel(
-        name: name,
-        phone: phone,
-        idToken: idToken,
-        fcmToken: fcmToken,
-      );
+    name: name,
+    phone: phone,
+    idToken: idToken,
+    fcmToken: '',
+    deviceType: 'android',
+  );
 }
 
 extension SignUpResMapper on SignUpResModel {
-  SignUpResEntity toEntity() => SignUpResEntity(
-        token: token!,
-      );
+  SignUpResEntity toEntity() => SignUpResEntity(token: token!);
 }

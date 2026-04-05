@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../domain/entities/create_cached_doc_entity.dart';
 import '../../bloc/cached_doc_bloc.dart';
 
@@ -32,14 +33,14 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('خيارات البيانات المحفوظة'),
+          title: const TrText('خيارات البيانات المحفوظة'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
                 leading: const Icon(Icons.save, color: Colors.green),
-                title: const Text('حفظ البيانات الحالية'),
-                subtitle: const Text(
+                title: const TrText('حفظ البيانات الحالية'),
+                subtitle: const TrText(
                   'حفظ البيانات والملفات الحالية لاستخدامها لاحقاً',
                 ),
                 onTap: () {
@@ -54,11 +55,11 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
                 const Divider(),
                 ListTile(
                   leading: const Icon(Icons.restore, color: Colors.orange),
-                  title: const Text('استرجاع البيانات المحفوظة'),
+                  title: const TrText('استرجاع البيانات المحفوظة'),
                   subtitle: FutureBuilder<String>(
                     future: DocsDebuge().getSavedTimestamp(),
                     builder: (context, snapshot) =>
-                        Text('آخر حفظ: ${snapshot.data ?? "..."}'),
+                        TrText('آخر حفظ: ${snapshot.data ?? "..."}'),
                   ),
                   onTap: () {
                     Navigator.of(context).pop();
@@ -74,7 +75,7 @@ class _DebugAutoFillDocState extends State<DebugAutoFillDoc> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('إلغاء'),
+              child: const TrText('إلغاء'),
             ),
           ],
         );
@@ -175,6 +176,7 @@ class DocsDebuge {
         CachedDocEvent.updateData(
           loaded: loadedState,
           createCachedDoc: restoredEntity,
+          subCategoryId: loadedState.subCategoryId ?? 1,
         ),
       );
 

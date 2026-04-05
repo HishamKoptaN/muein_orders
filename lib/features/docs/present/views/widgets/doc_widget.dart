@@ -3,7 +3,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../l10n/app_localizations.dart';
-import '../../../domain/entities/docs_res_entity.dart';
+import '../../../../orders/domain/entities/orders_res_entity.dart';
 import 'preview/image_preview.dart';
 import 'preview/video_widget.dart';
 

@@ -2,11 +2,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/entities/meta_entity.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../../cached_docs/domain/repo/cached_docs_repo.dart';
-import '../../data/mappers/orders_res_mapper.dart';
-import '../../data/models/orders_res_model.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/usecases/orders_use_cases.dart';
 
@@ -22,82 +21,31 @@ class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
     : super(const OrdersState.initial()) {
     on<OrdersEvent>((event, emit) async {
       await event.when(
-        getOrders: (productTypeId, loadMore, isQuranPhotographed) async {
-          try {
+        getOrders: (subCategoryId, loadMore) async {
+          if (!loadMore) {
             emit(const OrdersState.loading());
-            final result = await ordersUseCases.getOrders(
-              productTypeId: productTypeId,
-              isDistributionPhotographed: isQuranPhotographed,
-              loadMore: loadMore,
-            );
-            result.when(
-              success: (response) {
-                emit(
-                  OrdersState.loaded(
-                    orders: response?.orders ?? [],
-                    hasMore: response?.meta?.hasNextPage ?? false,
-                  ),
-                );
-              },
-              failure: (error) =>
-                  emit(OrdersState.failure(apiErrorModel: error)),
-            );
-          } catch (e, stackTrace) {
-            emit(
-              OrdersState.failure(
-                apiErrorModel: ApiErrorModel(error: e.toString()),
-              ),
-            );
           }
-        },
-        searchOrders: (query, getMore) async {
-          // final res = await ordersUseCases.getOrders(
-          //   packageId: 1,
-          //   query: query,
-          //   page: getMore ? (_meta?.currentPage ?? 0) + 1 : 1,
-          // );
-          // await res.when(
-          //   success: (res) async {
-          //     if (!getMore) {
-          //       _searchOrders = res;
-          //     } else if (getMore) {
-          //       _searchOrders = [...?_searchOrders, ...res ?? []];
-          //     }
-          //     emitLoaded(emit: emit);
-          //   },
-          //   failure: (apiErrorModel) async {
-          //     emitFaliure(apiErrorModel: apiErrorModel, emit: emit);
-          //   },
-          // );
-        },
-        disposeSearch: () {
-          // emit(
-          //   OrdersState.loaded(
-          //     orders: _allOrders ?? [],
-          //     hasMore: _meta?.hasNextPage ?? false,
-          //     isSearching: _isSearching,
-          //   ),
-          // );
-        },
-        updateIsDistributionPhotographed: (orderId) async {
-          // final listToUpdate = (_isSearching ?? false)
-          //     ? _searchOrders
-          //     : _allOrders;
-          // final updatedList = listToUpdate?.map((group) {
-          //   final updatedOrders = group.orders?.map((order) {
-          //     if (order.id == orderId) {
-          //       return order.copyWith(isDistributionPhotographed: true);
-          //     }
-          //     return order;
-          //   }).toList();
-          //   return group.copyWith(orders: updatedOrders);
-          // }).toList();
-          // if (_isSearching ?? false) {
-          //   _searchOrders = updatedList;
-          // } else {
-          //   _allOrders = updatedList;
-          // }
-          // emitLoaded(emit: emit);
+          final result = await ordersUseCases.getOrders(
+            subCategoryId: subCategoryId,
+            loadMore: loadMore,
+          );
+          result.when(
+            success: (res) {
+              emit(
+                OrdersState.loaded(
+                  ordersRes:
+                      res ??
+                      const OrdersResEntity.orders(
+                        orders: [],
+                        meta: MetaEntity(),
+                      ),
+                ),
+              );
+            },
+            failure: (apiErrorModel) {
+              emit(OrdersState.failure(apiErrorModel: apiErrorModel));
+            },
+          );
         },
       );
     });
@@ -113,16 +61,10 @@ class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
         case 'loading':
           return const OrdersState.loading();
         case 'loaded':
-          final ordersJson = json['orders'] as List<dynamic>? ?? [];
-          final hasMore = json['hasMore'] as bool? ?? false;
-          final orders = ordersJson
-              .where((e) => e != null)
-              .map(
-                (e) =>
-                    OrderModel.fromJson(e as Map<String, dynamic>).toEntity(),
-              )
-              .toList();
-          return OrdersState.loaded(orders: orders, hasMore: hasMore);
+          final ordersResJson =
+              json['ordersRes'] as Map<String, dynamic>? ?? {};
+          final ordersRes = OrdersResEntity.fromJson(ordersResJson);
+          return OrdersState.loaded(ordersRes: ordersRes);
         case 'failure':
           final errorJson = json['error'] as Map<String, dynamic>? ?? {};
           final apiError = ApiErrorModel.fromJson(errorJson);
@@ -140,11 +82,7 @@ class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
     return state.when(
       initial: () => {'type': 'initial'},
       loading: () => {'type': 'loading'},
-      loaded: (orders, hasMore) => {
-        'type': 'loaded',
-        // 'orders': orders?.map((e) => e.toJson()).toList() ?? [],
-        'hasMore': hasMore,
-      },
+      loaded: (ordersRes) => {'ordersRes': ordersRes.toJson()},
       failure: (apiErrorModel) => {
         'type': 'failure',
         'error': apiErrorModel.toJson(),
@@ -162,8 +100,9 @@ class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
     OrdersResEntity? ordersResEntity,
   }) => emit(
     OrdersState.loaded(
-      orders: ordersResEntity?.orders ?? [],
-      hasMore: ordersResEntity?.meta?.hasNextPage ?? false,
+      ordersRes:
+          ordersResEntity ??
+          const OrdersResEntity.orders(orders: [], meta: MetaEntity()),
     ),
   );
 }

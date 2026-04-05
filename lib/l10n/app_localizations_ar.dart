@@ -12,19 +12,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get upload_videos => 'تحميل مقاطع الفيديو';
 
   @override
-  String get welcometoMueinOrders => 'مرحباً بكم في طلبات موبين';
+  String get welcometoMueinOrders => 'مرحباً بكم في طلبات معين';
 
   @override
   String get welcome => 'مرحباً';
 
   @override
-  String get indevedual => 'فردي';
-
-  @override
   String get instructions => 'التعليمات';
-
-  @override
-  String get indveduals => 'المفردات';
 
   @override
   String get wearehappytohaveyoujoinourstore => 'نحن سعداء بانضمامك لمتجرنا.';
@@ -238,7 +232,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get english => 'إنجليزي';
 
   @override
-  String get close => 'يغلق';
+  String get close => 'غلق';
 
   @override
   String get required => 'مطلوب';

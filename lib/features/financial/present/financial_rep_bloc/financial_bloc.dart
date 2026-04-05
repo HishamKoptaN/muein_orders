@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/entities/meta_entity.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/create_expense_entity.dart';
 import '../../domain/entities/expenses_res_entity.dart';
@@ -38,8 +39,8 @@ class FinancialBloc extends Bloc<FinancialEvent, FinancialState> {
                 success: (data) {
                   emitCustomLoaded(emit: emit, state: state);
                 },
-                failure: (error) {
-                  emit(FinancialState.failure(error.toString()));
+                failure: (apiErrorModel) {
+                  emit(FinancialState.failure(apiErrorModel: apiErrorModel));
                   emitCustomLoaded(emit: emit, state: state);
                 },
               );
@@ -92,8 +93,8 @@ class FinancialBloc extends Bloc<FinancialEvent, FinancialState> {
                     formzSubmissionStatus: FormzSubmissionStatus.initial,
                   );
                 },
-                failure: (error) {
-                  emit(FinancialState.failure(error.toString()));
+                failure: (apiErrorModel) {
+                  emit(FinancialState.failure(apiErrorModel: apiErrorModel));
                   emitCustomLoaded(emit: emit, state: state);
                 },
               );

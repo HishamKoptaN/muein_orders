@@ -1,0 +1,53 @@
+name: distribute
+on:
+  push:
+    branches:
+      - prodt
+      - devt
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: "gradle"
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.4"
+          channel: stable
+          cache: true
+      - name: Install Dependencies
+        run: flutter pub get
+      - env:
+          FLAVOR: ${{ github.ref_name }}
+        run: dart .github/scripts/build_android.dart
+      - uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_ADMIN_SDK }}
+          groups: "armeabi-v7a"
+          file: build/app/outputs/flutter-apk/app-armeabi-v7a-${{ github.ref_name }}-release.apk
+          releaseNotes: "armeabi-v7a"
+      - name: Upload v8a to Firebase
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_ADMIN_SDK }}
+          groups: "arm64-v8a"
+          file: build/app/outputs/flutter-apk/app-arm64-v8a-${{ github.ref_name }}-release.apk
+          releaseNotes: "arm64-v8a"
+      - name: Upload Universal APK to Firebase
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_ADMIN_SDK }}
+          groups: "apk"
+          file: build/app/outputs/flutter-apk/app-${{ github.ref_name }}-release.apk
+          releaseNotes: "apk"

@@ -1,97 +1,78 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/gloabal_widgets/custom_scaffold.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
-import '../../../../l10n/app_localizations.dart';
-import '../../../home/domain/entities/order_type_res_entity.dart';
 import '../../domain/entities/cached_doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
 import '../bloc/cached_doc_bloc.dart';
 import 'debug/debug_auto_fill_tools.dart';
 import 'widgets/add_cached_doc_fields.dart';
-
 class AddCachedDocView extends StatefulWidget {
   const AddCachedDocView({
     super.key,
-    required this.docId,
-    this.cachedDoc,
-    required this.subCategory,
+    required this.cachedDoc,
+    required this.subCategoryId,
   });
   static const String routeName = 'add-cached-doc';
-  final int docId;
-  final CachedDocEntity? cachedDoc;
-  final SubCategoryEntity subCategory;
+  final CachedDocEntity cachedDoc;
+  final int subCategoryId;
   @override
   State<AddCachedDocView> createState() => _AddCachedDocViewState();
 }
-
 class _AddCachedDocViewState extends State<AddCachedDocView> {
   @override
   void initState() {
     super.initState();
-    debugPrint('=== DEBUG: AddCachedDocView initState ===');
-    debugPrint('widget.docId: ${widget.docId}');
-    debugPrint('widget.cachedDoc: ${widget.cachedDoc}');
-    if (widget.cachedDoc != null) {
-      debugPrint('Using existing cached doc data');
-      getIt<CachedDocBloc>().add(
-        CachedDocEvent.updateData(
-          createCachedDoc: widget.cachedDoc!.toCreateCachedDocEntity().copyWith(
-            docId: GenericFormzInput.dirty(widget.docId),
-            files:
-                widget.cachedDoc!.files
-                    ?.map(
-                      (file) => DocFileEntity(
-                        file: file.path != null
-                            ? FileFormzInput.dirty(File(file.path!))
-                            : null,
-                        docFile: file,
-                        docFileStatus: file.status,
-                      ),
-                    )
-                    .toList() ??
-                [],
-            location: widget.cachedDoc?.location != null
-                ? LocationEntity(
-                    latitude: widget.cachedDoc!.location!.latitude,
-                    longitude: widget.cachedDoc!.location!.longitude,
-                    status: widget.cachedDoc!.location!.status,
+    getIt<CachedDocBloc>().add(
+      CachedDocEvent.updateData(
+        createCachedDoc: widget.cachedDoc.toCreateCachedDocEntity().copyWith(
+          docId: GenericFormzInput.dirty(widget.cachedDoc.docId),
+          files:
+              widget.cachedDoc.files
+                  ?.map(
+                    (file) => DocFileEntity(
+                      file: file.path != null
+                          ? FileFormzInput.dirty(File(file.path!))
+                          : null,
+                      docFile: file,
+                      docFileStatus: file.status,
+                    ),
                   )
-                : null,
-          ),
+                  .toList() ??
+              [],
+          location: widget.cachedDoc.location != null
+              ? LocationEntity(
+                  latitude: widget.cachedDoc.location!.latitude,
+                  longitude: widget.cachedDoc.location!.longitude,
+                  status: widget.cachedDoc.location!.status,
+                )
+              : null,
         ),
-      );
-    } else {
-      getIt<CachedDocBloc>().add(
-        CachedDocEvent.initialize(docId: widget.docId),
-      );
-    }
+        subCategoryId: widget.subCategoryId,
+      ),
+    );
   }
-
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
     return CustomScaffold(
-      appBar: CustomAppBar(title: t.documentingTheRequest),
+      appBar: const CustomAppBar(title: 'توثيق'),
       body: BlocConsumer<CachedDocBloc, CachedDocState>(
         listener: (context, state) async {
           await state.whenOrNull(
             success: () {
               context.showSuccessSnackBar(
-                title: t.success,
+                title: 'نجاح',
                 message: 'تم الحفظ و سيتم رفع بيانات التوثيق في الخلفية',
               );
             },
             failure: (e) {
-              context.showErrorSnackBar(title: t.error, message: e);
+              context.showErrorSnackBar(title: 'خطأ', message: e);
             },
           );
         },
@@ -105,50 +86,35 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        AddDocFieldsWidget(state: state),
+                        AddDocFieldsWidget(
+                          state: state,
+                          subCategoryId: widget.subCategoryId,
+                        ),
                         const SizedBox(height: 15),
                         CustomBtnWidget(
                           key: const Key('button'),
-                          text: t.save,
+                          text: 'حفظ',
                           backgroundColor:
-                              state.createCachedDoc.hasChanged(
-                                original: widget.cachedDoc,
-                              )
+                              (state.createCachedDoc.hasChanged(
+                                    original: widget.cachedDoc,
+                                  ) &&
+                                  state.formzSubmissionStatus.isSuccess)
                               ? Colors.green
                               : Colors.grey,
                           onPressed: () {
-                            debugPrint('=== DEBUG: Save Button Pressed ===');
-                            debugPrint(
-                              'FormzSubmissionStatus: ${state.formzSubmissionStatus}',
-                            );
-                            debugPrint(
-                              'IsSuccess: ${state.formzSubmissionStatus.isSuccess}',
-                            );
                             for (
                               int i = 0;
                               i < state.createCachedDoc.files.length;
                               i++
                             ) {
                               final file = state.createCachedDoc.files[i];
-                              debugPrint(
-                                'File $i: path=${file.docFile?.path}, status=${file.docFileStatus}, isValid=${file.file?.isValid}',
-                              );
-                              if (file.file?.isNotValid == true) {
-                                debugPrint(
-                                  'File $i error: ${file.file?.errorMessage}',
-                                );
-                              }
+                              if (file.file?.isNotValid == true) {}
                             }
                             if (state.formzSubmissionStatus.isSuccess) {
-                              debugPrint(
-                                'Form is valid, proceeding with save...',
-                              );
                               getIt<CachedDocBloc>().add(
                                 CachedDocEvent.cachedDoc(loaded: state),
                               );
-                            } else {
-                              debugPrint('Form validation failed!');
-                            }
+                            } else {}
                           },
                           formzSubmissionStatus: state.formzSubmissionStatus,
                         ),

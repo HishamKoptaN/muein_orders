@@ -9,8 +9,9 @@ abstract class SignUpReqModel with _$SignUpReqModel {
     String? name,
     String? phone,
     @JsonKey(name: 'country_id') int? countryId,
-    @JsonKey(name: 'fcm_token') String? fcmToken,
-    @JsonKey(name: 'id_token') String? idToken,
+    @JsonKey(name: 'id_token') required String idToken,
+    @JsonKey(name: 'fcm_token') required String fcmToken,
+    @JsonKey(name: 'device_type') required String deviceType,
   }) = _SignUpReqModel;
 
   factory SignUpReqModel.fromJson(Map<String, dynamic> json) =>

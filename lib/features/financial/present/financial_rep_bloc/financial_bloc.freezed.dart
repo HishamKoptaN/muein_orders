@@ -467,14 +467,14 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus)?  loaded,TResult Function( String message)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus)?  loaded,TResult Function( ApiErrorModel? apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
 return success();case _Loaded() when loaded != null:
 return loaded(_that.expenses,_that.meta,_that.createExpenseReqEntity,_that.formzSubmissionStatus);case _Failure() when failure != null:
-return failure(_that.message);case _:
+return failure(_that.apiErrorModel);case _:
   return orElse();
 
 }
@@ -492,14 +492,14 @@ return failure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus)  loaded,required TResult Function( String message)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus)  loaded,required TResult Function( ApiErrorModel? apiErrorModel)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Success():
 return success();case _Loaded():
 return loaded(_that.expenses,_that.meta,_that.createExpenseReqEntity,_that.formzSubmissionStatus);case _Failure():
-return failure(_that.message);case _:
+return failure(_that.apiErrorModel);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -516,14 +516,14 @@ return failure(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus)?  loaded,TResult? Function( String message)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus)?  loaded,TResult? Function( ApiErrorModel? apiErrorModel)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
 return success();case _Loaded() when loaded != null:
 return loaded(_that.expenses,_that.meta,_that.createExpenseReqEntity,_that.formzSubmissionStatus);case _Failure() when failure != null:
-return failure(_that.message);case _:
+return failure(_that.apiErrorModel);case _:
   return null;
 
 }
@@ -723,10 +723,10 @@ $MetaEntityCopyWith<$Res>? get meta {
 
 
 class _Failure implements FinancialState {
-  const _Failure(this.message);
+  const _Failure({this.apiErrorModel});
   
 
- final  String message;
+ final  ApiErrorModel? apiErrorModel;
 
 /// Create a copy of FinancialState
 /// with the given fields replaced by the non-null parameter values.
@@ -738,16 +738,16 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,message);
+int get hashCode => Object.hash(runtimeType,apiErrorModel);
 
 @override
 String toString() {
-  return 'FinancialState.failure(message: $message)';
+  return 'FinancialState.failure(apiErrorModel: $apiErrorModel)';
 }
 
 
@@ -758,11 +758,11 @@ abstract mixin class _$FailureCopyWith<$Res> implements $FinancialStateCopyWith<
   factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
 @useResult
 $Res call({
- String message
+ ApiErrorModel? apiErrorModel
 });
 
 
-
+$ApiErrorModelCopyWith<$Res>? get apiErrorModel;
 
 }
 /// @nodoc
@@ -775,14 +775,26 @@ class __$FailureCopyWithImpl<$Res>
 
 /// Create a copy of FinancialState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = freezed,}) {
   return _then(_Failure(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+apiErrorModel: freezed == apiErrorModel ? _self.apiErrorModel : apiErrorModel // ignore: cast_nullable_to_non_nullable
+as ApiErrorModel?,
   ));
 }
 
+/// Create a copy of FinancialState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ApiErrorModelCopyWith<$Res>? get apiErrorModel {
+    if (_self.apiErrorModel == null) {
+    return null;
+  }
 
+  return $ApiErrorModelCopyWith<$Res>(_self.apiErrorModel!, (value) {
+    return _then(_self.copyWith(apiErrorModel: value));
+  });
+}
 }
 
 // dart format on

@@ -4,6 +4,7 @@ import '../models/meta_model.dart';
 extension MetaMapper on MetaModel {
   MetaEntity toEntity() {
     return MetaEntity(
+      total: total,
       currentPage: currentPage ?? 1,
       totalPages: totalPages ?? 1,
       perPage: perPage ?? 10,

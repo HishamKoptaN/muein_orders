@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../translated_text.dart';
+
 Widget buildColumnHeader({required String label, required int flex}) {
   return Flexible(
     flex: flex,
     fit: FlexFit.tight,
-    child: Text(
+    child: TrText(
       label,
       style: const TextStyle(
         fontWeight: FontWeight.w400,
@@ -19,7 +21,7 @@ Widget buildColumnHeader({required String label, required int flex}) {
 }
 
 Widget buildTransactionDetail({required String text, bool? isPrice = false}) {
-  return Text(
+  return TrText(
     text,
     style: const TextStyle(
       fontWeight: FontWeight.w400,

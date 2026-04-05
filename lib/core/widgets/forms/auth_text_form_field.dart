@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../localization/auto_localizer.dart';
+
 class CustomAuthTextFormField extends StatefulWidget {
   const CustomAuthTextFormField({
     super.key,
@@ -101,6 +103,7 @@ class CustomAuthTextFormField extends StatefulWidget {
 class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
   @override
   Widget build(BuildContext context) {
+    final lang = Localizations.localeOf(context).languageCode;
     return ClipRRect(
       borderRadius: BorderRadius.circular(14.r),
       child: BackdropFilter(
@@ -112,35 +115,41 @@ class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
             color: const Color.fromRGBO(255, 255, 255, 0.19),
             borderRadius: BorderRadius.circular(14.r),
           ),
-          child: TextFormField(
-            initialValue: widget.initialValue,
-            onChanged: widget.onChanged,
-            obscureText: widget.obscureText,
-            keyboardType: widget.keyboardType ?? widget.textInputType,
-            textInputAction: widget.textInputAction,
-            onSaved: widget.onSaved,
-            validator: widget.validator,
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Almarai',
-              fontSize: 16.sp,
-            ),
-            decoration: InputDecoration(
-              hintText: widget.hintText,
-              hintStyle: TextStyle(
-                color: const Color.fromRGBO(255, 255, 255, 0.57),
-                fontSize: 16.sp,
-                fontFamily: 'Almarai',
-              ),
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 24.w,
-                vertical: 18.h,
-              ),
-              border: InputBorder.none,
-              prefixIcon: widget.prefixIcon,
-              suffixIcon: widget.suffixIcon,
-            ),
+          child: FutureBuilder<String>(
+            future: AutoLocalizer.translate(widget.hintText ?? '', lang),
+            initialData: widget.hintText,
+            builder: (context, asyncSnapshot) {
+              return TextFormField(
+                initialValue: widget.initialValue,
+                onChanged: widget.onChanged,
+                obscureText: widget.obscureText,
+                keyboardType: widget.keyboardType ?? widget.textInputType,
+                textInputAction: widget.textInputAction,
+                onSaved: widget.onSaved,
+                validator: widget.validator,
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Almarai',
+                  fontSize: 16.sp,
+                ),
+                decoration: InputDecoration(
+                  hintText: asyncSnapshot.data ?? '',
+                  hintStyle: TextStyle(
+                    color: const Color.fromRGBO(255, 255, 255, 0.57),
+                    fontSize: 16.sp,
+                    fontFamily: 'Almarai',
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 24.w,
+                    vertical: 18.h,
+                  ),
+                  border: InputBorder.none,
+                  prefixIcon: widget.prefixIcon,
+                  suffixIcon: widget.suffixIcon,
+                ),
+              );
+            },
           ),
         ),
       ),

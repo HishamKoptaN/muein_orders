@@ -56,7 +56,7 @@ class AuthChoiceView extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   CustomBtnWidget(
-                    text: t.signUp,
+                    text: 'إنشاء حساب',
                     onPressed: () {
                       NavigationService.navigateAndRemoveUntil(
                         context: context,
@@ -72,7 +72,7 @@ class AuthChoiceView extends StatelessWidget {
                         routeName: SignInView.routeName,
                       );
                     },
-                    text: t.login,
+                    text: 'تسجيل الدخول',
                   ),
                 ],
               ),

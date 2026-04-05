@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/translated_text.dart';
+
 class MenuTile extends StatelessWidget {
   const MenuTile({
     super.key,
@@ -13,7 +15,7 @@ class MenuTile extends StatelessWidget {
   final IconData? icon;
   final VoidCallback? onTap;
   final Color textColor;
-                                    
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -24,7 +26,7 @@ class MenuTile extends StatelessWidget {
             : textColor,
         size: 22,
       ),
-      title: Text(
+      title: TrText(
         title,
         style: TextStyle(
           color: textColor,

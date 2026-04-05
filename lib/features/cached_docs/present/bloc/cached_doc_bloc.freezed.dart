@@ -131,11 +131,11 @@ return cachedDoc(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int docId)?  initialize,TResult Function( Loaded? loaded,  CreateCachedDocEntity createCachedDoc)?  updateData,TResult Function( Loaded loaded)?  cachedDoc,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int docId)?  initialize,TResult Function( Loaded? loaded,  CreateCachedDocEntity createCachedDoc,  int subCategoryId)?  updateData,TResult Function( Loaded loaded)?  cachedDoc,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initialize() when initialize != null:
 return initialize(_that.docId);case _UpdateData() when updateData != null:
-return updateData(_that.loaded,_that.createCachedDoc);case _CachedDoc() when cachedDoc != null:
+return updateData(_that.loaded,_that.createCachedDoc,_that.subCategoryId);case _CachedDoc() when cachedDoc != null:
 return cachedDoc(_that.loaded);case _:
   return orElse();
 
@@ -154,11 +154,11 @@ return cachedDoc(_that.loaded);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int docId)  initialize,required TResult Function( Loaded? loaded,  CreateCachedDocEntity createCachedDoc)  updateData,required TResult Function( Loaded loaded)  cachedDoc,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int docId)  initialize,required TResult Function( Loaded? loaded,  CreateCachedDocEntity createCachedDoc,  int subCategoryId)  updateData,required TResult Function( Loaded loaded)  cachedDoc,}) {final _that = this;
 switch (_that) {
 case _Initialize():
 return initialize(_that.docId);case _UpdateData():
-return updateData(_that.loaded,_that.createCachedDoc);case _CachedDoc():
+return updateData(_that.loaded,_that.createCachedDoc,_that.subCategoryId);case _CachedDoc():
 return cachedDoc(_that.loaded);case _:
   throw StateError('Unexpected subclass');
 
@@ -176,11 +176,11 @@ return cachedDoc(_that.loaded);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int docId)?  initialize,TResult? Function( Loaded? loaded,  CreateCachedDocEntity createCachedDoc)?  updateData,TResult? Function( Loaded loaded)?  cachedDoc,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int docId)?  initialize,TResult? Function( Loaded? loaded,  CreateCachedDocEntity createCachedDoc,  int subCategoryId)?  updateData,TResult? Function( Loaded loaded)?  cachedDoc,}) {final _that = this;
 switch (_that) {
 case _Initialize() when initialize != null:
 return initialize(_that.docId);case _UpdateData() when updateData != null:
-return updateData(_that.loaded,_that.createCachedDoc);case _CachedDoc() when cachedDoc != null:
+return updateData(_that.loaded,_that.createCachedDoc,_that.subCategoryId);case _CachedDoc() when cachedDoc != null:
 return cachedDoc(_that.loaded);case _:
   return null;
 
@@ -265,11 +265,12 @@ as int,
 
 
 class _UpdateData with DiagnosticableTreeMixin implements CachedDocEvent {
-  const _UpdateData({this.loaded, required this.createCachedDoc});
+  const _UpdateData({this.loaded, required this.createCachedDoc, required this.subCategoryId});
   
 
  final  Loaded? loaded;
  final  CreateCachedDocEntity createCachedDoc;
+ final  int subCategoryId;
 
 /// Create a copy of CachedDocEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -282,21 +283,21 @@ _$UpdateDataCopyWith<_UpdateData> get copyWith => __$UpdateDataCopyWithImpl<_Upd
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'CachedDocEvent.updateData'))
-    ..add(DiagnosticsProperty('loaded', loaded))..add(DiagnosticsProperty('createCachedDoc', createCachedDoc));
+    ..add(DiagnosticsProperty('loaded', loaded))..add(DiagnosticsProperty('createCachedDoc', createCachedDoc))..add(DiagnosticsProperty('subCategoryId', subCategoryId));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&const DeepCollectionEquality().equals(other.loaded, loaded)&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&const DeepCollectionEquality().equals(other.loaded, loaded)&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc)&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(loaded),createCachedDoc);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(loaded),createCachedDoc,subCategoryId);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocEvent.updateData(loaded: $loaded, createCachedDoc: $createCachedDoc)';
+  return 'CachedDocEvent.updateData(loaded: $loaded, createCachedDoc: $createCachedDoc, subCategoryId: $subCategoryId)';
 }
 
 
@@ -307,7 +308,7 @@ abstract mixin class _$UpdateDataCopyWith<$Res> implements $CachedDocEventCopyWi
   factory _$UpdateDataCopyWith(_UpdateData value, $Res Function(_UpdateData) _then) = __$UpdateDataCopyWithImpl;
 @useResult
 $Res call({
- Loaded? loaded, CreateCachedDocEntity createCachedDoc
+ Loaded? loaded, CreateCachedDocEntity createCachedDoc, int subCategoryId
 });
 
 
@@ -324,11 +325,12 @@ class __$UpdateDataCopyWithImpl<$Res>
 
 /// Create a copy of CachedDocEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? loaded = freezed,Object? createCachedDoc = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? loaded = freezed,Object? createCachedDoc = null,Object? subCategoryId = null,}) {
   return _then(_UpdateData(
 loaded: freezed == loaded ? _self.loaded : loaded // ignore: cast_nullable_to_non_nullable
 as Loaded?,createCachedDoc: null == createCachedDoc ? _self.createCachedDoc : createCachedDoc // ignore: cast_nullable_to_non_nullable
-as CreateCachedDocEntity,
+as CreateCachedDocEntity,subCategoryId: null == subCategoryId ? _self.subCategoryId : subCategoryId // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -539,11 +541,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( CreateCachedDocEntity createCachedDoc,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( CreateCachedDocEntity createCachedDoc,  int? subCategoryId,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case Loaded() when loaded != null:
-return loaded(_that.createCachedDoc,_that.formzSubmissionStatus);case _Success() when success != null:
+return loaded(_that.createCachedDoc,_that.subCategoryId,_that.formzSubmissionStatus);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.error);case _:
   return orElse();
@@ -563,11 +565,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( CreateCachedDocEntity createCachedDoc,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( CreateCachedDocEntity createCachedDoc,  int? subCategoryId,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
 switch (_that) {
 case _Loading():
 return loading();case Loaded():
-return loaded(_that.createCachedDoc,_that.formzSubmissionStatus);case _Success():
+return loaded(_that.createCachedDoc,_that.subCategoryId,_that.formzSubmissionStatus);case _Success():
 return success();case _Failure():
 return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
@@ -586,11 +588,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( CreateCachedDocEntity createCachedDoc,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( CreateCachedDocEntity createCachedDoc,  int? subCategoryId,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
 switch (_that) {
 case _Loading() when loading != null:
 return loading();case Loaded() when loaded != null:
-return loaded(_that.createCachedDoc,_that.formzSubmissionStatus);case _Success() when success != null:
+return loaded(_that.createCachedDoc,_that.subCategoryId,_that.formzSubmissionStatus);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.error);case _:
   return null;
@@ -642,10 +644,11 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
 
 
 class Loaded with DiagnosticableTreeMixin implements CachedDocState {
-  const Loaded({required this.createCachedDoc, required this.formzSubmissionStatus});
+  const Loaded({required this.createCachedDoc, this.subCategoryId, required this.formzSubmissionStatus});
   
 
  final  CreateCachedDocEntity createCachedDoc;
+ final  int? subCategoryId;
  final  FormzSubmissionStatus formzSubmissionStatus;
 
 /// Create a copy of CachedDocState
@@ -659,21 +662,21 @@ $LoadedCopyWith<Loaded> get copyWith => _$LoadedCopyWithImpl<Loaded>(this, _$ide
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'CachedDocState.loaded'))
-    ..add(DiagnosticsProperty('createCachedDoc', createCachedDoc))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
+    ..add(DiagnosticsProperty('createCachedDoc', createCachedDoc))..add(DiagnosticsProperty('subCategoryId', subCategoryId))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Loaded&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Loaded&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc)&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,createCachedDoc,formzSubmissionStatus);
+int get hashCode => Object.hash(runtimeType,createCachedDoc,subCategoryId,formzSubmissionStatus);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocState.loaded(createCachedDoc: $createCachedDoc, formzSubmissionStatus: $formzSubmissionStatus)';
+  return 'CachedDocState.loaded(createCachedDoc: $createCachedDoc, subCategoryId: $subCategoryId, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -684,7 +687,7 @@ abstract mixin class $LoadedCopyWith<$Res> implements $CachedDocStateCopyWith<$R
   factory $LoadedCopyWith(Loaded value, $Res Function(Loaded) _then) = _$LoadedCopyWithImpl;
 @useResult
 $Res call({
- CreateCachedDocEntity createCachedDoc, FormzSubmissionStatus formzSubmissionStatus
+ CreateCachedDocEntity createCachedDoc, int? subCategoryId, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
@@ -701,10 +704,11 @@ class _$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of CachedDocState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? createCachedDoc = null,Object? formzSubmissionStatus = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? createCachedDoc = null,Object? subCategoryId = freezed,Object? formzSubmissionStatus = null,}) {
   return _then(Loaded(
 createCachedDoc: null == createCachedDoc ? _self.createCachedDoc : createCachedDoc // ignore: cast_nullable_to_non_nullable
-as CreateCachedDocEntity,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+as CreateCachedDocEntity,subCategoryId: freezed == subCategoryId ? _self.subCategoryId : subCategoryId // ignore: cast_nullable_to_non_nullable
+as int?,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,
   ));
 }

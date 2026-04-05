@@ -28,6 +28,10 @@ abstract class DocModel with _$DocModel {
     @JsonKey(name: 'latitude') String? latitude,
     @JsonKey(name: 'longitude') String? longitude,
     @JsonKey(name: 'doc_status') DocStatusModel? docStatus,
+    @JsonKey(name: 'copies_count') int? copiesCount,
+    @JsonKey(name: 'reviewed_by') String? reviewedBy,
+    @JsonKey(name: 'reviewed_at') String? reviewedAt,
+    @JsonKey(name: 'admin_notes') String? adminNotes,
     @JsonKey(name: 'created_at') String? createdAt,
     @JsonKey(name: 'updated_at') String? updatedAt,
   }) = _DocModel;

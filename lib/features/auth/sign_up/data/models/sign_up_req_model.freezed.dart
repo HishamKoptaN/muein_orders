@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignUpReqModel {
 
- String? get name; String? get phone;@JsonKey(name: 'country_id') int? get countryId;@JsonKey(name: 'fcm_token') String? get fcmToken;@JsonKey(name: 'id_token') String? get idToken;
+ String? get name; String? get phone;@JsonKey(name: 'country_id') int? get countryId;@JsonKey(name: 'id_token') String get idToken;@JsonKey(name: 'fcm_token') String get fcmToken;@JsonKey(name: 'device_type') String get deviceType;
 /// Create a copy of SignUpReqModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SignUpReqModelCopyWith<SignUpReqModel> get copyWith => _$SignUpReqModelCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpReqModel&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.countryId, countryId) || other.countryId == countryId)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.idToken, idToken) || other.idToken == idToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpReqModel&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.countryId, countryId) || other.countryId == countryId)&&(identical(other.idToken, idToken) || other.idToken == idToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.deviceType, deviceType) || other.deviceType == deviceType));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,phone,countryId,fcmToken,idToken);
+int get hashCode => Object.hash(runtimeType,name,phone,countryId,idToken,fcmToken,deviceType);
 
 @override
 String toString() {
-  return 'SignUpReqModel(name: $name, phone: $phone, countryId: $countryId, fcmToken: $fcmToken, idToken: $idToken)';
+  return 'SignUpReqModel(name: $name, phone: $phone, countryId: $countryId, idToken: $idToken, fcmToken: $fcmToken, deviceType: $deviceType)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SignUpReqModelCopyWith<$Res>  {
   factory $SignUpReqModelCopyWith(SignUpReqModel value, $Res Function(SignUpReqModel) _then) = _$SignUpReqModelCopyWithImpl;
 @useResult
 $Res call({
- String? name, String? phone,@JsonKey(name: 'country_id') int? countryId,@JsonKey(name: 'fcm_token') String? fcmToken,@JsonKey(name: 'id_token') String? idToken
+ String? name, String? phone,@JsonKey(name: 'country_id') int? countryId,@JsonKey(name: 'id_token') String idToken,@JsonKey(name: 'fcm_token') String fcmToken,@JsonKey(name: 'device_type') String deviceType
 });
 
 
@@ -65,14 +65,15 @@ class _$SignUpReqModelCopyWithImpl<$Res>
 
 /// Create a copy of SignUpReqModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? phone = freezed,Object? countryId = freezed,Object? fcmToken = freezed,Object? idToken = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? phone = freezed,Object? countryId = freezed,Object? idToken = null,Object? fcmToken = null,Object? deviceType = null,}) {
   return _then(_self.copyWith(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,countryId: freezed == countryId ? _self.countryId : countryId // ignore: cast_nullable_to_non_nullable
-as int?,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
-as String?,idToken: freezed == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
-as String?,
+as int?,idToken: null == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
+as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
+as String,deviceType: null == deviceType ? _self.deviceType : deviceType // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name,  String? phone, @JsonKey(name: 'country_id')  int? countryId, @JsonKey(name: 'fcm_token')  String? fcmToken, @JsonKey(name: 'id_token')  String? idToken)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name,  String? phone, @JsonKey(name: 'country_id')  int? countryId, @JsonKey(name: 'id_token')  String idToken, @JsonKey(name: 'fcm_token')  String fcmToken, @JsonKey(name: 'device_type')  String deviceType)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignUpReqModel() when $default != null:
-return $default(_that.name,_that.phone,_that.countryId,_that.fcmToken,_that.idToken);case _:
+return $default(_that.name,_that.phone,_that.countryId,_that.idToken,_that.fcmToken,_that.deviceType);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.name,_that.phone,_that.countryId,_that.fcmToken,_that.idTo
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name,  String? phone, @JsonKey(name: 'country_id')  int? countryId, @JsonKey(name: 'fcm_token')  String? fcmToken, @JsonKey(name: 'id_token')  String? idToken)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name,  String? phone, @JsonKey(name: 'country_id')  int? countryId, @JsonKey(name: 'id_token')  String idToken, @JsonKey(name: 'fcm_token')  String fcmToken, @JsonKey(name: 'device_type')  String deviceType)  $default,) {final _that = this;
 switch (_that) {
 case _SignUpReqModel():
-return $default(_that.name,_that.phone,_that.countryId,_that.fcmToken,_that.idToken);case _:
+return $default(_that.name,_that.phone,_that.countryId,_that.idToken,_that.fcmToken,_that.deviceType);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +199,10 @@ return $default(_that.name,_that.phone,_that.countryId,_that.fcmToken,_that.idTo
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name,  String? phone, @JsonKey(name: 'country_id')  int? countryId, @JsonKey(name: 'fcm_token')  String? fcmToken, @JsonKey(name: 'id_token')  String? idToken)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name,  String? phone, @JsonKey(name: 'country_id')  int? countryId, @JsonKey(name: 'id_token')  String idToken, @JsonKey(name: 'fcm_token')  String fcmToken, @JsonKey(name: 'device_type')  String deviceType)?  $default,) {final _that = this;
 switch (_that) {
 case _SignUpReqModel() when $default != null:
-return $default(_that.name,_that.phone,_that.countryId,_that.fcmToken,_that.idToken);case _:
+return $default(_that.name,_that.phone,_that.countryId,_that.idToken,_that.fcmToken,_that.deviceType);case _:
   return null;
 
 }
@@ -213,14 +214,15 @@ return $default(_that.name,_that.phone,_that.countryId,_that.fcmToken,_that.idTo
 @JsonSerializable()
 
 class _SignUpReqModel implements SignUpReqModel {
-  const _SignUpReqModel({this.name, this.phone, @JsonKey(name: 'country_id') this.countryId, @JsonKey(name: 'fcm_token') this.fcmToken, @JsonKey(name: 'id_token') this.idToken});
+  const _SignUpReqModel({this.name, this.phone, @JsonKey(name: 'country_id') this.countryId, @JsonKey(name: 'id_token') required this.idToken, @JsonKey(name: 'fcm_token') required this.fcmToken, @JsonKey(name: 'device_type') required this.deviceType});
   factory _SignUpReqModel.fromJson(Map<String, dynamic> json) => _$SignUpReqModelFromJson(json);
 
 @override final  String? name;
 @override final  String? phone;
 @override@JsonKey(name: 'country_id') final  int? countryId;
-@override@JsonKey(name: 'fcm_token') final  String? fcmToken;
-@override@JsonKey(name: 'id_token') final  String? idToken;
+@override@JsonKey(name: 'id_token') final  String idToken;
+@override@JsonKey(name: 'fcm_token') final  String fcmToken;
+@override@JsonKey(name: 'device_type') final  String deviceType;
 
 /// Create a copy of SignUpReqModel
 /// with the given fields replaced by the non-null parameter values.
@@ -235,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignUpReqModel&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.countryId, countryId) || other.countryId == countryId)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.idToken, idToken) || other.idToken == idToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignUpReqModel&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.countryId, countryId) || other.countryId == countryId)&&(identical(other.idToken, idToken) || other.idToken == idToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.deviceType, deviceType) || other.deviceType == deviceType));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,phone,countryId,fcmToken,idToken);
+int get hashCode => Object.hash(runtimeType,name,phone,countryId,idToken,fcmToken,deviceType);
 
 @override
 String toString() {
-  return 'SignUpReqModel(name: $name, phone: $phone, countryId: $countryId, fcmToken: $fcmToken, idToken: $idToken)';
+  return 'SignUpReqModel(name: $name, phone: $phone, countryId: $countryId, idToken: $idToken, fcmToken: $fcmToken, deviceType: $deviceType)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$SignUpReqModelCopyWith<$Res> implements $SignUpReqModelCo
   factory _$SignUpReqModelCopyWith(_SignUpReqModel value, $Res Function(_SignUpReqModel) _then) = __$SignUpReqModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? name, String? phone,@JsonKey(name: 'country_id') int? countryId,@JsonKey(name: 'fcm_token') String? fcmToken,@JsonKey(name: 'id_token') String? idToken
+ String? name, String? phone,@JsonKey(name: 'country_id') int? countryId,@JsonKey(name: 'id_token') String idToken,@JsonKey(name: 'fcm_token') String fcmToken,@JsonKey(name: 'device_type') String deviceType
 });
 
 
@@ -272,14 +274,15 @@ class __$SignUpReqModelCopyWithImpl<$Res>
 
 /// Create a copy of SignUpReqModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? phone = freezed,Object? countryId = freezed,Object? fcmToken = freezed,Object? idToken = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? phone = freezed,Object? countryId = freezed,Object? idToken = null,Object? fcmToken = null,Object? deviceType = null,}) {
   return _then(_SignUpReqModel(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,countryId: freezed == countryId ? _self.countryId : countryId // ignore: cast_nullable_to_non_nullable
-as int?,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
-as String?,idToken: freezed == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
-as String?,
+as int?,idToken: null == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
+as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
+as String,deviceType: null == deviceType ? _self.deviceType : deviceType // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

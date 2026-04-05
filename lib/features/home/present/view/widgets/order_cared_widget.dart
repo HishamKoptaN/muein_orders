@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../../core/build_context_extension.dart';
 import '../../../../../core/routing/navigation_service.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../orders/present/views/orders_view.dart';
 import '../../../domain/entities/order_type_res_entity.dart';
 
-class OrderCard extends StatelessWidget {
-  const OrderCard({Key? key, required this.stat}) : super(key: key);
+class StatCard extends StatelessWidget {
+  const StatCard({Key? key, required this.stat}) : super(key: key);
   final StatEntity stat;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        NavigationService.push(
-          context,
-          OrderDocsView.routeName,
-          extra: stat.id,
+        NavigationService.pushNamed(
+          context: context,
+          routeName: OrderDocsView.routeName,
+          extra: {'stat': stat},
         );
       },
       child: Container(
@@ -29,7 +29,7 @@ class OrderCard extends StatelessWidget {
               stat.subCategory?.image ?? '',
               cacheKey: stat.subCategory?.image,
             ),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: Container(
@@ -48,10 +48,11 @@ class OrderCard extends StatelessWidget {
             children: [
               Container(
                 height: 70.h,
+                constraints: BoxConstraints(minWidth: 150.w),
                 margin: const EdgeInsets.only(bottom: 16),
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.35),
+                  color: Colors.black.withValues(alpha: 0.25),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Column(
@@ -59,41 +60,55 @@ class OrderCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      stat.subCategory?.name ?? '',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Almarai',
+                    Flexible(
+                      child: TrText(
+                        stat.subCategory?.name ?? '',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Almarai',
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          context.t.numberOfRequests,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Jost',
-                          ),
+                    if (stat.id != 5)
+                      Flexible(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: TrText(
+                                'عدد الطلبات',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Jost',
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Gap(5.w),
+                            Flexible(
+                              child: TrText(
+                                '(${stat.docsCount ?? ''})',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Jost',
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
                         ),
-                        Gap(5.w),
-                        Text(
-                          '(${stat.docsCount ?? ''})',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Jost',
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
                   ],
                 ),
               ),

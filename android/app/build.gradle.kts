@@ -1,15 +1,12 @@
 plugins {
     id("com.android.application")
-    // START: FlutterFire Configuration
     id("com.google.gms.google-services")
-    // END: FlutterFire Configuration
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 android {
     namespace = "com.muein.orders"
-    compileSdk = 36
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -22,34 +19,34 @@ android {
     defaultConfig {
         applicationId = "com.muein.orders"
         minSdk = flutter.minSdkVersion
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
     buildTypes {
+       debug {
+        }
         release {
-            signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = false
-            isShrinkResources = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
-    flavorDimensions += "default"
+    flavorDimensions += "env"
     productFlavors {
-      productFlavors {
-              create("dev") {
-                  dimension = "default"
-                  applicationIdSuffix = ".dev"
-                  resValue("string", "app_name", "Muein Orders Dev")
-              }
+      create("dev") {
+                dimension = "env"
+                applicationIdSuffix = ".dev"
+                versionNameSuffix = "-dev"
+                resValue("string", "app_name", "Muein Orders Dev")
+            }
               create("prod") {
-                  dimension = "default"
-                  resValue("string", "app_name", "Muein Orders")
-              }
-          }
+                dimension = "env"
+                resValue("string", "app_name", "Muein Orders")
+        }
       }
 }
 

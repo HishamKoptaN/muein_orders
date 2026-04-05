@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../buttons/language_icon_button.dart';
+import '../translated_text.dart';
 
 class AppLayout extends StatefulWidget {
   const AppLayout({
@@ -38,7 +39,7 @@ class _AppLayoutState extends State<AppLayout> {
                       },
                     )
                   : null,
-              title: Text(
+              title: TrText(
                 widget.route,
                 style: const TextStyle(color: Colors.black),
               ),

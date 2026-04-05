@@ -6,6 +6,7 @@ import '../../../features/cached_docs/data/datasources/local/drift/app_database.
 import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../di/dependency_injection.dart';
 import '../../services/notification_manager.dart';
+import '../translated_text.dart';
 
 class NotificationIcon extends StatefulWidget {
   const NotificationIcon({super.key});
@@ -50,7 +51,7 @@ class _NotificationIconState extends State<NotificationIcon> {
 
         return badges.Badge(
           showBadge: count > 0,
-          badgeContent: Text(
+          badgeContent: TrText(
             count.toString(),
             style: TextStyle(color: Colors.white, fontSize: 10.sp),
           ),

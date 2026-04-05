@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$StatModel implements DiagnosticableTreeMixin {
 
-@JsonKey(name: 'id') int? get id;@JsonKey(name: 'docs_count') int? get docsCount;@JsonKey(name: 'sub_category') SubCategoryModel? get subCategory;
+@JsonKey(name: 'id') int? get id;@JsonKey(name: 'docs_count') int? get docsCount;@JsonKey(name: 'sub_category') SubCategoryModel? get subCategory;@JsonKey(name: 'doc') DocModel? get doc;
 /// Create a copy of StatModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,21 +29,21 @@ $StatModelCopyWith<StatModel> get copyWith => _$StatModelCopyWithImpl<StatModel>
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'StatModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('docsCount', docsCount))..add(DiagnosticsProperty('subCategory', subCategory));
+    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('docsCount', docsCount))..add(DiagnosticsProperty('subCategory', subCategory))..add(DiagnosticsProperty('doc', doc));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatModel&&(identical(other.id, id) || other.id == id)&&(identical(other.docsCount, docsCount) || other.docsCount == docsCount)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatModel&&(identical(other.id, id) || other.id == id)&&(identical(other.docsCount, docsCount) || other.docsCount == docsCount)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory)&&(identical(other.doc, doc) || other.doc == doc));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,docsCount,subCategory);
+int get hashCode => Object.hash(runtimeType,id,docsCount,subCategory,doc);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'StatModel(id: $id, docsCount: $docsCount, subCategory: $subCategory)';
+  return 'StatModel(id: $id, docsCount: $docsCount, subCategory: $subCategory, doc: $doc)';
 }
 
 
@@ -54,11 +54,11 @@ abstract mixin class $StatModelCopyWith<$Res>  {
   factory $StatModelCopyWith(StatModel value, $Res Function(StatModel) _then) = _$StatModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int? id,@JsonKey(name: 'docs_count') int? docsCount,@JsonKey(name: 'sub_category') SubCategoryModel? subCategory
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'docs_count') int? docsCount,@JsonKey(name: 'sub_category') SubCategoryModel? subCategory,@JsonKey(name: 'doc') DocModel? doc
 });
 
 
-$SubCategoryModelCopyWith<$Res>? get subCategory;
+$SubCategoryModelCopyWith<$Res>? get subCategory;$DocModelCopyWith<$Res>? get doc;
 
 }
 /// @nodoc
@@ -71,12 +71,13 @@ class _$StatModelCopyWithImpl<$Res>
 
 /// Create a copy of StatModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? docsCount = freezed,Object? subCategory = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? docsCount = freezed,Object? subCategory = freezed,Object? doc = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,docsCount: freezed == docsCount ? _self.docsCount : docsCount // ignore: cast_nullable_to_non_nullable
 as int?,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
-as SubCategoryModel?,
+as SubCategoryModel?,doc: freezed == doc ? _self.doc : doc // ignore: cast_nullable_to_non_nullable
+as DocModel?,
   ));
 }
 /// Create a copy of StatModel
@@ -90,6 +91,18 @@ $SubCategoryModelCopyWith<$Res>? get subCategory {
 
   return $SubCategoryModelCopyWith<$Res>(_self.subCategory!, (value) {
     return _then(_self.copyWith(subCategory: value));
+  });
+}/// Create a copy of StatModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DocModelCopyWith<$Res>? get doc {
+    if (_self.doc == null) {
+    return null;
+  }
+
+  return $DocModelCopyWith<$Res>(_self.doc!, (value) {
+    return _then(_self.copyWith(doc: value));
   });
 }
 }
@@ -173,10 +186,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'docs_count')  int? docsCount, @JsonKey(name: 'sub_category')  SubCategoryModel? subCategory)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'docs_count')  int? docsCount, @JsonKey(name: 'sub_category')  SubCategoryModel? subCategory, @JsonKey(name: 'doc')  DocModel? doc)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StatModel() when $default != null:
-return $default(_that.id,_that.docsCount,_that.subCategory);case _:
+return $default(_that.id,_that.docsCount,_that.subCategory,_that.doc);case _:
   return orElse();
 
 }
@@ -194,10 +207,10 @@ return $default(_that.id,_that.docsCount,_that.subCategory);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'docs_count')  int? docsCount, @JsonKey(name: 'sub_category')  SubCategoryModel? subCategory)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'docs_count')  int? docsCount, @JsonKey(name: 'sub_category')  SubCategoryModel? subCategory, @JsonKey(name: 'doc')  DocModel? doc)  $default,) {final _that = this;
 switch (_that) {
 case _StatModel():
-return $default(_that.id,_that.docsCount,_that.subCategory);case _:
+return $default(_that.id,_that.docsCount,_that.subCategory,_that.doc);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -214,10 +227,10 @@ return $default(_that.id,_that.docsCount,_that.subCategory);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'docs_count')  int? docsCount, @JsonKey(name: 'sub_category')  SubCategoryModel? subCategory)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'docs_count')  int? docsCount, @JsonKey(name: 'sub_category')  SubCategoryModel? subCategory, @JsonKey(name: 'doc')  DocModel? doc)?  $default,) {final _that = this;
 switch (_that) {
 case _StatModel() when $default != null:
-return $default(_that.id,_that.docsCount,_that.subCategory);case _:
+return $default(_that.id,_that.docsCount,_that.subCategory,_that.doc);case _:
   return null;
 
 }
@@ -229,12 +242,13 @@ return $default(_that.id,_that.docsCount,_that.subCategory);case _:
 @JsonSerializable()
 
 class _StatModel with DiagnosticableTreeMixin implements StatModel {
-  const _StatModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'docs_count') this.docsCount, @JsonKey(name: 'sub_category') this.subCategory});
+  const _StatModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'docs_count') this.docsCount, @JsonKey(name: 'sub_category') this.subCategory, @JsonKey(name: 'doc') this.doc});
   factory _StatModel.fromJson(Map<String, dynamic> json) => _$StatModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int? id;
 @override@JsonKey(name: 'docs_count') final  int? docsCount;
 @override@JsonKey(name: 'sub_category') final  SubCategoryModel? subCategory;
+@override@JsonKey(name: 'doc') final  DocModel? doc;
 
 /// Create a copy of StatModel
 /// with the given fields replaced by the non-null parameter values.
@@ -250,21 +264,21 @@ Map<String, dynamic> toJson() {
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'StatModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('docsCount', docsCount))..add(DiagnosticsProperty('subCategory', subCategory));
+    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('docsCount', docsCount))..add(DiagnosticsProperty('subCategory', subCategory))..add(DiagnosticsProperty('doc', doc));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StatModel&&(identical(other.id, id) || other.id == id)&&(identical(other.docsCount, docsCount) || other.docsCount == docsCount)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StatModel&&(identical(other.id, id) || other.id == id)&&(identical(other.docsCount, docsCount) || other.docsCount == docsCount)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory)&&(identical(other.doc, doc) || other.doc == doc));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,docsCount,subCategory);
+int get hashCode => Object.hash(runtimeType,id,docsCount,subCategory,doc);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'StatModel(id: $id, docsCount: $docsCount, subCategory: $subCategory)';
+  return 'StatModel(id: $id, docsCount: $docsCount, subCategory: $subCategory, doc: $doc)';
 }
 
 
@@ -275,11 +289,11 @@ abstract mixin class _$StatModelCopyWith<$Res> implements $StatModelCopyWith<$Re
   factory _$StatModelCopyWith(_StatModel value, $Res Function(_StatModel) _then) = __$StatModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int? id,@JsonKey(name: 'docs_count') int? docsCount,@JsonKey(name: 'sub_category') SubCategoryModel? subCategory
+@JsonKey(name: 'id') int? id,@JsonKey(name: 'docs_count') int? docsCount,@JsonKey(name: 'sub_category') SubCategoryModel? subCategory,@JsonKey(name: 'doc') DocModel? doc
 });
 
 
-@override $SubCategoryModelCopyWith<$Res>? get subCategory;
+@override $SubCategoryModelCopyWith<$Res>? get subCategory;@override $DocModelCopyWith<$Res>? get doc;
 
 }
 /// @nodoc
@@ -292,12 +306,13 @@ class __$StatModelCopyWithImpl<$Res>
 
 /// Create a copy of StatModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? docsCount = freezed,Object? subCategory = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? docsCount = freezed,Object? subCategory = freezed,Object? doc = freezed,}) {
   return _then(_StatModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,docsCount: freezed == docsCount ? _self.docsCount : docsCount // ignore: cast_nullable_to_non_nullable
 as int?,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
-as SubCategoryModel?,
+as SubCategoryModel?,doc: freezed == doc ? _self.doc : doc // ignore: cast_nullable_to_non_nullable
+as DocModel?,
   ));
 }
 
@@ -312,6 +327,18 @@ $SubCategoryModelCopyWith<$Res>? get subCategory {
 
   return $SubCategoryModelCopyWith<$Res>(_self.subCategory!, (value) {
     return _then(_self.copyWith(subCategory: value));
+  });
+}/// Create a copy of StatModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DocModelCopyWith<$Res>? get doc {
+    if (_self.doc == null) {
+    return null;
+  }
+
+  return $DocModelCopyWith<$Res>(_self.doc!, (value) {
+    return _then(_self.copyWith(doc: value));
   });
 }
 }

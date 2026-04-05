@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../widgets/translated_text.dart';
+
 class LoadingView extends StatelessWidget {
   const LoadingView({super.key});
 
@@ -22,7 +24,6 @@ class LoadingView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // شعار التطبيق أو أيقونة التحميل
             Container(
               width: 120.w,
               height: 120.h,
@@ -36,11 +37,8 @@ class LoadingView extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-
             SizedBox(height: 32.h),
-
-            // نص التحميل
-            Text(
+            TrText(
               'جاري التحميل...',
               style: TextStyle(
                 fontSize: 18.sp,
@@ -49,10 +47,7 @@ class LoadingView extends StatelessWidget {
                 fontFamily: 'Almarai',
               ),
             ),
-
             SizedBox(height: 24.h),
-
-            // مؤشر التحميل الدائري
             SizedBox(
               width: 40.w,
               height: 40.h,
@@ -67,7 +62,7 @@ class LoadingView extends StatelessWidget {
             SizedBox(height: 16.h),
 
             // نص إضافي اختياري
-            Text(
+            TrText(
               'الرجاء الانتظار قليلاً',
               style: TextStyle(
                 fontSize: 14.sp,

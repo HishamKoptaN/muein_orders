@@ -5,10 +5,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/entities/meta_entity.dart';
-import '../../../../../core/errors/api_error_model.dart';
+import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
-import '../../../domain/entities/docs_res_entity.dart';
+import '../../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
 
 part 'docs_bloc.freezed.dart';
@@ -41,7 +41,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
           } catch (e) {
             emit(
               DocsState.failure(
-                apiErrorModel: ApiErrorModel(error: e.toString()),
+                apiErrorModel: ApiErrorModel(message: e.toString()),
               ),
             );
             emitCustomLoaded(emit: emit);

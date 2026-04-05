@@ -4,7 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
 
-import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/errors/handlers/api_error_handler/api_error_handler.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../domain/entities/cached_doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
@@ -29,9 +30,9 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
       final row = await _db.getCachedDoc(docId: docId);
       if (row == null) return const ApiResult.success(data: null);
       return ApiResult.success(data: CachedDocEntity.fromDb(row));
-    } catch (e) {
+    } catch (error) {
       return ApiResult.failure(
-        apiErrorModel: ApiErrorModel(message: e.toString()),
+        apiErrorModel: ApiErrorHandler.handle(error: error),
       );
     }
   }

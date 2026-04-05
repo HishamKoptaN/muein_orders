@@ -7,14 +7,14 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/app/global_variable.dart';
-import '../../../../core/errors/api_error_handler.dart';
+import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
 import '../../../cached_docs/data/models/cached_doc_model.dart';
+import '../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../s3/data/repo/s3_repo.dart';
 import '../../domain/entities/create_doc_entity.dart';
-import '../../domain/entities/docs_res_entity.dart';
 import '../../domain/repo/docs_repo.dart';
 import '../datasources/remote_data_sr/docs_api.dart';
 import '../mapper/docs_mapper.dart';
@@ -37,9 +37,7 @@ class DocsRepoImpl implements DocsRepo {
       final result = res?.map((e) => e.toEntity()).toList();
       return ApiResult.success(data: result);
     } catch (error) {
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(error: error),
-      );
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
     }
   }
 
@@ -101,9 +99,7 @@ class DocsRepoImpl implements DocsRepo {
             docId: doc.docId,
             status: FileUploadStatus.failed,
           );
-          return ApiResult.failure(
-            apiErrorModel: ApiErrorHandler.handle(error: error),
-          );
+          return const ApiResult.failure(apiErrorModel: ApiErrorModel());
         }
       }
     }
@@ -224,6 +220,7 @@ class DocsRepoImpl implements DocsRepo {
       ),
     );
   }
+
   // await _initializeNotifications();
   Future<void> _initializeNotifications() async {
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -237,15 +234,15 @@ class DocsRepoImpl implements DocsRepo {
   }) async {
     final t = AppLocalizations.of(GlobalVariable.navState.currentContext!);
     final clampedProgress = progress.clamp(0, 100).toInt();
-    final title = t.uploadingDocument;
-    final body = t.documentationIsBeingUploaded;
+    const title = 'جاري رفع المستند';
+    const body = 'جاري رفع المستند';
     final style = BigTextStyleInformation(
       '$body\n${clampedProgress.toString()}%',
       htmlFormatBigText: false,
     );
     final androidDetails = AndroidNotificationDetails(
       'upload_channel',
-      t.uploadingDocument,
+      'جاري رفع المستند',
       channelDescription: 'عرض تقدم الرفع',
       importance: Importance.low,
       priority: Priority.low,
@@ -279,9 +276,7 @@ class DocsRepoImpl implements DocsRepo {
       }
       return const ApiResult.success(data: null);
     } catch (error) {
-      return ApiResult.failure(
-        apiErrorModel: ApiErrorHandler.handle(error: error),
-      );
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
     }
   }
 
@@ -296,7 +291,7 @@ class DocsRepoImpl implements DocsRepo {
       );
       return const ApiResult.success(data: null);
     } catch (e) {
-      return ApiResult.failure(apiErrorModel: ApiErrorHandler.handle(error: e));
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
     }
   }
 

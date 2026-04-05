@@ -1,17 +1,18 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream<dynamic> stream) {
-    _sub = stream.asBroadcastStream().listen((_) {
-      notifyListeners();
-    });
+    notifyListeners();
+    _subscription = stream.asBroadcastStream().listen((_) => notifyListeners());
   }
-  late final StreamSubscription<dynamic> _sub;
+
+  late final StreamSubscription<dynamic> _subscription;
+
   @override
   void dispose() {
-    _sub.cancel();
+    _subscription.cancel();
     super.dispose();
   }
 }

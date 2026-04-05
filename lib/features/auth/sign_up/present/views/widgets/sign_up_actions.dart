@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
+import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/widgets/buttons/custom_button.dart';
+import '../../../../../../core/widgets/translated_text.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../sign_in/present/views/sign_in_view.dart';
 import '../../bloc/sign_up_bloc.dart';
@@ -22,19 +24,19 @@ class SignUpActions extends StatelessWidget {
             key: const Key('signUp_button'),
             onPressed: () {
               if (formzSubmissionStatus.isSuccess) {
-                context.read<SignUpBloc>().add(const SignUpEvent.signUp());
+                getIt<SignUpBloc>().add(const SignUpEvent.signUp());
               }
             },
-            text: t.registerAnAccount,
+            text: 'إنشاء حساب',
             formzSubmissionStatus: formzSubmissionStatus,
           ),
           const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                t.alreadyHaveAccount,
-                style: const TextStyle(
+              const TrText(
+                'لديك حساب بالفعل؟',
+                style: TextStyle(
                   fontFamily: 'Almarai',
                   fontSize: 14,
                   color: Colors.white,
@@ -47,9 +49,9 @@ class SignUpActions extends StatelessWidget {
                     routeName: SignInView.routeName,
                   );
                 },
-                child: Text(
-                  t.signIn,
-                  style: const TextStyle(
+                child: const TrText(
+                  'تسجيل الدخول',
+                  style: TextStyle(
                     fontFamily: 'Almarai',
                     fontSize: 14,
                     fontWeight: FontWeight.w700,

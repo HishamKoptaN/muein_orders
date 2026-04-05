@@ -11,14 +11,9 @@ part 'auth_api.g.dart';
 @RestApi()
 abstract class AuthApi {
   @factoryMethod
-  factory AuthApi(@Named("authDio") Dio dio) = _AuthApi;
+  factory AuthApi(@Named('authDio') Dio dio) = _AuthApi;
   @POST(ApiConstants.check)
   Future<void> check();
-
-  @POST(ApiConstants.refreshToken)
-  Future<AuthResModel> exchangeIdTokenForJwt({
-    @Body() required Map<String, dynamic> refreshData,
-  });
   @POST(ApiConstants.logout)
   Future<void> logout();
 }

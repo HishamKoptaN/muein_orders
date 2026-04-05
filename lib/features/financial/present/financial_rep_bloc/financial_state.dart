@@ -11,5 +11,6 @@ abstract class FinancialState with _$FinancialState {
     required CreateExpenseReqEntity? createExpenseReqEntity,
     required FormzSubmissionStatus? formzSubmissionStatus,
   }) = _Loaded;
-  const factory FinancialState.failure(String message) = _Failure;
+  const factory FinancialState.failure({ApiErrorModel? apiErrorModel}) =
+      _Failure;
 }
