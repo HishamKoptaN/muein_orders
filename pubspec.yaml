@@ -1,7 +1,9 @@
 name: mueinorders
 description: mueinorders
 publish_to: "none"
-version: 1.1.0+1
+# Shorebird version format: version+build_number
+# Use shorebird release with --build-name and --build-number for precise control
+version: 1.1.0+2
 environment:
   sdk: ">=3.10.0 <4.0.0"
 dependencies:
