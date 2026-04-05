@@ -6,7 +6,7 @@ plugins {
 }
 android {
     namespace = "com.muein.orders"
-    compileSdk = 35
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId = "com.muein.orders"
         minSdk = flutter.minSdkVersion
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }
