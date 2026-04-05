@@ -4,8 +4,7 @@ load File.join(File.dirname(File.realpath(__FILE__)), 'Flutter', 'podhelper.rb')
 platform :ios, '14.0'
 
 target 'Runner' do
-  use_frameworks!
-  use_modular_headers!
+  use_frameworks! :linkage => :static
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
