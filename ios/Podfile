@@ -1,6 +1,5 @@
-# The following lines are required to link Flutter with CocoaPods
-load File.join(File.dirname(File.realpath(__FILE__)), 'Flutter', 'podhelper.rb')
 $FirebaseSDKVersion = '11.5.0'
+load File.join(File.dirname(File.realpath(__FILE__)), 'Flutter', 'podhelper.rb')
 platform :ios, '14.0'
 
 target 'Runner' do
