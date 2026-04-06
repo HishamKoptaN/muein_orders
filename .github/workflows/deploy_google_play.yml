@@ -94,6 +94,7 @@ jobs:
             --build-name=${{ env.VERSION }} \
             --build-number=${{ env.BUILD_NUMBER }} \
             --dart-define=ENV=prod \
+            --flavor=prod \
             --artifact=aab
       - uses: r0adkll/upload-google-play@v1
         with:
