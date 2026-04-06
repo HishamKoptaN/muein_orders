@@ -33,27 +33,16 @@ jobs:
       BUILD_NUMBER: ${{ github.event.inputs.build_number || github.run_number }}
       TRACK: ${{ github.event.inputs.track || 'internal' }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.29.0"
           channel: "stable"
-
-      - name: Setup Shorebird
-        uses: shorebirdtech/setup-shorebird@v1
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Decode Keystore
-        run: |
+      - uses: shorebirdtech/setup-shorebird@v1
+      - run: flutter pub get
+      - run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/muein_orders.jks
-
-      - name: Create key.properties
-        run: |
+      - run: |
           cat > android/key.properties << EOF
           storePassword=${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword=${{ secrets.KEY_PASSWORD }}
@@ -61,8 +50,7 @@ jobs:
           storeFile=muein_orders.jks
           EOF
 
-      - name: Build and Release with Shorebird
-        env:
+      - env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
           shorebird release android \
@@ -71,8 +59,7 @@ jobs:
             --dart-define=ENV=prod \
             --artifact=aab
 
-      - name: Upload to Google Play
-        uses: r0adkll/upload-google-play@v1
+      - uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
           packageName: com.muein.orders
@@ -80,6 +67,5 @@ jobs:
           track: ${{ env.TRACK }}
           whatsNewDirectory: distribution/whatsnew
 
-      - name: Cleanup Keystore
-        if: always()
+      - if: always()
         run: rm -f android/app/muein_orders.jks android/key.properties
