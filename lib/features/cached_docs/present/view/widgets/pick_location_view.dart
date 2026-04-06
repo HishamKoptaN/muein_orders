@@ -93,7 +93,7 @@ class _PickLocationViewState extends State<PickLocationView> {
         ],
       ),
       floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: .spaceAround,
         children: [
           Gap(20.w),
           FloatingActionButton.extended(
