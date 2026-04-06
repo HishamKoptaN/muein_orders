@@ -101,7 +101,7 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
           packageName: com.muein.orders
-          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          releaseFiles: build/app/outputs/bundle/prodRelease/app-prod-release.aab
           track: ${{ env.TRACK }}
           whatsNewDirectory: distribution/whatsnew
       - if: always()
