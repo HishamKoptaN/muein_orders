@@ -144,10 +144,10 @@
 @import wakelock_plus;
 #endif
 
-#if __has_include(<workmanager_apple/WorkmanagerPlugin.h>)
-#import <workmanager_apple/WorkmanagerPlugin.h>
+#if __has_include(<workmanager/WorkmanagerPlugin.h>)
+#import <workmanager/WorkmanagerPlugin.h>
 #else
-@import workmanager_apple;
+@import workmanager;
 #endif
 
 @implementation GeneratedPluginRegistrant
