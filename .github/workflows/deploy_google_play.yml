@@ -1,5 +1,4 @@
 name: Deploy to Google Play
-
 on:
   push:
     branches:
@@ -24,7 +23,6 @@ on:
           - alpha
           - beta
           - production
-
 jobs:
   deploy-android:
     runs-on: ubuntu-latest
@@ -34,12 +32,51 @@ jobs:
       TRACK: ${{ github.event.inputs.track || 'internal' }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ${{ github.workspace }}/.dart_tool
+          key: flutter-pub-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: flutter-pub-
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.29.0"
           channel: "stable"
+          cache: true
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            android/.gradle
+          key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-
+
       - uses: shorebirdtech/setup-shorebird@v1
+
+      - name: Cache Shorebird
+        uses: actions/cache@v4
+        with:
+          path: ~/.config/shorebird
+          key: shorebird-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: shorebird-${{ runner.os }}-
       - run: flutter pub get
+
+      - name: Cache build outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            build/
+            android/.gradle
+            android/app/build
+          key: build-${{ github.run_id }}
+          restore-keys: build-
       - run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/muein_orders.jks
       - run: |
@@ -58,7 +95,6 @@ jobs:
             --build-number=${{ env.BUILD_NUMBER }} \
             --dart-define=ENV=prod \
             --artifact=aab
-
       - uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
@@ -66,6 +102,5 @@ jobs:
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: ${{ env.TRACK }}
           whatsNewDirectory: distribution/whatsnew
-
       - if: always()
         run: rm -f android/app/muein_orders.jks android/key.properties
