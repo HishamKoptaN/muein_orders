@@ -8,6 +8,11 @@
 -keep class com.google.firebase.** { *; }
 -keep class com.google.android.gms.** { *; }
 
+# Fix R8: Missing classes for Google Crypto Tink
+-dontwarn com.google.api.client.http.**
+-dontwarn org.joda.time.**
+-keep class com.google.crypto.tink.** { *; }
+
 # Keep Google Play Core classes (required for Flutter app bundles)
 -keep class com.google.android.play.core.** { *; }
 -dontwarn com.google.android.play.core.**
