@@ -1,20 +1,23 @@
 name: Deploy to Google Play
 
 on:
+  push:
+    branches:
+      - prod
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version number (e.g., 1.0.0)'
+        description: "Version number (e.g., 1.0.0)"
         required: true
         type: string
       build_number:
-        description: 'Build number (e.g., 1)'
+        description: "Build number (e.g., 1)"
         required: true
         type: string
       track:
-        description: 'Google Play track'
+        description: "Google Play track"
         required: true
-        default: 'internal'
+        default: "internal"
         type: choice
         options:
           - internal
@@ -25,6 +28,10 @@ on:
 jobs:
   deploy-android:
     runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.inputs.version || '1.1.0' }}
+      BUILD_NUMBER: ${{ github.event.inputs.build_number || github.run_number }}
+      TRACK: ${{ github.event.inputs.track || 'internal' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,8 +39,8 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.29.0'
-          channel: 'stable'
+          flutter-version: "3.29.0"
+          channel: "stable"
 
       - name: Setup Shorebird
         uses: shorebirdtech/setup-shorebird@v1
@@ -59,8 +66,8 @@ jobs:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
           shorebird release android \
-            --build-name=${{ github.event.inputs.version }} \
-            --build-number=${{ github.event.inputs.build_number }} \
+            --build-name=${{ env.VERSION }} \
+            --build-number=${{ env.BUILD_NUMBER }} \
             --dart-define=ENV=prod \
             --artifact=aab
 
@@ -70,7 +77,7 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
           packageName: com.muein.orders
           releaseFiles: build/app/outputs/bundle/release/app-release.aab
-          track: ${{ github.event.inputs.track }}
+          track: ${{ env.TRACK }}
           whatsNewDirectory: distribution/whatsnew
 
       - name: Cleanup Keystore
