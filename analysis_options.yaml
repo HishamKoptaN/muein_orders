@@ -3,6 +3,7 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   enable-experiment:
     - null-aware-elements
+    - dot-shorthands
   plugins:
     - custom_lint
   exclude:
