@@ -10,7 +10,7 @@ on:
         required: true
         type: string
       build_number:
-        description: "Build number (e.g., 1)"
+        description: "Build number (e.g., 2)"
         required: true
         type: string
       track:
@@ -27,7 +27,7 @@ jobs:
   deploy-android:
     runs-on: ubuntu-latest
     env:
-      VERSION: ${{ github.event.inputs.version || '1.1.0' }}
+      VERSION: ${{ github.event.inputs.version || '1.0.0' }}
       BUILD_NUMBER: ${{ github.event.inputs.build_number || github.run_number }}
       TRACK: ${{ github.event.inputs.track || 'internal' }}
     steps:
@@ -40,7 +40,9 @@ jobs:
             ~/.pub-cache
             ${{ github.workspace }}/.dart_tool
           key: flutter-pub-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: flutter-pub-
+          restore-keys: |
+            flutter-pub-
+            flutter-
 
       - uses: subosito/flutter-action@v2
         with:
