@@ -12,7 +12,6 @@ val keystorePropertiesFile = rootProject.file("key.properties")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
-
 android {
     namespace = "com.muein.orders"
     compileSdk = 36
@@ -40,7 +39,6 @@ android {
             storePassword = keystoreProperties["storePassword"] as String
         }
     }
-
     buildTypes {
        debug {
         }
@@ -68,7 +66,6 @@ android {
             }
         }
 }
-
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
