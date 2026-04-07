@@ -19,7 +19,7 @@ jobs:
   deploy-android:
     runs-on: ubuntu-latest
     env:
-      VERSION: "1.1.0+1"
+      VERSION: "2.0.0+1"
       TRACK: ${{ github.event.inputs.track || 'internal' }}
     steps:
       - uses: actions/checkout@v4
