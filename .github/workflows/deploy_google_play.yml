@@ -19,7 +19,6 @@ jobs:
   deploy-android:
     runs-on: ubuntu-latest
     env:
-      VERSION: "2.0.0+1"
       TRACK: ${{ github.event.inputs.track || 'internal' }}
     steps:
       - uses: actions/checkout@v4
@@ -76,7 +75,6 @@ jobs:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
           shorebird release android \
-            --build-name=${{ env.VERSION }} \
             --dart-define=ENV=prod \
             --flavor=prod \
             --artifact=aab \
