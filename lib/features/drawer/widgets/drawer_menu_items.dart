@@ -23,7 +23,7 @@ class DrawerMenuItems extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 10.w),
       children: [
         MenuTile(
-          icon: Icons.person_outline_rounded,
+          icon: const Icon(Icons.person_outline_rounded),
           title: 'ملفي الشخصي',
           onTap: () {
             NavigationService.pushNamed(
@@ -33,7 +33,7 @@ class DrawerMenuItems extends StatelessWidget {
           },
         ),
         MenuTile(
-          icon: Icons.account_balance_wallet_outlined,
+          icon: const Icon(Icons.account_balance_wallet_outlined),
           title: 'مصروفات',
           onTap: () {
             NavigationService.pushNamed(
@@ -43,7 +43,7 @@ class DrawerMenuItems extends StatelessWidget {
           },
         ),
         MenuTile(
-          icon: FontAwesomeIcons.language,
+          icon: const FaIcon(FontAwesomeIcons.language),
           title: 'اللغة',
           onTap: () {
             NavigationService.pushNamed(
@@ -53,7 +53,7 @@ class DrawerMenuItems extends StatelessWidget {
           },
         ),
         MenuTile(
-          icon: Icons.info,
+          icon: const Icon(Icons.info),
           title: 'التعليمات',
           onTap: () {
             NavigationService.pushNamed(
@@ -63,7 +63,7 @@ class DrawerMenuItems extends StatelessWidget {
           },
         ),
         MenuTile(
-          icon: Icons.lock_outline_rounded,
+          icon: const Icon(Icons.lock_outline_rounded),
           title: 'تغيير كلمة المرور',
           onTap: () {
             NavigationService.pushNamed(
@@ -77,7 +77,7 @@ class DrawerMenuItems extends StatelessWidget {
           child: Divider(),
         ),
         MenuTile(
-          icon: Icons.logout_rounded,
+          icon: const Icon(Icons.logout_rounded),
           title: 'تسجيل الخروج',
           onTap: () {
             showLogoutBottomSheet(context);

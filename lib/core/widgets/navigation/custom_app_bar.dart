@@ -42,10 +42,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         onTap: () => context.pop(),
         child:
             leading ??
-            Icon(
+            FaIcon(
               Directionality.of(context) == TextDirection.rtl
-                  ? FontAwesomeIcons
-                        .arrowRight 
+                  ? FontAwesomeIcons.arrowRight
                   : FontAwesomeIcons.arrowLeft,
               color: Colors.black,
               size: 25.w,

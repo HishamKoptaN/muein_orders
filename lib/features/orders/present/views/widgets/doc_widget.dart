@@ -200,28 +200,47 @@ Widget getStatus({
 }) {
   switch (uploadStatus) {
     case FileUploadStatus.pending:
-      return const StatusWidget(
-        icon: FontAwesomeIcons.hourglassHalf,
+      return StatusWidget(
+        icon: FaIcon(
+          FontAwesomeIcons.hourglassHalf,
+          color: Colors.orange,
+          size: 22.w,
+        ),
         color: Colors.orange,
       );
     case FileUploadStatus.uploading:
-      return const StatusWidget(
-        icon: FontAwesomeIcons.upload,
+      return StatusWidget(
+        icon: FaIcon(FontAwesomeIcons.upload, color: Colors.green, size: 22.w),
         color: Colors.green,
       );
     case FileUploadStatus.uploaded:
-      return const StatusWidget(
-        icon: Icons.cloud_done,
-        color: Color(0xFF003A46),
+      return StatusWidget(
+        icon: FaIcon(
+          FontAwesomeIcons.cloudUpload,
+          color: const Color(0xFF003A46),
+          size: 22.w,
+        ),
+        text: 'تم الرفع',
+        color: const Color(0xFF003A46),
       );
     case FileUploadStatus.failed:
-      return const StatusWidget(
-        icon: FontAwesomeIcons.cloudscale,
+      return StatusWidget(
+        icon: FaIcon(
+          FontAwesomeIcons.cloudscale,
+          color: Colors.red,
+          size: 22.w,
+        ),
+        text: 'فشل الرفع',
         color: Colors.red,
       );
     default:
-      return const StatusWidget(
-        icon: FontAwesomeIcons.cloudArrowUp,
+      return StatusWidget(
+        icon: FaIcon(
+          FontAwesomeIcons.cloudArrowUp,
+          color: Colors.grey,
+          size: 22.w,
+        ),
+        text: 'لم يرفع بعد',
         color: Colors.grey,
       );
   }
@@ -234,7 +253,7 @@ class StatusWidget extends StatelessWidget {
     this.text,
     required this.color,
   });
-  final IconData? icon;
+  final Widget? icon;
   final String? text;
   final Color color;
   @override
@@ -243,7 +262,7 @@ class StatusWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        FaIcon(icon, color: color, size: 22.w),
+        if (icon != null) icon!,
         SizedBox(width: 5.w),
         if (text != null)
           Flexible(

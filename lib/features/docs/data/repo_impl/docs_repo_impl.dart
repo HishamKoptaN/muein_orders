@@ -225,7 +225,10 @@ class DocsRepoImpl implements DocsRepo {
   Future<void> _initializeNotifications() async {
     const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
     const initSettings = InitializationSettings(android: androidInit);
-    await _notifications.initialize(initSettings);
+    await _notifications.initialize(
+      onDidReceiveNotificationResponse: (response) {},
+      settings: initSettings,
+    );
   }
 
   Future<void> _showProgressNotification({
@@ -255,10 +258,10 @@ class DocsRepoImpl implements DocsRepo {
       styleInformation: style,
     );
     await _notifications.show(
-      doc.docId ?? 0,
-      title,
-      '$body',
-      NotificationDetails(android: androidDetails),
+      id: doc.docId ?? 0,
+      title: title,
+      body: '$body',
+      notificationDetails: NotificationDetails(android: androidDetails),
     );
   }
 

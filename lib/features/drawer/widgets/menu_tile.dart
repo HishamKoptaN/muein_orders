@@ -12,20 +12,24 @@ class MenuTile extends StatelessWidget {
   });
 
   final String title;
-  final IconData? icon;
+  final Widget? icon;
   final VoidCallback? onTap;
   final Color textColor;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(
-        icon,
-        color: textColor == Colors.black87
-            ? const Color(0xFF6C7072)
-            : textColor,
-        size: 22,
-      ),
+      leading: icon != null
+          ? IconTheme(
+              data: IconThemeData(
+                color: textColor == Colors.black87
+                    ? const Color(0xFF6C7072)
+                    : textColor,
+                size: 22,
+              ),
+              child: icon!,
+            )
+          : null,
       title: TrText(
         title,
         style: TextStyle(
