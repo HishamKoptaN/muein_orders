@@ -19,18 +19,12 @@ jobs:
 
       - id: detect
         run: |
-          echo "🔍 فحص التغييرات النيتف في الـ push..."
+          echo "🔍 فحص التغييرات النيتف في آخر commit..."
 
-          # جمع جميع التغييرات في هذا الـ push
-          # نستخدم git log للحصول على جميع commits المضافة
-          NATIVE_FILES=$(git log --name-only --oneline HEAD~20..HEAD 2>/dev/null | grep -v "^[a-f0-9]\{7\} " || echo "")
+          # فحص آخر commit فقط
+          NATIVE_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
 
-          # إذا لم نجد تاريخ، نفحص آخر 10 ملفات متغيرة
-          if [ -z "$NATIVE_FILES" ]; then
-            NATIVE_FILES=$(git diff --name-only HEAD~10 HEAD 2>/dev/null || git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
-          fi
-
-          echo "📄 الملفات المتغيرة:"
+          echo "📄 الملفات المتغيرة في آخر commit:"
           echo "$NATIVE_FILES"
 
           HAS_NATIVE="false"
