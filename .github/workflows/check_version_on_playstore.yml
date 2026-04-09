@@ -24,8 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get Current Version
-        id: get-version
+      - id: get-version
         run: |
           # استخراج versionCode و versionName من build.gradle.kts
           VERSION_CODE=$(grep -oP 'versionCode\s*=\s*\K\d+' android/app/build.gradle.kts)
@@ -41,7 +40,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install Dependencies
         run: |
@@ -86,19 +85,29 @@ jobs:
 
               for track in tracks:
                   try:
+                      print(f"🔍 جاري فحص القناة: {track}")
                       track_info = service.edits().tracks().get(
                           packageName=package_name,
                           editId=edit_id,
                           track=track
                       ).execute()
 
+                      print(f"📋 معلومات القناة {track}: {json.dumps(track_info, indent=2)[:500]}")
+
                       if 'releases' in track_info:
+                          print(f"✅ وجدت {len(track_info['releases'])} releases في {track}")
                           for release in track_info['releases']:
+                              print(f"   Release: {release.get('name', 'N/A')}, status: {release.get('status', 'N/A')}")
                               if 'versionCodes' in release:
                                   for vc in release['versionCodes']:
                                       all_versions.add(int(vc))
+                                      print(f"   → versionCode: {vc}")
+                      else:
+                          print(f"⚠️  لا توجد releases في القناة {track}")
                   except Exception as e:
-                      print(f"⚠️  خطأ في جلب معلومات القناة {track}: {e}")
+                      print(f"❌ خطأ في جلب معلومات القناة {track}: {e}")
+                      import traceback
+                      traceback.print_exc()
                       continue
 
               # إلغاء التعديل (لا نحتاج لحفظه)
