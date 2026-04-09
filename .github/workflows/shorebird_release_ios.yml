@@ -22,8 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache Flutter SDK
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: /Users/runner/hostedtoolcache/flutter
           key: flutter-sdk-3.41.2-macos
@@ -35,8 +34,7 @@ jobs:
           channel: "stable"
           cache: true
 
-      - name: Cache Dart/Flutter Dependencies
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.pub-cache
@@ -44,8 +42,7 @@ jobs:
           key: flutter-deps-${{ hashFiles('pubspec.lock') }}-macos
           restore-keys: flutter-deps-
 
-      - name: Cache iOS Dependencies
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ios/Pods
@@ -54,8 +51,7 @@ jobs:
           key: ios-deps-${{ hashFiles('ios/Podfile.lock') }}-macos
           restore-keys: ios-deps-macos-
 
-      - name: Cache Shorebird
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.config/shorebird
@@ -65,8 +61,7 @@ jobs:
 
       - uses: shorebirdtech/setup-shorebird@v1
 
-      - name: Cache Build Outputs
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: |
             build/
@@ -76,21 +71,18 @@ jobs:
 
       - run: flutter pub get
 
-      - name: Install CocoaPods
-        run: |
+      - run: |
           cd ios
           pod install --repo-update
 
-      - name: Setup signing
-        env:
+      - env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
         run: |
           echo "🔐 إعداد توقيع iOS..."
           # يمكن استخدام match أو توقيع يدوي
 
-      - name: Shorebird Release iOS
-        env:
+      - env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
           echo "📦 إنشاء Shorebird Release iOS..."
@@ -100,8 +92,7 @@ jobs:
             --dart-define=ENV=prod \
             --flavor=prod
 
-      - name: Upload to App Store Connect
-        env:
+      - env:
           APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}

@@ -19,31 +19,49 @@ jobs:
 
       - id: detect
         run: |
-          echo "🔍 فحص التغييرات في آخر commit..."
+          echo "🔍 فحص التغييرات النيتف في الـ push..."
 
-          # ملفات Native الحرجة
-          NATIVE_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
+          # جمع جميع التغييرات في هذا الـ push
+          # نستخدم git log للحصول على جميع commits المضافة
+          NATIVE_FILES=$(git log --name-only --oneline HEAD~20..HEAD 2>/dev/null | grep -v "^[a-f0-9]\{7\} " || echo "")
+
+          # إذا لم نجد تاريخ، نفحص آخر 10 ملفات متغيرة
+          if [ -z "$NATIVE_FILES" ]; then
+            NATIVE_FILES=$(git diff --name-only HEAD~10 HEAD 2>/dev/null || git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
+          fi
+
+          echo "📄 الملفات المتغيرة:"
+          echo "$NATIVE_FILES"
 
           HAS_NATIVE="false"
 
-          # فحص الملفات الحرجة
+          # فحص الملفات الحرجة - Platform directories
           if echo "$NATIVE_FILES" | grep -qE "^(android/|ios/|linux/|macos/|windows/|web/)"; then
             echo "   ⚠️ وجدت تغييرات في platform directories"
             HAS_NATIVE="true"
           fi
 
-          if echo "$NATIVE_FILES" | grep -qE "pubspec\.yaml"; then
-            echo "   ⚠️ وجدت تغييرات في pubspec.yaml (dependencies)"
+          # فحص pubspec.yaml
+          if echo "$NATIVE_FILES" | grep -qE "pubspec\.yaml|pubspec\.lock"; then
+            echo "   ⚠️ وجدت تغييرات في pubspec.yaml/pubspec.lock (dependencies)"
             HAS_NATIVE="true"
           fi
 
-          if echo "$NATIVE_FILES" | grep -qE "\.gradle|build\.gradle|settings\.gradle|AndroidManifest"; then
+          # فحص ملفات Gradle
+          if echo "$NATIVE_FILES" | grep -qE "\.gradle|build\.gradle|settings\.gradle|AndroidManifest|gradle\.properties"; then
             echo "   ⚠️ وجدت تغييرات في Gradle أو AndroidManifest"
             HAS_NATIVE="true"
           fi
 
-          if echo "$NATIVE_FILES" | grep -qE "\.swift|\.m|\.h|Podfile|Info\.plist"; then
+          # فحص ملفات iOS
+          if echo "$NATIVE_FILES" | grep -qE "\.swift|\.m|\.h|Podfile|Info\.plist|Podfile\.lock"; then
             echo "   ⚠️ وجدت تغييرات في iOS files"
+            HAS_NATIVE="true"
+          fi
+
+          # فحص ملفات Shorebird.yaml
+          if echo "$NATIVE_FILES" | grep -qE "shorebird\.yaml"; then
+            echo "   ⚠️ وجدت تغييرات في shorebird.yaml"
             HAS_NATIVE="true"
           fi
 
