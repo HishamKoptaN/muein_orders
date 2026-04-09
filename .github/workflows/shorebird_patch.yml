@@ -8,9 +8,15 @@ on:
       version_name:
         required: true
         type: string
+    outputs:
+      requires_new_release:
+        description: "Whether a new release is needed due to native changes"
+        value: ${{ jobs.patch.outputs.requires_new_release }}
 jobs:
   patch:
     runs-on: ubuntu-latest
+    outputs:
+      requires_new_release: ${{ steps.verify.outputs.requires_new_release }}
     env:
       VERSION_CODE: ${{ inputs.version_code }}
       VERSION_NAME: ${{ inputs.version_name }}
@@ -56,8 +62,11 @@ jobs:
           path: |
             build/
             .dart_tool/build
-          key: patch-${{ github.sha }}-${{ inputs.version_code }}-${{ runner.os }}
-          restore-keys: patch-${{ runner.os }}-
+          key: patch-${{ hashFiles('lib/**/*.dart', 'pubspec.lock') }}-${{ inputs.version_code }}-${{ runner.os }}
+          restore-keys: |
+            patch-${{ hashFiles('pubspec.lock') }}-${{ inputs.version_code }}-${{ runner.os }}-
+            patch-${{ inputs.version_code }}-${{ runner.os }}-
+            patch-${{ runner.os }}-
 
       - run: flutter pub get
       - run: |
@@ -74,22 +83,24 @@ jobs:
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
-          echo "� التحقق من إمكانية تطبيق الباتش..."
+          echo "🔍 التحقق السريع من إمكانية تطبيق الباتش..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
 
-          # محاولة البناء للتحقق فقط بدون رفع الباتش
+          # استخدام --dry-run للتحقق السريع بدون بناء كامل
           if ! shorebird patch android \
             --dart-define=ENV=prod \
             --flavor=prod \
-            --release-version=$VERSION_NAME+$VERSION_CODE 2>&1 | tee patch_output.log; then
+            --release-version=$VERSION_NAME+$VERSION_CODE \
+            --dry-run 2>&1 | tee patch_output.log; then
             
             # التحقق إذا كان الفشل بسبب تغييرات native
             if grep -q "Your app contains native changes, which cannot be applied with a patch" patch_output.log; then
               echo "❌ فشل التحقق: توجد تغييرات Native!"
               echo "requires_new_release=true" >> $GITHUB_OUTPUT
-              exit 1
+              exit 0  # نخرج بنجاح لكن مع إشارة أننا نحتاج release
             else
               echo "❌ فشل الباتش لسبب آخر"
+              cat patch_output.log
               exit 1
             fi
           fi
@@ -102,7 +113,7 @@ jobs:
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
-          echo "�🔧 تنفيذ Shorebird Patch..."
+          echo "�� تنفيذ Shorebird Patch..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
 
           shorebird patch android \

@@ -148,6 +148,49 @@ jobs:
       track: ${{ github.event.inputs.track || 'internal' }}
     secrets: inherit
 
+  # Job جديد: يعمل عندما يكتشف Shorebird تغييرات Native في الـ Dry Run
+  handle-native-detected-in-patch:
+    needs: [decide-action, patch]
+    if: ${{ needs.decide-action.outputs.action == 'patch' && needs.patch.outputs.requires_new_release == 'true' && success() }}
+    runs-on: ubuntu-latest
+    outputs:
+      new_version_code: ${{ steps.bump.outputs.new_version_code }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }}
+
+      - id: bump
+        run: |
+          CURRENT="${{ needs.decide-action.outputs.version_code }}"
+          NEW=$((CURRENT + 1))
+          echo "new_version_code=$NEW" >> $GITHUB_OUTPUT
+          echo "📈 زيادة versionCode: $CURRENT → $NEW (بسبب تغييرات Native مكتشفة)"
+
+      - name: Update build.gradle.kts
+        run: |
+          NEW="${{ steps.bump.outputs.new_version_code }}"
+          sed -i "s/versionCode = [0-9]*/versionCode = $NEW/g" android/app/build.gradle.kts
+          grep "versionCode" android/app/build.gradle.kts
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add android/app/build.gradle.kts
+          git commit -m "bump: versionCode (native changes detected) → ${{ steps.bump.outputs.new_version_code }} [skip ci]"
+          git push
+
+  release-after-native-detected:
+    needs: [decide-action, handle-native-detected-in-patch]
+    if: ${{ needs.handle-native-detected-in-patch.outputs.new_version_code != '' }}
+    uses: ./.github/workflows/shorebird_release.yml
+    with:
+      version_code: ${{ needs.handle-native-detected-in-patch.outputs.new_version_code }}
+      version_name: ${{ needs.decide-action.outputs.version_name }}
+      track: ${{ github.event.inputs.track || 'internal' }}
+    secrets: inherit
+
   release:
     needs: decide-action
     if: ${{ needs.decide-action.outputs.action == 'release' }}

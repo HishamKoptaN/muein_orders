@@ -88,9 +88,9 @@ jobs:
             android/.gradle
             android/app/build
             .dart_tool/build
-          key: build-${{ github.sha }}-${{ runner.os }}
+          key: build-${{ hashFiles('lib/**/*.dart', 'pubspec.lock') }}-${{ runner.os }}
           restore-keys: |
-            build-${{ github.ref }}-${{ runner.os }}-
+            build-${{ hashFiles('pubspec.lock') }}-${{ runner.os }}-
             build-${{ runner.os }}-
 
       - run: flutter pub get
