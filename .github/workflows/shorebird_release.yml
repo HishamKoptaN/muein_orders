@@ -125,7 +125,6 @@ jobs:
           packageName: com.muein.orders
           releaseFiles: build/app/outputs/bundle/prodRelease/app-prod-release.aab
           track: ${{ env.TRACK }}
-          whatsNewDirectory: distribution/whatsnew
 
       - name: Report Release Success
         run: |
