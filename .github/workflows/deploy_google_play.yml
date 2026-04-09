@@ -62,12 +62,11 @@ jobs:
             echo "📦 Release (فرض)"
             echo "action=release" >> $GITHUB_OUTPUT
           elif [ "$HAS_NATIVE" == "true" ] && [ "$VERSION_EXISTS" == "true" ]; then
-            echo "❌ خطأ: الإصدار $VERSION_CODE موجود على Google Play وتوجد تغييرات Native"
-            echo "   👉 يجب زيادة versionCode في android/app/build.gradle.kts"
-            echo "   👉 ثم commit وpush مرة أخرى"
-            exit 1
+            echo "⚠️ الإصدار $VERSION_CODE موجود وتوجد تغييرات Native"
+            echo "   سيتم زيادة versionCode تلقائياً..."
+            echo "action=bump-and-release" >> $GITHUB_OUTPUT
           elif [ "$HAS_NATIVE" == "true" ]; then
-            echo "📦 توجد تغييرات Native والإصدار غير موجود → Release جديد (Shorebird + Google Play)"
+            echo "📦 توجد تغييرات Native والإصدار غير موجود → Release جديد"
             echo "action=release" >> $GITHUB_OUTPUT
           elif [ "$VERSION_EXISTS" == "true" ]; then
             echo "🔧 الإصدار موجود ولا توجد تغييرات Native → Patch"
@@ -94,9 +93,36 @@ jobs:
       track: ${{ github.event.inputs.track || 'internal' }}
     secrets: inherit
 
+  bump-version:
+    needs: decide-action
+    if: ${{ needs.decide-action.outputs.action == 'bump-and-release' }}
+    uses: ./.github/workflows/bump_version.yml
+    with:
+      current_version_code: ${{ needs.decide-action.outputs.version_code }}
+    secrets: inherit
+
+  release-after-bump:
+    needs: [decide-action, bump-version]
+    if: ${{ needs.decide-action.outputs.action == 'bump-and-release' }}
+    uses: ./.github/workflows/shorebird_release.yml
+    with:
+      version_code: ${{ needs.bump-version.outputs.new_version_code }}
+      version_name: ${{ needs.decide-action.outputs.version_name }}
+      track: ${{ github.event.inputs.track || 'internal' }}
+    secrets: inherit
+
   summary:
     runs-on: ubuntu-latest
-    needs: [check-version, check-native, decide-action, patch, release]
+    needs:
+      [
+        check-version,
+        check-native,
+        decide-action,
+        patch,
+        release,
+        bump-version,
+        release-after-bump,
+      ]
     if: always()
     steps:
       - run: |
