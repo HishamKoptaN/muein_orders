@@ -114,8 +114,13 @@ jobs:
           echo "🔍 التحقق من وجود إصدار Shorebird..."
           echo "   للإصدار: $VERSION_NAME+$VERSION_CODE"
 
-          # محاولة جلب الإصدار الموجود
-          if shorebird releases list --json 2>/dev/null | grep -q "\"version\": \"$VERSION_NAME+$VERSION_CODE\""; then
+          # جلب قائمة الإصدارات والبحث عن الإصدار المطلوب
+          RELEASES_OUTPUT=$(shorebird releases list 2>/dev/null || echo "")
+          echo "📋 قائمة الإصدارات:"
+          echo "$RELEASES_OUTPUT"
+
+          # البحث عن الإصدار (نمط: 1.0.0+3)
+          if echo "$RELEASES_OUTPUT" | grep -q "$VERSION_NAME+$VERSION_CODE"; then
             echo "✅ الإصدار موجود على Shorebird - سيتم التحميل"
             echo "release_exists=true" >> $GITHUB_OUTPUT
           else
@@ -147,7 +152,6 @@ jobs:
         run: |
           echo "📦 إنشاء Shorebird Release جديد..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
-
           shorebird release android \
             --dart-define=ENV=prod \
             --flavor=prod \
