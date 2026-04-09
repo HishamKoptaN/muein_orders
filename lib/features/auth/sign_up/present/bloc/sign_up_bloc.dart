@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -67,6 +68,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             );
           } catch (e, stackTrace) {
             debugPrint('Error during sign up: $e\n$stackTrace');
+            await FirebaseCrashlytics.instance.recordError(
+              e,
+              stackTrace,
+              reason: 'SignUpBloc unexpected error',
+            );
             emitCustomFailure(
               emit: emit,
               apiErrorModel: const ApiErrorModel(

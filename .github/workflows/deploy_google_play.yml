@@ -2,7 +2,7 @@ name: Deploy to Google Play
 on:
   push:
     branches:
-      - prod
+      - prods
   workflow_dispatch:
     inputs:
       track:
@@ -15,9 +15,23 @@ on:
           - alpha
           - beta
           - production
+      skip_version_check:
+        description: "تخطي التحقق من وجود الإصدار"
+        required: false
+        default: false
+        type: boolean
+
 jobs:
+  # التحقق من وجود الإصدار على Google Play
+  check-version:
+    uses: ./.github/workflows/check_version_on_playstore.yml
+    secrets: inherit
+
   deploy-android:
     runs-on: ubuntu-latest
+    needs: check-version
+    # لا تستمر إذا كان الإصدار موجوداً (ما لم يتم تخطي التحقق)
+    if: ${{ github.event.inputs.skip_version_check == 'true' || needs.check-version.outputs.version_exists == 'false' }}
     env:
       TRACK: ${{ github.event.inputs.track || 'internal' }}
     steps:

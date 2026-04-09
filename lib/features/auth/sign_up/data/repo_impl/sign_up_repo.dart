@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 
@@ -60,29 +61,44 @@ class SignUpRepoImpl implements SignUpRepo {
       }
       await getIt<AuthInterceptor>().updateToken();
       return const ApiResult.success(data: null);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e, st) {
       if (userCredential?.user != null) {
         await userCredential!.user!.delete();
       }
+      await FirebaseCrashlytics.instance.recordError(
+        e,
+        st,
+        reason: 'FirebaseAuthException during sign up: ${e.code}',
+      );
       return ApiResult.failure(
         apiErrorModel: ApiErrorModel(
           message: e.message ?? 'Firebase authentication failed',
         ),
       );
-    } on DioException catch (error) {
+    } on DioException catch (error, st) {
       if (userCredential?.user != null) {
         await userCredential!.user!.delete();
       }
+      await FirebaseCrashlytics.instance.recordError(
+        error,
+        st,
+        reason: 'DioException during sign up: ${error.message}',
+      );
       return ApiResult.failure(
         apiErrorModel: ApiErrorModel(
           message:
               error.response?.data?['message']?.toString() ?? 'Sign up failed',
         ),
       );
-    } catch (e) {
+    } catch (e, st) {
       if (userCredential?.user != null) {
         await userCredential!.user!.delete();
       }
+      await FirebaseCrashlytics.instance.recordError(
+        e,
+        st,
+        reason: 'Unexpected error during sign up',
+      );
       return const ApiResult.failure(
         apiErrorModel: ApiErrorModel(message: 'An unexpected error occurred'),
       );

@@ -7,10 +7,10 @@ class ProdEnv implements Env {
   @override
   FirebaseOptions get firebaseOptions => ProdFirebaseOptions.currentPlatform;
   @override
-  String get baseUrl => 'https://api.example.com';
+  String get baseUrl => 'https://muein.online/api/';
 
   @override
-  String get authBaseUrl => 'https://auth.example.com';
+  String get authBaseUrl => 'https://muein.online/auth/';
 
   @override
   String get envName => 'prod';

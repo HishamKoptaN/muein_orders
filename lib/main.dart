@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,8 +21,21 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
+
+    // Initialize Crashlytics
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+
+    // Pass all uncaught errors to Crashlytics
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    // Pass all uncaught async errors to Crashlytics
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
   } catch (e, st) {
     debugPrint('$st$e');
+    FirebaseCrashlytics.instance.recordError(e, st);
   }
   await AppInitializer.initialize();
   await configureDependencies(environment: EnvConfig.config.envName);
