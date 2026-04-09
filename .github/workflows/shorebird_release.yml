@@ -106,7 +106,42 @@ jobs:
           storeFile=muein_orders.jks
           EOF
 
-      - name: Shorebird Release
+      - name: Check Shorebird Release Exists
+        id: check-release
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: |
+          echo "🔍 التحقق من وجود إصدار Shorebird..."
+          echo "   للإصدار: $VERSION_NAME+$VERSION_CODE"
+
+          # محاولة جلب الإصدار الموجود
+          if shorebird releases list --json 2>/dev/null | grep -q "\"version\": \"$VERSION_NAME+$VERSION_CODE\""; then
+            echo "✅ الإصدار موجود على Shorebird - سيتم التحميل"
+            echo "release_exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ الإصدار غير موجود - سيتم البناء"
+            echo "release_exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Download Shorebird Release (if exists)
+        if: steps.check-release.outputs.release_exists == 'true'
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: |
+          echo "📥 تحميل إصدار Shorebird الموجود..."
+          echo "   للإصدار: $VERSION_NAME+$VERSION_CODE"
+
+          # إنشاء المجلد
+          mkdir -p build/app/outputs/bundle/prodRelease
+
+          # تحميل الإصدار باستخدام shorebird
+          shorebird releases download \
+            --version=$VERSION_NAME+$VERSION_CODE \
+            --platform=android \
+            --output=build/app/outputs/bundle/prodRelease/app-prod-release.aab
+
+      - name: Shorebird Release (if not exists)
+        if: steps.check-release.outputs.release_exists != 'true'
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
@@ -116,7 +151,10 @@ jobs:
           shorebird release android \
             --dart-define=ENV=prod \
             --flavor=prod \
-            --artifact=aab
+            --artifact=aab || {
+              echo "⚠️ فشل إنشاء الإصدار - ربما يوجد بالفعل؟"
+              exit 1
+            }
 
       - name: Upload to Google Play
         uses: r0adkll/upload-google-play@v1
