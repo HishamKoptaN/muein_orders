@@ -1,0 +1,87 @@
+name: Shorebird Patch iOS
+
+on:
+  workflow_call:
+    inputs:
+      version_code:
+        required: true
+        type: string
+      version_name:
+        required: true
+        type: string
+
+jobs:
+  patch:
+    runs-on: macos-latest
+    env:
+      VERSION_CODE: ${{ inputs.version_code }}
+      VERSION_NAME: ${{ inputs.version_name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: flutter-sdk-3.41.2-macos
+          restore-keys: flutter-sdk-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - name: Cache Dart/Flutter Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ${{ github.workspace }}/.dart_tool
+          key: flutter-deps-${{ hashFiles('pubspec.lock') }}-macos
+          restore-keys: flutter-deps-
+
+      - name: Cache Shorebird
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.config/shorebird
+            ~/.shorebird
+          key: shorebird-macos-${{ hashFiles('pubspec.lock', 'shorebird.yaml') }}
+          restore-keys: shorebird-macos-
+
+      - uses: shorebirdtech/setup-shorebird@v1
+
+      - name: Cache iOS Build
+        uses: actions/cache@v4
+        with:
+          path: |
+            build/
+            ios/Pods
+            ios/.symlinks
+          key: ios-patch-${{ github.sha }}-${{ inputs.version_code }}-macos
+          restore-keys: ios-patch-macos-
+
+      - run: flutter pub get
+
+      - name: Install CocoaPods
+        run: |
+          cd ios
+          pod install --repo-update
+
+      - name: Shorebird Patch iOS
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: |
+          echo "🔧 تنفيذ Shorebird Patch iOS..."
+          echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
+
+          shorebird patch ios \
+            --dart-define=ENV=prod \
+            --flavor=prod \
+            --release-version=$VERSION_NAME+$VERSION_CODE
+
+      - run: |
+          echo "✅ تم إرسال الباتش بنجاح!"
+          echo "   الإصدار: $VERSION_CODE ($VERSION_NAME)"
+          echo "   رابط متابعة الباتش: https://console.shorebird.dev/"

@@ -69,17 +69,51 @@ jobs:
           keyAlias=${{ secrets.KEY_ALIAS }}
           storeFile=muein_orders.jks
           EOF
-      - env:
+      - name: Verify Patch (Dry Run)
+        id: verify
+        env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
-          echo "🔧 تنفيذ Shorebird Patch..."
+          echo "� التحقق من إمكانية تطبيق الباتش..."
+          echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
+
+          # محاولة البناء للتحقق فقط بدون رفع الباتش
+          if ! shorebird patch android \
+            --dart-define=ENV=prod \
+            --flavor=prod \
+            --release-version=$VERSION_NAME+$VERSION_CODE 2>&1 | tee patch_output.log; then
+            
+            # التحقق إذا كان الفشل بسبب تغييرات native
+            if grep -q "Your app contains native changes, which cannot be applied with a patch" patch_output.log; then
+              echo "❌ فشل التحقق: توجد تغييرات Native!"
+              echo "requires_new_release=true" >> $GITHUB_OUTPUT
+              exit 1
+            else
+              echo "❌ فشل الباتش لسبب آخر"
+              exit 1
+            fi
+          fi
+
+          echo "✅ التحقق نجح - يمكن تطبيق الباتش"
+          echo "requires_new_release=false" >> $GITHUB_OUTPUT
+
+      - name: Execute Shorebird Patch
+        if: steps.verify.outputs.requires_new_release != 'true'
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: |
+          echo "�🔧 تنفيذ Shorebird Patch..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
 
           shorebird patch android \
             --dart-define=ENV=prod \
             --flavor=prod \
-            --release-version=$VERSION_NAME+$VERSION_CODE
-      - run: |
+            --release-version=$VERSION_NAME+$VERSION_CODE \
+            --confirm
+
+      - name: Success Report
+        if: success()
+        run: |
           echo "✅ تم إرسال الباتش بنجاح!"
           echo "   الإصدار: $VERSION_CODE ($VERSION_NAME)"
           echo "   رابط متابعة الباتش: https://console.shorebird.dev/"

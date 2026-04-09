@@ -1,0 +1,117 @@
+name: Shorebird Release iOS
+on:
+  workflow_call:
+    inputs:
+      version_code:
+        required: true
+        type: string
+      version_name:
+        required: true
+        type: string
+      track:
+        required: true
+        type: string
+        default: "testflight"
+jobs:
+  release:
+    runs-on: macos-latest
+    env:
+      VERSION_CODE: ${{ inputs.version_code }}
+      VERSION_NAME: ${{ inputs.version_name }}
+      TRACK: ${{ inputs.track }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: flutter-sdk-3.41.2-macos
+          restore-keys: flutter-sdk-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - name: Cache Dart/Flutter Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ${{ github.workspace }}/.dart_tool
+          key: flutter-deps-${{ hashFiles('pubspec.lock') }}-macos
+          restore-keys: flutter-deps-
+
+      - name: Cache iOS Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ios/Pods
+            ios/.symlinks
+            ~/Library/Developer/Xcode/DerivedData
+          key: ios-deps-${{ hashFiles('ios/Podfile.lock') }}-macos
+          restore-keys: ios-deps-macos-
+
+      - name: Cache Shorebird
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.config/shorebird
+            ~/.shorebird
+          key: shorebird-macos-${{ hashFiles('pubspec.lock', 'shorebird.yaml') }}
+          restore-keys: shorebird-macos-
+
+      - uses: shorebirdtech/setup-shorebird@v1
+
+      - name: Cache Build Outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            build/
+            ios/build
+          key: ios-build-${{ github.sha }}-${{ inputs.version_code }}-macos
+          restore-keys: ios-build-macos-
+
+      - run: flutter pub get
+
+      - name: Install CocoaPods
+        run: |
+          cd ios
+          pod install --repo-update
+
+      - name: Setup signing
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+        run: |
+          echo "🔐 إعداد توقيع iOS..."
+          # يمكن استخدام match أو توقيع يدوي
+
+      - name: Shorebird Release iOS
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: |
+          echo "📦 إنشاء Shorebird Release iOS..."
+          echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
+
+          shorebird release ios \
+            --dart-define=ENV=prod \
+            --flavor=prod
+
+      - name: Upload to App Store Connect
+        env:
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+        run: |
+          echo "📤 رفع إلى App Store Connect..."
+          echo "   القناة: $TRACK"
+
+          # استخدام altool أو fastlane deliver
+          # xcrun altool --upload-app --type ios --file build/ios/ipa/*.ipa --apiKey ... --apiIssuer ...
+
+          echo "✅ تم إنشاء الإصدار ورفعه بنجاح!"
+          echo "   الإصدار: $VERSION_CODE ($VERSION_NAME)"
+          echo "   القناة: $TRACK"

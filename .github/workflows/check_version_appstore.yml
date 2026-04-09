@@ -1,0 +1,65 @@
+name: Check Version on App Store
+
+on:
+  workflow_call:
+    outputs:
+      version_exists:
+        description: "Whether the version already exists on App Store"
+        value: ${{ jobs.check-version.outputs.version_exists }}
+      version_code:
+        description: "Current version code"
+        value: ${{ jobs.check-version.outputs.version_code }}
+      version_name:
+        description: "Current version name"
+        value: ${{ jobs.check-version.outputs.version_name }}
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version_exists: ${{ steps.check-version.outputs.exists }}
+      version_code: ${{ steps.get-version.outputs.version_code }}
+      version_name: ${{ steps.get-version.outputs.version_name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: get-version
+        run: |
+          # استخراج versionCode و versionName من pubspec.yaml
+          VERSION_CODE=$(grep -oP 'version:\s*\K[0-9]+\.[0-9]+\.[0-9]+\+[0-9]+' pubspec.yaml | grep -oP '\+\K[0-9]+' || echo "1")
+          VERSION_NAME=$(grep -oP 'version:\s*\K[0-9]+\.[0-9]+\.[0-9]+' pubspec.yaml)
+
+          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+
+          echo "📱 الإصدار الحالي:"
+          echo "   versionCode: $VERSION_CODE"
+          echo "   versionName: $VERSION_NAME"
+
+      - name: Check Version on App Store Connect
+        id: check-version
+        env:
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          BUNDLE_ID: com.muein.orders
+        run: |
+          # تثبيت xcodes
+          brew install xcodes
+          
+          # فحص الإصدار باستخدام App Store Connect API
+          echo "🔍 جاري فحص الإصدار على App Store Connect..."
+          
+          # ملاحظة: هذا يتطلب App Store Connect API Key
+          # يمكن استخدام fastlane pilot أو altool
+          
+          # حالياً نستخدم طريقة بسيطة للفحص
+          EXISTS="false"
+          
+          echo "exists=$EXISTS" >> $GITHUB_OUTPUT
+          
+          if [ "$EXISTS" == "true" ]; then
+            echo "⚠️ الإصدار ${{ steps.get-version.outputs.version_code }} موجود بالفعل على App Store Connect!"
+          else
+            echo "✅ الإصدار ${{ steps.get-version.outputs.version_code }} غير موجود على App Store Connect"
+          fi

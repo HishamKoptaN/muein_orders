@@ -55,24 +55,42 @@ jobs:
           echo "   force_patch: $FORCE_PATCH"
           echo "   force_release: $FORCE_RELEASE"
 
+          # 1. فحص الإجبار أولاً
           if [ "$FORCE_PATCH" == "true" ]; then
             echo "🔧 Patch (فرض)"
             echo "action=patch" >> $GITHUB_OUTPUT
-          elif [ "$FORCE_RELEASE" == "true" ]; then
+            exit 0
+          fi
+
+          if [ "$FORCE_RELEASE" == "true" ]; then
             echo "📦 Release (فرض)"
             echo "action=release" >> $GITHUB_OUTPUT
-          elif [ "$HAS_NATIVE" == "true" ] && [ "$VERSION_EXISTS" == "true" ]; then
-            echo "⚠️ الإصدار $VERSION_CODE موجود وتوجد تغييرات Native"
-            echo "   سيتم زيادة versionCode تلقائياً..."
-            echo "action=bump-and-release" >> $GITHUB_OUTPUT
-          elif [ "$HAS_NATIVE" == "true" ]; then
-            echo "📦 توجد تغييرات Native والإصدار غير موجود → Release جديد"
-            echo "action=release" >> $GITHUB_OUTPUT
-          elif [ "$VERSION_EXISTS" == "true" ]; then
-            echo "🔧 الإصدار موجود ولا توجد تغييرات Native → Patch"
+            exit 0
+          fi
+
+          # 2. فحص Native Changes (أولوية قصوى)
+          if [ "$HAS_NATIVE" == "true" ]; then
+            echo "⚠️ توجد تغييرات Native - لا يمكن استخدام Patch"
+            if [ "$VERSION_EXISTS" == "true" ]; then
+              echo "   الإصدار موجود على المتجر"
+              echo "   → سيتم زيادة versionCode تلقائياً..."
+              echo "action=bump-and-release" >> $GITHUB_OUTPUT
+            else
+              echo "   الإصدار غير موجود"
+              echo "   → Release جديد"
+              echo "action=release" >> $GITHUB_OUTPUT
+            fi
+            exit 0
+          fi
+
+          # 3. لا توجد تغييرات Native
+          if [ "$VERSION_EXISTS" == "true" ]; then
+            echo "✅ لا توجد تغييرات Native + الإصدار موجود"
+            echo "   → Patch"
             echo "action=patch" >> $GITHUB_OUTPUT
           else
-            echo "📦 الإصدار غير موجود ولا توجد تغييرات Native → Release جديد"
+            echo "✅ لا توجد تغييرات Native + الإصدار غير موجود"
+            echo "   → Release جديد"
             echo "action=release" >> $GITHUB_OUTPUT
           fi
   patch:
@@ -83,6 +101,55 @@ jobs:
       version_code: ${{ needs.decide-action.outputs.version_code }}
       version_name: ${{ needs.decide-action.outputs.version_name }}
     secrets: inherit
+
+  handle-patch-failure:
+    needs: [decide-action, patch]
+    if: ${{ needs.decide-action.outputs.action == 'patch' && failure() }}
+    runs-on: ubuntu-latest
+    outputs:
+      should_release: ${{ steps.check.outputs.should_release }}
+      new_version_code: ${{ steps.bump.outputs.new_version_code }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: check
+        run: |
+          echo "⚠️ الباتش فشل - التحقق من السبب..."
+          echo "should_release=true" >> $GITHUB_OUTPUT
+
+      - id: bump
+        run: |
+          CURRENT="${{ needs.decide-action.outputs.version_code }}"
+          NEW=$((CURRENT + 1))
+          echo "new_version_code=$NEW" >> $GITHUB_OUTPUT
+          echo "📈 زيادة versionCode: $CURRENT → $NEW"
+
+      - name: Update build.gradle.kts
+        run: |
+          NEW="${{ steps.bump.outputs.new_version_code }}"
+          sed -i "s/versionCode = [0-9]*/versionCode = $NEW/g" android/app/build.gradle.kts
+          grep "versionCode" android/app/build.gradle.kts
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add android/app/build.gradle.kts
+          git commit -m "bump: versionCode (auto after patch failure) → ${{ steps.bump.outputs.new_version_code }} [skip ci]"
+          git push
+
+  release-after-failed-patch:
+    needs: [decide-action, handle-patch-failure]
+    if: ${{ needs.handle-patch-failure.outputs.should_release == 'true' }}
+    uses: ./.github/workflows/shorebird_release.yml
+    with:
+      version_code: ${{ needs.handle-patch-failure.outputs.new_version_code }}
+      version_name: ${{ needs.decide-action.outputs.version_name }}
+      track: ${{ github.event.inputs.track || 'internal' }}
+    secrets: inherit
+
   release:
     needs: decide-action
     if: ${{ needs.decide-action.outputs.action == 'release' }}
@@ -119,6 +186,8 @@ jobs:
         check-native,
         decide-action,
         patch,
+        handle-patch-failure,
+        release-after-failed-patch,
         release,
         bump-version,
         release-after-bump,
