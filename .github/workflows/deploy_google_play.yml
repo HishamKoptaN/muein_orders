@@ -1,8 +1,9 @@
 name: Deploy to Google Play
+
 on:
   push:
     branches:
-      - prods
+      - prod
   workflow_dispatch:
     inputs:
       track:
@@ -15,89 +16,72 @@ on:
           - alpha
           - beta
           - production
-      skip_version_check:
-        description: "تخطي التحقق من وجود الإصدار"
+      force_patch:
+        description: "فرض استخدام Shorebird Patch"
+        required: false
+        default: false
+        type: boolean
+      force_release:
+        description: "فرض إنشاء إصدار جديد"
         required: false
         default: false
         type: boolean
 
 jobs:
-  # التحقق من وجود الإصدار على Google Play
   check-version:
     uses: ./.github/workflows/check_version_on_playstore.yml
     secrets: inherit
 
-  deploy-android:
+  decide-action:
     runs-on: ubuntu-latest
     needs: check-version
-    # لا تستمر إذا كان الإصدار موجوداً (ما لم يتم تخطي التحقق)
-    if: ${{ github.event.inputs.skip_version_check == 'true' || needs.check-version.outputs.version_exists == 'false' }}
-    env:
-      TRACK: ${{ github.event.inputs.track || 'internal' }}
+    outputs:
+      action: ${{ steps.decide.outputs.action }}
+      version_code: ${{ needs.check-version.outputs.version_code }}
+      version_name: ${{ needs.check-version.outputs.version_name }}
+      version_exists: ${{ needs.check-version.outputs.version_exists }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/cache@v4
-        with:
-          path: |
-            ~/.pub-cache
-            ${{ github.workspace }}/.dart_tool
-          key: flutter-pub-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: |
-            flutter-pub-
-            flutter-
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.41.2"
-          channel: "stable"
-          cache: true
-      - uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            android/.gradle
-          key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: gradle-
-
-      - uses: shorebirdtech/setup-shorebird@v1
-
-      - uses: actions/cache@v4
-        with:
-          path: ~/.config/shorebird
-          key: shorebird-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: shorebird-${{ runner.os }}-
-      - run: flutter pub get
-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            build/
-            android/.gradle
-            android/app/build
-          key: build-${{ github.run_id }}
-          restore-keys: build-
-      - run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/muein_orders.jks
-      - run: |
-          cat > android/key.properties << EOF
-          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
-          keyPassword=${{ secrets.KEY_PASSWORD }}
-          keyAlias=${{ secrets.KEY_ALIAS }}
-          storeFile=muein_orders.jks
-          EOF
-      - env:
-          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+      - id: decide
         run: |
-          shorebird release android \
-            --dart-define=ENV=prod \
-            --flavor=prod \
-            --artifact=aab
-      - uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
-          packageName: com.muein.orders
-          releaseFiles: build/app/outputs/bundle/prodRelease/app-prod-release.aab
-          track: ${{ env.TRACK }}
-          whatsNewDirectory: distribution/whatsnew
-      - if: always()
-        run: rm -f android/app/muein_orders.jks android/key.properties
+          VERSION_EXISTS="${{ needs.check-version.outputs.version_exists }}"
+          FORCE_PATCH="${{ github.event.inputs.force_patch }}"
+          FORCE_RELEASE="${{ github.event.inputs.force_release }}"
+
+          if [ "$FORCE_PATCH" == "true" ]; then
+            echo "action=patch" >> $GITHUB_OUTPUT
+          elif [ "$FORCE_RELEASE" == "true" ]; then
+            echo "action=release" >> $GITHUB_OUTPUT
+          elif [ "$VERSION_EXISTS" == "true" ]; then
+            echo "action=patch" >> $GITHUB_OUTPUT
+          else
+            echo "action=release" >> $GITHUB_OUTPUT
+          fi
+
+  patch:
+    needs: decide-action
+    if: ${{ needs.decide-action.outputs.action == 'patch' }}
+    uses: ./.github/workflows/shorebird_patch.yml
+    with:
+      version_code: ${{ needs.decide-action.outputs.version_code }}
+      version_name: ${{ needs.decide-action.outputs.version_name }}
+    secrets: inherit
+
+  release:
+    needs: decide-action
+    if: ${{ needs.decide-action.outputs.action == 'release' }}
+    uses: ./.github/workflows/shorebird_release.yml
+    with:
+      version_code: ${{ needs.decide-action.outputs.version_code }}
+      version_name: ${{ needs.decide-action.outputs.version_name }}
+      track: ${{ github.event.inputs.track || 'internal' }}
+    secrets: inherit
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: [check-version, decide-action, patch, release]
+    if: always()
+    steps:
+      - run: |
+          echo "📋 ملخص:"
+          echo "   الإصدار: ${{ needs.decide-action.outputs.version_code }}"
+          echo "   العملية: ${{ needs.decide-action.outputs.action }}"
