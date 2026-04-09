@@ -42,6 +42,13 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Cache Python Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('.github/workflows/check_version_on_playstore.yml') }}
+          restore-keys: pip-${{ runner.os }}-
+
       - name: Install Dependencies
         run: |
           pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client

@@ -22,15 +22,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/cache@v4
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
         with:
           path: |
-            ~/.pub-cache
-            ${{ github.workspace }}/.dart_tool
-          key: flutter-pub-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: |
-            flutter-pub-
-            flutter-
+            /opt/hostedtoolcache/flutter
+          key: flutter-sdk-3.41.2-${{ runner.os }}
+          restore-keys: flutter-sdk-
 
       - uses: subosito/flutter-action@v2
         with:
@@ -38,33 +36,62 @@ jobs:
           channel: "stable"
           cache: true
 
-      - uses: actions/cache@v4
+      - name: Cache Dart/Flutter Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ${{ github.workspace }}/.dart_tool
+          key: flutter-deps-${{ hashFiles('pubspec.lock', '**/pubspec.yaml') }}-${{ runner.os }}
+          restore-keys: |
+            flutter-deps-${{ hashFiles('pubspec.lock') }}-
+            flutter-deps-
+
+      - name: Cache Android SDK
+        uses: actions/cache@v4
+        with:
+          path: |
+            /usr/local/lib/android/sdk
+          key: android-sdk-${{ runner.os }}-${{ hashFiles('android/app/build.gradle.kts', 'android/build.gradle.kts') }}
+          restore-keys: android-sdk-${{ runner.os }}-
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
             android/.gradle
-          key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: gradle-
+          key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties', 'android/gradle.properties') }}-${{ runner.os }}
+          restore-keys: |
+            gradle-${{ hashFiles('**/*.gradle*') }}-${{ runner.os }}-
+            gradle-${{ runner.os }}-
 
-      - uses: shorebirdtech/setup-shorebird@v1
-
-      - uses: actions/cache@v4
+      - name: Cache Shorebird
+        uses: actions/cache@v4
         with:
-          path: ~/.config/shorebird
-          key: shorebird-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: shorebird-${{ runner.os }}-
+          path: |
+            ~/.config/shorebird
+            ~/.shorebird
+          key: shorebird-${{ runner.os }}-${{ hashFiles('pubspec.lock', 'shorebird.yaml') }}
+          restore-keys: |
+            shorebird-${{ runner.os }}-${{ hashFiles('pubspec.lock') }}-
+            shorebird-${{ runner.os }}-
 
-      - run: flutter pub get
-
-      - uses: actions/cache@v4
+      - name: Cache Build Outputs
+        uses: actions/cache@v4
         with:
           path: |
             build/
             android/.gradle
             android/app/build
-          key: build-${{ github.run_id }}
-          restore-keys: build-
+            .dart_tool/build
+          key: build-${{ github.sha }}-${{ runner.os }}
+          restore-keys: |
+            build-${{ github.ref }}-${{ runner.os }}-
+            build-${{ runner.os }}-
+
+      - run: flutter pub get
 
       - run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/muein_orders.jks
