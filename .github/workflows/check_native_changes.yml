@@ -1,0 +1,56 @@
+name: Check Native Changes
+
+on:
+  workflow_call:
+    outputs:
+      has_native_changes:
+        description: "Whether the commit contains native changes"
+        value: ${{ jobs.check.outputs.has_native_changes }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      has_native_changes: ${{ steps.detect.outputs.has_native_changes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - id: detect
+        run: |
+          echo "🔍 فحص التغييرات في آخر commit..."
+
+          # ملفات Native الحرجة
+          NATIVE_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
+
+          HAS_NATIVE="false"
+
+          # فحص الملفات الحرجة
+          if echo "$NATIVE_FILES" | grep -qE "^(android/|ios/|linux/|macos/|windows/|web/)"; then
+            echo "   ⚠️ وجدت تغييرات في platform directories"
+            HAS_NATIVE="true"
+          fi
+
+          if echo "$NATIVE_FILES" | grep -qE "pubspec\.yaml"; then
+            echo "   ⚠️ وجدت تغييرات في pubspec.yaml (dependencies)"
+            HAS_NATIVE="true"
+          fi
+
+          if echo "$NATIVE_FILES" | grep -qE "\.gradle|build\.gradle|settings\.gradle|AndroidManifest"; then
+            echo "   ⚠️ وجدت تغييرات في Gradle أو AndroidManifest"
+            HAS_NATIVE="true"
+          fi
+
+          if echo "$NATIVE_FILES" | grep -qE "\.swift|\.m|\.h|Podfile|Info\.plist"; then
+            echo "   ⚠️ وجدت تغييرات في iOS files"
+            HAS_NATIVE="true"
+          fi
+
+          if [ "$HAS_NATIVE" == "true" ]; then
+            echo "❌ توجد تغييرات Native - يجب إنشاء Release جديد"
+          else
+            echo "✅ لا توجد تغييرات Native - يمكن استخدام Patch"
+          fi
+
+          echo "has_native_changes=$HAS_NATIVE" >> $GITHUB_OUTPUT

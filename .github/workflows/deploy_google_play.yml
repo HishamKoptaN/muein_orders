@@ -1,5 +1,4 @@
 name: Deploy to Google Play
-
 on:
   push:
     branches:
@@ -26,15 +25,17 @@ on:
         required: false
         default: false
         type: boolean
-
 jobs:
   check-version:
     uses: ./.github/workflows/check_version_on_playstore.yml
     secrets: inherit
 
+  check-native:
+    uses: ./.github/workflows/check_native_changes.yml
+
   decide-action:
     runs-on: ubuntu-latest
-    needs: check-version
+    needs: [check-version, check-native]
     outputs:
       action: ${{ steps.decide.outputs.action }}
       version_code: ${{ needs.check-version.outputs.version_code }}
@@ -44,19 +45,37 @@ jobs:
       - id: decide
         run: |
           VERSION_EXISTS="${{ needs.check-version.outputs.version_exists }}"
+          HAS_NATIVE="${{ needs.check-native.outputs.has_native_changes }}"
           FORCE_PATCH="${{ github.event.inputs.force_patch }}"
           FORCE_RELEASE="${{ github.event.inputs.force_release }}"
 
+          echo "📊 تحليل الوضع:"
+          echo "   الإصدار موجود: $VERSION_EXISTS"
+          echo "   تغييرات Native: $HAS_NATIVE"
+          echo "   force_patch: $FORCE_PATCH"
+          echo "   force_release: $FORCE_RELEASE"
+
           if [ "$FORCE_PATCH" == "true" ]; then
+            echo "🔧 Patch (فرض)"
             echo "action=patch" >> $GITHUB_OUTPUT
           elif [ "$FORCE_RELEASE" == "true" ]; then
+            echo "📦 Release (فرض)"
+            echo "action=release" >> $GITHUB_OUTPUT
+          elif [ "$HAS_NATIVE" == "true" ] && [ "$VERSION_EXISTS" == "true" ]; then
+            echo "❌ خطأ: الإصدار $VERSION_CODE موجود على Google Play وتوجد تغييرات Native"
+            echo "   👉 يجب زيادة versionCode في android/app/build.gradle.kts"
+            echo "   👉 ثم commit وpush مرة أخرى"
+            exit 1
+          elif [ "$HAS_NATIVE" == "true" ]; then
+            echo "📦 توجد تغييرات Native والإصدار غير موجود → Release جديد (Shorebird + Google Play)"
             echo "action=release" >> $GITHUB_OUTPUT
           elif [ "$VERSION_EXISTS" == "true" ]; then
+            echo "🔧 الإصدار موجود ولا توجد تغييرات Native → Patch"
             echo "action=patch" >> $GITHUB_OUTPUT
           else
+            echo "📦 الإصدار غير موجود ولا توجد تغييرات Native → Release جديد"
             echo "action=release" >> $GITHUB_OUTPUT
           fi
-
   patch:
     needs: decide-action
     if: ${{ needs.decide-action.outputs.action == 'patch' }}
@@ -65,7 +84,6 @@ jobs:
       version_code: ${{ needs.decide-action.outputs.version_code }}
       version_name: ${{ needs.decide-action.outputs.version_name }}
     secrets: inherit
-
   release:
     needs: decide-action
     if: ${{ needs.decide-action.outputs.action == 'release' }}
@@ -78,10 +96,12 @@ jobs:
 
   summary:
     runs-on: ubuntu-latest
-    needs: [check-version, decide-action, patch, release]
+    needs: [check-version, check-native, decide-action, patch, release]
     if: always()
     steps:
       - run: |
-          echo "📋 ملخص:"
-          echo "   الإصدار: ${{ needs.decide-action.outputs.version_code }}"
-          echo "   العملية: ${{ needs.decide-action.outputs.action }}"
+          echo "📋 ملخص التوزيع:"
+          echo "   الإصدار: ${{ needs.decide-action.outputs.version_code }} (${{ needs.decide-action.outputs.version_name }})"
+          echo "   موجود على Play Store: ${{ needs.decide-action.outputs.version_exists }}"
+          echo "   تغييرات Native: ${{ needs.check-native.outputs.has_native_changes }}"
+          echo "   العملية المُنفذة: ${{ needs.decide-action.outputs.action }}"
