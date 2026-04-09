@@ -78,6 +78,8 @@ jobs:
             shorebird-${{ runner.os }}-${{ hashFiles('pubspec.lock') }}-
             shorebird-${{ runner.os }}-
 
+      - uses: shorebirdtech/setup-shorebird@v1
+
       - name: Cache Build Outputs
         uses: actions/cache@v4
         with:
