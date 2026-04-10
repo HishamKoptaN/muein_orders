@@ -111,16 +111,15 @@ jobs:
             echo "⚠️ API Key file غير موجود، سيتم استخدام xcodebuild manual signing"
           fi
 
+          # ملاحظة: --export-options-plist مع signingStyle=automatic
+          # يستخدم App Store Connect API من Xcode preferences
+          # تأكد من أن الـ API Key مضافة في Xcode → Preferences → Accounts
           shorebird release ios \
             --flutter-version=3.41.2 \
             --dart-define=ENV=prod \
             --flavor=prod \
             -- \
-            --export-options-plist=ios/ExportOptions.plist \
-            -allowProvisioningUpdates \
-            -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
-            -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
-            -authenticationKeyPath "$APP_STORE_CONNECT_API_KEY_PATH"
+            --export-options-plist=ios/ExportOptions.plist
 
       - env:
           APP_STORE_CONNECT_API_KEY_PATH: ${{ env.APP_STORE_CONNECT_API_KEY_PATH }}
