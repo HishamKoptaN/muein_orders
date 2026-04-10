@@ -4,7 +4,7 @@ on:
   workflow_call:
     outputs:
       version_exists:
-        description: "Whether the version already exists on App Store"
+        description: "Whether the version already exists on Google Play"
         value: ${{ jobs.check-version.outputs.version_exists }}
       version_code:
         description: "Current version code"
@@ -12,6 +12,8 @@ on:
       version_name:
         description: "Current version name"
         value: ${{ jobs.check-version.outputs.version_name }}
+  workflow_dispatch:
+
 jobs:
   check-version:
     runs-on: ubuntu-latest
@@ -24,9 +26,8 @@ jobs:
 
       - id: get-version
         run: |
-          # استخراج versionCode و versionName من pubspec.yaml
-          VERSION_CODE=$(grep -oP 'version:\s*\K[0-9]+\.[0-9]+\.[0-9]+\+[0-9]+' pubspec.yaml | grep -oP '\+\K[0-9]+' || echo "1")
-          VERSION_NAME=$(grep -oP 'version:\s*\K[0-9]+\.[0-9]+\.[0-9]+' pubspec.yaml)
+          VERSION_CODE=$(grep -oP 'versionCode\s*=\s*\K\d+' android/app/build.gradle.kts)
+          VERSION_NAME=$(grep -oP 'versionName\s*=\s*"\K[^"]+' android/app/build.gradle.kts)
 
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
@@ -35,57 +36,113 @@ jobs:
           echo "   versionCode: $VERSION_CODE"
           echo "   versionName: $VERSION_NAME"
 
-      - name: Check Version on App Store Connect
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache Python Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('.github/workflows/check_version_on_google_play_store.yml') }}
+          restore-keys: pip-${{ runner.os }}-
+
+      - name: Install Dependencies
+        run: |
+          pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
+
+      - name: Check Version on Google Play
         id: check-version
         env:
-          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-          BUNDLE_ID: com.muein.orders
-          VERSION_CODE: ${{ steps.get-version.outputs.version_code }}
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          PACKAGE_NAME: com.muein.orders
         run: |
-          echo "🔍 جاري فحص الإصدار على App Store Connect..."
-          echo "   Bundle ID: $BUNDLE_ID"
-          echo "   versionCode: $VERSION_CODE"
+          python3 << 'EOF'
+          import json
+          import os
+          import sys
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
 
-          # إنشاء JWT Token للمصادقة
-          JWT_HEADER=$(echo -n '{"alg":"ES256","kid":"'$APP_STORE_CONNECT_KEY_ID'","typ":"JWT"}' | base64 -w0 | tr '+/' '-_' | tr -d '=')
-          JWT_PAYLOAD=$(echo -n '{"iss":"'$APP_STORE_CONNECT_ISSUER_ID'","iat":'$(date +%s)',"exp":'$(($(date +%s) + 1200))',"aud":"appstoreconnect-v1"}' | base64 -w0 | tr '+/' '-_' | tr -d '=')
-          JWT_SIGNING_INPUT="$JWT_HEADER.$JWT_PAYLOAD"
+          package_name = os.environ['PACKAGE_NAME']
+          current_version_code = int('${{ steps.get-version.outputs.version_code }}')
+          credentials_json = os.environ['GOOGLE_PLAY_SERVICE_ACCOUNT_JSON']
 
-          # كتابة المفتاح الخاص في ملف مؤقت
-          echo "$APP_STORE_CONNECT_API_KEY" > /tmp/asc_key.p8
+          try:
+              credentials_info = json.loads(credentials_json)
+              credentials = service_account.Credentials.from_service_account_info(
+                  credentials_info,
+                  scopes=['https://www.googleapis.com/auth/androidpublisher']
+              )
 
-          # توقيع الـ JWT
-          JWT_SIGNATURE=$(openssl dgst -sha256 -sign /tmp/asc_key.p8 -binary <<< "$JWT_SIGNING_INPUT" | base64 -w0 | tr '+/' '-_' | tr -d '=')
+              service = build('androidpublisher', 'v3', credentials=credentials)
+              app_edit = service.edits().insert(packageName=package_name).execute()
+              edit_id = app_edit['id']
 
-          # حذف الملف المؤقت
-          rm /tmp/asc_key.p8
+              tracks = ['internal', 'alpha', 'beta', 'production']
+              all_versions = set()
 
-          JWT_TOKEN="$JWT_HEADER.$JWT_PAYLOAD.$JWT_SIGNATURE"
+              for track in tracks:
+                  try:
+                      print(f"🔍 جاري فحص القناة: {track}")
+                      track_info = service.edits().tracks().get(
+                          packageName=package_name,
+                          editId=edit_id,
+                          track=track
+                      ).execute()
 
-          # البحث عن التطبيق
-          APP_RESPONSE=$(curl -s -H "Authorization: Bearer $JWT_TOKEN" \
-            "https://api.appstoreconnect.apple.com/v1/apps?filter[bundleId]=$BUNDLE_ID")
+                      print(f"📋 معلومات القناة {track}: {json.dumps(track_info, indent=2)[:500]}")
 
-          APP_ID=$(echo "$APP_RESPONSE" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+                      if 'releases' in track_info:
+                          print(f"✅ وجدت {len(track_info['releases'])} releases في {track}")
+                          for release in track_info['releases']:
+                              print(f"   Release: {release.get('name', 'N/A')}, status: {release.get('status', 'N/A')}")
+                              if 'versionCodes' in release:
+                                  for vc in release['versionCodes']:
+                                      all_versions.add(int(vc))
+                                      print(f"   → versionCode: {vc}")
+                      else:
+                          print(f"⚠️  لا توجد releases في القناة {track}")
+                  except Exception as e:
+                      print(f"❌ خطأ في جلب معلومات القناة {track}: {e}")
+                      import traceback
+                      traceback.print_exc()
+                      continue
 
-          if [ -z "$APP_ID" ]; then
-            echo "⚠️ التطبيق غير موجود على App Store Connect"
-            echo "exists=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
+              service.edits().delete(
+                  packageName=package_name,
+                  editId=edit_id
+              ).execute()
 
-          # البحث عن الإصدارات
-          VERSIONS_RESPONSE=$(curl -s -H "Authorization: Bearer $JWT_TOKEN" \
-            "https://api.appstoreconnect.apple.com/v1/apps/$APP_ID/appStoreVersions")
+              if current_version_code in all_versions:
+                  print(f"⚠️  الإصدار {current_version_code} موجود بالفعل على Google Play!")
+                  print("📋 الإصدارات الموجودة:", sorted(all_versions))
+                  print("exists=true")
+                  with open(os.environ.get('GITHUB_OUTPUT', '/dev/null'), 'a') as f:
+                      f.write("exists=true\n")
+                  sys.exit(0)
+              else:
+                  print(f"✅ الإصدار {current_version_code} غير موجود على Google Play")
+                  print("📋 الإصدارات الموجودة:", sorted(all_versions) if all_versions else "لا توجد إصدارات")
+                  print("exists=false")
+                  with open(os.environ.get('GITHUB_OUTPUT', '/dev/null'), 'a') as f:
+                      f.write("exists=false\n")
+                  sys.exit(0)
 
-          EXISTS=$(echo "$VERSIONS_RESPONSE" | grep -q "versionString.*$VERSION_CODE" && echo "true" || echo "false")
+          except Exception as e:
+              print(f"❌ خطأ أثناء التحقق: {e}")
+              # في حالة الخطأ، نسمح بالاستمرار (false = لا يوجد)
+              print("exists=false")
+              with open(os.environ.get('GITHUB_OUTPUT', '/dev/null'), 'a') as f:
+                  f.write("exists=false\n")
+              sys.exit(0)
+          EOF
 
-          echo "exists=$EXISTS" >> $GITHUB_OUTPUT
-
-          if [ "$EXISTS" == "true" ]; then
-            echo "⚠️ الإصدار $VERSION_CODE موجود بالفعل على App Store Connect!"
+      - name: Report Result
+        run: |
+          if [ "${{ steps.check-version.outputs.exists }}" == "true" ]; then
+            echo "🛑 سيتم إيقاف التوزيع - الإصدار موجود بالفعل"
           else
-            echo "✅ الإصدار $VERSION_CODE غير موجود على App Store Connect"
+            echo "✅ يمكن المتابعة بالتوزيع - الإصدار غير موجود"
           fi
