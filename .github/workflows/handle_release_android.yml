@@ -29,7 +29,7 @@ jobs:
 
   bump-version:
     if: inputs.action == 'bump-and-release'
-    uses: ./.github/workflows/bump_version_android.yml
+    uses: ./.github/workflows/bump_android_version_code.yml
     with:
       current_version_code: ${{ inputs.version_code }}
     secrets: inherit
