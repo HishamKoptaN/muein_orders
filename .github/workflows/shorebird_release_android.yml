@@ -106,8 +106,7 @@ jobs:
           storeFile=muein_orders.jks
           EOF
 
-      - name: Shorebird Release with Fallback
-        id: shorebird-release
+      - id: shorebird-release
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
@@ -135,18 +134,14 @@ jobs:
               exit 1
             fi
           fi
-
-      - name: Build AAB Only (if release exists)
-        if: steps.shorebird-release.outputs.release_built == 'false'
+      - if: steps.shorebird-release.outputs.release_built == 'false'
         run: |
           echo "� بناء AAB فقط (بدون إنشاء Shorebird release)..."
           flutter build appbundle \
             --dart-define=ENV=prod \
             --flavor=prod \
             --release
-
-      - name: Upload to Google Play
-        uses: r0adkll/upload-google-play@v1
+      - uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
           packageName: com.muein.orders
@@ -154,8 +149,7 @@ jobs:
           track: ${{ env.TRACK }}
           status: draft
 
-      - name: Report Release Success
-        run: |
+      - run: |
           echo "✅ تم إنشاء الإصدار ورفعه بنجاح!"
           echo "   الإصدار: $VERSION_CODE ($VERSION_NAME)"
           echo "   القناة: ${{ env.TRACK }}"

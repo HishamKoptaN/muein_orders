@@ -1,5 +1,4 @@
 name: Check Version on App Store Connect
-
 on:
   workflow_call:
     outputs:
@@ -13,7 +12,6 @@ on:
         description: "Current version name"
         value: ${{ jobs.check-version.outputs.version_name }}
   workflow_dispatch:
-
 jobs:
   check-version:
     runs-on: ubuntu-latest
@@ -53,17 +51,12 @@ jobs:
           echo "   versionName: $VERSION_NAME"
           echo "   versionCode: $VERSION_CODE"
 
-          # إنشاء JWT Token للمصادقة
           JWT_HEADER=$(echo -n '{"alg":"ES256","kid":"'$APP_STORE_CONNECT_KEY_ID'","typ":"JWT"}' | base64 -w0 | tr '+/' '-_' | tr -d '=')
           NOW=$(date +%s)
           EXP=$((NOW + 1200))
           JWT_PAYLOAD=$(echo -n '{"iss":"'$APP_STORE_CONNECT_ISSUER_ID'","iat":'$NOW',"exp":'$EXP',"aud":"appstoreconnect-v1"}' | base64 -w0 | tr '+/' '-_' | tr -d '=')
           JWT_SIGNING_INPUT="$JWT_HEADER.$JWT_PAYLOAD"
-
-          # كتابة المفتاح الخاص في ملف مؤقت
           echo "$APP_STORE_CONNECT_API_KEY" | tr ' ' '\n' | sed 's/-----BEGIN-----/-----BEGIN EC PRIVATE KEY-----/' | sed 's/-----END-----/-----END EC PRIVATE KEY-----/' > /tmp/asc_key.p8
-
-          # توقيع الـ JWT باستخدام OpenSSL
           JWT_SIGNATURE=$(openssl dgst -sha256 -sign /tmp/asc_key.p8 -binary < <(echo -n "$JWT_SIGNING_INPUT") 2>/dev/null | base64 -w0 | tr '+/' '-_' | tr -d '=')
           rm -f /tmp/asc_key.p8
 
@@ -75,7 +68,6 @@ jobs:
 
           JWT_TOKEN="$JWT_HEADER.$JWT_PAYLOAD.$JWT_SIGNATURE"
 
-          # البحث عن التطبيق
           APP_RESPONSE=$(curl -s -H "Authorization: Bearer $JWT_TOKEN" \
             "https://api.appstoreconnect.apple.com/v1/apps?filter[bundleId]=$BUNDLE_ID")
 
@@ -86,13 +78,9 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
             exit 0
           fi
-
           echo "✅ تم العثور على التطبيق (ID: $APP_ID)"
-
-          # البحث عن الإصدارات
           VERSIONS_RESPONSE=$(curl -s -H "Authorization: Bearer $JWT_TOKEN" \
             "https://api.appstoreconnect.apple.com/v1/apps/$APP_ID/appStoreVersions")
-
           EXISTS=$(echo "$VERSIONS_RESPONSE" | grep -q "versionString.*$VERSION_NAME" && echo "true" || echo "false")
 
           echo "exists=$EXISTS" >> $GITHUB_OUTPUT

@@ -75,25 +75,39 @@ jobs:
             echo "action=release" >> $GITHUB_OUTPUT
           fi
 
-  handle-patch:
+  patch:
     needs: decide-action
     if: ${{ needs.decide-action.outputs.action == 'patch' }}
-    uses: ./.github/workflows/handle_patch_ios.yml
+    uses: ./.github/workflows/shorebird_patch_ios.yml
     with:
       version_code: ${{ needs.decide-action.outputs.version_code }}
       version_name: ${{ needs.decide-action.outputs.version_name }}
-      has_native_changes: ${{ needs.check-native.outputs.has_native_changes }}
-      version_exists: ${{ needs.check-version.outputs.version_exists }}
+    secrets: inherit
+
+  release:
+    needs: decide-action
+    if: ${{ needs.decide-action.outputs.action == 'release' }}
+    uses: ./.github/workflows/shorebird_release_ios.yml
+    with:
+      version_code: ${{ needs.decide-action.outputs.version_code }}
+      version_name: ${{ needs.decide-action.outputs.version_name }}
       track: ${{ github.event.inputs.track || 'testflight' }}
     secrets: inherit
 
-  handle-release:
+  bump-version:
     needs: decide-action
-    if: ${{ needs.decide-action.outputs.action == 'release' || needs.decide-action.outputs.action == 'bump-and-release' }}
-    uses: ./.github/workflows/handle_release_ios.yml
+    if: ${{ needs.decide-action.outputs.action == 'bump-and-release' }}
+    uses: ./.github/workflows/bump_version.yml
     with:
-      action: ${{ needs.decide-action.outputs.action }}
-      version_code: ${{ needs.decide-action.outputs.version_code }}
+      current_version_code: ${{ needs.decide-action.outputs.version_code }}
+    secrets: inherit
+
+  release-after-bump:
+    needs: [decide-action, bump-version]
+    if: ${{ needs.decide-action.outputs.action == 'bump-and-release' }}
+    uses: ./.github/workflows/shorebird_release_ios.yml
+    with:
+      version_code: ${{ needs.bump-version.outputs.new_version_code }}
       version_name: ${{ needs.decide-action.outputs.version_name }}
       track: ${{ github.event.inputs.track || 'testflight' }}
     secrets: inherit
@@ -101,7 +115,15 @@ jobs:
   summary:
     runs-on: ubuntu-latest
     needs:
-      [check-version, check-native, decide-action, handle-patch, handle-release]
+      [
+        check-version,
+        check-native,
+        decide-action,
+        patch,
+        release,
+        bump-version,
+        release-after-bump,
+      ]
     if: always()
     steps:
       - run: |
