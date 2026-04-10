@@ -50,7 +50,6 @@ jobs:
             ~/Library/Developer/Xcode/DerivedData
           key: ios-deps-${{ hashFiles('ios/Podfile.lock') }}-macos
           restore-keys: ios-deps-macos-
-
       - uses: actions/cache@v4
         with:
           path: |
@@ -58,9 +57,7 @@ jobs:
             ~/.shorebird
           key: shorebird-macos-${{ hashFiles('pubspec.lock', 'shorebird.yaml') }}
           restore-keys: shorebird-macos-
-
       - uses: shorebirdtech/setup-shorebird@v1
-
       - uses: actions/cache@v4
         with:
           path: |
@@ -68,88 +65,67 @@ jobs:
             ios/build
           key: ios-build-${{ github.sha }}-${{ inputs.version_code }}-macos
           restore-keys: ios-build-macos-
-
       - run: flutter pub get
-
       - run: |
           cd ios
           pod install --repo-update
-
       - env:
-          P12_BASE64: ${{ secrets.IOS_P12_BASE64 }}
-          P12_PASSWORD: ${{ secrets.IOS_P12_PASSWORD }}
-          PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+          APP_STORE_CONNECT_API_KEY_BASE64: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
         run: |
-          echo "🔐 إعداد شهادة التوقيع (Manual Signing)..."
+          echo "🔐 إعداد App Store Connect API Signing..."
 
-          # Debug: التحقق من وجود Secrets (بدون عرض المحتوى)
+          # Debug: التحقق من وجود Secrets
           echo "🔍 التحقق من Secrets..."
-          if [ -z "$P12_BASE64" ]; then echo "❌ IOS_P12_BASE64 غير موجود!"; exit 1; fi
-          if [ -z "$P12_PASSWORD" ]; then echo "❌ IOS_P12_PASSWORD غير موجود!"; exit 1; fi
-          if [ -z "$PROVISIONING_PROFILE_BASE64" ]; then echo "❌ IOS_PROVISIONING_PROFILE_BASE64 غير موجود!"; exit 1; fi
+          if [ -z "$APP_STORE_CONNECT_API_KEY_BASE64" ]; then echo "❌ APP_STORE_CONNECT_API_KEY_BASE64 غير موجود!"; exit 1; fi
+          if [ -z "$APP_STORE_CONNECT_ISSUER_ID" ]; then echo "❌ APP_STORE_CONNECT_ISSUER_ID غير موجود!"; exit 1; fi
+          if [ -z "$APP_STORE_CONNECT_KEY_ID" ]; then echo "❌ APP_STORE_CONNECT_KEY_ID غير موجود!"; exit 1; fi
           echo "✅ جميع Secrets موجودة"
 
-          # إنشاء Keychain مؤقت
-          KEYCHAIN_PATH="$RUNNER_TEMP/keychain.keychain"
-          KEYCHAIN_PASSWORD="temp_password"
+          # إنشاء ملف API Key
+          mkdir -p ~/private_keys
+          echo "$APP_STORE_CONNECT_API_KEY_BASE64" | base64 --decode > ~/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
 
-          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-          security set-keychain-settings -lut 7200 "$KEYCHAIN_PATH"
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          # تعيين متغيرات البيئة للـ xcodebuild
+          echo "APP_STORE_CONNECT_API_KEY_PATH=$HOME/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8" >> $GITHUB_ENV
+          echo "APP_STORE_CONNECT_KEY_ID=${APP_STORE_CONNECT_KEY_ID}" >> $GITHUB_ENV
+          echo "APP_STORE_CONNECT_ISSUER_ID=${APP_STORE_CONNECT_ISSUER_ID}" >> $GITHUB_ENV
 
-          # استيراد الشهادة
-          echo "$P12_BASE64" | base64 --decode > certificate.p12
-          security import certificate.p12 -k "$KEYCHAIN_PATH" -P "$P12_PASSWORD" -T /usr/bin/codesign || {
-            echo "❌ فشل استيراد الشهادة!"
-            exit 1
-          }
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-
-          # تثبيت Provisioning Profile (بحفظه بـ UUID كاسم ملف)
-          echo "$PROVISIONING_PROFILE_BASE64" | base64 --decode > profile.mobileprovision
-
-          # استخراج UUID من الـ profile
-          UUID=$(security cms -D -i profile.mobileprovision 2>/dev/null | /usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin 2>/dev/null || echo "")
-
-          if [ -z "$UUID" ]; then
-            echo "⚠️ لم يتم العثور على UUID، سيتم استخدام اسم افتراضي"
-            UUID="profile"
-          fi
-
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/${UUID}.mobileprovision
-
-          echo "✅ Provisioning Profile UUID: $UUID"
-
-          # تفعيل Keychain
-          security list-keychain -d user -s "$KEYCHAIN_PATH" $(security list-keychains -d user | tr -d '"')
-
-          # Debug: التحقق من الإعدادات
-          echo "🔍 التحقق من الشهادات المتاحة:"
-          security find-identity -v -p codesigning || true
-          echo "🔍 التحقق من Provisioning Profiles:"
-          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ || true
-
-          echo "✅ تم إعداد الشهادة و Provisioning Profile"
+          echo "✅ تم إعداد App Store Connect API Signing"
 
       - env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+          APP_STORE_CONNECT_API_KEY_PATH: ${{ env.APP_STORE_CONNECT_API_KEY_PATH }}
+          APP_STORE_CONNECT_KEY_ID: ${{ env.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ env.APP_STORE_CONNECT_ISSUER_ID }}
         run: |
           echo "📦 إنشاء Shorebird Release iOS..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
-          echo "   استخدام Manual Code Signing..."
+          echo "   استخدام Automatic Code Signing (App Store Connect API)..."
+
+          # التحقق من وجود ملف API Key
+          if [ -f "$APP_STORE_CONNECT_API_KEY_PATH" ]; then
+            echo "✅ API Key file موجود: $APP_STORE_CONNECT_API_KEY_PATH"
+          else
+            echo "⚠️ API Key file غير موجود، سيتم استخدام xcodebuild manual signing"
+          fi
 
           shorebird release ios \
             --flutter-version=3.41.2 \
             --dart-define=ENV=prod \
             --flavor=prod \
             -- \
-            --export-options-plist=ios/ExportOptions.plist
+            --export-options-plist=ios/ExportOptions.plist \
+            -allowProvisioningUpdates \
+            -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
+            -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
+            -authenticationKeyPath "$APP_STORE_CONNECT_API_KEY_PATH"
 
       - env:
-          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY_PATH: ${{ env.APP_STORE_CONNECT_API_KEY_PATH }}
+          APP_STORE_CONNECT_KEY_ID: ${{ env.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ env.APP_STORE_CONNECT_ISSUER_ID }}
         run: |
           echo "📤 رفع إلى App Store Connect..."
           echo "   القناة: $TRACK"

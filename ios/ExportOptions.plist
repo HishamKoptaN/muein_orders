@@ -11,10 +11,8 @@
 		<key>com.muein.orders.dev</key>
 		<string>Muein Orders Dev ios_app_store</string>
 	</dict>
-	<key>signingCertificate</key>
-	<string>Apple Distribution</string>
 	<key>signingStyle</key>
-	<string>manual</string>
+	<string>automatic</string>
 	<key>teamID</key>
 	<string>YRJU368HTT</string>
 </dict>
