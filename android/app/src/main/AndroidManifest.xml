@@ -2,8 +2,7 @@
   <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-  <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+  <!-- تم إزالة صلاحية الموقع في الخلفية - نستخدم الموقع الأمامي فقط -->
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
   <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -26,7 +25,7 @@
         <data android:host="www.mueinorders.com"/>
       </intent-filter>
     </activity>
-    <service android:name="com.baseflow.geolocator.GeolocatorLocationService" android:foregroundServiceType="location" android:exported="false"/>
+    <!-- تم إزالة خدمة الموقع في الخلفية - نستخدم الموقع الأمامي فقط -->
     <meta-data android:name="flutterEmbedding" android:value="2"/>
   </application>
   <queries>

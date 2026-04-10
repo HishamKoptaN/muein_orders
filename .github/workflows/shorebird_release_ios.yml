@@ -58,6 +58,21 @@ jobs:
           key: shorebird-macos-${{ hashFiles('pubspec.lock', 'shorebird.yaml') }}
           restore-keys: shorebird-macos-
       - uses: shorebirdtech/setup-shorebird@v1
+
+      - name: Install Apple Certificate
+        uses: apple-actions/import-codesign-certs@v2
+        with:
+          p12-file-base64: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_P12 }}
+          p12-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+
+      - name: Install Provisioning Profile
+        uses: apple-actions/download-provisioning-profiles@v1
+        with:
+          bundle-id: com.muein.orders
+          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          api-private-key: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
+
       - uses: actions/cache@v4
         with:
           path: |
@@ -111,9 +126,6 @@ jobs:
             echo "⚠️ API Key file غير موجود، سيتم استخدام xcodebuild manual signing"
           fi
 
-          # ملاحظة: --export-options-plist مع signingStyle=automatic
-          # يستخدم App Store Connect API من Xcode preferences
-          # تأكد من أن الـ API Key مضافة في Xcode → Preferences → Accounts
           shorebird release ios \
             --flutter-version=3.41.2 \
             --dart-define=ENV=prod \

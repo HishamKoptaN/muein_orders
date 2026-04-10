@@ -4,15 +4,10 @@
 <dict>
 	<key>method</key>
 	<string>app-store</string>
-	<key>provisioningProfiles</key>
-	<dict>
-		<key>com.muein.orders</key>
-		<string>Muein Orders ios_app_store</string>
-		<key>com.muein.orders.dev</key>
-		<string>Muein Orders Dev ios_app_store</string>
-	</dict>
 	<key>signingStyle</key>
 	<string>automatic</string>
+	<key>uploadSymbols</key>
+	<true/>
 	<key>teamID</key>
 	<string>YRJU368HTT</string>
 </dict>
