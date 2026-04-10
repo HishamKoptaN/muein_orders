@@ -1,13 +1,10 @@
 name: Deploy to App Store (Direct Build)
-
 on:
   push:
     branches:
       - prod
   workflow_dispatch:
-
 jobs:
-  # استخراج الإصدار فقط
   get-version:
     runs-on: ubuntu-latest
     outputs:
@@ -22,8 +19,6 @@ jobs:
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
           echo "📱 الإصدار: $VERSION_NAME+$VERSION_CODE"
-
-  # بناء iOS مباشرة
   release:
     needs: get-version
     uses: ./.github/workflows/shorebird_release_ios.yml
