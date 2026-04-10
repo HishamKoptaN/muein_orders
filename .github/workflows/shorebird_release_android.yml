@@ -147,7 +147,7 @@ jobs:
           packageName: com.muein.orders
           releaseFiles: build/app/outputs/bundle/prodRelease/app-prod-release.aab
           track: ${{ env.TRACK }}
-          status: draft
+          status: completed
 
       - run: |
           echo "✅ تم إنشاء الإصدار ورفعه بنجاح!"

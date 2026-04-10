@@ -105,7 +105,6 @@ jobs:
           shorebird release ios \
             --dart-define=ENV=prod \
             --flavor=prod \
-            --artifact=ipa \
             -- \
             --export-method=app-store \
             --allow-provisioning-updates

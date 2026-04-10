@@ -84,9 +84,32 @@ jobs:
             --flavor=prod \
             --release-version=${{ inputs.version_name }}+${{ inputs.version_code }} \
             --dry-run 2>&1 | tee patch_output.log; then
-            
+
             if grep -q "Your app contains native changes, which cannot be applied with a patch" patch_output.log; then
               echo "❌ فشل: توجد تغييرات Native!"
+              echo ""
+              echo "📋 التغييرات المكتشفة:"
+              echo "═══════════════════════════════════════════════════"
+
+              # عرض الملفات المتغيرة
+              echo "📝 الملفات المتغيرة (Changed files):"
+              grep -A 20 "Changed files:" patch_output.log | head -25 || echo "   (لم يتم العثور على قائمة الملفات)"
+              echo ""
+
+              # عرض الفروقات الحرجة
+              echo "⚠️ الفروقات الحرجة (Breaking differences):"
+              grep -A 50 "Breaking differences" patch_output.log | head -55 || echo "   (لم يتم العثور على فروقات حرجة)"
+              echo ""
+
+              # عرض ملخص التغييرات
+              echo "📊 ملخص التغييرات Native:"
+              echo "   • التغييرات في DEX files = تغييرات في Dependencies أو Native code"
+              echo "   • Class removed = حذف classes أو libraries"
+              echo "   • Class signature changed = تغيير في واجهة الـ class"
+              echo ""
+              echo "💡 الحل: سيتم إنشاء إصدار جديد مع رقم بناء أعلى"
+              echo "═══════════════════════════════════════════════════"
+
               echo "requires_new_release=true" >> $GITHUB_OUTPUT
               exit 0
             else
