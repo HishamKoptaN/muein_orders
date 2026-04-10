@@ -1,4 +1,4 @@
-name: Deploy to App Store (Direct Build)
+name: Deploy to App Store
 on:
   push:
     branches:
