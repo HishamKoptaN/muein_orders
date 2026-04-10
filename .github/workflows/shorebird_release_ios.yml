@@ -75,44 +75,78 @@ jobs:
           cd ios
           pod install --repo-update
 
-      - name: Setup App Store Connect API Key
-        env:
-          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
-          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+      - env:
+          P12_BASE64: ${{ secrets.IOS_P12_BASE64 }}
+          P12_PASSWORD: ${{ secrets.IOS_P12_PASSWORD }}
+          PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
         run: |
-          echo "🔐 إعداد App Store Connect API..."
+          echo "🔐 إعداد شهادة التوقيع (Manual Signing)..."
 
-          # إنشاء ملف المفتاح الخاص
-          mkdir -p ~/.appstoreconnect/private_keys
-          echo "$APP_STORE_CONNECT_API_KEY" > ~/.appstoreconnect/private_keys/AuthKey_$APP_STORE_CONNECT_KEY_ID.p8
+          # Debug: التحقق من وجود Secrets (بدون عرض المحتوى)
+          echo "🔍 التحقق من Secrets..."
+          if [ -z "$P12_BASE64" ]; then echo "❌ IOS_P12_BASE64 غير موجود!"; exit 1; fi
+          if [ -z "$P12_PASSWORD" ]; then echo "❌ IOS_P12_PASSWORD غير موجود!"; exit 1; fi
+          if [ -z "$PROVISIONING_PROFILE_BASE64" ]; then echo "❌ IOS_PROVISIONING_PROFILE_BASE64 غير موجود!"; exit 1; fi
+          echo "✅ جميع Secrets موجودة"
 
-          echo "✅ تم إعداد API Key"
+          # إنشاء Keychain مؤقت
+          KEYCHAIN_PATH="$RUNNER_TEMP/keychain.keychain"
+          KEYCHAIN_PASSWORD="temp_password"
 
-      - name: Build IPA with Shorebird
-        env:
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 7200 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+
+          # استيراد الشهادة
+          echo "$P12_BASE64" | base64 --decode > certificate.p12
+          security import certificate.p12 -k "$KEYCHAIN_PATH" -P "$P12_PASSWORD" -T /usr/bin/codesign || {
+            echo "❌ فشل استيراد الشهادة!"
+            exit 1
+          }
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+
+          # تثبيت Provisioning Profile (بحفظه بـ UUID كاسم ملف)
+          echo "$PROVISIONING_PROFILE_BASE64" | base64 --decode > profile.mobileprovision
+
+          # استخراج UUID من الـ profile
+          UUID=$(security cms -D -i profile.mobileprovision 2>/dev/null | /usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin 2>/dev/null || echo "")
+
+          if [ -z "$UUID" ]; then
+            echo "⚠️ لم يتم العثور على UUID، سيتم استخدام اسم افتراضي"
+            UUID="profile"
+          fi
+
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/${UUID}.mobileprovision
+
+          echo "✅ Provisioning Profile UUID: $UUID"
+
+          # تفعيل Keychain
+          security list-keychain -d user -s "$KEYCHAIN_PATH" $(security list-keychains -d user | tr -d '"')
+
+          # Debug: التحقق من الإعدادات
+          echo "🔍 التحقق من الشهادات المتاحة:"
+          security find-identity -v -p codesigning || true
+          echo "🔍 التحقق من Provisioning Profiles:"
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ || true
+
+          echo "✅ تم إعداد الشهادة و Provisioning Profile"
+
+      - env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-          APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
-          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
         run: |
           echo "📦 إنشاء Shorebird Release iOS..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
-          echo "   استخدام Automatic Code Signing..."
-
-          # ضبط متغيرات البيئة للتوقيع التلقائي
-          export API_KEY_PATH="$HOME/.appstoreconnect/private_keys/AuthKey_$APP_STORE_CONNECT_KEY_ID.p8"
-
-          echo "🔧 إنشاء Shorebird Release مع توحيد Flutter 3.41.2..."
+          echo "   استخدام Manual Code Signing..."
 
           shorebird release ios \
             --flutter-version=3.41.2 \
             --dart-define=ENV=prod \
             --flavor=prod \
             -- \
-            --export-method=app-store
+            --export-options-plist=ios/ExportOptions.plist
 
-      - name: Upload to App Store Connect
-        env:
+      - env:
           APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
