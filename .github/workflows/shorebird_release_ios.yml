@@ -75,24 +75,36 @@ jobs:
           cd ios
           pod install --repo-update
 
-      - env:
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-        run: |
-          echo "🔐 إعداد توقيع iOS..."
-          # يمكن استخدام match أو توقيع يدوي
+      - name: Install Apple Certificate
+        uses: apple-actions/import-codesign-certs@v3
+        with:
+          p12-file-base64: ${{ secrets.APP_STORE_CERTIFICATE_P12 }}
+          p12-password: ${{ secrets.CERTIFICATE_PASSWORD }}
 
-      - env:
+      - name: Install Provisioning Profile
+        uses: apple-actions/download-provisioning-profiles@v1
+        with:
+          bundle-id: com.muein.orders
+          profile-type: APP_STORE
+          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          api-private-key: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+
+      - name: Build IPA with Shorebird
+        env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+
         run: |
           echo "📦 إنشاء Shorebird Release iOS..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
 
           shorebird release ios \
             --dart-define=ENV=prod \
-            --flavor=prod
+            --flavor=prod \
+            --artifact=ipa
 
-      - env:
+      - name: Upload to App Store Connect
+        env:
           APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
@@ -100,8 +112,18 @@ jobs:
           echo "📤 رفع إلى App Store Connect..."
           echo "   القناة: $TRACK"
 
-          # استخدام altool أو fastlane deliver
-          # xcrun altool --upload-app --type ios --file build/ios/ipa/*.ipa --apiKey ... --apiIssuer ...
+          # إنشاء ملف API Key مؤقت
+          echo "$APP_STORE_CONNECT_API_KEY" > /tmp/AuthKey_$APP_STORE_CONNECT_KEY_ID.p8
+
+          # رفع الـ IPA
+          xcrun altool --upload-app --type ios \
+            --file build/ios/ipa/*.ipa \
+            --apiKey "$APP_STORE_CONNECT_KEY_ID" \
+            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID" \
+            --verbose
+
+          # حذف ملف API Key
+          rm /tmp/AuthKey_$APP_STORE_CONNECT_KEY_ID.p8
 
           echo "✅ تم إنشاء الإصدار ورفعه بنجاح!"
           echo "   الإصدار: $VERSION_CODE ($VERSION_NAME)"

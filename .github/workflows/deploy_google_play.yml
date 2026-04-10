@@ -2,7 +2,7 @@ name: Deploy to Google Play
 on:
   push:
     branches:
-      - prod
+      - prods
   workflow_dispatch:
     inputs:
       track:

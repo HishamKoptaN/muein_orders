@@ -106,70 +106,44 @@ jobs:
           storeFile=muein_orders.jks
           EOF
 
-      - name: Check Shorebird Release Exists
-        id: check-release
+      - name: Shorebird Release with Fallback
+        id: shorebird-release
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
-          echo "🔍 التحقق من وجود إصدار Shorebird..."
-          echo "   للإصدار: $VERSION_NAME+$VERSION_CODE"
-
-          # جلب قائمة الإصدارات
-          echo "📋 جلب قائمة الإصدارات..."
-          shorebird releases list || true
-
-          # فحص باستخدام shorebird releases list --json إذا كان متوفراً
-          # أو استخدام grep مع أنماط متعددة
-          TARGET_VERSION="$VERSION_NAME+$VERSION_CODE"
-
-          # محاولة 1: فحص باستخدام grep مباشر
-          if shorebird releases list 2>/dev/null | grep -E "(android.*$TARGET_VERSION|$TARGET_VERSION.*android)" > /dev/null; then
-            echo "✅ الإصدار $TARGET_VERSION موجود (android) - سيتم التحميل"
-            echo "release_exists=true" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          # محاولة 2: فحص عام
-          if shorebird releases list 2>/dev/null | grep -F "$TARGET_VERSION" > /dev/null; then
-            echo "✅ الإصدار $TARGET_VERSION موجود - سيتم التحميل"
-            echo "release_exists=true" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          echo "❌ الإصدار غير موجود - سيتم البناء"
-          echo "release_exists=false" >> $GITHUB_OUTPUT
-
-      - name: Download Shorebird Release (if exists)
-        if: steps.check-release.outputs.release_exists == 'true'
-        env:
-          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-        run: |
-          echo "📥 تحميل إصدار Shorebird الموجود..."
-          echo "   للإصدار: $VERSION_NAME+$VERSION_CODE"
-
-          # إنشاء المجلد
-          mkdir -p build/app/outputs/bundle/prodRelease
-
-          # تحميل الإصدار باستخدام shorebird
-          shorebird releases download \
-            --version=$VERSION_NAME+$VERSION_CODE \
-            --platform=android \
-            --output=build/app/outputs/bundle/prodRelease/app-prod-release.aab
-
-      - name: Shorebird Release (if not exists)
-        if: steps.check-release.outputs.release_exists != 'true'
-        env:
-          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-        run: |
-          echo "📦 إنشاء Shorebird Release جديد..."
+          echo "� محاولة إنشاء Shorebird Release..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
-          shorebird release android \
+
+          # محاولة إنشاء الإصدار - إذا وجد يفشل، نحاول جلبه
+          if shorebird release android \
             --dart-define=ENV=prod \
             --flavor=prod \
-            --artifact=aab || {
-              echo "⚠️ فشل إنشاء الإصدار - ربما يوجد بالفعل؟"
+            --artifact=aab 2>&1 | tee release_output.log; then
+            echo "✅ تم إنشاء الإصدار بنجاح"
+            echo "release_built=true" >> $GITHUB_OUTPUT
+          else
+            # فحص إذا كان الفشل بسبب وجود الإصدار
+            if grep -q "existing android release" release_output.log || \
+               grep -q "It looks like you have an existing" release_output.log; then
+              echo "⚠️ الإصدار موجود بالفعل على Shorebird"
+              echo "release_built=false" >> $GITHUB_OUTPUT
+              # الخروج بنجاح لأن الإصدار موجود
+              exit 0
+            else
+              echo "❌ فشل إنشاء الإصدار لسبب آخر"
+              cat release_output.log
               exit 1
-            }
+            fi
+          fi
+
+      - name: Build AAB Only (if release exists)
+        if: steps.shorebird-release.outputs.release_built == 'false'
+        run: |
+          echo "� بناء AAB فقط (بدون إنشاء Shorebird release)..."
+          flutter build appbundle \
+            --dart-define=ENV=prod \
+            --flavor=prod \
+            --release
 
       - name: Upload to Google Play
         uses: r0adkll/upload-google-play@v1
