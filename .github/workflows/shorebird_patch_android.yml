@@ -1,4 +1,4 @@
-name: Shorebird Patch
+name: Shorebird Patch Android
 on:
   workflow_call:
     inputs:

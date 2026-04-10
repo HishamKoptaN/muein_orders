@@ -1,4 +1,4 @@
-name: Bump Version Code
+name: Bump Android Version Code
 on:
   workflow_call:
     inputs:

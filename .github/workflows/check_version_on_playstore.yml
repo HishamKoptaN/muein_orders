@@ -26,7 +26,6 @@ jobs:
 
       - id: get-version
         run: |
-          # استخراج versionCode و versionName من build.gradle.kts
           VERSION_CODE=$(grep -oP 'versionCode\s*=\s*\K\d+' android/app/build.gradle.kts)
           VERSION_NAME=$(grep -oP 'versionName\s*=\s*"\K[^"]+' android/app/build.gradle.kts)
 
@@ -66,27 +65,21 @@ jobs:
           from google.oauth2 import service_account
           from googleapiclient.discovery import build
 
-          # إعدادات
           package_name = os.environ['PACKAGE_NAME']
           current_version_code = int('${{ steps.get-version.outputs.version_code }}')
           credentials_json = os.environ['GOOGLE_PLAY_SERVICE_ACCOUNT_JSON']
 
           try:
-              # تحميل بيانات الاعتماد
               credentials_info = json.loads(credentials_json)
               credentials = service_account.Credentials.from_service_account_info(
                   credentials_info,
                   scopes=['https://www.googleapis.com/auth/androidpublisher']
               )
 
-              # بناء خدمة Google Play
               service = build('androidpublisher', 'v3', credentials=credentials)
-
-              # جلب معلومات التطبيق
               app_edit = service.edits().insert(packageName=package_name).execute()
               edit_id = app_edit['id']
 
-              # جلب قائمة الإصدارات من جميع القنوات
               tracks = ['internal', 'alpha', 'beta', 'production']
               all_versions = set()
 
@@ -117,13 +110,11 @@ jobs:
                       traceback.print_exc()
                       continue
 
-              # إلغاء التعديل (لا نحتاج لحفظه)
               service.edits().delete(
                   packageName=package_name,
                   editId=edit_id
               ).execute()
 
-              # التحقق مما إذا كان الإصدار موجوداً
               if current_version_code in all_versions:
                   print(f"⚠️  الإصدار {current_version_code} موجود بالفعل على Google Play!")
                   print("📋 الإصدارات الموجودة:", sorted(all_versions))

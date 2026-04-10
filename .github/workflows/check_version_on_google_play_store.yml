@@ -1,4 +1,4 @@
-name: Check Version on App Store
+name: Check Version on Google Play Store
 
 on:
   workflow_call:
@@ -12,7 +12,6 @@ on:
       version_name:
         description: "Current version name"
         value: ${{ jobs.check-version.outputs.version_name }}
-
 jobs:
   check-version:
     runs-on: ubuntu-latest

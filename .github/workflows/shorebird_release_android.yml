@@ -1,4 +1,4 @@
-name: Shorebird Release
+name: Shorebird Release Android
 on:
   workflow_call:
     inputs:
