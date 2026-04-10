@@ -20,7 +20,6 @@ class GradientBackground extends StatelessWidget {
   }
 }
 
-/// نسخة ثانية: لوح قابل لإعادة الاستخدام بنفس إعدادات Figma (لون ثابت)
 class FigmaRoundedPanel extends StatelessWidget {
   final double width;
   final double height;
