@@ -116,6 +116,7 @@ dev_dependencies:
   package_rename: ^1.7.1
   flutter_arb_translator: ^1.0.0
   drift_dev: ^2.28.0
+  flutter_flavorizr: ^2.2.3
 flutter:
   generate: true
   uses-material-design: true

@@ -1,0 +1,16 @@
+# dart run flutter_flavorizr
+flavors:
+  dev:
+    app:
+      name: "Muein Orders Dev"
+    android:
+      applicationId: "com.muein.orders.dev"
+    ios:
+      bundleId: "com.muein.orders.dev"
+  prod:
+    app:
+      name: "Muein Orders"
+    android:
+      applicationId: "com.muein.orders"
+    ios:
+      bundleId: "com.muein.orders"
