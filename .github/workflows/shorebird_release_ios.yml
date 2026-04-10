@@ -102,12 +102,14 @@ jobs:
           # ضبط متغيرات البيئة للتوقيع التلقائي
           export API_KEY_PATH="$HOME/.appstoreconnect/private_keys/AuthKey_$APP_STORE_CONNECT_KEY_ID.p8"
 
+          echo "🔧 إنشاء Shorebird Release مع توحيد Flutter 3.41.2..."
+
           shorebird release ios \
+            --flutter-version=3.41.2 \
             --dart-define=ENV=prod \
             --flavor=prod \
             -- \
-            --export-method=app-store \
-            --allow-provisioning-updates
+            --export-method=app-store
 
       - name: Upload to App Store Connect
         env:
