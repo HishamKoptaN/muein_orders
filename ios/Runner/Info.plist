@@ -66,5 +66,26 @@
       <string>UIInterfaceOrientationLandscapeLeft</string>
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+
+    <!-- أذونات الموقع الجغرافي -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>يحتاج التطبيق إلى الوصول إلى موقعك لتسجيل مكان توزيع المصاحف</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>يحتاج التطبيق إلى الوصول إلى موقعك لتسجيل مكان توزيع المصاحف</string>
+
+    <!-- أذونات الإشعارات -->
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>fetch</string>
+      <string>remote-notification</string>
+    </array>
+
+    <!-- أذونات الكاميرا والصور -->
+    <key>NSCameraUsageDescription</key>
+    <string>يحتاج التطبيق إلى الكاميرا لالتقاط صور توثيق التوزيع</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>يحتاج التطبيق إلى الوصول إلى مكتبة الصور لإرفاق صور التوزيع</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>يحتاج التطبيق إلى حفظ الصور في مكتبة الصور</string>
   </dict>
 </plist>

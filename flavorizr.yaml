@@ -1,16 +1,60 @@
-# dart run flutter_flavorizr
-flavors:
-  dev:
-    app:
-      name: "Muein Orders Dev"
-    android:
-      applicationId: "com.muein.orders.dev"
-    ios:
-      bundleId: "com.muein.orders.dev"
-  prod:
-    app:
-      name: "Muein Orders"
-    android:
-      applicationId: "com.muein.orders"
-    ios:
-      bundleId: "com.muein.orders"
+flavorizr:
+  flavors:
+    dev:
+      app:
+        name: "Muein Orders Dev"
+      android:
+        applicationId: "com.muein.orders.dev"
+      ios:
+        bundleId: "com.muein.orders.dev"
+    prod:
+      app:
+        name: "Muein Orders"
+      android:
+        applicationId: "com.muein.orders"
+      ios:
+        bundleId: "com.muein.orders"
+  instructions:
+    - assets:download
+    - assets:extract
+    - android:androidManifest
+    - android:flavorizrGradle
+    - android:buildGradle
+    - android:icons
+    - ios:podfile
+    - ios:xcconfig
+    - ios:buildTargets
+    - ios:schema
+    - ios:icons
+    - ios:plist
+    - assets:clean
+    - assets:download 
+    - assets:extract
+    - android:androidManifest
+    - android:flavorizrGradle
+    - android:buildGradle
+    - android:dummyAssets
+    - android:icons
+    - flutter:flavors
+    - flutter:app
+    - flutter:pages
+    - ios:podfile
+    - ios:xcconfig
+    - ios:buildTargets
+    - ios:schema
+    - ios:dummyAssets
+    - ios:icons
+    - ios:plist
+    - ios:launchScreen
+    - macos:podfile
+    - macos:xcconfig
+    - macos:configs
+    - macos:buildTargets
+    - macos:schema
+    - macos:dummyAssets
+    - macos:icons
+    - macos:plist
+    - google:firebase
+    - huawei:agconnect
+    - assets:clean
+    - ide:config
