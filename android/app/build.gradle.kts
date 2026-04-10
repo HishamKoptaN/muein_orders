@@ -28,7 +28,7 @@ android {
         applicationId = "com.muein.orders"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
-        versionCode = 4
+        versionCode = 5
         versionName = "1.0.0"
     }
     signingConfigs {
