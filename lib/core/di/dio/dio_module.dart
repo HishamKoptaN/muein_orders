@@ -68,6 +68,10 @@ abstract class DioModule {
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
         baseUrl: EnvConfig.config.authBaseUrl,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
       ),
     );
     dio.interceptors.addAll([

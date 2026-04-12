@@ -23,10 +23,16 @@ class _SignUpApi implements SignUpApi {
   Future<SignUpResModel> signUp(SignUpReqModel signUpReq) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Content-Type': 'application/json'};
+    _headers.removeWhere((k, v) => v == null);
     final _data = signUpReq;
     final _options = _setStreamType<SignUpResModel>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+      Options(
+            method: 'POST',
+            headers: _headers,
+            extra: _extra,
+            contentType: 'application/json',
+          )
           .compose(
             _dio.options,
             'sign-up',

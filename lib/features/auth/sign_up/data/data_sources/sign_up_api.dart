@@ -9,14 +9,12 @@ import '../models/sign_up_res_model.dart';
 
 part 'sign_up_api.g.dart';
 
-@RestApi(
-)
+@RestApi(headers: <String, dynamic>{'Content-Type': 'application/json'})
 @lazySingleton
 abstract class SignUpApi {
   @factoryMethod
   factory SignUpApi(@Named("authDio") Dio dio) = _SignUpApi;
+
   @POST('sign-up')
-  Future<SignUpResModel> signUp(
-    @Body() SignUpReqModel signUpReq,
-  );
+  Future<SignUpResModel> signUp(@Body() SignUpReqModel signUpReq);
 }
