@@ -32,7 +32,7 @@ jobs:
     secrets: inherit
 
   check-native:
-    uses: ./.github/workflows/check_native_changes.yml
+    uses: ./.github/workflows/check_native_changes_android.yml
 
   decide-action:
     runs-on: ubuntu-latest
@@ -47,6 +47,7 @@ jobs:
         run: |
           VERSION_EXISTS="${{ needs.check-version.outputs.version_exists }}"
           HAS_NATIVE="${{ needs.check-native.outputs.has_native_changes }}"
+          echo "   منصة: Android (Google Play)"
           FORCE_PATCH="${{ github.event.inputs.force_patch }}"
           FORCE_RELEASE="${{ github.event.inputs.force_release }}"
 

@@ -1,10 +1,10 @@
-name: Check Native Changes
+name: Check Native Changes - Android
 
 on:
   workflow_call:
     outputs:
       has_native_changes:
-        description: "Whether the commit contains native changes"
+        description: "Whether the commit contains Android native changes"
         value: ${{ jobs.check.outputs.has_native_changes }}
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
 
       - id: detect
         run: |
-          echo "🔍 فحص التغييرات النيتف في آخر commit..."
+          echo "🔍 فحص التغييرات النيتف (Android) في آخر commit..."
 
           # فحص آخر commit فقط
           NATIVE_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
@@ -29,13 +29,13 @@ jobs:
 
           HAS_NATIVE="false"
 
-          # فحص الملفات الحرجة - Platform directories
-          if echo "$NATIVE_FILES" | grep -qE "^(android/|ios/|linux/|macos/|windows/|web/)"; then
-            echo "   ⚠️ وجدت تغييرات في platform directories"
+          # فحص مجلد Android
+          if echo "$NATIVE_FILES" | grep -qE "^android/"; then
+            echo "   ⚠️ وجدت تغييرات في مجلد Android"
             HAS_NATIVE="true"
           fi
 
-          # فحص pubspec.yaml
+          # فحص pubspec.yaml (يؤثر على جميع المنصات)
           if echo "$NATIVE_FILES" | grep -qE "pubspec\.yaml|pubspec\.lock"; then
             echo "   ⚠️ وجدت تغييرات في pubspec.yaml/pubspec.lock (dependencies)"
             HAS_NATIVE="true"
@@ -47,12 +47,6 @@ jobs:
             HAS_NATIVE="true"
           fi
 
-          # فحص ملفات iOS
-          if echo "$NATIVE_FILES" | grep -qE "\.swift|\.m|\.h|Podfile|Info\.plist|Podfile\.lock"; then
-            echo "   ⚠️ وجدت تغييرات في iOS files"
-            HAS_NATIVE="true"
-          fi
-
           # فحص ملفات Shorebird.yaml
           if echo "$NATIVE_FILES" | grep -qE "shorebird\.yaml"; then
             echo "   ⚠️ وجدت تغييرات في shorebird.yaml"
@@ -60,9 +54,9 @@ jobs:
           fi
 
           if [ "$HAS_NATIVE" == "true" ]; then
-            echo "❌ توجد تغييرات Native - يجب إنشاء Release جديد"
+            echo "❌ توجد تغييرات Native (Android) - يجب إنشاء Release جديد"
           else
-            echo "✅ لا توجد تغييرات Native - يمكن استخدام Patch"
+            echo "✅ لا توجد تغييرات Native (Android) - يمكن استخدام Patch"
           fi
 
           echo "has_native_changes=$HAS_NATIVE" >> $GITHUB_OUTPUT

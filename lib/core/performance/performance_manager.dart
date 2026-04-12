@@ -5,21 +5,16 @@ import 'package:flutter/services.dart';
 class PerformanceManager {
   static bool _isInitialized = false;
 
-  /// Initialize performance optimizations
   static Future<void> initialize() async {
     if (_isInitialized) return;
 
     try {
-      // Enable performance overlay in debug mode
       if (kDebugMode) {
-        // Performance monitoring can be enabled here
-        debugPrint('Performance monitoring enabled');
+          debugPrint('Performance monitoring enabled');
       }
 
-      // Optimize system UI
       await _optimizeSystemUI();
 
-      // Set memory pressure callback
       _setupMemoryManagement();
 
       _isInitialized = true;
@@ -29,10 +24,8 @@ class PerformanceManager {
     }
   }
 
-  /// Optimize system UI for better performance
   static Future<void> _optimizeSystemUI() async {
     try {
-      // Set preferred orientations if needed
       await SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
