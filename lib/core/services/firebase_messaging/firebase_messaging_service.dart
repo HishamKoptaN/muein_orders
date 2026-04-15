@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -19,6 +20,7 @@ class FirebaseMessagingService {
     await FirebaseMessaging.instance.subscribeToTopic('all');
     log('subscribed To Topic all ');
   }
+
   //! معالج الإشعارات عند ورودها أثناء تشغيل التطبيق في الخلفية
   static Future<void> _firebaseMessagingBackgroundHandler(
     RemoteMessage message,
@@ -26,6 +28,7 @@ class FirebaseMessagingService {
     await Firebase.initializeApp();
     log('📩 رسالة إشعار في الخلفية: ${message.messageId}');
   }
+
   //! معالج فتح التطبيق من الإشعار
   void _handleMessageOpenedApp(RemoteMessage message) {
     log('📨 تم فتح التطبيق من خلال الإشعار: ${message.notification?.title}');
@@ -66,12 +69,23 @@ class FirebaseMessagingService {
         break;
     }
   }
+
   //! جلب FCM Token
   Future<String> getFcmToken() async {
     if (DeviceService.isDesktopPlatform()) {
       return '';
     }
     try {
+      // على iOS: انتظار APNS token أولاً
+      if (Platform.isIOS) {
+        final apnsToken = await _firebaseMessaging.getAPNSToken();
+        if (apnsToken == null) {
+          log('⚠️ APNS token غير متوفر بعد، سيتم إعادة المحاولة...');
+          return 'apns_token_not_ready';
+        }
+        log('📱 APNS Token: $apnsToken');
+      }
+
       final token = await _firebaseMessaging.getToken();
       if (token != null) {
         log('📌 تم جلب FCM Token: $token');
@@ -80,9 +94,11 @@ class FirebaseMessagingService {
         return 'no_fcm_token_available';
       }
     } catch (e) {
+      log('❌ خطأ في جلب FCM Token: $e');
       return e.toString();
     }
   }
+
   //! مراقبة تغييرات الـ Token
   Stream<String> get onTokenRefresh => _firebaseMessaging.onTokenRefresh;
 }

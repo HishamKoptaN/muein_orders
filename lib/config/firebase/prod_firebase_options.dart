@@ -37,7 +37,6 @@ class ProdFirebaseOptions {
     storageBucket: 'muein-d45f8.firebasestorage.app',
     measurementId: 'G-M12PBJYGS4',
   );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAyO0ohcyB4pFRdgDLfnLoAp4L7gojLudQ',
     appId: '1:999622758378:android:a13aa8baf6ea81c8aaec93',
@@ -48,15 +47,14 @@ class ProdFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAFxAHy7sh9RzpOfKFtmQ9jQyM65I_bpBA',
-    appId: '1:999622758378:ios:d693a7beb5e0afd6aaec93',
+    appId: '1:999622758378:ios:592c730673db37a9aaec93',
     messagingSenderId: '999622758378',
     projectId: 'muein-d45f8',
     storageBucket: 'muein-d45f8.firebasestorage.app',
     iosClientId:
-        '999622758378-589ffc1o5jvmh8t3ftcb5ffj08i7vi0h.apps.googleusercontent.com',
-    iosBundleId: 'com.example.mueinorders',
+        '999622758378-dfcv35fknjncdhqggf16s0bms07hiroq.apps.googleusercontent.com',
+    iosBundleId: 'com.muein.orders',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyAFxAHy7sh9RzpOfKFtmQ9jQyM65I_bpBA',
     appId: '1:999622758378:ios:80882356e235d72eaaec93',
@@ -67,7 +65,6 @@ class ProdFirebaseOptions {
         '999622758378-p87dbtf77lso5dsjmaun5a9khd13osbg.apps.googleusercontent.com',
     iosBundleId: 'com.muein.app.orders',
   );
-
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'AIzaSyDWUnTGf8bnsgRKdVRO4UNR3mtIm-9Gg1A',
     appId: '1:999622758378:web:796c218ff6fa60a3aaec93',
