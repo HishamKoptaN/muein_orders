@@ -16,7 +16,6 @@ import 'core/app_observer.dart';
 import 'core/config/app_initializer.dart';
 import 'core/di/dependency_injection.dart';
 import 'core/services/firebase_messaging/firebase_messaging_service.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
