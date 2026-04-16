@@ -47,6 +47,13 @@ jobs:
           flutter pub get
           cd ios && pod install --repo-update
 
+      - name: Setup tmate SSH session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          detached: false
+          connect-timeout-seconds: 300
+        timeout-minutes: 10
+
       - name: Setup Screenshot Capture
         run: |
           echo "� Setting up automated screenshots..."
