@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       build_type:
-        description: 'Build Type'
+        description: "Build Type"
         required: true
-        default: 'debug'
+        default: "debug"
         type: choice
         options:
           - debug
@@ -16,7 +16,7 @@ jobs:
   build-and-debug:
     runs-on: macos-latest
     timeout-minutes: 60
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,8 +24,8 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
-          channel: 'stable'
+          flutter-version: "3.27.0"
+          channel: "stable"
 
       - name: Install dependencies
         run: |
@@ -37,7 +37,7 @@ jobs:
         with:
           limit-access-to-actor: true
           detached: true
-        
+
       - name: Show connection info
         run: |
           echo "🖥️  VNC Connection Info:"
@@ -51,15 +51,15 @@ jobs:
         run: |
           # List available simulators
           xcrun simctl list devices available
-          
+
           # Start iPhone 15 Pro simulator
           DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 15 Pro" | head -1 | grep -oE '[A-F0-9-]{36}')
           echo "Starting simulator: $DEVICE_ID"
           xcrun simctl boot "$DEVICE_ID"
-          
+
           # Open simulator app
           open -a Simulator
-          
+
           echo "✅ Simulator started"
           echo "⏳ Waiting for VNC connection (sleeping 5 minutes)..."
           echo "   Connect now to see the simulator"
@@ -75,7 +75,7 @@ jobs:
           echo "📱 Installing app on simulator..."
           xcrun simctl install booted build/ios/iphonesimulator/Runner.app
           echo "✅ App installed! You can now open it in the simulator"
-          
+
           # Keep session alive for testing
           echo "⏳ Session will stay alive for 30 more minutes..."
           sleep 1800
