@@ -1,6 +1,9 @@
 name: macOS Debug with VNC
 
 on:
+  push:
+    branches:
+      - prod
   workflow_dispatch:
     inputs:
       build_type:
@@ -11,6 +14,9 @@ on:
         options:
           - debug
           - release
+
+env:
+  BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
 
 jobs:
   build-and-debug:
@@ -94,7 +100,7 @@ jobs:
       - name: Build iOS App
         run: |
           echo "🔨 Building iOS app..."
-          flutter build ios --${{ github.event.inputs.build_type }} --no-codesign
+          flutter build ios --${{ env.BUILD_TYPE }} --no-codesign
 
       - name: Install on Simulator
         run: |
