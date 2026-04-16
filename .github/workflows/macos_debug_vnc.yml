@@ -18,29 +18,24 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.41.2"
           channel: "stable"
           cache: true
 
-      - name: Install dependencies
-        run: |
+      - run: |
           flutter pub get
           cd ios && pod install --repo-update
 
-      - name: Start tmate session (VNC/SSH Access)
-        uses: mxschmitt/action-tmate@v3
+      - uses: mxschmitt/action-tmate@v3
         with:
           limit-access-to-actor: true
           detached: true
 
-      - name: Show connection info
-        run: |
+      - run: |
           echo "🖥️  VNC Connection Info:"
           echo "Open the tmate session above to get SSH link"
           echo "Then run: open vnc://localhost:5900"
@@ -48,8 +43,7 @@ jobs:
           echo "⏳ Build will continue in background..."
           echo "⏳ You have 60 minutes to connect and debug"
 
-      - name: Start iOS Simulator
-        run: |
+      - run: |
           # List available simulators
           xcrun simctl list devices available
 
