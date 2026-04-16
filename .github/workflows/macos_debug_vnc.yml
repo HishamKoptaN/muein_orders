@@ -47,9 +47,27 @@ jobs:
           flutter pub get
           cd ios && pod install --repo-update
 
-      - uses: mxschmitt/action-tmate@v3
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
         with:
           detached: true
+          connect-timeout-seconds: 3600
+        timeout-minutes: 60
+
+      - name: Wait for tmate and show connection
+        run: |
+          echo "⏳ Waiting for tmate session to be ready..."
+          sleep 5
+          echo ""
+          echo "🔍 Getting tmate connection info..."
+          pgrep -a tmate | head -5 || true
+          ls -la /tmp/tmate*.sock 2>/dev/null || true
+          echo ""
+          echo "📝 Look for the SSH link in the 'Setup tmate session' step above ☝️"
+          echo ""
+          echo "⏳ Waiting 3 minutes for you to connect..."
+          sleep 180
+          echo "✅ Continuing with build..."
 
       - name: Setup VNC Server
         run: |
