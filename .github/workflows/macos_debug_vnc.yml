@@ -34,10 +34,30 @@ jobs:
         with:
           detached: true
 
+      - name: Setup VNC Server
+        run: |
+          echo "🖥️ Setting up VNC server..."
+          # Create password for VNC (password: vncpass)
+          echo 'vncpass' | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8F5E92DE9E5C4B76D3E9D"; } s/(.)/chr(ord($^) ^ $k[$i++%@k])/ge for <>; print pack "H*", $_' | tee /tmp/vncpass.bin
+          sudo mkdir -p /Library/Preferences/com.apple.RemoteDesktop
+          sudo defaults write /Library/Preferences/com.apple.RemoteDesktop VNCAlwaysStartOnConsole -bool true
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -allowAccessFor -allUsers -privs -all
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -restart -agent -privs -all
+          # Alternative: Use built-in Screen Sharing
+          sudo defaults write /var/db/dslocal/nodes/Default/users/runner.plist UserShell /bin/bash
+          echo "✅ VNC enabled - Connect via SSH tunnel"
+
       - run: |
-          echo "🖥️  VNC Connection Info:"
-          echo "Open the tmate session above to get SSH link"
-          echo "Then run: open vnc://localhost:5900"
+          echo "🖥️  Connection Info:"
+          echo ""
+          echo "SSH: Copy the tmate session link above"
+          echo ""
+          echo "VNC (via SSH tunnel):"
+          echo "  1. Connect SSH: ssh xxx@nyc1.tmate.io"
+          echo "  2. In another terminal, create tunnel:"
+          echo "     ssh -L 5900:localhost:5900 xxx@nyc1.tmate.io -N"
+          echo "  3. Open VNC client: vnc://localhost:5900"
+          echo "     Password: vncpass"
           echo ""
           echo "⏳ Build will continue in background..."
           echo "⏳ You have 60 minutes to connect and debug"
