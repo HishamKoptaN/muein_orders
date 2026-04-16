@@ -53,9 +53,21 @@ jobs:
           # List available simulators
           xcrun simctl list devices available
 
-          # Start iPhone 15 Pro simulator
-          DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 15 Pro" | head -1 | grep -oE '[A-F0-9-]{36}')
-          echo "Starting simulator: $DEVICE_ID"
+          # Start iPhone 16 Pro simulator (أول جهاز متاح)
+          echo "🔍 Searching for iPhone simulator..."
+          DEVICE_ID=$(xcrun simctl list devices available | grep -E "iPhone.*Pro.*\([A-F0-9-]{36}\)" | grep -v "iPhone.*Pro.*Max" | head -1 | grep -oE '[A-F0-9-]{36}')
+
+          if [ -z "$DEVICE_ID" ]; then
+            echo "⚠️ iPhone Pro not found, trying iPhone 16..."
+            DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 16 " | head -1 | grep -oE '[A-F0-9-]{36}')
+          fi
+
+          if [ -z "$DEVICE_ID" ]; then
+            echo "⚠️ iPhone 16 not found, trying any iPhone..."
+            DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone" | head -1 | grep -oE '[A-F0-9-]{36}')
+          fi
+
+          echo "📱 Starting simulator with ID: $DEVICE_ID"
           xcrun simctl boot "$DEVICE_ID"
 
           # Open simulator app
