@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/models/user_data.dart';
 import '../../../../../core/networking/api_result.dart';
+import '../../../../../core/utils/app_logger.dart';
 import '../repo/sign_in_repo.dart';
 
 @lazySingleton
@@ -17,9 +18,26 @@ class SignInUseCases {
     required String email,
     required String password,
   }) async {
-    return await _repository.signInWithEmailAndPassword(
+    AppLogger.info('🚀 استدعاء UseCase', tag: 'SIGNIN_USECASE');
+    AppLogger.info('📧 Email: $email', tag: 'SIGNIN_USECASE');
+    final result = await _repository.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
+    result.when(
+      success: (data) {
+        final token = data?.token;
+        AppLogger.info(
+          '✅ نجاح - Token: ${token != null ? "موجود" : "null"}',
+          tag: 'SIGNIN_USECASE',
+        );
+      },
+      failure: (error) => AppLogger.error(
+        '❌ فشل: ${error.message}',
+        tag: 'SIGNIN_USECASE',
+        error: error,
+      ),
+    );
+    return result;
   }
 }
