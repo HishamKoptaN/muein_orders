@@ -47,26 +47,43 @@ jobs:
           flutter pub get
           cd ios && pod install --repo-update
 
-      - name: Setup tmate SSH session
-        uses: mxschmitt/action-tmate@v3
-        with:
-          detached: false
-          connect-timeout-seconds: 300
+      - name: Setup ngrok tunnel
+        run: |
+          echo "🔧 Installing ngrok..."
+          brew install ngrok
+
+          echo "🔑 Setting up ngrok authtoken..."
+          ngrok config add-authtoken ${{ secrets.NGROK_AUTHTOKEN }}
+
+          echo "🚀 Starting ngrok SSH tunnel..."
+          ngrok tcp 22 --log=stdout &
+          sleep 10
+
+          echo "📡 Getting ngrok public URL..."
+          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | grep -o '"public_url":"tcp://[^"]*"' | head -1 | cut -d'"' -f4)
+          echo "🔗 SSH Connection URL: $NGROK_URL"
+          echo ""
+          echo "📝 Connect using:"
+          echo "   ssh runner@$(echo $NGROK_URL | cut -d: -f2 | sed 's|//||') -p $(echo $NGROK_URL | cut -d: -f3)"
+          echo ""
+          echo "⏳ Waiting 5 minutes for connection..."
+          sleep 300
+        env:
+          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
         timeout-minutes: 10
 
       - name: Setup Screenshot Capture
         run: |
-          echo "� Setting up automated screenshots..."
+          echo "📸 Setting up automated screenshots..."
           # Create screenshot directory
           mkdir -p screenshots
 
-          # Function to capture screenshot
+          # Function to capture screenshot (Simulator only - no GUI permissions needed)
           capture_screen() {
             local name=$1
-            echo "� Capturing: $name"
-            screencapture -x screenshots/"${name}_$(date +%H%M%S).png" 2>/dev/null || true
-            # Also try using Simulator screenshot if available
-            xcrun simctl io booted screenshot screenshots/"${name}_sim_$(date +%H%M%S).png" 2>/dev/null || true
+            echo "📸 Capturing: $name"
+            # Use Simulator screenshot only (works without macOS GUI permissions)
+            xcrun simctl io booted screenshot screenshots/"${name}_$(date +%H%M%S).png" 2>/dev/null || true
           }
 
           # Start background screenshot capture every 30 seconds
