@@ -52,7 +52,7 @@ jobs:
           brew install ngrok
 
           echo "🔑 Setting up ngrok authtoken..."
-          ngrok config add-authtoken ${{ secrets.NGROK_AUTHTOKEN }}
+          ngrok config add-authtoken $NGROK_AUTHTOKEN
 
           echo "🚀 Starting ngrok SSH tunnel..."
           ngrok tcp 22 --log=stdout &
