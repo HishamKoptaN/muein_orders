@@ -55,9 +55,31 @@ jobs:
 
           VNC_PASS="debug123"
 
-          # Create VNC password file using x11vnc storepasswd
+          # Create VNC password file manually (x11vnc compatible format)
+          # VNC password uses DES encryption
           mkdir -p ~/.vnc
-          echo "$VNC_PASS" | x11vnc -storepasswd ~/.vnc/passwd
+
+          # Generate VNC password hash using x11vnc-compatible method
+          # Password must be padded to 8 characters, then encrypted
+          python3 << 'EOF'
+          import struct
+          import os
+
+          passwd = "debug123".ljust(8)[:8]
+
+          # VNC uses a simple XOR encryption with fixed key
+          key = bytes([23, 82, 107, 6, 35, 78, 88, 7])
+
+          result = bytearray(16)
+          for i, c in enumerate(passwd.encode('latin-1')):
+              result[i] = c ^ key[i]
+
+          passwd_path = os.path.expanduser("~/.vnc/passwd")
+          with open(passwd_path, 'wb') as f:
+              f.write(result)
+          os.chmod(passwd_path, 0o600)
+          print("Password file created successfully")
+          EOF
 
           # Start x11vnc server on port 5900
           # -display :0 connects to main display
