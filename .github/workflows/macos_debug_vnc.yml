@@ -46,30 +46,82 @@ jobs:
           flutter pub get
           cd ios && pod install --repo-update
 
+      - name: Setup VNC Server
+        run: |
+          echo "�️ Setting up macOS Screen Sharing (VNC)..."
+
+          # Enable Remote Management (Screen Sharing)
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -privs -all -allowAccessFor -allUsers
+
+          # Set VNC password
+          VNC_PASS="debug123"
+          echo "$VNC_PASS" | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8F5E92DE9E5C4B76D3E9D"; } s/(.)/chr(ord($^) ^ $k[$i++%@k])/ge for <>; print pack "H*", $_' | sudo tee /Library/Preferences/com.apple.VNCSettings.txt
+
+          # Enable Screen Sharing
+          sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Enabled -bool true
+
+          # Restart screensharing service
+          sudo launchctl load /System/Library/LaunchDaemons/com.apple.screensharing.plist 2>/dev/null || true
+
+          echo "✅ VNC Server enabled on port 5900"
+          echo "� VNC Password: $VNC_PASS"
+          echo ""
+          echo "⚠️ IMPORTANT: Use Tailscale for secure remote access"
+          echo "   1. Install Tailscale: https://tailscale.com/download"
+          echo "   2. Login with your account"
+          echo "   3. Connect to this machine via Tailscale IP"
+
+      - name: Install Tailscale
+        run: |
+          echo "🔧 Installing Tailscale..."
+          brew install tailscale
+
+          echo "🚀 Starting Tailscale..."
+          sudo tailscaled &
+          sleep 3
+
+          echo "📡 Getting Tailscale auth URL..."
+          TAILSCALE_URL=$(sudo tailscale up --auth-key ${{ secrets.TAILSCALE_AUTHKEY }} --hostname github-macos-debug 2>&1 | grep -o 'https://login.tailscale.com/[^"]*' || echo "")
+
+          if [ -n "$TAILSCALE_URL" ]; then
+            echo "🔗 Tailscale Auth URL: $TAILSCALE_URL"
+            echo "   Open this URL to authenticate this machine"
+          fi
+
+          sleep 10
+
+          # Get Tailscale IP
+          TAILSCALE_IP=$(tailscale ip -4 2>/dev/null || echo "")
+          if [ -n "$TAILSCALE_IP" ]; then
+            echo "🌐 Tailscale IP: $TAILSCALE_IP"
+            echo ""
+            echo "🖥️ VNC Connection Info:"
+            echo "   Server: $TAILSCALE_IP:5900"
+            echo "   Password: debug123"
+          fi
+
+          echo "⏳ Waiting 10 minutes for Tailscale connection..."
+          sleep 600
+        env:
+          TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
+        timeout-minutes: 15
+
       - name: Setup Screenshot Capture
         run: |
           echo "📸 Setting up automated screenshots..."
-          # Create screenshot directory
           mkdir -p screenshots
-
-          # Function to capture screenshot (Simulator only - no GUI permissions needed)
           capture_screen() {
             local name=$1
             echo "📸 Capturing: $name"
-            # Use Simulator screenshot only (works without macOS GUI permissions)
             xcrun simctl io booted screenshot screenshots/"${name}_$(date +%H%M%S).png" 2>/dev/null || true
           }
-
-          # Start background screenshot capture every 30 seconds
           (
             while true; do
               capture_screen "auto"
               sleep 30
             done
           ) &
-
-          echo "✅ Screenshot capture started (every 30 seconds)"
-          echo "📁 Screenshots will be uploaded as artifacts"
+          echo "✅ Screenshot capture started"
 
       - run: |
           # List available simulators
