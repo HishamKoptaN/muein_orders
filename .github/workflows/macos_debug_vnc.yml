@@ -26,26 +26,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: |
-          echo "🍎 macOS Version:"
-          sw_vers
-          echo ""
-          echo "🛠️ Xcode Version:"
-          xcodebuild -version
-          echo ""
-          echo "📱 Available Simulators:"
-          xcrun simctl list devices available | head -20
-
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.41.2"
-          channel: "stable"
-          cache: true
-
-      - run: |
-          flutter pub get
-          cd ios && pod install --repo-update
-
       - name: Setup x11vnc Server
         run: |
           echo "🖥️ Installing x11vnc server..."
@@ -144,6 +124,27 @@ jobs:
         env:
           TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
         timeout-minutes: 15
+
+      - name: System Info
+        run: |
+          echo "🍎 macOS Version:"
+          sw_vers
+          echo ""
+          echo "🛠️ Xcode Version:"
+          xcodebuild -version
+          echo ""
+          echo "📱 Available Simulators:"
+          xcrun simctl list devices available | head -20
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - run: |
+          flutter pub get
+          cd ios && pod install --repo-update
 
       - name: Setup Screenshot Capture
         run: |
