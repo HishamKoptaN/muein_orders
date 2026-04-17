@@ -22,6 +22,7 @@ jobs:
   build-and-debug:
     runs-on: macos-latest
     timeout-minutes: 60
+    environment: prod
 
     steps:
       - uses: actions/checkout@v4
@@ -45,6 +46,19 @@ jobs:
       - run: |
           flutter pub get
           cd ios && pod install --repo-update
+
+      - name: Check Secrets
+        run: |
+          echo "🔍 Checking NGROK_AUTHTOKEN..."
+          if [ -z "$NGROK_AUTHTOKEN" ]; then
+            echo "❌ NGROK_AUTHTOKEN is empty!"
+            echo "Add it at: Settings → Secrets and variables → Actions"
+            exit 1
+          else
+            echo "✅ NGROK_AUTHTOKEN is set (length: ${#NGROK_AUTHTOKEN})"
+          fi
+        env:
+          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
 
       - name: Setup ngrok tunnel
         run: |
