@@ -26,8 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check Xcode & Tools
-        run: |
+      - run: |
           echo "🍎 macOS Version:"
           sw_vers
           echo ""
