@@ -1,0 +1,122 @@
+name: macOS Debug with Screenshots
+
+on:
+  push:
+    branches:
+      - prod
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: "Build Type"
+        required: true
+        default: "debug"
+        type: choice
+        options:
+          - debug
+          - release
+
+env:
+  BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
+
+jobs:
+  build-and-debug:
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: |
+          echo "🍎 macOS Version:"
+          sw_vers
+          echo ""
+          echo "🛠️ Xcode Version:"
+          xcodebuild -version
+          echo ""
+          echo "📱 Available Simulators:"
+          xcrun simctl list devices available | head -20
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - run: |
+          flutter pub get
+          cd ios && pod install --repo-update
+
+      - name: Setup Screenshot Capture
+        run: |
+          echo "📸 Setting up automated screenshots..."
+          mkdir -p screenshots
+          capture_screen() {
+            local name=$1
+            echo "📸 Capturing: $name"
+            xcrun simctl io booted screenshot screenshots/"${name}_$(date +%H%M%S).png" 2>/dev/null || true
+          }
+          (
+            while true; do
+              capture_screen "auto"
+              sleep 30
+            done
+          ) &
+          echo "✅ Screenshot capture started"
+
+      - run: |
+          # List available simulators
+          xcrun simctl list devices available
+
+          # Start iPhone simulator
+          echo "🔍 Searching for iPhone simulator..."
+          DEVICE_ID=$(xcrun simctl list devices available | grep -E "iPhone.*Pro.*\([A-F0-9-]{36}\)" | grep -v "iPhone.*Pro.*Max" | head -1 | grep -oE '[A-F0-9-]{36}')
+
+          if [ -z "$DEVICE_ID" ]; then
+            echo "⚠️ iPhone Pro not found, trying iPhone 16..."
+            DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 16 " | head -1 | grep -oE '[A-F0-9-]{36}')
+          fi
+
+          if [ -z "$DEVICE_ID" ]; then
+            echo "⚠️ iPhone 16 not found, trying any iPhone..."
+            DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone" | head -1 | grep -oE '[A-F0-9-]{36}')
+          fi
+
+          echo "📱 Starting simulator with ID: $DEVICE_ID"
+          xcrun simctl boot "$DEVICE_ID"
+
+          echo "✅ Simulator started (headless mode)"
+          echo "⏳ Waiting 30 seconds for simulator to initialize..."
+          sleep 30
+
+      - name: Build iOS App
+        run: |
+          echo "🔨 Building iOS app..."
+          flutter build ios --${{ env.BUILD_TYPE }} --no-codesign
+
+      - name: Install on Simulator
+        run: |
+          echo "📱 Installing app on simulator..."
+          xcrun simctl install booted build/ios/iphonesimulator/Runner.app
+          echo "✅ App installed!"
+
+          # Launch the app and capture initial screenshot
+          echo "🚀 Launching app..."
+          xcrun simctl launch booted com.example.mueinOrders || true
+
+          # Wait and capture more screenshots
+          echo "⏳ App running - capturing screenshots for 2 minutes..."
+          sleep 120
+
+      - name: Upload Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshots
+          path: screenshots/
+          retention-days: 5
+
+      - name: Cleanup
+        if: always()
+        run: |
+          echo "🧹 Cleaning up..."
+          xcrun simctl shutdown all || true
