@@ -51,7 +51,7 @@ jobs:
           echo "🖥️ Installing TigerVNC..."
 
           # Install TigerVNC from source to get CLI tools
-          brew install --build-from-source tigervnc
+          brew install tiger-vnc
 
           VNC_PASS="debug123"
 
@@ -85,14 +85,11 @@ jobs:
             find /opt -name "*vnc*" 2>/dev/null || true
             exit 1
           fi
-
           echo "📍 Xvnc found at: $XVNC_BIN"
-
           # Start Xvnc server on port 5900
           echo "🚀 Starting TigerVNC server..."
           "$XVNC_BIN" :1 -geometry 1920x1080 -depth 24 -rfbport 5900 -rfbauth ~/.vnc/passwd -localhost no &
           sleep 5
-
           # Check if server is running
           if pgrep -x "Xvnc" > /dev/null || lsof -i :5900 > /dev/null 2>&1; then
             echo "✅ TigerVNC server is running on port 5900"
