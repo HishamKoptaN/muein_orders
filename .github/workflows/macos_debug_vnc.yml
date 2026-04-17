@@ -46,44 +46,43 @@ jobs:
           flutter pub get
           cd ios && pod install --repo-update
 
-      - name: Setup VNC Server
+      - name: Setup TigerVNC Server
         run: |
-          echo "🖥️ Setting up macOS Screen Sharing (VNC)..."
+          echo "🖥️ Installing TigerVNC..."
 
-          # Create VNC password file (VNC uses a specific format)
+          # Install TigerVNC (better compatibility with RealVNC viewer)
+          brew install tigervnc
+
           VNC_PASS="debug123"
 
-          # Generate encrypted VNC password
-          # macOS VNC password is XOR encrypted with fixed key
-          echo "$VNC_PASS" | openssl enc -aes-256-cbc -nosalt -pass pass:"$VNC_PASS" 2>/dev/null | base64 | head -c 32 > /tmp/vnc_pass_hash
+          # Create VNC password file
+          mkdir -p ~/.vnc
+          echo "$VNC_PASS" | vncpasswd -f > ~/.vnc/passwd
+          chmod 600 ~/.vnc/passwd
 
-          # Use kickstart to enable remote management with password
-          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
-            -activate \
-            -configure \
-            -access -on \
-            -clientopts \
-            -setvnclegacy -vnclegacy yes \
-            -setvncpw -vncpw "$VNC_PASS" \
-            -restart -agent \
-            -privs -all \
-            -allowAccessFor -allUsers
+          # Start Xvnc server on port 5900
+          echo "🚀 Starting TigerVNC server..."
+          /opt/homebrew/bin/Xvnc :1 -geometry 1920x1080 -depth 24 -rfbport 5900 -rfbauth ~/.vnc/passwd -localhost no &
+          sleep 3
 
-          # Ensure screensharing is enabled
-          sudo defaults write /Library/Preferences/com.apple.RemoteManagement VNCEnabled -bool true
-          sudo defaults write /Library/Preferences/com.apple.RemoteManagement ScreenSharingEnabled -bool true
+          # Check if server is running
+          if pgrep -x "Xvnc" > /dev/null; then
+            echo "✅ TigerVNC server is running on port 5900"
+          else
+            echo "❌ Failed to start TigerVNC"
+            exit 1
+          fi
 
-          # Restart services
-          sudo launchctl unload /System/Library/LaunchDaemons/com.apple.screensharing.plist 2>/dev/null || true
-          sleep 2
-          sudo launchctl load /System/Library/LaunchDaemons/com.apple.screensharing.plist 2>/dev/null || true
+          # Verify port
+          echo "🔍 Checking port 5900..."
+          lsof -i :5900 || netstat -an | grep 5900
 
-          echo "✅ VNC Server configured on port 5900"
-          echo "🔑 VNC Password: $VNC_PASS"
           echo ""
-          echo "⚠️ Use Tailscale for secure remote access"
-          echo "   VNC Server: 100.x.x.x:5900"
-          echo "   Password: $VNC_PASS"
+          echo "✅ VNC Server Ready!"
+          echo "🔑 Password: $VNC_PASS"
+          echo "🔌 Port: 5900"
+          echo ""
+          echo "⚠️ Connect via: 100.x.x.x:5900"
 
       - name: Install Tailscale
         run: |
