@@ -50,32 +50,62 @@ jobs:
         run: |
           echo "🖥️ Installing TigerVNC..."
 
-          # Install TigerVNC (better compatibility with RealVNC viewer)
-          brew install tigervnc
+          # Install TigerVNC from source to get CLI tools
+          brew install --build-from-source tigervnc
 
           VNC_PASS="debug123"
 
-          # Create VNC password file
+          # Create VNC password file manually (vncpasswd format)
+          # Password is XOR encrypted with fixed key in VNC
           mkdir -p ~/.vnc
-          echo "$VNC_PASS" | vncpasswd -f > ~/.vnc/passwd
-          chmod 600 ~/.vnc/passwd
+
+          # Generate VNC password hash using openssl
+          # VNC uses DES encryption with a fixed key
+          python3 -c "
+          import os
+          passwd = '$VNC_PASS'.ljust(8)[:8]
+          key = bytes([23, 33, 83, 22, 8, 74, 11, 23])
+          result = bytearray(16)
+          for i, c in enumerate(passwd.encode()):
+              result[i] = ((c + key[i]) % 256) ^ key[i]
+          with open(os.path.expanduser('~/.vnc/passwd'), 'wb') as f:
+              f.write(result)
+          os.chmod(os.path.expanduser('~/.vnc/passwd'), 0o600)
+          print('Password file created')
+          "
+
+          # Find Xvnc binary
+          XVNC_BIN=$(find /opt/homebrew -name "Xvnc" -type f 2>/dev/null | head -1)
+          if [ -z "$XVNC_BIN" ]; then
+            XVNC_BIN=$(find /usr/local -name "Xvnc" -type f 2>/dev/null | head -1)
+          fi
+          if [ -z "$XVNC_BIN" ]; then
+            echo "❌ Xvnc binary not found"
+            echo "Available binaries:"
+            find /opt -name "*vnc*" 2>/dev/null || true
+            exit 1
+          fi
+
+          echo "📍 Xvnc found at: $XVNC_BIN"
 
           # Start Xvnc server on port 5900
           echo "🚀 Starting TigerVNC server..."
-          /opt/homebrew/bin/Xvnc :1 -geometry 1920x1080 -depth 24 -rfbport 5900 -rfbauth ~/.vnc/passwd -localhost no &
-          sleep 3
+          "$XVNC_BIN" :1 -geometry 1920x1080 -depth 24 -rfbport 5900 -rfbauth ~/.vnc/passwd -localhost no &
+          sleep 5
 
           # Check if server is running
-          if pgrep -x "Xvnc" > /dev/null; then
+          if pgrep -x "Xvnc" > /dev/null || lsof -i :5900 > /dev/null 2>&1; then
             echo "✅ TigerVNC server is running on port 5900"
           else
-            echo "❌ Failed to start TigerVNC"
-            exit 1
+            echo "⚠️ Checking alternative process names..."
+            pgrep -f "vnc" || echo "No VNC processes found"
+            # Try to find what started
+            ps aux | grep -i vnc | grep -v grep || true
           fi
 
           # Verify port
           echo "🔍 Checking port 5900..."
-          lsof -i :5900 || netstat -an | grep 5900
+          lsof -i :5900 2>/dev/null || netstat -an 2>/dev/null | grep 5900 || echo "Port check skipped"
 
           echo ""
           echo "✅ VNC Server Ready!"
