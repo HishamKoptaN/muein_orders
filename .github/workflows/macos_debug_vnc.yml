@@ -26,69 +26,73 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup x11vnc Server
+      - name: Setup macOS VNC Server
         run: |
-          echo "🖥️ Installing x11vnc server..."
-
-          # Install x11vnc (actual VNC server for macOS)
-          brew install x11vnc
+          echo "🖥️ Setting up macOS Screen Sharing..."
 
           VNC_PASS="debug123"
 
-          # Create VNC password file manually (x11vnc compatible format)
-          # VNC password uses DES encryption
-          mkdir -p ~/.vnc
+          # Method 1: Enable Remote Management with kickstart
+          echo "🔧 Enabling Remote Management..."
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+            -activate \
+            -configure \
+            -access -on \
+            -clientopts -setvnclegacy -vnclegacy yes \
+            -privs -all \
+            -allowAccessFor -allUsers \
+            -restart -agent
 
-          # Generate VNC password hash using x11vnc-compatible method
-          # Password must be padded to 8 characters, then encrypted
-          python3 << 'EOF'
-          import struct
-          import os
+          # Method 2: Set VNC password using system preferences
+          echo "🔑 Setting VNC password..."
+          # Create the hash using Perl (same as macOS uses internally)
+          sudo perl -e '
+            my $pwd = "'"$VNC_PASS"'";
+            my @key = (23, 82, 107, 6, 35, 78, 88, 7);
+            my $hash = "";
+            for (my $i = 0; $i < 8; $i++) {
+              my $c = substr($pwd, $i, 1);
+              $c = "\0" if $c eq "";
+              $hash .= chr(ord($c) ^ $key[$i]);
+            }
+            print $hash;
+          ' | sudo tee /Library/Preferences/com.apple.VNCSettings.txt > /dev/null
 
-          passwd = "debug123".ljust(8)[:8]
+          sudo chmod 644 /Library/Preferences/com.apple.VNCSettings.txt
 
-          # VNC uses a simple XOR encryption with fixed key
-          key = bytes([23, 82, 107, 6, 35, 78, 88, 7])
+          # Method 3: Enable Screen Sharing
+          echo "📺 Enabling Screen Sharing..."
+          sudo defaults write /Library/Preferences/com.apple.RemoteManagement VNCEnabled -bool true
+          sudo defaults write /Library/Preferences/com.apple.RemoteManagement ScreenSharingEnabled -bool true
 
-          result = bytearray(16)
-          for i, c in enumerate(passwd.encode('latin-1')):
-              result[i] = c ^ key[i]
+          # Method 4: Restart services
+          echo "� Restarting services..."
+          sudo killall screensharingd 2>/dev/null || true
+          sleep 2
 
-          passwd_path = os.path.expanduser("~/.vnc/passwd")
-          with open(passwd_path, 'wb') as f:
-              f.write(result)
-          os.chmod(passwd_path, 0o600)
-          print("Password file created successfully")
-          EOF
+          # Try to start screensharing daemon
+          sudo launchctl load /System/Library/LaunchDaemons/com.apple.screensharing.plist 2>/dev/null || true
+          sleep 3
 
-          # Start x11vnc server on port 5900
-          # -display :0 connects to main display
-          # -forever keeps it running
-          # -shared allows multiple connections
-          # -localhost no allows external connections
-          echo "🚀 Starting x11vnc server..."
-          x11vnc -display :0 -rfbport 5900 -rfbauth ~/.vnc/passwd -forever -shared -localhost no -noxdamage -noxkb &
-          sleep 5
-
-          # Check if server is running
-          if pgrep -x "x11vnc" > /dev/null || lsof -i :5900 > /dev/null 2>&1; then
-            echo "✅ x11vnc server is running on port 5900"
+          # Check status
+          echo "🔍 Checking VNC status..."
+          if pgrep -x "screensharingd" > /dev/null; then
+            echo "✅ screensharingd is running"
           else
-            echo "⚠️ Checking process status..."
-            pgrep -f "vnc" || echo "No VNC processes found"
-            ps aux | grep -i vnc | grep -v grep || true
+            echo "⚠️ screensharingd not found, checking alternatives..."
+            pgrep -f "screensharing" || true
           fi
 
-          # Verify port
-          echo "🔍 Checking port 5900..."
-          lsof -i :5900 2>/dev/null || netstat -an 2>/dev/null | grep 5900 || echo "Port check skipped"
+          # Check port
+          echo "� Checking port 5900..."
+          sudo lsof -i :5900 2>/dev/null || echo "Port 5900 not listening yet"
 
           echo ""
-          echo "✅ VNC Server Ready!"
+          echo "✅ VNC Configuration Complete!"
           echo "🔑 Password: $VNC_PASS"
           echo "🔌 Port: 5900"
-          echo ""
-          echo "⚠️ Connect via: 100.x.x.x:5900"
+          echo "⚠️ Note: VNC may not work in headless environment"
+          echo "📸 Screenshots will still be captured as backup"
 
       - name: Install Tailscale
         run: |
