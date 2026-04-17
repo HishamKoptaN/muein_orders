@@ -48,28 +48,42 @@ jobs:
 
       - name: Setup VNC Server
         run: |
-          echo "�️ Setting up macOS Screen Sharing (VNC)..."
+          echo "🖥️ Setting up macOS Screen Sharing (VNC)..."
 
-          # Enable Remote Management (Screen Sharing)
-          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -privs -all -allowAccessFor -allUsers
-
-          # Set VNC password
+          # Create VNC password file (VNC uses a specific format)
           VNC_PASS="debug123"
-          echo "$VNC_PASS" | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8F5E92DE9E5C4B76D3E9D"; } s/(.)/chr(ord($^) ^ $k[$i++%@k])/ge for <>; print pack "H*", $_' | sudo tee /Library/Preferences/com.apple.VNCSettings.txt
 
-          # Enable Screen Sharing
-          sudo defaults write /var/db/launchd.db/com.apple.launchd/overrides.plist com.apple.screensharing -dict Enabled -bool true
+          # Generate encrypted VNC password
+          # macOS VNC password is XOR encrypted with fixed key
+          echo "$VNC_PASS" | openssl enc -aes-256-cbc -nosalt -pass pass:"$VNC_PASS" 2>/dev/null | base64 | head -c 32 > /tmp/vnc_pass_hash
 
-          # Restart screensharing service
+          # Use kickstart to enable remote management with password
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+            -activate \
+            -configure \
+            -access -on \
+            -clientopts \
+            -setvnclegacy -vnclegacy yes \
+            -setvncpw -vncpw "$VNC_PASS" \
+            -restart -agent \
+            -privs -all \
+            -allowAccessFor -allUsers
+
+          # Ensure screensharing is enabled
+          sudo defaults write /Library/Preferences/com.apple.RemoteManagement VNCEnabled -bool true
+          sudo defaults write /Library/Preferences/com.apple.RemoteManagement ScreenSharingEnabled -bool true
+
+          # Restart services
+          sudo launchctl unload /System/Library/LaunchDaemons/com.apple.screensharing.plist 2>/dev/null || true
+          sleep 2
           sudo launchctl load /System/Library/LaunchDaemons/com.apple.screensharing.plist 2>/dev/null || true
 
-          echo "✅ VNC Server enabled on port 5900"
-          echo "� VNC Password: $VNC_PASS"
+          echo "✅ VNC Server configured on port 5900"
+          echo "🔑 VNC Password: $VNC_PASS"
           echo ""
-          echo "⚠️ IMPORTANT: Use Tailscale for secure remote access"
-          echo "   1. Install Tailscale: https://tailscale.com/download"
-          echo "   2. Login with your account"
-          echo "   3. Connect to this machine via Tailscale IP"
+          echo "⚠️ Use Tailscale for secure remote access"
+          echo "   VNC Server: 100.x.x.x:5900"
+          echo "   Password: $VNC_PASS"
 
       - name: Install Tailscale
         run: |
