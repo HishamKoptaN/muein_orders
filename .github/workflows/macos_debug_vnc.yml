@@ -22,7 +22,6 @@ jobs:
   build-and-debug:
     runs-on: macos-latest
     timeout-minutes: 60
-    environment: prod
 
     steps:
       - uses: actions/checkout@v4
@@ -46,44 +45,6 @@ jobs:
       - run: |
           flutter pub get
           cd ios && pod install --repo-update
-
-      - name: Check Secrets
-        run: |
-          echo "🔍 Checking NGROK_AUTHTOKEN..."
-          if [ -z "$NGROK_AUTHTOKEN" ]; then
-            echo "❌ NGROK_AUTHTOKEN is empty!"
-            echo "Add it at: Settings → Secrets and variables → Actions"
-            exit 1
-          else
-            echo "✅ NGROK_AUTHTOKEN is set (length: ${#NGROK_AUTHTOKEN})"
-          fi
-        env:
-          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
-
-      - name: Setup ngrok tunnel
-        run: |
-          echo "🔧 Installing ngrok..."
-          brew install ngrok
-
-          echo "🔑 Setting up ngrok authtoken..."
-          ngrok config add-authtoken $NGROK_AUTHTOKEN
-
-          echo "🚀 Starting ngrok SSH tunnel..."
-          ngrok tcp 22 --log=stdout &
-          sleep 10
-
-          echo "📡 Getting ngrok public URL..."
-          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | grep -o '"public_url":"tcp://[^"]*"' | head -1 | cut -d'"' -f4)
-          echo "🔗 SSH Connection URL: $NGROK_URL"
-          echo ""
-          echo "📝 Connect using:"
-          echo "   ssh runner@$(echo $NGROK_URL | cut -d: -f2 | sed 's|//||') -p $(echo $NGROK_URL | cut -d: -f3)"
-          echo ""
-          echo "⏳ Waiting 5 minutes for connection..."
-          sleep 300
-        env:
-          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
-        timeout-minutes: 10
 
       - name: Setup Screenshot Capture
         run: |
@@ -110,34 +71,6 @@ jobs:
           echo "✅ Screenshot capture started (every 30 seconds)"
           echo "📁 Screenshots will be uploaded as artifacts"
 
-      - name: Setup VNC Server
-        run: |
-          echo "🖥️ Setting up VNC server..."
-          # Create password for VNC (password: vncpass)
-          echo 'vncpass' | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8F5E92DE9E5C4B76D3E9D"; } s/(.)/chr(ord($^) ^ $k[$i++%@k])/ge for <>; print pack "H*", $_' | tee /tmp/vncpass.bin
-          sudo mkdir -p /Library/Preferences/com.apple.RemoteDesktop
-          sudo defaults write /Library/Preferences/com.apple.RemoteDesktop VNCAlwaysStartOnConsole -bool true
-          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -allowAccessFor -allUsers -privs -all
-          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -restart -agent -privs -all
-          # Alternative: Use built-in Screen Sharing
-          sudo defaults write /var/db/dslocal/nodes/Default/users/runner.plist UserShell /bin/bash
-          echo "✅ VNC enabled - Connect via SSH tunnel"
-
-      - run: |
-          echo "🖥️  Connection Info:"
-          echo ""
-          echo "SSH: Copy the tmate session link above"
-          echo ""
-          echo "VNC (via SSH tunnel):"
-          echo "  1. Connect SSH: ssh xxx@nyc1.tmate.io"
-          echo "  2. In another terminal, create tunnel:"
-          echo "     ssh -L 5900:localhost:5900 xxx@nyc1.tmate.io -N"
-          echo "  3. Open VNC client: vnc://localhost:5900"
-          echo "     Password: vncpass"
-          echo ""
-          echo "⏳ Build will continue in background..."
-          echo "⏳ You have 60 minutes to connect and debug"
-
       - run: |
           # List available simulators
           xcrun simctl list devices available
@@ -159,13 +92,9 @@ jobs:
           echo "📱 Starting simulator with ID: $DEVICE_ID"
           xcrun simctl boot "$DEVICE_ID"
 
-          # Open simulator app
-          open -a Simulator
-
-          echo "✅ Simulator started"
-          echo "⏳ Waiting for VNC connection (sleeping 5 minutes)..."
-          echo "   Connect now to see the simulator"
-          sleep 300
+          echo "✅ Simulator started (headless mode)"
+          echo "⏳ Waiting 30 seconds for simulator to initialize..."
+          sleep 30
 
       - name: Build iOS App
         run: |
@@ -178,9 +107,9 @@ jobs:
           xcrun simctl install booted build/ios/iphonesimulator/Runner.app
           echo "✅ App installed! You can now open it in the simulator"
 
-          # Keep session alive for testing
-          echo "⏳ Session will stay alive for 30 more minutes..."
-          sleep 1800
+          # Keep app running for screenshots
+          echo "⏳ App running - capturing screenshots for 2 minutes..."
+          sleep 120
 
       - name: Upload Screenshots
         if: always()
