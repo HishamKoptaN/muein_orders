@@ -105,8 +105,15 @@ jobs:
             echo "$IOS_PROVISIONING_PROFILE_BASE64" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision
             echo "✅ Provisioning profile installed"
             ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
+
+            # Extract UUID from provisioning profile and set as env var
+            PP_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin <<< "$(security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision)")
+            echo "📋 Provisioning Profile UUID: $PP_UUID"
+            echo "PROVISIONING_PROFILE_UUID=$PP_UUID" >> $GITHUB_ENV
           else
             echo "⚠️ IOS_PROVISIONING_PROFILE_BASE64 not set"
+            echo "❌ Manual signing requires IOS_PROVISIONING_PROFILE_BASE64 secret"
+            exit 1
           fi
 
       - env:
@@ -114,7 +121,7 @@ jobs:
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
         run: |
-          echo "🔐 إعداد App Store Connect API Signing..."
+          echo "🔐 إعداد App Store Connect API Key..."
 
           # Debug: التحقق من وجود Secrets
           echo "🔍 التحقق من Secrets..."
@@ -123,49 +130,35 @@ jobs:
           if [ -z "$APP_STORE_CONNECT_KEY_ID" ]; then echo "❌ APP_STORE_CONNECT_KEY_ID غير موجود!"; exit 1; fi
           echo "✅ جميع Secrets موجودة"
 
-          # إنشاء ملف API Key
+          # إنشاء ملف API Key (يُستخدم لرفع الـ IPA فقط)
           mkdir -p ~/private_keys
           echo "$APP_STORE_CONNECT_API_KEY_BASE64" | base64 --decode > ~/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
 
-          # تعيين متغيرات البيئة للـ xcodebuild
+          # تعيين متغيرات البيئة
           echo "APP_STORE_CONNECT_API_KEY_PATH=$HOME/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8" >> $GITHUB_ENV
           echo "APP_STORE_CONNECT_KEY_ID=${APP_STORE_CONNECT_KEY_ID}" >> $GITHUB_ENV
           echo "APP_STORE_CONNECT_ISSUER_ID=${APP_STORE_CONNECT_ISSUER_ID}" >> $GITHUB_ENV
 
-          echo "✅ تم إعداد App Store Connect API Signing"
+          echo "✅ تم إعداد App Store Connect API Key"
 
       - env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-          APP_STORE_CONNECT_API_KEY_PATH: ${{ env.APP_STORE_CONNECT_API_KEY_PATH }}
-          APP_STORE_CONNECT_KEY_ID: ${{ env.APP_STORE_CONNECT_KEY_ID }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ env.APP_STORE_CONNECT_ISSUER_ID }}
+          PROVISIONING_PROFILE_UUID: ${{ env.PROVISIONING_PROFILE_UUID }}
         run: |
           echo "📦 إنشاء Shorebird Release iOS..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
-          echo "   استخدام Automatic Code Signing (App Store Connect API)..."
+          echo "   استخدام Manual Code Signing..."
+          echo "   Provisioning Profile UUID: $PROVISIONING_PROFILE_UUID"
 
-          # التحقق من وجود ملف API Key
-          if [ -f "$APP_STORE_CONNECT_API_KEY_PATH" ]; then
-            echo "✅ API Key file موجود: $APP_STORE_CONNECT_API_KEY_PATH"
-          else
-            echo "⚠️ API Key file غير موجود، سيتم استخدام xcodebuild manual signing"
-          fi
-
-          echo "📦 Building iOS with App Store Connect API..."
-
-          # Set environment variables for xcodebuild
-          export XCODE_13="$APP_STORE_CONNECT_API_KEY_PATH"
+          # استبدال الـ UUID في ExportOptions.plist
+          sed -i '' "s/\$(PROVISIONING_PROFILE_UUID)/$PROVISIONING_PROFILE_UUID/g" ios/ExportOptions.plist
+          echo "✅ تم تحديث ExportOptions.plist بالـ UUID"
 
           shorebird release ios \
             --flutter-version=3.41.2 \
             --dart-define=ENV=prod \
             --flavor=prod \
-            --export-options-plist=ios/ExportOptions.plist \
-            -- \
-            -authenticationKeyPath "$APP_STORE_CONNECT_API_KEY_PATH" \
-            -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
-            -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
-            -allowProvisioningUpdates
+            --export-options-plist=ios/ExportOptions.plist
 
       - env:
           APP_STORE_CONNECT_API_KEY_PATH: ${{ env.APP_STORE_CONNECT_API_KEY_PATH }}

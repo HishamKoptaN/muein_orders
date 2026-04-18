@@ -281,7 +281,7 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 5493DS73C7;
 						LastSwiftMigration = 1100;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -574,10 +574,11 @@
 			baseConfigurationReference = 0F46EC521D46BD2EC61B2C78 /* prodProfile.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5493DS73C7;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Muein Orders ios_app_store 1776010421";
 			};
 			name = "Profile-prod";
 		};
@@ -730,10 +731,11 @@
 			baseConfigurationReference = 756450815EC155E4162A7695 /* prodRelease.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5493DS73C7;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Muein Orders ios_app_store 1776010421";
 			};
 			name = "Release-prod";
 		};
@@ -1268,10 +1270,11 @@
 			baseConfigurationReference = 7E6B3F3020A2C43F0E4F0878 /* prodDebug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 5493DS73C7;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Muein Orders ios_app_store 1776010421";
 			};
 			name = "Debug-prod";
 		};
