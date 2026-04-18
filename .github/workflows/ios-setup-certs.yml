@@ -53,19 +53,23 @@ jobs:
           fi
           echo "✅ Certificate installed"
 
-          # Install Provisioning Profile
-          PP_FILE="$CERTS_DIR/Muein_Orders_ios_app_store_1775392698.mobileprovision"
+          # Install Provisioning Profile (find any .mobileprovision file)
+          PP_FILE=$(find "$CERTS_DIR" -maxdepth 1 -name "*.mobileprovision" -print -quit)
           if [ -f "$PP_FILE" ]; then
-            echo "📋 Installing provisioning profile..."
+            echo "📋 Installing provisioning profile: $(basename "$PP_FILE")"
             mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
             cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision
 
-            # Extract UUID
+            # Extract UUID and Name
             PP_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin <<< \
               "$(security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision)")
+            PP_NAME=$(/usr/libexec/PlistBuddy -c 'Print Name' /dev/stdin <<< \
+              "$(security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision)")
+            echo "📋 Profile Name: $PP_NAME"
             echo "📋 UUID: $PP_UUID"
             echo "provisioning_profile_uuid=$PP_UUID" >> $GITHUB_OUTPUT
           else
-            echo "❌ Provisioning profile not found!"
+            echo "❌ No .mobileprovision file found in $CERTS_DIR"
+            ls -la "$CERTS_DIR"
             exit 1
           fi
