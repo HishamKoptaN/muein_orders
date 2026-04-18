@@ -35,8 +35,15 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           PP_FILE=$(find ~/certs-artifact -name "*.mobileprovision" -print -quit)
           if [ -f "$PP_FILE" ]; then
-            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/
-            echo "📋 Installed: $(basename "$PP_FILE")"
+            # Read UUID from the stored file or extract from profile
+            if [ -f ~/certs-artifact/profile_uuid.txt ]; then
+              PP_UUID=$(cat ~/certs-artifact/profile_uuid.txt)
+            else
+              PP_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin <<< "$(security cms -D -i "$PP_FILE")")
+            fi
+            # Copy with UUID as filename (required by Xcode)
+            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/${PP_UUID}.mobileprovision
+            echo "📋 Installed: ${PP_UUID}.mobileprovision"
             ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
           fi
 
