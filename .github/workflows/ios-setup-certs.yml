@@ -1,0 +1,72 @@
+name: iOS Setup Certificates
+on:
+  workflow_call:
+    outputs:
+      provisioning_profile_uuid:
+        description: "Provisioning Profile UUID"
+        value: ${{ jobs.setup.outputs.provisioning_profile_uuid }}
+
+jobs:
+  setup:
+    runs-on: macos-latest
+    outputs:
+      provisioning_profile_uuid: ${{ steps.certs.outputs.provisioning_profile_uuid }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🔧 Install Certificates
+        id: certs
+        run: |
+          echo "🔧 Installing iOS certificates from scripts/ios_certs/..."
+          CERTS_DIR="${{ github.workspace }}/scripts/ios_certs"
+
+          echo "📁 Checking: $CERTS_DIR"
+          ls -la "$CERTS_DIR" || echo "❌ Directory not found!"
+
+          # Create keychain
+          KEYCHAIN_NAME="build.keychain"
+          KEYCHAIN_PASSWORD="temp123"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security set-keychain-settings -t 3600 "$KEYCHAIN_NAME"
+          security list-keychains -d user -s "$KEYCHAIN_NAME" \
+            $(security list-keychains -d user | tr -d '"')
+
+          # Install Certificate
+          if [ -f "$CERTS_DIR/certificate.p12" ]; then
+            echo "📜 Installing certificate.p12..."
+            P12_PASSWORD="${{ secrets.IOS_CERTIFICATE_PASSWORD || '123456' }}"
+            security import "$CERTS_DIR/certificate.p12" -k "$KEYCHAIN_NAME" \
+              -P "$P12_PASSWORD" -T /usr/bin/codesign || true
+            security set-key-partition-list -S apple-tool:,apple: \
+              -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
+          elif [ -f "$CERTS_DIR/distribution.pem" ] && [ -f "$CERTS_DIR/private_key" ]; then
+            echo "📜 Creating p12 from pem + key..."
+            openssl pkcs12 -export -out /tmp/certificate.p12 \
+              -inkey "$CERTS_DIR/private_key" -in "$CERTS_DIR/distribution.pem" \
+              -password pass:"$KEYCHAIN_PASSWORD"
+            security import /tmp/certificate.p12 -k "$KEYCHAIN_NAME" \
+              -P "$KEYCHAIN_PASSWORD" -T /usr/bin/codesign || true
+          else
+            echo "❌ No certificate found!"
+            exit 1
+          fi
+          echo "✅ Certificate installed"
+
+          # Install Provisioning Profile
+          PP_FILE="$CERTS_DIR/Muein_Orders_ios_app_store_1775392698.mobileprovision"
+          if [ -f "$PP_FILE" ]; then
+            echo "📋 Installing provisioning profile..."
+            mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision
+
+            # Extract UUID
+            PP_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin <<< \
+              "$(security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision)")
+            echo "📋 UUID: $PP_UUID"
+            echo "provisioning_profile_uuid=$PP_UUID" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Provisioning profile not found!"
+            exit 1
+          fi
+

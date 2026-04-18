@@ -1,0 +1,53 @@
+name: iOS Upload to App Store
+on:
+  workflow_call:
+    inputs:
+      track:
+        required: true
+        type: string
+      api_key_path:
+        required: true
+        type: string
+      key_id:
+        required: true
+        type: string
+      issuer_id:
+        required: true
+        type: string
+
+jobs:
+  upload:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            build/
+            ios/build
+          key: ios-build-${{ github.sha }}-macos
+          restore-keys: ios-build-macos-
+
+      - name: 📤 Upload to App Store Connect
+        run: |
+          echo "📤 رفع إلى App Store Connect..."
+          echo "   القناة: ${{ inputs.track }}"
+          echo "   Key ID: ${{ inputs.key_id }}"
+
+          # Find IPA file
+          IPA_PATH=$(find build/ios/ipa -name "*.ipa" | head -n 1)
+          if [ -z "$IPA_PATH" ]; then
+            echo "❌ IPA file not found!"
+            exit 1
+          fi
+          echo "📦 IPA: $IPA_PATH"
+
+          xcrun altool --upload-app --type ios \
+            --file "$IPA_PATH" \
+            --apiKey "${{ inputs.key_id }}" \
+            --apiIssuer "${{ inputs.issuer_id }}" \
+            --verbose
+
+          echo "✅ تم الرفع بنجاح!"
+

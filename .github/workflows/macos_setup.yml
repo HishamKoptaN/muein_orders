@@ -1,19 +1,19 @@
-name: '[Reusable] macOS Setup'
+name: "[Reusable] macOS Setup"
 
 on:
   workflow_call:
     inputs:
       build_type:
-        description: 'Build type (debug/release)'
+        description: "Build type (debug/release)"
         required: false
-        default: 'debug'
+        default: "debug"
         type: string
     outputs:
       device_id:
-        description: 'Simulator device ID'
+        description: "Simulator device ID"
         value: ${{ jobs.setup.outputs.device_id }}
       build_type:
-        description: 'Build type used'
+        description: "Build type used"
         value: ${{ inputs.build_type }}
 
 jobs:
@@ -24,7 +24,6 @@ jobs:
       device_id: ${{ steps.simulator.outputs.device_id }}
     steps:
       - uses: actions/checkout@v4
-
       - name: System Info
         run: |
           echo "🍎 macOS Version:"
@@ -35,13 +34,11 @@ jobs:
           echo ""
           echo "📱 Available Simulators:"
           xcrun simctl list devices available | head -20
-
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.41.2"
           channel: "stable"
           cache: true
-
       - name: Install Dependencies
         run: |
           flutter pub get

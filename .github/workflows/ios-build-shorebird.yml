@@ -1,0 +1,67 @@
+name: iOS Build Shorebird
+on:
+  workflow_call:
+    inputs:
+      flutter_version:
+        required: false
+        type: string
+        default: "3.41.2"
+      version_code:
+        required: true
+        type: string
+      version_name:
+        required: true
+        type: string
+      provisioning_profile_uuid:
+        required: true
+        type: string
+    secrets:
+      SHOREBIRD_TOKEN:
+        required: true
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: flutter-sdk-${{ inputs.flutter_version }}-macos
+          restore-keys: flutter-sdk-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ inputs.flutter_version }}
+          channel: "stable"
+          cache: true
+
+      - uses: shorebirdtech/setup-shorebird@v1
+
+      - run: flutter pub get
+      - run: |
+          cd ios
+          pod install --repo-update
+
+      - name: 📦 Build Shorebird Release
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+          PP_UUID: ${{ inputs.provisioning_profile_uuid }}
+        run: |
+          echo "📦 Building Shorebird iOS..."
+          echo "   Version: ${{ inputs.version_code }} (${{ inputs.version_name }})"
+          echo "   Provisioning Profile UUID: $PP_UUID"
+
+          # Update ExportOptions.plist
+          sed -i '' "s/\$(PROVISIONING_PROFILE_UUID)/$PP_UUID/g" \
+            ios/ExportOptions.plist
+
+          shorebird release ios \
+            --flutter-version=${{ inputs.flutter_version }} \
+            --dart-define=ENV=prod \
+            --flavor=prod \
+            --export-options-plist=ios/ExportOptions.plist
+
+          echo "✅ Build completed!"
+
