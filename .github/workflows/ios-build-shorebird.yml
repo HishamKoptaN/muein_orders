@@ -47,8 +47,9 @@ jobs:
           echo "   Version: ${{ inputs.version_code }} (${{ inputs.version_name }})"
           echo "   Provisioning Profile UUID: $PP_UUID"
           # Update ExportOptions.plist
-          sed -i '' "s/\$(PROVISIONING_PROFILE_UUID)/$PP_UUID/g" \
-            ios/ExportOptions.plist
+          perl -i -pe "s/\\\$\(PROVISIONING_PROFILE_UUID\)/$PP_UUID/g" ios/ExportOptions.plist
+          echo "📋 Updated ExportOptions.plist:"
+          grep -A1 "com.muein.orders" ios/ExportOptions.plist
           shorebird release ios \
             --flutter-version=${{ inputs.flutter_version }} \
             --dart-define=ENV=prod \
