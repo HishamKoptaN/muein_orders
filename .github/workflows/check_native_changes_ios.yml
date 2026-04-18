@@ -1,12 +1,10 @@
 name: Check Native Changes - iOS
-
 on:
   workflow_call:
     outputs:
       has_native_changes:
         description: "Whether the commit contains iOS native changes"
         value: ${{ jobs.check.outputs.has_native_changes }}
-
 jobs:
   check:
     runs-on: ubuntu-latest
