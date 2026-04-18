@@ -1,0 +1,18 @@
+At line:1 char:51
++ [Convert]::ToBase64String([IO.File]::ReadAllBytes(Muein_Orders_ios_ap ...
++                                                   ~
+Missing ')' in method call.
+At line:1 char:51
++ ... :ReadAllBytes(Muein_Orders_ios_app_store_1775392698.mobileprovision))
++                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unexpected token 'Muein_Orders_ios_app_store_1775392698.mobileprovision' in expression or statement.
+At line:1 char:104
++ ... :ReadAllBytes(Muein_Orders_ios_app_store_1775392698.mobileprovision))
++                                                                        ~
+Unexpected token ')' in expression or statement.
+At line:1 char:105
++ ... :ReadAllBytes(Muein_Orders_ios_app_store_1775392698.mobileprovision))
++                                                                         ~
+Unexpected token ')' in expression or statement.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingEndParenthesisInMethodCall

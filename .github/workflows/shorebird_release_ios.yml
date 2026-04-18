@@ -115,30 +115,25 @@ jobs:
             echo "❌ Manual signing requires IOS_PROVISIONING_PROFILE_BASE64 secret"
             exit 1
           fi
-
       - env:
           APP_STORE_CONNECT_API_KEY_BASE64: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
         run: |
           echo "🔐 إعداد App Store Connect API Key..."
-
           # Debug: التحقق من وجود Secrets
           echo "🔍 التحقق من Secrets..."
           if [ -z "$APP_STORE_CONNECT_API_KEY_BASE64" ]; then echo "❌ APP_STORE_CONNECT_API_KEY_BASE64 غير موجود!"; exit 1; fi
           if [ -z "$APP_STORE_CONNECT_ISSUER_ID" ]; then echo "❌ APP_STORE_CONNECT_ISSUER_ID غير موجود!"; exit 1; fi
           if [ -z "$APP_STORE_CONNECT_KEY_ID" ]; then echo "❌ APP_STORE_CONNECT_KEY_ID غير موجود!"; exit 1; fi
           echo "✅ جميع Secrets موجودة"
-
           # إنشاء ملف API Key (يُستخدم لرفع الـ IPA فقط)
           mkdir -p ~/private_keys
           echo "$APP_STORE_CONNECT_API_KEY_BASE64" | base64 --decode > ~/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
-
           # تعيين متغيرات البيئة
           echo "APP_STORE_CONNECT_API_KEY_PATH=$HOME/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8" >> $GITHUB_ENV
           echo "APP_STORE_CONNECT_KEY_ID=${APP_STORE_CONNECT_KEY_ID}" >> $GITHUB_ENV
           echo "APP_STORE_CONNECT_ISSUER_ID=${APP_STORE_CONNECT_ISSUER_ID}" >> $GITHUB_ENV
-
           echo "✅ تم إعداد App Store Connect API Key"
 
       - env:
