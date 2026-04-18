@@ -2,6 +2,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 
+import 'dart:io';
+
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/auth/present/views/auth_view.dart';
 import '../../features/auth/change_pass/present/views/change_pass_view.dart';
@@ -41,9 +43,12 @@ class AppRouter {
           );
           return getIt<AuthBloc>().state.maybeWhen(
             authenticated: () {
-              Future.microtask(
-                () => getIt<FirebaseMessagingService>().initialize(),
-              );
+              // 🔧 Fix: Skip FirebaseMessaging on iOS Simulator
+              if (!Platform.isIOS) {
+                Future.microtask(
+                  () => getIt<FirebaseMessagingService>().initialize(),
+                );
+              }
               if (AppRouterRedirect.public.contains(currentLocation)) {
                 if (kReleaseMode) {
                   return '/${StatsView.routeName}';
