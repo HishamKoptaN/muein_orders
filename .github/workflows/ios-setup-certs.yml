@@ -40,10 +40,10 @@ jobs:
               -P "$P12_PASSWORD" -T /usr/bin/codesign || true
             security set-key-partition-list -S apple-tool:,apple: \
               -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
-          elif [ -f "$CERTS_DIR/distribution.pem" ] && [ -f "$CERTS_DIR/private_key" ]; then
+          elif [ -f "$CERTS_DIR/distribution.pem" ] && [ -f "$CERTS_DIR/private.key" ]; then
             echo "📜 Creating p12 from pem + key..."
             openssl pkcs12 -export -out /tmp/certificate.p12 \
-              -inkey "$CERTS_DIR/private_key" -in "$CERTS_DIR/distribution.pem" \
+              -inkey "$CERTS_DIR/private.key" -in "$CERTS_DIR/distribution.pem" \
               -password pass:"$KEYCHAIN_PASSWORD"
             security import /tmp/certificate.p12 -k "$KEYCHAIN_NAME" \
               -P "$KEYCHAIN_PASSWORD" -T /usr/bin/codesign || true
