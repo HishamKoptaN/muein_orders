@@ -3,6 +3,9 @@ default_platform(:ios)
 platform :ios do
   desc "Build and upload to App Store Connect (TestFlight)"
   lane :beta do
+    # Sync certificates and profiles with match
+    match(type: "appstore", readonly: true)
+
     # Increment build number
     increment_build_number(xcodeproj: "Runner.xcodeproj")
 
@@ -11,13 +14,7 @@ platform :ios do
       workspace: "Runner.xcworkspace",
       scheme: "Runner",
       configuration: "Release",
-      export_method: "app-store",
-      export_options: {
-        provisioningProfiles: {
-          "com.muein.orders" => ENV["PROVISIONING_PROFILE_NAME"] || "Muein Orders ios_app_store 1776010421"
-        },
-        teamID: "5493DS73C7"
-      }
+      export_method: "app-store"
     )
 
     # Upload to App Store Connect
@@ -29,6 +26,9 @@ platform :ios do
 
   desc "Build and upload to App Store (Production)"
   lane :release do
+    # Sync certificates and profiles with match
+    match(type: "appstore", readonly: true)
+
     # Increment build number
     increment_build_number(xcodeproj: "Runner.xcodeproj")
 
@@ -37,13 +37,7 @@ platform :ios do
       workspace: "Runner.xcworkspace",
       scheme: "Runner",
       configuration: "Release",
-      export_method: "app-store",
-      export_options: {
-        provisioningProfiles: {
-          "com.muein.orders" => ENV["PROVISIONING_PROFILE_NAME"] || "Muein Orders ios_app_store 1776010421"
-        },
-        teamID: "5493DS73C7"
-      }
+      export_method: "app-store"
     )
 
     # Upload to App Store
@@ -58,17 +52,12 @@ platform :ios do
 
   desc "Build only (no upload)"
   lane :build_only do
+    match(type: "appstore", readonly: true)
     build_app(
       workspace: "Runner.xcworkspace",
       scheme: "Runner",
       configuration: "Release",
-      export_method: "app-store",
-      export_options: {
-        provisioningProfiles: {
-          "com.muein.orders" => ENV["PROVISIONING_PROFILE_NAME"] || "Muein Orders ios_app_store 1776010421"
-        },
-        teamID: "5493DS73C7"
-      }
+      export_method: "app-store"
     )
   end
 end

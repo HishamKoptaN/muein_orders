@@ -1,4 +1,4 @@
-name: iOS Release - Fastlane
+name: iOS Release - Fastlane (Match)
 on:
   workflow_call:
     inputs:
@@ -32,43 +32,12 @@ on:
         description: "القناة"
 
 jobs:
-  setup-certs:
-    uses: ./.github/workflows/ios-setup-certs.yml
-
-  setup-api:
-    uses: ./.github/workflows/ios-setup-api-key.yml
-    secrets:
-      APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
-
   build-and-release:
     runs-on: macos-latest
-    needs: [setup-certs, setup-api]
     steps:
       - uses: actions/checkout@v4
-
-      - name: 📥 Download Certs Artifact
-        uses: actions/download-artifact@v4
         with:
-          name: ios-certs
-          path: ~/certs-artifact/
-
-      - name: 🔧 Install Provisioning Profile
-        run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          PP_FILE=$(find ~/certs-artifact -name "*.mobileprovision" -print -quit)
-          if [ -f "$PP_FILE" ]; then
-            # Read UUID from the stored file or extract from profile
-            if [ -f ~/certs-artifact/profile_uuid.txt ]; then
-              PP_UUID=$(cat ~/certs-artifact/profile_uuid.txt)
-            else
-              PP_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin <<< "$(security cms -D -i "$PP_FILE")")
-            fi
-            # Copy with UUID as filename (required by Xcode)
-            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/${PP_UUID}.mobileprovision
-            echo "📋 Installed: ${PP_UUID}.mobileprovision"
-            ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
-          fi
+          fetch-depth: 0
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -98,10 +67,14 @@ jobs:
         env:
           LC_ALL: en_US.UTF-8
           LANG: en_US.UTF-8
-          PROVISIONING_PROFILE_NAME: ${{ needs.setup-certs.outputs.provisioning_profile_name }}
-          APP_STORE_CONNECT_API_KEY_PATH: ${{ needs.setup-api.outputs.api_key_path }}
-          APP_STORE_CONNECT_KEY_ID: ${{ needs.setup-api.outputs.key_id }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ needs.setup-api.outputs.issuer_id }}
+          # Match secrets
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          APP_BUNDLE_ID: ${{ secrets.APP_BUNDLE_ID || 'com.muein.orders' }}
+          # App Store Connect API
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          ASC_KEY_P8_BASE64: ${{ secrets.ASC_KEY_P8_BASE64 || secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
         run: |
           cd ios
           if [ "${{ inputs.track }}" == "testflight" ]; then
