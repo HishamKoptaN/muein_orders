@@ -50,3 +50,14 @@ app.*.map.json
 
 # Localization temp files (flutter_arb_translator artifacts)
 lib/l10n/*.json
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/screenshots/screenshots.html
+fastlane/test_output
+fastlane/metadata
+*.ipa
+*.dSYM.zip
+*.dSYM

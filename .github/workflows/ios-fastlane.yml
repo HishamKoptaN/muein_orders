@@ -1,0 +1,92 @@
+name: iOS Release - Fastlane
+on:
+  workflow_call:
+    inputs:
+      version_code:
+        required: true
+        type: string
+      version_name:
+        required: true
+        type: string
+      track:
+        required: true
+        type: string
+        default: "testflight"
+  workflow_dispatch:
+    inputs:
+      version_code:
+        required: true
+        type: string
+        description: "رقم الإصدار (مثال: 42)"
+      version_name:
+        required: true
+        type: string
+        description: "اسم الإصدار (مثال: 1.2.3)"
+      track:
+        required: true
+        type: choice
+        options:
+          - testflight
+          - appstore
+        default: "testflight"
+        description: "القناة"
+
+jobs:
+  setup-certs:
+    uses: ./.github/workflows/ios-setup-certs.yml
+
+  setup-api:
+    uses: ./.github/workflows/ios-setup-api-key.yml
+    secrets:
+      APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+
+  build-and-release:
+    runs-on: macos-latest
+    needs: [setup-certs, setup-api]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: 🔧 Install Certificates
+        env:
+          PP_NAME: ${{ needs.setup-certs.outputs.provisioning_profile_name }}
+        run: |
+          echo "📋 Using Provisioning Profile: $PP_NAME"
+
+      - uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: flutter-sdk-3.41.2-macos
+          restore-keys: flutter-sdk-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - run: flutter pub get
+      - run: |
+          cd ios
+          pod install --repo-update
+
+      - name: 📦 Build & Release with Fastlane
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+          PROVISIONING_PROFILE_NAME: ${{ needs.setup-certs.outputs.provisioning_profile_name }}
+          APP_STORE_CONNECT_API_KEY_PATH: ${{ needs.setup-api.outputs.api_key_path }}
+          APP_STORE_CONNECT_KEY_ID: ${{ needs.setup-api.outputs.key_id }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ needs.setup-api.outputs.issuer_id }}
+        run: |
+          cd ios
+          if [ "${{ inputs.track }}" == "testflight" ]; then
+            bundle exec fastlane beta
+          else
+            bundle exec fastlane release
+          fi

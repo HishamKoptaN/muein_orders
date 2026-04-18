@@ -1,0 +1,8 @@
+# App Identifier
+app_identifier("com.muein.orders")
+
+# Apple Developer Team ID
+team_id("5493DS73C7")
+
+# App Store Connect Team ID (if using multiple teams)
+# itc_team_id("")

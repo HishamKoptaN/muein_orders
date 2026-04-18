@@ -1,0 +1,74 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and upload to App Store Connect (TestFlight)"
+  lane :beta do
+    # Increment build number
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+
+    # Build the app
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "com.muein.orders" => ENV["PROVISIONING_PROFILE_NAME"] || "Muein Orders ios_app_store 1776010421"
+        },
+        teamID: "5493DS73C7"
+      }
+    )
+
+    # Upload to App Store Connect
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      notify_external_testers: false
+    )
+  end
+
+  desc "Build and upload to App Store (Production)"
+  lane :release do
+    # Increment build number
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+
+    # Build the app
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "com.muein.orders" => ENV["PROVISIONING_PROFILE_NAME"] || "Muein Orders ios_app_store 1776010421"
+        },
+        teamID: "5493DS73C7"
+      }
+    )
+
+    # Upload to App Store
+    upload_to_app_store(
+      force: true,
+      skip_metadata: false,
+      skip_screenshots: true,
+      skip_binary_upload: false,
+      submit_for_review: false
+    )
+  end
+
+  desc "Build only (no upload)"
+  lane :build_only do
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "com.muein.orders" => ENV["PROVISIONING_PROFILE_NAME"] || "Muein Orders ios_app_store 1776010421"
+        },
+        teamID: "5493DS73C7"
+      }
+    )
+  end
+end
