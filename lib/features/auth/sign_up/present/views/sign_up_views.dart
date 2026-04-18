@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -35,10 +35,14 @@ class SignUpView extends StatelessWidget {
                 );
               },
               failure: (failure) {
+                // 🔍 Debug: Show detailed error in debug mode
+                final errorMessage = kDebugMode
+                    ? '❌ $failure\n\n(تفاصيل أكثر في الـ Console Logs)'
+                    : failure;
                 AppSnackBar.show(
                   context: context,
                   title: 'Error',
-                  message: failure,
+                  message: errorMessage,
                   type: AppSnackBarType.error,
                 );
               },

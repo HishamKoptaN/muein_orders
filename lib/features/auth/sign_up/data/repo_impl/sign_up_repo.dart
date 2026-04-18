@@ -53,7 +53,7 @@ class SignUpRepoImpl implements SignUpRepo {
           'FCM Token received: ${fcmToken.isNotEmpty}',
           tag: 'SIGN_UP_REPO',
         );
-      } catch (e, st) {
+      } catch (e) {
         AppLogger.warning(
           'FCM token failed (expected on iOS Simulator): $e',
           tag: 'SIGN_UP_REPO',
