@@ -151,13 +151,21 @@ jobs:
             echo "⚠️ API Key file غير موجود، سيتم استخدام xcodebuild manual signing"
           fi
 
-          echo "📦 Building iOS with Manual Signing..."
+          echo "📦 Building iOS with App Store Connect API..."
+
+          # Set environment variables for xcodebuild
+          export XCODE_13="$APP_STORE_CONNECT_API_KEY_PATH"
 
           shorebird release ios \
             --flutter-version=3.41.2 \
             --dart-define=ENV=prod \
             --flavor=prod \
-            --export-options-plist=ios/ExportOptions.plist
+            --export-options-plist=ios/ExportOptions.plist \
+            -- \
+            -authenticationKeyPath "$APP_STORE_CONNECT_API_KEY_PATH" \
+            -authenticationKeyID "$APP_STORE_CONNECT_KEY_ID" \
+            -authenticationKeyIssuerID "$APP_STORE_CONNECT_ISSUER_ID" \
+            -allowProvisioningUpdates
 
       - env:
           APP_STORE_CONNECT_API_KEY_PATH: ${{ env.APP_STORE_CONNECT_API_KEY_PATH }}
