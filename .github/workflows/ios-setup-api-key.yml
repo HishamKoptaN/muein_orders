@@ -11,7 +11,6 @@ on:
       issuer_id:
         description: "Issuer ID"
         value: ${{ jobs.setup.outputs.issuer_id }}
-
 jobs:
   setup:
     runs-on: macos-latest
@@ -24,18 +23,16 @@ jobs:
       ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
     steps:
       - uses: actions/checkout@v4
-
       - name: 🔐 Setup App Store Connect API Key
         id: apikey
         run: |
           echo "🔐 إعداد App Store Connect API Key..."
-          CERTS_DIR="${{ github.workspace }}/scripts/ios_certs"
-
-          # Check local file or Secret
-          if [ -f "$CERTS_DIR/AuthKey_G2L6LRG5PK.p8" ]; then
-            echo "📜 Using local API Key file..."
+          REPO_ROOT="${{ github.workspace }}"
+          # Check local file in repo root or Secret
+          if [ -f "$REPO_ROOT/AuthKey_G2L6LRG5PK.p8" ]; then
+            echo "📜 Using local API Key file from repo root..."
             mkdir -p ~/private_keys
-            cp "$CERTS_DIR/AuthKey_G2L6LRG5PK.p8" \
+            cp "$REPO_ROOT/AuthKey_G2L6LRG5PK.p8" \
               ~/private_keys/AuthKey_${{ env.KEY_ID }}.p8
           elif [ -n "${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}" ]; then
             echo "📜 Using API Key from Secret..."
@@ -46,14 +43,11 @@ jobs:
             echo "❌ No API Key found!"
             exit 1
           fi
-
           if [ -z "${{ env.ISSUER_ID }}" ]; then
             echo "❌ APP_STORE_CONNECT_ISSUER_ID required!"
             exit 1
           fi
-
           echo "api_key_path=$HOME/private_keys/AuthKey_${{ env.KEY_ID }}.p8" >> $GITHUB_OUTPUT
           echo "key_id=${{ env.KEY_ID }}" >> $GITHUB_OUTPUT
           echo "issuer_id=${{ env.ISSUER_ID }}" >> $GITHUB_OUTPUT
           echo "✅ API Key configured"
-

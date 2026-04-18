@@ -17,11 +17,11 @@ jobs:
       - name: 🔧 Install Certificates
         id: certs
         run: |
-          echo "🔧 Installing iOS certificates from scripts/ios_certs/..."
-          CERTS_DIR="${{ github.workspace }}/scripts/ios_certs"
+          echo "🔧 Installing iOS certificates from repo root..."
+          CERTS_DIR="${{ github.workspace }}"
 
-          echo "📁 Checking: $CERTS_DIR"
-          ls -la "$CERTS_DIR" || echo "❌ Directory not found!"
+          echo "📁 Checking repo root for cert files..."
+          ls -la "$CERTS_DIR" | grep -E "\.(p8|p12|mobileprovision|pem|key)$" || echo "⚠️ No cert files found in root"
 
           # Create keychain
           KEYCHAIN_NAME="build.keychain"
@@ -69,4 +69,3 @@ jobs:
             echo "❌ Provisioning profile not found!"
             exit 1
           fi
-

@@ -1,11 +1,9 @@
 name: Install iOS Provisioning Profile
-
 on:
   workflow_call:
     secrets:
       IOS_PROVISIONING_PROFILE_BASE64:
         required: true
-
 jobs:
   install-profile:
     runs-on: macos-latest
@@ -13,13 +11,10 @@ jobs:
       - name: 🔧 Install Provisioning Profile
         run: |
           echo "🔧 Installing iOS Provisioning Profile..."
-
           # Create profiles directory
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-
           # Decode base64 provisioning profile
           echo "${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
-
           # Verify installation
           if [ -f ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision ]; then
             echo "✅ Provisioning profile installed successfully"
