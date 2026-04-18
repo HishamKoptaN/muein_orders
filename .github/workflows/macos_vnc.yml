@@ -1,0 +1,110 @@
+name: macOS VNC Access (Experimental)
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: "Build Type"
+        required: true
+        default: "debug"
+        type: choice
+        options:
+          - debug
+          - release
+      wait_time:
+        description: "Wait time in minutes (max 30)"
+        required: false
+        default: "10"
+        type: string
+
+env:
+  BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
+
+jobs:
+  vnc-session:
+    runs-on: macos-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: System Info
+        run: |
+          echo "🍎 macOS:"
+          sw_vers
+          echo ""
+          echo "🛠️ Xcode:"
+          xcodebuild -version
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - name: Install Dependencies
+        run: |
+          flutter pub get
+          cd ios && pod install --repo-update
+
+      - name: 🔧 Setup VNC
+        run: |
+          echo "🖥️ Setting up VNC..."
+          VNC_PASS="debug123"
+
+          # Enable Remote Management
+          sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+            -activate -configure -access -on \
+            -clientopts -setvnclegacy -vnclegacy yes \
+            -privs -all -allowAccessFor -allUsers \
+            -restart -agent || true
+
+          # Set VNC password
+          sudo perl -e '
+            my $pwd = "'"$VNC_PASS"'";
+            my @key = (23, 82, 107, 6, 35, 78, 88, 7);
+            my $hash = "";
+            for (my $i = 0; $i < 8; $i++) {
+              my $c = substr($pwd, $i, 1);
+              $c = "\0" if $c eq "";
+              $hash .= chr(ord($c) ^ $key[$i]);
+            }
+            print $hash;
+          ' | sudo tee /Library/Preferences/com.apple.VNCSettings.txt > /dev/null || true
+
+          sudo chmod 644 /Library/Preferences/com.apple.VNCSettings.txt || true
+          sudo defaults write /Library/Preferences/com.apple.RemoteManagement VNCEnabled -bool true || true
+          sudo killall screensharingd 2>/dev/null || true
+          sleep 3
+
+          echo ""
+          echo "✅ VNC Configured!"
+          echo "🔑 Password: $VNC_PASS"
+          echo "🔌 Port: 5900"
+          echo "⚠️ Note: May not work on headless GitHub runners"
+
+      - name: 📱 Start Simulator
+        run: |
+          DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone" | head -1 | grep -oE '[A-F0-9-]{36}')
+          xcrun simctl boot "$DEVICE_ID"
+          echo "📱 Simulator started: $DEVICE_ID"
+          sleep 30
+
+      - name: 🔨 Build & Install
+        run: |
+          flutter build ios --${{ env.BUILD_TYPE }} --no-codesign
+          xcrun simctl install booted build/ios/iphonesimulator/Runner.app
+          xcrun simctl launch booted com.example.mueinOrders || true
+          echo "✅ App installed and launched!"
+
+      - name: ⏳ Keep Alive for VNC
+        run: |
+          WAIT_MINUTES=${{ github.event.inputs.wait_time || '10' }}
+          echo "⏳ Keeping VNC session alive for $WAIT_MINUTES minutes..."
+          echo "   Connect to: localhost:5900 (via SSH tunnel if needed)"
+          echo "   Password: debug123"
+          echo ""
+          sleep $(($WAIT_MINUTES * 60))
+
+      - name: 🧹 Cleanup
+        if: always()
+        run: xcrun simctl shutdown all || true
