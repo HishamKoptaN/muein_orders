@@ -1,10 +1,10 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../../core/utils/app_logger.dart';
 
 import '../../../../../core/database/shared_pref_helper.dart';
 import '../../../../../core/database/shared_pref_keys.dart';
@@ -42,8 +42,26 @@ class SignUpRepoImpl implements SignUpRepo {
           message: 'Failed to get Firebase ID token',
         );
       }
-      log('[log] 🔥 Firebase ID Token: $idToken');
-      final fcmToken = await FirebaseMessaging.instance.getToken() ?? '';
+      AppLogger.info('🔥 Firebase ID Token received', tag: 'SIGN_UP_REPO');
+
+      // 🔧 Fix: FCM might fail on iOS Simulator - wrap in try-catch
+      String fcmToken = '';
+      try {
+        AppLogger.info('Getting FCM token...', tag: 'SIGN_UP_REPO');
+        fcmToken = await FirebaseMessaging.instance.getToken() ?? '';
+        AppLogger.info(
+          'FCM Token received: ${fcmToken.isNotEmpty}',
+          tag: 'SIGN_UP_REPO',
+        );
+      } catch (e, st) {
+        AppLogger.warning(
+          'FCM token failed (expected on iOS Simulator): $e',
+          tag: 'SIGN_UP_REPO',
+          error: e,
+        );
+        // Continue without FCM token - it's optional
+        fcmToken = '';
+      }
       final res = await _api.signUp(
         SignUpReqModel(
           name: signUpReq.name,

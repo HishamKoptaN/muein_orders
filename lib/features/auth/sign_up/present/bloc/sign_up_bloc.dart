@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
+import '../../../../../core/utils/app_logger.dart';
 import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/entities/sign_up_form_entity.dart';
 import '../../domain/use_cases/sign_up_use_cases.dart';
@@ -57,7 +58,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               },
             );
           } catch (e, stackTrace) {
-            debugPrint('Error during sign up: $e\n$stackTrace');
+            AppLogger.error(
+              '❌ Error during sign up',
+              tag: 'SIGN_UP_BLOC',
+              error: e,
+              stackTrace: stackTrace,
+            );
             await FirebaseCrashlytics.instance.recordError(
               e,
               stackTrace,
@@ -65,9 +71,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             );
             emitCustomFailure(
               emit: emit,
-              apiErrorModel: const ApiErrorModel(
-                message: 'حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى',
-              ),
+              apiErrorModel: ApiErrorModel(message: 'خطأ: ${e.toString()}'),
             );
           } finally {
             emitCustomLoaded(emit: emit);
