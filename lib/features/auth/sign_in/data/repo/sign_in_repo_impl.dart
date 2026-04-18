@@ -30,7 +30,6 @@ class SignInRepoImpl implements SignInRepo {
     this.signInApi,
     this.tokenStorage,
   );
-
   @override
   Future<ApiResult<UserData>> signInWithEmailAndPassword({
     required String email,
@@ -38,10 +37,7 @@ class SignInRepoImpl implements SignInRepo {
   }) async {
     AppLogger.info('🚀 بدء signInWithEmailAndPassword', tag: 'SIGNIN_REPO');
     AppLogger.info('📧 Email: $email', tag: 'SIGNIN_REPO');
-
-    // تسجيل بيانات المستخدم للـ Context
     AppLogger.setUserContext(email);
-
     try {
       AppLogger.info('🔥 استدعاء Firebase Auth...', tag: 'SIGNIN_REPO');
       final userCredential = await _auth.signInWithEmailAndPassword(
@@ -52,13 +48,11 @@ class SignInRepoImpl implements SignInRepo {
         '✅ Firebase Auth نجح - UID: ${userCredential.user?.uid}',
         tag: 'SIGNIN_REPO',
       );
-
       final idToken = await userCredential.user?.getIdToken();
       AppLogger.info(
         '🎫 Firebase ID Token: ${idToken != null ? "موجود" : "null"}',
         tag: 'SIGNIN_REPO',
       );
-
       if (idToken == null) {
         AppLogger.warning('❌ ID Token is null', tag: 'SIGNIN_REPO');
         return const ApiResult.failure(
@@ -67,8 +61,6 @@ class SignInRepoImpl implements SignInRepo {
           ),
         );
       }
-
-      // 🔧 Fix: Skip FCM on iOS Simulator - it requires APNS setup
       String? fcmToken;
       if (Platform.isIOS) {
         AppLogger.info(
@@ -88,7 +80,6 @@ class SignInRepoImpl implements SignInRepo {
           fcmToken = null;
         }
       }
-
       AppLogger.info('🌐 استدعاء API authToken...', tag: 'SIGNIN_REPO');
       final res = await signInApi.authToken(
         SignInReqBodyModel(
@@ -101,7 +92,6 @@ class SignInRepoImpl implements SignInRepo {
         '✅ API Response - Token: ${res.token.isNotEmpty ? "موجود" : "فارغ"}',
         tag: 'SIGNIN_REPO',
       );
-
       if (res.token.isEmpty) {
         AppLogger.warning('❌ Server returned empty token', tag: 'SIGNIN_REPO');
         return const ApiResult.failure(
@@ -110,7 +100,6 @@ class SignInRepoImpl implements SignInRepo {
           ),
         );
       }
-
       AppLogger.info('💾 حفظ JWT Token في SharedPrefs...', tag: 'SIGNIN_REPO');
       await SharedPrefHelper.setSecuredString(
         key: SharedPrefKeys.jwtToken,
@@ -118,10 +107,7 @@ class SignInRepoImpl implements SignInRepo {
       );
       await getIt<AuthInterceptor>().updateToken();
       AppLogger.info('✅ تم حفظ Token بنجاح', tag: 'SIGNIN_REPO');
-
-      // تسجيل نجاح تسجيل الدخول
       AppLogger.event('sign_in_success', parameters: {'email': email});
-
       return ApiResult.success(
         data: UserData(token: res.token, fcmToken: fcmToken),
       );

@@ -21,18 +21,11 @@ import 'core/services/firebase_messaging/firebase_messaging_service.dart';
 import 'core/utils/app_logger.dart';
 
 void main() {
-  /// 🛡️ Global Error Handling Zone
-  /// يقوم بالتقاط جميع الأخطاء غير المعالجة (Unhandled Errors)
   runZonedGuarded(
     () async {
-      // تهيئة Flutter
       WidgetsFlutterBinding.ensureInitialized();
-
-      // تهيئة AppLogger
       AppLogger.initialize(enableCrashlytics: true);
       AppLogger.info('🚀 Starting app...', tag: 'MAIN');
-
-      // 🎯 Flutter Framework Error Handler
       FlutterError.onError = (FlutterErrorDetails details) {
         AppLogger.error(
           'Flutter Framework Error: ${details.exceptionAsString()}',
@@ -49,8 +42,6 @@ void main() {
           error: error,
           stackTrace: stack,
         );
-
-        // إرسال لـ Crashlytics في Production
         if (!kDebugMode) {
           FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
         }
@@ -86,31 +77,18 @@ void main() {
   );
 }
 
-/// تهيئة التطبيق
 Future<void> _initializeApp() async {
   try {
     AppLogger.info('🔧 Initializing app...', tag: 'INIT');
-
-    // تهيئة المكونات الأساسية
     await AppInitializer.initialize();
     AppLogger.info('✅ AppInitializer completed', tag: 'INIT');
-
-    // تهيئة Dependency Injection
     await configureDependencies(environment: EnvConfig.config.envName);
     AppLogger.info('✅ Dependencies configured', tag: 'INIT');
-
-    // تهيئة Locale
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';
-
-    // إزالة Splash Screen
     FlutterNativeSplash.remove();
-
-    // تفعيل BlocObserver
     Bloc.observer = AppBlocObserver();
     AppLogger.info('✅ BlocObserver initialized', tag: 'INIT');
-
-    // Debug helpers
     if (kDebugMode) {
       AppLogger.debug('🐛 Debug mode enabled', tag: 'INIT');
     }
