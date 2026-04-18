@@ -70,6 +70,38 @@ jobs:
       - run: |
           cd ios
           pod install --repo-update
+
+      - name: 🔧 Install Provisioning Profile
+        env:
+          IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          echo "🔧 Installing iOS Provisioning Profile..."
+
+          if [ -z "$IOS_PROVISIONING_PROFILE_BASE64" ]; then
+            echo "⚠️ IOS_PROVISIONING_PROFILE_BASE64 not set, skipping provisioning profile installation"
+            echo "   To fix: Add your .mobileprovision file as base64 to GitHub Secrets"
+            exit 0
+          fi
+
+          # Create profiles directory
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+
+          # Decode and install provisioning profile
+          echo "$IOS_PROVISIONING_PROFILE_BASE64" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision
+
+          # Verify installation
+          if [ -f ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision ]; then
+            echo "✅ Provisioning profile installed successfully"
+            ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
+            
+            # Show profile info
+            echo "📋 Profile Info:"
+            security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision | grep -E "(Name|TeamName|ApplicationIdentifierPrefix)" || true
+          else
+            echo "❌ Failed to install provisioning profile"
+            exit 1
+          fi
+
       - env:
           APP_STORE_CONNECT_API_KEY_BASE64: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
