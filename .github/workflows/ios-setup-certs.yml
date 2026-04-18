@@ -56,17 +56,25 @@ jobs:
           # Install Provisioning Profile (find any .mobileprovision file)
           PP_FILE=$(find "$CERTS_DIR" -maxdepth 1 -name "*.mobileprovision" -print -quit)
           if [ -f "$PP_FILE" ]; then
-            echo "📋 Installing provisioning profile: $(basename "$PP_FILE")"
+            echo "📋 Found provisioning profile: $(basename "$PP_FILE")"
             mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision
 
-            # Extract UUID and Name
+            # Extract UUID from the profile
             PP_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin <<< \
-              "$(security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision)")
+              "$(security cms -D -i "$PP_FILE")")
             PP_NAME=$(/usr/libexec/PlistBuddy -c 'Print Name' /dev/stdin <<< \
-              "$(security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision)")
+              "$(security cms -D -i "$PP_FILE")")
             echo "📋 Profile Name: $PP_NAME"
             echo "📋 UUID: $PP_UUID"
+
+            # Copy with UUID as filename (required by Xcode)
+            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/${PP_UUID}.mobileprovision
+            echo "✅ Installed to: ~/Library/MobileDevice/Provisioning\ Profiles/${PP_UUID}.mobileprovision"
+
+            # List all profiles
+            echo "📋 All installed profiles:"
+            ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
+
             echo "provisioning_profile_name=$PP_NAME" >> $GITHUB_OUTPUT
           else
             echo "❌ No .mobileprovision file found in $CERTS_DIR"
