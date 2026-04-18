@@ -1,0 +1,104 @@
+name: macOS Integration Tests with Logs
+
+on:
+  workflow_dispatch:
+
+env:
+  BUILD_TYPE: debug
+
+jobs:
+  integration-test:
+    runs-on: macos-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: |
+          echo "🍎 macOS Version:"
+          sw_vers
+          echo "🛠️ Xcode Version:"
+          xcodebuild -version
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - run: |
+          flutter pub get
+          cd ios && pod install --repo-update
+
+      - run: |
+          # List available simulators
+          xcrun simctl list devices available
+
+          # Start iPhone simulator
+          echo "🔍 Searching for iPhone simulator..."
+          DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 15" | head -1 | grep -oE '[A-F0-9-]{36}')
+
+          if [ -z "$DEVICE_ID" ]; then
+            DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 16" | head -1 | grep -oE '[A-F0-9-]{36}')
+          fi
+
+          if [ -z "$DEVICE_ID" ]; then
+            DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone" | head -1 | grep -oE '[A-F0-9-]{36}')
+          fi
+
+          echo "📱 Starting simulator with ID: $DEVICE_ID"
+          xcrun simctl boot "$DEVICE_ID"
+
+          echo "⏳ Waiting for simulator to initialize..."
+          sleep 30
+
+      - name: 🧪 Run Integration Tests with Full Logs
+        run: |
+          echo "🧪 Running integration tests..."
+          echo "========================================"
+          echo "📋 This will capture ALL logs including:"
+          echo "   ✅ AppLogger logs"
+          echo "   ✅ Firebase Auth logs"
+          echo "   ✅ API request/response logs"
+          echo "   ✅ Error logs with stack traces"
+          echo "   ✅ Screenshots at each step"
+          echo "========================================"
+
+          # Run integration test and capture ALL output
+          flutter test integration_test/auth_flow_test.dart \
+            --device-id booted \
+            --verbose \
+            --reporter expanded \
+            2>&1 | tee integration_test_output.log
+
+          echo "✅ Integration tests completed"
+
+      - name: 📊 Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-results
+          path: |
+            integration_test_output.log
+            screenshots/
+          retention-days: 7
+
+      - name: 📋 Print Test Summary
+        if: always()
+        run: |
+          echo "========================================"
+          echo "📊 TEST SUMMARY"
+          echo "========================================"
+          echo ""
+          echo "🔍 Logs captured in: integration_test_output.log"
+          echo ""
+          # Show the last 100 lines of logs
+          if [ -f integration_test_output.log ]; then
+            echo "📋 Last 100 lines of logs:"
+            tail -100 integration_test_output.log
+          fi
+
+      - name: 🧹 Cleanup
+        if: always()
+        run: |
+          xcrun simctl shutdown all || true
