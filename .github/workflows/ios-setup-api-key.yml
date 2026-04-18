@@ -1,6 +1,11 @@
 name: iOS Setup API Key
 on:
   workflow_call:
+    secrets:
+      APP_STORE_CONNECT_KEY_ID:
+        required: true
+      APP_STORE_CONNECT_ISSUER_ID:
+        required: true
     outputs:
       api_key_path:
         description: "API Key Path"
