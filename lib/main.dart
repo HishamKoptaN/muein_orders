@@ -40,12 +40,8 @@ void main() {
           error: details.exception,
           stackTrace: details.stack,
         );
-
-                 FirebaseCrashlytics.instance.recordFlutterError(details);
-
+        FirebaseCrashlytics.instance.recordFlutterError(details);
       };
-
-      // 🎯 Platform Dispatcher Error Handler (للأخطاء Async)
       PlatformDispatcher.instance.onError = (error, stack) {
         AppLogger.error(
           'Platform Error',
@@ -60,13 +56,9 @@ void main() {
         }
         return true;
       };
-
-      // تهيئة Firebase
       try {
         await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
         AppLogger.info('✅ Firebase initialized', tag: 'MAIN');
-
-        // تفعيل Crashlytics في Production
         await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
           !kDebugMode,
         );
@@ -78,20 +70,15 @@ void main() {
           stackTrace: st,
         );
       }
-
-      // تهيئة التطبيق
       await _initializeApp();
     },
     (error, stack) {
-      /// 🔴 Unhandled Zone Error
       AppLogger.error(
         'Unhandled Zone Error',
         tag: 'ZONE',
         error: error,
         stackTrace: stack,
       );
-
-      // إرسال لـ Crashlytics في Production
       if (!kDebugMode) {
         FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       }
@@ -127,22 +114,15 @@ Future<void> _initializeApp() async {
     if (kDebugMode) {
       AppLogger.debug('🐛 Debug mode enabled', tag: 'INIT');
     }
-
-    // تهيئة Storage
     await GetStorage.init('translations_cache');
     AppLogger.info('✅ GetStorage initialized', tag: 'INIT');
-
-    // تهيئة Firebase Messaging (تخطي iOS مؤقتًا)
     if (!Platform.isIOS) {
       await getIt<FirebaseMessagingService>().initialize();
       AppLogger.info('✅ Firebase Messaging initialized', tag: 'INIT');
     } else {
       AppLogger.warning('⚠️ Firebase Messaging skipped on iOS', tag: 'INIT');
     }
-
     AppLogger.info('✅ All services initialized successfully!', tag: 'INIT');
-
-    // تشغيل التطبيق
     runApp(const MueinOrdersApp());
   } catch (error, stackTrace) {
     AppLogger.error(
