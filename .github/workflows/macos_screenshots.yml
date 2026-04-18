@@ -3,7 +3,7 @@ name: macOS Screenshots Only
 on:
   push:
     branches:
-      - prod
+      - prods
   workflow_dispatch:
     inputs:
       build_type:
