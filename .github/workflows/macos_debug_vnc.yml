@@ -1,5 +1,4 @@
 name: macOS Debug with VNC
-
 on:
   push:
     branches:
@@ -14,24 +13,18 @@ on:
         options:
           - debug
           - release
-
 env:
   BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
-
 jobs:
   build-and-debug:
     runs-on: macos-latest
     timeout-minutes: 60
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Setup macOS VNC Server
         run: |
           echo "🖥️ Setting up macOS Screen Sharing..."
-
           VNC_PASS="debug123"
-
           # Method 1: Enable Remote Management with kickstart
           echo "🔧 Enabling Remote Management..."
           sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
