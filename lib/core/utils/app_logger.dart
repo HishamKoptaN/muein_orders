@@ -1,5 +1,3 @@
-import 'dart:developer' as developer;
-
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
@@ -19,22 +17,18 @@ class AppLogger {
   /// ✅ Log Info - للمعلومات العامة
   static void info(String message, {String? tag}) {
     final logMessage = _formatMessage(message, tag: tag, level: 'INFO');
-    developer.log(
-      logMessage,
-      name: 'INFO',
-      level: 800,
-    );
+    // Always print to console (works in all environments)
+    print('[INFO] $logMessage');
   }
 
   /// ⚠️ Log Warning - للتحذيرات
   static void warning(String message, {String? tag, Object? error}) {
     final logMessage = _formatMessage(message, tag: tag, level: 'WARNING');
-    developer.log(
-      logMessage,
-      name: 'WARNING',
-      level: 900,
-      error: error,
-    );
+    // Always print to console (works in all environments)
+    print('[WARNING] $logMessage');
+    if (error != null) {
+      print('Error: $error');
+    }
 
     if (_isCrashlyticsEnabled) {
       FirebaseCrashlytics.instance.log('[WARNING] $logMessage');
@@ -51,14 +45,14 @@ class AppLogger {
   }) {
     final logMessage = _formatMessage(message, tag: tag, level: 'ERROR');
 
-    // Console log
-    developer.log(
-      logMessage,
-      name: 'ERROR',
-      level: 1000,
-      error: error,
-      stackTrace: stackTrace,
-    );
+    // Always print to console (works in all environments)
+    print('[ERROR] $logMessage');
+    if (error != null) {
+      print('Error: $error');
+    }
+    if (stackTrace != null) {
+      print('StackTrace:\n$stackTrace');
+    }
 
     // Crashlytics
     if (sendToCrashlytics && _isCrashlyticsEnabled) {
@@ -66,30 +60,26 @@ class AppLogger {
         error ?? message,
         stackTrace,
         reason: message,
-        information: [
-          if (tag != null) 'Tag: $tag',
-        ],
+        information: [if (tag != null) 'Tag: $tag'],
       );
     }
   }
 
   /// 🐛 Log Debug - للـ Debug فقط (لا يُرسل لـ Crashlytics)
   static void debug(String message, {String? tag}) {
-    if (kDebugMode) {
-      final logMessage = _formatMessage(message, tag: tag, level: 'DEBUG');
-      developer.log(
-        logMessage,
-        name: 'DEBUG',
-        level: 700,
-      );
-    }
+    final logMessage = _formatMessage(message, tag: tag, level: 'DEBUG');
+    // Always print to console (works in all environments)
+    print('[DEBUG] $logMessage');
   }
 
   /// 📊 Log Event - لتتبع أحداث المستخدم (Analytics)
   static void event(String eventName, {Map<String, dynamic>? parameters}) {
-    final params = parameters?.entries.map((e) => '${e.key}: ${e.value}').join(', ') ?? '';
-    final message = '📊 EVENT: $eventName ${params.isNotEmpty ? "{$params}" : ""}';
-    developer.log(message, name: 'EVENT');
+    final params =
+        parameters?.entries.map((e) => '${e.key}: ${e.value}').join(', ') ?? '';
+    final message =
+        '📊 EVENT: $eventName ${params.isNotEmpty ? "{$params}" : ""}';
+    // Always print to console (works in all environments)
+    print('[EVENT] $message');
 
     if (_isCrashlyticsEnabled) {
       FirebaseCrashlytics.instance.log(message);
