@@ -1,0 +1,8 @@
+# Provisioning Profile - Base64 Encoded
+# العبارة التالية هي القيمة المشفرة لملف Muein_Orders_ios_app_store_1775392698.mobileprovision
+
+# قم بلصق القيمة هنا بعد تشغيل الأمر:
+# [Convert]::ToBase64String([System.IO.File]::ReadAllBytes("G:\project_assets\muein\prod\ios\Muein_Orders_ios_app_store_1775392698.mobileprovision")) | Set-Clipboard
+
+# ثم أضفها كـ GitHub Secret: IOS_PROVISIONING_PROFILE_BASE64
+
