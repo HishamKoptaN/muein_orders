@@ -55,7 +55,7 @@ jobs:
       flutter_version: "3.41.2"
       version_code: ${{ inputs.version_code }}
       version_name: ${{ inputs.version_name }}
-      provisioning_profile_uuid: ${{ needs.setup-certs.outputs.provisioning_profile_uuid }}
+      provisioning_profile_name: ${{ needs.setup-certs.outputs.provisioning_profile_name }}
     secrets:
       SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
 

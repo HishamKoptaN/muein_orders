@@ -2,15 +2,15 @@ name: iOS Setup Certificates
 on:
   workflow_call:
     outputs:
-      provisioning_profile_uuid:
-        description: "Provisioning Profile UUID"
-        value: ${{ jobs.setup.outputs.provisioning_profile_uuid }}
+      provisioning_profile_name:
+        description: "Provisioning Profile Name"
+        value: ${{ jobs.setup.outputs.provisioning_profile_name }}
 
 jobs:
   setup:
     runs-on: macos-latest
     outputs:
-      provisioning_profile_uuid: ${{ steps.certs.outputs.provisioning_profile_uuid }}
+      provisioning_profile_name: ${{ steps.certs.outputs.provisioning_profile_name }}
     steps:
       - uses: actions/checkout@v4
 
@@ -67,7 +67,7 @@ jobs:
               "$(security cms -D -i ~/Library/MobileDevice/Provisioning\ Profiles/build_profile.mobileprovision)")
             echo "📋 Profile Name: $PP_NAME"
             echo "📋 UUID: $PP_UUID"
-            echo "provisioning_profile_uuid=$PP_UUID" >> $GITHUB_OUTPUT
+            echo "provisioning_profile_name=$PP_NAME" >> $GITHUB_OUTPUT
           else
             echo "❌ No .mobileprovision file found in $CERTS_DIR"
             ls -la "$CERTS_DIR"

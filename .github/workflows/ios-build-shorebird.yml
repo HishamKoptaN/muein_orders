@@ -12,7 +12,7 @@ on:
       version_name:
         required: true
         type: string
-      provisioning_profile_uuid:
+      provisioning_profile_name:
         required: true
         type: string
     secrets:
@@ -41,13 +41,13 @@ jobs:
       - name: 📦 Build Shorebird Release
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-          PP_UUID: ${{ inputs.provisioning_profile_uuid }}
+          PP_NAME: ${{ inputs.provisioning_profile_name }}
         run: |
           echo "📦 Building Shorebird iOS..."
           echo "   Version: ${{ inputs.version_code }} (${{ inputs.version_name }})"
-          echo "   Provisioning Profile UUID: $PP_UUID"
+          echo "   Provisioning Profile Name: $PP_NAME"
           # Update ExportOptions.plist
-          perl -i -pe "s/\\\$\(PROVISIONING_PROFILE_UUID\)/$PP_UUID/g" ios/ExportOptions.plist
+          perl -i -pe "s/\\\$\(PROVISIONING_PROFILE_UUID\)/$PP_NAME/g" ios/ExportOptions.plist
           echo "📋 Updated ExportOptions.plist:"
           grep -A1 "com.muein.orders" ios/ExportOptions.plist
           shorebird release ios \

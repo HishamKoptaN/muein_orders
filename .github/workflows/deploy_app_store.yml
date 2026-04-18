@@ -75,7 +75,6 @@ jobs:
             echo "📦 الإصدار غير موجود ولا توجد تغييرات Native → Release جديد"
             echo "action=release" >> $GITHUB_OUTPUT
           fi
-
   handle-patch:
     needs: decide-action
     if: ${{ needs.decide-action.outputs.action == 'patch' }}
@@ -98,7 +97,6 @@ jobs:
       version_name: ${{ needs.decide-action.outputs.version_name }}
       track: ${{ github.event.inputs.track || 'testflight' }}
     secrets: inherit
-
   summary:
     runs-on: ubuntu-latest
     needs:
