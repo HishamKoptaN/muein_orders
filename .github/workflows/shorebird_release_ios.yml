@@ -149,7 +149,8 @@ jobs:
             --dart-define=ENV=prod \
             --flavor=prod \
             -- \
-            --export-options-plist=ios/ExportOptions.plist
+            --export-options-plist=ios/ExportOptions.plist \
+            -allowProvisioningUpdates
 
       - env:
           APP_STORE_CONNECT_API_KEY_PATH: ${{ env.APP_STORE_CONNECT_API_KEY_PATH }}
