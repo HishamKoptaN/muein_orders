@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
@@ -66,11 +68,26 @@ class SignInRepoImpl implements SignInRepo {
         );
       }
 
-      final fcmToken = await _firebaseMessaging.getToken();
-      AppLogger.info(
-        '📱 FCM Token: ${fcmToken != null ? "موجود" : "null"}',
-        tag: 'SIGNIN_REPO',
-      );
+      // 🔧 Fix: Skip FCM on iOS Simulator - it requires APNS setup
+      String? fcmToken;
+      if (Platform.isIOS) {
+        AppLogger.info(
+          '📱 iOS detected - skipping FCM token',
+          tag: 'SIGNIN_REPO',
+        );
+        fcmToken = null;
+      } else {
+        try {
+          fcmToken = await _firebaseMessaging.getToken();
+          AppLogger.info(
+            '📱 FCM Token: ${fcmToken != null ? "موجود" : "null"}',
+            tag: 'SIGNIN_REPO',
+          );
+        } catch (e) {
+          AppLogger.warning('⚠️ FCM token failed: $e', tag: 'SIGNIN_REPO');
+          fcmToken = null;
+        }
+      }
 
       AppLogger.info('🌐 استدعاء API authToken...', tag: 'SIGNIN_REPO');
       final res = await signInApi.authToken(
