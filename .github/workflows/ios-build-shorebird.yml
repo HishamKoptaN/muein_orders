@@ -23,6 +23,23 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: 📥 Download Certs Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-certs
+          path: ~/certs-artifact/
+
+      - name: 🔧 Install Provisioning Profile
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          PP_FILE=$(find ~/certs-artifact -name "*.mobileprovision" -print -quit)
+          if [ -f "$PP_FILE" ]; then
+            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/
+            echo "📋 Installed: $(basename "$PP_FILE")"
+            ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
+          fi
+
       - uses: actions/cache@v4
         with:
           path: /Users/runner/hostedtoolcache/flutter
@@ -46,7 +63,8 @@ jobs:
           echo "📦 Building Shorebird iOS..."
           echo "   Version: ${{ inputs.version_code }} (${{ inputs.version_name }})"
           echo "   Provisioning Profile Name: $PP_NAME"
-          # Update ExportOptions.plist
+          # Update ExportOptions.plist with profile name
+          perl -i -pe "s/\\\$\(PROVISIONING_PROFILE_NAME\)/$PP_NAME/g" ios/ExportOptions.plist 2>/dev/null || \
           perl -i -pe "s/\\\$\(PROVISIONING_PROFILE_UUID\)/$PP_NAME/g" ios/ExportOptions.plist
           echo "📋 Updated ExportOptions.plist:"
           grep -A1 "com.muein.orders" ios/ExportOptions.plist

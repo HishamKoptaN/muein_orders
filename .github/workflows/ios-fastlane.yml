@@ -47,6 +47,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: 📥 Download Certs Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-certs
+          path: ~/certs-artifact/
+
+      - name: 🔧 Install Provisioning Profile
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          PP_FILE=$(find ~/certs-artifact -name "*.mobileprovision" -print -quit)
+          if [ -f "$PP_FILE" ]; then
+            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/
+            echo "📋 Installed: $(basename "$PP_FILE")"
+            ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
+          fi
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2"

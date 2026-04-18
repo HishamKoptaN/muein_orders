@@ -17,6 +17,8 @@ jobs:
       - name: 🔧 Install Certificates
         id: certs
         run: |
+          # Create directory for artifacts
+          mkdir -p ~/certs-artifact
           echo "🔧 Installing iOS certificates from repo root..."
           CERTS_DIR="${{ github.workspace }}"
 
@@ -71,6 +73,11 @@ jobs:
             cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/${PP_UUID}.mobileprovision
             echo "✅ Installed to: ~/Library/MobileDevice/Provisioning\ Profiles/${PP_UUID}.mobileprovision"
 
+            # Also copy to artifact directory with UUID
+            cp "$PP_FILE" ~/certs-artifact/${PP_UUID}.mobileprovision
+            echo "$PP_UUID" > ~/certs-artifact/profile_uuid.txt
+            echo "$PP_NAME" > ~/certs-artifact/profile_name.txt
+
             # List all profiles
             echo "📋 All installed profiles:"
             ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
@@ -81,3 +88,10 @@ jobs:
             ls -la "$CERTS_DIR"
             exit 1
           fi
+
+      - name: 📤 Upload Certs Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-certs
+          path: ~/certs-artifact/
+          retention-days: 1
