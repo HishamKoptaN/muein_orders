@@ -1,4 +1,4 @@
-name: Shorebird Release iOS (Secrets)
+name: Shorebird Release iOS (Temp - Merged)
 on:
   workflow_call:
     inputs:
@@ -32,38 +32,96 @@ on:
         description: "القناة"
 
 jobs:
-  setup-env:
-    uses: ./.github/workflows/ios-setup-env.yml
-    with:
-      flutter_version: "3.41.2"
+  build-and-upload:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
 
-  setup-certs:
-    uses: ./.github/workflows/ios-setup-certs.yml
-    needs: setup-env
+      - name: 🔧 Install Certificates & Provisioning Profile
+        run: |
+          echo "🔧 Installing certificates from repo root..."
+          CERTS_DIR="${{ github.workspace }}"
 
-  setup-api:
-    uses: ./.github/workflows/ios-setup-api-key.yml
-    needs: setup-env
-    secrets:
-      APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          # Create keychain
+          KEYCHAIN_NAME="build.keychain"
+          KEYCHAIN_PASSWORD="temp123"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security set-keychain-settings -t 3600 "$KEYCHAIN_NAME"
+          security list-keychains -d user -s "$KEYCHAIN_NAME" $(security list-keychains -d user | tr -d '"')
 
-  build:
-    uses: ./.github/workflows/ios-build-shorebird.yml
-    needs: [setup-certs, setup-api]
-    with:
-      flutter_version: "3.41.2"
-      version_code: ${{ inputs.version_code }}
-      version_name: ${{ inputs.version_name }}
-      provisioning_profile_name: ${{ needs.setup-certs.outputs.provisioning_profile_name }}
-    secrets:
-      SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+          # Install Certificate
+          if [ -f "$CERTS_DIR/certificate.p12" ]; then
+            echo "📜 Installing certificate.p12..."
+            security import "$CERTS_DIR/certificate.p12" -k "$KEYCHAIN_NAME" \
+              -P "${{ secrets.IOS_CERTIFICATE_PASSWORD || '123456' }}" -T /usr/bin/codesign || true
+            security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
+          else
+            echo "⚠️ No certificate.p12 found"
+          fi
 
-  upload:
-    uses: ./.github/workflows/ios-upload-appstore.yml
-    needs: [build, setup-api]
-    with:
-      track: ${{ inputs.track }}
-      api_key_path: ${{ needs.setup-api.outputs.api_key_path }}
-      key_id: ${{ needs.setup-api.outputs.key_id }}
-      issuer_id: ${{ needs.setup-api.outputs.issuer_id }}
+          # Install Provisioning Profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          PP_FILE=$(find "$CERTS_DIR" -maxdepth 1 -name "*.mobileprovision" -print -quit)
+          if [ -f "$PP_FILE" ]; then
+            PP_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin <<< "$(security cms -D -i "$PP_FILE")")
+            PP_NAME=$(/usr/libexec/PlistBuddy -c 'Print Name' /dev/stdin <<< "$(security cms -D -i "$PP_FILE")")
+            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/${PP_UUID}.mobileprovision
+            echo "provisioning_profile_name=$PP_NAME" >> $GITHUB_ENV
+            echo "✅ Installed: $PP_NAME (UUID: $PP_UUID)"
+          fi
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+
+      - name: 🔐 Setup App Store Connect API Key
+        run: |
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo "${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}" | base64 --decode > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
+          echo "api_key_path=$HOME/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8" >> $GITHUB_ENV
+          echo "key_id=${{ secrets.APP_STORE_CONNECT_KEY_ID }}" >> $GITHUB_ENV
+          echo "issuer_id=${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: flutter-sdk-3.41.2-macos
+          restore-keys: flutter-sdk-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - uses: shorebirdtech/setup-shorebird@v1
+
+      - run: flutter pub get
+      - run: |
+          cd ios
+          pod install --repo-update
+
+      - name: 📦 Build with Shorebird
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: |
+          echo "📦 Building Shorebird iOS..."
+          echo "   Provisioning Profile: $provisioning_profile_name"
+          perl -i -pe "s/\\\$\(PROVISIONING_PROFILE_NAME\)/$provisioning_profile_name/g" ios/ExportOptions.plist 2>/dev/null || \
+          perl -i -pe "s/\\\$\(PROVISIONING_PROFILE_UUID\)/$provisioning_profile_name/g" ios/ExportOptions.plist
+          shorebird release ios \
+            --flutter-version=3.41.2 \
+            --dart-define=ENV=prod \
+            --flavor=prod \
+            --export-options-plist=ios/ExportOptions.plist
+
+      - name: 📤 Upload to App Store
+        run: |
+          echo "📤 Uploading to ${{ inputs.track }}..."
+          xcrun altool --upload-app \
+            --type ios \
+            --file build/ios/ipa/*.ipa \
+            --apiKey "$key_id" \
+            --apiIssuer "$issuer_id" \
+            --verbose || true
