@@ -96,33 +96,20 @@ jobs:
           cd ios
           pod install --repo-update
 
-      - name: 📦 Build IPA (Manual Signing)
+      - name: 📦 Build IPA
         run: |
-          echo "📦 Building IPA with manual signing..."
+          echo "📦 Building IPA..."
           echo "Provisioning Profile: $provisioning_profile_name"
           echo "UUID: $provisioning_profile_uuid"
 
-          # Build with xcodebuild directly for proper manual signing
-          cd ios
-          xcodebuild -workspace Runner.xcworkspace \
-            -scheme prod \
-            -sdk iphoneos \
-            -configuration Release-prod \
-            -destination 'generic/platform=iOS' \
-            clean archive \
-            -archivePath build/Runner.xcarchive \
-            CODE_SIGN_STYLE=Manual \
-            PROVISIONING_PROFILE_SPECIFIER="$provisioning_profile_name" \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
-            DEVELOPMENT_TEAM="5493DS73C7"
+          # Use flutter build ipa with export options
+          flutter build ipa \
+            --release \
+            --flavor prod \
+            --target lib/main.dart \
+            --export-options-plist ios/ExportOptions.plist \
+            --verbose
 
-          # Export IPA
-          xcodebuild -exportArchive \
-            -archivePath build/Runner.xcarchive \
-            -exportPath ../build/ios/ipa \
-            -exportOptionsPlist ExportOptions.plist
-
-          cd ..
           echo "✅ IPA built successfully"
 
       - name: 📤 Upload to App Store
