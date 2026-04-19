@@ -21,7 +21,7 @@ on:
 jobs:
   direct-release:
     if: inputs.action == 'release'
-    uses: ./.github/workflows/shorebird_release_ios.yml
+    uses: ./.github/workflows/ios_build_manual.yml
     with:
       version_code: ${{ inputs.version_code }}
       version_name: ${{ inputs.version_name }}
@@ -38,7 +38,7 @@ jobs:
   release-after-bump:
     needs: bump-version
     if: inputs.action == 'bump-and-release'
-    uses: ./.github/workflows/shorebird_release_ios.yml
+    uses: ./.github/workflows/ios_build_manual.yml
     with:
       version_code: ${{ needs.bump-version.outputs.new_version_code }}
       version_name: ${{ inputs.version_name }}
