@@ -62,7 +62,7 @@ jobs:
           if [ -f "$CERTS_DIR/certificate.cer" ] && [ -f "$CERTS_DIR/private.key" ]; then
             echo "📜 Installing certificate from .cer + .key..."
             # Convert .cer + .key to .p12 on the fly
-            openssl x509 -in "$CERTS_DIR/certificate.cer" -out /tmp/certificate.pem -outform PEM
+            openssl x509 -in "$CERTS_DIR/certificate.cer" -inform DER -out /tmp/certificate.pem -outform PEM
             openssl rsa -in "$CERTS_DIR/private.key" -out /tmp/private.pem 2>/dev/null || cat "$CERTS_DIR/private.key" > /tmp/private.pem
             openssl pkcs12 -export -out /tmp/certificate.p12 \
               -inkey /tmp/private.pem \
