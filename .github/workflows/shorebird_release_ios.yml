@@ -58,14 +58,28 @@ jobs:
           security set-keychain-settings -t 3600 "$KEYCHAIN_NAME"
           security list-keychains -d user -s "$KEYCHAIN_NAME" $(security list-keychains -d user | tr -d '"')
 
-          # Install Certificate
-          if [ -f "$CERTS_DIR/certificate.p12" ]; then
+          # Install Certificate (from .cer and .key files)
+          if [ -f "$CERTS_DIR/certificate.cer" ] && [ -f "$CERTS_DIR/private.key" ]; then
+            echo "📜 Installing certificate from .cer + .key..."
+            # Convert .cer + .key to .p12 on the fly
+            openssl x509 -in "$CERTS_DIR/certificate.cer" -out /tmp/certificate.pem -outform PEM
+            openssl rsa -in "$CERTS_DIR/private.key" -out /tmp/private.pem 2>/dev/null || cat "$CERTS_DIR/private.key" > /tmp/private.pem
+            openssl pkcs12 -export -out /tmp/certificate.p12 \
+              -inkey /tmp/private.pem \
+              -in /tmp/certificate.pem \
+              -password pass:${{ secrets.IOS_CERTIFICATE_PASSWORD || '123456' }} 2>/dev/null
+            security import /tmp/certificate.p12 -k "$KEYCHAIN_NAME" \
+              -P "${{ secrets.IOS_CERTIFICATE_PASSWORD || '123456' }}" -T /usr/bin/codesign || true
+            security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
+            rm -f /tmp/certificate.pem /tmp/private.pem /tmp/certificate.p12
+            echo "✅ Certificate installed from .cer + .key"
+          elif [ -f "$CERTS_DIR/certificate.p12" ]; then
             echo "📜 Installing certificate.p12..."
             security import "$CERTS_DIR/certificate.p12" -k "$KEYCHAIN_NAME" \
               -P "${{ secrets.IOS_CERTIFICATE_PASSWORD || '123456' }}" -T /usr/bin/codesign || true
             security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
           else
-            echo "⚠️ No certificate.p12 found"
+            echo "⚠️ No certificate files found (.cer+.key or .p12)"
           fi
 
           # Install Provisioning Profile
@@ -112,27 +126,16 @@ jobs:
           cd ios
           pod install --repo-update
 
-      - name: � Fix ExportOptions.plist (Remove hardcoded profile)
+      - name: 🔧 Verify ExportOptions.plist
         run: |
-          echo "🔧 Cleaning ExportOptions.plist..."
-          # حذف provisioningProfiles إذا وجدت (للسماح بـ automatic signing)
-          plutil -remove provisioningProfiles ios/ExportOptions.plist 2>/dev/null || true
-          # أو تغيير method إلى app-store مع automatic signing
-          plutil -replace method -string "app-store" ios/ExportOptions.plist 2>/dev/null || true
-          plutil -replace signingStyle -string "automatic" ios/ExportOptions.plist 2>/dev/null || true
-          echo "✅ ExportOptions.plist updated:"
+          echo "🔧 Verifying ExportOptions.plist for manual signing..."
           cat ios/ExportOptions.plist
 
-      - name: �📦 Build with Shorebird (Automatic Signing)
+      - name: � Build with Shorebird (Manual Signing)
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-          # App Store Connect API for automatic signing
-          APP_STORE_CONNECT_API_KEY_PATH: ${{ steps.api_key.outputs.path }}
-          APP_STORE_CONNECT_KEY_ID: ${{ steps.api_key.outputs.key_id }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ steps.api_key.outputs.issuer_id }}
         run: |
-          echo "📦 Building Shorebird iOS with Automatic Signing..."
-          echo "   API Key ID: ${{ steps.api_key.outputs.key_id }}"
+          echo "📦 Building Shorebird iOS with Manual Signing..."
           echo "   Provisioning Profile: $provisioning_profile_name"
           shorebird release ios \
             --flutter-version=3.41.2 \

@@ -126,13 +126,14 @@ jobs:
             --dart-define=ENV=prod \
             --flavor=prod \
             --release
-      - uses: r0adkll/upload-google-play@v1
+      - id: upload-play
+        uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
           packageName: com.muein.orders
           releaseFiles: build/app/outputs/bundle/prodRelease/app-prod-release.aab
           track: ${{ env.TRACK }}
-          status: draft
+          status: ${{ env.TRACK == 'production' && 'completed' || 'draft' }}
       - run: |
           echo "✅ تم إنشاء الإصدار ورفعه بنجاح!"
           echo "   الإصدار: $VERSION_CODE ($VERSION_NAME)"

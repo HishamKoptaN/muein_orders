@@ -5,7 +5,12 @@
 	<key>method</key>
 	<string>app-store</string>
 	<key>signingStyle</key>
-	<string>automatic</string>
+	<string>manual</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.muein.orders</key>
+		<string>muein_orders_appstore_prod</string>
+	</dict>
 	<key>uploadSymbols</key>
 	<true/>
 	<key>teamID</key>

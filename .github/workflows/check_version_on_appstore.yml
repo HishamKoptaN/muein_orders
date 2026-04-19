@@ -65,14 +65,10 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
             exit 0
           fi
-
           JWT_TOKEN="$JWT_HEADER.$JWT_PAYLOAD.$JWT_SIGNATURE"
-
           APP_RESPONSE=$(curl -s -H "Authorization: Bearer $JWT_TOKEN" \
             "https://api.appstoreconnect.apple.com/v1/apps?filter[bundleId]=$BUNDLE_ID")
-
           APP_ID=$(echo "$APP_RESPONSE" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
-
           if [ -z "$APP_ID" ]; then
             echo "⚠️  التطبيق غير موجود على App Store Connect"
             echo "exists=false" >> $GITHUB_OUTPUT
@@ -82,9 +78,7 @@ jobs:
           VERSIONS_RESPONSE=$(curl -s -H "Authorization: Bearer $JWT_TOKEN" \
             "https://api.appstoreconnect.apple.com/v1/apps/$APP_ID/appStoreVersions")
           EXISTS=$(echo "$VERSIONS_RESPONSE" | grep -q "versionString.*$VERSION_NAME" && echo "true" || echo "false")
-
           echo "exists=$EXISTS" >> $GITHUB_OUTPUT
-
           if [ "$EXISTS" == "true" ]; then
             echo "⚠️  الإصدار $VERSION_NAME موجود بالفعل على App Store Connect!"
           else
