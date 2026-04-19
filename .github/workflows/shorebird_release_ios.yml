@@ -112,7 +112,18 @@ jobs:
           cd ios
           pod install --repo-update
 
-      - name: 📦 Build with Shorebird (Automatic Signing)
+      - name: � Fix ExportOptions.plist (Remove hardcoded profile)
+        run: |
+          echo "🔧 Cleaning ExportOptions.plist..."
+          # حذف provisioningProfiles إذا وجدت (للسماح بـ automatic signing)
+          plutil -remove provisioningProfiles ios/ExportOptions.plist 2>/dev/null || true
+          # أو تغيير method إلى app-store مع automatic signing
+          plutil -replace method -string "app-store" ios/ExportOptions.plist 2>/dev/null || true
+          plutil -replace signingStyle -string "automatic" ios/ExportOptions.plist 2>/dev/null || true
+          echo "✅ ExportOptions.plist updated:"
+          cat ios/ExportOptions.plist
+
+      - name: �📦 Build with Shorebird (Automatic Signing)
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
           # App Store Connect API for automatic signing
