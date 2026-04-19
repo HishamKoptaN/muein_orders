@@ -92,7 +92,7 @@ jobs:
           cd ios
           bundle install
 
-      - run: |
+      - name: Deploy to TestFlight
         if: github.event.inputs.track == 'testflight' || github.event_name == 'push'
         env:
           LC_ALL: en_US.UTF-8
@@ -101,7 +101,7 @@ jobs:
           cd ios
           bundle exec fastlane beta
 
-      - run: |
+      - name: Deploy to App Store
         if: github.event.inputs.track == 'appstore'
         env:
           LC_ALL: en_US.UTF-8
@@ -110,7 +110,7 @@ jobs:
           cd ios
           bundle exec fastlane production
 
-      - run: |
+      - name: Upload artifacts on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
