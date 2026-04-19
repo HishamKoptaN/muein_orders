@@ -1,0 +1,207 @@
+default_platform(:ios)
+
+# Load environment variables from .env.local
+require 'dotenv'
+Dotenv.load('.env.local')
+
+platform :ios do
+  # Prevent Fastlane from regenerating README.md on every run
+  skip_docs
+
+  # Helper method to configure App Store Connect API Key
+  def api_key
+    # Convert relative path to absolute path (fastlane requires absolute path)
+    key_path = File.expand_path(ENV["APP_STORE_CONNECT_KEY_PATH"], __dir__)
+    
+    unless File.exist?(key_path)
+      UI.user_error!("API Key file not found at: #{key_path}. Please ensure AuthKey.p8 is in the ios/fastlane/ directory.")
+    end
+
+    app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_filepath: key_path
+    )
+  end
+
+  error do |lane, exception|
+    UI.error("❌ #{lane} failed: #{exception.message}")
+  end
+
+  desc "Push a new iOS beta build to TestFlight"
+  lane :beta do
+    # 1. Read version from pubspec.yaml (user manages version manually)
+    require 'yaml'
+    pubspec_path = "../../pubspec.yaml"
+    
+    unless File.exist?(pubspec_path)
+      UI.user_error!("pubspec.yaml not found at #{pubspec_path}")
+    end
+    
+    pubspec = YAML.load_file(pubspec_path)
+    version_string = pubspec['version']
+    version, build_number = version_string.split('+')
+    build_number = build_number.to_i
+
+    UI.message("📱 Using version from pubspec.yaml: #{version}+#{build_number}")
+
+    # 2. Validate version+build combination (prevent duplicate uploads)
+    begin
+      latest_build = app_store_build_number(
+        api_key: api_key,
+        app_identifier: ENV["APP_IDENTIFIER"],
+        live: false,
+        version: version
+      )
+    rescue => e
+      # Version doesn't exist on TestFlight yet - this is fine
+      latest_build = nil
+      UI.message("ℹ️ Version #{version} doesn't exist on TestFlight yet (this is expected for new versions)")
+    end
+
+    if latest_build && latest_build.to_i >= build_number
+      UI.user_error!("❌ Version #{version}+#{build_number} already exists on TestFlight (latest build for v#{version}: #{latest_build}). Please increment the build number in pubspec.yaml")
+    end
+
+    UI.success("✅ Version validation passed - #{version}+#{build_number} (TestFlight latest for v#{version}: #{latest_build || 'none'})")
+
+    # 3. Install pods if needed
+    UI.message("📦 Installing CocoaPods dependencies...")
+    cocoapods(
+      podfile: "../Podfile",
+      try_repo_update_on_error: true
+    )
+
+    # 4. Build IPA with Flutter
+    UI.message("🔨 Building IPA with Flutter...")
+    sh("cd ../.. && flutter build ios --release --no-codesign")
+
+    # 5. Export and sign the archive (skip building since we just built with Flutter)
+    UI.message("🔐 Signing and exporting IPA...")
+    update_code_signing_settings(use_automatic_signing: true)
+
+    build_app(
+      clean: false,
+      scheme: "Runner",
+      workspace: "Runner.xcworkspace",
+      export_method: "app-store",
+      skip_build_archive: true,
+      archive_path: "../build/ios/archive/Runner.xcarchive",
+      xcargs: "-allowProvisioningUpdates"
+    )
+
+    # 6. Upload to TestFlight
+    UI.message("📤 Uploading to TestFlight...")
+    
+    # Use absolute path via __dir__ to ensure correct resolution regardless of CWD
+    changelog_path = File.expand_path("./metadata/en-US/release_notes.txt", __dir__)
+    changelog = File.exist?(changelog_path) ? File.read(changelog_path).strip : "Beta build v#{version} (#{build_number})"
+
+    upload_to_testflight(
+      api_key: api_key,
+      app_identifier: ENV["APP_IDENTIFIER"],
+      changelog: changelog,
+      skip_waiting_for_build_processing: false,
+      wait_timeout: 600,
+      notify_external_testers: false
+    )
+
+    UI.success("🎉 Successfully uploaded build #{build_number} (v#{version}) to TestFlight!")
+  end
+
+  desc "Promote an existing build to App Store (Metadata + Submission only)"
+  desc "Usage: fastlane production [version:X.X.X] [build:XXX]"
+  lane :production do |options|
+    # Read from pubspec.yaml if no explicit params provided
+    pubspec_version = nil
+    pubspec_build = nil
+    
+    if options[:version].nil? || options[:build].nil?
+      require 'yaml'
+      pubspec_path = "../../pubspec.yaml"
+      
+      unless File.exist?(pubspec_path)
+        UI.user_error!("pubspec.yaml not found at #{pubspec_path}")
+      end
+      
+      pubspec = YAML.load_file(pubspec_path)
+      version_string = pubspec['version']
+      pubspec_version, pubspec_build = version_string.split('+')
+    end
+
+    # Allow explicit version/build params to override pubspec.yaml
+    version = options[:version] || pubspec_version
+    build = options[:build] || pubspec_build
+
+    UI.important("⚠️ Ensure this matches the TestFlight build you want to promote!")
+    UI.message("Promoting: v#{version} (#{build})")
+
+    # Validate the build exists on TestFlight
+    UI.message("🔍 Verifying build exists on TestFlight...")
+    latest_testflight = app_store_build_number(
+      api_key: api_key,
+      app_identifier: ENV["APP_IDENTIFIER"],
+      live: false,
+      version: version
+    )
+
+    if latest_testflight.to_i < build.to_i
+      UI.user_error!("❌ Build #{build} not found on TestFlight for v#{version}. Latest is #{latest_testflight}.")
+    end
+
+    UI.success("✅ Build #{build} verified on TestFlight")
+
+    # 2. Upload Metadata & Submit
+    UI.message("📤 Submitting to App Store Review...")
+    
+    release_notes_path = File.expand_path("./metadata/en-US/release_notes.txt", __dir__)
+    release_notes = File.exist?(release_notes_path) ? File.read(release_notes_path).strip : "Release v#{version}"
+
+    deliver(
+      api_key: api_key,
+      app_version: version,
+      build_number: build.to_s,
+      submit_for_review: true,
+      automatic_release: false,
+      release_notes: {
+        'en-US' => release_notes,
+        'ar-SA' => release_notes
+      },
+      skip_metadata: false,
+      skip_screenshots: true,
+      skip_binary_upload: true,
+      force: true
+    )
+
+    UI.success("🎉 Successfully promoted build #{build} (v#{version}) to App Review!")
+  end
+  
+  desc "Build only (no upload) - for testing the build process"
+  lane :build_only do
+    UI.message("🔨 Building IPA only (no upload)...")
+    
+    # Install pods
+    cocoapods(
+      podfile: "../Podfile",
+      try_repo_update_on_error: true
+    )
+    
+    # Build with Flutter
+    sh("cd ../.. && flutter build ios --release --no-codesign")
+    
+    # Sign and export
+    update_code_signing_settings(use_automatic_signing: true)
+    
+    build_app(
+      clean: false,
+      scheme: "Runner",
+      workspace: "Runner.xcworkspace",
+      export_method: "app-store",
+      skip_build_archive: true,
+      archive_path: "../build/ios/archive/Runner.xcarchive",
+      xcargs: "-allowProvisioningUpdates"
+    )
+    
+    UI.success("✅ Build completed successfully! Check the output folder for the IPA.")
+  end
+end

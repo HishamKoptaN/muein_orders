@@ -1,0 +1,2 @@
+تحسينات في الأداء وإصلاحات للأخطاء.
+Performance improvements and bug fixes.

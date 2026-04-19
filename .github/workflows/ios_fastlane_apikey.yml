@@ -1,0 +1,143 @@
+name: iOS Release - Fastlane (API Key)
+
+on:
+  push:
+    branches:
+      - prod
+    paths:
+      - "pubspec.yaml"
+      - "ios/**"
+      - "lib/**"
+  workflow_dispatch:
+    inputs:
+      track:
+        description: "القناة (TestFlight أو App Store)"
+        required: true
+        type: choice
+        options:
+          - testflight
+          - appstore
+        default: "testflight"
+      skip_version_check:
+        description: "تخطي التحقق من الإصدار (للإعادة المحاولة)"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version_code: ${{ steps.version.outputs.version_code }}
+      version_name: ${{ steps.version.outputs.version_name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 📖 Read version from pubspec.yaml
+        id: version
+        run: |
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+          VERSION_NAME=$(echo $VERSION | cut -d'+' -f1)
+          VERSION_CODE=$(echo $VERSION | cut -d'+' -f2)
+          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
+          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "📱 الإصدار: $VERSION_NAME+$VERSION_CODE"
+
+  build-and-release:
+    needs: check-version
+    runs-on: macos-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 💎 Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4.7"
+          bundler-cache: true
+
+      - name: 🔧 Install Fastlane
+        run: gem install fastlane -v '>= 2.232.0'
+
+      - name: 🎯 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - name: 📦 Install dependencies
+        run: flutter pub get
+
+      - name: 🔐 Setup API Key
+        run: |
+          echo "Setting up App Store Connect API Key..."
+          echo "${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}" | base64 --decode > ios/fastlane/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
+
+      - name: 📝 Create .env.local
+        run: |
+          cat > ios/fastlane/.env.local << EOF
+          APP_IDENTIFIER=com.muein.orders
+          APPLE_ID=heshamkoptan@email.com
+          ITC_TEAM_ID=5493DS73C7
+          TEAM_ID=5493DS73C7
+          APP_STORE_CONNECT_KEY_ID=G2L6LRG5PK
+          APP_STORE_CONNECT_ISSUER_ID=487919a3-70a5-4992-af37-d75eb388c881    
+          APP_STORE_CONNECT_KEY_PATH=./AuthKey_G2L6LRG5PK.p8
+          EOF
+          echo "✅ Environment file created"
+
+      - name: 📱 Install CocoaPods
+        run: |
+          cd ios
+          pod install --repo-update
+
+      - name: 🚀 Release to TestFlight
+        if: github.event.inputs.track == 'testflight' || github.event_name == 'push'
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+        run: |
+          cd ios
+          bundle exec fastlane beta
+
+      - name: 🚀 Release to App Store
+        if: github.event.inputs.track == 'appstore'
+        env:
+          LC_ALL: en_US.UTF-8
+          LANG: en_US.UTF-8
+        run: |
+          cd ios
+          bundle exec fastlane production
+
+      - name: 📤 Upload IPA as Artifact
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build-failed
+          path: |
+            build/ios/archive/
+            ios/fastlane/logs/
+        continue-on-error: true
+
+  notify:
+    needs: [build-and-release, check-version]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: 📢 Notify Success
+        if: needs.build-and-release.result == 'success'
+        run: |
+          echo "🎉 تم رفع الإصدار بنجاح!"
+          echo "📱 الإصدار: ${{ needs.check-version.outputs.version_name }}+${{ needs.check-version.outputs.version_code }}"
+          echo "🚀 القناة: ${{ github.event.inputs.track || 'testflight' }}"
+
+      - name: ❌ Notify Failure
+        if: needs.build-and-release.result == 'failure'
+        run: |
+          echo "❌ فشل بناء أو رفع الإصدار"
+          echo "📱 الإصدار المطلوب: ${{ needs.check-version.outputs.version_name }}+${{ needs.check-version.outputs.version_code }}"

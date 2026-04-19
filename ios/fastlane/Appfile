@@ -1,0 +1,14 @@
+# Appfile - Fastlane Configuration
+# يتم تحميل المتغيرات من .env.local
+
+# معرف التطبيق (Bundle Identifier)
+app_identifier(ENV["APP_IDENTIFIER"])
+
+# البريد الإلكتروني لحساب Apple Developer
+apple_id(ENV["APPLE_ID"])
+
+# App Store Connect Team ID (اختياري - إذا كنت تستخدم عدة فرق)
+itc_team_id(ENV["ITC_TEAM_ID"]) if ENV["ITC_TEAM_ID"] && !ENV["ITC_TEAM_ID"].empty?
+
+# Developer Portal Team ID
+team_id(ENV["TEAM_ID"])
