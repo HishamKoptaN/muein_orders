@@ -1,13 +1,8 @@
 name: iOS Release - Fastlane (API Key)
-
 on:
   push:
     branches:
       - prod
-    paths:
-      - "pubspec.yaml"
-      - "ios/**"
-      - "lib/**"
   workflow_dispatch:
     inputs:
       track:
