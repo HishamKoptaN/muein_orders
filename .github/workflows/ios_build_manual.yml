@@ -1,6 +1,18 @@
 name: iOS Build (Manual - No Shorebird)
 
 on:
+  workflow_call:
+    inputs:
+      version_code:
+        required: true
+        type: string
+      version_name:
+        required: true
+        type: string
+      track:
+        required: false
+        type: string
+        default: "testflight"
   workflow_dispatch:
     inputs:
       version_code:
@@ -89,7 +101,7 @@ jobs:
           echo "📦 Building IPA with manual signing..."
           echo "Provisioning Profile: $provisioning_profile_name"
           echo "UUID: $provisioning_profile_uuid"
-          
+
           flutter build ipa \
             --release \
             --flavor=prod \
