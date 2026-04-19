@@ -1,0 +1,61 @@
+name: iOS Method 3 - Fastlane Match
+on:
+  workflow_call:
+    inputs:
+      version_code:
+        required: true
+        type: string
+      version_name:
+        required: true
+        type: string
+      flutter_version:
+        required: false
+        type: string
+        default: "3.41.2"
+    outputs:
+      status:
+        value: ${{ jobs.build.outputs.status }}
+
+jobs:
+  build:
+    runs-on: macos-latest
+    outputs:
+      status: ${{ steps.build.outputs.status }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: 🔧 Setup Fastlane
+        run: gem install fastlane
+
+      - name: 🔐 Fastlane Match
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        run: |
+          cd ios
+          fastlane match appstore --readonly true || true
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ inputs.flutter_version }}
+          channel: "stable"
+
+      - uses: shorebirdtech/setup-shorebird@v1
+      - run: flutter pub get
+      - run: cd ios && pod install --repo-update
+
+      - name: 📦 Build with Shorebird
+        id: build
+        continue-on-error: true
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: |
+          shorebird release ios \
+            --flutter-version=${{ inputs.flutter_version }} \
+            --dart-define=ENV=prod --flavor=prod && {
+              echo "status=success" >> $GITHUB_OUTPUT
+            } || echo "status=failed" >> $GITHUB_OUTPUT
