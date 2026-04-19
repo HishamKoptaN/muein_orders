@@ -31,8 +31,7 @@ jobs:
       version_name: ${{ steps.version.outputs.version_name }}
     steps:
       - uses: actions/checkout@v4
-      - name: 📖 Read version from pubspec.yaml
-        id: version
+      - id: version
         run: |
           VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //')
           VERSION_NAME=$(echo $VERSION | cut -d'+' -f1)
@@ -46,37 +45,34 @@ jobs:
     timeout-minutes: 45
 
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: 💎 Setup Ruby
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.4.7"
           bundler-cache: true
 
-      - name: 🔧 Install Fastlane
-        run: gem install fastlane -v '>= 2.232.0'
+      - run: gem install fastlane -v '>= 2.232.0'
 
-      - name: 🎯 Setup Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.41.2"
           channel: "stable"
           cache: true
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: flutter pub get
 
-      - name: 🔐 Setup API Key
-        run: |
+      - run: |
           echo "Setting up App Store Connect API Key..."
           echo "${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}" | base64 --decode > ios/fastlane/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
 
-      - name: 📝 Create .env.local
-        run: |
+      - run: |
           cat > ios/fastlane/.env.local << EOF
           APP_IDENTIFIER=com.muein.orders
           APPLE_ID=heshamkoptan@email.com
@@ -88,17 +84,15 @@ jobs:
           EOF
           echo "✅ Environment file created"
 
-      - name: 📱 Install CocoaPods
-        run: |
+      - run: |
           cd ios
           pod install --repo-update
 
-      - name: � Install Ruby dependencies
-        run: |
+      - run: |
           cd ios
           bundle install
 
-      - name: �🚀 Release to TestFlight
+      - run: |
         if: github.event.inputs.track == 'testflight' || github.event_name == 'push'
         env:
           LC_ALL: en_US.UTF-8
@@ -107,7 +101,7 @@ jobs:
           cd ios
           bundle exec fastlane beta
 
-      - name: 🚀 Release to App Store
+      - run: |
         if: github.event.inputs.track == 'appstore'
         env:
           LC_ALL: en_US.UTF-8
@@ -116,7 +110,7 @@ jobs:
           cd ios
           bundle exec fastlane production
 
-      - name: 📤 Upload IPA as Artifact
+      - run: |
         if: failure()
         uses: actions/upload-artifact@v4
         with:
@@ -131,14 +125,14 @@ jobs:
     runs-on: ubuntu-latest
     if: always()
     steps:
-      - name: 📢 Notify Success
+      - name: Notify Success
         if: needs.build-and-release.result == 'success'
         run: |
           echo "🎉 تم رفع الإصدار بنجاح!"
           echo "📱 الإصدار: ${{ needs.check-version.outputs.version_name }}+${{ needs.check-version.outputs.version_code }}"
           echo "🚀 القناة: ${{ github.event.inputs.track || 'testflight' }}"
 
-      - name: ❌ Notify Failure
+      - name: Notify Failure
         if: needs.build-and-release.result == 'failure'
         run: |
           echo "❌ فشل بناء أو رفع الإصدار"
