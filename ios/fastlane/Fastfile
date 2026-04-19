@@ -68,7 +68,7 @@ platform :ios do
     # 3. Install pods if needed
     UI.message("📦 Installing CocoaPods dependencies...")
     cocoapods(
-      podfile: "../Podfile",
+      podfile: "Podfile",
       try_repo_update_on_error: true
     )
 
@@ -182,7 +182,7 @@ platform :ios do
     
     # Install pods
     cocoapods(
-      podfile: "../Podfile",
+      podfile: "Podfile",
       try_repo_update_on_error: true
     )
     
