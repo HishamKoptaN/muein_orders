@@ -23,7 +23,6 @@ on:
         required: false
         type: boolean
         default: false
-
 jobs:
   check-version:
     runs-on: ubuntu-latest
@@ -32,7 +31,6 @@ jobs:
       version_name: ${{ steps.version.outputs.version_name }}
     steps:
       - uses: actions/checkout@v4
-
       - name: 📖 Read version from pubspec.yaml
         id: version
         run: |
@@ -42,7 +40,6 @@ jobs:
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "📱 الإصدار: $VERSION_NAME+$VERSION_CODE"
-
   build-and-release:
     needs: check-version
     runs-on: macos-latest
@@ -96,7 +93,12 @@ jobs:
           cd ios
           pod install --repo-update
 
-      - name: 🚀 Release to TestFlight
+      - name: � Install Ruby dependencies
+        run: |
+          cd ios
+          bundle install
+
+      - name: �🚀 Release to TestFlight
         if: github.event.inputs.track == 'testflight' || github.event_name == 'push'
         env:
           LC_ALL: en_US.UTF-8
