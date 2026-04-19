@@ -42,6 +42,9 @@ jobs:
               -P "$P12_PASSWORD" -T /usr/bin/codesign || true
             security set-key-partition-list -S apple-tool:,apple: \
               -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
+            # Copy to artifact
+            cp "$CERTS_DIR/certificate.p12" ~/certs-artifact/
+            echo "✅ Certificate copied to artifact"
           elif [ -f "$CERTS_DIR/distribution.pem" ] && [ -f "$CERTS_DIR/private.key" ]; then
             echo "📜 Creating p12 from pem + key..."
             openssl pkcs12 -export -out /tmp/certificate.p12 \
@@ -49,6 +52,9 @@ jobs:
               -password pass:"$KEYCHAIN_PASSWORD"
             security import /tmp/certificate.p12 -k "$KEYCHAIN_NAME" \
               -P "$KEYCHAIN_PASSWORD" -T /usr/bin/codesign || true
+            # Copy to artifact
+            cp /tmp/certificate.p12 ~/certs-artifact/
+            echo "✅ Certificate copied to artifact"
           else
             echo "❌ No certificate found!"
             exit 1

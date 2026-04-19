@@ -30,8 +30,29 @@ jobs:
           name: ios-certs
           path: ~/certs-artifact/
 
-      - name: 🔧 Install Provisioning Profile
+      - name: 🔧 Install Certificate & Provisioning Profile
         run: |
+          # Create keychain
+          KEYCHAIN_NAME="build.keychain"
+          KEYCHAIN_PASSWORD="temp123"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security set-keychain-settings -t 3600 "$KEYCHAIN_NAME"
+          security list-keychains -d user -s "$KEYCHAIN_NAME" $(security list-keychains -d user | tr -d '"')
+          echo "✅ Keychain created"
+
+          # Install Certificate (p12)
+          CERT_FILE=$(find ~/certs-artifact -name "*.p12" -print -quit)
+          if [ -f "$CERT_FILE" ]; then
+            echo "📜 Installing certificate.p12..."
+            security import "$CERT_FILE" -k "$KEYCHAIN_NAME" -P "${{ secrets.IOS_CERTIFICATE_PASSWORD || '123456' }}" -T /usr/bin/codesign || true
+            security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
+            echo "✅ Certificate installed"
+          else
+            echo "⚠️ No .p12 file found in artifact"
+          fi
+
+          # Install Provisioning Profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           PP_FILE=$(find ~/certs-artifact -name "*.mobileprovision" -print -quit)
           if [ -f "$PP_FILE" ]; then
@@ -43,7 +64,7 @@ jobs:
             fi
             # Copy with UUID as filename (required by Xcode)
             cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/${PP_UUID}.mobileprovision
-            echo "📋 Installed: ${PP_UUID}.mobileprovision"
+            echo "📋 Installed Provisioning Profile: ${PP_UUID}.mobileprovision"
             ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
           fi
 
