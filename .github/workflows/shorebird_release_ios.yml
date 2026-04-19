@@ -30,6 +30,14 @@ on:
           - appstore
         default: "testflight"
         description: "القناة"
+      signing_method:
+        required: true
+        type: choice
+        options:
+          - manual
+          - automatic
+        default: "manual"
+        description: "طريقة التوقيع: manual (مع ExportOptions.plist) أو automatic (App Store Connect API)"
 
 jobs:
   build-and-upload:

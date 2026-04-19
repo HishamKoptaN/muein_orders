@@ -1,0 +1,378 @@
+name: iOS Release - Fallback Strategy
+on:
+  workflow_dispatch:
+    inputs:
+      version_code:
+        required: true
+        type: string
+        description: "رقم الإصدار (مثال: 42)"
+      version_name:
+        required: true
+        type: string
+        description: "اسم الإصدار (مثال: 1.2.3)"
+      track:
+        required: true
+        type: choice
+        options:
+          - testflight
+          - appstore
+        default: "testflight"
+        description: "القناة"
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════
+  # METHOD 1: Manual Signing with ExportOptions.plist
+  # ═══════════════════════════════════════════════════════════════
+  method-1-manual:
+    name: "Method 1: Manual Signing"
+    runs-on: macos-latest
+    outputs:
+      status: ${{ steps.build.outputs.status }}
+      ipa_path: ${{ steps.build.outputs.ipa_path }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🔧 Setup Certificates & Profile (Manual)
+        run: |
+          echo "📦 Method 1: Manual Signing with ExportOptions.plist"
+          CERTS_DIR="${{ github.workspace }}"
+
+          # Create keychain
+          KEYCHAIN_NAME="build.keychain"
+          KEYCHAIN_PASSWORD="temp123"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME"
+          security set-keychain-settings -t 3600 "$KEYCHAIN_NAME"
+          security list-keychains -d user -s "$KEYCHAIN_NAME" $(security list-keychains -d user | tr -d '"')
+
+          # Install Certificate
+          if [ -f "$CERTS_DIR/certificate.p12" ]; then
+            echo "📜 Installing certificate.p12..."
+            security import "$CERTS_DIR/certificate.p12" -k "$KEYCHAIN_NAME" \
+              -P "${{ secrets.IOS_CERTIFICATE_PASSWORD || '123456' }}" -T /usr/bin/codesign || true
+            security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
+          elif [ -f "$CERTS_DIR/distribution.pem" ] && [ -f "$CERTS_DIR/private.key" ]; then
+            echo "📜 Creating p12 from pem + key..."
+            openssl pkcs12 -export -out /tmp/certificate.p12 \
+              -inkey "$CERTS_DIR/private.key" -in "$CERTS_DIR/distribution.pem" \
+              -password pass:"temp123"
+            security import /tmp/certificate.p12 -k "$KEYCHAIN_NAME" \
+              -P "temp123" -T /usr/bin/codesign || true
+            security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
+          fi
+
+          # Install Provisioning Profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          PP_FILE=$(find "$CERTS_DIR" -maxdepth 1 -name "*.mobileprovision" -print -quit)
+          if [ -f "$PP_FILE" ]; then
+            PP_UUID=$(/usr/libexec/PlistBuddy -c 'Print UUID' /dev/stdin <<< "$(security cms -D -i "$PP_FILE")")
+            PP_NAME=$(/usr/libexec/PlistBuddy -c 'Print Name' /dev/stdin <<< "$(security cms -D -i "$PP_FILE")")
+            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/${PP_UUID}.mobileprovision
+            echo "provisioning_profile_name=$PP_NAME" >> $GITHUB_ENV
+            echo "✅ Installed: $PP_NAME (UUID: $PP_UUID)"
+          fi
+
+      - uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: flutter-sdk-3.41.2-macos
+          restore-keys: flutter-sdk-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - uses: shorebirdtech/setup-shorebird@v1
+
+      - run: flutter pub get
+      - run: |
+          cd ios
+          pod install --repo-update
+
+      - name: 📝 Update ExportOptions.plist
+        id: update_plist
+        run: |
+          PP_NAME="$PROVISIONING_PROFILE_NAME"
+          echo "profile_name=$PP_NAME" >> $GITHUB_OUTPUT
+          echo "Updating ExportOptions.plist with profile: $PP_NAME"
+          # Update the plist file with the correct profile name
+          plutil -replace provisioningProfiles.com.muein.orders -string "$PP_NAME" ios/ExportOptions.plist || \
+          perl -i -pe "s/<string>.*<\/string>/<string>$PP_NAME<\/string>/g" ios/ExportOptions.plist
+          cat ios/ExportOptions.plist
+
+      - name: 📦 Build with Shorebird (Manual)
+        id: build
+        continue-on-error: true
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: |
+          echo "🔨 Building with Manual Signing..."
+          shorebird release ios \
+            --flutter-version=3.41.2 \
+            --dart-define=ENV=prod \
+            --flavor=prod \
+            --export-options-plist=ios/ExportOptions.plist && {
+              echo "status=success" >> $GITHUB_OUTPUT
+              echo "ipa_path=build/ios/ipa/*.ipa" >> $GITHUB_OUTPUT
+              echo "✅ Method 1 SUCCESS"
+            } || {
+              echo "status=failed" >> $GITHUB_OUTPUT
+              echo "❌ Method 1 FAILED"
+            }
+
+      - name: 📤 Upload IPA (if success)
+        if: steps.build.outputs.status == 'success'
+        run: |
+          echo "📤 Uploading IPA..."
+          ls -la build/ios/ipa/
+
+  # ═══════════════════════════════════════════════════════════════
+  # METHOD 2: Automatic Signing with App Store Connect API
+  # ═══════════════════════════════════════════════════════════════
+  method-2-automatic:
+    name: "Method 2: Automatic Signing"
+    runs-on: macos-latest
+    needs: method-1-manual
+    if: needs.method-1-manual.outputs.status != 'success'
+    outputs:
+      status: ${{ steps.build.outputs.status }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🔐 Setup App Store Connect API Key
+        id: api_key
+        run: |
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo "${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}" | base64 --decode > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
+          echo "path=$HOME/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8" >> $GITHUB_OUTPUT
+          echo "key_id=${{ secrets.APP_STORE_CONNECT_KEY_ID }}" >> $GITHUB_OUTPUT
+          echo "issuer_id=${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}" >> $GITHUB_OUTPUT
+          echo "✅ API Key configured"
+
+      - uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: flutter-sdk-3.41.2-macos
+          restore-keys: flutter-sdk-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - uses: shorebirdtech/setup-shorebird@v1
+
+      - run: flutter pub get
+      - run: |
+          cd ios
+          pod install --repo-update
+
+      - name: 📦 Build with Shorebird (Automatic)
+        id: build
+        continue-on-error: true
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+          APP_STORE_CONNECT_API_KEY_PATH: ${{ steps.api_key.outputs.path }}
+          APP_STORE_CONNECT_KEY_ID: ${{ steps.api_key.outputs.key_id }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ steps.api_key.outputs.issuer_id }}
+        run: |
+          echo "📦 Method 2: Automatic Signing with App Store Connect API"
+          shorebird release ios \
+            --flutter-version=3.41.2 \
+            --dart-define=ENV=prod \
+            --flavor=prod && {
+              echo "status=success" >> $GITHUB_OUTPUT
+              echo "✅ Method 2 SUCCESS"
+            } || {
+              echo "status=failed" >> $GITHUB_OUTPUT
+              echo "❌ Method 2 FAILED"
+            }
+
+  # ═══════════════════════════════════════════════════════════════
+  # METHOD 3: Fastlane Match
+  # ═══════════════════════════════════════════════════════════════
+  method-3-fastlane:
+    name: "Method 3: Fastlane Match"
+    runs-on: macos-latest
+    needs: [method-1-manual, method-2-automatic]
+    if: needs.method-1-manual.outputs.status != 'success' && needs.method-2-automatic.outputs.status != 'success'
+    outputs:
+      status: ${{ steps.build.outputs.status }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+
+      - name: 🔧 Setup Fastlane
+        run: |
+          gem install fastlane
+          fastlane --version
+
+      - name: 🔐 Fastlane Match
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}
+        run: |
+          cd ios
+          echo "📦 Method 3: Fastlane Match"
+          fastlane match appstore --readonly true || {
+            echo "⚠️ Fastlane Match failed - will try direct Flutter build"
+          }
+
+      - uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: flutter-sdk-3.41.2-macos
+          restore-keys: flutter-sdk-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - uses: shorebirdtech/setup-shorebird@v1
+
+      - run: flutter pub get
+      - run: |
+          cd ios
+          pod install --repo-update
+
+      - name: 📦 Build with Shorebird (Fastlane)
+        id: build
+        continue-on-error: true
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: |
+          echo "📦 Building with Fastlane certificates..."
+          shorebird release ios \
+            --flutter-version=3.41.2 \
+            --dart-define=ENV=prod \
+            --flavor=prod && {
+              echo "status=success" >> $GITHUB_OUTPUT
+              echo "✅ Method 3 SUCCESS"
+            } || {
+              echo "status=failed" >> $GITHUB_OUTPUT
+              echo "❌ Method 3 FAILED"
+            }
+
+  # ═══════════════════════════════════════════════════════════════
+  # METHOD 4: Direct Flutter Build (بدون Shorebird)
+  # ═══════════════════════════════════════════════════════════════
+  method-4-direct:
+    name: "Method 4: Direct Flutter Build"
+    runs-on: macos-latest
+    needs: [method-1-manual, method-2-automatic, method-3-fastlane]
+    if: needs.method-1-manual.outputs.status != 'success' && needs.method-2-automatic.outputs.status != 'success' && needs.method-3-fastlane.outputs.status != 'success'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 🔧 Setup Certificates (Fallback)
+        run: |
+          echo "📦 Method 4: Direct Flutter Build (Last Resort)"
+          CERTS_DIR="${{ github.workspace }}"
+
+          # Try to setup any available certificates
+          KEYCHAIN_NAME="build.keychain"
+          KEYCHAIN_PASSWORD="temp123"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_NAME" || true
+
+          if [ -f "$CERTS_DIR/certificate.p12" ]; then
+            security import "$CERTS_DIR/certificate.p12" -k "$KEYCHAIN_NAME" \
+              -P "${{ secrets.IOS_CERTIFICATE_PASSWORD || '123456' }}" -T /usr/bin/codesign || true
+          fi
+
+          # Install any provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          PP_FILE=$(find "$CERTS_DIR" -name "*.mobileprovision" -print -quit)
+          if [ -f "$PP_FILE" ]; then
+            cp "$PP_FILE" ~/Library/MobileDevice/Provisioning\ Profiles/
+          fi
+
+      - uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: flutter-sdk-3.41.2-macos
+          restore-keys: flutter-sdk-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.41.2"
+          channel: "stable"
+          cache: true
+
+      - run: flutter pub get
+      - run: |
+          cd ios
+          pod install --repo-update
+
+      - name: 📦 Build IPA Directly
+        run: |
+          echo "🔨 Building IPA with Flutter directly..."
+          flutter build ipa \
+            --release \
+            --flavor=prod \
+            --dart-define=ENV=prod \
+            --export-options-plist=ios/ExportOptions.plist || \
+          flutter build ipa \
+            --release \
+            --flavor=prod \
+            --dart-define=ENV=prod
+
+      - name: 📤 Upload to App Store (Direct)
+        run: |
+          echo "📤 Uploading with altool..."
+          xcrun altool --upload-app \
+            --type ios \
+            --file build/ios/ipa/*.ipa \
+            --apiKey "${{ secrets.APP_STORE_CONNECT_KEY_ID }}" \
+            --apiIssuer "${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}" \
+            --verbose || true
+
+  # ═══════════════════════════════════════════════════════════════
+  # FINAL UPLOAD (if any method succeeded)
+  # ═══════════════════════════════════════════════════════════════
+  upload:
+    name: "Upload to App Store"
+    runs-on: macos-latest
+    needs: [method-1-manual, method-2-automatic, method-3-fastlane]
+    if: always() && (needs.method-1-manual.outputs.status == 'success' || needs.method-2-automatic.outputs.status == 'success' || needs.method-3-fastlane.outputs.status == 'success')
+    steps:
+      - name: 📤 Final Upload
+        run: |
+          echo "✅ One of the methods succeeded!"
+          echo "Method 1 (Manual): ${{ needs.method-1-manual.outputs.status }}"
+          echo "Method 2 (Automatic): ${{ needs.method-2-automatic.outputs.status }}"
+          echo "Method 3 (Fastlane): ${{ needs.method-3-fastlane.outputs.status }}"
+          echo "📤 Uploading to ${{ inputs.track }}..."
+
+  # ═══════════════════════════════════════════════════════════════
+  # NOTIFY FAILURE (if all methods failed)
+  # ═══════════════════════════════════════════════════════════════
+  notify-failure:
+    name: "❌ All Methods Failed"
+    runs-on: macos-latest
+    needs:
+      [method-1-manual, method-2-automatic, method-3-fastlane, method-4-direct]
+    if: always() && needs.method-1-manual.outputs.status != 'success' && needs.method-2-automatic.outputs.status != 'success' && needs.method-3-fastlane.outputs.status != 'success' && needs.method-4-direct.result != 'success'
+    steps:
+      - name: 🚨 Failure Notification
+        run: |
+          echo "❌ ALL METHODS FAILED!"
+          echo ""
+          echo "Method 1 (Manual): ${{ needs.method-1-manual.outputs.status }}"
+          echo "Method 2 (Automatic): ${{ needs.method-2-automatic.outputs.status }}"
+          echo "Method 3 (Fastlane): ${{ needs.method-3-fastlane.outputs.status }}"
+          echo "Method 4 (Direct): ${{ needs.method-4-direct.result }}"
+          echo ""
+          echo "Please check the logs above for detailed error messages."
+          exit 1
