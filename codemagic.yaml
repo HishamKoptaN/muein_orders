@@ -1,0 +1,154 @@
+workflows:
+  ios-release:
+    name: iOS Release Build
+    environment:
+      vars:
+        FLUTTER_VERSION: 3.41.2
+        BUILD_MODE: release
+        EXPORT_OPTIONS: appstore
+      groups:
+        - app_store_credentials
+    scripts:
+      - name: 📱 Setup Flutter
+        script: |
+          echo "🔧 Setting up Flutter $FLUTTER_VERSION"
+          flutter channel stable
+          flutter upgrade
+          flutter --version
+          
+      - name: 📦 Install Dependencies
+        script: |
+          echo "📦 Installing Flutter dependencies"
+          flutter pub get
+          
+      - name: 🍏 Setup iOS Dependencies
+        script: |
+          echo "🍏 Setting up iOS dependencies"
+          cd ios
+          pod install --repo-update
+          pod update
+          
+      - name: 🔍 Verify Configuration
+        script: |
+          echo "🔍 Verifying build configuration"
+          echo "Flutter version: $(flutter --version | head -n 1)"
+          echo "Build mode: $BUILD_MODE"
+          echo "Export options: $EXPORT_OPTIONS"
+          
+          # Check if provisioning profiles are available
+          if [ -d "$HOME/Library/MobileDevice/Provisioning Profiles" ]; then
+            echo "✅ Provisioning profiles found"
+            ls -la "$HOME/Library/MobileDevice/Provisioning Profiles/" | head -5
+          else
+            echo "⚠️ No provisioning profiles directory found"
+          fi
+          
+      - name: 🔨 Build iOS App
+        script: |
+          echo "🔨 Building iOS app in $BUILD_MODE mode"
+          
+          # Build Flutter app without codesigning
+          flutter build ios --$BUILD_MODE --no-codesign
+          
+          echo "✅ Flutter build completed"
+          
+      - name: 📦 Archive iOS App
+        script: |
+          echo "📦 Archiving iOS app"
+          
+          cd ios
+          
+          # Archive the app
+          xcodebuild -workspace Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -destination generic/platform=iOS \
+            -archivePath $CM_BUILD_DIR/Runner.xcarchive \
+            archive \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="" \
+            PROVISIONING_PROFILE_SPECIFIER=""
+            
+          echo "✅ Archive completed"
+          
+      - name: 📤 Export IPA
+        script: |
+          echo "📤 Exporting IPA"
+          
+          cd ios
+          
+          # Create ExportOptions.plist if not exists
+          if [ ! -f "ExportOptions.plist" ]; then
+            cat > ExportOptions.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>$EXPORT_OPTIONS</string>
+              <key>teamID</key>
+              <string>$APPLE_TEAM_ID</string>
+              <key>uploadBitcode</key>
+              <false/>
+              <key>uploadSymbols</key>
+              <true/>
+          </dict>
+          </plist>
+          EOF
+          fi
+          
+          # Export the archive
+          xcodebuild -exportArchive \
+            -archivePath $CM_BUILD_DIR/Runner.xcarchive \
+            -exportOptionsPlist ExportOptions.plist \
+            -exportPath $CM_BUILD_DIR/build
+            
+          echo "✅ Export completed"
+          
+          # List exported files
+          find $CM_BUILD_DIR/build -name "*.ipa" -exec ls -la {} \;
+          
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - $CM_BUILD_DIR/build/*.ipa
+      - ios/ExportOptions.plist
+      
+    publishing:
+      email:
+        recipients:
+          - heshamkoptan@email.com
+      app_store_connect:
+        apple_id: heshamkoptan@email.com
+        password: $APP_STORE_PASSWORD
+        submit_to_testflight: true
+        submit_to_app_store: false
+          
+      scripts:
+        - name: 📋 Post-Build Summary
+          script: |
+            echo "📋 Build Summary:"
+            echo "📱 App: Muein Orders"
+            echo "🔢 Version: $CM_BUILD_VERSION"
+            echo "🏗️ Build: $CM_BUILD_NUMBER"
+            echo "📊 Status: Success"
+            echo "📤 Exported to: App Store Connect"
+            echo "🚀 Deployed to: TestFlight"
+            
+  ios-debug:
+    name: iOS Debug Build
+    environment:
+      vars:
+        FLUTTER_VERSION: 3.41.2
+        BUILD_MODE: debug
+    scripts:
+      - name: 📱 Setup Flutter
+        script: |
+          flutter channel stable
+          flutter pub get
+          
+      - name: 🔨 Build Debug
+        script: |
+          flutter build ios --debug --no-codesign
+          
+    artifacts:
+      - build/ios/debug/*.app

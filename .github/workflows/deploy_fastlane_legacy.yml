@@ -1,18 +1,25 @@
-name: 🍏 Deploy iOS (Fastlane Match)
+name: Deploy iOS (Fastlane Legacy)
 on:
-  push:
-    tags:
-      - "[0-9]+.[0-9]+.[0-9]+"
-  workflow_dispatch:
+  workflow_call:
     inputs:
       track:
-        description: "Deploy to"
+        description: "App Store track"
         required: true
         default: "testflight"
-        type: choice
-        options:
-          - testflight
-          - appstore
+        type: string
+      action:
+        description: "Action type"
+        required: true
+        default: "release"
+        type: string
+      version_name:
+        description: "Version name"
+        required: true
+        type: string
+      version_code:
+        description: "Version code"
+        required: true
+        type: string
 
 jobs:
   deploy-ios:
@@ -22,6 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.24.0"
@@ -38,7 +46,7 @@ jobs:
           bundler-cache: true
           working-directory: ios
 
-      - name: Create Fastlane Environment
+      - name: 📝 Create Fastlane Environment
         run: |
           cat > ios/fastlane/.env.local << EOF
           APP_IDENTIFIER=com.muein.orders
@@ -50,6 +58,7 @@ jobs:
           APP_STORE_CONNECT_KEY_PATH=./AuthKey_G2L6LRG5PK.p8
           MATCH_PASSWORD=1632001
           EOF
+
       - name: 📥 Install CocoaPods
         run: |
           cd ios
@@ -58,6 +67,6 @@ jobs:
       - name: 🚀 Build and Deploy
         run: |
           cd ios
-          bundle exec fastlane beta
+          bundle exec fastlane beta_legacy
         env:
           CI: true

@@ -1,10 +1,23 @@
-name: Deploy to App Store
+name: Deploy to App Store (Multi-Method)
 on:
   push:
     branches:
-      - prods
+      - prod
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
   workflow_dispatch:
     inputs:
+      method:
+        description: "طريقة النشر"
+        required: true
+        default: "fastlane-match"
+        type: choice
+        options:
+          - fastlane-match
+          - fastlane-legacy
+          - shorebird
+          - manual
+          - codemagic
       track:
         description: "App Store track"
         required: true
@@ -25,87 +38,89 @@ on:
         type: boolean
 
 jobs:
-  check-version:
-    uses: ./.github/workflows/check_version_on_appstore.yml
-    secrets: inherit
-
-  check-native:
-    uses: ./.github/workflows/check_native_changes_ios.yml
-
-  decide-action:
-    runs-on: ubuntu-latest
-    needs: [check-version, check-native]
-    outputs:
-      action: ${{ steps.decide.outputs.action }}
-      version_code: ${{ needs.check-version.outputs.version_code }}
-      version_name: ${{ needs.check-version.outputs.version_name }}
-      version_exists: ${{ needs.check-version.outputs.version_exists }}
-    steps:
-      - id: decide
-        run: |
-          VERSION_EXISTS="${{ needs.check-version.outputs.version_exists }}"
-          HAS_NATIVE="${{ needs.check-native.outputs.has_native_changes }}"
-          echo "   منصة: iOS (App Store)"
-          FORCE_PATCH="${{ github.event.inputs.force_patch }}"
-          FORCE_RELEASE="${{ github.event.inputs.force_release }}"
-
-          echo "📊 تحليل الوضع:"
-          echo "   الإصدار موجود: $VERSION_EXISTS"
-          echo "   تغييرات Native: $HAS_NATIVE"
-          echo "   force_patch: $FORCE_PATCH"
-          echo "   force_release: $FORCE_RELEASE"
-
-          if [ "$FORCE_PATCH" == "true" ]; then
-            echo "🔧 Patch (فرض)"
-            echo "action=patch" >> $GITHUB_OUTPUT
-          elif [ "$FORCE_RELEASE" == "true" ]; then
-            echo "📦 Release (فرض)"
-            echo "action=release" >> $GITHUB_OUTPUT
-          elif [ "$HAS_NATIVE" == "true" ] && [ "$VERSION_EXISTS" == "true" ]; then
-            echo "⚠️ الإصدار موجود وتوجد تغييرات Native"
-            echo "   سيتم زيادة versionCode تلقائياً..."
-            echo "action=bump-and-release" >> $GITHUB_OUTPUT
-          elif [ "$HAS_NATIVE" == "true" ]; then
-            echo "📦 توجد تغييرات Native والإصدار غير موجود → Release جديد"
-            echo "action=release" >> $GITHUB_OUTPUT
-          elif [ "$VERSION_EXISTS" == "true" ]; then
-            echo "🔧 الإصدار موجود ولا توجد تغييرات Native → Patch"
-            echo "action=patch" >> $GITHUB_OUTPUT
-          else
-            echo "📦 الإصدار غير موجود ولا توجد تغييرات Native → Release جديد"
-            echo "action=release" >> $GITHUB_OUTPUT
-          fi
-  handle-patch:
-    needs: decide-action
-    if: ${{ needs.decide-action.outputs.action == 'patch' }}
-    uses: ./.github/workflows/handle_patch_ios.yml
+  # Decision Logic
+  decision:
+    uses: ./.github/workflows/deploy_decision.yml
     with:
-      version_code: ${{ needs.decide-action.outputs.version_code }}
-      version_name: ${{ needs.decide-action.outputs.version_name }}
-      has_native_changes: ${{ needs.check-native.outputs.has_native_changes }}
-      version_exists: ${{ needs.check-version.outputs.version_exists }}
+      method: ${{ github.event.inputs.method || 'fastlane-match' }}
       track: ${{ github.event.inputs.track || 'testflight' }}
+      force_patch: ${{ github.event.inputs.force_patch }}
+      force_release: ${{ github.event.inputs.force_release }}
     secrets: inherit
 
-  handle-release:
-    needs: decide-action
-    if: ${{ needs.decide-action.outputs.action == 'release' || needs.decide-action.outputs.action == 'bump-and-release' }}
-    uses: ./.github/workflows/handle_release_ios.yml
+  # Deploy Methods
+  deploy-fastlane-match:
+    needs: decision
+    if: ${{ needs.decision.outputs.method == 'fastlane-match' }}
+    uses: ./.github/workflows/deploy_fastlane_match.yml
     with:
-      action: ${{ needs.decide-action.outputs.action }}
-      version_code: ${{ needs.decide-action.outputs.version_code }}
-      version_name: ${{ needs.decide-action.outputs.version_name }}
-      track: ${{ github.event.inputs.track || 'testflight' }}
-    secrets: inherit
+      track: ${{ needs.decision.outputs.track }}
+      action: ${{ needs.decision.outputs.action }}
+      version_name: ${{ needs.decision.outputs.version_name }}
+      version_code: ${{ needs.decision.outputs.version_code }}
+
+  deploy-fastlane-legacy:
+    needs: decision
+    if: ${{ needs.decision.outputs.method == 'fastlane-legacy' }}
+    uses: ./.github/workflows/deploy_fastlane_legacy.yml
+    with:
+      track: ${{ needs.decision.outputs.track }}
+      action: ${{ needs.decision.outputs.action }}
+      version_name: ${{ needs.decision.outputs.version_name }}
+      version_code: ${{ needs.decision.outputs.version_code }}
+
+  deploy-shorebird:
+    needs: decision
+    if: ${{ needs.decision.outputs.method == 'shorebird' }}
+    uses: ./.github/workflows/deploy_shorebird.yml
+    with:
+      track: ${{ needs.decision.outputs.track }}
+      action: ${{ needs.decision.outputs.action }}
+      version_name: ${{ needs.decision.outputs.version_name }}
+      version_code: ${{ needs.decision.outputs.version_code }}
+
+  deploy-manual:
+    needs: decision
+    if: ${{ needs.decision.outputs.method == 'manual' }}
+    uses: ./.github/workflows/deploy_manual.yml
+    with:
+      track: ${{ needs.decision.outputs.track }}
+      action: ${{ needs.decision.outputs.action }}
+      version_name: ${{ needs.decision.outputs.version_name }}
+      version_code: ${{ needs.decision.outputs.version_code }}
+
+  deploy-codemagic:
+    needs: decision
+    if: ${{ needs.decision.outputs.method == 'codemagic' }}
+    uses: ./.github/workflows/deploy_codemagic.yml
+    with:
+      track: ${{ needs.decision.outputs.track }}
+      build_mode: release
+
+  # Summary
   summary:
     runs-on: ubuntu-latest
     needs:
-      [check-version, check-native, decide-action, handle-patch, handle-release]
+      [
+        decision,
+        deploy-fastlane-match,
+        deploy-fastlane-legacy,
+        deploy-shorebird,
+        deploy-manual,
+        deploy-codemagic,
+      ]
     if: always()
     steps:
       - run: |
           echo "📋 ملخص التوزيع (App Store):"
-          echo "   الإصدار: ${{ needs.decide-action.outputs.version_code }} (${{ needs.decide-action.outputs.version_name }})"
-          echo "   موجود على App Store: ${{ needs.decide-action.outputs.version_exists }}"
-          echo "   تغييرات Native: ${{ needs.check-native.outputs.has_native_changes }}"
-          echo "   العملية المُنفذة: ${{ needs.decide-action.outputs.action }}"
+          echo "   الإصدار: ${{ needs.decision.outputs.version_code }} (${{ needs.decision.outputs.version_name }})"
+          echo "   موجود على App Store: ${{ needs.decision.outputs.version_exists }}"
+          echo "   العملية المُنفذة: ${{ needs.decision.outputs.action }}"
+          echo "   طريقة النشر: ${{ needs.decision.outputs.method }}"
+          echo ""
+          echo "🔄 حالة كل طريقة:"
+          echo "   Fastlane Match: ${{ needs.deploy-fastlane-match.result || 'skipped' }}"
+          echo "   Fastlane Legacy: ${{ needs.deploy-fastlane-legacy.result || 'skipped' }}"
+          echo "   Shorebird: ${{ needs.deploy-shorebird.result || 'skipped' }}"
+          echo "   Manual: ${{ needs.deploy-manual.result || 'skipped' }}"
+          echo "   Codemagic: ${{ needs.deploy-codemagic.result || 'skipped' }}"

@@ -1,0 +1,54 @@
+name: Deploy iOS (Shorebird)
+on:
+  workflow_call:
+    inputs:
+      track:
+        description: "App Store track"
+        required: true
+        default: "testflight"
+        type: string
+      action:
+        description: "Action type"
+        required: true
+        default: "release"
+        type: string
+      version_name:
+        description: "Version name"
+        required: true
+        type: string
+      version_code:
+        description: "Version code"
+        required: true
+        type: string
+
+jobs:
+  deploy-ios:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.0"
+          channel: "stable"
+          cache: true
+
+      - name: 📦 Get Packages
+        run: flutter pub get
+
+      - name: 🐦 Setup Shorebird
+        uses: shorebirdtech/setup-shorebird@v1
+        with:
+          version: latest
+
+      - name: 🚀 Deploy with Shorebird
+        run: |
+          if [ "${{ inputs.action }}" == "patch" ]; then
+            shorebird patch android --release-version="${{ inputs.version_name }}"
+            shorebird patch ios --release-version="${{ inputs.version_name }}"
+          else
+            shorebird release android --release-version="${{ inputs.version_name }}"
+            shorebird release ios --release-version="${{ inputs.version_name }}"
+          fi
