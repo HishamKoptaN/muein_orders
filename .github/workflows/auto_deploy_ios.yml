@@ -4,14 +4,6 @@ on:
   push:
     branches:
       - prod
-      - main
-    paths-ignore:
-      - "**.md"
-      - "docs/**"
-      - ".github/workflows/**"
-      - "test/**"
-      - "integration_test/**"
-
   workflow_dispatch:
     inputs:
       force_release:
