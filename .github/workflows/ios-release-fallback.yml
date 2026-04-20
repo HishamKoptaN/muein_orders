@@ -20,19 +20,12 @@ on:
         description: "القناة"
 
 jobs:
-  # ═══════════════════════════════════════════════════════════════
-  # METHOD 1: Manual Signing
-  # ═══════════════════════════════════════════════════════════════
   method-1-manual:
     name: "Method 1: Manual"
     uses: ./.github/workflows/ios-method-1-manual.yml
     with:
       version_code: ${{ inputs.version_code }}
       version_name: ${{ inputs.version_name }}
-
-  # ═══════════════════════════════════════════════════════════════
-  # METHOD 2: Automatic Signing
-  # ═══════════════════════════════════════════════════════════════
   method-2-automatic:
     name: "Method 2: Automatic"
     uses: ./.github/workflows/ios-method-2-automatic.yml
@@ -41,10 +34,6 @@ jobs:
     with:
       version_code: ${{ inputs.version_code }}
       version_name: ${{ inputs.version_name }}
-
-  # ═══════════════════════════════════════════════════════════════
-  # METHOD 3: Fastlane Match
-  # ═══════════════════════════════════════════════════════════════
   method-3-fastlane:
     name: "Method 3: Fastlane"
     uses: ./.github/workflows/ios-method-3-fastlane.yml
@@ -53,10 +42,6 @@ jobs:
     with:
       version_code: ${{ inputs.version_code }}
       version_name: ${{ inputs.version_name }}
-
-  # ═══════════════════════════════════════════════════════════════
-  # METHOD 4: Direct Flutter Build
-  # ═══════════════════════════════════════════════════════════════
   method-4-direct:
     name: "Method 4: Direct"
     uses: ./.github/workflows/ios-method-4-direct.yml
@@ -66,10 +51,6 @@ jobs:
       version_code: ${{ inputs.version_code }}
       version_name: ${{ inputs.version_name }}
       track: ${{ inputs.track }}
-
-  # ═══════════════════════════════════════════════════════════════
-  # Summary
-  # ═══════════════════════════════════════════════════════════════
   summary:
     name: "Summary"
     runs-on: ubuntu-latest

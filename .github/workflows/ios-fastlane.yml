@@ -67,10 +67,8 @@ jobs:
         env:
           LC_ALL: en_US.UTF-8
           LANG: en_US.UTF-8
-          # Match secrets
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           APP_BUNDLE_ID: ${{ secrets.APP_BUNDLE_ID || 'com.muein.orders' }}
-          # App Store Connect API
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
           ASC_KEY_P8_BASE64: ${{ secrets.ASC_KEY_P8_BASE64 || secrets.APP_STORE_CONNECT_API_KEY_BASE64 }}

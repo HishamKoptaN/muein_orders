@@ -1,5 +1,4 @@
 name: Handle Release iOS
-
 on:
   workflow_call:
     inputs:

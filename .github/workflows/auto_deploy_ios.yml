@@ -30,13 +30,11 @@ jobs:
       version_code: ${{ steps.version.outputs.version_code }}
       has_native_changes: ${{ steps.native_check.outputs.has_native_changes }}
     steps:
-      - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: 📱 Extract Version Info
-        id: version
+      - id: version
         run: |
           VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | tr -d ' ')
           VERSION_NAME=$(echo $VERSION | cut -d'+' -f1)
@@ -45,13 +43,10 @@ jobs:
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "📱 إصدار التطبيق: $VERSION_NAME+$VERSION_CODE"
 
-      - name: 🔍 Check for Native Changes
-        id: native_check
+      - id: native_check
         run: |
-          # التحقق من التغييرات في الملفات الأصلية (Native)
           NATIVE_PATHS="ios/ android/ linux/ macos/ windows/ web/"
 
-          # الحصول على آخر commit
           LAST_COMMIT=$(git rev-parse HEAD)
           PREVIOUS_COMMIT=$(git rev-parse HEAD~1)
 
@@ -71,10 +66,8 @@ jobs:
           else
             echo "🟢 لا توجد تغييرات Native - يمكن استخدام Patch"
           fi
-      - name: 🌐 Check App Store Version
-        id: store_check
+      - id: store_check
         run: |
-          # جلب آخر إصدار من App Store
           APP_ID="$APP_STORE_APP_ID"
 
           if [[ -z "$APP_ID" ]]; then
@@ -83,28 +76,27 @@ jobs:
             exit 0
           fi
 
-          # جلب معلومات التطبيق من App Store
           STORE_INFO=$(curl -s "https://itunes.apple.com/lookup?id=$APP_ID" || echo '{}')
           STORE_VERSION=$(echo "$STORE_INFO" | jq -r '.results[0].version // "0.0.0"')
 
           echo "📱 إصدار App Store: $STORE_VERSION"
 
-          # تحويل الإصدار إلى رقم للمقارنة
           STORE_VERSION_CODE=$(echo "$STORE_VERSION" | awk -F. '{print ($1*1000000)+($2*1000)+$3}')
           echo "store_version_code=$STORE_VERSION_CODE" >> $GITHUB_OUTPUT
 
-      - name: 🤔 Decide Build Type
-        id: decision
+      - id: decision
         run: |
           VERSION_CODE="${{ steps.version.outputs.version_code }}"
           HAS_NATIVE="${{ steps.native_check.outputs.has_native_changes }}"
           STORE_VERSION="${{ steps.store_check.outputs.store_version_code }}"
 
-          # قرار بناء على المنطق التالي:
-          # 1. إذا كان version_code = 1 → إصدار جديد (أول بناء)
-          # 2. إذا كانت هناك تغييرات Native → إصدار جديد
-          # 3. إذا كان إصدار App Store مختلفًا → إصدار جديد
-          # 4. خلاف ذلك → Patch
+          if [[ "$VERSION_CODE" == "1" ]] || [[ -z "$VERSION_CODE" ]]; then
+            BUILD_TYPE="release"
+            REASON="أول بناء (version_code=1)"
+          elif [[ "$HAS_NATIVE" == "true" ]]; then
+            BUILD_TYPE="release"
+            REASON="تغييرات Native مكتشفة"
+          else
 
           if [[ "$VERSION_CODE" == "1" ]] || [[ -z "$VERSION_CODE" ]]; then
             BUILD_TYPE="release"
@@ -117,7 +109,6 @@ jobs:
             REASON="لا توجد تغييرات Native - إصلاحات Dart فقط"
           fi
 
-          # التحقق من المتغيرات اليدوية (للتجاوز)
           if [[ "${{ github.event.inputs.force_release }}" == "true" ]]; then
             BUILD_TYPE="release"
             REASON="تجاوز يدوي: Force Release"
@@ -130,7 +121,6 @@ jobs:
           echo "🎯 نوع البناء: $BUILD_TYPE"
           echo "📋 السبب: $REASON"
 
-  # تشغيل Codemagic للإصدار الجديد
   trigger-codemagic-release:
     needs: detect-build-type
     if: needs.detect-build-type.outputs.build_type == 'release'
@@ -166,27 +156,22 @@ jobs:
           echo "✅ تم إرسال طلب البناء إلى Codemagic"
           echo "🔗 تحقق من حالة البناء في لوحة تحكم Codemagic"
 
-  # تشغيل Shorebird Patch (بدون Codemagic)
   shorebird-patch:
     needs: detect-build-type
     if: needs.detect-build-type.outputs.build_type == 'patch'
     runs-on: macos-latest # Shorebird يتطلب macOS لبناء iOS
     steps:
-      - name: 📥 Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: 🔧 Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.41.2"
           channel: "stable"
           cache: true
 
-      - name: 🐦 Setup Shorebird
-        uses: shorebirdtech/setup-shorebird@v1
+      - uses: shorebirdtech/setup-shorebird@v1
 
-      - name: 🔐 Verify Shorebird Token
-        env:
+      - env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
           # التحقق من ضبط Shorebird Token
@@ -197,13 +182,11 @@ jobs:
           fi
           echo "✅ SHOREBIRD_TOKEN مضبوط"
 
-      - name: 📦 Install Dependencies
-        run: |
+      - run: |
           flutter pub get
           cd ios && pod install
 
-      - name: 🚀 Run Shorebird Patch
-        run: |
+      - run: |
           VERSION_NAME="${{ needs.detect-build-type.outputs.version_name }}"
           echo "🚀 تشغيل Shorebird Patch للإصدار: $VERSION_NAME"
           echo "📱 هذا البناء يستخدم Shorebird مباشرة (بدون Codemagic)"
@@ -214,8 +197,7 @@ jobs:
             --verbose
           echo "✅ Shorebird Patch اكتمل بنجاح!"
 
-      - name: 📋 Patch Summary
-        if: always()
+      - if: always()
         run: |
           echo "📋 ملخص Patch:"
           echo "📱 التطبيق: Muein Orders"
@@ -228,18 +210,10 @@ jobs:
     needs: [detect-build-type, trigger-codemagic-release, shorebird-patch]
     if: always()
     steps:
-      - name: 📋 Final Build Summary
-        run: |
+      - run: |
           BUILD_TYPE="${{ needs.detect-build-type.outputs.build_type }}"
           VERSION_NAME="${{ needs.detect-build-type.outputs.version_name }}"
           VERSION_CODE="${{ needs.detect-build-type.outputs.version_code }}"
-
-          echo "╔════════════════════════════════════════════════╗"
-          echo "║         📱 iOS Build Summary                   ║"
-          echo "╠════════════════════════════════════════════════╣"
-          echo "║  الإصدار: $VERSION_NAME+$VERSION_CODE"
-          echo "║  نوع البناء: $BUILD_TYPE"
-          echo "╠════════════════════════════════════════════════╣"
 
           if [[ "$BUILD_TYPE" == "release" ]]; then
             echo "║  🚀 تم تشغيل: Codemagic (Release Build)"
@@ -253,7 +227,6 @@ jobs:
 
           echo "╚════════════════════════════════════════════════╝"
 
-          # عرض حالة الوظائف
           echo ""
           echo "📊 حالة الوظائف:"
           echo "   فحص البناء: ${{ needs.detect-build-type.result }}"

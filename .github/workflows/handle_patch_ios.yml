@@ -21,9 +21,6 @@ on:
         default: "testflight"
 
 jobs:
-  # ─────────────────────────────────────────────────────────────
-  # السيناريو 1: Patch عادي (لا يوجد Native + الإصدار موجود)
-  # ─────────────────────────────────────────────────────────────
   patch:
     if: inputs.has_native_changes == 'false' && inputs.version_exists == 'true'
     uses: ./.github/workflows/ios_build_manual.yml
@@ -32,10 +29,6 @@ jobs:
       version_name: ${{ inputs.version_name }}
       track: ${{ inputs.track }}
     secrets: inherit
-
-  # ─────────────────────────────────────────────────────────────
-  # السيناريو 2: Native موجود والإصدار موجود → Bump ثم Release
-  # ─────────────────────────────────────────────────────────────
   bump-for-native:
     if: inputs.has_native_changes == 'true' && inputs.version_exists == 'true'
     uses: ./.github/workflows/bump_ios_version.yml
@@ -52,10 +45,6 @@ jobs:
       version_name: ${{ inputs.version_name }}
       track: ${{ inputs.track }}
     secrets: inherit
-
-  # ─────────────────────────────────────────────────────────────
-  # السيناريو 3: Native موجود والإصدار غير موجود → Release جديد
-  # ─────────────────────────────────────────────────────────────
   release-new:
     if: inputs.has_native_changes == 'true' && inputs.version_exists == 'false'
     uses: ./.github/workflows/ios_build_manual.yml
@@ -64,10 +53,6 @@ jobs:
       version_name: ${{ inputs.version_name }}
       track: ${{ inputs.track }}
     secrets: inherit
-
-  # ─────────────────────────────────────────────────────────────
-  # السيناريو 4: Native غير موجود والإصدار غير موجود → Release جديد
-  # ─────────────────────────────────────────────────────────────
   release-first:
     if: inputs.has_native_changes == 'false' && inputs.version_exists == 'false'
     uses: ./.github/workflows/ios_build_manual.yml
