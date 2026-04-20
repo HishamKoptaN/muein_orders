@@ -49,36 +49,8 @@ jobs:
       force_release: ${{ github.event.inputs.force_release }}
     secrets: inherit
 
-  # Method 1: Fastlane Match (الأفضل)
-  deploy-fastlane-match:
-    needs: decision
-    # تشغيل إذا كانت الطريقة auto أو fastlane-match
-    if: ${{ always() && (needs.decision.outputs.method == 'auto' || needs.decision.outputs.method == 'fastlane-match') }}
-    uses: ./.github/workflows/deploy_fastlane_match.yml
-    with:
-      track: ${{ needs.decision.outputs.track }}
-      action: ${{ needs.decision.outputs.action }}
-      version_name: ${{ needs.decision.outputs.version_name }}
-      version_code: ${{ needs.decision.outputs.version_code }}
-
-  # Method 2: Fastlane Legacy (fallback)
-  deploy-fastlane-legacy:
-    needs: [decision, deploy-fastlane-match]
-    # تشغيل إذا فشلت fastlane-match أو كانت الطريقة محددة legacy
-    if: |
-      always() && 
-      (needs.decision.outputs.method == 'fastlane-legacy' || 
-       (needs.decision.outputs.method == 'auto' && needs.deploy-fastlane-match.result == 'failure'))
-    uses: ./.github/workflows/deploy_fastlane_legacy.yml
-    with:
-      track: ${{ needs.decision.outputs.track }}
-      action: ${{ needs.decision.outputs.action }}
-      version_name: ${{ needs.decision.outputs.version_name }}
-      version_code: ${{ needs.decision.outputs.version_code }}
-
-  # Method 3: Shorebird (fallback)
   deploy-shorebird:
-    needs: [decision, deploy-fastlane-match, deploy-fastlane-legacy]
+    needs: [decision]
     # تشغيل إذا فشلت السابقتان أو كانت الطريقة محددة shorebird
     if: |
       always() && 
@@ -95,13 +67,7 @@ jobs:
 
   # Method 4: Codemagic (fallback)
   deploy-codemagic:
-    needs:
-      [
-        decision,
-        deploy-fastlane-match,
-        deploy-fastlane-legacy,
-        deploy-shorebird,
-      ]
+    needs: [decision, deploy-shorebird]
     # تشغيل إذا فشلت السابقات أو كانت الطريقة محددة codemagic
     if: |
       always() && 
@@ -120,12 +86,9 @@ jobs:
     needs:
       [
         decision,
-        deploy-fastlane-match,
-        deploy-fastlane-legacy,
         deploy-shorebird,
         deploy-codemagic,
       ]
-    # تشغيل إذا فشلت جميع الطرق السابقة
     if: |
       always() && 
       (needs.decision.outputs.method == 'manual' || 
@@ -147,8 +110,6 @@ jobs:
     needs:
       [
         decision,
-        deploy-fastlane-match,
-        deploy-fastlane-legacy,
         deploy-shorebird,
         deploy-manual,
         deploy-codemagic,
@@ -163,8 +124,6 @@ jobs:
           echo "   طريقة النشر: ${{ needs.decision.outputs.method }}"
           echo ""
           echo "🔄 حالة كل طريقة:"
-          echo "   Fastlane Match: ${{ needs.deploy-fastlane-match.result || 'skipped' }}"
-          echo "   Fastlane Legacy: ${{ needs.deploy-fastlane-legacy.result || 'skipped' }}"
           echo "   Shorebird: ${{ needs.deploy-shorebird.result || 'skipped' }}"
           echo "   Manual: ${{ needs.deploy-manual.result || 'skipped' }}"
           echo "   Codemagic: ${{ needs.deploy-codemagic.result || 'skipped' }}"
