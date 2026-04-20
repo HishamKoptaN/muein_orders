@@ -14,38 +14,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-
       - id: detect
         run: |
-
           NATIVE_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
-
           echo "$NATIVE_FILES"
-
           HAS_NATIVE="false"
-
-          # فحص مجلد iOS
           if echo "$NATIVE_FILES" | grep -qE "^ios/"; then
             echo "   ⚠️ وجدت تغييرات في مجلد iOS"
             HAS_NATIVE="true"
           fi
-
-          # فحص pubspec.yaml (يؤثر على جميع المنصات)
           if echo "$NATIVE_FILES" | grep -qE "pubspec\.yaml|pubspec\.lock"; then
             echo "   ⚠️ وجدت تغييرات في pubspec.yaml/pubspec.lock (dependencies)"
             HAS_NATIVE="true"
           fi
-
-          # فحص ملفات Shorebird.yaml
           if echo "$NATIVE_FILES" | grep -qE "shorebird\.yaml"; then
             echo "   ⚠️ وجدت تغييرات في shorebird.yaml"
             HAS_NATIVE="true"
           fi
-
           if [ "$HAS_NATIVE" == "true" ]; then
             echo "❌ توجد تغييرات Native (iOS) - يجب إنشاء Release جديد"
           else
             echo "✅ لا توجد تغييرات Native (iOS) - يمكن استخدام Patch"
           fi
-
           echo "has_native_changes=$HAS_NATIVE" >> $GITHUB_OUTPUT
