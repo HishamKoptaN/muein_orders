@@ -25,9 +25,15 @@ jobs:
       - run: flutter pub get
       - uses: shorebirdtech/setup-shorebird@v1
       - run: cd ios && pod install
+      - id: get_release
+        run: |
+          RELEASE=$(shorebird release list --flavor=prod 2>/dev/null | grep -E '^[0-9]+\.[0-9]+\.[0-9]+' | head -1 | awk '{print $1}')
+          [[ -z "$RELEASE" ]] && RELEASE="${{ inputs.version_name }}"
+          echo "release_version=$RELEASE" >> $GITHUB_OUTPUT
+          echo "Using release: $RELEASE"
       - run: |
           if [ "${{ inputs.action }}" == "patch" ]; then
-            shorebird patch ios --flavor=prod --release-version="${{ inputs.version_name }}"
+            shorebird patch ios --flavor=prod --release-version="${{ steps.get_release.outputs.release_version }}"
           else
             shorebird release ios --flavor=prod --release-version="${{ inputs.version_name }}"
           fi
