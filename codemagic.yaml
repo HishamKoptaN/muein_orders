@@ -9,7 +9,44 @@ workflows:
       groups:
         - app_store_credentials
     scripts:
-      - name: 📱 Setup Flutter
+      - name: 🔍 Check Version & Decide Action
+        script: |
+          echo "🔍 Checking version from pubspec.yaml..."
+          
+          # Extract version from pubspec.yaml
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | tr -d ' ')
+          VERSION_NAME=$(echo $VERSION | cut -d'+' -f1)
+          VERSION_CODE=$(echo $VERSION | cut -d'+' -f2)
+          
+          echo "📱 Current Version: $VERSION_NAME+$VERSION_CODE"
+          echo "CM_BUILD_VERSION=$VERSION_NAME" >> $CM_ENV
+          echo "CM_BUILD_NUMBER=$VERSION_CODE" >> $CM_ENV
+          
+          # Decide action based on FORCE_PATCH or build existence check
+          if [ "$FORCE_PATCH" == "true" ]; then
+            echo "⚠️ FORCE_PATCH is enabled - Will use Shorebird Patch"
+            echo "DEPLOY_ACTION=patch" >> $CM_ENV
+          elif [ "$FORCE_RELEASE" == "true" ]; then
+            echo "✅ FORCE_RELEASE is enabled - Will create new RELEASE"
+            echo "DEPLOY_ACTION=release" >> $CM_ENV
+          else
+            # Default: Check if this is first build or existing
+            echo "🔍 Auto-detecting action..."
+            if [ "$VERSION_CODE" == "1" ] || [ -z "$VERSION_CODE" ]; then
+              echo "✅ First build detected - Will create RELEASE"
+              echo "DEPLOY_ACTION=release" >> $CM_ENV
+            else
+              echo "⚠️ Build number > 1 - Consider using Shorebird Patch for faster updates"
+              echo "📝 Set FORCE_PATCH=true to use patch mode"
+              echo "DEPLOY_ACTION=release" >> $CM_ENV
+            fi
+          fi
+          
+          echo "🎯 Action: $DEPLOY_ACTION"
+          echo "   - Use 'release' for full App Store build"
+          echo "   - Use 'patch' for Shorebird quick update"
+          
+      - name: �� Setup Flutter
         script: |
           echo "🔧 Setting up Flutter $FLUTTER_VERSION"
           flutter channel stable
