@@ -1,5 +1,4 @@
 name: iOS Detect Build Type
-
 on:
   workflow_call:
     inputs:
@@ -18,10 +17,8 @@ on:
         value: ${{ jobs.detect.outputs.version_code }}
       has_native_changes:
         value: ${{ jobs.detect.outputs.has_native_changes }}
-
 env:
   APP_STORE_APP_ID: "6761682256"
-
 jobs:
   detect:
     runs-on: ubuntu-latest
@@ -53,7 +50,6 @@ jobs:
           done
           echo "has_native_changes=$HAS" >> $GITHUB_OUTPUT
           [[ "$HAS" == "true" ]] && echo "🔴 Native changes detected" || echo "🟢 No native changes"
-
       - id: store_check
         run: |
           [[ -z "$APP_STORE_APP_ID" ]] && { echo "store_version_code=0" >> $GITHUB_OUTPUT; exit 0; }
@@ -68,7 +64,6 @@ jobs:
           NAT="${{ steps.native_check.outputs.has_native_changes }}"
           FORCE_R="${{ inputs.force_release }}"
           FORCE_P="${{ inputs.force_patch }}"
-
           if [[ "$FORCE_R" == "true" ]]; then
             TYPE="release"; REASON="Force Release"
           elif [[ "$FORCE_P" == "true" ]]; then
@@ -80,6 +75,4 @@ jobs:
           else
             TYPE="patch"; REASON="Dart only"
           fi
-
           echo "build_type=$TYPE" >> $GITHUB_OUTPUT
-          echo "🎯 $TYPE: $REASON"

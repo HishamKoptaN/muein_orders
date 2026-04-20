@@ -18,15 +18,6 @@ on:
         default: "testflight"
 
 jobs:
-  direct-release:
-    if: inputs.action == 'release'
-    uses: ./.github/workflows/ios_build_manual.yml
-    with:
-      version_code: ${{ inputs.version_code }}
-      version_name: ${{ inputs.version_name }}
-      track: ${{ inputs.track }}
-    secrets: inherit
-
   bump-version:
     if: inputs.action == 'bump-and-release'
     uses: ./.github/workflows/bump_ios_version.yml
