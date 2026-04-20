@@ -197,8 +197,11 @@ jobs:
       - name: 🐦 Install Shorebird CLI
         run: |
           echo "🐦 تثبيت Shorebird CLI..."
-          curl --proto '=https' --tlsv1.2 -LsSf https://github.com/shorebirdtech/shorebird/releases/latest/download/shorebird-installer.tar.gz | tar xz
-          echo "$PWD/shorebird/bin" >> $GITHUB_PATH
+          # تثبيت Shorebird عبر المثبت الرسمي
+          curl --proto '=https' --tlsv1.2 -LsSf https://github.com/shorebirdtech/shorebird/releases/latest/download/shorebird-installer.sh | sh
+          # إضافة Shorebird إلى PATH
+          echo "$HOME/.shorebird/bin" >> $GITHUB_PATH
+          export PATH="$HOME/.shorebird/bin:$PATH"
           shorebird --version
           echo "✅ Shorebird CLI مثبت"
 
