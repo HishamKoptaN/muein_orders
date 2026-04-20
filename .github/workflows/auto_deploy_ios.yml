@@ -205,10 +205,8 @@ jobs:
       - name: 🚀 Run Shorebird Patch
         run: |
           VERSION_NAME="${{ needs.detect-build-type.outputs.version_name }}"
-
           echo "🚀 تشغيل Shorebird Patch للإصدار: $VERSION_NAME"
           echo "📱 هذا البناء يستخدم Shorebird مباشرة (بدون Codemagic)"
-
           # تشغيل Shorebird Patch
           shorebird patch \
             --platforms=ios \
