@@ -118,8 +118,10 @@ workflows:
         recipients:
           - heshamkoptan@email.com
       app_store_connect:
-        apple_id: heshamkoptan@email.com
-        password: $APP_STORE_PASSWORD
+        # API Key authentication (required for automatic TestFlight submission)
+        api_key: $APP_STORE_CONNECT_API_KEY
+        key_id: $APP_STORE_CONNECT_KEY_ID
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
         submit_to_testflight: true
         submit_to_app_store: false
           
