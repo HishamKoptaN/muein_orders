@@ -24,6 +24,27 @@ platform :ios do
     )
   end
 
+  # Setup CI environment for automatic signing
+  def setup_ci_signing
+    if ENV['CI']
+      UI.message("🔧 Setting up CI signing environment...")
+      
+      # Ensure we're using the correct git repo for match
+      sh("git config --global user.name 'GitHub Actions'")
+      sh("git config --global user.email 'actions@github.com'")
+      
+      # Use match for certificates and provisioning profiles
+      match(
+        type: "appstore",
+        api_key: api_key,
+        app_identifier: ["com.muein.orders"],
+        team_id: ENV["TEAM_ID"] || "5493DS73C7",
+        readonly: true,
+        git_url: "git@github.com:HishamKoptaN/muein_orders_certificates.git"
+      )
+    end
+  end
+
   error do |lane, exception|
     UI.error("❌ #{lane} failed: #{exception.message}")
   end
@@ -72,14 +93,20 @@ platform :ios do
       try_repo_update_on_error: true
     )
 
-    # 4. Build with automatic signing
-    UI.message("🔐 Building with automatic signing...")
-    team_id = ENV["TEAM_ID"] || "5493DS73C7"
+    # 4. Setup signing for CI or local development
+    if ENV['CI']
+      setup_ci_signing
+    else
+      UI.message("🔐 Using local automatic signing...")
+      update_code_signing_settings(
+        use_automatic_signing: true,
+        team_id: ENV["TEAM_ID"] || "5493DS73C7"
+      )
+    end
 
-    update_code_signing_settings(
-      use_automatic_signing: true,
-      team_id: team_id
-    )
+    # 5. Build with proper signing
+    UI.message("🔨 Building app...")
+    team_id = ENV["TEAM_ID"] || "5493DS73C7"
 
     build_app(
       clean: true,
@@ -87,7 +114,11 @@ platform :ios do
       workspace: "Runner.xcworkspace",
       export_method: "app-store",
       export_team_id: team_id,
-      xcargs: "-allowProvisioningUpdates"
+      export_options: {
+        provisioningProfiles: {
+          "com.muein.orders" => "match AppStore com.muein.orders"
+        }
+      }
     )
 
     # 6. Upload to TestFlight
