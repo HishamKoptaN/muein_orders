@@ -35,12 +35,10 @@ jobs:
   patch:
     needs: detect
     if: needs.detect.outputs.build_type == 'patch'
-    uses: ./.github/workflows/deploy_shorebird.yml
+    uses: ./.github/workflows/shorebird_ios.yml
     with:
-      track: testflight
       action: patch
       version_name: ${{ needs.detect.outputs.version_name }}
-      version_code: ${{ needs.detect.outputs.version_code }}
     secrets: inherit
 
   summary:

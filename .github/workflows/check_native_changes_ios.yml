@@ -17,12 +17,9 @@ jobs:
 
       - id: detect
         run: |
-          echo "🔍 فحص التغييرات النيتف (iOS) في آخر commit..."
 
-          # فحص آخر commit فقط
           NATIVE_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
 
-          echo "📄 الملفات المتغيرة في آخر commit:"
           echo "$NATIVE_FILES"
 
           HAS_NATIVE="false"

@@ -142,7 +142,6 @@ jobs:
             echo "✅ تم تشغيل البناء بنجاح"
             echo "🔗 معرف البناء: $BUILD_ID"
           else
-            echo "❌ فشل تشغيل البناء"
             exit 1
           fi
 
