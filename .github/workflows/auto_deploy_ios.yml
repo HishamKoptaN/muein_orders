@@ -1,238 +1,67 @@
-name: Auto Deploy iOS (Release or Patch)
+name: Auto Deploy iOS
 
 on:
   push:
-    branches:
-      - prod
+    branches: [prod]
   workflow_dispatch:
     inputs:
       force_release:
-        description: "فرض بناء إصدار جديد (Release)"
-        required: false
         type: boolean
         default: false
       force_patch:
-        description: "فرض بناء Patch"
-        required: false
         type: boolean
         default: false
 
-env:
-  CODEMAGIC_WEBHOOK_URL: "https://api.codemagic.io/hooks/69e22d0468ccd4f8805e9a4b"
-  APP_STORE_APP_ID: "6761682256"
-
 jobs:
-  detect-build-type:
+  detect:
+    uses: ./.github/workflows/ios_detect.yml
+    with:
+      force_release: ${{ github.event.inputs.force_release }}
+      force_patch: ${{ github.event.inputs.force_patch }}
+
+  release:
+    needs: detect
+    if: needs.detect.outputs.build_type == 'release'
+    uses: ./.github/workflows/ios_release.yml
+    with:
+      version_name: ${{ needs.detect.outputs.version_name }}
+      version_code: ${{ needs.detect.outputs.version_code }}
+
+  patch:
+    needs: detect
+    if: needs.detect.outputs.build_type == 'patch'
+    uses: ./.github/workflows/ios_patch.yml
+    with:
+      version_name: ${{ needs.detect.outputs.version_name }}
+    secrets: inherit
+
+  summary:
     runs-on: ubuntu-latest
-    outputs:
-      build_type: ${{ steps.decision.outputs.build_type }}
-      version_name: ${{ steps.version.outputs.version_name }}
-      version_code: ${{ steps.version.outputs.version_code }}
-      has_native_changes: ${{ steps.native_check.outputs.has_native_changes }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - id: version
-        run: |
-          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | tr -d ' ')
-          VERSION_NAME=$(echo $VERSION | cut -d'+' -f1)
-          VERSION_CODE=$(echo $VERSION | cut -d'+' -f2)
-          echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
-          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
-          echo "📱 إصدار التطبيق: $VERSION_NAME+$VERSION_CODE"
-
-      - id: native_check
-        run: |
-          NATIVE_PATHS="ios/ android/ linux/ macos/ windows/ web/"
-
-          LAST_COMMIT=$(git rev-parse HEAD)
-          PREVIOUS_COMMIT=$(git rev-parse HEAD~1)
-
-          echo "🔍 فحص التغييرات بين $PREVIOUS_COMMIT و $LAST_COMMIT"
-
-          HAS_NATIVE=false
-          for path in $NATIVE_PATHS; do
-            if git diff --name-only $PREVIOUS_COMMIT $LAST_COMMIT | grep -q "^$path"; then
-              echo "⚠️ تم العثور على تغييرات في: $path"
-              HAS_NATIVE=true
-            fi
-          done
-
-          echo "has_native_changes=$HAS_NATIVE" >> $GITHUB_OUTPUT
-          if [[ "$HAS_NATIVE" == "true" ]]; then
-            echo "🔴 تم اكتشاف تغييرات Native - يتطلب إصدار جديد"
-          else
-            echo "🟢 لا توجد تغييرات Native - يمكن استخدام Patch"
-          fi
-      - id: store_check
-        run: |
-          APP_ID="$APP_STORE_APP_ID"
-
-          if [[ -z "$APP_ID" ]]; then
-            echo "⚠️ APP_STORE_APP_ID غير مضبوط - سيتم استخدام المنطق الافتراضي"
-            echo "store_version_code=0" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          STORE_INFO=$(curl -s "https://itunes.apple.com/lookup?id=$APP_ID" || echo '{}')
-          STORE_VERSION=$(echo "$STORE_INFO" | jq -r '.results[0].version // "0.0.0"')
-
-          echo "📱 إصدار App Store: $STORE_VERSION"
-
-          STORE_VERSION_CODE=$(echo "$STORE_VERSION" | awk -F. '{print ($1*1000000)+($2*1000)+$3}')
-          echo "store_version_code=$STORE_VERSION_CODE" >> $GITHUB_OUTPUT
-
-      - id: decision
-        run: |
-          VERSION_CODE="${{ steps.version.outputs.version_code }}"
-          HAS_NATIVE="${{ steps.native_check.outputs.has_native_changes }}"
-          STORE_VERSION="${{ steps.store_check.outputs.store_version_code }}"
-
-          if [[ "$VERSION_CODE" == "1" ]] || [[ -z "$VERSION_CODE" ]]; then
-            BUILD_TYPE="release"
-            REASON="أول بناء (version_code=1)"
-          elif [[ "$HAS_NATIVE" == "true" ]]; then
-            BUILD_TYPE="release"
-            REASON="تغييرات Native مكتشفة"
-          else
-
-          if [[ "$VERSION_CODE" == "1" ]] || [[ -z "$VERSION_CODE" ]]; then
-            BUILD_TYPE="release"
-            REASON="أول بناء (version_code=1)"
-          elif [[ "$HAS_NATIVE" == "true" ]]; then
-            BUILD_TYPE="release"
-            REASON="تغييرات Native مكتشفة"
-          else
-            BUILD_TYPE="patch"
-            REASON="لا توجد تغييرات Native - إصلاحات Dart فقط"
-          fi
-
-          if [[ "${{ github.event.inputs.force_release }}" == "true" ]]; then
-            BUILD_TYPE="release"
-            REASON="تجاوز يدوي: Force Release"
-          elif [[ "${{ github.event.inputs.force_patch }}" == "true" ]]; then
-            BUILD_TYPE="patch"
-            REASON="تجاوز يدوي: Force Patch"
-          fi
-
-          echo "build_type=$BUILD_TYPE" >> $GITHUB_OUTPUT
-          echo "🎯 نوع البناء: $BUILD_TYPE"
-          echo "📋 السبب: $REASON"
-
-  trigger-codemagic-release:
-    needs: detect-build-type
-    if: needs.detect-build-type.outputs.build_type == 'release'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🚀 Trigger Codemagic Build (Release)
-        run: |
-          # التحقق من ضبط Webhook URL
-          if [[ "$CODEMAGIC_WEBHOOK_URL" == *"YOUR_WEBHOOK_ID"* ]]; then
-            echo "⚠️ يرجى تحديث CODEMAGIC_WEBHOOK_URL بقيمة صحيحة"
-            echo "💡 احصل عليه من: Codemagic → App Settings → Webhooks"
-            exit 1
-          fi
-
-          echo "🚀 تشغيل بناء الإصدار الجديد عبر Codemagic..."
-          echo "📱 الإصدار: ${{ needs.detect-build-type.outputs.version_name }}+${{ needs.detect-build-type.outputs.version_code }}"
-
-          # إرسال طلب إلى Codemagic Webhook
-          RESPONSE=$(curl -s -X POST \
-            -H "Content-Type: application/json" \
-            -d '{
-              "branch": "'"${{ github.ref_name }}"'",
-              "commit": "'"${{ github.sha }}"'",
-              "build_type": "release",
-              "version_name": "'"${{ needs.detect-build-type.outputs.version_name }}"'",
-              "version_code": "'"${{ needs.detect-build-type.outputs.version_code }}"'"
-            }' \
-            "$CODEMAGIC_WEBHOOK_URL" || echo '{"error": "failed"}')
-
-          echo "📋 استجابة Codemagic:"
-          echo "$RESPONSE"
-
-          echo "✅ تم إرسال طلب البناء إلى Codemagic"
-          echo "🔗 تحقق من حالة البناء في لوحة تحكم Codemagic"
-
-  shorebird-patch:
-    needs: detect-build-type
-    if: needs.detect-build-type.outputs.build_type == 'patch'
-    runs-on: macos-latest # Shorebird يتطلب macOS لبناء iOS
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.41.2"
-          channel: "stable"
-          cache: true
-
-      - uses: shorebirdtech/setup-shorebird@v1
-
-      - env:
-          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-        run: |
-          # التحقق من ضبط Shorebird Token
-          if [[ -z "$SHOREBIRD_TOKEN" ]]; then
-            echo "❌ SHOREBIRD_TOKEN غير مضبوط في GitHub Secrets"
-            echo "💡 أضفه في: Settings → Secrets and variables → Actions"
-            exit 1
-          fi
-          echo "✅ SHOREBIRD_TOKEN مضبوط"
-
-      - run: |
-          flutter pub get
-          cd ios && pod install
-
-      - run: |
-          VERSION_NAME="${{ needs.detect-build-type.outputs.version_name }}"
-          echo "🚀 تشغيل Shorebird Patch للإصدار: $VERSION_NAME"
-          echo "📱 هذا البناء يستخدم Shorebird مباشرة (بدون Codemagic)"
-          # تشغيل Shorebird Patch
-          shorebird patch \
-            --platforms=ios \
-            --release-version="$VERSION_NAME" \
-            --verbose
-          echo "✅ Shorebird Patch اكتمل بنجاح!"
-
-      - if: always()
-        run: |
-          echo "📋 ملخص Patch:"
-          echo "📱 التطبيق: Muein Orders"
-          echo "🔢 الإصدار: ${{ needs.detect-build-type.outputs.version_name }}+${{ needs.detect-build-type.outputs.version_code }}"
-          echo "🐦 النوع: Shorebird Patch (GitHub Actions)"
-          echo "💰 الدقائق الموفرة: لم يتم استخدام Codemagic"
-
-  build-summary:
-    runs-on: ubuntu-latest
-    needs: [detect-build-type, trigger-codemagic-release, shorebird-patch]
+    needs: [detect, release, patch]
     if: always()
     steps:
       - run: |
-          BUILD_TYPE="${{ needs.detect-build-type.outputs.build_type }}"
-          VERSION_NAME="${{ needs.detect-build-type.outputs.version_name }}"
-          VERSION_CODE="${{ needs.detect-build-type.outputs.version_code }}"
+          BUILD_TYPE="${{ needs.detect.outputs.build_type }}"
+          VERSION_NAME="${{ needs.detect.outputs.version_name }}"
+          VERSION_CODE="${{ needs.detect.outputs.version_code }}"
+
+          echo "Type: $BUILD_TYPE"
+          echo "Version: $VERSION_NAME+$VERSION_CODE"
 
           if [[ "$BUILD_TYPE" == "release" ]]; then
-            echo "║  🚀 تم تشغيل: Codemagic (Release Build)"
-            echo "║  📤 سيتم نشره على: TestFlight"
-            echo "║  🔗 تحقق من Codemagic للتفاصيل"
+            echo "   Codemagic: ${{ needs.release.result }}"
           else
-            echo "║  🐦 تم تشغيل: Shorebird Patch"
-            echo "║  ⚡ تحديث سريع بدون مراجعة App Store"
-            echo "║  💰 تم توفير دقائق Codemagic"
+            echo "   Shorebird Patch: ${{ needs.patch.result }}"
           fi
 
           echo "╚════════════════════════════════════════════════╝"
 
           echo ""
           echo "📊 حالة الوظائف:"
-          echo "   فحص البناء: ${{ needs.detect-build-type.result }}"
+          echo "   فحص البناء: ${{ needs.detect.result }}"
 
           if [[ "$BUILD_TYPE" == "release" ]]; then
-            echo "   Codemagic: ${{ needs.trigger-codemagic-release.result }}"
+            echo "   Codemagic: ${{ needs.release.result }}"
           else
-            echo "   Shorebird Patch: ${{ needs.shorebird-patch.result }}"
+            echo "   Shorebird Patch: ${{ needs.patch.result }}"
           fi
