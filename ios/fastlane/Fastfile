@@ -81,7 +81,7 @@ platform :ios do
       scheme: "Runner",
       workspace: "Runner.xcworkspace",
       export_method: "app-store",
-      team_id: ENV["TEAM_ID"] || "5493DS73C7",
+      export_team_id: ENV["TEAM_ID"] || "5493DS73C7",
       xcargs: "-allowProvisioningUpdates"
     )
 
