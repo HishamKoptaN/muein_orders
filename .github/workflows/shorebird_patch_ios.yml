@@ -19,8 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache Flutter SDK
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: /Users/runner/hostedtoolcache/flutter
           key: flutter-sdk-3.41.2-macos
@@ -32,8 +31,7 @@ jobs:
           channel: "stable"
           cache: true
 
-      - name: Cache Dart/Flutter Dependencies
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.pub-cache
@@ -41,8 +39,7 @@ jobs:
           key: flutter-deps-${{ hashFiles('pubspec.lock') }}-macos
           restore-keys: flutter-deps-
 
-      - name: Cache Shorebird
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.config/shorebird
@@ -52,8 +49,7 @@ jobs:
 
       - uses: shorebirdtech/setup-shorebird@v1
 
-      - name: Cache iOS Build
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: |
             build/
@@ -64,23 +60,16 @@ jobs:
 
       - run: flutter pub get
 
-      - name: Install CocoaPods
-        run: |
+      - run: |
           cd ios
           pod install --repo-update
 
-      - name: Shorebird Patch iOS
-        env:
+      - env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
-          echo "🔧 تنفيذ Shorebird Patch iOS..."
-          echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
-
           shorebird patch ios \
             --dart-define=ENV=prod \
-            --flavor=prod \
-            --release-version=$VERSION_NAME+$VERSION_CODE
-
+            --flavor=prod 
       - run: |
           echo "✅ تم إرسال الباتش بنجاح!"
           echo "   الإصدار: $VERSION_CODE ($VERSION_NAME)"

@@ -30,8 +30,6 @@ jobs:
     with:
       force_release: ${{ github.event.inputs.force_release }}
       force_patch: ${{ github.event.inputs.force_patch }}
-
-  # Method 1: Fastlane Match (for release)
   fastlane-match:
     needs: detect
     if: |

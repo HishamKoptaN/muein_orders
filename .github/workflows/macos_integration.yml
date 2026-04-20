@@ -75,15 +75,6 @@ jobs:
 
       - name: 🧪 Run Tests with Logs
         run: |
-          echo "🧪 Running integration tests..."
-          echo "========================================"
-          echo "📋 Capturing ALL logs:"
-          echo "   ✅ AppLogger logs"
-          echo "   ✅ Firebase Auth logs"
-          echo "   ✅ API logs"
-          echo "   ✅ Errors + Stack traces"
-          echo "========================================"
-
           flutter test integration_test/auth_flow_test.dart \
             --device-id booted \
             --verbose \
