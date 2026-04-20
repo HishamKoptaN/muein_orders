@@ -72,21 +72,15 @@ platform :ios do
       try_repo_update_on_error: true
     )
 
-    # 4. Build IPA with Flutter
-    UI.message("🔨 Building IPA with Flutter...")
-    sh("cd ../.. && flutter build ios --release --no-codesign")
-
-    # 5. Export and sign the archive (skip building since we just built with Flutter)
-    UI.message("🔐 Signing and exporting IPA...")
+    # 4. Export and sign (Fastlane handles build + archive + export)
+    UI.message("🔐 Building, archiving and exporting IPA...")
     update_code_signing_settings(use_automatic_signing: true)
 
     build_app(
-      clean: false,
+      clean: true,
       scheme: "Runner",
       workspace: "Runner.xcworkspace",
       export_method: "app-store",
-      skip_build_archive: true,
-      archive_path: "../build/ios/archive/Runner.xcarchive",
       xcargs: "-allowProvisioningUpdates"
     )
 
