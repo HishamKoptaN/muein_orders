@@ -74,15 +74,20 @@ platform :ios do
 
     # 4. Export and sign (Fastlane handles build + archive + export)
     UI.message("🔐 Building, archiving and exporting IPA...")
-    update_code_signing_settings(use_automatic_signing: true)
+    team_id = ENV["TEAM_ID"] || "5493DS73C7"
+    
+    update_code_signing_settings(
+      use_automatic_signing: true,
+      team_id: team_id
+    )
 
     build_app(
       clean: true,
       scheme: "Runner",
       workspace: "Runner.xcworkspace",
       export_method: "app-store",
-      export_team_id: ENV["TEAM_ID"] || "5493DS73C7",
-      xcargs: "-allowProvisioningUpdates"
+      export_team_id: team_id,
+      xcargs: "DEVELOPMENT_TEAM=#{team_id} -allowProvisioningUpdates"
     )
 
     # 6. Upload to TestFlight
