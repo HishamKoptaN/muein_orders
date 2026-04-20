@@ -20,10 +20,9 @@ jobs:
       - run: flutter pub get
       - uses: shorebirdtech/setup-shorebird@v1
       - run: cd ios && pod install
-      - id: latest
-        run: |
-          VER=$(shorebird release list --flavor=prod 2>/dev/null | grep 'ios' | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-          [[ -z "$VER" ]] && { echo "No iOS releases found. Create via Codemagic first."; exit 1; }
-          echo "version=$VER" >> $GITHUB_OUTPUT
-          echo "Patching iOS $VER"
-      - run: shorebird patch ios --flavor=prod --release-version="${{ steps.latest.outputs.version }}"
+      - run: |
+          if ! shorebird release list --flavor=prod 2>/dev/null | grep -q 'ios'; then
+            echo "No iOS releases found. Create one via Codemagic first."
+            exit 1
+          fi
+      - run: shorebird patch ios --flavor=prod

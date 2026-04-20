@@ -3,10 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>aps-environment</key>
-	<string>development</string>
-	<key>com.apple.developer.avfoundation.multitasking-camera-access</key>
-	<true/>
-	<key>com.apple.developer.location.push</key>
-	<true/>
+	<string>production</string>
 </dict>
 </plist>
