@@ -42,8 +42,6 @@ jobs:
       version_name: ${{ needs.detect.outputs.version_name }}
       version_code: ${{ needs.detect.outputs.version_code }}
     secrets: inherit
-
-  # Method 2: Codemagic (fallback for release)
   codemagic:
     needs: [detect, fastlane-match]
     if: |
@@ -54,8 +52,6 @@ jobs:
     with:
       version_name: ${{ needs.detect.outputs.version_name }}
       version_code: ${{ needs.detect.outputs.version_code }}
-
-  # Method 3: Shorebird Patch
   shorebird-patch:
     needs: detect
     if: |

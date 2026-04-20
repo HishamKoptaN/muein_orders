@@ -25,26 +25,21 @@ jobs:
   deploy-ios:
     runs-on: ubuntu-latest
     steps:
-      - name: ⬇️ Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: ⚙️ Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.24.0"
           channel: "stable"
           cache: true
 
-      - name: 📦 Get Packages
-        run: flutter pub get
+      - run: flutter pub get
 
-      - name: 🐦 Setup Shorebird
-        uses: shorebirdtech/setup-shorebird@v1
+      - uses: shorebirdtech/setup-shorebird@v1
         with:
           version: latest
 
-      - name: 🚀 Deploy with Shorebird
-        run: |
+      - run: |
           if [ "${{ inputs.action }}" == "patch" ]; then
             shorebird patch android --release-version="${{ inputs.version_name }}"
             shorebird patch ios --release-version="${{ inputs.version_name }}"
