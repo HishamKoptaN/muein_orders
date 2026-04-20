@@ -123,3 +123,38 @@ jobs:
         run: |
           echo "❌ فشل بناء أو رفع الإصدار"
           echo "📱 الإصدار المطلوب: ${{ needs.check-version.outputs.version_name }}+${{ needs.check-version.outputs.version_code }}"
+
+      - name: 🤖 Auto-Fix on Failure
+        if: needs.build-and-release.result == 'failure'
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🤖 AI Auto-Fixer
+        if: needs.build-and-release.result == 'failure'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Install Python dependencies
+          pip install -r .github/scripts/requirements.txt
+
+          # Get error logs from the build job
+          echo "📋 Fetching error logs..."
+
+          # Run auto-fixer
+          python3 .github/scripts/auto_fixer.py "$GITHUB_STEP_SUMMARY" || exit 1
+
+          # Configure git
+          git config --global user.name "Muein-Auto-Fixer"
+          git config --global user.email "bot@muein.com"
+
+          # Check if changes were made
+          if [[ -n $(git status -s) ]]; then
+            git add .
+            git commit -m "🤖 آلي: محاولة إصلاح خطأ البناء (المحاولة ${{ github.run_attempt }})"
+            git push origin ${{ github.ref_name }}
+            echo "✅ تم دفع إصلاح مقترح. سيبدأ الـ Workflow مرة أخرى تلقائياً."
+          else
+            echo "⚠️ لم يتم العثور على حل تلقائي. يرجى المراجعة اليدوية."
+          fi
