@@ -72,22 +72,39 @@ platform :ios do
       try_repo_update_on_error: true
     )
 
-    # 4. Export and sign (Fastlane handles build + archive + export)
-    UI.message("🔐 Building, archiving and exporting IPA...")
+    # 4. Get provisioning profile and build
+    UI.message("🔐 Setting up signing and provisioning...")
     team_id = ENV["TEAM_ID"] || "5493DS73C7"
+    app_identifier = ENV["APP_IDENTIFIER"] || "com.muein.orders"
     
-    update_code_signing_settings(
-      use_automatic_signing: true,
-      team_id: team_id
+    # Download provisioning profile using App Store Connect API
+    UI.message("📥 Downloading provisioning profile...")
+    profile_path = sigh(
+      api_key: api_key,
+      app_identifier: app_identifier,
+      team_id: team_id,
+      provisioning_name: "App Store Provisioning Profile",
+      skip_certificate_verification: true,
+      skip_install_profile: false,
+      readonly: false
+    )
+    
+    UI.message("✅ Provisioning profile downloaded to: #{profile_path}")
+    
+    # Disable automatic signing and use manual with the downloaded profile
+    disable_automatic_code_signing(
+      team_id: team_id,
+      profile_name: "App Store Provisioning Profile"
     )
 
+    UI.message("🔨 Building, archiving and exporting IPA...")
     build_app(
       clean: true,
       scheme: "Runner",
       workspace: "Runner.xcworkspace",
       export_method: "app-store",
       export_team_id: team_id,
-      xcargs: "DEVELOPMENT_TEAM=#{team_id} -allowProvisioningUpdates"
+      xcargs: "DEVELOPMENT_TEAM=#{team_id} -allowProvisioningUpdates PROVISIONING_PROFILE_SPECIFIER='App Store Provisioning Profile'"
     )
 
     # 6. Upload to TestFlight
