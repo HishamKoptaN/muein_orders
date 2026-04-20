@@ -1,16 +1,28 @@
-name: Auto Deploy iOS
+name: iOS Deploy
 
 on:
   push:
     branches: [prod]
   workflow_dispatch:
     inputs:
+      method:
+        type: choice
+        options: [auto, fastlane-match, codemagic, shorebird]
+        default: auto
+      track:
+        type: choice
+        options: [testflight, appstore]
+        default: testflight
       force_release:
         type: boolean
         default: false
       force_patch:
         type: boolean
         default: false
+
+env:
+  APP_ID: "6761682256"
+  WEBHOOK: "https://api.codemagic.io/hooks/69e22d0468ccd4f8805e9a4b"
 
 jobs:
   detect:
@@ -19,17 +31,39 @@ jobs:
       force_release: ${{ github.event.inputs.force_release }}
       force_patch: ${{ github.event.inputs.force_patch }}
 
-  release:
+  # Method 1: Fastlane Match (for release)
+  fastlane-match:
     needs: detect
-    if: needs.detect.outputs.build_type == 'release'
+    if: |
+      always() &&
+      needs.detect.outputs.build_type == 'release' &&
+      (github.event.inputs.method == 'auto' || github.event.inputs.method == 'fastlane-match' || github.event.inputs.method == null)
+    uses: ./.github/workflows/deploy_fastlane_match.yml
+    with:
+      track: ${{ github.event.inputs.track || 'testflight' }}
+      version_name: ${{ needs.detect.outputs.version_name }}
+      version_code: ${{ needs.detect.outputs.version_code }}
+    secrets: inherit
+
+  # Method 2: Codemagic (fallback for release)
+  codemagic:
+    needs: [detect, fastlane-match]
+    if: |
+      always() &&
+      needs.detect.outputs.build_type == 'release' &&
+      (github.event.inputs.method == 'codemagic' || (github.event.inputs.method == 'auto' && needs.fastlane-match.result == 'failure'))
     uses: ./.github/workflows/ios_release.yml
     with:
       version_name: ${{ needs.detect.outputs.version_name }}
       version_code: ${{ needs.detect.outputs.version_code }}
 
-  patch:
+  # Method 3: Shorebird Patch
+  shorebird-patch:
     needs: detect
-    if: needs.detect.outputs.build_type == 'patch'
+    if: |
+      always() &&
+      needs.detect.outputs.build_type == 'patch' &&
+      (github.event.inputs.method == 'auto' || github.event.inputs.method == 'shorebird' || github.event.inputs.method == null)
     uses: ./.github/workflows/ios_patch.yml
     with:
       version_name: ${{ needs.detect.outputs.version_name }}
@@ -37,31 +71,12 @@ jobs:
 
   summary:
     runs-on: ubuntu-latest
-    needs: [detect, release, patch]
+    needs: [detect, fastlane-match, codemagic, shorebird-patch]
     if: always()
     steps:
       - run: |
-          BUILD_TYPE="${{ needs.detect.outputs.build_type }}"
-          VERSION_NAME="${{ needs.detect.outputs.version_name }}"
-          VERSION_CODE="${{ needs.detect.outputs.version_code }}"
-
-          echo "Type: $BUILD_TYPE"
-          echo "Version: $VERSION_NAME+$VERSION_CODE"
-
-          if [[ "$BUILD_TYPE" == "release" ]]; then
-            echo "   Codemagic: ${{ needs.release.result }}"
-          else
-            echo "   Shorebird Patch: ${{ needs.patch.result }}"
-          fi
-
-          echo "╚════════════════════════════════════════════════╝"
-
-          echo ""
-          echo "📊 حالة الوظائف:"
-          echo "   فحص البناء: ${{ needs.detect.result }}"
-
-          if [[ "$BUILD_TYPE" == "release" ]]; then
-            echo "   Codemagic: ${{ needs.release.result }}"
-          else
-            echo "   Shorebird Patch: ${{ needs.patch.result }}"
-          fi
+          echo "Type: ${{ needs.detect.outputs.build_type }}"
+          echo "Version: ${{ needs.detect.outputs.version_name }}+${{ needs.detect.outputs.version_code }}"
+          echo "Fastlane Match: ${{ needs.fastlane-match.result || 'skipped' }}"
+          echo "Codemagic: ${{ needs.codemagic.result || 'skipped' }}"
+          echo "Shorebird: ${{ needs.shorebird-patch.result || 'skipped' }}"
