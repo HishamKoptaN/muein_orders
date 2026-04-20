@@ -33,7 +33,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-
       - id: version
         run: |
           VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | tr -d ' ')
@@ -41,7 +40,6 @@ jobs:
           VERSION_CODE=$(echo $VERSION | cut -d'+' -f2)
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
-
       - id: native_check
         run: |
           NATIVE_PATHS="ios/ android/ linux/ macos/ windows/ web/"
@@ -61,7 +59,6 @@ jobs:
           CODE=$(echo "$VER" | awk -F. '{print ($1*1000000)+($2*1000)+$3}')
           echo "store_version=$VER" >> $GITHUB_OUTPUT
           echo "store_version_code=$CODE" >> $GITHUB_OUTPUT
-
       - id: decision
         run: |
           VC="${{ steps.version.outputs.version_code }}"
