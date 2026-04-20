@@ -185,7 +185,7 @@ jobs:
       - name: 🐦 Setup Shorebird
         uses: shorebirdtech/setup-shorebird@v1
 
-      - name: 🔐 Login to Shorebird
+      - name: 🔐 Verify Shorebird Token
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
@@ -195,10 +195,7 @@ jobs:
             echo "💡 أضفه في: Settings → Secrets and variables → Actions"
             exit 1
           fi
-
-          echo "🔐 تسجيل الدخول إلى Shorebird..."
-          shorebird login --token "$SHOREBIRD_TOKEN"
-          echo "✅ تم تسجيل الدخول"
+          echo "✅ SHOREBIRD_TOKEN مضبوط"
 
       - name: 📦 Install Dependencies
         run: |
@@ -217,7 +214,6 @@ jobs:
             --platforms=ios \
             --release-version="$VERSION_NAME" \
             --verbose
-
           echo "✅ Shorebird Patch اكتمل بنجاح!"
 
       - name: 📋 Patch Summary
@@ -229,7 +225,6 @@ jobs:
           echo "🐦 النوع: Shorebird Patch (GitHub Actions)"
           echo "💰 الدقائق الموفرة: لم يتم استخدام Codemagic"
 
-  # ملخص البناء
   build-summary:
     runs-on: ubuntu-latest
     needs: [detect-build-type, trigger-codemagic-release, shorebird-patch]
