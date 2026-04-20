@@ -18,9 +18,7 @@ on:
         default: false
 
 env:
-  # ⚠️ تنبيه: هذه القيم حساسة. يفضل استخدام GitHub Secrets في الإنتاج
   CODEMAGIC_WEBHOOK_URL: "https://api.codemagic.io/hooks/69e22d0468ccd4f8805e9a4b"
-  SHOREBIRD_TOKEN: "eyJyZWZyZXNoX3Rva2VuIjoiMS8vMDNzbWlSRGNHanliM0NnWUlBUkFBR0FNU053Ri1MOUlyS0VqUzhlNW1pRk9HVFVfbVl4LUliMm9ObmZaNUxTZm15R3JxLWlRQUp1VEZiVlktMWtPMjFCZ1M3STNaRGxlTWZxNCIsImF1dGhfcHJvdmlkZXIiOiJnb29nbGUifQ=="
   APP_STORE_APP_ID: "6761682256"
 
 jobs:
@@ -68,13 +66,11 @@ jobs:
           done
 
           echo "has_native_changes=$HAS_NATIVE" >> $GITHUB_OUTPUT
-
           if [[ "$HAS_NATIVE" == "true" ]]; then
             echo "🔴 تم اكتشاف تغييرات Native - يتطلب إصدار جديد"
           else
             echo "🟢 لا توجد تغييرات Native - يمكن استخدام Patch"
           fi
-
       - name: 🌐 Check App Store Version
         id: store_check
         run: |
@@ -186,23 +182,17 @@ jobs:
           channel: "stable"
           cache: true
 
-      - name: 🐦 Install Shorebird CLI
-        run: |
-          echo "🐦 تثبيت Shorebird CLI..."
-          # تثبيت Shorebird عبر المثبت الرسمي
-          curl --proto '=https' --tlsv1.2 -LsSf https://github.com/shorebirdtech/shorebird/releases/latest/download/shorebird-installer.sh | sh
-          # إضافة Shorebird إلى PATH
-          echo "$HOME/.shorebird/bin" >> $GITHUB_PATH
-          export PATH="$HOME/.shorebird/bin:$PATH"
-          shorebird --version
-          echo "✅ Shorebird CLI مثبت"
+      - name: 🐦 Setup Shorebird
+        uses: shorebirdtech/setup-shorebird@v1
 
       - name: 🔐 Login to Shorebird
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
           # التحقق من ضبط Shorebird Token
-          if [[ "$SHOREBIRD_TOKEN" == *"YOUR_SHOREBIRD"* ]]; then
-            echo "⚠️ يرجى تحديث SHOREBIRD_TOKEN بقيمة صحيحة"
-            echo "💡 احصل عليه من: https://console.shorebird.dev/"
+          if [[ -z "$SHOREBIRD_TOKEN" ]]; then
+            echo "❌ SHOREBIRD_TOKEN غير مضبوط في GitHub Secrets"
+            echo "💡 أضفه في: Settings → Secrets and variables → Actions"
             exit 1
           fi
 
