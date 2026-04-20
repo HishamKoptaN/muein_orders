@@ -1,0 +1,8 @@
+git_url("git@github.com:HishamKoptaN/muein_orders_certificates.git")
+git_branch("prod")
+app_identifier(["com.muein.orders"])
+type("appstore")
+username(ENV["APPLE_ID"])
+team_id(ENV["TEAM_ID"] || "5493DS73C7")
+git_basic_authorization(ENV["MATCH_GIT_BASIC_AUTHORIZATION"])
+storage_mode("git")

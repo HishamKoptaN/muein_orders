@@ -36,7 +36,6 @@ platform :ios do
       # Use match for certificates and provisioning profiles
       match(
         type: "appstore",
-        api_key: api_key,
         app_identifier: ["com.muein.orders"],
         team_id: ENV["TEAM_ID"] || "5493DS73C7",
         readonly: true,
