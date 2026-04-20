@@ -20,4 +20,14 @@ jobs:
       - run: flutter pub get
       - uses: shorebirdtech/setup-shorebird@v1
       - run: cd ios && pod install
+      - run: |
+          base64 -d scripts/ios_certs/certificate.p12.base64 > certificate.p12
+          base64 -d scripts/ios_certs/Muein_Orders_ios_app_store.mobileprovision.base64 > profile.mobileprovision
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+          security create-keychain -p "" build.keychain
+          security import certificate.p12 -k build.keychain -P "" -T /usr/bin/codesign
+          security unlock-keychain -p "" build.keychain
+          security set-keychain-settings -t 3600 -u build.keychain
+          security list-keychains -s build.keychain
       - run: shorebird patch ios --flavor=prod
