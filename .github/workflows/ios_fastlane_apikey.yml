@@ -65,7 +65,7 @@ jobs:
           TEAM_ID=5493DS73C7
           APP_STORE_CONNECT_KEY_ID=G2L6LRG5PK
           APP_STORE_CONNECT_ISSUER_ID=487919a3-70a5-4992-af37-d75eb388c881    
-          APP_STORE_CONNECT_KEY_PATH=./AuthKey_G2L6LRG5PK.p8
+          APP_STORE_CONNECT_API_KEY_PATH=./AuthKey_G2L6LRG5PK.p8
           EOF
           echo "✅ Environment file created"
 
