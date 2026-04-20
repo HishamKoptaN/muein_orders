@@ -1,4 +1,4 @@
-name: Deploy Decision Logic
+name: iOS Deploy Decision
 on:
   workflow_call:
     inputs:

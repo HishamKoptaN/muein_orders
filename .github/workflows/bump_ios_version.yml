@@ -29,17 +29,8 @@ jobs:
         run: |
           CURRENT_CODE="${{ inputs.current_version_code }}"
           NEW_CODE=$((CURRENT_CODE + 1))
-
-          # استخراج versionName من pubspec.yaml
           VERSION_NAME=$(grep -oP '^version:\s*\K[0-9.]+' pubspec.yaml)
-
-          echo "📱 زيادة إصدار iOS:"
-          echo "   من: $CURRENT_CODE"
-          echo "   إلى: $NEW_CODE"
-
-          # تحديث pubspec.yaml - تنسيق: version: 1.0.0+3
           sed -i "s/^version: .*/version: ${VERSION_NAME}+${NEW_CODE}/" pubspec.yaml
-
           echo "new_version_code=$NEW_CODE" >> $GITHUB_OUTPUT
           echo "new_version=${VERSION_NAME}+${NEW_CODE}" >> $GITHUB_OUTPUT
 
