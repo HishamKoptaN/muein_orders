@@ -38,7 +38,7 @@ jobs:
     uses: ./.github/workflows/shorebird_ios.yml
     with:
       action: patch
-      version_name: ${{ needs.detect.outputs.version_name }}
+      version_name: ${{ needs.detect.outputs.store_version }}
     secrets: inherit
 
   summary:

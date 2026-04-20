@@ -15,6 +15,8 @@ on:
         value: ${{ jobs.detect.outputs.version_name }}
       version_code:
         value: ${{ jobs.detect.outputs.version_code }}
+      store_version:
+        value: ${{ jobs.detect.outputs.store_version }}
       has_native_changes:
         value: ${{ jobs.detect.outputs.has_native_changes }}
 env:
@@ -26,6 +28,7 @@ jobs:
       build_type: ${{ steps.decision.outputs.build_type }}
       version_name: ${{ steps.version.outputs.version_name }}
       version_code: ${{ steps.version.outputs.version_code }}
+      store_version: ${{ steps.store_check.outputs.store_version }}
       has_native_changes: ${{ steps.native_check.outputs.has_native_changes }}
     steps:
       - uses: actions/checkout@v4
@@ -52,10 +55,11 @@ jobs:
           [[ "$HAS" == "true" ]] && echo "🔴 Native changes detected" || echo "🟢 No native changes"
       - id: store_check
         run: |
-          [[ -z "$APP_STORE_APP_ID" ]] && { echo "store_version_code=0" >> $GITHUB_OUTPUT; exit 0; }
+          [[ -z "$APP_STORE_APP_ID" ]] && { echo "store_version=0.0.0" >> $GITHUB_OUTPUT; echo "store_version_code=0" >> $GITHUB_OUTPUT; exit 0; }
           INFO=$(curl -s "https://itunes.apple.com/lookup?id=$APP_STORE_APP_ID" || echo '{}')
           VER=$(echo "$INFO" | jq -r '.results[0].version // "0.0.0"')
           CODE=$(echo "$VER" | awk -F. '{print ($1*1000000)+($2*1000)+$3}')
+          echo "store_version=$VER" >> $GITHUB_OUTPUT
           echo "store_version_code=$CODE" >> $GITHUB_OUTPUT
 
       - id: decision
