@@ -23,7 +23,9 @@ on:
 
 jobs:
   deploy-ios:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
+    env:
+      SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -36,14 +38,12 @@ jobs:
       - run: flutter pub get
 
       - uses: shorebirdtech/setup-shorebird@v1
-        with:
-          version: latest
+
+      - run: cd ios && pod install
 
       - run: |
           if [ "${{ inputs.action }}" == "patch" ]; then
-            shorebird patch android --release-version="${{ inputs.version_name }}"
-            shorebird patch ios --release-version="${{ inputs.version_name }}"
+            shorebird patch ios --flavor=prod --release-version="${{ inputs.version_name }}"
           else
-            shorebird release android --release-version="${{ inputs.version_name }}"
-            shorebird release ios --release-version="${{ inputs.version_name }}"
+            shorebird release ios --flavor=prod --release-version="${{ inputs.version_name }}"
           fi
