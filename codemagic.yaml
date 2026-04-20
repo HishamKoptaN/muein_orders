@@ -22,7 +22,7 @@ workflows:
           echo "CM_BUILD_VERSION=$VERSION_NAME" >> $CM_ENV
           echo "CM_BUILD_NUMBER=$VERSION_CODE" >> $CM_ENV
           
-          # Decide action based on FORCE_PATCH or build existence check
+          # Decide action based on version code or manual override
           if [ "$FORCE_PATCH" == "true" ]; then
             echo "⚠️ FORCE_PATCH is enabled - Will use Shorebird Patch"
             echo "DEPLOY_ACTION=patch" >> $CM_ENV
@@ -30,120 +30,158 @@ workflows:
             echo "✅ FORCE_RELEASE is enabled - Will create new RELEASE"
             echo "DEPLOY_ACTION=release" >> $CM_ENV
           else
-            # Default: Check if this is first build or existing
+            # Auto-detect based on version code
             echo "🔍 Auto-detecting action..."
             if [ "$VERSION_CODE" == "1" ] || [ -z "$VERSION_CODE" ]; then
               echo "✅ First build detected - Will create RELEASE"
               echo "DEPLOY_ACTION=release" >> $CM_ENV
             else
-              echo "⚠️ Build number > 1 - Consider using Shorebird Patch for faster updates"
-              echo "📝 Set FORCE_PATCH=true to use patch mode"
-              echo "DEPLOY_ACTION=release" >> $CM_ENV
+              echo "⚠️ Build number > 1 - Using Shorebird Patch for faster updates"
+              echo "DEPLOY_ACTION=patch" >> $CM_ENV
             fi
           fi
           
           echo "🎯 Action: $DEPLOY_ACTION"
-          echo "   - Use 'release' for full App Store build"
-          echo "   - Use 'patch' for Shorebird quick update"
+          echo "   - 'release' = Full App Store build (Codemagic)"
+          echo "   - 'patch' = Shorebird quick update (Codemagic)"
           
-      - name: �� Setup Flutter
+      - name: 🐦 Setup Shorebird (for Patch)
         script: |
-          echo "🔧 Setting up Flutter $FLUTTER_VERSION"
-          flutter channel stable
-          flutter upgrade
-          flutter --version
-          
-      - name: 📦 Install Dependencies
-        script: |
-          echo "📦 Installing Flutter dependencies"
-          flutter pub get
-          
-      - name: 🍏 Setup iOS Dependencies
-        script: |
-          echo "🍏 Setting up iOS dependencies"
-          cd ios
-          pod install --repo-update
-          pod update
-          
-      - name: 🔍 Verify Configuration
-        script: |
-          echo "🔍 Verifying build configuration"
-          echo "Flutter version: $(flutter --version | head -n 1)"
-          echo "Build mode: $BUILD_MODE"
-          echo "Export options: $EXPORT_OPTIONS"
-          
-          # Check if provisioning profiles are available
-          if [ -d "$HOME/Library/MobileDevice/Provisioning Profiles" ]; then
-            echo "✅ Provisioning profiles found"
-            ls -la "$HOME/Library/MobileDevice/Provisioning Profiles/" | head -5
+          if [ "$DEPLOY_ACTION" == "patch" ]; then
+            echo "🐦 Installing Shorebird CLI..."
+            curl --proto '=https' --tlsv1.2 -LsSf https://github.com/shorebirdtech/shorebird/releases/latest/download/shorebird-installer.tar.gz | tar xz
+            ./shorebird/bin/shorebird --version
+            echo "✅ Shorebird CLI installed"
           else
-            echo "⚠️ No provisioning profiles directory found"
+            echo "⏭️ Skipping Shorebird setup (Release build)"
           fi
           
-      - name: 🔨 Build iOS App
+      - name: 🔧 Setup Flutter (Release Only)
         script: |
-          echo "🔨 Building iOS app in $BUILD_MODE mode"
-          
-          # Build Flutter app without codesigning
-          flutter build ios --$BUILD_MODE --no-codesign
-          
-          echo "✅ Flutter build completed"
-          
-      - name: 📦 Archive iOS App
-        script: |
-          echo "📦 Archiving iOS app"
-          
-          cd ios
-          
-          # Archive the app
-          xcodebuild -workspace Runner.xcworkspace \
-            -scheme Runner \
-            -configuration Release \
-            -destination generic/platform=iOS \
-            -archivePath $CM_BUILD_DIR/Runner.xcarchive \
-            archive \
-            CODE_SIGN_STYLE=Manual \
-            CODE_SIGN_IDENTITY="" \
-            PROVISIONING_PROFILE_SPECIFIER=""
-            
-          echo "✅ Archive completed"
-          
-      - name: 📤 Export IPA
-        script: |
-          echo "📤 Exporting IPA"
-          
-          cd ios
-          
-          # Create ExportOptions.plist if not exists
-          if [ ! -f "ExportOptions.plist" ]; then
-            cat > ExportOptions.plist << EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-              <key>method</key>
-              <string>$EXPORT_OPTIONS</string>
-              <key>teamID</key>
-              <string>$APPLE_TEAM_ID</string>
-              <key>uploadBitcode</key>
-              <false/>
-              <key>uploadSymbols</key>
-              <true/>
-          </dict>
-          </plist>
-          EOF
+          if [ "$DEPLOY_ACTION" == "release" ]; then
+            echo "🔧 Setting up Flutter $FLUTTER_VERSION"
+            flutter channel stable
+            flutter upgrade
+            flutter --version
+          else
+            echo "⏭️ Skipping Flutter setup (Patch mode)"
           fi
           
-          # Export the archive
-          xcodebuild -exportArchive \
-            -archivePath $CM_BUILD_DIR/Runner.xcarchive \
-            -exportOptionsPlist ExportOptions.plist \
-            -exportPath $CM_BUILD_DIR/build
-            
-          echo "✅ Export completed"
+      - name: 📦 Install Dependencies (Release Only)
+        script: |
+          if [ "$DEPLOY_ACTION" == "release" ]; then
+            echo "📦 Installing Flutter dependencies"
+            flutter pub get
+          else
+            echo "⏭️ Skipping dependencies (Patch mode)"
+          fi
           
-          # List exported files
-          find $CM_BUILD_DIR/build -name "*.ipa" -exec ls -la {} \;
+      - name: 🍏 Setup iOS Dependencies (Release Only)
+        script: |
+          if [ "$DEPLOY_ACTION" == "release" ]; then
+            echo "🍏 Setting up iOS dependencies"
+            cd ios
+            pod install --repo-update
+            pod update
+          else
+            echo "⏭️ Skipping iOS setup (Patch mode)"
+          fi
+          
+      - name: 🔍 Verify Configuration (Release Only)
+        script: |
+          if [ "$DEPLOY_ACTION" == "release" ]; then
+            echo "🔍 Verifying build configuration"
+            echo "Flutter version: $(flutter --version | head -n 1)"
+            echo "Build mode: $BUILD_MODE"
+            echo "Export options: $EXPORT_OPTIONS"
+            
+            # Check if provisioning profiles are available
+            if [ -d "$HOME/Library/MobileDevice/Provisioning Profiles" ]; then
+              echo "✅ Provisioning profiles found"
+              ls -la "$HOME/Library/MobileDevice/Provisioning Profiles/" | head -5
+            else
+              echo "⚠️ No provisioning profiles directory found"
+            fi
+          else
+            echo "⏭️ Skipping verification (Patch mode)"
+          fi
+          
+      - name: 🔨 Build iOS App (Release Only)
+        script: |
+          if [ "$DEPLOY_ACTION" == "release" ]; then
+            echo "🔨 Building iOS app in $BUILD_MODE mode"
+            
+            # Build Flutter app without codesigning
+            flutter build ios --$BUILD_MODE --no-codesign
+            
+            echo "✅ Flutter build completed"
+          else
+            echo "⏭️ Skipping iOS build (Patch mode)"
+          fi
+          
+      - name: 📦 Archive iOS App (Release Only)
+        script: |
+          if [ "$DEPLOY_ACTION" == "release" ]; then
+            echo "📦 Archiving iOS app"
+            
+            cd ios
+            
+            # Archive the app
+            xcodebuild -workspace Runner.xcworkspace \
+              -scheme Runner \
+              -configuration Release \
+              -destination generic/platform=iOS \
+              -archivePath $CM_BUILD_DIR/Runner.xcarchive \
+              archive \
+              CODE_SIGN_STYLE=Manual \
+              CODE_SIGN_IDENTITY="" \
+              PROVISIONING_PROFILE_SPECIFIER=""
+              
+            echo "✅ Archive completed"
+          else
+            echo "⏭️ Skipping archive (Patch mode)"
+          fi
+          
+      - name: 📤 Export IPA (Release Only)
+        script: |
+          if [ "$DEPLOY_ACTION" == "release" ]; then
+            echo "📤 Exporting IPA"
+            
+            cd ios
+            
+            # Create ExportOptions.plist if not exists
+            if [ ! -f "ExportOptions.plist" ]; then
+              cat > ExportOptions.plist << EOF
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+            <plist version="1.0">
+            <dict>
+                <key>method</key>
+                <string>$EXPORT_OPTIONS</string>
+                <key>teamID</key>
+                <string>$APPLE_TEAM_ID</string>
+                <key>uploadBitcode</key>
+                <false/>
+                <key>uploadSymbols</key>
+                <true/>
+            </dict>
+            </plist>
+            EOF
+            fi
+            
+            # Export the archive
+            xcodebuild -exportArchive \
+              -archivePath $CM_BUILD_DIR/Runner.xcarchive \
+              -exportOptionsPlist ExportOptions.plist \
+              -exportPath $CM_BUILD_DIR/build
+              
+            echo "✅ Export completed"
+            
+            # List exported files
+            find $CM_BUILD_DIR/build -name "*.ipa" -exec ls -la {} \;
+          else
+            echo "⏭️ Skipping IPA export (Patch mode)"
+          fi
           
     artifacts:
       - build/ios/ipa/*.ipa
@@ -156,22 +194,40 @@ workflows:
           - heshamkoptan@email.com
       app_store_connect:
         # API Key authentication (required for automatic TestFlight submission)
+        # Only runs for Release builds (not for Shorebird Patch)
         api_key: $APP_STORE_CONNECT_API_KEY
         key_id: $APP_STORE_CONNECT_KEY_ID
         issuer_id: $APP_STORE_CONNECT_ISSUER_ID
         submit_to_testflight: true
         submit_to_app_store: false
+        # Note: Artifacts publishing is skipped for patch builds automatically
           
       scripts:
+        - name: 🐦 Run Shorebird Patch (Patch Only)
+          script: |
+            if [ "$DEPLOY_ACTION" == "patch" ]; then
+              echo "🐦 Running Shorebird Patch for iOS..."
+              ./shorebird/bin/shorebird patch --platforms=ios --release-version=$CM_BUILD_VERSION
+              echo "✅ Shorebird Patch completed"
+            else
+              echo "⏭️ Skipping Shorebird Patch (Release mode)"
+            fi
+            
         - name: 📋 Post-Build Summary
           script: |
             echo "📋 Build Summary:"
             echo "📱 App: Muein Orders"
             echo "🔢 Version: $CM_BUILD_VERSION"
             echo "🏗️ Build: $CM_BUILD_NUMBER"
-            echo "📊 Status: Success"
-            echo "📤 Exported to: App Store Connect"
-            echo "🚀 Deployed to: TestFlight"
+            echo "🎯 Action: $DEPLOY_ACTION"
+            if [ "$DEPLOY_ACTION" == "release" ]; then
+              echo "📊 Status: Release build completed"
+              echo "📤 Exported to: App Store Connect"
+              echo "🚀 Deployed to: TestFlight"
+            else
+              echo "📊 Status: Shorebird Patch completed"
+              echo "🚀 Patched via Shorebird"
+            fi
             
   ios-debug:
     name: iOS Debug Build

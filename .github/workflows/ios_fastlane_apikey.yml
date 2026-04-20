@@ -2,7 +2,7 @@ name: iOS Release - Fastlane (API Key)
 on:
   push:
     branches:
-      - prod
+      - prods
   workflow_dispatch:
     inputs:
       track:
