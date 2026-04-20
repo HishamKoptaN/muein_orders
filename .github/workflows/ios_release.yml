@@ -1,5 +1,4 @@
 name: iOS Release via Codemagic
-
 on:
   workflow_call:
     inputs:
@@ -9,7 +8,6 @@ on:
       version_code:
         required: true
         type: string
-
 env:
   CODEMAGIC_WEBHOOK_URL: "https://api.codemagic.io/hooks/69e22d0468ccd4f8805e9a4b"
 

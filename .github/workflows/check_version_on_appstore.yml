@@ -34,8 +34,7 @@ jobs:
           echo "   versionName: $VERSION_NAME"
           echo "   versionCode: $VERSION_CODE"
 
-      - name: Check Version on App Store Connect
-        id: check-version
+      - id: check-version
         env:
           APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
@@ -45,12 +44,6 @@ jobs:
           set +e
           VERSION_CODE="${{ steps.get-version.outputs.version_code }}"
           VERSION_NAME="${{ steps.get-version.outputs.version_name }}"
-
-          echo "🔍 جاري فحص الإصدار على App Store Connect..."
-          echo "   Bundle ID: $BUNDLE_ID"
-          echo "   versionName: $VERSION_NAME"
-          echo "   versionCode: $VERSION_CODE"
-
           JWT_HEADER=$(echo -n '{"alg":"ES256","kid":"'$APP_STORE_CONNECT_KEY_ID'","typ":"JWT"}' | base64 -w0 | tr '+/' '-_' | tr -d '=')
           NOW=$(date +%s)
           EXP=$((NOW + 1200))
@@ -59,7 +52,6 @@ jobs:
           echo "$APP_STORE_CONNECT_API_KEY" | tr ' ' '\n' | sed 's/-----BEGIN-----/-----BEGIN EC PRIVATE KEY-----/' | sed 's/-----END-----/-----END EC PRIVATE KEY-----/' > /tmp/asc_key.p8
           JWT_SIGNATURE=$(openssl dgst -sha256 -sign /tmp/asc_key.p8 -binary < <(echo -n "$JWT_SIGNING_INPUT") 2>/dev/null | base64 -w0 | tr '+/' '-_' | tr -d '=')
           rm -f /tmp/asc_key.p8
-
           if [ -z "$JWT_SIGNATURE" ]; then
             echo "⚠️  فشل إنشاء JWT signature"
             echo "exists=false" >> $GITHUB_OUTPUT
@@ -70,11 +62,9 @@ jobs:
             "https://api.appstoreconnect.apple.com/v1/apps?filter[bundleId]=$BUNDLE_ID")
           APP_ID=$(echo "$APP_RESPONSE" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
           if [ -z "$APP_ID" ]; then
-            echo "⚠️  التطبيق غير موجود على App Store Connect"
             echo "exists=false" >> $GITHUB_OUTPUT
             exit 0
           fi
-          echo "✅ تم العثور على التطبيق (ID: $APP_ID)"
           VERSIONS_RESPONSE=$(curl -s -H "Authorization: Bearer $JWT_TOKEN" \
             "https://api.appstoreconnect.apple.com/v1/apps/$APP_ID/appStoreVersions")
           EXISTS=$(echo "$VERSIONS_RESPONSE" | grep -q "versionString.*$VERSION_NAME" && echo "true" || echo "false")
