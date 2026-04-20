@@ -13,11 +13,12 @@ on:
         default: "fastlane-match"
         type: choice
         options:
+          - auto
           - fastlane-match
           - fastlane-legacy
           - shorebird
-          - manual
           - codemagic
+          - manual
       track:
         description: "App Store track"
         required: true
@@ -42,16 +43,17 @@ jobs:
   decision:
     uses: ./.github/workflows/deploy_decision.yml
     with:
-      method: ${{ github.event.inputs.method || 'fastlane-match' }}
+      method: ${{ github.event.inputs.method || 'auto' }}
       track: ${{ github.event.inputs.track || 'testflight' }}
       force_patch: ${{ github.event.inputs.force_patch }}
       force_release: ${{ github.event.inputs.force_release }}
     secrets: inherit
 
-  # Deploy Methods
+  # Method 1: Fastlane Match (الأفضل)
   deploy-fastlane-match:
     needs: decision
-    if: ${{ needs.decision.outputs.method == 'fastlane-match' }}
+    # تشغيل إذا كانت الطريقة auto أو fastlane-match
+    if: ${{ always() && (needs.decision.outputs.method == 'auto' || needs.decision.outputs.method == 'fastlane-match') }}
     uses: ./.github/workflows/deploy_fastlane_match.yml
     with:
       track: ${{ needs.decision.outputs.track }}
@@ -59,9 +61,14 @@ jobs:
       version_name: ${{ needs.decision.outputs.version_name }}
       version_code: ${{ needs.decision.outputs.version_code }}
 
+  # Method 2: Fastlane Legacy (fallback)
   deploy-fastlane-legacy:
-    needs: decision
-    if: ${{ needs.decision.outputs.method == 'fastlane-legacy' }}
+    needs: [decision, deploy-fastlane-match]
+    # تشغيل إذا فشلت fastlane-match أو كانت الطريقة محددة legacy
+    if: |
+      always() && 
+      (needs.decision.outputs.method == 'fastlane-legacy' || 
+       (needs.decision.outputs.method == 'auto' && needs.deploy-fastlane-match.result == 'failure'))
     uses: ./.github/workflows/deploy_fastlane_legacy.yml
     with:
       track: ${{ needs.decision.outputs.track }}
@@ -69,9 +76,16 @@ jobs:
       version_name: ${{ needs.decision.outputs.version_name }}
       version_code: ${{ needs.decision.outputs.version_code }}
 
+  # Method 3: Shorebird (fallback)
   deploy-shorebird:
-    needs: decision
-    if: ${{ needs.decision.outputs.method == 'shorebird' }}
+    needs: [decision, deploy-fastlane-match, deploy-fastlane-legacy]
+    # تشغيل إذا فشلت السابقتان أو كانت الطريقة محددة shorebird
+    if: |
+      always() && 
+      (needs.decision.outputs.method == 'shorebird' || 
+       (needs.decision.outputs.method == 'auto' && 
+        needs.deploy-fastlane-match.result == 'failure' && 
+        needs.deploy-fastlane-legacy.result == 'failure'))
     uses: ./.github/workflows/deploy_shorebird.yml
     with:
       track: ${{ needs.decision.outputs.track }}
@@ -79,23 +93,53 @@ jobs:
       version_name: ${{ needs.decision.outputs.version_name }}
       version_code: ${{ needs.decision.outputs.version_code }}
 
+  # Method 4: Codemagic (fallback)
+  deploy-codemagic:
+    needs:
+      [
+        decision,
+        deploy-fastlane-match,
+        deploy-fastlane-legacy,
+        deploy-shorebird,
+      ]
+    # تشغيل إذا فشلت السابقات أو كانت الطريقة محددة codemagic
+    if: |
+      always() && 
+      (needs.decision.outputs.method == 'codemagic' || 
+       (needs.decision.outputs.method == 'auto' && 
+        needs.deploy-fastlane-match.result == 'failure' && 
+        needs.deploy-fastlane-legacy.result == 'failure' && 
+        needs.deploy-shorebird.result == 'failure'))
+    uses: ./.github/workflows/deploy_codemagic.yml
+    with:
+      track: ${{ needs.decision.outputs.track }}
+      build_mode: release
+
+  # Method 5: Manual (fallback أخير)
   deploy-manual:
-    needs: decision
-    if: ${{ needs.decision.outputs.method == 'manual' }}
+    needs:
+      [
+        decision,
+        deploy-fastlane-match,
+        deploy-fastlane-legacy,
+        deploy-shorebird,
+        deploy-codemagic,
+      ]
+    # تشغيل إذا فشلت جميع الطرق السابقة
+    if: |
+      always() && 
+      (needs.decision.outputs.method == 'manual' || 
+       (needs.decision.outputs.method == 'auto' && 
+        needs.deploy-fastlane-match.result == 'failure' && 
+        needs.deploy-fastlane-legacy.result == 'failure' && 
+        needs.deploy-shorebird.result == 'failure' && 
+        needs.deploy-codemagic.result == 'failure'))
     uses: ./.github/workflows/deploy_manual.yml
     with:
       track: ${{ needs.decision.outputs.track }}
       action: ${{ needs.decision.outputs.action }}
       version_name: ${{ needs.decision.outputs.version_name }}
       version_code: ${{ needs.decision.outputs.version_code }}
-
-  deploy-codemagic:
-    needs: decision
-    if: ${{ needs.decision.outputs.method == 'codemagic' }}
-    uses: ./.github/workflows/deploy_codemagic.yml
-    with:
-      track: ${{ needs.decision.outputs.track }}
-      build_mode: release
 
   # Summary
   summary:
