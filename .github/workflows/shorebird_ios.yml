@@ -22,8 +22,8 @@ jobs:
       - run: cd ios && pod install
       - run: ls -la scripts/ios_certs/
       - run: |
-          base64 -d -i scripts/ios_certs/certificate.p12.base64 -o certificate.p12
-          base64 -d -i scripts/ios_certs/Muein_Orders_ios_app_store.mobileprovision.base64 -o profile.mobileprovision
+          cat scripts/ios_certs/certificate.p12.base64 | base64 -D > certificate.p12
+          cat scripts/ios_certs/Muein_Orders_ios_app_store.mobileprovision.base64 | base64 -D > profile.mobileprovision
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
           security create-keychain -p "" build.keychain
