@@ -14,7 +14,7 @@ jobs:
             -H "Content-Type: application/json" \
             -H "x-auth-token: ${{ secrets.CODEMAGIC_API_TOKEN }}" \
             -d '{
-              "appId": "6761682256",
+              "appId": "6bb908ca-da56-44da-ac93-6232282ada05",
               "branch": "prod",
               "workflowId": "ios-release"
             }'
