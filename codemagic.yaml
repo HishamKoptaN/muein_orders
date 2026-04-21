@@ -12,7 +12,6 @@ workflows:
       - name: 🔍 Check Version & Setup
         script: |
           echo "🔍 Checking version from pubspec.yaml..."
-          
           # Extract version from pubspec.yaml
           VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | tr -d ' ')
           VERSION_NAME=$(echo $VERSION | cut -d'+' -f1)

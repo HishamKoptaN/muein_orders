@@ -32,4 +32,4 @@ jobs:
           security set-keychain-settings -t 3600 -u build.keychain
           security list-keychains -s build.keychain
           security find-identity -v -p codesigning
-      - run: shorebird patch ios --flavor=prod --flutter-version=3.41.2
+      - run: shorebird patch ios --flavor=prod
