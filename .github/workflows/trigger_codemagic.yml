@@ -12,8 +12,5 @@ jobs:
           echo "🚀 Triggering Codemagic build..."
           curl -X POST "https://api.codemagic.io/hooks/69e22d0468ccd4f8805e9a4b" \
             -H "Content-Type: application/json" \
-            -d '{
-              "branch": "prod",
-              "workflow": "ios-release"
-            }'
+            -d '{"ref":"refs/heads/prod","appId":"6761682256"}'
           echo "✅ Codemagic build triggered"
