@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          curl -X POST "https://api.codemagic.io/hooks/69e22d0468ccd4f8805e9a4b" \
-            -H "Content-Type: application/x-www-form-urlencoded" \
-            -d 'ref=refs/heads/prod'
+          curl -X POST "https://api.codemagic.io/builds" \
+            -H "Content-Type: application/json" \
+            -H "x-auth-token: ${{ secrets.CODEMAGIC_API_TOKEN }}" \
+            -d '{"appId":"6bb908ca-da56-44da-ac93-6232282ada05","branch":"prod","workflowId":"ios-release"}'
