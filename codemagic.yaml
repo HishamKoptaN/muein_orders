@@ -9,122 +9,55 @@ workflows:
       groups:
         - app_store_credentials
     scripts:
-      - name: 🔍 Check Version & Setup
-        script: |
-          echo "🔍 Checking version from pubspec.yaml..."
-          # Extract version from pubspec.yaml
+      - script: |
           VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | tr -d ' ')
           VERSION_NAME=$(echo $VERSION | cut -d'+' -f1)
           VERSION_CODE=$(echo $VERSION | cut -d'+' -f2)
-          
-          echo "📱 Current Version: $VERSION_NAME+$VERSION_CODE"
           echo "CM_BUILD_VERSION=$VERSION_NAME" >> $CM_ENV
           echo "CM_BUILD_NUMBER=$VERSION_CODE" >> $CM_ENV
-          
-          echo "🎯 Strategy: Try Shorebird Patch first, fallback to Release if needed"
           echo "DEPLOY_ACTION=patch" >> $CM_ENV
-      - name: 🐦 Setup Shorebird
-        script: |
-          echo "🐦 Installing Shorebird CLI..."
+      - script: |
           curl --proto '=https' --tlsv1.2 -LsSf https://github.com/shorebirdtech/shorebird/releases/latest/download/shorebird-installer.tar.gz | tar xz
           ./shorebird/bin/shorebird --version
-          echo "✅ Shorebird CLI installed"
-          
-      - name: 🩹 Try Shorebird Patch (with Fallback)
-        script: |
-          echo "🩹 Attempting Shorebird Patch..."
+      - script: |
           export PATH="$PATH:$PWD/shorebird/bin"
-          
           VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | tr -d ' ')
           VERSION_NAME=$(echo $VERSION | cut -d'+' -f1)
-          
-          echo "📱 Target version: $VERSION_NAME"
-          
-          echo "� Checking for existing Shorebird releases..."
           if ! shorebird release list --flavor=prod 2>/dev/null | grep -q "ios"; then
-            echo "❌ No Shorebird iOS releases found"
-            echo "🔄 Will fallback to full Release build"
             echo "DEPLOY_ACTION=release" >> $CM_ENV
             exit 0
           fi
-          
-          echo "✅ Found existing Shorebird releases"
-          
-          echo "🩹 Applying Shorebird Patch..."
           if shorebird patch ios --flavor=prod --release-version="$VERSION_NAME" 2>&1; then
-            echo "✅ Shorebird Patch applied successfully!"
-            echo "🎉 Patch deployed to users instantly"
             echo "DEPLOY_ACTION=patch" >> $CM_ENV
           else
-            echo "❌ Shorebird Patch failed"
-            echo "⚠️ Common reasons:"
-            echo "   - No matching release version on Shorebird"
-            echo "   - Native code changes detected"
-            echo "   - Flutter version mismatch"
-            echo ""
-            echo "🔄 Falling back to full Release build..."
             echo "DEPLOY_ACTION=release" >> $CM_ENV
           fi
-          
-      - name: 🔧 Setup Flutter (if needed)
-        script: |
+      - script: |
           if [ "$DEPLOY_ACTION" == "release" ]; then
-            echo "🔧 Setting up Flutter $FLUTTER_VERSION"
             flutter channel stable
             flutter upgrade
-            flutter --version
-          else
-            echo "✅ Patch completed - skipping Flutter setup"
           fi
-          
-      - name: 📦 Install Dependencies (Release Only)
-        script: |
+      - script: |
           if [ "$DEPLOY_ACTION" == "release" ]; then
-            echo "📦 Installing Flutter dependencies"
             flutter pub get
-          else
-            echo "⏭️ Skipping dependencies (Patch mode)"
           fi
-          
-      - name: 🍏 Setup iOS Dependencies (Release Only)
-        script: |
+      - script: |
           if [ "$DEPLOY_ACTION" == "release" ]; then
-            echo "🍏 Setting up iOS dependencies"
             cd ios
             pod install --repo-update
             pod update
-          else
-            echo "⏭️ Skipping iOS setup (Patch mode)"
           fi
-          
-      - name: 🔍 Verify Configuration (Release Only)
-        script: |
+      - script: |
           if [ "$DEPLOY_ACTION" == "release" ]; then
-            echo "🔍 Verifying build configuration"
-            echo "Flutter version: $(flutter --version | head -n 1)"
-            echo "Build mode: $BUILD_MODE"
-            echo "Export options: $EXPORT_OPTIONS"
-            
             if [ -d "$HOME/Library/MobileDevice/Provisioning Profiles" ]; then
-              echo "✅ Provisioning profiles found"
               ls -la "$HOME/Library/MobileDevice/Provisioning Profiles/" | head -5
-            else
-              echo "⚠️ No provisioning profiles directory found"
             fi
-          else
-            echo "⏭️ Skipping verification (Patch mode)"
           fi
-          
-      - name: 🔨 Build iOS App (Release Only)
-        script: |
+      - script: |
           if [ "$DEPLOY_ACTION" == "release" ]; then
             flutter build ios --$BUILD_MODE --no-codesign
-          else
-            echo "⏭️ Skipping iOS build (Patch mode)"
           fi
-          
-      - name: 📦 Archive iOS App (Release Only)
-        script: |
+      - script: |
           if [ "$DEPLOY_ACTION" == "release" ]; then
             cd ios
             xcodebuild -workspace Runner.xcworkspace \
@@ -136,12 +69,8 @@ workflows:
               CODE_SIGN_STYLE=Manual \
               CODE_SIGN_IDENTITY="" \
               PROVISIONING_PROFILE_SPECIFIER=""
-          else
-            echo "⏭️ Skipping archive (Patch mode)"
           fi
-          
-      - name: 📤 Export IPA (Release Only)
-        script: |
+      - script: |
           if [ "$DEPLOY_ACTION" == "release" ]; then
             cd ios
             if [ ! -f "ExportOptions.plist" ]; then
@@ -165,8 +94,6 @@ workflows:
               -exportOptionsPlist ExportOptions.plist \
               -exportPath $CM_BUILD_DIR/build
             find $CM_BUILD_DIR/build -name "*.ipa" -exec ls -la {} \;
-          else
-            echo "⏭️ Skipping IPA export (Patch mode)"
           fi
     artifacts:
       - build/ios/ipa/*.ipa
@@ -183,30 +110,9 @@ workflows:
         submit_to_testflight: true
         submit_to_app_store: false
       scripts:
-        - name: 🐦 Run Shorebird Patch (Patch Only)
-          script: |
+        - script: |
             if [ "$DEPLOY_ACTION" == "patch" ]; then
-              echo "🐦 Running Shorebird Patch for iOS..."
               ./shorebird/bin/shorebird patch --platforms=ios --release-version=$CM_BUILD_VERSION
-              echo "✅ Shorebird Patch completed"
-            else
-              echo "⏭️ Skipping Shorebird Patch (Release mode)"
-            fi
-            
-        - name: 📋 Post-Build Summary
-          script: |
-            echo "📋 Build Summary:"
-            echo "📱 App: Muein Orders"
-            echo "🔢 Version: $CM_BUILD_VERSION"
-            echo "🏗️ Build: $CM_BUILD_NUMBER"
-            echo "🎯 Action: $DEPLOY_ACTION"
-            if [ "$DEPLOY_ACTION" == "release" ]; then
-              echo "📊 Status: Release build completed"
-              echo "📤 Exported to: App Store Connect"
-              echo "🚀 Deployed to: TestFlight"
-            else
-              echo "📊 Status: Shorebird Patch completed"
-              echo "🚀 Patched via Shorebird"
             fi
   ios-debug:
     name: iOS Debug Build
@@ -215,14 +121,10 @@ workflows:
         FLUTTER_VERSION: 3.41.2
         BUILD_MODE: debug
     scripts:
-      - name: 📱 Setup Flutter
-        script: |
+      - script: |
           flutter channel stable
           flutter pub get
-          
-      - name: 🔨 Build Debug
-        script: |
+      - script: |
           flutter build ios --debug --no-codesign
-          
     artifacts:
       - build/ios/debug/*.app
