@@ -23,10 +23,12 @@ jobs:
       - run: ls -la *.p12 *.mobileprovision
       - run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp muein_orders_appstore_prod.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+          cp muein_orders_appstore_prod.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/muein_orders_appstore_prod.mobileprovision
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
           security create-keychain -p "" build.keychain
-          security import certificate.p12 -k build.keychain -P "" -T /usr/bin/codesign
+          security import certificate.p12 -k build.keychain -P "" -T /usr/bin/codesign 2>&1 || echo "Certificate import warning (may need password)"
           security unlock-keychain -p "" build.keychain
           security set-keychain-settings -t 3600 -u build.keychain
           security list-keychains -s build.keychain
+          security find-identity -v -p codesigning
       - run: shorebird patch ios --flavor=prod
