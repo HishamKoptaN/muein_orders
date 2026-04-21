@@ -20,12 +20,10 @@ jobs:
       - run: flutter pub get
       - uses: shorebirdtech/setup-shorebird@v1
       - run: cd ios && pod install
-      - run: ls -la *.p12 *.mobileprovision 2>/dev/null || true
+      - run: ls -la *.p12 *.mobileprovision
       - run: |
-          cat certificate.p12.base64 | base64 -D > certificate.p12 2>/dev/null || cp certificate.p12 certificate.p12
-          cat Muein_Orders_ios_app_store.mobileprovision.base64 | base64 -D > profile.mobileprovision 2>/dev/null || cp muein_orders_appstore_prod.mobileprovision profile.mobileprovision
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+          cp muein_orders_appstore_prod.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
           security create-keychain -p "" build.keychain
           security import certificate.p12 -k build.keychain -P "" -T /usr/bin/codesign
           security unlock-keychain -p "" build.keychain
