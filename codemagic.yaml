@@ -9,7 +9,7 @@ workflows:
       groups:
         - app_store_credentials
     scripts:
-      - name: 🔍 Check Version & Decide Action
+      - name: 🔍 Check Version & Setup
         script: |
           echo "🔍 Checking version from pubspec.yaml..."
           
@@ -22,41 +22,59 @@ workflows:
           echo "CM_BUILD_VERSION=$VERSION_NAME" >> $CM_ENV
           echo "CM_BUILD_NUMBER=$VERSION_CODE" >> $CM_ENV
           
-          # Decide action based on version code or manual override
-          if [ "$FORCE_PATCH" == "true" ]; then
-            echo "⚠️ FORCE_PATCH is enabled - Will use Shorebird Patch"
-            echo "DEPLOY_ACTION=patch" >> $CM_ENV
-          elif [ "$FORCE_RELEASE" == "true" ]; then
-            echo "✅ FORCE_RELEASE is enabled - Will create new RELEASE"
-            echo "DEPLOY_ACTION=release" >> $CM_ENV
-          else
-            # Auto-detect based on version code
-            echo "🔍 Auto-detecting action..."
-            if [ "$VERSION_CODE" == "1" ] || [ -z "$VERSION_CODE" ]; then
-              echo "✅ First build detected - Will create RELEASE"
-              echo "DEPLOY_ACTION=release" >> $CM_ENV
-            else
-              echo "⚠️ Build number > 1 - Using Shorebird Patch for faster updates"
-              echo "DEPLOY_ACTION=patch" >> $CM_ENV
-            fi
-          fi
+          # Default strategy: Try Patch first, fallback to Release
+          echo "🎯 Strategy: Try Shorebird Patch first, fallback to Release if needed"
+          echo "DEPLOY_ACTION=patch" >> $CM_ENV
           
-          echo "🎯 Action: $DEPLOY_ACTION"
-          echo "   - 'release' = Full App Store build (Codemagic)"
-          echo "   - 'patch' = Shorebird quick update (Codemagic)"
-          
-      - name: 🐦 Setup Shorebird (for Patch)
+      - name: 🐦 Setup Shorebird
         script: |
-          if [ "$DEPLOY_ACTION" == "patch" ]; then
-            echo "🐦 Installing Shorebird CLI..."
-            curl --proto '=https' --tlsv1.2 -LsSf https://github.com/shorebirdtech/shorebird/releases/latest/download/shorebird-installer.tar.gz | tar xz
-            ./shorebird/bin/shorebird --version
-            echo "✅ Shorebird CLI installed"
-          else
-            echo "⏭️ Skipping Shorebird setup (Release build)"
+          echo "🐦 Installing Shorebird CLI..."
+          curl --proto '=https' --tlsv1.2 -LsSf https://github.com/shorebirdtech/shorebird/releases/latest/download/shorebird-installer.tar.gz | tar xz
+          ./shorebird/bin/shorebird --version
+          echo "✅ Shorebird CLI installed"
+          
+      - name: 🩹 Try Shorebird Patch (with Fallback)
+        script: |
+          echo "🩹 Attempting Shorebird Patch..."
+          
+          # Setup Shorebird environment
+          export PATH="$PATH:$PWD/shorebird/bin"
+          
+          # Try to get current version from pubspec
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: //' | tr -d ' ')
+          VERSION_NAME=$(echo $VERSION | cut -d'+' -f1)
+          
+          echo "📱 Target version: $VERSION_NAME"
+          
+          # Check if Shorebird release exists
+          echo "� Checking for existing Shorebird releases..."
+          if ! shorebird release list --flavor=prod 2>/dev/null | grep -q "ios"; then
+            echo "❌ No Shorebird iOS releases found"
+            echo "🔄 Will fallback to full Release build"
+            echo "DEPLOY_ACTION=release" >> $CM_ENV
+            exit 0
           fi
           
-      - name: 🔧 Setup Flutter (Release Only)
+          echo "✅ Found existing Shorebird releases"
+          
+          # Try to apply patch
+          echo "🩹 Applying Shorebird Patch..."
+          if shorebird patch ios --flavor=prod --release-version="$VERSION_NAME" 2>&1; then
+            echo "✅ Shorebird Patch applied successfully!"
+            echo "🎉 Patch deployed to users instantly"
+            echo "DEPLOY_ACTION=patch" >> $CM_ENV
+          else
+            echo "❌ Shorebird Patch failed"
+            echo "⚠️ Common reasons:"
+            echo "   - No matching release version on Shorebird"
+            echo "   - Native code changes detected"
+            echo "   - Flutter version mismatch"
+            echo ""
+            echo "🔄 Falling back to full Release build..."
+            echo "DEPLOY_ACTION=release" >> $CM_ENV
+          fi
+          
+      - name: 🔧 Setup Flutter (if needed)
         script: |
           if [ "$DEPLOY_ACTION" == "release" ]; then
             echo "🔧 Setting up Flutter $FLUTTER_VERSION"
@@ -64,7 +82,7 @@ workflows:
             flutter upgrade
             flutter --version
           else
-            echo "⏭️ Skipping Flutter setup (Patch mode)"
+            echo "✅ Patch completed - skipping Flutter setup"
           fi
           
       - name: 📦 Install Dependencies (Release Only)
