@@ -10,7 +10,7 @@ jobs:
     runs-on: macos-latest
     env:
       SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-      P12_PASSWORD: "1632001"
+      P12_PASSWORD: ""
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
