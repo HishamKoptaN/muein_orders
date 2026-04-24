@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_storage/get_storage.dart';
@@ -16,6 +15,8 @@ import 'core/app/app_widget.dart';
 import 'core/app/error_handler.dart';
 import 'core/app_observer.dart';
 import 'core/config/app_initializer.dart';
+import 'core/database/shared_pref_helper.dart';
+import 'core/database/shared_pref_keys.dart';
 import 'core/di/dependency_injection.dart';
 import 'core/services/firebase_messaging/firebase_messaging_service.dart';
 import 'core/utils/app_logger.dart';
@@ -25,7 +26,6 @@ void main() {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       AppLogger.initialize(enableCrashlytics: true);
-      AppLogger.info('🚀 Starting app...', tag: 'MAIN');
       FlutterError.onError = (FlutterErrorDetails details) {
         AppLogger.error(
           'Flutter Framework Error: ${details.exceptionAsString()}',
@@ -79,21 +79,13 @@ void main() {
 
 Future<void> _initializeApp() async {
   try {
-    AppLogger.info('🔧 Initializing app...', tag: 'INIT');
     await AppInitializer.initialize();
-    AppLogger.info('✅ AppInitializer completed', tag: 'INIT');
     await configureDependencies(environment: EnvConfig.config.envName);
-    AppLogger.info('✅ Dependencies configured', tag: 'INIT');
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';
     FlutterNativeSplash.remove();
     Bloc.observer = AppBlocObserver();
-    AppLogger.info('✅ BlocObserver initialized', tag: 'INIT');
-    if (kDebugMode) {
-      AppLogger.debug('🐛 Debug mode enabled', tag: 'INIT');
-    }
     await GetStorage.init('translations_cache');
-    AppLogger.info('✅ GetStorage initialized', tag: 'INIT');
     if (!Platform.isIOS) {
       await getIt<FirebaseMessagingService>().initialize();
       AppLogger.info('✅ Firebase Messaging initialized', tag: 'INIT');
@@ -101,6 +93,14 @@ Future<void> _initializeApp() async {
       AppLogger.warning('⚠️ Firebase Messaging skipped on iOS', tag: 'INIT');
     }
     AppLogger.info('✅ All services initialized successfully!', tag: 'INIT');
+    if (kDebugMode) {
+      await SharedPrefHelper.setSecuredString(
+        key: SharedPrefKeys.jwtToken,
+        value: '12|eM2qBoASUJXD6BJk9nuMkyIGVUTilyMPXybTBOJT9e3565cc',
+      );
+      // await SharedPrefHelper.clearAllData();
+      // await SharedPrefHelper.clearAllSecuredData();
+    }
     runApp(const MueinOrdersApp());
   } catch (error, stackTrace) {
     AppLogger.error(
