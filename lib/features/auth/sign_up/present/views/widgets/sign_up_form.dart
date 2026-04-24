@@ -30,7 +30,6 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
     return Column(
       spacing: 10.h,
       children: [
@@ -88,6 +87,8 @@ class SignUpForm extends StatelessWidget {
           onChanged: (v) => getIt<SignUpBloc>().add(
             SignUpEvent.dataChanged(confirmPassword: PasswordInput.dirty(v)),
           ),
+          validator: (value) =>
+              value == password.value ? null : 'كلمتا المرور غير متطابقتين',
         ),
       ],
     );

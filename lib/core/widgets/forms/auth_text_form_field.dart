@@ -110,7 +110,7 @@ class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
         filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
         child: Container(
           width: 332.w,
-          height: 60.h,
+          constraints: BoxConstraints(minHeight: 60.h),
           decoration: BoxDecoration(
             color: const Color.fromRGBO(255, 255, 255, 0.19),
             borderRadius: BorderRadius.circular(14.r),
@@ -140,6 +140,8 @@ class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
                     fontSize: 16.sp,
                     fontFamily: 'Almarai',
                   ),
+                  errorText: widget.errorText,
+                  errorStyle: widget.errorStyle,
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 24.w,
                     vertical: 18.h,
