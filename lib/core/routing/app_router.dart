@@ -52,7 +52,7 @@ class AppRouter {
                 if (kReleaseMode) {
                   return '/${StatsView.routeName}';
                 } else {
-                  return '/${FinancialAccountView.routeName}';
+                  return '/${AddCachedDocView.routeName}';
                 }
               }
               return null;
