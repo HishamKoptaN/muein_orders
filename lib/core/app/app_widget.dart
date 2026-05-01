@@ -8,7 +8,7 @@ import '../../features/auth/sign_in/present/bloc/sign_in_bloc.dart';
 import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart';
 import '../../features/cached_docs/present/bloc/cached_doc_bloc.dart';
 import '../../features/docs/present/blocs/docs_bloc/docs_bloc.dart';
-import '../../features/financial/present/financial_rep_bloc/financial_bloc.dart';
+import '../../features/financial/present/blocs/financial_bloc/financial_bloc.dart';
 import '../../features/home/present/bloc/stats_bloc.dart';
 import '../../features/instructions/present/bloc/instructions_bloc.dart';
 import '../../features/language/bloc/language_bloc.dart';

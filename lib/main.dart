@@ -96,7 +96,7 @@ Future<void> _initializeApp() async {
     if (kDebugMode) {
       await SharedPrefHelper.setSecuredString(
         key: SharedPrefKeys.jwtToken,
-        value: '12|eM2qBoASUJXD6BJk9nuMkyIGVUTilyMPXybTBOJT9e3565cc',
+        value: '15|aHyF6hoYkwAi5PuSmPOAxBYdnsJnFGh3d4Y9IU8W85d83752',
       );
       // await SharedPrefHelper.clearAllData();
       // await SharedPrefHelper.clearAllSecuredData();

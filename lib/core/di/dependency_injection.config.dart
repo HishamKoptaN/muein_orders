@@ -76,8 +76,10 @@ import '../../features/financial/data/repo_impl/financial_repo_impl.dart'
 import '../../features/financial/domain/repo/orders_repo.dart' as _i1011;
 import '../../features/financial/domain/usecases/financial_use_cases.dart'
     as _i868;
-import '../../features/financial/present/financial_rep_bloc/financial_bloc.dart'
-    as _i578;
+import '../../features/financial/present/blocs/bloc/expenses_bloc.dart'
+    as _i660;
+import '../../features/financial/present/blocs/financial_bloc/financial_bloc.dart'
+    as _i468;
 import '../../features/home/data/datasources/stats_api.dart' as _i144;
 import '../../features/home/data/repo_impl/stats_repo_impl.dart' as _i860;
 import '../../features/home/domain/repo/stats_repo.dart' as _i733;
@@ -322,8 +324,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i781.NotificationsBloc>(
     () => _i781.NotificationsBloc(gh<_i139.NotificationsUseCases>()),
   );
-  gh.singleton<_i578.FinancialBloc>(
-    () => _i578.FinancialBloc(reportsUseCases: gh<_i868.FinancialUseCases>()),
+  gh.singleton<_i468.FinancialBloc>(
+    () => _i468.FinancialBloc(reportsUseCases: gh<_i868.FinancialUseCases>()),
   );
   gh.singleton<_i422.CachedDocBloc>(
     () => _i422.CachedDocBloc(
@@ -345,6 +347,9 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i802.OrdersUseCases>(),
       gh<_i281.CachedDocsRepo>(),
     ),
+  );
+  gh.singleton<_i660.ExpensesBloc>(
+    () => _i660.ExpensesBloc(financialUseCases: gh<_i868.FinancialUseCases>()),
   );
   gh.lazySingleton<_i665.SignInBloc>(
     () => _i665.SignInBloc(signInUseCases: gh<_i941.SignInUseCases>()),

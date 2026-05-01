@@ -5,6 +5,7 @@ import '../../../../core/errors/handlers/api_error_handler/api_error_handler.dar
 import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../domain/entities/create_expense_entity.dart';
 import '../../domain/entities/expenses_res_entity.dart';
+import '../../domain/entities/financial_account_entity.dart';
 import '../../domain/repo/orders_repo.dart';
 import '../datasources/financial_api.dart';
 import '../mappers/financial_mapper.dart';
@@ -13,6 +14,20 @@ import '../mappers/financial_mapper.dart';
 class FinancialRepoImpl implements FinancialRepo {
   final FinancialApi financialApi;
   FinancialRepoImpl(this.financialApi);
+
+  @override
+  Future<ApiResult<FinancialAccountEntity?>> getFinancialAccounts() async {
+    try {
+      final res = await financialApi.getFinancialAccount();
+      if (res.isNotEmpty) {
+        return ApiResult.success(data: res.first.toEntity());
+      }
+      return const ApiResult.success(data: null);
+    } catch (error) {
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
+    }
+  }
+
   @override
   Future<ApiResult<ExpensesResEntity?>> get({required int page}) async {
     try {

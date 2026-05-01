@@ -14,8 +14,8 @@ class ApiConstants {
   static const String docs = 'docs';
   static const String notifications = 'notifications';
   static const String externalNotifications = 'external-notifications';
-  static const String expenses = 'expenses';
-
+  static const String financialAccounts = 'financial/accounts';
+  static const String financialExpenses = 'financial/expenses';
   // Headers
   static const String authToken = 'auth-token';
   static const String contentType = 'Content-Type';

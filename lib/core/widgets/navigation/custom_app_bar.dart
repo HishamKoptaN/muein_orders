@@ -39,7 +39,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       bottom: bottom,
       leading: GestureDetector(
-        onTap: () => context.pop(),
+        onTap: () {
+          context.pop();
+        },
         child:
             leading ??
             FaIcon(

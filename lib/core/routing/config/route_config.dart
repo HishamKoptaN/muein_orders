@@ -9,6 +9,8 @@ import '../../../features/auth/sign_up/present/views/sign_up_views.dart';
 import '../../../features/cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../features/cached_docs/present/view/add_cached_doc_view.dart';
 import '../../../features/financial/present/view/create_expense.dart';
+import '../../../features/financial/present/view/expenses_view.dart';
+import '../../../features/financial/present/view/financial_account_view.dart';
 import '../../../features/home/domain/entities/order_type_res_entity.dart';
 import '../../../features/home/present/view/stats_view.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
@@ -60,6 +62,10 @@ class RouteConfig {
         builder: (context, state) => const StatsView(),
       ),
       RouteBuilder.goRoute(
+        routeName: ExpensesView.routeName,
+        builder: (context, state) => const ExpensesView(),
+      ),
+      RouteBuilder.goRoute(
         routeName: ProfileView.routeName,
         builder: (context, state) => const ProfileView(),
       ),
@@ -95,6 +101,10 @@ class RouteConfig {
             subCategoryId: args?['subCategoryId'] as int? ?? 0,
           );
         },
+      ),
+      RouteBuilder.goRoute(
+        routeName: FinancialAccountView.routeName,
+        builder: (context, state) => const FinancialAccountView(),
       ),
       RouteBuilder.goRoute(
         routeName: CreateExpenseView.routeName,

@@ -20,6 +20,38 @@ class _FinancialApi implements FinancialApi {
   final ParseErrorLogger? errorLogger;
 
   @override
+  Future<List<FinancialAccountModel>> getFinancialAccount() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<FinancialAccountModel>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'financial/accounts',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<FinancialAccountModel> _value;
+    try {
+      _value = _result.data!
+          .map(
+            (dynamic i) =>
+                FinancialAccountModel.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<ExpensesResModel> get({int? page}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
@@ -30,7 +62,7 @@ class _FinancialApi implements FinancialApi {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'expenses',
+            'financial/expenses',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -59,7 +91,7 @@ class _FinancialApi implements FinancialApi {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'expenses',
+            'financial/expenses',
             queryParameters: queryParameters,
             data: _data,
           )

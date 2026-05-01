@@ -8,6 +8,8 @@ import '../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_views.dart';
 import '../../features/cached_docs/present/view/add_cached_doc_view.dart';
+import '../../features/financial/present/view/expenses_view.dart';
+import '../../features/financial/present/view/financial_account_view.dart';
 import '../../features/home/present/view/stats_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/orders/present/views/orders_view.dart';
@@ -50,7 +52,7 @@ class AppRouter {
                 if (kReleaseMode) {
                   return '/${StatsView.routeName}';
                 } else {
-                  return '/${StatsView.routeName}';
+                  return '/${FinancialAccountView.routeName}';
                 }
               }
               return null;

@@ -1,49 +1,42 @@
-import 'package:bloc/bloc.dart';
-import 'package:form_inputs/form_inputs/generic_formz_input.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import '../../../../../../core/entities/meta_entity.dart';
+import '../../../../../../core/networking/api_result.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../core/entities/meta_entity.dart';
-import '../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../core/networking/api_result.dart';
-import '../../domain/entities/create_expense_entity.dart';
-import '../../domain/entities/expenses_res_entity.dart';
-import '../../domain/usecases/financial_use_cases.dart';
-
-part 'financial_bloc.freezed.dart';
-part 'financial_event.dart';
-part 'financial_state.dart';
+import '../../../../../core/errors/api_error_model/api_error_model.dart';
+import '../../../domain/entities/create_expense_entity.dart';
+import '../../../domain/entities/expenses_res_entity.dart';
+import '../../../domain/usecases/financial_use_cases.dart';
+part 'expenses_bloc.freezed.dart';
+part 'expenses_event.dart';
+part 'expenses_state.dart';
 
 @singleton
-class FinancialBloc extends Bloc<FinancialEvent, FinancialState> {
-  final FinancialUseCases _reportsUseCases;
-  FinancialBloc({required FinancialUseCases reportsUseCases})
-    : _reportsUseCases = reportsUseCases,
-      super(
-        const FinancialState.loaded(
-          expenses: [],
-          meta: null,
-          createExpenseReqEntity: null,
-          formzSubmissionStatus: FormzSubmissionStatus.initial,
-        ),
-      ) {
-    on<FinancialEvent>((event, emit) async {
+class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
+  final FinancialUseCases financialUseCases;
+  ExpensesBloc({required this.financialUseCases})
+    : super(const ExpensesState.initial()) {
+    on<ExpensesEvent>((event, emit) async {
       await event.when(
         get: (page) async {
-          await state.mapOrNull(
-            loaded: (state) async {
-              emit(const FinancialState.loading());
-              final res = await _reportsUseCases.get(page: page);
-              await res.when(
-                success: (data) {
-                  emitCustomLoaded(emit: emit, state: state);
-                },
-                failure: (apiErrorModel) {
-                  emit(FinancialState.failure(apiErrorModel: apiErrorModel));
-                  emitCustomLoaded(emit: emit, state: state);
-                },
+          emit(const ExpensesState.loading());
+          final result = await financialUseCases.get(page: page);
+          await result.when(
+            success: (res) async {
+              emit(
+                ExpensesState.loaded(
+                  expenses: res?.data ?? [],
+                  meta: const MetaEntity(),
+                  createExpenseReqEntity: null,
+                  formzSubmissionStatus: FormzSubmissionStatus.initial,
+                ),
               );
+            },
+            failure: (apiErrorModel) async {
+              emit(ExpensesState.failure(apiErrorModel: apiErrorModel));
             },
           );
         },
@@ -75,13 +68,13 @@ class FinancialBloc extends Bloc<FinancialEvent, FinancialState> {
                 state: state,
                 formzSubmissionStatus: FormzSubmissionStatus.inProgress,
               );
-              final res = await _reportsUseCases.create(
+              final res = await financialUseCases.create(
                 createExpenseReqEntity:
                     state.createExpenseReqEntity ?? CreateExpenseReqEntity(),
               );
               await res.when(
                 success: (data) {
-                  emit(const FinancialState.success());
+                  emit(const ExpensesState.success());
                   emitCustomLoaded(
                     emit: emit,
                     state: state,
@@ -94,7 +87,7 @@ class FinancialBloc extends Bloc<FinancialEvent, FinancialState> {
                   );
                 },
                 failure: (apiErrorModel) {
-                  emit(FinancialState.failure(apiErrorModel: apiErrorModel));
+                  emit(ExpensesState.failure(apiErrorModel: apiErrorModel));
                   emitCustomLoaded(emit: emit, state: state);
                 },
               );
@@ -105,15 +98,17 @@ class FinancialBloc extends Bloc<FinancialEvent, FinancialState> {
     });
   }
   emitCustomLoaded({
-    required Emitter<FinancialState> emit,
+    required Emitter<ExpensesState> emit,
     required _Loaded state,
+    List<ExpenseEntity>? expenses,
+    MetaEntity? meta,
     CreateExpenseReqEntity? createExpenseReqEntity,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     emit(
       state.copyWith(
-        expenses: state.expenses,
-        meta: state.meta,
+        expenses: expenses ?? state.expenses,
+        meta: meta ?? state.meta,
         createExpenseReqEntity:
             createExpenseReqEntity ?? state.createExpenseReqEntity,
         formzSubmissionStatus:

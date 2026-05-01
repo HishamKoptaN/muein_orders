@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'financial_bloc.dart';
+part of 'expenses_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,7 +12,7 @@ part of 'financial_bloc.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$FinancialEvent {
+mixin _$ExpensesEvent {
 
 
 
@@ -20,7 +20,7 @@ mixin _$FinancialEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FinancialEvent);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesEvent);
 }
 
 
@@ -29,20 +29,20 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialEvent()';
+  return 'ExpensesEvent()';
 }
 
 
 }
 
 /// @nodoc
-class $FinancialEventCopyWith<$Res>  {
-$FinancialEventCopyWith(FinancialEvent _, $Res Function(FinancialEvent) __);
+class $ExpensesEventCopyWith<$Res>  {
+$ExpensesEventCopyWith(ExpensesEvent _, $Res Function(ExpensesEvent) __);
 }
 
 
-/// Adds pattern-matching-related methods to [FinancialEvent].
-extension FinancialEventPatterns on FinancialEvent {
+/// Adds pattern-matching-related methods to [ExpensesEvent].
+extension ExpensesEventPatterns on ExpensesEvent {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -186,13 +186,13 @@ return create();case _:
 /// @nodoc
 
 
-class _Get implements FinancialEvent {
+class _Get implements ExpensesEvent {
   const _Get({required this.page});
   
 
  final  int page;
 
-/// Create a copy of FinancialEvent
+/// Create a copy of ExpensesEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -211,14 +211,14 @@ int get hashCode => Object.hash(runtimeType,page);
 
 @override
 String toString() {
-  return 'FinancialEvent.get(page: $page)';
+  return 'ExpensesEvent.get(page: $page)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$GetCopyWith<$Res> implements $FinancialEventCopyWith<$Res> {
+abstract mixin class _$GetCopyWith<$Res> implements $ExpensesEventCopyWith<$Res> {
   factory _$GetCopyWith(_Get value, $Res Function(_Get) _then) = __$GetCopyWithImpl;
 @useResult
 $Res call({
@@ -237,7 +237,7 @@ class __$GetCopyWithImpl<$Res>
   final _Get _self;
   final $Res Function(_Get) _then;
 
-/// Create a copy of FinancialEvent
+/// Create a copy of ExpensesEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? page = null,}) {
   return _then(_Get(
@@ -252,13 +252,13 @@ as int,
 /// @nodoc
 
 
-class _UpdateData implements FinancialEvent {
+class _UpdateData implements ExpensesEvent {
   const _UpdateData({required this.createExpenseReqEntity});
   
 
  final  CreateExpenseReqEntity createExpenseReqEntity;
 
-/// Create a copy of FinancialEvent
+/// Create a copy of ExpensesEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -277,14 +277,14 @@ int get hashCode => Object.hash(runtimeType,createExpenseReqEntity);
 
 @override
 String toString() {
-  return 'FinancialEvent.updateData(createExpenseReqEntity: $createExpenseReqEntity)';
+  return 'ExpensesEvent.updateData(createExpenseReqEntity: $createExpenseReqEntity)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$UpdateDataCopyWith<$Res> implements $FinancialEventCopyWith<$Res> {
+abstract mixin class _$UpdateDataCopyWith<$Res> implements $ExpensesEventCopyWith<$Res> {
   factory _$UpdateDataCopyWith(_UpdateData value, $Res Function(_UpdateData) _then) = __$UpdateDataCopyWithImpl;
 @useResult
 $Res call({
@@ -303,7 +303,7 @@ class __$UpdateDataCopyWithImpl<$Res>
   final _UpdateData _self;
   final $Res Function(_UpdateData) _then;
 
-/// Create a copy of FinancialEvent
+/// Create a copy of ExpensesEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? createExpenseReqEntity = null,}) {
   return _then(_UpdateData(
@@ -318,7 +318,7 @@ as CreateExpenseReqEntity,
 /// @nodoc
 
 
-class _Create implements FinancialEvent {
+class _Create implements ExpensesEvent {
   const _Create();
   
 
@@ -338,7 +338,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialEvent.create()';
+  return 'ExpensesEvent.create()';
 }
 
 
@@ -348,7 +348,7 @@ String toString() {
 
 
 /// @nodoc
-mixin _$FinancialState {
+mixin _$ExpensesState {
 
 
 
@@ -356,7 +356,7 @@ mixin _$FinancialState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FinancialState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesState);
 }
 
 
@@ -365,20 +365,20 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialState()';
+  return 'ExpensesState()';
 }
 
 
 }
 
 /// @nodoc
-class $FinancialStateCopyWith<$Res>  {
-$FinancialStateCopyWith(FinancialState _, $Res Function(FinancialState) __);
+class $ExpensesStateCopyWith<$Res>  {
+$ExpensesStateCopyWith(ExpensesState _, $Res Function(ExpensesState) __);
 }
 
 
-/// Adds pattern-matching-related methods to [FinancialState].
-extension FinancialStatePatterns on FinancialState {
+/// Adds pattern-matching-related methods to [ExpensesState].
+extension ExpensesStatePatterns on ExpensesState {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -391,14 +391,14 @@ extension FinancialStatePatterns on FinancialState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _Loaded value)?  loaded,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loaded value)?  loaded,TResult Function( _Loading value)?  loading,TResult Function( _Success value)?  success,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case _Loading() when loading != null:
+return initial(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Loading() when loading != null:
 return loading(_that);case _Success() when success != null:
-return success(_that);case _Loaded() when loaded != null:
-return loaded(_that);case _Failure() when failure != null:
+return success(_that);case _Failure() when failure != null:
 return failure(_that);case _:
   return orElse();
 
@@ -417,14 +417,14 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _Loaded value)  loaded,required TResult Function( _Failure value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loaded value)  loaded,required TResult Function( _Loading value)  loading,required TResult Function( _Success value)  success,required TResult Function( _Failure value)  failure,}){
 final _that = this;
 switch (_that) {
 case _Initial():
-return initial(_that);case _Loading():
+return initial(_that);case _Loaded():
+return loaded(_that);case _Loading():
 return loading(_that);case _Success():
-return success(_that);case _Loaded():
-return loaded(_that);case _Failure():
+return success(_that);case _Failure():
 return failure(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -442,14 +442,14 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Failure value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Loading value)?  loading,TResult? Function( _Success value)?  success,TResult? Function( _Failure value)?  failure,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case _Loading() when loading != null:
+return initial(_that);case _Loaded() when loaded != null:
+return loaded(_that);case _Loading() when loading != null:
 return loading(_that);case _Success() when success != null:
-return success(_that);case _Loaded() when loaded != null:
-return loaded(_that);case _Failure() when failure != null:
+return success(_that);case _Failure() when failure != null:
 return failure(_that);case _:
   return null;
 
@@ -467,13 +467,13 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus)?  loaded,TResult Function( ApiErrorModel? apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus,  bool? loading)?  loaded,TResult Function()?  loading,TResult Function()?  success,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case _Loading() when loading != null:
+return initial();case _Loaded() when loaded != null:
+return loaded(_that.expenses,_that.meta,_that.createExpenseReqEntity,_that.formzSubmissionStatus,_that.loading);case _Loading() when loading != null:
 return loading();case _Success() when success != null:
-return success();case _Loaded() when loaded != null:
-return loaded(_that.expenses,_that.meta,_that.createExpenseReqEntity,_that.formzSubmissionStatus);case _Failure() when failure != null:
+return success();case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
   return orElse();
 
@@ -492,13 +492,13 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus)  loaded,required TResult Function( ApiErrorModel? apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus,  bool? loading)  loaded,required TResult Function()  loading,required TResult Function()  success,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
-return initial();case _Loading():
+return initial();case _Loaded():
+return loaded(_that.expenses,_that.meta,_that.createExpenseReqEntity,_that.formzSubmissionStatus,_that.loading);case _Loading():
 return loading();case _Success():
-return success();case _Loaded():
-return loaded(_that.expenses,_that.meta,_that.createExpenseReqEntity,_that.formzSubmissionStatus);case _Failure():
+return success();case _Failure():
 return failure(_that.apiErrorModel);case _:
   throw StateError('Unexpected subclass');
 
@@ -516,13 +516,13 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus)?  loaded,TResult? Function( ApiErrorModel? apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( List<ExpenseEntity>? expenses,  MetaEntity? meta,  CreateExpenseReqEntity? createExpenseReqEntity,  FormzSubmissionStatus? formzSubmissionStatus,  bool? loading)?  loaded,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case _Loading() when loading != null:
+return initial();case _Loaded() when loaded != null:
+return loaded(_that.expenses,_that.meta,_that.createExpenseReqEntity,_that.formzSubmissionStatus,_that.loading);case _Loading() when loading != null:
 return loading();case _Success() when success != null:
-return success();case _Loaded() when loaded != null:
-return loaded(_that.expenses,_that.meta,_that.createExpenseReqEntity,_that.formzSubmissionStatus);case _Failure() when failure != null:
+return success();case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
   return null;
 
@@ -534,7 +534,7 @@ return failure(_that.apiErrorModel);case _:
 /// @nodoc
 
 
-class _Initial implements FinancialState {
+class _Initial implements ExpensesState {
   const _Initial();
   
 
@@ -554,7 +554,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialState.initial()';
+  return 'ExpensesState.initial()';
 }
 
 
@@ -566,7 +566,101 @@ String toString() {
 /// @nodoc
 
 
-class _Loading implements FinancialState {
+class _Loaded implements ExpensesState {
+  const _Loaded({required final  List<ExpenseEntity>? expenses, required this.meta, required this.createExpenseReqEntity, required this.formzSubmissionStatus, this.loading}): _expenses = expenses;
+  
+
+ final  List<ExpenseEntity>? _expenses;
+ List<ExpenseEntity>? get expenses {
+  final value = _expenses;
+  if (value == null) return null;
+  if (_expenses is EqualUnmodifiableListView) return _expenses;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+ final  MetaEntity? meta;
+ final  CreateExpenseReqEntity? createExpenseReqEntity;
+ final  FormzSubmissionStatus? formzSubmissionStatus;
+ final  bool? loading;
+
+/// Create a copy of ExpensesState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._expenses, _expenses)&&(identical(other.meta, meta) || other.meta == meta)&&(identical(other.createExpenseReqEntity, createExpenseReqEntity) || other.createExpenseReqEntity == createExpenseReqEntity)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus)&&(identical(other.loading, loading) || other.loading == loading));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_expenses),meta,createExpenseReqEntity,formzSubmissionStatus,loading);
+
+@override
+String toString() {
+  return 'ExpensesState.loaded(expenses: $expenses, meta: $meta, createExpenseReqEntity: $createExpenseReqEntity, formzSubmissionStatus: $formzSubmissionStatus, loading: $loading)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LoadedCopyWith<$Res> implements $ExpensesStateCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
+@useResult
+$Res call({
+ List<ExpenseEntity>? expenses, MetaEntity? meta, CreateExpenseReqEntity? createExpenseReqEntity, FormzSubmissionStatus? formzSubmissionStatus, bool? loading
+});
+
+
+$MetaEntityCopyWith<$Res>? get meta;
+
+}
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(this._self, this._then);
+
+  final _Loaded _self;
+  final $Res Function(_Loaded) _then;
+
+/// Create a copy of ExpensesState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? expenses = freezed,Object? meta = freezed,Object? createExpenseReqEntity = freezed,Object? formzSubmissionStatus = freezed,Object? loading = freezed,}) {
+  return _then(_Loaded(
+expenses: freezed == expenses ? _self._expenses : expenses // ignore: cast_nullable_to_non_nullable
+as List<ExpenseEntity>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaEntity?,createExpenseReqEntity: freezed == createExpenseReqEntity ? _self.createExpenseReqEntity : createExpenseReqEntity // ignore: cast_nullable_to_non_nullable
+as CreateExpenseReqEntity?,formzSubmissionStatus: freezed == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+as FormzSubmissionStatus?,loading: freezed == loading ? _self.loading : loading // ignore: cast_nullable_to_non_nullable
+as bool?,
+  ));
+}
+
+/// Create a copy of ExpensesState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MetaEntityCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
+    return null;
+  }
+
+  return $MetaEntityCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _Loading implements ExpensesState {
   const _Loading();
   
 
@@ -586,7 +680,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialState.loading()';
+  return 'ExpensesState.loading()';
 }
 
 
@@ -598,7 +692,7 @@ String toString() {
 /// @nodoc
 
 
-class _Success implements FinancialState {
+class _Success implements ExpensesState {
   const _Success();
   
 
@@ -618,7 +712,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialState.success()';
+  return 'ExpensesState.success()';
 }
 
 
@@ -630,105 +724,13 @@ String toString() {
 /// @nodoc
 
 
-class _Loaded implements FinancialState {
-  const _Loaded({required final  List<ExpenseEntity>? expenses, required this.meta, required this.createExpenseReqEntity, required this.formzSubmissionStatus}): _expenses = expenses;
+class _Failure implements ExpensesState {
+  const _Failure({required this.apiErrorModel});
   
 
- final  List<ExpenseEntity>? _expenses;
- List<ExpenseEntity>? get expenses {
-  final value = _expenses;
-  if (value == null) return null;
-  if (_expenses is EqualUnmodifiableListView) return _expenses;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
+ final  ApiErrorModel apiErrorModel;
 
- final  MetaEntity? meta;
- final  CreateExpenseReqEntity? createExpenseReqEntity;
- final  FormzSubmissionStatus? formzSubmissionStatus;
-
-/// Create a copy of FinancialState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._expenses, _expenses)&&(identical(other.meta, meta) || other.meta == meta)&&(identical(other.createExpenseReqEntity, createExpenseReqEntity) || other.createExpenseReqEntity == createExpenseReqEntity)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_expenses),meta,createExpenseReqEntity,formzSubmissionStatus);
-
-@override
-String toString() {
-  return 'FinancialState.loaded(expenses: $expenses, meta: $meta, createExpenseReqEntity: $createExpenseReqEntity, formzSubmissionStatus: $formzSubmissionStatus)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$LoadedCopyWith<$Res> implements $FinancialStateCopyWith<$Res> {
-  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
-@useResult
-$Res call({
- List<ExpenseEntity>? expenses, MetaEntity? meta, CreateExpenseReqEntity? createExpenseReqEntity, FormzSubmissionStatus? formzSubmissionStatus
-});
-
-
-$MetaEntityCopyWith<$Res>? get meta;
-
-}
-/// @nodoc
-class __$LoadedCopyWithImpl<$Res>
-    implements _$LoadedCopyWith<$Res> {
-  __$LoadedCopyWithImpl(this._self, this._then);
-
-  final _Loaded _self;
-  final $Res Function(_Loaded) _then;
-
-/// Create a copy of FinancialState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? expenses = freezed,Object? meta = freezed,Object? createExpenseReqEntity = freezed,Object? formzSubmissionStatus = freezed,}) {
-  return _then(_Loaded(
-expenses: freezed == expenses ? _self._expenses : expenses // ignore: cast_nullable_to_non_nullable
-as List<ExpenseEntity>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
-as MetaEntity?,createExpenseReqEntity: freezed == createExpenseReqEntity ? _self.createExpenseReqEntity : createExpenseReqEntity // ignore: cast_nullable_to_non_nullable
-as CreateExpenseReqEntity?,formzSubmissionStatus: freezed == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
-as FormzSubmissionStatus?,
-  ));
-}
-
-/// Create a copy of FinancialState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$MetaEntityCopyWith<$Res>? get meta {
-    if (_self.meta == null) {
-    return null;
-  }
-
-  return $MetaEntityCopyWith<$Res>(_self.meta!, (value) {
-    return _then(_self.copyWith(meta: value));
-  });
-}
-}
-
-/// @nodoc
-
-
-class _Failure implements FinancialState {
-  const _Failure({this.apiErrorModel});
-  
-
- final  ApiErrorModel? apiErrorModel;
-
-/// Create a copy of FinancialState
+/// Create a copy of ExpensesState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
@@ -747,22 +749,22 @@ int get hashCode => Object.hash(runtimeType,apiErrorModel);
 
 @override
 String toString() {
-  return 'FinancialState.failure(apiErrorModel: $apiErrorModel)';
+  return 'ExpensesState.failure(apiErrorModel: $apiErrorModel)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$FailureCopyWith<$Res> implements $FinancialStateCopyWith<$Res> {
+abstract mixin class _$FailureCopyWith<$Res> implements $ExpensesStateCopyWith<$Res> {
   factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
 @useResult
 $Res call({
- ApiErrorModel? apiErrorModel
+ ApiErrorModel apiErrorModel
 });
 
 
-$ApiErrorModelCopyWith<$Res>? get apiErrorModel;
+$ApiErrorModelCopyWith<$Res> get apiErrorModel;
 
 }
 /// @nodoc
@@ -773,25 +775,22 @@ class __$FailureCopyWithImpl<$Res>
   final _Failure _self;
   final $Res Function(_Failure) _then;
 
-/// Create a copy of FinancialState
+/// Create a copy of ExpensesState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = null,}) {
   return _then(_Failure(
-apiErrorModel: freezed == apiErrorModel ? _self.apiErrorModel : apiErrorModel // ignore: cast_nullable_to_non_nullable
-as ApiErrorModel?,
+apiErrorModel: null == apiErrorModel ? _self.apiErrorModel : apiErrorModel // ignore: cast_nullable_to_non_nullable
+as ApiErrorModel,
   ));
 }
 
-/// Create a copy of FinancialState
+/// Create a copy of ExpensesState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ApiErrorModelCopyWith<$Res>? get apiErrorModel {
-    if (_self.apiErrorModel == null) {
-    return null;
-  }
-
-  return $ApiErrorModelCopyWith<$Res>(_self.apiErrorModel!, (value) {
+$ApiErrorModelCopyWith<$Res> get apiErrorModel {
+  
+  return $ApiErrorModelCopyWith<$Res>(_self.apiErrorModel, (value) {
     return _then(_self.copyWith(apiErrorModel: value));
   });
 }

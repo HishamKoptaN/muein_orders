@@ -10,7 +10,8 @@ import '../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/create_expense_entity.dart';
-import '../financial_rep_bloc/financial_bloc.dart';
+import '../blocs/bloc/expenses_bloc.dart';
+import '../blocs/financial_bloc/financial_bloc.dart';
 
 class CreateExpenseView extends StatefulWidget {
   const CreateExpenseView({super.key});
@@ -32,7 +33,8 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
     return Scaffold(
       appBar: const CustomAppBar(title: 'تدوين مصروفات'),
       backgroundColor: const Color(0xFF003A46),
-      body: BlocConsumer<FinancialBloc, FinancialState>(
+      body: BlocConsumer<ExpensesBloc, ExpensesState>(
+        bloc: getIt<ExpensesBloc>(),
         listener: (context, state) async {
           await state.whenOrNull(
             success: () {
@@ -42,16 +44,13 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
               );
             },
             failure: (e) {
-              context.showErrorSnackBar(
-                title: 'فشل',
-                message: e?.message ?? '',
-              );
+              context.showErrorSnackBar(title: 'فشل', message: e.message ?? '');
             },
           );
         },
         builder: (context, state) {
           return state.maybeWhen(
-            loaded: (_, __, createExpenseReqEntity, formzSubmissionStatus) {
+            loaded: (_, __, createExpenseReqEntity, formzSubmissionStatus, ___) {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -62,8 +61,8 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                       hintText: 'المبلغ',
                       keyboardType: TextInputType.number,
                       onChanged: (value) {
-                        getIt<FinancialBloc>().add(
-                          FinancialEvent.updateData(
+                        getIt<ExpensesBloc>().add(
+                          ExpensesEvent.updateData(
                             createExpenseReqEntity:
                                 createExpenseReqEntity?.copyWith(
                                   amount: GenericFormzInput.dirty(value),
@@ -81,8 +80,8 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                       hintText: 'الملاحظات',
                       keyboardType: TextInputType.text,
                       onChanged: (value) {
-                        getIt<FinancialBloc>().add(
-                          FinancialEvent.updateData(
+                        getIt<ExpensesBloc>().add(
+                          ExpensesEvent.updateData(
                             createExpenseReqEntity:
                                 createExpenseReqEntity?.copyWith(
                                   notes: GenericFormzInput.dirty(value),
@@ -115,8 +114,8 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                         //   ),
                         // );
                         if (formzSubmissionStatus?.isSuccess == true) {
-                          getIt<FinancialBloc>().add(
-                            const FinancialEvent.create(),
+                          getIt<ExpensesBloc>().add(
+                            const ExpensesEvent.create(),
                           );
                         }
                       },
