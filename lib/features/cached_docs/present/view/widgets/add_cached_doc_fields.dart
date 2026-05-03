@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_inputs/form_inputs.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../data/datasources/local/drift/cached_docs_table.dart';
@@ -27,9 +28,10 @@ class AddDocFieldsWidget extends StatelessWidget {
         : List.generate(4, (_) => const DocFileEntity());
     Future<void> onFileSelected(int index, bool isImage) async {
       try {
-        final file = await filePicker.selectFilesPath(
+        final file = await filePicker.pickAndPop(
           context: context,
           fileType: isImage ? FileType.image : FileType.video,
+          source: ImageSource.gallery,
         );
         if (file != null) {
           final List<DocFileEntity> updatedList = List.from(currentFiles);
@@ -78,10 +80,14 @@ class AddDocFieldsWidget extends StatelessWidget {
                   ? AddDocWidgetType.image
                   : AddDocWidgetType.video,
               docFileStatus: fileEntity.docFileStatus,
-              onChanged: (_) => onFileSelected(index, isImage),
-              validator: (_) => fileEntity.file?.isNotValid ?? false
-                  ? fileEntity.file?.errorMessage
-                  : null,
+              onChanged: (_) {
+                return onFileSelected(index, isImage);
+              },
+              validator: (_) {
+                return fileEntity.file?.isNotValid ?? false
+                    ? fileEntity.file?.errorMessage
+                    : null;
+              },
             );
           })
         else

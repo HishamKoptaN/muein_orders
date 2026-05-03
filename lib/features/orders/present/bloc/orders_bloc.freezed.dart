@@ -14,62 +14,30 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OrdersEvent {
 
- int get subCategoryId; bool get loadMore;
-/// Create a copy of OrdersEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$OrdersEventCopyWith<OrdersEvent> get copyWith => _$OrdersEventCopyWithImpl<OrdersEvent>(this as OrdersEvent, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersEvent&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersEvent);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,subCategoryId,loadMore);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'OrdersEvent(subCategoryId: $subCategoryId, loadMore: $loadMore)';
+  return 'OrdersEvent()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $OrdersEventCopyWith<$Res>  {
-  factory $OrdersEventCopyWith(OrdersEvent value, $Res Function(OrdersEvent) _then) = _$OrdersEventCopyWithImpl;
-@useResult
-$Res call({
- int subCategoryId, bool loadMore
-});
-
-
-
-
-}
-/// @nodoc
-class _$OrdersEventCopyWithImpl<$Res>
-    implements $OrdersEventCopyWith<$Res> {
-  _$OrdersEventCopyWithImpl(this._self, this._then);
-
-  final OrdersEvent _self;
-  final $Res Function(OrdersEvent) _then;
-
-/// Create a copy of OrdersEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? subCategoryId = null,Object? loadMore = null,}) {
-  return _then(_self.copyWith(
-subCategoryId: null == subCategoryId ? _self.subCategoryId : subCategoryId // ignore: cast_nullable_to_non_nullable
-as int,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
+class $OrdersEventCopyWith<$Res>  {
+$OrdersEventCopyWith(OrdersEvent _, $Res Function(OrdersEvent) __);
 }
 
 
@@ -87,11 +55,13 @@ extension OrdersEventPatterns on OrdersEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetOrders value)?  getOrders,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _LoadMore value)?  loadMore,TResult Function( _FilterChanged value)?  filterChanged,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _GetOrders() when getOrders != null:
-return getOrders(_that);case _:
+case _Started() when started != null:
+return started(_that);case _LoadMore() when loadMore != null:
+return loadMore(_that);case _FilterChanged() when filterChanged != null:
+return filterChanged(_that);case _:
   return orElse();
 
 }
@@ -109,11 +79,13 @@ return getOrders(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetOrders value)  getOrders,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _LoadMore value)  loadMore,required TResult Function( _FilterChanged value)  filterChanged,}){
 final _that = this;
 switch (_that) {
-case _GetOrders():
-return getOrders(_that);case _:
+case _Started():
+return started(_that);case _LoadMore():
+return loadMore(_that);case _FilterChanged():
+return filterChanged(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -130,11 +102,13 @@ return getOrders(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetOrders value)?  getOrders,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _LoadMore value)?  loadMore,TResult? Function( _FilterChanged value)?  filterChanged,}){
 final _that = this;
 switch (_that) {
-case _GetOrders() when getOrders != null:
-return getOrders(_that);case _:
+case _Started() when started != null:
+return started(_that);case _LoadMore() when loadMore != null:
+return loadMore(_that);case _FilterChanged() when filterChanged != null:
+return filterChanged(_that);case _:
   return null;
 
 }
@@ -151,10 +125,12 @@ return getOrders(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId,  bool loadMore)?  getOrders,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId)?  started,TResult Function()?  loadMore,TResult Function( FileUploadStatus? status)?  filterChanged,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _GetOrders() when getOrders != null:
-return getOrders(_that.subCategoryId,_that.loadMore);case _:
+case _Started() when started != null:
+return started(_that.subCategoryId);case _LoadMore() when loadMore != null:
+return loadMore();case _FilterChanged() when filterChanged != null:
+return filterChanged(_that.status);case _:
   return orElse();
 
 }
@@ -172,10 +148,12 @@ return getOrders(_that.subCategoryId,_that.loadMore);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId,  bool loadMore)  getOrders,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId)  started,required TResult Function()  loadMore,required TResult Function( FileUploadStatus? status)  filterChanged,}) {final _that = this;
 switch (_that) {
-case _GetOrders():
-return getOrders(_that.subCategoryId,_that.loadMore);case _:
+case _Started():
+return started(_that.subCategoryId);case _LoadMore():
+return loadMore();case _FilterChanged():
+return filterChanged(_that.status);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +170,12 @@ return getOrders(_that.subCategoryId,_that.loadMore);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId,  bool loadMore)?  getOrders,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId)?  started,TResult? Function()?  loadMore,TResult? Function( FileUploadStatus? status)?  filterChanged,}) {final _that = this;
 switch (_that) {
-case _GetOrders() when getOrders != null:
-return getOrders(_that.subCategoryId,_that.loadMore);case _:
+case _Started() when started != null:
+return started(_that.subCategoryId);case _LoadMore() when loadMore != null:
+return loadMore();case _FilterChanged() when filterChanged != null:
+return filterChanged(_that.status);case _:
   return null;
 
 }
@@ -206,44 +186,43 @@ return getOrders(_that.subCategoryId,_that.loadMore);case _:
 /// @nodoc
 
 
-class _GetOrders implements OrdersEvent {
-  const _GetOrders({required this.subCategoryId, required this.loadMore});
+class _Started implements OrdersEvent {
+  const _Started({required this.subCategoryId});
   
 
-@override final  int subCategoryId;
-@override final  bool loadMore;
+ final  int subCategoryId;
 
 /// Create a copy of OrdersEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
+@JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$GetOrdersCopyWith<_GetOrders> get copyWith => __$GetOrdersCopyWithImpl<_GetOrders>(this, _$identity);
+_$StartedCopyWith<_Started> get copyWith => __$StartedCopyWithImpl<_Started>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetOrders&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,subCategoryId,loadMore);
+int get hashCode => Object.hash(runtimeType,subCategoryId);
 
 @override
 String toString() {
-  return 'OrdersEvent.getOrders(subCategoryId: $subCategoryId, loadMore: $loadMore)';
+  return 'OrdersEvent.started(subCategoryId: $subCategoryId)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$GetOrdersCopyWith<$Res> implements $OrdersEventCopyWith<$Res> {
-  factory _$GetOrdersCopyWith(_GetOrders value, $Res Function(_GetOrders) _then) = __$GetOrdersCopyWithImpl;
-@override @useResult
+abstract mixin class _$StartedCopyWith<$Res> implements $OrdersEventCopyWith<$Res> {
+  factory _$StartedCopyWith(_Started value, $Res Function(_Started) _then) = __$StartedCopyWithImpl;
+@useResult
 $Res call({
- int subCategoryId, bool loadMore
+ int subCategoryId
 });
 
 
@@ -251,20 +230,117 @@ $Res call({
 
 }
 /// @nodoc
-class __$GetOrdersCopyWithImpl<$Res>
-    implements _$GetOrdersCopyWith<$Res> {
-  __$GetOrdersCopyWithImpl(this._self, this._then);
+class __$StartedCopyWithImpl<$Res>
+    implements _$StartedCopyWith<$Res> {
+  __$StartedCopyWithImpl(this._self, this._then);
 
-  final _GetOrders _self;
-  final $Res Function(_GetOrders) _then;
+  final _Started _self;
+  final $Res Function(_Started) _then;
 
 /// Create a copy of OrdersEvent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? subCategoryId = null,Object? loadMore = null,}) {
-  return _then(_GetOrders(
+@pragma('vm:prefer-inline') $Res call({Object? subCategoryId = null,}) {
+  return _then(_Started(
 subCategoryId: null == subCategoryId ? _self.subCategoryId : subCategoryId // ignore: cast_nullable_to_non_nullable
-as int,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
-as bool,
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _LoadMore implements OrdersEvent {
+  const _LoadMore();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadMore);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'OrdersEvent.loadMore()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _FilterChanged implements OrdersEvent {
+  const _FilterChanged({required this.status});
+  
+
+ final  FileUploadStatus? status;
+
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FilterChangedCopyWith<_FilterChanged> get copyWith => __$FilterChangedCopyWithImpl<_FilterChanged>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FilterChanged&&(identical(other.status, status) || other.status == status));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,status);
+
+@override
+String toString() {
+  return 'OrdersEvent.filterChanged(status: $status)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$FilterChangedCopyWith<$Res> implements $OrdersEventCopyWith<$Res> {
+  factory _$FilterChangedCopyWith(_FilterChanged value, $Res Function(_FilterChanged) _then) = __$FilterChangedCopyWithImpl;
+@useResult
+$Res call({
+ FileUploadStatus? status
+});
+
+
+
+
+}
+/// @nodoc
+class __$FilterChangedCopyWithImpl<$Res>
+    implements _$FilterChangedCopyWith<$Res> {
+  __$FilterChangedCopyWithImpl(this._self, this._then);
+
+  final _FilterChanged _self;
+  final $Res Function(_FilterChanged) _then;
+
+/// Create a copy of OrdersEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? status = freezed,}) {
+  return _then(_FilterChanged(
+status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as FileUploadStatus?,
   ));
 }
 
@@ -388,12 +464,12 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( OrdersResEntity ordersRes)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( OrdersResEntity ordersRes,  FileUploadStatus? selectedUploadStatus)?  loaded,TResult Function( ApiErrorModel apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.ordersRes);case _Failure() when failure != null:
+return loaded(_that.ordersRes,_that.selectedUploadStatus);case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
   return orElse();
 
@@ -412,12 +488,12 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( OrdersResEntity ordersRes)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( OrdersResEntity ordersRes,  FileUploadStatus? selectedUploadStatus)  loaded,required TResult Function( ApiErrorModel apiErrorModel)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
-return loaded(_that.ordersRes);case _Failure():
+return loaded(_that.ordersRes,_that.selectedUploadStatus);case _Failure():
 return failure(_that.apiErrorModel);case _:
   throw StateError('Unexpected subclass');
 
@@ -435,12 +511,12 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( OrdersResEntity ordersRes)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( OrdersResEntity ordersRes,  FileUploadStatus? selectedUploadStatus)?  loaded,TResult? Function( ApiErrorModel apiErrorModel)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.ordersRes);case _Failure() when failure != null:
+return loaded(_that.ordersRes,_that.selectedUploadStatus);case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
   return null;
 
@@ -517,10 +593,11 @@ String toString() {
 
 
 class _Loaded implements OrdersState {
-  const _Loaded({required this.ordersRes});
+  const _Loaded({required this.ordersRes, this.selectedUploadStatus});
   
 
  final  OrdersResEntity ordersRes;
+ final  FileUploadStatus? selectedUploadStatus;
 
 /// Create a copy of OrdersState
 /// with the given fields replaced by the non-null parameter values.
@@ -532,16 +609,16 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.ordersRes, ordersRes) || other.ordersRes == ordersRes));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.ordersRes, ordersRes) || other.ordersRes == ordersRes)&&(identical(other.selectedUploadStatus, selectedUploadStatus) || other.selectedUploadStatus == selectedUploadStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ordersRes);
+int get hashCode => Object.hash(runtimeType,ordersRes,selectedUploadStatus);
 
 @override
 String toString() {
-  return 'OrdersState.loaded(ordersRes: $ordersRes)';
+  return 'OrdersState.loaded(ordersRes: $ordersRes, selectedUploadStatus: $selectedUploadStatus)';
 }
 
 
@@ -552,7 +629,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $OrdersStateCopyWith<$Res
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- OrdersResEntity ordersRes
+ OrdersResEntity ordersRes, FileUploadStatus? selectedUploadStatus
 });
 
 
@@ -569,10 +646,11 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of OrdersState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? ordersRes = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? ordersRes = null,Object? selectedUploadStatus = freezed,}) {
   return _then(_Loaded(
 ordersRes: null == ordersRes ? _self.ordersRes : ordersRes // ignore: cast_nullable_to_non_nullable
-as OrdersResEntity,
+as OrdersResEntity,selectedUploadStatus: freezed == selectedUploadStatus ? _self.selectedUploadStatus : selectedUploadStatus // ignore: cast_nullable_to_non_nullable
+as FileUploadStatus?,
   ));
 }
 

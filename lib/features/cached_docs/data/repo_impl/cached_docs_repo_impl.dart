@@ -21,7 +21,7 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
 
   @override
   Stream<CachedDocEntity?> watchDoc(int docId) {
-    return const Stream<CachedDocEntity?>.empty();
+    return _db.watchDoc(docId: docId);
   }
 
   @override
@@ -109,6 +109,27 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
       return ApiResult.failure(
         apiErrorModel: ApiErrorModel(message: e.toString()),
       );
+    }
+  }
+
+  @override
+  Future<bool> orderMatchesStatus(int orderId, FileUploadStatus status) async {
+    try {
+      final result = await (_db.select(
+        _db.cachedDocsTable,
+      )..where((tbl) => tbl.docId.equals(orderId))).get();
+      if (result.isEmpty) return status == FileUploadStatus.init;
+      final cachedDoc = result.first;
+      if (cachedDoc.uploadStatus == status.name) return true;
+      if (cachedDoc.files != null) {
+        for (final file in cachedDoc.files!) {
+          if (file.status == status) return true;
+        }
+      }
+      if (cachedDoc.location?.status == status) return true;
+      return false;
+    } catch (e) {
+      return false;
     }
   }
 }

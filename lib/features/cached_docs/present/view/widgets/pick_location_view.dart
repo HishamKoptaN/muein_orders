@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../../../../core/widgets/translated_text.dart';
+import 'location_service.dart';
 
 class PickLocationView extends StatefulWidget {
   const PickLocationView({super.key});
+  static const String routeName = 'pick-location';
 
   @override
   State<PickLocationView> createState() => _PickLocationViewState();
@@ -17,6 +18,7 @@ class PickLocationView extends StatefulWidget {
 class _PickLocationViewState extends State<PickLocationView> {
   final MapController _mapController = MapController();
   LatLng _selectedPoint = const LatLng(24.7136, 46.6753);
+  bool _isLoadingLocation = false;
   @override
   void initState() {
     super.initState();
@@ -26,27 +28,24 @@ class _PickLocationViewState extends State<PickLocationView> {
   }
 
   Future<void> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: TrText('خدمة الموقع معطلة، يرجى تفعيلها')),
-      );
-      return;
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) return;
-    }
-    if (permission == LocationPermission.deniedForever) return;
-    final Position position = await Geolocator.getCurrentPosition();
-    final LatLng currentLatLng = LatLng(position.latitude, position.longitude);
     setState(() {
-      _selectedPoint = currentLatLng;
+      _isLoadingLocation = true;
     });
-    _mapController.move(currentLatLng, 15.0);
+
+    final LatLng? currentLatLng = await LocationService.determinePosition(
+      context,
+    );
+
+    setState(() {
+      _isLoadingLocation = false;
+    });
+
+    if (currentLatLng != null) {
+      setState(() {
+        _selectedPoint = currentLatLng;
+      });
+      _mapController.move(currentLatLng, 15.0);
+    }
   }
 
   @override
@@ -90,6 +89,27 @@ class _PickLocationViewState extends State<PickLocationView> {
               ),
             ],
           ),
+          if (_isLoadingLocation)
+            Container(
+              color: Colors.black54,
+              child: const Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(color: Colors.white),
+                    SizedBox(height: 16),
+                    Text(
+                      'جاري تحديد موقعك...',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
         ],
       ),
       floatingActionButton: Row(

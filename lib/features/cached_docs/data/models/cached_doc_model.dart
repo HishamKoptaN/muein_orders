@@ -15,18 +15,7 @@ abstract class CachedDocModel with _$CachedDocModel {
     @Default(FileUploadStatus.pending) FileUploadStatus uploadStatus,
     @Default(0.0) double uploadProgress,
   }) = _CachedDocModel;
-  factory CachedDocModel.fromDb(CachedDocEntry data) {
-    return CachedDocModel(
-      docId: data.docId,
-      files: data.files,
-      location: data.location,
-      uploadStatus: FileUploadStatus.values.firstWhere(
-        (e) => e.name == data.uploadStatus,
-        orElse: () => FileUploadStatus.pending,
-      ),
-      uploadProgress: data.uploadProgress,
-    );
-  }
+
   factory CachedDocModel.fromJson(Map<String, dynamic> json) =>
       _$CachedDocModelFromJson(json);
 }

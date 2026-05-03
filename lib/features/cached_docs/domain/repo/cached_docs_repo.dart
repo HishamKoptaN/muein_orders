@@ -13,4 +13,5 @@ abstract class CachedDocsRepo {
     required FileUploadStatus status,
     required double? progress,
   });
+  Future<bool> orderMatchesStatus(int orderId, FileUploadStatus status);
 }

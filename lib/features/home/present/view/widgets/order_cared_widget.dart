@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 
 import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/translated_text.dart';
-import '../../../../orders/present/views/orders_view.dart';
+import '../../../../orders/present/views/order_docs_view.dart';
 import '../../../domain/entities/order_type_res_entity.dart';
 
 class StatCard extends StatelessWidget {

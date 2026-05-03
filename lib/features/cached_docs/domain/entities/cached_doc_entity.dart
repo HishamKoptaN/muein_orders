@@ -23,18 +23,24 @@ abstract class CachedDocEntity with _$CachedDocEntity {
 
   factory CachedDocEntity.fromJson(Map<String, dynamic> json) =>
       _$CachedDocEntityFromJson(json);
-  factory CachedDocEntity.fromDb(CachedDocEntry cachedDoc) {
+
+  factory CachedDocEntity.fromDb(CachedDocEntry cachedDocEntry) {
     return CachedDocEntity(
-      docId: cachedDoc.docId,
-      files: cachedDoc.files,
-      location: cachedDoc.location,
+      docId: cachedDocEntry.docId,
+      files: cachedDocEntry.files,
+      location: cachedDocEntry.location,
       uploadStatus: FileUploadStatus.values.firstWhere(
-        (e) => e.name == cachedDoc.uploadStatus,
-        orElse: () => FileUploadStatus.pending,
+        (e) {
+          return e.name == cachedDocEntry.uploadStatus;
+        },
+        orElse: () {
+          return FileUploadStatus.pending;
+        },
       ),
-      uploadProgress: cachedDoc.uploadProgress,
+      uploadProgress: cachedDocEntry.uploadProgress,
     );
   }
+
   CreateCachedDocEntity toCreateCachedDocEntity() {
     return CreateCachedDocEntity(
       docId: GenericFormzInput.dirty(docId),

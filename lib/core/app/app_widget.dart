@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,11 +10,14 @@ import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart';
 import '../../features/cached_docs/present/bloc/cached_doc_bloc.dart';
 import '../../features/docs/present/blocs/docs_bloc/docs_bloc.dart';
 import '../../features/financial/present/blocs/financial_bloc/financial_bloc.dart';
+import '../../features/home/domain/entities/order_type_res_entity.dart';
 import '../../features/home/present/bloc/stats_bloc.dart';
 import '../../features/instructions/present/bloc/instructions_bloc.dart';
 import '../../features/language/bloc/language_bloc.dart';
 import '../../features/notifications/present/bloc/notifications_bloc.dart';
+import '../../features/orders/domain/entities/orders_res_entity.dart';
 import '../../features/orders/present/bloc/orders_bloc.dart';
+import '../../features/orders/present/views/order_docs_view.dart';
 import '../../features/profile/present/bloc/profile_bloc.dart';
 import '../../features/theme/blocs/theme_bloc.dart';
 import '../config/app_config.dart';
@@ -55,23 +59,51 @@ class MueinOrdersApp extends StatelessWidget {
             builder: (context, languageState) {
               return BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, themeState) {
-                  return MaterialApp.router(
-                    title: AppConfig.appName,
-                    debugShowCheckedModeBanner: false,
-                    // theme: _lightTheme(buttonSize, primaryBtnColor),
-                    // darkTheme: _lightTheme(buttonSize, primaryBtnColor),
-                    // themeMode: ThemeMode.light,
-                    locale: languageState.maybeWhen(
-                      loaded: (locale) => locale,
-                      orElse: () => const Locale('ar'),
-                    ),
-                    localizationsDelegates:
-                        AppLocalizationSetup.localizationDelegates,
-                    supportedLocales: AppLocalizationSetup.supportedLocales,
-                    localeResolutionCallback:
-                        AppLocalizationSetup.localeResolutionCallback,
-                    routerConfig: AppRouter.create(),
-                  );
+                  return kReleaseMode
+                      ? MaterialApp.router(
+                          title: AppConfig.appName,
+                          debugShowCheckedModeBanner: false,
+                          // theme: _lightTheme(buttonSize, primaryBtnColor),
+                          // darkTheme: _lightTheme(buttonSize, primaryBtnColor),
+                          // themeMode: ThemeMode.light,
+                          locale: languageState.maybeWhen(
+                            loaded: (locale) => locale,
+                            orElse: () => const Locale('ar'),
+                          ),
+                          localizationsDelegates:
+                              AppLocalizationSetup.localizationDelegates,
+                          supportedLocales:
+                              AppLocalizationSetup.supportedLocales,
+                          localeResolutionCallback:
+                              AppLocalizationSetup.localeResolutionCallback,
+
+                          routerConfig: AppRouter.create(),
+                        )
+                      : MaterialApp(
+                          title: AppConfig.appName,
+                          debugShowCheckedModeBanner: false,
+                          // theme: _lightTheme(buttonSize, primaryBtnColor),
+                          // darkTheme: _lightTheme(buttonSize, primaryBtnColor),
+                          // themeMode: ThemeMode.light,
+                          locale: languageState.maybeWhen(
+                            loaded: (locale) => locale,
+                            orElse: () => const Locale('ar'),
+                          ),
+                          localizationsDelegates:
+                              AppLocalizationSetup.localizationDelegates,
+                          supportedLocales:
+                              AppLocalizationSetup.supportedLocales,
+                          localeResolutionCallback:
+                              AppLocalizationSetup.localeResolutionCallback,
+                          home: OrderDocsView(
+                            stat: StatEntity(
+                              id: 1,
+                              docsCount: 12,
+                              subCategory: SubCategoryEntity(),
+                              doc: const DocEntity(id: 1),
+                            ),
+                          ),
+                        );
                 },
               );
             },

@@ -95,7 +95,6 @@ abstract class CreateCachedDocEntity with _$CreateCachedDocEntity {
   }
 
   bool hasChanged({required CachedDocEntity? original}) {
-    // 1. إذا لم يكن هناك بيانات أصلية، نتحقق هل أضاف المستخدم أي ملفات أو موقع
     if (original == null) {
       final bool hasFiles = files.any(
         (f) => f.file?.value != null || f.docFile != null,
@@ -103,29 +102,18 @@ abstract class CreateCachedDocEntity with _$CreateCachedDocEntity {
       final bool hasLocation = location?.latitude != null;
       return hasFiles || hasLocation;
     }
-
-    // 2. مقارنة عدد الملفات
     final currentFilesCount = files.length;
     final originalFilesCount = original.files?.length ?? 0;
     if (currentFilesCount != originalFilesCount) return true;
-
-    // 3. مقارنة محتوى الملفات (المسارات)
-    // نستخدم القوائم المرتبة لضمان دقة المقارنة
     for (int i = 0; i < files.length; i++) {
       final currentPath = files[i].docFile?.path ?? files[i].file?.value?.path;
       final originalPath = original.files?[i].path;
-
       if (currentPath != originalPath) return true;
     }
-
-    // 4. مقارنة الموقع (Latitude & Longitude) بدقة
     final latitudeChanged = location?.latitude != original.location?.latitude;
     final longitudeChanged =
         location?.longitude != original.location?.longitude;
-
     if (latitudeChanged || longitudeChanged) return true;
-
-    // إذا وصلنا هنا، يعني لا يوجد تغيير
     return false;
   }
 }

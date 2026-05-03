@@ -30,14 +30,12 @@ class LocationPickerButton extends StatelessWidget {
               MaterialPageRoute(builder: (_) => const PickLocationView()),
             );
             if (result != null) {
-              final lat = result.latitude.toString();
-              final lng = result.longitude.toString();
               getIt<CachedDocBloc>().add(
                 CachedDocEvent.updateData(
                   createCachedDoc: loaded.createCachedDoc.copyWith(
                     location: LocationEntity(
-                      latitude: double.parse(lat),
-                      longitude: double.parse(lng),
+                      latitude: double.parse(result.latitude.toString()),
+                      longitude: double.parse(result.longitude.toString()),
                     ),
                   ),
                   loaded: loaded,

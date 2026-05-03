@@ -651,7 +651,7 @@ as List<DocEntity>,
 /// @nodoc
 mixin _$DocEntity {
 
- int get id; String? get imageOne; String? get imageTwo; String? get thumbnailUrlOne; String? get thumbnailUrlTwo; String? get videoOne; String? get videoTwo; String? get latitude; String? get longitude; DocStatusEntity? get docStatus; int? get copiesCount; String? get reviewedBy; String? get reviewedAt; String? get adminNotes; String? get createdAt; String? get updatedAt;
+ int get id; String? get imageOne; String? get imageTwo; String? get thumbnailUrlOne; String? get thumbnailUrlTwo; String? get videoOne; String? get videoTwo; String? get latitude; String? get longitude; DocStatusEntity? get docStatus; int? get copiesCount; String? get reviewedBy; String? get reviewedAt; String? get adminNotes; CachedDocEntity? get cachedDoc; String? get createdAt; String? get updatedAt;
 /// Create a copy of DocEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -664,16 +664,16 @@ $DocEntityCopyWith<DocEntity> get copyWith => _$DocEntityCopyWithImpl<DocEntity>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.imageOne, imageOne) || other.imageOne == imageOne)&&(identical(other.imageTwo, imageTwo) || other.imageTwo == imageTwo)&&(identical(other.thumbnailUrlOne, thumbnailUrlOne) || other.thumbnailUrlOne == thumbnailUrlOne)&&(identical(other.thumbnailUrlTwo, thumbnailUrlTwo) || other.thumbnailUrlTwo == thumbnailUrlTwo)&&(identical(other.videoOne, videoOne) || other.videoOne == videoOne)&&(identical(other.videoTwo, videoTwo) || other.videoTwo == videoTwo)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.imageOne, imageOne) || other.imageOne == imageOne)&&(identical(other.imageTwo, imageTwo) || other.imageTwo == imageTwo)&&(identical(other.thumbnailUrlOne, thumbnailUrlOne) || other.thumbnailUrlOne == thumbnailUrlOne)&&(identical(other.thumbnailUrlTwo, thumbnailUrlTwo) || other.thumbnailUrlTwo == thumbnailUrlTwo)&&(identical(other.videoOne, videoOne) || other.videoOne == videoOne)&&(identical(other.videoTwo, videoTwo) || other.videoTwo == videoTwo)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.cachedDoc, cachedDoc) || other.cachedDoc == cachedDoc)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,imageOne,imageTwo,thumbnailUrlOne,thumbnailUrlTwo,videoOne,videoTwo,latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,imageOne,imageTwo,thumbnailUrlOne,thumbnailUrlTwo,videoOne,videoTwo,latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,cachedDoc,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'DocEntity(id: $id, imageOne: $imageOne, imageTwo: $imageTwo, thumbnailUrlOne: $thumbnailUrlOne, thumbnailUrlTwo: $thumbnailUrlTwo, videoOne: $videoOne, videoTwo: $videoTwo, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DocEntity(id: $id, imageOne: $imageOne, imageTwo: $imageTwo, thumbnailUrlOne: $thumbnailUrlOne, thumbnailUrlTwo: $thumbnailUrlTwo, videoOne: $videoOne, videoTwo: $videoTwo, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, cachedDoc: $cachedDoc, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -684,11 +684,11 @@ abstract mixin class $DocEntityCopyWith<$Res>  {
   factory $DocEntityCopyWith(DocEntity value, $Res Function(DocEntity) _then) = _$DocEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, String? imageOne, String? imageTwo, String? thumbnailUrlOne, String? thumbnailUrlTwo, String? videoOne, String? videoTwo, String? latitude, String? longitude, DocStatusEntity? docStatus, int? copiesCount, String? reviewedBy, String? reviewedAt, String? adminNotes, String? createdAt, String? updatedAt
+ int id, String? imageOne, String? imageTwo, String? thumbnailUrlOne, String? thumbnailUrlTwo, String? videoOne, String? videoTwo, String? latitude, String? longitude, DocStatusEntity? docStatus, int? copiesCount, String? reviewedBy, String? reviewedAt, String? adminNotes, CachedDocEntity? cachedDoc, String? createdAt, String? updatedAt
 });
 
 
-
+$CachedDocEntityCopyWith<$Res>? get cachedDoc;
 
 }
 /// @nodoc
@@ -701,7 +701,7 @@ class _$DocEntityCopyWithImpl<$Res>
 
 /// Create a copy of DocEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? imageOne = freezed,Object? imageTwo = freezed,Object? thumbnailUrlOne = freezed,Object? thumbnailUrlTwo = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? docStatus = freezed,Object? copiesCount = freezed,Object? reviewedBy = freezed,Object? reviewedAt = freezed,Object? adminNotes = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? imageOne = freezed,Object? imageTwo = freezed,Object? thumbnailUrlOne = freezed,Object? thumbnailUrlTwo = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? docStatus = freezed,Object? copiesCount = freezed,Object? reviewedBy = freezed,Object? reviewedAt = freezed,Object? adminNotes = freezed,Object? cachedDoc = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,imageOne: freezed == imageOne ? _self.imageOne : imageOne // ignore: cast_nullable_to_non_nullable
@@ -717,12 +717,25 @@ as DocStatusEntity?,copiesCount: freezed == copiesCount ? _self.copiesCount : co
 as int?,reviewedBy: freezed == reviewedBy ? _self.reviewedBy : reviewedBy // ignore: cast_nullable_to_non_nullable
 as String?,reviewedAt: freezed == reviewedAt ? _self.reviewedAt : reviewedAt // ignore: cast_nullable_to_non_nullable
 as String?,adminNotes: freezed == adminNotes ? _self.adminNotes : adminNotes // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,cachedDoc: freezed == cachedDoc ? _self.cachedDoc : cachedDoc // ignore: cast_nullable_to_non_nullable
+as CachedDocEntity?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
+/// Create a copy of DocEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CachedDocEntityCopyWith<$Res>? get cachedDoc {
+    if (_self.cachedDoc == null) {
+    return null;
+  }
 
+  return $CachedDocEntityCopyWith<$Res>(_self.cachedDoc!, (value) {
+    return _then(_self.copyWith(cachedDoc: value));
+  });
+}
 }
 
 
@@ -804,10 +817,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? imageOne,  String? imageTwo,  String? thumbnailUrlOne,  String? thumbnailUrlTwo,  String? videoOne,  String? videoTwo,  String? latitude,  String? longitude,  DocStatusEntity? docStatus,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String? imageOne,  String? imageTwo,  String? thumbnailUrlOne,  String? thumbnailUrlTwo,  String? videoOne,  String? videoTwo,  String? latitude,  String? longitude,  DocStatusEntity? docStatus,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  CachedDocEntity? cachedDoc,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocEntity() when $default != null:
-return $default(_that.id,_that.imageOne,_that.imageTwo,_that.thumbnailUrlOne,_that.thumbnailUrlTwo,_that.videoOne,_that.videoTwo,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.imageOne,_that.imageTwo,_that.thumbnailUrlOne,_that.thumbnailUrlTwo,_that.videoOne,_that.videoTwo,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.cachedDoc,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -825,10 +838,10 @@ return $default(_that.id,_that.imageOne,_that.imageTwo,_that.thumbnailUrlOne,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? imageOne,  String? imageTwo,  String? thumbnailUrlOne,  String? thumbnailUrlTwo,  String? videoOne,  String? videoTwo,  String? latitude,  String? longitude,  DocStatusEntity? docStatus,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String? imageOne,  String? imageTwo,  String? thumbnailUrlOne,  String? thumbnailUrlTwo,  String? videoOne,  String? videoTwo,  String? latitude,  String? longitude,  DocStatusEntity? docStatus,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  CachedDocEntity? cachedDoc,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _DocEntity():
-return $default(_that.id,_that.imageOne,_that.imageTwo,_that.thumbnailUrlOne,_that.thumbnailUrlTwo,_that.videoOne,_that.videoTwo,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.imageOne,_that.imageTwo,_that.thumbnailUrlOne,_that.thumbnailUrlTwo,_that.videoOne,_that.videoTwo,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.cachedDoc,_that.createdAt,_that.updatedAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -845,10 +858,10 @@ return $default(_that.id,_that.imageOne,_that.imageTwo,_that.thumbnailUrlOne,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? imageOne,  String? imageTwo,  String? thumbnailUrlOne,  String? thumbnailUrlTwo,  String? videoOne,  String? videoTwo,  String? latitude,  String? longitude,  DocStatusEntity? docStatus,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String? imageOne,  String? imageTwo,  String? thumbnailUrlOne,  String? thumbnailUrlTwo,  String? videoOne,  String? videoTwo,  String? latitude,  String? longitude,  DocStatusEntity? docStatus,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  CachedDocEntity? cachedDoc,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _DocEntity() when $default != null:
-return $default(_that.id,_that.imageOne,_that.imageTwo,_that.thumbnailUrlOne,_that.thumbnailUrlTwo,_that.videoOne,_that.videoTwo,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.imageOne,_that.imageTwo,_that.thumbnailUrlOne,_that.thumbnailUrlTwo,_that.videoOne,_that.videoTwo,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.cachedDoc,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -860,7 +873,7 @@ return $default(_that.id,_that.imageOne,_that.imageTwo,_that.thumbnailUrlOne,_th
 @JsonSerializable()
 
 class _DocEntity extends DocEntity {
-  const _DocEntity({required this.id, this.imageOne, this.imageTwo, this.thumbnailUrlOne, this.thumbnailUrlTwo, this.videoOne, this.videoTwo, this.latitude, this.longitude, this.docStatus, this.copiesCount, this.reviewedBy, this.reviewedAt, this.adminNotes, this.createdAt, this.updatedAt}): super._();
+  const _DocEntity({required this.id, this.imageOne, this.imageTwo, this.thumbnailUrlOne, this.thumbnailUrlTwo, this.videoOne, this.videoTwo, this.latitude, this.longitude, this.docStatus, this.copiesCount, this.reviewedBy, this.reviewedAt, this.adminNotes, this.cachedDoc, this.createdAt, this.updatedAt}): super._();
   factory _DocEntity.fromJson(Map<String, dynamic> json) => _$DocEntityFromJson(json);
 
 @override final  int id;
@@ -877,6 +890,7 @@ class _DocEntity extends DocEntity {
 @override final  String? reviewedBy;
 @override final  String? reviewedAt;
 @override final  String? adminNotes;
+@override final  CachedDocEntity? cachedDoc;
 @override final  String? createdAt;
 @override final  String? updatedAt;
 
@@ -893,16 +907,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.imageOne, imageOne) || other.imageOne == imageOne)&&(identical(other.imageTwo, imageTwo) || other.imageTwo == imageTwo)&&(identical(other.thumbnailUrlOne, thumbnailUrlOne) || other.thumbnailUrlOne == thumbnailUrlOne)&&(identical(other.thumbnailUrlTwo, thumbnailUrlTwo) || other.thumbnailUrlTwo == thumbnailUrlTwo)&&(identical(other.videoOne, videoOne) || other.videoOne == videoOne)&&(identical(other.videoTwo, videoTwo) || other.videoTwo == videoTwo)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.imageOne, imageOne) || other.imageOne == imageOne)&&(identical(other.imageTwo, imageTwo) || other.imageTwo == imageTwo)&&(identical(other.thumbnailUrlOne, thumbnailUrlOne) || other.thumbnailUrlOne == thumbnailUrlOne)&&(identical(other.thumbnailUrlTwo, thumbnailUrlTwo) || other.thumbnailUrlTwo == thumbnailUrlTwo)&&(identical(other.videoOne, videoOne) || other.videoOne == videoOne)&&(identical(other.videoTwo, videoTwo) || other.videoTwo == videoTwo)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.cachedDoc, cachedDoc) || other.cachedDoc == cachedDoc)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,imageOne,imageTwo,thumbnailUrlOne,thumbnailUrlTwo,videoOne,videoTwo,latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,imageOne,imageTwo,thumbnailUrlOne,thumbnailUrlTwo,videoOne,videoTwo,latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,cachedDoc,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'DocEntity(id: $id, imageOne: $imageOne, imageTwo: $imageTwo, thumbnailUrlOne: $thumbnailUrlOne, thumbnailUrlTwo: $thumbnailUrlTwo, videoOne: $videoOne, videoTwo: $videoTwo, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DocEntity(id: $id, imageOne: $imageOne, imageTwo: $imageTwo, thumbnailUrlOne: $thumbnailUrlOne, thumbnailUrlTwo: $thumbnailUrlTwo, videoOne: $videoOne, videoTwo: $videoTwo, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, cachedDoc: $cachedDoc, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -913,11 +927,11 @@ abstract mixin class _$DocEntityCopyWith<$Res> implements $DocEntityCopyWith<$Re
   factory _$DocEntityCopyWith(_DocEntity value, $Res Function(_DocEntity) _then) = __$DocEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String? imageOne, String? imageTwo, String? thumbnailUrlOne, String? thumbnailUrlTwo, String? videoOne, String? videoTwo, String? latitude, String? longitude, DocStatusEntity? docStatus, int? copiesCount, String? reviewedBy, String? reviewedAt, String? adminNotes, String? createdAt, String? updatedAt
+ int id, String? imageOne, String? imageTwo, String? thumbnailUrlOne, String? thumbnailUrlTwo, String? videoOne, String? videoTwo, String? latitude, String? longitude, DocStatusEntity? docStatus, int? copiesCount, String? reviewedBy, String? reviewedAt, String? adminNotes, CachedDocEntity? cachedDoc, String? createdAt, String? updatedAt
 });
 
 
-
+@override $CachedDocEntityCopyWith<$Res>? get cachedDoc;
 
 }
 /// @nodoc
@@ -930,7 +944,7 @@ class __$DocEntityCopyWithImpl<$Res>
 
 /// Create a copy of DocEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? imageOne = freezed,Object? imageTwo = freezed,Object? thumbnailUrlOne = freezed,Object? thumbnailUrlTwo = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? docStatus = freezed,Object? copiesCount = freezed,Object? reviewedBy = freezed,Object? reviewedAt = freezed,Object? adminNotes = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? imageOne = freezed,Object? imageTwo = freezed,Object? thumbnailUrlOne = freezed,Object? thumbnailUrlTwo = freezed,Object? videoOne = freezed,Object? videoTwo = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? docStatus = freezed,Object? copiesCount = freezed,Object? reviewedBy = freezed,Object? reviewedAt = freezed,Object? adminNotes = freezed,Object? cachedDoc = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_DocEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,imageOne: freezed == imageOne ? _self.imageOne : imageOne // ignore: cast_nullable_to_non_nullable
@@ -946,13 +960,26 @@ as DocStatusEntity?,copiesCount: freezed == copiesCount ? _self.copiesCount : co
 as int?,reviewedBy: freezed == reviewedBy ? _self.reviewedBy : reviewedBy // ignore: cast_nullable_to_non_nullable
 as String?,reviewedAt: freezed == reviewedAt ? _self.reviewedAt : reviewedAt // ignore: cast_nullable_to_non_nullable
 as String?,adminNotes: freezed == adminNotes ? _self.adminNotes : adminNotes // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,cachedDoc: freezed == cachedDoc ? _self.cachedDoc : cachedDoc // ignore: cast_nullable_to_non_nullable
+as CachedDocEntity?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
 
+/// Create a copy of DocEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CachedDocEntityCopyWith<$Res>? get cachedDoc {
+    if (_self.cachedDoc == null) {
+    return null;
+  }
 
+  return $CachedDocEntityCopyWith<$Res>(_self.cachedDoc!, (value) {
+    return _then(_self.copyWith(cachedDoc: value));
+  });
+}
 }
 
 // dart format on

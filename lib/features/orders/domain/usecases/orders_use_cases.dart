@@ -1,21 +1,24 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/networking/api_result.dart';
+import '../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
 import '../entities/orders_res_entity.dart';
 import '../repo/orders_repo.dart';
 
 @singleton
 class OrdersUseCases {
-  final OrdersRepo ordersRepo;
-  OrdersUseCases(this.ordersRepo);
-  Future<ApiResult<OrdersResEntity?>> getOrders({
+  final OrdersRepo _repo;
+  OrdersUseCases(this._repo);
+  Stream<OrdersResEntity> watch({
     required int subCategoryId,
-    String? query,
-    bool loadMore = false,
-  }) async {
-    return await ordersRepo.getOrders(
-      subCategoryId: subCategoryId,
-      loadMore: loadMore,
-    );
+    FileUploadStatus? filter,
+  }) {
+    return _repo.watchOrders(subCategoryId: subCategoryId, filter: filter);
+  }
+
+  Future<void> loadMore({
+    required int subCategoryId,
+    FileUploadStatus? filter,
+  }) {
+    return _repo.loadMore(subCategoryId: subCategoryId, filter: filter);
   }
 }

@@ -1,4 +1,3 @@
-import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
 
 class CreateDocEntity {

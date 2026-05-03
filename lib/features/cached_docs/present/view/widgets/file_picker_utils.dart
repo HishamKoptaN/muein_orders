@@ -11,46 +11,46 @@ enum FileType { image, video }
 
 class FilePickerUtils {
   final ImagePicker _imagePicker = ImagePicker();
-
-  Future<File?> selectFilesPath({
-    required BuildContext context,
-    required FileType fileType,
-  }) async {
-    final t = AppLocalizations.of(context);
-    final XFile? picked = await showDialog<XFile>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          content: const TrText(
-            'اختر الملف',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-          actions: [
-            _buildIconButton(
-              context,
-              icon: Icons.camera_alt,
-              label: 'الكاميرا',
-              onPressed: () =>
-                  _pickAndPop(context, fileType, ImageSource.camera),
-            ),
-            _buildIconButton(
-              context,
-              icon: Icons.photo_library,
-              label: 'المعرض',
-              onPressed: () =>
-                  _pickAndPop(context, fileType, ImageSource.gallery),
-            ),
-          ],
-        );
-      },
-    );
-    return picked != null ? File(picked.path) : null;
-  }
+  // Future<File?> selectFilesPath({
+  //   required BuildContext context,
+  //   required FileType fileType,
+  // }) async {
+  //   final XFile? picked = await showDialog<XFile>(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         backgroundColor: Colors.white,
+  //         content: const TrText(
+  //           'اختر الملف',
+  //           style: TextStyle(
+  //             fontSize: 16,
+  //             fontWeight: FontWeight.bold,
+  //             color: Colors.black,
+  //           ),
+  //         ),
+  //         actions: [
+  //           _buildIconButton(
+  //             context,
+  //             icon: Icons.camera_alt,
+  //             label: 'الكاميرا',
+  //             onPressed: () {
+  //               _pickAndPop(context, fileType, ImageSource.camera);
+  //             },
+  //           ),
+  //           _buildIconButton(
+  //             context,
+  //             icon: Icons.photo_library,
+  //             label: 'المعرض',
+  //             onPressed: () {
+  //               _pickAndPop(context, fileType, ImageSource.gallery);
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  //   return picked != null ? File(picked.path) : null;
+  // }
 
   Widget _buildIconButton(
     BuildContext context, {
@@ -65,15 +65,16 @@ class FilePickerUtils {
     );
   }
 
-  Future<void> _pickAndPop(
-    BuildContext context,
-    FileType fileType,
-    ImageSource source,
-  ) async {
+  Future<File?> pickAndPop({
+    required BuildContext context,
+    required FileType fileType,
+    required ImageSource source,
+  }) async {
     final xFile = await _pickMedia(fileType: fileType, source: source);
-    if (context.mounted) {
-      Navigator.of(context).pop(xFile);
-    }
+    // if (context.mounted) {
+    //   Navigator.of(context).pop(xFile);
+    // }
+    return xFile != null ? File(xFile.path) : null;
   }
 
   Future<XFile?> _pickMedia({

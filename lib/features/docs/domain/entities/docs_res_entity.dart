@@ -8,7 +8,6 @@ class DocStatusEntity {
   final Color? iconColor;
   final String? createdAt;
   final String? updatedAt;
-
   DocStatusEntity({
     this.id,
     this.name,
@@ -18,7 +17,6 @@ class DocStatusEntity {
     this.createdAt,
     this.updatedAt,
   });
-
   DocStatusEntity copyWith({
     int? id,
     String? name,

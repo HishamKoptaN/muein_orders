@@ -49,14 +49,12 @@ Widget buildDocOrderCard({
             physics: const NeverScrollableScrollPhysics(),
             itemCount: order.docs.length,
             itemBuilder: (context, index) {
-              final doc = order.docs[index];
               return DocCardWidget(
-                doc: doc,
+                doc: order.docs[index],
                 subCategoryId: stat.subCategory?.id ?? 0,
               );
             },
           ),
-
           MakeStickerPdfBtn(order: order),
         ],
       ),

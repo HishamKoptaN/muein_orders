@@ -26,4 +26,8 @@ abstract class InjectionModule {
       await SharedPreferencesAsync();
   @singleton
   FlutterSecureStorage get secureStorage => const FlutterSecureStorage();
+
+  // Duration for cache strategy
+  @singleton
+  Duration get cacheDefaultTtl => const Duration(minutes: 5);
 }

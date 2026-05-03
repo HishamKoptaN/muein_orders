@@ -1,9 +1,10 @@
-import '../../../../../core/networking/api_result.dart';
+import '../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
 import '../entities/orders_res_entity.dart';
 
 abstract class OrdersRepo {
-  Future<ApiResult<OrdersResEntity?>> getOrders({
+  Stream<OrdersResEntity> watchOrders({
     required int subCategoryId,
-    bool loadMore = false,
+    FileUploadStatus? filter,
   });
+  Future<void> loadMore({required int subCategoryId, FileUploadStatus? filter});
 }

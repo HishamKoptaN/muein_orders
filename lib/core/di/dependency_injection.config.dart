@@ -102,6 +102,7 @@ import '../../features/orders/data/datasources/orders_api.dart' as _i165;
 import '../../features/orders/data/repo_impl/orders_repo_impl.dart' as _i450;
 import '../../features/orders/domain/repo/orders_repo.dart' as _i808;
 import '../../features/orders/domain/usecases/orders_use_cases.dart' as _i802;
+import '../../features/orders/domain/usecases/watch_doc_use_case.dart' as _i103;
 import '../../features/orders/present/bloc/orders_bloc.dart' as _i189;
 import '../../features/profile/data/datasources/profile_api.dart' as _i191;
 import '../../features/profile/data/repo/profile_repo_impl.dart' as _i256;
@@ -115,6 +116,7 @@ import '../../features/s3/domain/repo_impl/s3_repo_impl.dart' as _i758;
 import '../../features/theme/blocs/theme_bloc.dart' as _i307;
 import '../background/workmanager_initializer.dart' as _i996;
 import '../networking/network_info.dart' as _i303;
+import '../performance/cache_strategy.dart' as _i46;
 import '../services/auth_storage_service.dart' as _i250;
 import '../services/firebase_messaging/firebase_messaging_service.dart'
     as _i183;
@@ -157,6 +159,8 @@ Future<_i174.GetIt> $initGetIt(
     () => injectionModule.firebaseMessaging,
   );
   gh.singleton<_i558.FlutterSecureStorage>(() => injectionModule.secureStorage);
+  gh.singleton<Duration>(() => injectionModule.cacheDefaultTtl);
+  gh.singleton<_i46.OrdersFilterCache>(() => _i46.OrdersFilterCache());
   gh.singleton<_i183.FirebaseMessagingService>(
     () => _i183.FirebaseMessagingService(),
   );
@@ -170,6 +174,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i804.AuthInterceptor>(
     () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()),
   );
+  gh.singleton<_i103.WatchDocUseCase>(
+    () => _i103.WatchDocUseCase(gh<_i523.AppDatabase>()),
+  );
   gh.singleton<_i361.Dio>(() => dioModule.s3Dio(), instanceName: 's3Dio');
   gh.singleton<_i281.CachedDocsRepo>(
     () => _i240.CachedDocsRepoImpl(gh<_i523.AppDatabase>()),
@@ -180,6 +187,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i105.NotificationManager>(
     () =>
         _i105.NotificationManager(gh<_i163.FlutterLocalNotificationsPlugin>()),
+  );
+  gh.singleton<_i46.CacheStrategy<dynamic, dynamic>>(
+    () => _i46.CacheStrategy<dynamic, dynamic>(defaultTtl: gh<Duration>()),
   );
   gh.singleton<_i158.AuthInterceptor>(
     () => _i158.AuthInterceptor(gh<_i158.TokenStorage>()),
@@ -236,6 +246,9 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i552.SignUpApi>(
     () => _i552.SignUpApi(gh<_i361.Dio>(instanceName: 'authDio')),
   );
+  gh.singleton<_i808.OrdersRepo>(
+    () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>(), gh<_i523.AppDatabase>()),
+  );
   gh.lazySingleton<_i733.StatsRepo>(
     () => _i860.StatsRepoImpl(gh<_i144.StatsApi>()),
   );
@@ -273,9 +286,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i967.NotificationsRepo>(
     () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()),
   );
-  gh.singleton<_i808.OrdersRepo>(
-    () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()),
-  );
   gh.singleton<_i748.CachedDocsUseCases>(
     () => _i748.CachedDocsUseCases(
       docsRepo: gh<_i672.DocsRepo>(),
@@ -297,6 +307,12 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i804.TokenStorage>(),
     ),
   );
+  gh.singleton<_i802.OrdersUseCases>(
+    () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()),
+  );
+  gh.singleton<_i189.OrdersBloc>(
+    () => _i189.OrdersBloc(gh<_i802.OrdersUseCases>()),
+  );
   gh.singleton<_i868.FinancialUseCases>(
     () => _i868.FinancialUseCases(gh<_i1011.FinancialRepo>()),
   );
@@ -308,9 +324,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i151.AuthUseCase>(
     () => _i151.AuthUseCase(authRepo: gh<_i610.AuthRepo>()),
-  );
-  gh.singleton<_i802.OrdersUseCases>(
-    () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()),
   );
   gh.singleton<_i617.DocsBloc>(
     () => _i617.DocsBloc(
@@ -341,12 +354,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i941.SignInUseCases>(
     () => _i941.SignInUseCases(gh<_i305.SignInRepo>(), gh<_i59.FirebaseAuth>()),
-  );
-  gh.singleton<_i189.OrdersBloc>(
-    () => _i189.OrdersBloc(
-      gh<_i802.OrdersUseCases>(),
-      gh<_i281.CachedDocsRepo>(),
-    ),
   );
   gh.singleton<_i660.ExpensesBloc>(
     () => _i660.ExpensesBloc(financialUseCases: gh<_i868.FinancialUseCases>()),

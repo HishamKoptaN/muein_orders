@@ -74,6 +74,9 @@ _DocEntity _$DocEntityFromJson(Map<String, dynamic> json) => _DocEntity(
   reviewedBy: json['reviewedBy'] as String?,
   reviewedAt: json['reviewedAt'] as String?,
   adminNotes: json['adminNotes'] as String?,
+  cachedDoc: json['cachedDoc'] == null
+      ? null
+      : CachedDocEntity.fromJson(json['cachedDoc'] as Map<String, dynamic>),
   createdAt: json['createdAt'] as String?,
   updatedAt: json['updatedAt'] as String?,
 );
@@ -94,6 +97,7 @@ Map<String, dynamic> _$DocEntityToJson(_DocEntity instance) =>
       'reviewedBy': ?instance.reviewedBy,
       'reviewedAt': ?instance.reviewedAt,
       'adminNotes': ?instance.adminNotes,
+      'cachedDoc': ?instance.cachedDoc?.toJson(),
       'createdAt': ?instance.createdAt,
       'updatedAt': ?instance.updatedAt,
     };

@@ -106,6 +106,10 @@ class AppDatabase extends _$AppDatabase {
     );
   }
 
+  Stream<List<CachedDocEntry>> watchAllCachedDocs() {
+    return (select(cachedDocsTable)).watch();
+  }
+
   Stream<CachedDocEntity> watchDoc({required int docId}) async* {
     final exists = await (select(
       cachedDocsTable,
@@ -127,7 +131,6 @@ class AppDatabase extends _$AppDatabase {
   Future<void> updateFileStatus({
     required int docId,
     required FileUploadStatus status,
-    required DocFileType fileType,
   }) async {
     await (update(cachedDocsTable)..where((t) => t.docId.equals(docId))).write(
       CachedDocsTableCompanion(uploadStatus: Value(status.name)),
