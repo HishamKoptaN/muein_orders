@@ -11,4 +11,6 @@ permissions:
 jobs:
     workflows:
         uses: HishamKoptaN/flutter-devops-core/.github/workflows/main.yaml@prod
+        with:
+            build_windows: false
         secrets: inherit
