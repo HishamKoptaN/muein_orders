@@ -13,5 +13,6 @@ jobs:
         uses: HishamKoptaN/flutter-devops-core/.github/workflows/main.yaml@prod
         with:
             flavor: dev
-            build_windows: false
+            build_android: true
+            build_ios: true
         secrets: inherit
