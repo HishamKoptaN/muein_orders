@@ -24,8 +24,7 @@ jobs:
       device_id: ${{ steps.simulator.outputs.device_id }}
     steps:
       - uses: actions/checkout@v4
-      - name: System Info
-        run: |
+      - run: |
           echo "🍎 macOS Version:"
           sw_vers
           echo ""
@@ -39,8 +38,7 @@ jobs:
           flutter-version: "3.41.2"
           channel: "stable"
           cache: true
-      - name: Install Dependencies
-        run: |
+      - run: |
           flutter pub get
           cd ios && pod install --repo-update
 
