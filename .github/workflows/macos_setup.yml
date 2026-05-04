@@ -42,8 +42,7 @@ jobs:
           flutter pub get
           cd ios && pod install --repo-update
 
-      - name: Start Simulator
-        id: simulator
+      - id: simulator
         run: |
           echo "🔍 Searching for iPhone simulator..."
           DEVICE_ID=$(xcrun simctl list devices available | grep -E "iPhone.*Pro.*\([A-F0-9-]{36}\)" | grep -v "iPhone.*Pro.*Max" | head -1 | grep -oE '[A-F0-9-]{36}')
