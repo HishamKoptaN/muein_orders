@@ -12,6 +12,11 @@ val keystorePropertiesFile = rootProject.file("key.properties")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
+
+// Read ENV from project properties (passed via -PENV=dev or dart-define)
+val env = project.findProperty("ENV")?.toString() ?: "dev"
+val isProd = env == "prod"
+
 android {
     namespace = "com.muein.orders"
     compileSdk = 36
@@ -32,11 +37,14 @@ android {
         versionName = "1.0.0"
     }
     signingConfigs {
-        create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
-            storeFile = keystoreProperties["storeFile"]?.let { file(it) }
-            storePassword = keystoreProperties["storePassword"] as String
+        // Only create release signing config for prod builds with existing keystore
+        if (isProd && keystorePropertiesFile.exists()) {
+            create("release") {
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+                storeFile = keystoreProperties["storeFile"]?.let { file(it) }
+                storePassword = keystoreProperties["storePassword"] as String
+            }
         }
     }
     buildTypes {
@@ -49,7 +57,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
+            // Use release signing only for prod, debug signing for dev/staging
+            signingConfig = if (isProd && keystorePropertiesFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
 }
