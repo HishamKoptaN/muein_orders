@@ -7,6 +7,8 @@ import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../services/clipboard_service.dart';
+
 @module
 abstract class InjectionModule {
   // Internet connection checker
@@ -30,4 +32,8 @@ abstract class InjectionModule {
   // Duration for cache strategy
   @singleton
   Duration get cacheDefaultTtl => const Duration(minutes: 5);
+
+  // Clipboard service
+  @singleton
+  ClipboardService get clipboardService => ClipboardServiceImpl();
 }

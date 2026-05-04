@@ -7,17 +7,20 @@ import '../../../docs/domain/repo/docs_repo.dart';
 import '../../data/datasources/local/drift/cached_docs_table.dart';
 import '../entities/cached_doc_entity.dart';
 import '../entities/create_cached_doc_entity.dart';
+import 'paste_location_from_clipboard_usecase.dart';
 
 @singleton
 class CachedDocsUseCases {
   final DocsRepo docsRepo;
   final CachedDocsRepo cachedDocsRepo;
   final AppFileManager fileManager;
+  final PasteLocationFromClipboardUseCase pasteLocationUseCase;
 
   CachedDocsUseCases({
     required this.docsRepo,
     required this.cachedDocsRepo,
     required this.fileManager,
+    required this.pasteLocationUseCase,
   });
 
   Future<ApiResult<void>> cachedDoc({

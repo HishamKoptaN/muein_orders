@@ -38,7 +38,6 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
     // _coordsController.text =
     //     '${_selectedPoint.latitude}, ${_selectedPoint.longitude}';
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // _determinePosition();
       _checkClipboardForCoordinates();
     });
     getIt<CachedDocBloc>().add(
@@ -89,7 +88,6 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
         }
       }
     } catch (_) {
-      // Ignore clipboard errors
     }
   }
 
