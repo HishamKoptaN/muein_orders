@@ -110,8 +110,12 @@ class OrdersListWidget extends StatelessWidget {
             emptyIcon: emptyIcon,
           ),
         if (ordersRes.when(
-          orders: (orders, meta) => meta.hasNextPage ?? false,
-          individualDocs: (docs) => false,
+          orders: (orders, meta) {
+            return meta.hasNextPage ?? false;
+          },
+          individualDocs: (docs) {
+            return false;
+          },
         ))
           SliverToBoxAdapter(
             child: Padding(

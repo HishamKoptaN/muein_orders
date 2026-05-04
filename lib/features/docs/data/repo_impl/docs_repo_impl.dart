@@ -14,11 +14,13 @@ import '../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart
 import '../../../cached_docs/data/models/cached_doc_model.dart';
 import '../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../s3/data/repo/s3_repo.dart';
-import '../../domain/entities/create_doc_entity.dart';
+import '../../domain/entities/doc_req_entity.dart';
+import '../../domain/entities/doc_media_req_entity.dart';
 import '../../domain/repo/docs_repo.dart';
 import '../datasources/remote_data_sr/docs_api.dart';
 import '../mapper/docs_mapper.dart';
-import '../models/create_doc_req_model.dart';
+import '../models/doc_req_model.dart';
+import '../models/doc_media_req_model.dart';
 import '../models/presigned_doc_url_req_model.dart';
 
 @LazySingleton(as: DocsRepo)
@@ -42,9 +44,7 @@ class DocsRepoImpl implements DocsRepo {
   }
 
   @override
-  Future<ApiResult<DocEntity?>> createDoc({
-    required CreateDocEntity doc,
-  }) async {
+  Future<ApiResult<DocEntity?>> createDoc({required DocReqEntity doc}) async {
     await (db.update(
       db.cachedDocsTable,
     )..where((t) => t.docId.equals(doc.docId))).write(
@@ -69,21 +69,17 @@ class DocsRepoImpl implements DocsRepo {
           docId: doc.docId,
           status: FileUploadStatus.uploading,
         );
-        final finalUrl = await _uploadSingleFile(
+        final finalUrl = await _uploadS3File(
           docId: doc.docId,
           filePath: file.path,
           fileType: file.type,
         );
         try {
-          await docsApi.createDoc(
-            createDocReq: CreateDocReqModel(
+          await docsApi.docMedia(
+            docMediaReq: DocMediaReqModel(
               docId: doc.docId,
-              imageOne: file.type == DocFileType.image_one ? finalUrl : null,
-              imageTwo: file.type == DocFileType.image_two ? finalUrl : null,
-              videoOne: file.type == DocFileType.video_one ? finalUrl : null,
-              videoTwo: file.type == DocFileType.video_two ? finalUrl : null,
-              latitude: doc.location?.latitude?.toString(),
-              longitude: doc.location?.longitude?.toString(),
+              filePath: finalUrl ?? '',
+              fileType: file.type.name,
             ),
           );
           await updateFileStatus(
@@ -131,7 +127,7 @@ class DocsRepoImpl implements DocsRepo {
       ..addAll(updatedFiles);
   }
 
-  Future<void> _uploadLocationIfNeeded(CreateDocEntity doc) async {
+  Future<void> _uploadLocationIfNeeded(DocReqEntity doc) async {
     if (doc.location == null) return;
     final cachedDoc = await (db.select(
       db.cachedDocsTable,
@@ -142,7 +138,7 @@ class DocsRepoImpl implements DocsRepo {
             cachedDoc.location!.longitude != 0.0)) {
       try {
         await docsApi.createDoc(
-          createDocReq: CreateDocReqModel(
+          docReq: DocReqModel(
             docId: doc.docId,
             latitude: doc.location!.latitude?.toString(),
             longitude: doc.location!.longitude?.toString(),
@@ -162,7 +158,7 @@ class DocsRepoImpl implements DocsRepo {
   }
 
   Future<void> _updateDocStatusBasedOnUpload({
-    required CreateDocEntity doc,
+    required DocReqEntity doc,
   }) async {
     final isAllUploaded = await _isAllContentUploaded(doc: doc);
     final newStatus = isAllUploaded
@@ -174,7 +170,7 @@ class DocsRepoImpl implements DocsRepo {
     print('📊 تحديث حالة التوثيق ${doc.docId} إلى: ${newStatus.name}');
   }
 
-  Future<bool> _isAllContentUploaded({required CreateDocEntity doc}) async {
+  Future<bool> _isAllContentUploaded({required DocReqEntity doc}) async {
     for (final file in doc.files) {
       if (file.status != FileUploadStatus.uploaded) {
         return false;
@@ -188,7 +184,7 @@ class DocsRepoImpl implements DocsRepo {
     return true;
   }
 
-  Future<String?> _uploadSingleFile({
+  Future<String?> _uploadS3File({
     required int docId,
     required String? filePath,
     required DocFileType fileType,
@@ -211,9 +207,9 @@ class DocsRepoImpl implements DocsRepo {
     return presignedInfo.filePath;
   }
 
-  Future<void> uploadLocation({required CreateDocEntity doc}) async {
+  Future<void> uploadLocation({required DocReqEntity doc}) async {
     await docsApi.createDoc(
-      createDocReq: CreateDocReqModel(
+      docReq: DocReqModel(
         docId: doc.docId,
         latitude: doc.location?.latitude.toString(),
         longitude: doc.location?.longitude.toString(),
@@ -235,7 +231,6 @@ class DocsRepoImpl implements DocsRepo {
     required CachedDocModel doc,
     required double progress,
   }) async {
-    final t = AppLocalizations.of(GlobalVariable.navState.currentContext!);
     final clampedProgress = progress.clamp(0, 100).toInt();
     const title = 'جاري رفع المستند';
     const body = 'جاري رفع المستند';
@@ -274,7 +269,11 @@ class DocsRepoImpl implements DocsRepo {
               .get();
       for (final doc in docs) {
         await docsApi.createDoc(
-          createDocReq: CreateDocReqModel(docId: doc.docId),
+          docReq: DocReqModel(
+            docId: doc.docId,
+            latitude: doc.location?.latitude.toString(),
+            longitude: doc.location?.longitude.toString(),
+          ),
         );
       }
       return const ApiResult.success(data: null);
@@ -290,7 +289,11 @@ class DocsRepoImpl implements DocsRepo {
         db.cachedDocsTable,
       )..where((tbl) => tbl.docId.equals(docId))).getSingle();
       await docsApi.createDoc(
-        createDocReq: CreateDocReqModel(docId: doc.docId),
+        docReq: DocReqModel(
+          docId: doc.docId,
+          latitude: doc.location?.latitude.toString(),
+          longitude: doc.location?.longitude.toString(),
+        ),
       );
       return const ApiResult.success(data: null);
     } catch (e) {
@@ -302,5 +305,17 @@ class DocsRepoImpl implements DocsRepo {
     if (path == null || path.isEmpty) return null;
     final file = File(path);
     return file.existsSync() ? file : null;
+  }
+
+  @override
+  Future<ApiResult<DocEntity>> docMedia({
+    required DocMediaReqEntity docMediaReq,
+  }) async {
+    try {
+      final res = await docsApi.docMedia(docMediaReq: docMediaReq.toModel());
+      return ApiResult.success(data: res.toEntity());
+    } catch (error) {
+      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
+    }
   }
 }

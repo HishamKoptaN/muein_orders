@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart' show SizeExtension;
 import 'package:gap/gap.dart';
 import '../../../domain/entities/orders_res_entity.dart';
-import '../../../../cached_docs/domain/entities/cached_doc_entity.dart';
-
 import 'doc.dart';
 import 'doc_status_icons.dart';
 import 'doc_upload_status.dart';
@@ -38,15 +36,6 @@ Widget buildDocContent({
               mainAxisSize: MainAxisSize.min,
               spacing: 25.h,
               children: [
-                Text(
-                  doc.cachedDoc?.uploadStatus.name ?? 'no status',
-                  style: const TextStyle(
-                    fontFamily: 'Almarai',
-                    fontSize: 25,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF323232),
-                  ),
-                ),
                 uploadStatusSection(context: context, cachedDoc: doc.cachedDoc),
                 docActionButton(
                   context: context,

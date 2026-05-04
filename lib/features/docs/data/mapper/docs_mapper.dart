@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../orders/domain/entities/orders_res_entity.dart';
-import '../../domain/entities/create_doc_entity.dart';
+import '../../domain/entities/doc_req_entity.dart';
+import '../../domain/entities/doc_media_req_entity.dart';
 import '../../domain/entities/docs_res_entity.dart';
+import '../models/doc_media_req_model.dart';
 import '../models/docs_res_model.dart';
 
 extension DocModelMapper on DocModel {
@@ -43,11 +45,18 @@ extension DocStatusMapper on DocStatusModel {
 }
 
 extension CachedDocEntryMapper on CachedDocEntry {
-  CreateDocEntity toCreateEntity() {
-    return CreateDocEntity(
+  DocReqEntity toCreateEntity() {
+    return DocReqEntity(docId: docId, files: files ?? [], location: location);
+  }
+}
+
+extension DocMediaReqEntityMapper on DocMediaReqEntity {
+  DocMediaReqModel toModel() {
+    return DocMediaReqModel(
       docId: docId,
-      files: files ?? [],
-      location: location,
+      filePath: filePath,
+      thumbnail: thumbnail,
+      fileType: fileType,
     );
   }
 }

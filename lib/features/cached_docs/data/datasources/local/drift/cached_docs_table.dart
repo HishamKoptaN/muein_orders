@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:drift/drift.dart';
 
-enum DocFileType { image_one, image_two, video_one, video_two }
+enum DocFileType { image, image_two, video_one, video_two }
 
 enum FileUploadStatus { init, pending, uploading, uploaded, failed }
 
