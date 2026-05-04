@@ -37,7 +37,9 @@ class OrdersListWidget extends StatelessWidget {
             child: Row(
               children: [
                 TrText(
-                  '$filterTitle ( ${ordersRes.when(orders: (orders, meta) => orders.length, individualDocs: (docs) => docs.length)} )',
+                  '$filterTitle ( ${ordersRes.when(orders: (orders, meta) => orders.length, individualDocs: (docs) {
+                    return docs.length;
+                  })} )',
                   textAlign: TextAlign.right,
                   style: const TextStyle(
                     fontFamily: 'Almarai',

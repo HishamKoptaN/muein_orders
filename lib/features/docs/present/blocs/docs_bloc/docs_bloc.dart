@@ -15,7 +15,7 @@ part 'docs_bloc.freezed.dart';
 part 'docs_event.dart';
 part 'docs_state.dart';
 
-@singleton
+@lazySingleton
 class DocsBloc extends Bloc<DocsEvent, DocsState> {
   final DocsUseCase docsUseCase;
   List<DocEntity>? _allDocs;

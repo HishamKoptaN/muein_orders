@@ -13,7 +13,7 @@ part 'orders_bloc.freezed.dart';
 part 'orders_event.dart';
 part 'orders_state.dart';
 
-@singleton
+@lazySingleton
 class OrdersBloc extends HydratedBloc<OrdersEvent, OrdersState> {
   final OrdersUseCases _useCases;
   StreamSubscription? _subscription;

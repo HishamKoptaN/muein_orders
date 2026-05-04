@@ -66,7 +66,7 @@ class OrdersContentWidget extends StatelessWidget {
   }) {
     return ordersRes.when(
       orders: (orders, meta) {
-        return _buildOrdersList(context, orders, meta);
+        return _buildOrdersList(context: context, orders: orders, meta: meta);
       },
       individualDocs: (docs) {
         return _buildIndividualDocs(context: context, docs: docs);
@@ -74,11 +74,11 @@ class OrdersContentWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildOrdersList(
-    BuildContext context,
-    List<OrderEntity> orders,
-    MetaEntity meta,
-  ) {
+  Widget _buildOrdersList({
+    required BuildContext context,
+    required List<OrderEntity> orders,
+    required MetaEntity meta,
+  }) {
     return OrdersListWidget(
       ordersRes: OrdersResEntity.orders(orders: orders, meta: meta),
       stat: stat,

@@ -48,7 +48,7 @@ abstract class CreateCachedDocEntity with _$CreateCachedDocEntity {
         return DocFileEntity(
           file: path != null ? FileFormzInput.dirty(File(path)) : null,
           docFile: path != null
-              ? DocFile(path: path, type: DocFileType.image_one)
+              ? DocFile(path: path, type: DocFileType.image)
               : null,
           docFileStatus: FileUploadStatus.values.firstWhere(
             (e) => e.name == f['status'],
@@ -64,7 +64,7 @@ abstract class CreateCachedDocEntity with _$CreateCachedDocEntity {
               (entity.file?.value != null
                   ? DocFile(
                       path: entity.file!.value!.path,
-                      type: DocFileType.image_one,
+                      type: DocFileType.image,
                       status: FileUploadStatus.pending,
                     )
                   : null);

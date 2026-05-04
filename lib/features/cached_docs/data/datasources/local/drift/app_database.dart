@@ -14,7 +14,7 @@ import 'cached_docs_table.dart';
 part 'app_database.g.dart';
 
 @DriftDatabase(tables: [CachedDocsTable])
-@singleton
+@lazySingleton
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
   @override
@@ -163,6 +163,8 @@ class AppDatabase extends _$AppDatabase {
 
   static LazyDatabase _openConnection() {
     return LazyDatabase(() async {
+      // Defer database open to avoid blocking main thread during DI init
+      await Future.delayed(Duration.zero);
       final dir = await getApplicationDocumentsDirectory();
       final file = File(p.join(dir.path, 'app_db.sqlite'));
       return NativeDatabase(file);

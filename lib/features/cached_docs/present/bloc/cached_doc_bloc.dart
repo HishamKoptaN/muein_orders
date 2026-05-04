@@ -14,7 +14,7 @@ part 'cached_doc_bloc.freezed.dart';
 part 'cached_doc_event.dart';
 part 'cached_doc_state.dart';
 
-@singleton
+@lazySingleton
 class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
   final CachedDocsUseCases _docsUseCase;
   final AppFileManager _fileManager;
