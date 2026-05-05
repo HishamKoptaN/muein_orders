@@ -1,18 +1,14 @@
 name: CI/CD Pipeline
-# 2
 on:
     push:
         branches: [ dev, prod ]
     workflow_dispatch:
-
 permissions:
     contents: write
-
 jobs:
     workflows:
         uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-core-main.yml@prod
         with:
             flavor: dev
-            build_android: true
-            # build_ios: true
+            platforms: "android"
         secrets: inherit
