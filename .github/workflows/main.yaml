@@ -14,5 +14,5 @@ jobs:
         with:
             flavor: dev
             build_android: true
-            build_ios: true
+            # build_ios: true
         secrets: inherit
