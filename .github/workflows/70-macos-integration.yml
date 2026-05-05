@@ -1,8 +1,6 @@
-name: macOS Screenshots Only
+name: macOS Integration Tests
+
 on:
-  push:
-    branches:
-      - prods
   workflow_dispatch:
     inputs:
       build_type:
@@ -13,9 +11,12 @@ on:
         options:
           - debug
           - release
+
 env:
   BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
+
 jobs:
+  # Job 1: Setup
   setup:
     runs-on: macos-latest
     timeout-minutes: 15
@@ -23,6 +24,7 @@ jobs:
       device_id: ${{ steps.simulator.outputs.device_id }}
     steps:
       - uses: actions/checkout@v4
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.41.2"
@@ -35,9 +37,9 @@ jobs:
 
       - id: simulator
         run: |
-          DEVICE_ID=$(xcrun simctl list devices available | grep -E "iPhone.*Pro.*\([A-F0-9-]{36}\)" | grep -v "iPhone.*Pro.*Max" | head -1 | grep -oE '[A-F0-9-]{36}')
+          DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 15" | head -1 | grep -oE '[A-F0-9-]{36}')
           if [ -z "$DEVICE_ID" ]; then
-            DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 16 " | head -1 | grep -oE '[A-F0-9-]{36}')
+            DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 16" | head -1 | grep -oE '[A-F0-9-]{36}')
           fi
           if [ -z "$DEVICE_ID" ]; then
             DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone" | head -1 | grep -oE '[A-F0-9-]{36}')
@@ -46,16 +48,11 @@ jobs:
           echo "device_id=$DEVICE_ID" >> $GITHUB_OUTPUT
           sleep 30
 
-      - run: |
-          mkdir -p screenshots
-          capture_screen() {
-            xcrun simctl io booted screenshot screenshots/"${1}_$(date +%H%M%S).png" 2>/dev/null || true
-          }
-          (while true; do capture_screen "auto"; sleep 30; done) &
-  screenshots:
+  # Job 2: Run Tests
+  integration-test:
     runs-on: macos-latest
     needs: setup
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -65,31 +62,49 @@ jobs:
           channel: "stable"
           cache: true
 
-      - run: |
+      - name: Install & Reboot
+        run: |
           flutter pub get
           cd ios && pod install --repo-update
-          flutter build ios --${{ env.BUILD_TYPE }} --no-codesign
-
-      - run: |
           xcrun simctl shutdown all || true
           sleep 5
           xcrun simctl boot ${{ needs.setup.outputs.device_id }}
           sleep 30
-          xcrun simctl install booted build/ios/iphonesimulator/Runner.app
-          xcrun simctl launch booted com.example.mueinOrders || true
-          sleep 120
 
-      - if: always()
+      - name: 🧪 Run Tests with Logs
+        run: |
+          flutter test integration_test/auth_flow_test.dart \
+            --device-id booted \
+            --verbose \
+            --reporter expanded \
+            2>&1 | tee integration_test_output.log
+
+      - name: 📊 Upload Results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: screenshots-${{ github.run_number }}
-          path: screenshots/
-          retention-days: 5
+          name: integration-results-${{ github.run_number }}
+          path: |
+            integration_test_output.log
+            screenshots/
+          retention-days: 7
 
+      - name: 📋 Print Summary
+        if: always()
+        run: |
+          echo "📊 TEST SUMMARY"
+          if [ -f integration_test_output.log ]; then
+            echo ""
+            echo "📋 Last 100 lines:"
+            tail -100 integration_test_output.log
+          fi
+
+  # Job 3: Cleanup
   cleanup:
     runs-on: macos-latest
-    needs: screenshots
+    needs: integration-test
     if: always()
     timeout-minutes: 5
     steps:
-      - run: xcrun simctl shutdown all || true
+      - name: Cleanup
+        run: xcrun simctl shutdown all || true

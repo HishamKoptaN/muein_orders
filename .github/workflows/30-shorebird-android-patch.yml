@@ -96,6 +96,7 @@ jobs:
             # التحقق إذا كان الفشل بسبب تغييرات native
             if grep -q "Your app contains native changes, which cannot be applied with a patch" patch_output.log; then
               echo "❌ فشل التحقق: توجد تغييرات Native!"
+              echo ""
               echo "requires_new_release=true" >> $GITHUB_OUTPUT
               exit 0  # نخرج بنجاح لكن مع إشارة أننا نحتاج release
             else
@@ -113,7 +114,7 @@ jobs:
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
-          echo "�� تنفيذ Shorebird Patch..."
+          echo "🚀 تنفيذ Shorebird Patch..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
 
           shorebird patch android \

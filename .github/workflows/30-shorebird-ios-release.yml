@@ -1,4 +1,4 @@
-name: iOS Shorebird Auto-Patch
+name: iOS Shorebird Auto
 on:
   workflow_call:
     inputs:
@@ -32,4 +32,9 @@ jobs:
           security set-keychain-settings -t 3600 -u build.keychain
           security list-keychains -s build.keychain
           security find-identity -v -p codesigning
-      - run: shorebird patch ios --flavor=prod
+      - run: |
+          if [ "${{ inputs.action }}" == "patch" ]; then
+            shorebird patch ios --flavor=prod
+          else
+            shorebird release ios --flavor=prod
+          fi

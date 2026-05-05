@@ -1,6 +1,8 @@
-name: macOS Integration Tests
-
+name: macOS Screenshots Only
 on:
+  push:
+    branches:
+      - prods
   workflow_dispatch:
     inputs:
       build_type:
@@ -11,12 +13,10 @@ on:
         options:
           - debug
           - release
-
 env:
   BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
 
 jobs:
-  # Job 1: Setup
   setup:
     runs-on: macos-latest
     timeout-minutes: 15
@@ -24,20 +24,15 @@ jobs:
       device_id: ${{ steps.simulator.outputs.device_id }}
     steps:
       - uses: actions/checkout@v4
-
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.41.2"
           channel: "stable"
           cache: true
-
-      - name: Install Dependencies
-        run: |
+      - run: |
           flutter pub get
           cd ios && pod install --repo-update
-
-      - name: Start Simulator
-        id: simulator
+      - id: simulator
         run: |
           DEVICE_ID=$(xcrun simctl list devices available | grep "iPhone 15" | head -1 | grep -oE '[A-F0-9-]{36}')
           if [ -z "$DEVICE_ID" ]; then
@@ -50,11 +45,10 @@ jobs:
           echo "device_id=$DEVICE_ID" >> $GITHUB_OUTPUT
           sleep 30
 
-  # Job 2: Run Tests
-  integration-test:
+  screenshots:
     runs-on: macos-latest
     needs: setup
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -64,49 +58,7 @@ jobs:
           channel: "stable"
           cache: true
 
-      - name: Install & Reboot
-        run: |
+      - run: |
           flutter pub get
           cd ios && pod install --repo-update
-          xcrun simctl shutdown all || true
-          sleep 5
-          xcrun simctl boot ${{ needs.setup.outputs.device_id }}
-          sleep 30
-
-      - name: 🧪 Run Tests with Logs
-        run: |
-          flutter test integration_test/auth_flow_test.dart \
-            --device-id booted \
-            --verbose \
-            --reporter expanded \
-            2>&1 | tee integration_test_output.log
-
-      - name: 📊 Upload Results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: integration-results-${{ github.run_number }}
-          path: |
-            integration_test_output.log
-            screenshots/
-          retention-days: 7
-
-      - name: 📋 Print Summary
-        if: always()
-        run: |
-          echo "📊 TEST SUMMARY"
-          if [ -f integration_test_output.log ]; then
-            echo ""
-            echo "📋 Last 100 lines:"
-            tail -100 integration_test_output.log
-          fi
-
-  # Job 3: Cleanup
-  cleanup:
-    runs-on: macos-latest
-    needs: integration-test
-    if: always()
-    timeout-minutes: 5
-    steps:
-      - name: Cleanup
-        run: xcrun simctl shutdown all || true
+          flutter build ios --${{ env.BUILD_TYPE }} --no-codesign

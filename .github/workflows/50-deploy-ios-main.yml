@@ -1,4 +1,4 @@
-name: iOS Deploy
+name: Deploy iOS Main
 on:
   push:
     branches: [prods]
@@ -15,14 +15,14 @@ env:
   WEBHOOK: "https://api.codemagic.io/hooks/69e22d0468ccd4f8805e9a4b"
 jobs:
   detect:
-    uses: ./.github/workflows/ios_detect.yml
+    uses: ./.github/workflows/10-detect-ios.yml
     with:
       force_release: ${{ github.event.inputs.force_release || false }}
       force_patch: ${{ github.event.inputs.force_patch || false }}
   release:
     needs: detect
     if: needs.detect.outputs.build_type == 'release'
-    uses: ./.github/workflows/deploy_codemagic.yml
+    uses: ./.github/workflows/60-external-codemagic-deploy.yml
     with:
       track: testflight
       build_mode: release
@@ -30,7 +30,7 @@ jobs:
   patch:
     needs: detect
     if: needs.detect.outputs.build_type == 'patch'
-    uses: ./.github/workflows/shorebird_ios.yml
+    uses: ./.github/workflows/30-shorebird-ios-release.yml
     with:
       action: patch
     secrets: inherit

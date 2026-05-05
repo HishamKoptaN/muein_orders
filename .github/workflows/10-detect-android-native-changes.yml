@@ -1,4 +1,4 @@
-name: Check Native Changes - Android
+name: Detect Android Native Changes
 on:
   workflow_call:
     outputs:

@@ -1,4 +1,4 @@
-name: Deploy iOS (Codemagic Integration)
+name: Deploy iOS via Codemagic
 on:
   workflow_dispatch:
     inputs:

@@ -99,7 +99,7 @@ jobs:
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
-          echo "� محاولة إنشاء Shorebird Release..."
+          echo "🚀 محاولة إنشاء Shorebird Release..."
           echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
           if shorebird release android \
             --dart-define=ENV=prod \
@@ -121,7 +121,7 @@ jobs:
           fi
       - if: steps.shorebird-release.outputs.release_built == 'false'
         run: |
-          echo "� بناء AAB فقط (بدون إنشاء Shorebird release)..."
+          echo "📦 بناء AAB فقط (بدون إنشاء Shorebird release)..."
           flutter build appbundle \
             --dart-define=ENV=prod \
             --flavor=prod \

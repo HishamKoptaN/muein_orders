@@ -1,4 +1,4 @@
-name: Handle Patch iOS
+name: Handle iOS Patch
 
 on:
   workflow_call:
@@ -31,7 +31,7 @@ jobs:
     secrets: inherit
   bump-for-native:
     if: inputs.has_native_changes == 'true' && inputs.version_exists == 'true'
-    uses: ./.github/workflows/bump_ios_version.yml
+    uses: ./.github/workflows/20-version-ios-bump.yml
     with:
       current_version_code: ${{ inputs.version_code }}
     secrets: inherit

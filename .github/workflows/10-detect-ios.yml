@@ -1,4 +1,4 @@
-name: iOS Detect Build Type
+name: Detect iOS Build Type
 on:
   workflow_call:
     inputs:

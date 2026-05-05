@@ -1,4 +1,4 @@
-name: Check Native Changes - iOS
+name: Detect iOS Native Changes
 on:
   workflow_call:
     outputs:

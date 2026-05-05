@@ -42,11 +42,11 @@ on:
 
 jobs:
   check-version:
-    uses: ./.github/workflows/check_version_on_appstore.yml
+    uses: ./.github/workflows/20-version-check-appstore.yml
     secrets: inherit
 
   check-native:
-    uses: ./.github/workflows/check_native_changes_ios.yml
+    uses: ./.github/workflows/10-detect-ios-native-changes.yml
 
   decide:
     runs-on: ubuntu-latest
