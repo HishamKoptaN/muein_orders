@@ -10,7 +10,7 @@ permissions:
 
 jobs:
     workflows:
-        uses: HishamKoptaN/flutter-devops-core/.github/workflows/main.yaml@prod
+        uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-core-main.yml@prod
         with:
             flavor: dev
             build_android: true
