@@ -12,4 +12,6 @@ jobs:
         with:
             flavor: dev
             platforms: "android"
-        secrets: inherit
+        secrets:
+            FIREBASE_ADMIN_SDK: ${{ secrets.FIREBASE_ADMIN_SDK }}
+            SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
