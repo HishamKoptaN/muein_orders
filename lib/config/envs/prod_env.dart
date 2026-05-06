@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 
 import '../env.dart';
+import '../firebase/prod/firebase_options.dart';
 import '../firebase/prod_firebase_options.dart';
 
 class ProdEnv extends Env {
