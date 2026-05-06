@@ -14,7 +14,7 @@ jobs:
         with:
             flavor: ${{ github.ref_name }}
             platforms: "android"
-        environment: ${{ github.ref_name }}
+            environment: ${{ github.ref_name }}
         secrets:
             FIREBASE_ADMIN_SDK: ${{ secrets.FIREBASE_ADMIN_SDK }}
             SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
