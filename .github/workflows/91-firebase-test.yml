@@ -3,7 +3,7 @@ name: Firebase Connection Test
 on:
   workflow_dispatch:
   push:
-    branches: [ dev ]
+    branches: [ devs ]
 
 permissions:
   contents: read
