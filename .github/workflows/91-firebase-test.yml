@@ -1,0 +1,180 @@
+name: Firebase Connection Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ dev ]
+
+permissions:
+  contents: read
+
+jobs:
+  test-firebase-connection:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          
+      - name: Get dependencies
+        run: flutter pub get
+        
+      - name: 🔍 Check Firebase Config
+        run: |
+          echo "## 🔍 Firebase Configuration Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Check Firebase options file
+          if [ -f "lib/config/firebase/dev/firebase_options.dart" ]; then
+            echo "✅ Firebase config file exists" >> $GITHUB_STEP_SUMMARY
+            APP_ID=$(sed -n '/static const FirebaseOptions android/,/);/p' "lib/config/firebase/dev/firebase_options.dart" | grep "appId:" | sed "s/.*'\([^']*\)'.*/\1/")
+            echo "**App ID:** $APP_ID" >> $GITHUB_STEP_SUMMARY
+            echo "app_id=$APP_ID" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Firebase config file not found" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          
+      - name: 🔑 Test FIREBASE_TOKEN
+        run: |
+          echo "## 🔑 Testing FIREBASE_TOKEN" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -n "${{ secrets.FIREBASE_TOKEN }}" ]; then
+            echo "✅ FIREBASE_TOKEN secret exists" >> $GITHUB_STEP_SUMMARY
+            
+            # Install Firebase CLI
+            curl -sL https://firebase.tools | bash
+            
+            # Test authentication
+            if echo "${{ secrets.FIREBASE_TOKEN }}" | firebase login:ci --stdin; then
+              echo "✅ FIREBASE_TOKEN authentication successful" >> $GITHUB_STEP_SUMMARY
+              echo "token_auth=success" >> $GITHUB_OUTPUT
+            else
+              echo "❌ FIREBASE_TOKEN authentication failed" >> $GITHUB_STEP_SUMMARY
+              echo "token_auth=failed" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "❌ FIREBASE_TOKEN secret is missing" >> $GITHUB_STEP_SUMMARY
+            echo "token_auth=missing" >> $GITHUB_OUTPUT
+          fi
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          
+      - name: 📄 Test FIREBASE_ADMIN_SDK
+        run: |
+          echo "## 📄 Testing FIREBASE_ADMIN_SDK" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -n "${{ secrets.FIREBASE_ADMIN_SDK }}" ]; then
+            echo "✅ FIREBASE_ADMIN_SDK secret exists" >> $GITHUB_STEP_SUMMARY
+            
+            # Save service account to file
+            echo "${{ secrets.FIREBASE_ADMIN_SDK }}" > service-account.json
+            
+            # Install Firebase CLI
+            curl -sL https://firebase.tools | bash
+            
+            # Test service account authentication
+            if GOOGLE_APPLICATION_CREDENTIALS=service-account.json firebase projects:list; then
+              echo "✅ FIREBASE_ADMIN_SDK authentication successful" >> $GITHUB_STEP_SUMMARY
+              echo "service_account_auth=success" >> $GITHUB_OUTPUT
+            else
+              echo "❌ FIREBASE_ADMIN_SDK authentication failed" >> $GITHUB_STEP_SUMMARY
+              echo "service_account_auth=failed" >> $GITHUB_OUTPUT
+            fi
+            
+            # Clean up
+            rm -f service-account.json
+          else
+            echo "❌ FIREBASE_ADMIN_SDK secret is missing" >> $GITHUB_STEP_SUMMARY
+            echo "service_account_auth=missing" >> $GITHUB_OUTPUT
+          fi
+        env:
+          FIREBASE_ADMIN_SDK: ${{ secrets.FIREBASE_ADMIN_SDK }}
+          
+      - name: 🏗️ Build Test APK
+        run: |
+          echo "## 🏗️ Building Test APK" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Build APK for testing
+          if flutter build apk --flavor dev --debug; then
+            echo "✅ APK build successful" >> $GITHUB_STEP_SUMMARY
+            echo "**APK Path:** build/app/outputs/flutter-apk/app-dev-debug.apk" >> $GITHUB_STEP_SUMMARY
+            echo "apk_path=build/app/outputs/flutter-apk/app-dev-debug.apk" >> $GITHUB_OUTPUT
+          else
+            echo "❌ APK build failed" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          
+      - name: 📱 Test Firebase Distribution
+        run: |
+          echo "## 📱 Testing Firebase Distribution" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "build/app/outputs/flutter-apk/app-dev-debug.apk" ]; then
+            echo "✅ APK file found for distribution test" >> $GITHUB_STEP_SUMMARY
+            
+            # Test with FIREBASE_TOKEN
+            if [ "${{ steps.token.outputs.token_auth }}" == "success" ]; then
+              echo "### Testing with FIREBASE_TOKEN" >> $GITHUB_STEP_SUMMARY
+              if wzieba/Firebase-Distribution-Github-Action@v1 \
+                --appId "${{ steps.config.outputs.app_id }}" \
+                --token "${{ secrets.FIREBASE_TOKEN }}" \
+                --groups "test" \
+                --file "build/app/outputs/flutter-apk/app-dev-debug.apk" \
+                --debug; then
+                echo "✅ Distribution with FIREBASE_TOKEN successful" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "❌ Distribution with FIREBASE_TOKEN failed" >> $GITHUB_STEP_SUMMARY
+              fi
+            fi
+            
+            # Test with FIREBASE_ADMIN_SDK
+            if [ "${{ steps.service-account.outputs.service_account_auth }}" == "success" ]; then
+              echo "### Testing with FIREBASE_ADMIN_SDK" >> $GITHUB_STEP_SUMMARY
+              if wzieba/Firebase-Distribution-Github-Action@v1 \
+                --appId "${{ steps.config.outputs.app_id }}" \
+                --serviceCredentialsFileContent "${{ secrets.FIREBASE_ADMIN_SDK }}" \
+                --groups "test" \
+                --file "build/app/outputs/flutter-apk/app-dev-debug.apk" \
+                --debug; then
+                echo "✅ Distribution with FIREBASE_ADMIN_SDK successful" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "❌ Distribution with FIREBASE_ADMIN_SDK failed" >> $GITHUB_STEP_SUMMARY
+              fi
+            fi
+          else
+            echo "❌ No APK file found for distribution test" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+      - name: 📋 Summary & Recommendations
+        run: |
+          echo "## 📋 Test Summary & Recommendations" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "### 🔍 Results:" >> $GITHUB_STEP_SUMMARY
+          echo "- **FIREBASE_TOKEN:** ${{ steps.token.outputs.token_auth }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **FIREBASE_ADMIN_SDK:** ${{ steps.service-account.outputs.service_account_auth }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **APK Build:** Success" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "### 🛠️ Recommendations:" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.token.outputs.token_auth }}" != "success" ] && [ "${{ steps.service-account.outputs.service_account_auth }}" != "success" ]; then
+            echo "❌ Both authentication methods failed. Please check your Firebase configuration." >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ steps.token.outputs.token_auth }}" == "success" ]; then
+            echo "✅ Use FIREBASE_TOKEN in your main workflow" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ steps.service-account.outputs.service_account_auth }}" == "success" ]; then
+            echo "✅ Use FIREBASE_ADMIN_SDK in your main workflow" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔧 Next Steps:" >> $GITHUB_STEP_SUMMARY
+          echo "1. Add missing secrets to your repository" >> $GITHUB_STEP_SUMMARY
+          echo "2. Update main workflow to use working authentication method" >> $GITHUB_STEP_SUMMARY
+          echo "3. Test with real APK file instead of /dev/null" >> $GITHUB_STEP_SUMMARY
