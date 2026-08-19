@@ -8,14 +8,14 @@ import '../../../../../../l10n/app_localizations.dart';
 import '../../bloc/sign_up_bloc.dart';
 
 class SignUpForm extends StatelessWidget {
-  final GenericFormzInput name;
-  final PhoneNumberInput phone;
-  final EmailInput email;
-  final PasswordInput password;
-  final PasswordInput confirmPassword;
-  final ConfirmPasswordInput confirmPasswordInput;
+  final GenericFormInput name;
+  final PhoneNumberFormInput phone;
+  final EmailFormInput email;
+  final PasswordFormInput password;
+  final PasswordFormInput confirmPassword;
+  final ConfirmPasswordFormInput confirmPasswordInput;
 
-  final bool obscurePassword;
+  final BoolFormInput obscurePassword;
 
   const SignUpForm({
     super.key,
@@ -38,9 +38,11 @@ class SignUpForm extends StatelessWidget {
           initialValue: name.value,
           hintText: 'الاسم',
           prefixIcon: const Icon(Icons.person_outline, color: Colors.white),
-          onChanged: (v) => getIt<SignUpBloc>().add(
-            SignUpEvent.dataChanged(name: GenericFormzInput.dirty(v)),
-          ),
+          onChanged: (v) {
+            getIt<SignUpBloc>().add(
+              SignUpEvent.dataChanged(name: .dirty(value: v)),
+            );
+          },
           validator: (value) =>
               value?.isNotEmpty == true ? null : 'الاسم مطلوب',
         ),
@@ -51,9 +53,11 @@ class SignUpForm extends StatelessWidget {
           prefixIcon: const Icon(Icons.email_outlined, color: Colors.white),
           keyboardType: TextInputType.emailAddress,
           onChanged: (v) => getIt<SignUpBloc>().add(
-            SignUpEvent.dataChanged(email: EmailInput.dirty(v)),
+            SignUpEvent.dataChanged(email: .dirty(v)),
           ),
-          validator: (value) => EmailInput.dirty(value ?? '').error?.message,
+          // validator: (value) {
+          //   return .dirty(value ?? '').error?.message;
+          // },
         ),
         CustomAuthTextFormField(
           key: const Key('phone_field'),
@@ -61,7 +65,7 @@ class SignUpForm extends StatelessWidget {
           hintText: 'رقم الهاتف',
           prefixIcon: const Icon(Icons.phone_outlined, color: Colors.white),
           onChanged: (v) => getIt<SignUpBloc>().add(
-            SignUpEvent.dataChanged(phone: PhoneNumberInput.dirty(v)),
+            SignUpEvent.dataChanged(phone: .dirty(v)),
           ),
         ),
         CustomAuthTextFormField(
@@ -70,10 +74,10 @@ class SignUpForm extends StatelessWidget {
           initialValue: password.value,
           prefixIcon: const Icon(Icons.lock_outline, color: Colors.white),
           isPassword: true,
-          obscureText: obscurePassword,
+          obscureText: obscurePassword.value,
           showPasswordToggle: true,
           onChanged: (v) => getIt<SignUpBloc>().add(
-            SignUpEvent.dataChanged(password: PasswordInput.dirty(v)),
+            SignUpEvent.dataChanged(password: .dirty(v)),
           ),
         ),
         CustomAuthTextFormField(
@@ -82,10 +86,10 @@ class SignUpForm extends StatelessWidget {
           hintText: 'تأكيد كلمة المرور',
           prefixIcon: const Icon(Icons.lock_outline, color: Colors.white),
           isPassword: true,
-          obscureText: obscurePassword,
+          obscureText: obscurePassword.value,
           showPasswordToggle: true,
           onChanged: (v) => getIt<SignUpBloc>().add(
-            SignUpEvent.dataChanged(confirmPassword: PasswordInput.dirty(v)),
+            SignUpEvent.dataChanged(confirmPassword: .dirty(v)),
           ),
           validator: (value) =>
               value == password.value ? null : 'كلمتا المرور غير متطابقتين',

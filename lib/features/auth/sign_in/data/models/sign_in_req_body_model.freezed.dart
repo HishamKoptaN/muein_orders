@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignInReqBodyModel {
 
-@JsonKey(name: 'id_token') String get idToken;@JsonKey(name: 'fcm_token') String get fcmToken;@JsonKey(name: 'device_type') String get deviceType;
+@JsonKey(name: 'id_token') String get idToken; String get deviceType;
 /// Create a copy of SignInReqBodyModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SignInReqBodyModelCopyWith<SignInReqBodyModel> get copyWith => _$SignInReqBodyM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.deviceType, deviceType) || other.deviceType == deviceType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken)&&(identical(other.deviceType, deviceType) || other.deviceType == deviceType));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,idToken,fcmToken,deviceType);
+int get hashCode => Object.hash(runtimeType,idToken,deviceType);
 
 @override
 String toString() {
-  return 'SignInReqBodyModel(idToken: $idToken, fcmToken: $fcmToken, deviceType: $deviceType)';
+  return 'SignInReqBodyModel(idToken: $idToken, deviceType: $deviceType)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SignInReqBodyModelCopyWith<$Res>  {
   factory $SignInReqBodyModelCopyWith(SignInReqBodyModel value, $Res Function(SignInReqBodyModel) _then) = _$SignInReqBodyModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id_token') String idToken,@JsonKey(name: 'fcm_token') String fcmToken,@JsonKey(name: 'device_type') String deviceType
+@JsonKey(name: 'id_token') String idToken, String deviceType
 });
 
 
@@ -65,10 +65,9 @@ class _$SignInReqBodyModelCopyWithImpl<$Res>
 
 /// Create a copy of SignInReqBodyModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? idToken = null,Object? fcmToken = null,Object? deviceType = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? idToken = null,Object? deviceType = null,}) {
   return _then(_self.copyWith(
 idToken: null == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
-as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String,deviceType: null == deviceType ? _self.deviceType : deviceType // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -155,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken, @JsonKey(name: 'fcm_token')  String fcmToken, @JsonKey(name: 'device_type')  String deviceType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken,  String deviceType)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignInReqBodyModel() when $default != null:
-return $default(_that.idToken,_that.fcmToken,_that.deviceType);case _:
+return $default(_that.idToken,_that.deviceType);case _:
   return orElse();
 
 }
@@ -176,10 +175,10 @@ return $default(_that.idToken,_that.fcmToken,_that.deviceType);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken, @JsonKey(name: 'fcm_token')  String fcmToken, @JsonKey(name: 'device_type')  String deviceType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken,  String deviceType)  $default,) {final _that = this;
 switch (_that) {
 case _SignInReqBodyModel():
-return $default(_that.idToken,_that.fcmToken,_that.deviceType);case _:
+return $default(_that.idToken,_that.deviceType);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +195,10 @@ return $default(_that.idToken,_that.fcmToken,_that.deviceType);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_token')  String idToken, @JsonKey(name: 'fcm_token')  String fcmToken, @JsonKey(name: 'device_type')  String deviceType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_token')  String idToken,  String deviceType)?  $default,) {final _that = this;
 switch (_that) {
 case _SignInReqBodyModel() when $default != null:
-return $default(_that.idToken,_that.fcmToken,_that.deviceType);case _:
+return $default(_that.idToken,_that.deviceType);case _:
   return null;
 
 }
@@ -211,12 +210,11 @@ return $default(_that.idToken,_that.fcmToken,_that.deviceType);case _:
 @JsonSerializable()
 
 class _SignInReqBodyModel implements SignInReqBodyModel {
-  const _SignInReqBodyModel({@JsonKey(name: 'id_token') required this.idToken, @JsonKey(name: 'fcm_token') required this.fcmToken, @JsonKey(name: 'device_type') required this.deviceType});
+  const _SignInReqBodyModel({@JsonKey(name: 'id_token') required this.idToken, required this.deviceType});
   factory _SignInReqBodyModel.fromJson(Map<String, dynamic> json) => _$SignInReqBodyModelFromJson(json);
 
 @override@JsonKey(name: 'id_token') final  String idToken;
-@override@JsonKey(name: 'fcm_token') final  String fcmToken;
-@override@JsonKey(name: 'device_type') final  String deviceType;
+@override final  String deviceType;
 
 /// Create a copy of SignInReqBodyModel
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +229,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.deviceType, deviceType) || other.deviceType == deviceType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken)&&(identical(other.deviceType, deviceType) || other.deviceType == deviceType));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,idToken,fcmToken,deviceType);
+int get hashCode => Object.hash(runtimeType,idToken,deviceType);
 
 @override
 String toString() {
-  return 'SignInReqBodyModel(idToken: $idToken, fcmToken: $fcmToken, deviceType: $deviceType)';
+  return 'SignInReqBodyModel(idToken: $idToken, deviceType: $deviceType)';
 }
 
 
@@ -251,7 +249,7 @@ abstract mixin class _$SignInReqBodyModelCopyWith<$Res> implements $SignInReqBod
   factory _$SignInReqBodyModelCopyWith(_SignInReqBodyModel value, $Res Function(_SignInReqBodyModel) _then) = __$SignInReqBodyModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id_token') String idToken,@JsonKey(name: 'fcm_token') String fcmToken,@JsonKey(name: 'device_type') String deviceType
+@JsonKey(name: 'id_token') String idToken, String deviceType
 });
 
 
@@ -268,10 +266,9 @@ class __$SignInReqBodyModelCopyWithImpl<$Res>
 
 /// Create a copy of SignInReqBodyModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? idToken = null,Object? fcmToken = null,Object? deviceType = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? idToken = null,Object? deviceType = null,}) {
   return _then(_SignInReqBodyModel(
 idToken: null == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
-as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String,deviceType: null == deviceType ? _self.deviceType : deviceType // ignore: cast_nullable_to_non_nullable
 as String,
   ));

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../gen/assets.gen.dart';
-import '../../../../../l10n/app_localizations.dart';
 import '../../../sign_in/present/views/sign_in_view.dart';
 import '../../../sign_up/present/views/sign_up_views.dart';
 
@@ -13,19 +11,16 @@ class AuthChoiceView extends StatelessWidget {
   static const String routeName = 'auth-choice';
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
             child: Image.asset(
               Assets.images.selectSignInUpBack.path,
               fit: BoxFit.cover,
             ),
           ),
-          // Logo at the center
           Positioned(
             top: size.height * 0.2,
             left: 0,
@@ -38,7 +33,6 @@ class AuthChoiceView extends StatelessWidget {
               ),
             ),
           ),
-          // Buttons at the bottom
           Positioned(
             left: 0,
             right: 0,

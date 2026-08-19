@@ -36,11 +36,11 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
     debugPrint('🚀 Running Debug AutoFill Login with BLoC...');
     getIt<SignUpBloc>().add(
       const SignUpEvent.dataChanged(
-        email: EmailInput.dirty('heshamkoptan@gmail.com'),
-        name: GenericFormzInput.dirty('hisham'),
-        phone: PhoneNumberInput.dirty('4567894566123'),
-        password: PasswordInput.dirty('password'),
-        confirmPassword: PasswordInput.dirty('Password123@'),
+        email: .dirty('heshamkoptan@gmail.com'),
+        name: .dirty(value: 'hisham'),
+        phone: .dirty('4567894566123'),
+        password: .dirty('password'),
+        confirmPassword: .dirty('Password123@'),
       ),
     );
     debugPrint('✅ AutoFill Login Done (via BLoC)');

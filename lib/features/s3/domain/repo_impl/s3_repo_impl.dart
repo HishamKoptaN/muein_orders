@@ -40,7 +40,7 @@ class S3RepoImpl implements S3Repo {
       );
       return const ApiResult.success(data: null);
     } catch (e, st) {
-      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
+      return const ApiResult.failure(errorInfo: ErrorInfo());
     }
   }
 }

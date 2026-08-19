@@ -19,13 +19,13 @@ class SignUpBody extends StatelessWidget {
     required this.formzSubmissionStatus,
   });
 
-  final GenericFormzInput name;
-  final PhoneNumberInput phone;
-  final EmailInput email;
-  final PasswordInput password;
-  final PasswordInput confirmPassword;
-  final ConfirmPasswordInput confirmPasswordInput;
-  final bool obscurePassword;
+  final GenericFormInput name;
+  final PhoneNumberFormInput phone;
+  final EmailFormInput email;
+  final PasswordFormInput password;
+  final PasswordFormInput confirmPassword;
+  final ConfirmPasswordFormInput confirmPasswordInput;
+  final BoolFormInput obscurePassword;
   final FormzSubmissionStatus formzSubmissionStatus;
 
   @override

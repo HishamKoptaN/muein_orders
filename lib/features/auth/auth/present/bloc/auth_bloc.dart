@@ -1,61 +1,58 @@
+import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../../core/networking/api_result.dart';
 import '../../domain/usecases/auth_use_casees.dart';
-
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 @singleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthUseCase authUseCases;
-  AuthBloc({required this.authUseCases}) : super(const AuthState.loading()) {
+  final AuthUseCases authUseCases;
+  AuthBloc({required this.authUseCases}) : super(const .loading()) {
     on<AuthEvent>((event, emit) async {
       await event.when(
-        check: () async {
-          final res = await authUseCases.check();
-          res.when(
-            success: (isAuthenticated) {
-              if (isAuthenticated ?? false) {
-                emit(const AuthState.authenticated());
-              } else {
-                emit(const AuthState.unauthenticated());
-              }
-            },
-            failure: (error) => emit(const AuthState.unauthenticated()),
-          );
+        check: (completer) async {
+          await authUseCases.check().then((res) async {
+            await res.when(
+              success: (isAuthenticated) {
+                emit(const .authenticated());
+              },
+              failure: (e) {
+                emit(const .unauthenticated());
+              },
+            );
+          });
+          completer?.complete();
         },
-        forceRefresh: () async {
-          final res = await authUseCases.check();
-          res.when(
-            success: (isAuthenticated) {
-              if (isAuthenticated ?? false) {
+        authToken: (completer) async {
+          await authUseCases.authToken().then((result) async {
+            await result.when(
+              success: (v) {
                 emit(const AuthState.authenticated());
-              } else {
+              },
+              failure: (apiErrorModel) {
                 emit(const AuthState.unauthenticated());
-              }
-            },
-            failure: (error) => emit(const AuthState.unauthenticated()),
-          );
-        },
-        emitAuthenticated: () async {
-          emit(const AuthState.authenticated());
+              },
+            );
+          });
+          completer?.complete();
         },
         signedOut: () async {
-          final res = await authUseCases.signOut();
-          res.when(
-            success: (data) {
-              emit(const AuthState.unauthenticated());
-            },
-            failure: (error) {
-              emit(AuthState.failure(error.message ?? 'error'));
-              emit(const AuthState.unauthenticated());
-            },
-          );
+          await authUseCases.signOut().then((result) {
+            result.when(
+              success: (data) {
+                emit(const .unauthenticated());
+              },
+              failure: (error) {
+                emit(.failure(error.message));
+                emit(const .unauthenticated());
+              },
+            );
+          });
         },
       );
     });

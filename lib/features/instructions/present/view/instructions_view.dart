@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/gloabal_widgets/custom_scaffold.dart';
+import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../core/widgets/translated_text.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../home/present/view/stats_view.dart';
+import '../../../home_features/home/present/view/stats_view.dart';
 import '../bloc/instructions_bloc.dart';
 
 class InstructionsView extends StatefulWidget {

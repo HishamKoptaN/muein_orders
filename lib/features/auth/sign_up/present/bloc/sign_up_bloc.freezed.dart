@@ -128,7 +128,7 @@ return signUp(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( GenericFormzInput? name,  EmailInput? email,  PhoneNumberInput? phone,  PasswordInput? password,  PasswordInput? confirmPassword,  bool? obscurePassword)?  dataChanged,TResult Function()?  signUp,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( GenericFormInput? name,  EmailFormInput? email,  PhoneNumberFormInput? phone,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  BoolFormInput? obscurePassword)?  dataChanged,TResult Function()?  signUp,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
 return dataChanged(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.obscurePassword);case _SignUp() when signUp != null:
@@ -150,7 +150,7 @@ return signUp();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( GenericFormzInput? name,  EmailInput? email,  PhoneNumberInput? phone,  PasswordInput? password,  PasswordInput? confirmPassword,  bool? obscurePassword)  dataChanged,required TResult Function()  signUp,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( GenericFormInput? name,  EmailFormInput? email,  PhoneNumberFormInput? phone,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  BoolFormInput? obscurePassword)  dataChanged,required TResult Function()  signUp,}) {final _that = this;
 switch (_that) {
 case _DataChanged():
 return dataChanged(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.obscurePassword);case _SignUp():
@@ -171,7 +171,7 @@ return signUp();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( GenericFormzInput? name,  EmailInput? email,  PhoneNumberInput? phone,  PasswordInput? password,  PasswordInput? confirmPassword,  bool? obscurePassword)?  dataChanged,TResult? Function()?  signUp,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( GenericFormInput? name,  EmailFormInput? email,  PhoneNumberFormInput? phone,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  BoolFormInput? obscurePassword)?  dataChanged,TResult? Function()?  signUp,}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
 return dataChanged(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.obscurePassword);case _SignUp() when signUp != null:
@@ -190,12 +190,12 @@ class _DataChanged with DiagnosticableTreeMixin implements SignUpEvent {
   const _DataChanged({this.name, this.email, this.phone, this.password, this.confirmPassword, this.obscurePassword});
   
 
- final  GenericFormzInput? name;
- final  EmailInput? email;
- final  PhoneNumberInput? phone;
- final  PasswordInput? password;
- final  PasswordInput? confirmPassword;
- final  bool? obscurePassword;
+ final  GenericFormInput? name;
+ final  EmailFormInput? email;
+ final  PhoneNumberFormInput? phone;
+ final  PasswordFormInput? password;
+ final  PasswordFormInput? confirmPassword;
+ final  BoolFormInput? obscurePassword;
 
 /// Create a copy of SignUpEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -233,7 +233,7 @@ abstract mixin class _$DataChangedCopyWith<$Res> implements $SignUpEventCopyWith
   factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
 @useResult
 $Res call({
- GenericFormzInput? name, EmailInput? email, PhoneNumberInput? phone, PasswordInput? password, PasswordInput? confirmPassword, bool? obscurePassword
+ GenericFormInput? name, EmailFormInput? email, PhoneNumberFormInput? phone, PasswordFormInput? password, PasswordFormInput? confirmPassword, BoolFormInput? obscurePassword
 });
 
 
@@ -253,12 +253,12 @@ class __$DataChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? email = freezed,Object? phone = freezed,Object? password = freezed,Object? confirmPassword = freezed,Object? obscurePassword = freezed,}) {
   return _then(_DataChanged(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as EmailInput?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as PhoneNumberInput?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordInput?,confirmPassword: freezed == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
-as PasswordInput?,obscurePassword: freezed == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
-as bool?,
+as GenericFormInput?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as EmailFormInput?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as PhoneNumberFormInput?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as PasswordFormInput?,confirmPassword: freezed == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
+as PasswordFormInput?,obscurePassword: freezed == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
+as BoolFormInput?,
   ));
 }
 
@@ -432,7 +432,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  settingsLoading,TResult Function()?  success,TResult Function( GenericFormzInput name,  EmailInput email,  PhoneNumberInput phone,  PasswordInput password,  PasswordInput confirmPassword,  ConfirmPasswordInput confirmPasswordInput,  bool obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  settingsLoading,TResult Function()?  success,TResult Function( GenericFormInput name,  EmailFormInput email,  PhoneNumberFormInput phone,  PasswordFormInput password,  PasswordFormInput confirmPassword,  ConfirmPasswordFormInput confirmPasswordInput,  BoolFormInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
@@ -458,7 +458,7 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  settingsLoading,required TResult Function()  success,required TResult Function( GenericFormzInput name,  EmailInput email,  PhoneNumberInput phone,  PasswordInput password,  PasswordInput confirmPassword,  ConfirmPasswordInput confirmPasswordInput,  bool obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function( String error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  settingsLoading,required TResult Function()  success,required TResult Function( GenericFormInput name,  EmailFormInput email,  PhoneNumberFormInput phone,  PasswordFormInput password,  PasswordFormInput confirmPassword,  ConfirmPasswordFormInput confirmPasswordInput,  BoolFormInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function( String error)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
@@ -483,7 +483,7 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  settingsLoading,TResult? Function()?  success,TResult? Function( GenericFormzInput name,  EmailInput email,  PhoneNumberInput phone,  PasswordInput password,  PasswordInput confirmPassword,  ConfirmPasswordInput confirmPasswordInput,  bool obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function( String error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  settingsLoading,TResult? Function()?  success,TResult? Function( GenericFormInput name,  EmailFormInput email,  PhoneNumberFormInput phone,  PasswordFormInput password,  PasswordFormInput confirmPassword,  ConfirmPasswordFormInput confirmPasswordInput,  BoolFormInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function( String error)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
@@ -655,16 +655,16 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
 
 
 class _Loaded with DiagnosticableTreeMixin implements SignUpState {
-  const _Loaded({required this.name, required this.email, required this.phone, required this.password, required this.confirmPassword, required this.confirmPasswordInput, this.obscurePassword = true, required this.formzSubmissionStatus});
+  const _Loaded({required this.name, required this.email, required this.phone, required this.password, required this.confirmPassword, required this.confirmPasswordInput, this.obscurePassword = const BoolFormInput.dirty(true), required this.formzSubmissionStatus});
   
 
- final  GenericFormzInput name;
- final  EmailInput email;
- final  PhoneNumberInput phone;
- final  PasswordInput password;
- final  PasswordInput confirmPassword;
- final  ConfirmPasswordInput confirmPasswordInput;
-@JsonKey() final  bool obscurePassword;
+ final  GenericFormInput name;
+ final  EmailFormInput email;
+ final  PhoneNumberFormInput phone;
+ final  PasswordFormInput password;
+ final  PasswordFormInput confirmPassword;
+ final  ConfirmPasswordFormInput confirmPasswordInput;
+@JsonKey() final  BoolFormInput obscurePassword;
  final  FormzSubmissionStatus formzSubmissionStatus;
 
 /// Create a copy of SignUpState
@@ -703,7 +703,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $SignUpStateCopyWith<$Res
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- GenericFormzInput name, EmailInput email, PhoneNumberInput phone, PasswordInput password, PasswordInput confirmPassword, ConfirmPasswordInput confirmPasswordInput, bool obscurePassword, FormzSubmissionStatus formzSubmissionStatus
+ GenericFormInput name, EmailFormInput email, PhoneNumberFormInput phone, PasswordFormInput password, PasswordFormInput confirmPassword, ConfirmPasswordFormInput confirmPasswordInput, BoolFormInput obscurePassword, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
@@ -723,13 +723,13 @@ class __$LoadedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? email = null,Object? phone = null,Object? password = null,Object? confirmPassword = null,Object? confirmPasswordInput = null,Object? obscurePassword = null,Object? formzSubmissionStatus = null,}) {
   return _then(_Loaded(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as EmailInput,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as PhoneNumberInput,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordInput,confirmPassword: null == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
-as PasswordInput,confirmPasswordInput: null == confirmPasswordInput ? _self.confirmPasswordInput : confirmPasswordInput // ignore: cast_nullable_to_non_nullable
-as ConfirmPasswordInput,obscurePassword: null == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
-as bool,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+as GenericFormInput,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as EmailFormInput,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as PhoneNumberFormInput,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
+as PasswordFormInput,confirmPassword: null == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
+as PasswordFormInput,confirmPasswordInput: null == confirmPasswordInput ? _self.confirmPasswordInput : confirmPasswordInput // ignore: cast_nullable_to_non_nullable
+as ConfirmPasswordFormInput,obscurePassword: null == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
+as BoolFormInput,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,
   ));
 }

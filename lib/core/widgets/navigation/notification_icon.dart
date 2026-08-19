@@ -2,10 +2,10 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../features/cached_docs/data/datasources/local/drift/app_database.dart';
+import '../../../features/orders_features/cached_docs/data/datasources/local/drift/app_database.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../di/dependency_injection.dart';
-import '../../services/notification_manager.dart';
+import '../../utils/services/notification_manager.dart';
 import '../translated_text.dart';
 
 class NotificationIcon extends StatefulWidget {
@@ -31,12 +31,13 @@ class _NotificationIconState extends State<NotificationIcon> {
 
   Future<int> _getActiveNotificationsCount() async {
     try {
-      final db = getIt<AppDatabase>();
-      final activeDocs = await (db.select(
-        db.cachedDocsTable,
-      )..where((tbl) => tbl.uploadStatus.equals('uploading'))).get();
+      // final db = getIt<AppDatabase>();
+      // final activeDocs = await (db.select(
+      //   db.cachedDocsTable,
+      // )..where((tbl) => tbl.uploadStatus.equals('uploading'))).get();
 
-      return activeDocs.length;
+      // return activeDocs.length;
+      return 0;
     } catch (e) {
       return 0;
     }

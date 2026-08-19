@@ -1,17 +1,32 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 
 import '../env.dart';
+import '../firebase/prod/firebase_options.dart';
 import '../firebase/prod_firebase_options.dart';
 
-class ProdEnv implements Env {
+class ProdEnv extends Env {
   @override
-  FirebaseOptions get firebaseOptions => ProdFirebaseOptions.currentPlatform;
-  @override
-  String get baseUrl => 'https://muein.online/api/';
+  String get envName {
+    return 'prod';
+  }
 
   @override
-  String get authBaseUrl => 'https://muein.online/auth/';
+  FirebaseOptions get firebaseOptions {
+    return ProdFirebaseOptions.currentPlatform;
+  }
 
   @override
-  String get envName => 'prod';
+  String get baseUrl {
+    return 'https://muein.online/api';
+  }
+
+  @override
+  String get authBaseUrl {
+    return '$baseUrl/auth/';
+  }
+
+  @override
+  String get userBaseUrl {
+    return '$baseUrl/user/';
+  }
 }

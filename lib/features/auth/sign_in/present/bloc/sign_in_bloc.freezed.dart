@@ -61,12 +61,12 @@ extension SignInEventPatterns on SignInEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _DataChanged value)?  dataChanged,TResult Function( _SignInWithCredentialsPressed value)?  signInWithCredentialsPressed,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _DataChanged value)?  dataChanged,TResult Function( _SignIn value)?  signIn,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
-return dataChanged(_that);case _SignInWithCredentialsPressed() when signInWithCredentialsPressed != null:
-return signInWithCredentialsPressed(_that);case _:
+return dataChanged(_that);case _SignIn() when signIn != null:
+return signIn(_that);case _:
   return orElse();
 
 }
@@ -84,12 +84,12 @@ return signInWithCredentialsPressed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _DataChanged value)  dataChanged,required TResult Function( _SignInWithCredentialsPressed value)  signInWithCredentialsPressed,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _DataChanged value)  dataChanged,required TResult Function( _SignIn value)  signIn,}){
 final _that = this;
 switch (_that) {
 case _DataChanged():
-return dataChanged(_that);case _SignInWithCredentialsPressed():
-return signInWithCredentialsPressed(_that);case _:
+return dataChanged(_that);case _SignIn():
+return signIn(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -106,12 +106,12 @@ return signInWithCredentialsPressed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _DataChanged value)?  dataChanged,TResult? Function( _SignInWithCredentialsPressed value)?  signInWithCredentialsPressed,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _DataChanged value)?  dataChanged,TResult? Function( _SignIn value)?  signIn,}){
 final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
-return dataChanged(_that);case _SignInWithCredentialsPressed() when signInWithCredentialsPressed != null:
-return signInWithCredentialsPressed(_that);case _:
+return dataChanged(_that);case _SignIn() when signIn != null:
+return signIn(_that);case _:
   return null;
 
 }
@@ -128,11 +128,11 @@ return signInWithCredentialsPressed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( EmailInput? email,  PasswordInput? password,  GenericFormzInput? obscurePassword)?  dataChanged,TResult Function()?  signInWithCredentialsPressed,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( SignInReqEntity signInReq)?  dataChanged,TResult Function()?  signIn,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
-return dataChanged(_that.email,_that.password,_that.obscurePassword);case _SignInWithCredentialsPressed() when signInWithCredentialsPressed != null:
-return signInWithCredentialsPressed();case _:
+return dataChanged(_that.signInReq);case _SignIn() when signIn != null:
+return signIn();case _:
   return orElse();
 
 }
@@ -150,11 +150,11 @@ return signInWithCredentialsPressed();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( EmailInput? email,  PasswordInput? password,  GenericFormzInput? obscurePassword)  dataChanged,required TResult Function()  signInWithCredentialsPressed,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( SignInReqEntity signInReq)  dataChanged,required TResult Function()  signIn,}) {final _that = this;
 switch (_that) {
 case _DataChanged():
-return dataChanged(_that.email,_that.password,_that.obscurePassword);case _SignInWithCredentialsPressed():
-return signInWithCredentialsPressed();case _:
+return dataChanged(_that.signInReq);case _SignIn():
+return signIn();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -171,11 +171,11 @@ return signInWithCredentialsPressed();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( EmailInput? email,  PasswordInput? password,  GenericFormzInput? obscurePassword)?  dataChanged,TResult? Function()?  signInWithCredentialsPressed,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( SignInReqEntity signInReq)?  dataChanged,TResult? Function()?  signIn,}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
-return dataChanged(_that.email,_that.password,_that.obscurePassword);case _SignInWithCredentialsPressed() when signInWithCredentialsPressed != null:
-return signInWithCredentialsPressed();case _:
+return dataChanged(_that.signInReq);case _SignIn() when signIn != null:
+return signIn();case _:
   return null;
 
 }
@@ -187,12 +187,10 @@ return signInWithCredentialsPressed();case _:
 
 
 class _DataChanged with DiagnosticableTreeMixin implements SignInEvent {
-  const _DataChanged({this.email, this.password, this.obscurePassword});
+  const _DataChanged({required this.signInReq});
   
 
- final  EmailInput? email;
- final  PasswordInput? password;
- final  GenericFormzInput? obscurePassword;
+ final  SignInReqEntity signInReq;
 
 /// Create a copy of SignInEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -205,21 +203,21 @@ _$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'SignInEvent.dataChanged'))
-    ..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('password', password))..add(DiagnosticsProperty('obscurePassword', obscurePassword));
+    ..add(DiagnosticsProperty('signInReq', signInReq));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.signInReq, signInReq) || other.signInReq == signInReq));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email,password,obscurePassword);
+int get hashCode => Object.hash(runtimeType,signInReq);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInEvent.dataChanged(email: $email, password: $password, obscurePassword: $obscurePassword)';
+  return 'SignInEvent.dataChanged(signInReq: $signInReq)';
 }
 
 
@@ -230,11 +228,11 @@ abstract mixin class _$DataChangedCopyWith<$Res> implements $SignInEventCopyWith
   factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
 @useResult
 $Res call({
- EmailInput? email, PasswordInput? password, GenericFormzInput? obscurePassword
+ SignInReqEntity signInReq
 });
 
 
-
+$SignInReqEntityCopyWith<$Res> get signInReq;
 
 }
 /// @nodoc
@@ -247,23 +245,30 @@ class __$DataChangedCopyWithImpl<$Res>
 
 /// Create a copy of SignInEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? email = freezed,Object? password = freezed,Object? obscurePassword = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? signInReq = null,}) {
   return _then(_DataChanged(
-email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as EmailInput?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordInput?,obscurePassword: freezed == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput?,
+signInReq: null == signInReq ? _self.signInReq : signInReq // ignore: cast_nullable_to_non_nullable
+as SignInReqEntity,
   ));
 }
 
-
+/// Create a copy of SignInEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SignInReqEntityCopyWith<$Res> get signInReq {
+  
+  return $SignInReqEntityCopyWith<$Res>(_self.signInReq, (value) {
+    return _then(_self.copyWith(signInReq: value));
+  });
+}
 }
 
 /// @nodoc
 
 
-class _SignInWithCredentialsPressed with DiagnosticableTreeMixin implements SignInEvent {
-  const _SignInWithCredentialsPressed();
+class _SignIn with DiagnosticableTreeMixin implements SignInEvent {
+  const _SignIn();
   
 
 
@@ -273,13 +278,13 @@ class _SignInWithCredentialsPressed with DiagnosticableTreeMixin implements Sign
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
-    ..add(DiagnosticsProperty('type', 'SignInEvent.signInWithCredentialsPressed'))
+    ..add(DiagnosticsProperty('type', 'SignInEvent.signIn'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignInWithCredentialsPressed);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignIn);
 }
 
 
@@ -288,7 +293,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInEvent.signInWithCredentialsPressed()';
+  return 'SignInEvent.signIn()';
 }
 
 
@@ -426,12 +431,12 @@ return unauthenticated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( EmailInput email,  PasswordInput password,  GenericFormzInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String errorMessage)?  failure,TResult Function()?  unauthenticated,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( SignInReqEntity signInReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String errorMessage)?  failure,TResult Function()?  unauthenticated,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.email,_that.password,_that.obscurePassword,_that.formzSubmissionStatus);case _Success() when success != null:
+return loaded(_that.signInReq,_that.formzSubmissionStatus);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.errorMessage);case _Unauthenticated() when unauthenticated != null:
 return unauthenticated();case _:
@@ -452,12 +457,12 @@ return unauthenticated();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( EmailInput email,  PasswordInput password,  GenericFormzInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String errorMessage)  failure,required TResult Function()  unauthenticated,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( SignInReqEntity signInReq,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String errorMessage)  failure,required TResult Function()  unauthenticated,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
-return loaded(_that.email,_that.password,_that.obscurePassword,_that.formzSubmissionStatus);case _Success():
+return loaded(_that.signInReq,_that.formzSubmissionStatus);case _Success():
 return success();case _Failure():
 return failure(_that.errorMessage);case _Unauthenticated():
 return unauthenticated();case _:
@@ -477,12 +482,12 @@ return unauthenticated();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( EmailInput email,  PasswordInput password,  GenericFormzInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String errorMessage)?  failure,TResult? Function()?  unauthenticated,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( SignInReqEntity signInReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String errorMessage)?  failure,TResult? Function()?  unauthenticated,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.email,_that.password,_that.obscurePassword,_that.formzSubmissionStatus);case _Success() when success != null:
+return loaded(_that.signInReq,_that.formzSubmissionStatus);case _Success() when success != null:
 return success();case _Failure() when failure != null:
 return failure(_that.errorMessage);case _Unauthenticated() when unauthenticated != null:
 return unauthenticated();case _:
@@ -573,13 +578,11 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
 
 
 class _Loaded with DiagnosticableTreeMixin implements SignInState {
-  const _Loaded({required this.email, required this.password, required this.obscurePassword, required this.formzSubmissionStatus});
+  const _Loaded({required this.signInReq, this.formzSubmissionStatus = FormzSubmissionStatus.initial});
   
 
- final  EmailInput email;
- final  PasswordInput password;
- final  GenericFormzInput obscurePassword;
- final  FormzSubmissionStatus formzSubmissionStatus;
+ final  SignInReqEntity signInReq;
+@JsonKey() final  FormzSubmissionStatus formzSubmissionStatus;
 
 /// Create a copy of SignInState
 /// with the given fields replaced by the non-null parameter values.
@@ -592,21 +595,21 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'SignInState.loaded'))
-    ..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('password', password))..add(DiagnosticsProperty('obscurePassword', obscurePassword))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
+    ..add(DiagnosticsProperty('signInReq', signInReq))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.signInReq, signInReq) || other.signInReq == signInReq)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email,password,obscurePassword,formzSubmissionStatus);
+int get hashCode => Object.hash(runtimeType,signInReq,formzSubmissionStatus);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInState.loaded(email: $email, password: $password, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+  return 'SignInState.loaded(signInReq: $signInReq, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -617,11 +620,11 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $SignInStateCopyWith<$Res
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- EmailInput email, PasswordInput password, GenericFormzInput obscurePassword, FormzSubmissionStatus formzSubmissionStatus
+ SignInReqEntity signInReq, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
-
+$SignInReqEntityCopyWith<$Res> get signInReq;
 
 }
 /// @nodoc
@@ -634,17 +637,24 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of SignInState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? email = null,Object? password = null,Object? obscurePassword = null,Object? formzSubmissionStatus = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? signInReq = null,Object? formzSubmissionStatus = null,}) {
   return _then(_Loaded(
-email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as EmailInput,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordInput,obscurePassword: null == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
-as GenericFormzInput,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+signInReq: null == signInReq ? _self.signInReq : signInReq // ignore: cast_nullable_to_non_nullable
+as SignInReqEntity,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,
   ));
 }
 
-
+/// Create a copy of SignInState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SignInReqEntityCopyWith<$Res> get signInReq {
+  
+  return $SignInReqEntityCopyWith<$Res>(_self.signInReq, (value) {
+    return _then(_self.copyWith(signInReq: value));
+  });
+}
 }
 
 /// @nodoc

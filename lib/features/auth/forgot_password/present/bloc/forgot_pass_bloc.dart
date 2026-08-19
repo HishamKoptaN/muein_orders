@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_inputs/form_inputs/email_input.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,12 +14,12 @@ part 'forgot_pass_state.dart';
 @lazySingleton
 class ForgotPassBloc extends Bloc<ForgotPassEvent, ForgotPassState> {
   final SendPassResetEmailUseCase sendPassResetEmailUseCase;
-  EmailInput? email;
+  EmailFormInput? email;
 
   ForgotPassBloc(this.sendPassResetEmailUseCase)
     : super(
         const ForgotPassState.loaded(
-          email: EmailInput.pure(),
+          email: EmailFormInput.pure(),
           formzSubmissionStatus: FormzSubmissionStatus.initial,
         ),
       ) {

@@ -7,7 +7,6 @@ abstract class NotificationsState with _$NotificationsState {
   const factory NotificationsState.loaded({
     required List<NotificationEntity> notifications,
   }) = _Loaded;
-  const factory NotificationsState.failure({
-    required ApiErrorModel apiErrorModel,
-  }) = _Failure;
+  const factory NotificationsState.failure({required ErrorInfo apiErrorModel}) =
+      _Failure;
 }

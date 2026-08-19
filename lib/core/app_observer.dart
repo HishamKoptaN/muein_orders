@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'utils/app_logger.dart';
 
-/// Bloc Observer مركزي لتتبع جميع أحداث وأخطاء Bloc
 class AppBlocObserver extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {

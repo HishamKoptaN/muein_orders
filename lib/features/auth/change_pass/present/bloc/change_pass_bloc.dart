@@ -18,8 +18,8 @@ class ChangePassBloc extends Bloc<ChangePassEvent, ChangePassState> {
   ChangePassBloc(this.sendPassResetEmailUseCase)
     : super(
         const ChangePassState.loaded(
-          password: PasswordInput.pure(),
-          confirmPassword: PasswordInput.pure(),
+          password: PasswordFormInput.pure(),
+          confirmPassword: PasswordFormInput.pure(),
           formzSubmissionStatus: FormzSubmissionStatus.initial,
         ),
       ) {
@@ -29,7 +29,7 @@ class ChangePassBloc extends Bloc<ChangePassEvent, ChangePassState> {
           state.mapOrNull(
             loaded: (state) {
               final isValid = Formz.validate([
-                ConfirmPasswordInput.dirty(
+                ConfirmPasswordFormInput.dirty(
                   value: password?.value ?? state.password.value,
                   password:
                       confirmPassword?.value ?? state.confirmPassword.value,
@@ -64,8 +64,8 @@ class ChangePassBloc extends Bloc<ChangePassEvent, ChangePassState> {
                   customLoaded(
                     emit: emit,
                     state: state,
-                    password: const PasswordInput.pure(),
-                    confirmPassword: const PasswordInput.pure(),
+                    password: const PasswordFormInput.pure(),
+                    confirmPassword: const PasswordFormInput.pure(),
                   );
                 },
                 failure: (e) {
@@ -73,8 +73,8 @@ class ChangePassBloc extends Bloc<ChangePassEvent, ChangePassState> {
                   customLoaded(
                     emit: emit,
                     state: state,
-                    password: const PasswordInput.pure(),
-                    confirmPassword: const PasswordInput.pure(),
+                    password: const PasswordFormInput.pure(),
+                    confirmPassword: const PasswordFormInput.pure(),
                   );
                 },
               );
@@ -87,8 +87,8 @@ class ChangePassBloc extends Bloc<ChangePassEvent, ChangePassState> {
   customLoaded({
     required Emitter<ChangePassState> emit,
     required _Loaded state,
-    PasswordInput? password,
-    PasswordInput? confirmPassword,
+    PasswordFormInput? password,
+    PasswordFormInput? confirmPassword,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     emit(

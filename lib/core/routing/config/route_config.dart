@@ -6,18 +6,19 @@ import '../../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../../features/auth/sign_up/present/views/sign_up_views.dart';
-import '../../../features/cached_docs/domain/entities/cached_doc_entity.dart';
-import '../../../features/cached_docs/present/view/add_cached_doc_view.dart';
+import '../../../features/orders_features/cached_docs/domain/entities/cached_doc_entity.dart';
+import '../../../features/orders_features/cached_docs/present/view/add_cached_doc_view.dart';
+import '../../../features/orders_features/cached_docs/present/view/widgets/pick_location_view.dart';
 import '../../../features/financial/present/view/create_expense.dart';
 import '../../../features/financial/present/view/expenses_view.dart';
 import '../../../features/financial/present/view/financial_account_view.dart';
-import '../../../features/home/domain/entities/order_type_res_entity.dart';
-import '../../../features/home/present/view/stats_view.dart';
+import '../../../features/home_features/home/domain/entities/order_type_res_entity.dart';
+import '../../../features/home_features/home/present/view/stats_view.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
-import '../../../features/language/view/select_language.dart';
+import '../../language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
-import '../../../features/orders/present/views/orders_view.dart';
-import '../../../features/orders/present/views/sitcker_pdf/sitcker_pdf_preview_view.dart';
+import '../../../features/orders_features/orders_items/present/views/salla_order_items_view.dart';
+import '../../../features/orders_features/orders_items/present/views/sitcker_pdf/sitcker_pdf_preview_view.dart';
 import '../../../features/profile/present/views/profile_view.dart';
 import '../../../features/splash/start_view.dart';
 import '../utils/route_builder.dart' show RouteBuilder;
@@ -27,54 +28,74 @@ class RouteConfig {
     final routes = [
       RouteBuilder.goRoute(
         routeName: StartView.routeName,
-        builder: (context, state) => const StartView(),
+        builder: (context, state) {
+          return const StartView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: AuthView.routeName,
-        builder: (context, state) => const AuthView(),
+        builder: (context, state) {
+          return const AuthView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: InstructionsView.routeName,
-        builder: (context, state) => const InstructionsView(),
+        builder: (context, state) {
+          return const InstructionsView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: SelectLanguageView.routeName,
-        builder: (context, state) => const SelectLanguageView(),
+        builder: (context, state) {
+          return const SelectLanguageView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: AuthChoiceView.routeName,
-        builder: (context, state) => const AuthChoiceView(),
+        builder: (context, state) {
+          return const AuthChoiceView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: ForgotPassView.routeName,
-        builder: (context, state) => const ForgotPassView(),
+        builder: (context, state) {
+          return const ForgotPassView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: SignInView.routeName,
-        builder: (context, state) => const SignInView(),
+        builder: (context, state) {
+          return const SignInView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: SignUpView.routeName,
-        builder: (context, state) => const SignUpView(),
+        builder: (context, state) {
+          return const SignUpView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: StatsView.routeName,
-        builder: (context, state) => const StatsView(),
+        builder: (context, state) {
+          return const StatsView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: ExpensesView.routeName,
-        builder: (context, state) => const ExpensesView(),
+        builder: (context, state) {
+          return const ExpensesView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: ProfileView.routeName,
-        builder: (context, state) => const ProfileView(),
+        builder: (context, state) {
+          return const ProfileView();
+        },
       ),
       RouteBuilder.goRoute(
-        routeName: OrderDocsView.routeName,
+        routeName: SallaOrderItemsView.routeName,
         builder: (context, state) {
-          final args = state.extra as Map<String, dynamic>;
-
-          return OrderDocsView(stat: args['stat'] as StatEntity);
+          return SallaOrderItemsView(stat: state.extra as StatEntity);
         },
       ),
       RouteBuilder.goRoute(
@@ -88,7 +109,9 @@ class RouteConfig {
       ),
       RouteBuilder.goRoute(
         routeName: NotificationsView.routeName,
-        builder: (context, state) => const NotificationsView(),
+        builder: (context, state) {
+          return const NotificationsView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: AddCachedDocView.routeName,
@@ -97,22 +120,34 @@ class RouteConfig {
           return AddCachedDocView(
             cachedDoc:
                 args?['cachedDoc'] as CachedDocEntity? ??
-                CachedDocEntity.empty(),
+                const CachedDocEntity(),
             subCategoryId: args?['subCategoryId'] as int? ?? 0,
           );
         },
       ),
       RouteBuilder.goRoute(
         routeName: FinancialAccountView.routeName,
-        builder: (context, state) => const FinancialAccountView(),
+        builder: (context, state) {
+          return const FinancialAccountView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: CreateExpenseView.routeName,
-        builder: (context, state) => const CreateExpenseView(),
+        builder: (context, state) {
+          return const CreateExpenseView();
+        },
       ),
       RouteBuilder.goRoute(
         routeName: ChangePassView.routeName,
-        builder: (context, state) => const ChangePassView(),
+        builder: (context, state) {
+          return const ChangePassView();
+        },
+      ),
+      RouteBuilder.goRoute(
+        routeName: PickLocationView.routeName,
+        builder: (context, state) {
+          return const PickLocationView();
+        },
       ),
     ];
     return routes;

@@ -107,7 +107,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                 formzSubmissionStatus ??
                 (Formz.validate([
                       state?.updateProfileReq?.name ??
-                          const GenericFormzInput<String>.pure(),
+                          const GenericFormInput.pure(),
                     ])
                     ? FormzSubmissionStatus.success
                     : FormzSubmissionStatus.failure),
@@ -117,7 +117,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   void emitCustomFailure({
     required Emitter<ProfileState> emit,
-    required ApiErrorModel apiErrorModel,
+    required ErrorInfo apiErrorModel,
   }) {
     return emit(ProfileState.failure(error: apiErrorModel.message ?? ''));
   }

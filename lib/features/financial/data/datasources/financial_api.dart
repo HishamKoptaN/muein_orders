@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart' show factoryMethod, singleton;
 import 'package:retrofit/retrofit.dart';
-import '../../../../core/config/app_config.dart';
 import '../../../../core/constants/api_constants.dart';
 import '../models/create_expense_req_model.dart';
 import '../models/expenses_res_model.dart';

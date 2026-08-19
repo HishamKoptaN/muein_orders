@@ -50,9 +50,9 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
                 formzSubmissionStatus:
                     (Formz.validate([
                       createExpenseReqEntity.amount ??
-                          const GenericFormzInput<String>.pure(),
+                          const GenericFormInput.pure(),
                       createExpenseReqEntity.notes ??
-                          const GenericFormzInput<String>.pure(),
+                          const GenericFormInput.pure(),
                     ])
                     ? FormzSubmissionStatus.success
                     : FormzSubmissionStatus.failure),
@@ -80,8 +80,8 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
                     state: state,
                     createExpenseReqEntity: state.createExpenseReqEntity!
                         .copyWith(
-                          amount: const GenericFormzInput.pure(),
-                          notes: const GenericFormzInput.pure(),
+                          amount: const GenericFormInput.pure(),
+                          notes: const GenericFormInput.pure(),
                         ),
                     formzSubmissionStatus: FormzSubmissionStatus.initial,
                   );
@@ -115,9 +115,9 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
             formzSubmissionStatus ??
             (Formz.validate([
                   state.createExpenseReqEntity?.amount ??
-                      const GenericFormzInput<String>.pure(),
+                      const GenericFormInput.pure(),
                   state.createExpenseReqEntity?.notes ??
-                      const GenericFormzInput<String>.pure(),
+                      const GenericFormInput.pure(),
                 ])
                 ? FormzSubmissionStatus.success
                 : FormzSubmissionStatus.failure),

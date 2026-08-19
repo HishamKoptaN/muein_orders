@@ -26,9 +26,7 @@ class ProfileRepoImpl implements ProfileRepo {
       final firebaseUser = _firebaseAuth.currentUser;
       if (firebaseUser == null) {
         return const ApiResult.failure(
-          apiErrorModel: ApiErrorModel(
-            message: 'User not authenticated in Firebase',
-          ),
+          errorInfo: ErrorInfo(message: 'User not authenticated in Firebase'),
         );
       }
       final email = firebaseUser.email;
@@ -36,7 +34,7 @@ class ProfileRepoImpl implements ProfileRepo {
 
       return ApiResult.success(data: profileEntity);
     } catch (e, st) {
-      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
+      return const ApiResult.failure(errorInfo: ErrorInfo());
     }
   }
 
@@ -53,7 +51,7 @@ class ProfileRepoImpl implements ProfileRepo {
       return ApiResult.success(data: result.toEntity());
     } catch (e, st) {
       return const ApiResult.failure(
-        apiErrorModel: ApiErrorModel(message: 'An error occurred'),
+        errorInfo: ErrorInfo(message: 'An error occurred'),
       );
     }
   }
@@ -72,7 +70,7 @@ class ProfileRepoImpl implements ProfileRepo {
       final profileEntity = result.toEntity().copyWith(email: email ?? '');
       return ApiResult.success(data: profileEntity);
     } catch (e, st) {
-      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
+      return const ApiResult.failure(errorInfo: ErrorInfo());
     }
   }
 }

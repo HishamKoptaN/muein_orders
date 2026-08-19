@@ -5,12 +5,12 @@ import 'package:flutter/foundation.dart';
 
 import '../../failures/failures.dart';
 import '../../firebase_errors/firebase_failures.dart';
-import 'api_error_handler.dart';
+import 'error_handler.dart';
 
 abstract class AppErrorHandler {
   static Failure toFailure(dynamic error, [StackTrace? stackTrace]) {
     if (error is DioException) {
-      final apiError = ApiErrorHandler.handle(error: error);
+      final apiError = ErrorHandler.handle(error: error);
       return Failure.serverFailure(message: apiError.message ?? '');
     }
     if (error is FirebaseFailure) {

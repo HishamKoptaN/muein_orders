@@ -4,6 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 import '../../../../../core/constants/api_constants.dart';
 import '../models/auth_res_model.dart';
+import '../models/exchange_token_req_body_model.dart';
 
 part 'auth_api.g.dart';
 
@@ -14,6 +15,10 @@ abstract class AuthApi {
   factory AuthApi(@Named('authDio') Dio dio) = _AuthApi;
   @POST(ApiConstants.check)
   Future<void> check();
+  @POST(ApiConstants.authToken)
+  Future<AuthResModel> authToken({
+    @Body() required ExchangeTokenReqBodyModel exchangeToken,
+  });
   @POST(ApiConstants.logout)
   Future<void> logout();
 }

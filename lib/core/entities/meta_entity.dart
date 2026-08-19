@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'meta_entity.freezed.dart';
-part 'meta_entity.g.dart';
 
 @freezed
 abstract class MetaEntity with _$MetaEntity {
@@ -13,7 +12,4 @@ abstract class MetaEntity with _$MetaEntity {
     bool? hasNextPage,
     bool? hasPreviousPage,
   }) = _MetaEntity;
-
-  factory MetaEntity.fromJson(Map<String, dynamic> json) =>
-      _$MetaEntityFromJson(json);
 }

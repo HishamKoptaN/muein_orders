@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_inputs/form_inputs/generic_formz_input.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../core/di/dependency_injection.dart';
@@ -65,10 +64,10 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                           ExpensesEvent.updateData(
                             createExpenseReqEntity:
                                 createExpenseReqEntity?.copyWith(
-                                  amount: GenericFormzInput.dirty(value),
+                                  amount: .dirty(value: value),
                                 ) ??
                                 CreateExpenseReqEntity(
-                                  amount: GenericFormzInput.dirty(value),
+                                  amount: .dirty(value: value),
                                 ),
                           ),
                         );
@@ -79,16 +78,14 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                       initialValue: createExpenseReqEntity?.notes?.value,
                       hintText: 'الملاحظات',
                       keyboardType: TextInputType.text,
-                      onChanged: (value) {
+                      onChanged: (v) {
                         getIt<ExpensesBloc>().add(
                           ExpensesEvent.updateData(
                             createExpenseReqEntity:
                                 createExpenseReqEntity?.copyWith(
-                                  notes: GenericFormzInput.dirty(value),
+                                  notes: .dirty(value: v),
                                 ) ??
-                                CreateExpenseReqEntity(
-                                  notes: GenericFormzInput.dirty(value),
-                                ),
+                                CreateExpenseReqEntity(notes: .dirty(value: v)),
                           ),
                         );
                       },
@@ -126,8 +123,12 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                 ),
               );
             },
-            loading: () => const Center(child: CircularProgressIndicator()),
-            orElse: () => const SizedBox.shrink(),
+            loading: () {
+              return const Center(child: CircularProgressIndicator());
+            },
+            orElse: () {
+              return const SizedBox.shrink();
+            },
           );
         },
       ),

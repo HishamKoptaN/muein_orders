@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,7 +23,7 @@ class ProfileAvatar extends StatelessWidget {
     Widget imageWidget;
     if (updateProfileReq?.avatar?.value != null) {
       imageWidget = Image.file(
-        updateProfileReq!.avatar!.value!,
+        File(updateProfileReq!.avatar!.value!.path),
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) => buildPlaceholder(),
       );

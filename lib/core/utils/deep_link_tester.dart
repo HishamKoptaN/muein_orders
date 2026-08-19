@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../app/global_variable.dart';
+import 'global_variable.dart';
 
 class DeepLinkTester {
   static void testDeepLink(String link) {

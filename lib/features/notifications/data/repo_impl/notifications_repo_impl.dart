@@ -19,7 +19,7 @@ class NotificationsRepoImpl implements NotificationsRepo {
       final result = res.map((e) => e.toEntity()).toList();
       return ApiResult.success(data: result);
     } catch (error) {
-      return const ApiResult.failure(apiErrorModel: ApiErrorModel());
+      return const ApiResult.failure(errorInfo: ErrorInfo());
     }
   }
 
@@ -27,6 +27,6 @@ class NotificationsRepoImpl implements NotificationsRepo {
   Future<ApiResult<void>> markAsRead({required String id}) async {
     // TODO: implement once API endpoint is confirmed in NotificationsApi
     // final res = await api.markAsRead(id);
-    return const ApiResult.failure(apiErrorModel: ApiErrorModel());
+    return const ApiResult.failure(errorInfo: ErrorInfo());
   }
 }

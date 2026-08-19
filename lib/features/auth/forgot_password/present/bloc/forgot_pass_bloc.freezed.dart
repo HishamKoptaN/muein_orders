@@ -122,7 +122,7 @@ return sendPassResetEmail(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( EmailInput? email)?  dataChanged,TResult Function()?  sendPassResetEmail,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( EmailFormInput? email)?  dataChanged,TResult Function()?  sendPassResetEmail,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
 return dataChanged(_that.email);case SendPassResetEmail() when sendPassResetEmail != null:
@@ -144,7 +144,7 @@ return sendPassResetEmail();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( EmailInput? email)  dataChanged,required TResult Function()  sendPassResetEmail,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( EmailFormInput? email)  dataChanged,required TResult Function()  sendPassResetEmail,}) {final _that = this;
 switch (_that) {
 case _DataChanged():
 return dataChanged(_that.email);case SendPassResetEmail():
@@ -165,7 +165,7 @@ return sendPassResetEmail();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( EmailInput? email)?  dataChanged,TResult? Function()?  sendPassResetEmail,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( EmailFormInput? email)?  dataChanged,TResult? Function()?  sendPassResetEmail,}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
 return dataChanged(_that.email);case SendPassResetEmail() when sendPassResetEmail != null:
@@ -184,7 +184,7 @@ class _DataChanged implements ForgotPassEvent {
   const _DataChanged({this.email});
   
 
- final  EmailInput? email;
+ final  EmailFormInput? email;
 
 /// Create a copy of ForgotPassEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -216,7 +216,7 @@ abstract mixin class _$DataChangedCopyWith<$Res> implements $ForgotPassEventCopy
   factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
 @useResult
 $Res call({
- EmailInput? email
+ EmailFormInput? email
 });
 
 
@@ -236,7 +236,7 @@ class __$DataChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? email = freezed,}) {
   return _then(_DataChanged(
 email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as EmailInput?,
+as EmailFormInput?,
   ));
 }
 
@@ -392,7 +392,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( EmailInput email,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( EmailFormInput email,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case ForgotPassLoading() when loading != null:
 return loading();case _Loaded() when loaded != null:
@@ -416,7 +416,7 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( EmailInput email,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( EmailFormInput email,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
 switch (_that) {
 case ForgotPassLoading():
 return loading();case _Loaded():
@@ -439,7 +439,7 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( EmailInput email,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( EmailFormInput email,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
 switch (_that) {
 case ForgotPassLoading() when loading != null:
 return loading();case _Loaded() when loaded != null:
@@ -492,7 +492,7 @@ class _Loaded implements ForgotPassState {
   const _Loaded({required this.email, required this.formzSubmissionStatus});
   
 
- final  EmailInput email;
+ final  EmailFormInput email;
  final  FormzSubmissionStatus formzSubmissionStatus;
 
 /// Create a copy of ForgotPassState
@@ -525,7 +525,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $ForgotPassStateCopyWith<
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- EmailInput email, FormzSubmissionStatus formzSubmissionStatus
+ EmailFormInput email, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
@@ -545,7 +545,7 @@ class __$LoadedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? email = null,Object? formzSubmissionStatus = null,}) {
   return _then(_Loaded(
 email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as EmailInput,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+as EmailFormInput,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,
   ));
 }

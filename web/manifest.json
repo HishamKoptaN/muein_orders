@@ -1,11 +1,11 @@
 {
-    "name": "mubein orders",
+    "name": "muein_orders",
     "short_name": "muein_orders",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#003A45",
-    "theme_color": "#003A45",
-    "description": "aquan App dev",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

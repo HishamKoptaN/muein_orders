@@ -56,20 +56,6 @@ import '../../features/auth/sign_up/domain/repo/sign_up_repo.dart' as _i871;
 import '../../features/auth/sign_up/domain/use_cases/sign_up_use_cases.dart'
     as _i251;
 import '../../features/auth/sign_up/present/bloc/sign_up_bloc.dart' as _i226;
-import '../../features/cached_docs/data/datasources/local/drift/app_database.dart'
-    as _i523;
-import '../../features/cached_docs/data/repo_impl/cached_docs_repo_impl.dart'
-    as _i240;
-import '../../features/cached_docs/domain/repo/cached_docs_repo.dart' as _i281;
-import '../../features/cached_docs/domain/usecases/cached_docs_use_cases.dart'
-    as _i748;
-import '../../features/cached_docs/present/bloc/cached_doc_bloc.dart' as _i422;
-import '../../features/docs/data/datasources/remote_data_sr/docs_api.dart'
-    as _i977;
-import '../../features/docs/data/repo_impl/docs_repo_impl.dart' as _i430;
-import '../../features/docs/domain/repo/docs_repo.dart' as _i672;
-import '../../features/docs/domain/usecases/docs_use_cases.dart' as _i689;
-import '../../features/docs/present/blocs/docs_bloc/docs_bloc.dart' as _i617;
 import '../../features/financial/data/datasources/financial_api.dart' as _i252;
 import '../../features/financial/data/repo_impl/financial_repo_impl.dart'
     as _i58;
@@ -80,14 +66,17 @@ import '../../features/financial/present/blocs/bloc/expenses_bloc.dart'
     as _i660;
 import '../../features/financial/present/blocs/financial_bloc/financial_bloc.dart'
     as _i468;
-import '../../features/home/data/datasources/stats_api.dart' as _i144;
-import '../../features/home/data/repo_impl/stats_repo_impl.dart' as _i860;
-import '../../features/home/domain/repo/stats_repo.dart' as _i733;
-import '../../features/home/domain/usecases/stats_use_cases.dart' as _i261;
-import '../../features/home/present/bloc/stats_bloc.dart' as _i840;
+import '../../features/home_features/home/data/datasources/stats_api.dart'
+    as _i598;
+import '../../features/home_features/home/data/repo_impl/stats_repo_impl.dart'
+    as _i312;
+import '../../features/home_features/home/domain/repo/stats_repo.dart' as _i288;
+import '../../features/home_features/home/domain/usecases/stats_use_cases.dart'
+    as _i545;
+import '../../features/home_features/home/present/bloc/stats_bloc.dart'
+    as _i975;
 import '../../features/instructions/present/bloc/instructions_bloc.dart'
     as _i197;
-import '../../features/language/bloc/language_bloc.dart' as _i724;
 import '../../features/notifications/data/datasources/notifications_api.dart'
     as _i352;
 import '../../features/notifications/data/repo_impl/notifications_repo_impl.dart'
@@ -98,11 +87,52 @@ import '../../features/notifications/domain/usecases/notifications_use_cases.dar
     as _i139;
 import '../../features/notifications/present/bloc/notifications_bloc.dart'
     as _i781;
-import '../../features/orders/data/datasources/orders_api.dart' as _i165;
-import '../../features/orders/data/repo_impl/orders_repo_impl.dart' as _i450;
-import '../../features/orders/domain/repo/orders_repo.dart' as _i808;
-import '../../features/orders/domain/usecases/orders_use_cases.dart' as _i802;
-import '../../features/orders/present/bloc/orders_bloc.dart' as _i189;
+import '../../features/orders_features/cached_docs/data/datasources/local/drift/app_database.dart'
+    as _i649;
+import '../../features/orders_features/cached_docs/data/repo_impl/cached_docs_repo_impl.dart'
+    as _i1022;
+import '../../features/orders_features/cached_docs/domain/repo/cached_docs_repo.dart'
+    as _i576;
+import '../../features/orders_features/cached_docs/domain/usecases/cached_docs_use_cases.dart'
+    as _i945;
+import '../../features/orders_features/cached_docs/domain/usecases/paste_location_from_clipboard_usecase.dart'
+    as _i129;
+import '../../features/orders_features/cached_docs/present/bloc/cached_doc_bloc.dart'
+    as _i984;
+import '../../features/orders_features/cached_docs/present/bloc/location_picker_bloc/location_picker_bloc.dart'
+    as _i711;
+import '../../features/orders_features/docs/data/datasources/remote_data_sr/docs_api.dart'
+    as _i128;
+import '../../features/orders_features/docs/data/repo_impl/docs_repo_impl.dart'
+    as _i807;
+import '../../features/orders_features/docs/domain/repo/docs_repo.dart'
+    as _i744;
+import '../../features/orders_features/docs/domain/usecases/docs_use_cases.dart'
+    as _i332;
+import '../../features/orders_features/docs/present/blocs/docs_bloc/docs_bloc.dart'
+    as _i396;
+import '../../features/orders_features/orders/data/datasources/orders_api.dart'
+    as _i890;
+import '../../features/orders_features/orders/data/repo_impl/orders_repo_impl.dart'
+    as _i588;
+import '../../features/orders_features/orders/domain/repo/orders_repo.dart'
+    as _i84;
+import '../../features/orders_features/orders/domain/usecases/orders_use_cases.dart'
+    as _i968;
+import '../../features/orders_features/orders/domain/usecases/watch_doc_use_case.dart'
+    as _i281;
+import '../../features/orders_features/orders/present/bloc/orders_bloc.dart'
+    as _i106;
+import '../../features/orders_features/orders_items/data/datasources/order_items_api.dart'
+    as _i10;
+import '../../features/orders_features/orders_items/data/repo_impl/order_items_repo_impl.dart'
+    as _i290;
+import '../../features/orders_features/orders_items/domain/repo/order_items_repo.dart'
+    as _i859;
+import '../../features/orders_features/orders_items/domain/usecases/order_items_use_cases.dart'
+    as _i1014;
+import '../../features/orders_features/orders_items/present/bloc/order_items_bloc.dart'
+    as _i884;
 import '../../features/profile/data/datasources/profile_api.dart' as _i191;
 import '../../features/profile/data/repo/profile_repo_impl.dart' as _i256;
 import '../../features/profile/domain/repo/profile_repo.dart' as _i364;
@@ -112,17 +142,21 @@ import '../../features/profile/present/bloc/profile_bloc.dart' as _i475;
 import '../../features/s3/data/data_sources/s3_api.dart' as _i335;
 import '../../features/s3/data/repo/s3_repo.dart' as _i1;
 import '../../features/s3/domain/repo_impl/s3_repo_impl.dart' as _i758;
-import '../../features/theme/blocs/theme_bloc.dart' as _i307;
-import '../background/workmanager_initializer.dart' as _i996;
+import '../blocs/theme_bloc.dart' as _i725;
+import '../language/bloc/language_bloc.dart' as _i48;
 import '../networking/network_info.dart' as _i303;
-import '../services/auth_storage_service.dart' as _i250;
-import '../services/firebase_messaging/firebase_messaging_service.dart'
-    as _i183;
-import '../services/notification_manager.dart' as _i105;
+import '../performance/cache_strategy.dart' as _i46;
 import '../utils/app_file_manager.dart' as _i246;
-import 'api_module.dart' as _i804;
-import 'dio/api_module.dart' as _i158;
+import '../utils/background/workmanager_initializer.dart' as _i45;
+import '../utils/services/auth_storage_service.dart' as _i566;
+import '../utils/services/clipboard_service.dart' as _i684;
+import '../utils/services/firebase_messaging/firebase_messaging_service.dart'
+    as _i608;
+import '../utils/services/notification_manager.dart' as _i749;
+import '../utils/services/token_service.dart' as _i1052;
 import 'dio/dio_module.dart' as _i374;
+import 'dio/Interceptor.dart' as _i510;
+import 'dio/user_module.dart' as _i433;
 import 'injection_module.dart' as _i212;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -133,19 +167,17 @@ Future<_i174.GetIt> $initGetIt(
 }) async {
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final injectionModule = _$InjectionModule();
-  final apiModule = _$ApiModule();
+  final userModule = _$UserModule();
   final dioModule = _$DioModule();
   await gh.factoryAsync<_i460.SharedPreferencesAsync>(
     () => injectionModule.prefs,
     preResolve: true,
   );
-  gh.factory<_i250.AuthStorageService>(() => _i250.AuthStorageService());
-  gh.singleton<_i996.WorkManagerInitializer>(
-    () => _i996.WorkManagerInitializer(),
-  );
-  gh.singleton<_i804.LoggingInterceptor>(() => _i804.LoggingInterceptor());
-  gh.singleton<_i557.Env>(() => apiModule.config);
-  gh.singleton<_i158.LoggingInterceptor>(() => _i158.LoggingInterceptor());
+  gh.factory<_i566.AuthStorageService>(() => _i566.AuthStorageService());
+  gh.singleton<_i725.ThemeBloc>(() => _i725.ThemeBloc());
+  gh.singleton<_i510.AuthInterceptor>(() => _i510.AuthInterceptor());
+  gh.singleton<_i510.LoggingInterceptor>(() => _i510.LoggingInterceptor());
+  gh.singleton<_i557.Env>(() => userModule.config);
   gh.singleton<_i161.InternetConnection>(
     () => injectionModule.connectionChecker,
   );
@@ -157,75 +189,41 @@ Future<_i174.GetIt> $initGetIt(
     () => injectionModule.firebaseMessaging,
   );
   gh.singleton<_i558.FlutterSecureStorage>(() => injectionModule.secureStorage);
-  gh.singleton<_i183.FirebaseMessagingService>(
-    () => _i183.FirebaseMessagingService(),
-  );
+  gh.singleton<Duration>(() => injectionModule.cacheDefaultTtl);
+  gh.singleton<_i684.ClipboardService>(() => injectionModule.clipboardService);
+  gh.singleton<_i48.LanguageBloc>(() => _i48.LanguageBloc());
+  gh.singleton<_i46.OrdersFilterCache>(() => _i46.OrdersFilterCache());
   gh.singleton<_i246.AppFileManager>(() => _i246.AppFileManager());
-  gh.singleton<_i523.AppDatabase>(() => _i523.AppDatabase());
+  gh.singleton<_i45.WorkManagerInitializer>(
+    () => _i45.WorkManagerInitializer(),
+  );
+  gh.singleton<_i608.FirebaseMessagingService>(
+    () => _i608.FirebaseMessagingService(),
+  );
   gh.singleton<_i197.InstructionsBloc>(() => _i197.InstructionsBloc());
-  gh.singleton<_i724.LanguageBloc>(() => _i724.LanguageBloc());
-  gh.singleton<_i307.ThemeBloc>(() => _i307.ThemeBloc());
-  gh.lazySingleton<_i804.TokenStorage>(() => _i804.TokenStorage());
-  gh.lazySingleton<_i158.TokenStorage>(() => _i158.TokenStorage());
-  gh.singleton<_i804.AuthInterceptor>(
-    () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()),
+  gh.lazySingleton<_i649.AppDatabase>(() => _i649.AppDatabase());
+  gh.singleton<_i576.CachedDocsRepo>(
+    () => _i1022.CachedDocsRepoImpl(gh<_i649.AppDatabase>()),
   );
   gh.singleton<_i361.Dio>(() => dioModule.s3Dio(), instanceName: 's3Dio');
-  gh.singleton<_i281.CachedDocsRepo>(
-    () => _i240.CachedDocsRepoImpl(gh<_i523.AppDatabase>()),
-  );
-  gh.lazySingleton<_i1.S3Repo>(
-    () => _i758.S3RepoImpl(gh<_i361.Dio>(instanceName: 's3Dio')),
-  );
-  gh.lazySingleton<_i105.NotificationManager>(
-    () =>
-        _i105.NotificationManager(gh<_i163.FlutterLocalNotificationsPlugin>()),
-  );
-  gh.singleton<_i158.AuthInterceptor>(
-    () => _i158.AuthInterceptor(gh<_i158.TokenStorage>()),
-  );
-  gh.lazySingleton<_i614.ForgotPassRepo>(
-    () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()),
-  );
-  gh.singleton<_i303.NetworkInfo>(
-    () => _i303.NetworkInfoImpl(
-      connectionChecker: gh<_i161.InternetConnection>(),
-    ),
-  );
-  gh.lazySingleton<_i532.ChangePassRepo>(
-    () => _i901.ChangePassRepositoryImpl(gh<_i59.FirebaseAuth>()),
+  gh.lazySingleton<_i129.PasteLocationFromClipboardUseCase>(
+    () => _i129.PasteLocationFromClipboardUseCase(gh<_i684.ClipboardService>()),
   );
   gh.singleton<_i361.Dio>(
     () => dioModule.dio(
-      gh<_i158.AuthInterceptor>(),
-      gh<_i158.LoggingInterceptor>(),
+      gh<_i510.AuthInterceptor>(),
+      gh<_i510.LoggingInterceptor>(),
     ),
   );
   gh.singleton<_i361.Dio>(
     () => dioModule.authDio(
-      gh<_i158.AuthInterceptor>(),
-      gh<_i158.LoggingInterceptor>(),
+      gh<_i510.AuthInterceptor>(),
+      gh<_i510.LoggingInterceptor>(),
     ),
     instanceName: 'authDio',
   );
-  gh.lazySingleton<_i977.DocsApi>(() => _i977.DocsApi(gh<_i361.Dio>()));
-  gh.lazySingleton<_i191.ProfileApi>(() => _i191.ProfileApi(gh<_i361.Dio>()));
-  gh.lazySingleton<_i335.S3Api>(() => _i335.S3Api(gh<_i361.Dio>()));
-  gh.singleton<_i252.FinancialApi>(() => _i252.FinancialApi(gh<_i361.Dio>()));
-  gh.singleton<_i144.StatsApi>(() => _i144.StatsApi(gh<_i361.Dio>()));
-  gh.singleton<_i352.NotificationsApi>(
-    () => _i352.NotificationsApi(gh<_i361.Dio>()),
-  );
-  gh.singleton<_i165.OrdersApi>(() => _i165.OrdersApi(gh<_i361.Dio>()));
-  gh.lazySingleton<_i629.SendPassResetEmailUseCase>(
-    () => _i629.SendPassResetEmailUseCase(gh<_i614.ForgotPassRepo>()),
-  );
-  gh.lazySingleton<_i364.ProfileRepo>(
-    () =>
-        _i256.ProfileRepoImpl(gh<_i191.ProfileApi>(), gh<_i59.FirebaseAuth>()),
-  );
-  gh.lazySingleton<_i146.SendPassResetEmailUseCase>(
-    () => _i146.SendPassResetEmailUseCase(gh<_i532.ChangePassRepo>()),
+  gh.lazySingleton<_i1.S3Repo>(
+    () => _i758.S3RepoImpl(gh<_i361.Dio>(instanceName: 's3Dio')),
   );
   gh.singleton<_i976.AuthApi>(
     () => _i976.AuthApi(gh<_i361.Dio>(instanceName: 'authDio')),
@@ -236,17 +234,97 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i552.SignUpApi>(
     () => _i552.SignUpApi(gh<_i361.Dio>(instanceName: 'authDio')),
   );
-  gh.lazySingleton<_i733.StatsRepo>(
-    () => _i860.StatsRepoImpl(gh<_i144.StatsApi>()),
+  gh.lazySingleton<_i749.NotificationManager>(
+    () =>
+        _i749.NotificationManager(gh<_i163.FlutterLocalNotificationsPlugin>()),
   );
-  gh.lazySingleton<_i610.AuthRepo>(
-    () => _i246.AuthRepoImpl(gh<_i59.FirebaseAuth>(), gh<_i976.AuthApi>()),
+  gh.singleton<_i46.CacheStrategy<dynamic, dynamic>>(
+    () => _i46.CacheStrategy<dynamic, dynamic>(defaultTtl: gh<Duration>()),
+  );
+  gh.lazySingleton<_i614.ForgotPassRepo>(
+    () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()),
+  );
+  gh.singleton<_i303.NetworkInfo>(
+    () => _i303.NetworkInfoImpl(
+      connectionChecker: gh<_i161.InternetConnection>(),
+    ),
+  );
+  gh.lazySingleton<_i1052.TokenService>(
+    () => _i1052.TokenService(gh<_i59.FirebaseAuth>()),
+  );
+  gh.lazySingleton<_i532.ChangePassRepo>(
+    () => _i901.ChangePassRepositoryImpl(gh<_i59.FirebaseAuth>()),
+  );
+  gh.singleton<_i281.WatchDocUseCase>(
+    () => _i281.WatchDocUseCase(gh<_i649.AppDatabase>()),
+  );
+  gh.lazySingleton<_i711.LocationPickerBloc>(
+    () =>
+        _i711.LocationPickerBloc(gh<_i129.PasteLocationFromClipboardUseCase>()),
+  );
+  gh.lazySingleton<_i128.DocsApi>(() => _i128.DocsApi(gh<_i361.Dio>()));
+  gh.lazySingleton<_i191.ProfileApi>(() => _i191.ProfileApi(gh<_i361.Dio>()));
+  gh.lazySingleton<_i335.S3Api>(() => _i335.S3Api(gh<_i361.Dio>()));
+  gh.singleton<_i252.FinancialApi>(() => _i252.FinancialApi(gh<_i361.Dio>()));
+  gh.singleton<_i598.StatsApi>(() => _i598.StatsApi(gh<_i361.Dio>()));
+  gh.singleton<_i352.NotificationsApi>(
+    () => _i352.NotificationsApi(gh<_i361.Dio>()),
+  );
+  gh.singleton<_i890.OrdersApi>(() => _i890.OrdersApi(gh<_i361.Dio>()));
+  gh.singleton<_i10.OrderItemsApi>(() => _i10.OrderItemsApi(gh<_i361.Dio>()));
+  gh.lazySingleton<_i629.SendPassResetEmailUseCase>(
+    () => _i629.SendPassResetEmailUseCase(gh<_i614.ForgotPassRepo>()),
+  );
+  gh.lazySingleton<_i871.SignUpRepo>(
+    () => _i17.SignUpRepoImpl(gh<_i552.SignUpApi>()),
+  );
+  gh.lazySingleton<_i364.ProfileRepo>(
+    () =>
+        _i256.ProfileRepoImpl(gh<_i191.ProfileApi>(), gh<_i59.FirebaseAuth>()),
+  );
+  gh.lazySingleton<_i146.SendPassResetEmailUseCase>(
+    () => _i146.SendPassResetEmailUseCase(gh<_i532.ChangePassRepo>()),
+  );
+  gh.singleton<_i610.AuthRepo>(
+    () => _i246.AuthRepoImpl(
+      gh<_i59.FirebaseAuth>(),
+      gh<_i976.AuthApi>(),
+      gh<_i1052.TokenService>(),
+      gh<_i566.AuthStorageService>(),
+    ),
+  );
+  gh.lazySingleton<_i744.DocsRepo>(
+    () => _i807.DocsRepoImpl(
+      docsApi: gh<_i128.DocsApi>(),
+      db: gh<_i649.AppDatabase>(),
+      s3Repo: gh<_i1.S3Repo>(),
+    ),
+  );
+  gh.lazySingleton<_i251.SignUpUseCases>(
+    () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()),
+  );
+  gh.singleton<_i151.AuthUseCases>(
+    () => _i151.AuthUseCases(authRepo: gh<_i610.AuthRepo>()),
+  );
+  gh.lazySingleton<_i288.StatsRepo>(
+    () => _i312.StatsRepoImpl(gh<_i598.StatsApi>()),
+  );
+  gh.lazySingleton<_i305.SignInRepo>(
+    () => _i218.SignInRepoImpl(
+      gh<_i59.FirebaseAuth>(),
+      gh<_i892.FirebaseMessaging>(),
+      gh<_i804.SignInApi>(),
+      gh<_i1052.TokenService>(),
+    ),
+  );
+  gh.singleton<_i545.StatsUseCases>(
+    () => _i545.StatsUseCases(gh<_i288.StatsRepo>()),
+  );
+  gh.singleton<_i975.StatsBloc>(
+    () => _i975.StatsBloc(statsUseCases: gh<_i545.StatsUseCases>()),
   );
   gh.lazySingleton<_i494.ChangePassBloc>(
     () => _i494.ChangePassBloc(gh<_i146.SendPassResetEmailUseCase>()),
-  );
-  gh.singleton<_i261.StatsUseCases>(
-    () => _i261.StatsUseCases(gh<_i733.StatsRepo>()),
   );
   gh.singleton<_i995.ProfileUseCases>(
     () => _i995.ProfileUseCases(gh<_i364.ProfileRepo>(), gh<_i1.S3Repo>()),
@@ -254,69 +332,64 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i1011.FinancialRepo>(
     () => _i58.FinancialRepoImpl(gh<_i252.FinancialApi>()),
   );
-  gh.singleton<_i840.StatsBloc>(
-    () => _i840.StatsBloc(statsUseCases: gh<_i261.StatsUseCases>()),
-  );
-  gh.lazySingleton<_i672.DocsRepo>(
-    () => _i430.DocsRepoImpl(
-      docsApi: gh<_i977.DocsApi>(),
-      db: gh<_i523.AppDatabase>(),
-      s3Repo: gh<_i1.S3Repo>(),
-    ),
-  );
-  gh.lazySingleton<_i689.DocsUseCase>(
-    () => _i689.DocsUseCase(
-      docsRepo: gh<_i672.DocsRepo>(),
-      cachedDocsRepo: gh<_i281.CachedDocsRepo>(),
-    ),
-  );
   gh.singleton<_i967.NotificationsRepo>(
     () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()),
   );
-  gh.singleton<_i808.OrdersRepo>(
-    () => _i450.OrdersRepoImpl(gh<_i165.OrdersApi>()),
+  gh.singleton<_i859.OrderItemsRepo>(
+    () => _i290.OrdersRepoImpl(gh<_i10.OrderItemsApi>()),
   );
-  gh.singleton<_i748.CachedDocsUseCases>(
-    () => _i748.CachedDocsUseCases(
-      docsRepo: gh<_i672.DocsRepo>(),
-      cachedDocsRepo: gh<_i281.CachedDocsRepo>(),
+  gh.singleton<_i1014.OrderItemsUseCases>(
+    () => _i1014.OrderItemsUseCases(gh<_i859.OrderItemsRepo>()),
+  );
+  gh.singleton<_i99.AuthBloc>(
+    () => _i99.AuthBloc(authUseCases: gh<_i151.AuthUseCases>()),
+  );
+  gh.singleton<_i945.CachedDocsUseCases>(
+    () => _i945.CachedDocsUseCases(
+      docsRepo: gh<_i744.DocsRepo>(),
+      cachedDocsRepo: gh<_i576.CachedDocsRepo>(),
       fileManager: gh<_i246.AppFileManager>(),
+      pasteLocationUseCase: gh<_i129.PasteLocationFromClipboardUseCase>(),
     ),
   );
-  gh.lazySingleton<_i871.SignUpRepo>(
-    () => _i17.SignUpRepoImpl(gh<_i552.SignUpApi>(), gh<_i804.TokenStorage>()),
+  gh.lazySingleton<_i226.SignUpBloc>(
+    () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()),
+  );
+  gh.singleton<_i84.OrdersRepo>(
+    () => _i588.OrdersRepoImpl(gh<_i890.OrdersApi>(), gh<_i649.AppDatabase>()),
+  );
+  gh.lazySingleton<_i332.DocsUseCase>(
+    () => _i332.DocsUseCase(
+      docsRepo: gh<_i744.DocsRepo>(),
+      cachedDocsRepo: gh<_i576.CachedDocsRepo>(),
+    ),
+  );
+  gh.lazySingleton<_i941.SignInUseCases>(
+    () => _i941.SignInUseCases(gh<_i305.SignInRepo>()),
   );
   gh.lazySingleton<_i154.ForgotPassBloc>(
     () => _i154.ForgotPassBloc(gh<_i629.SendPassResetEmailUseCase>()),
   );
-  gh.lazySingleton<_i305.SignInRepo>(
-    () => _i218.SignInRepoImpl(
-      gh<_i59.FirebaseAuth>(),
-      gh<_i892.FirebaseMessaging>(),
-      gh<_i804.SignInApi>(),
-      gh<_i804.TokenStorage>(),
-    ),
+  gh.singleton<_i968.OrdersUseCases>(
+    () => _i968.OrdersUseCases(gh<_i84.OrdersRepo>()),
   );
   gh.singleton<_i868.FinancialUseCases>(
     () => _i868.FinancialUseCases(gh<_i1011.FinancialRepo>()),
   );
-  gh.lazySingleton<_i251.SignUpUseCases>(
-    () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()),
-  );
   gh.singleton<_i139.NotificationsUseCases>(
     () => _i139.NotificationsUseCases(gh<_i967.NotificationsRepo>()),
   );
-  gh.singleton<_i151.AuthUseCase>(
-    () => _i151.AuthUseCase(authRepo: gh<_i610.AuthRepo>()),
-  );
-  gh.singleton<_i802.OrdersUseCases>(
-    () => _i802.OrdersUseCases(gh<_i808.OrdersRepo>()),
-  );
-  gh.singleton<_i617.DocsBloc>(
-    () => _i617.DocsBloc(
-      docsUseCase: gh<_i689.DocsUseCase>(),
-      db: gh<_i523.AppDatabase>(),
+  gh.lazySingleton<_i984.CachedDocBloc>(
+    () => _i984.CachedDocBloc(
+      gh<_i945.CachedDocsUseCases>(),
+      gh<_i246.AppFileManager>(),
     ),
+  );
+  gh.lazySingleton<_i106.OrdersBloc>(
+    () => _i106.OrdersBloc(gh<_i968.OrdersUseCases>()),
+  );
+  gh.lazySingleton<_i884.OrderItemsBloc>(
+    () => _i884.OrderItemsBloc(gh<_i1014.OrderItemsUseCases>()),
   );
   gh.singleton<_i475.ProfileBloc>(
     () => _i475.ProfileBloc(gh<_i995.ProfileUseCases>()),
@@ -327,38 +400,26 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i468.FinancialBloc>(
     () => _i468.FinancialBloc(reportsUseCases: gh<_i868.FinancialUseCases>()),
   );
-  gh.singleton<_i422.CachedDocBloc>(
-    () => _i422.CachedDocBloc(
-      gh<_i748.CachedDocsUseCases>(),
-      gh<_i246.AppFileManager>(),
+  gh.lazySingleton<_i396.DocsBloc>(
+    () => _i396.DocsBloc(
+      docsUseCase: gh<_i332.DocsUseCase>(),
+      db: gh<_i649.AppDatabase>(),
     ),
   );
-  gh.singleton<_i99.AuthBloc>(
-    () => _i99.AuthBloc(authUseCases: gh<_i151.AuthUseCase>()),
-  );
-  gh.lazySingleton<_i226.SignUpBloc>(
-    () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()),
-  );
-  gh.lazySingleton<_i941.SignInUseCases>(
-    () => _i941.SignInUseCases(gh<_i305.SignInRepo>(), gh<_i59.FirebaseAuth>()),
-  );
-  gh.singleton<_i189.OrdersBloc>(
-    () => _i189.OrdersBloc(
-      gh<_i802.OrdersUseCases>(),
-      gh<_i281.CachedDocsRepo>(),
+  gh.lazySingleton<_i665.SignInBloc>(
+    () => _i665.SignInBloc(
+      signInUseCases: gh<_i941.SignInUseCases>(),
+      authBloc: gh<_i99.AuthBloc>(),
     ),
   );
   gh.singleton<_i660.ExpensesBloc>(
     () => _i660.ExpensesBloc(financialUseCases: gh<_i868.FinancialUseCases>()),
-  );
-  gh.lazySingleton<_i665.SignInBloc>(
-    () => _i665.SignInBloc(signInUseCases: gh<_i941.SignInUseCases>()),
   );
   return getIt;
 }
 
 class _$InjectionModule extends _i212.InjectionModule {}
 
-class _$ApiModule extends _i158.ApiModule {}
+class _$UserModule extends _i433.UserModule {}
 
 class _$DioModule extends _i374.DioModule {}

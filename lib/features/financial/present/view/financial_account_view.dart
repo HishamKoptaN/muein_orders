@@ -9,7 +9,6 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../blocs/financial_bloc/financial_bloc.dart';
 import 'expenses_view.dart';
-import 'widgets/financial_account_shimmer.dart';
 
 class FinancialAccountView extends StatefulWidget {
   const FinancialAccountView({super.key});
@@ -84,10 +83,10 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
                 },
                 initial: (state) {
                   getIt<FinancialBloc>().add(const FinancialEvent.get());
-                  return const FinancialAccountShimmer();
+                  return const SizedBox();
                 },
                 orElse: () {
-                  return const FinancialAccountShimmer();
+                  return const SizedBox();
                 },
               );
             },

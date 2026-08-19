@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../utils/services/clipboard_service.dart';
 
 @module
 abstract class InjectionModule {
@@ -26,4 +26,8 @@ abstract class InjectionModule {
       await SharedPreferencesAsync();
   @singleton
   FlutterSecureStorage get secureStorage => const FlutterSecureStorage();
+  @singleton
+  Duration get cacheDefaultTtl => const Duration(minutes: 5);
+  @singleton
+  ClipboardService get clipboardService => ClipboardServiceImpl();
 }

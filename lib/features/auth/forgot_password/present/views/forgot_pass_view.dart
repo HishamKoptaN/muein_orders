@@ -2,11 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
-import 'package:form_inputs/form_inputs/email_input.dart';
 import 'package:formz/formz.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/gloabal_widgets/custom_scaffold.dart';
+import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/forms/auth_text_form_field.dart';
@@ -58,7 +57,7 @@ class ForgotPassView extends StatelessWidget {
                         onChanged: (value) {
                           getIt<ForgotPassBloc>().add(
                             ForgotPassEvent.dataChanged(
-                              email: EmailInput.dirty(value),
+                              email: EmailFormInput.dirty(value),
                             ),
                           );
                         },
@@ -167,7 +166,7 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
     final testEmail = testEmails[0];
 
     getIt<ForgotPassBloc>()
-      ..add(ForgotPassEvent.dataChanged(email: EmailInput.dirty(testEmail)))
+      ..add(ForgotPassEvent.dataChanged(email: EmailFormInput.dirty(testEmail)))
       ..add(const ForgotPassEvent.sendPassResetEmail());
 
     debugPrint('✅ Autofill Login Done (via BLoC)');

@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "muein_orders" "\0"
-            VALUE "FileDescription", "muein orders" "\0"
+            VALUE "CompanyName", "com.muein" "\0"
+            VALUE "FileDescription", "muein_orders" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "muein orders" "\0"
-            VALUE "LegalCopyright", "© 2024 muein_orders" "\0"
+            VALUE "InternalName", "muein_orders" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.muein. All rights reserved." "\0"
             VALUE "OriginalFilename", "muein_orders.exe" "\0"
-            VALUE "ProductName", "muein orders" "\0"
+            VALUE "ProductName", "muein_orders" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
