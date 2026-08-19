@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../core/networking/api_result.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../s3/data/repo/s3_repo.dart';
 import '../entities/profile_res_entity.dart';
 import '../entities/update_profile_req_entity.dart';
@@ -23,13 +26,13 @@ class ProfileUseCases {
     if (updateProfileReqEntity.avatar != null) {
       final result = await _profileRepo.presignedAvatarUrl(
         extension:
-            updateProfileReqEntity.avatar!.value?.path.split('.').last ?? '',
+            updateProfileReqEntity.avatar?.value?.path.split('.').last ?? '',
       );
       return await result.when(
         success: (s3Info) async {
           try {
             await s3Repo.uploadFile(
-              file: updateProfileReqEntity.avatar!.value!,
+              file: File(updateProfileReqEntity.avatar?.value?.path ?? ''),
               uploadUrl: s3Info!.uploadUrl ?? '',
               contentType: s3Info.contentType ?? '',
             );
@@ -40,12 +43,12 @@ class ProfileUseCases {
             );
           } catch (e) {
             return const ApiResult.failure(
-              apiErrorModel: ApiErrorModel(message: 'Failed to upload avatar'),
+              errorInfo: ErrorInfo(message: 'Failed to upload avatar'),
             );
           }
         },
         failure: (failure) {
-          return ApiResult.failure(apiErrorModel: failure);
+          return ApiResult.failure(errorInfo: failure);
         },
       );
     } else {

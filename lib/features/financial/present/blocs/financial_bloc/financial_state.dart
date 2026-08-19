@@ -8,6 +8,5 @@ abstract class FinancialState with _$FinancialState {
   const factory FinancialState.loaded({
     required FinancialAccountEntity? financialAccount,
   }) = _Loaded;
-  const factory FinancialState.failure({ApiErrorModel? apiErrorModel}) =
-      _Failure;
+  const factory FinancialState.failure({ErrorInfo? apiErrorModel}) = _Failure;
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../features/language/view/select_language.dart';
+import '../../language/view/select_language.dart';
 
 class LanguageIconButton extends StatelessWidget {
   const LanguageIconButton({super.key});

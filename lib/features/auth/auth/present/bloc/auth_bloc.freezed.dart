@@ -61,14 +61,13 @@ extension AuthEventPatterns on AuthEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Check value)?  check,TResult Function( _SignedOut value)?  signedOut,TResult Function( _ForceRefresh value)?  forceRefresh,TResult Function( _EmitAuthenticated value)?  emitAuthenticated,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Check value)?  check,TResult Function( _authToken value)?  authToken,TResult Function( _SignedOut value)?  signedOut,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Check() when check != null:
-return check(_that);case _SignedOut() when signedOut != null:
-return signedOut(_that);case _ForceRefresh() when forceRefresh != null:
-return forceRefresh(_that);case _EmitAuthenticated() when emitAuthenticated != null:
-return emitAuthenticated(_that);case _:
+return check(_that);case _authToken() when authToken != null:
+return authToken(_that);case _SignedOut() when signedOut != null:
+return signedOut(_that);case _:
   return orElse();
 
 }
@@ -86,14 +85,13 @@ return emitAuthenticated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Check value)  check,required TResult Function( _SignedOut value)  signedOut,required TResult Function( _ForceRefresh value)  forceRefresh,required TResult Function( _EmitAuthenticated value)  emitAuthenticated,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Check value)  check,required TResult Function( _authToken value)  authToken,required TResult Function( _SignedOut value)  signedOut,}){
 final _that = this;
 switch (_that) {
 case _Check():
-return check(_that);case _SignedOut():
-return signedOut(_that);case _ForceRefresh():
-return forceRefresh(_that);case _EmitAuthenticated():
-return emitAuthenticated(_that);case _:
+return check(_that);case _authToken():
+return authToken(_that);case _SignedOut():
+return signedOut(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -110,14 +108,13 @@ return emitAuthenticated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Check value)?  check,TResult? Function( _SignedOut value)?  signedOut,TResult? Function( _ForceRefresh value)?  forceRefresh,TResult? Function( _EmitAuthenticated value)?  emitAuthenticated,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Check value)?  check,TResult? Function( _authToken value)?  authToken,TResult? Function( _SignedOut value)?  signedOut,}){
 final _that = this;
 switch (_that) {
 case _Check() when check != null:
-return check(_that);case _SignedOut() when signedOut != null:
-return signedOut(_that);case _ForceRefresh() when forceRefresh != null:
-return forceRefresh(_that);case _EmitAuthenticated() when emitAuthenticated != null:
-return emitAuthenticated(_that);case _:
+return check(_that);case _authToken() when authToken != null:
+return authToken(_that);case _SignedOut() when signedOut != null:
+return signedOut(_that);case _:
   return null;
 
 }
@@ -134,13 +131,12 @@ return emitAuthenticated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  check,TResult Function()?  signedOut,TResult Function()?  forceRefresh,TResult Function()?  emitAuthenticated,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( Completer<void>? onComplete)?  check,TResult Function( Completer<void>? onComplete)?  authToken,TResult Function()?  signedOut,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Check() when check != null:
-return check();case _SignedOut() when signedOut != null:
-return signedOut();case _ForceRefresh() when forceRefresh != null:
-return forceRefresh();case _EmitAuthenticated() when emitAuthenticated != null:
-return emitAuthenticated();case _:
+return check(_that.onComplete);case _authToken() when authToken != null:
+return authToken(_that.onComplete);case _SignedOut() when signedOut != null:
+return signedOut();case _:
   return orElse();
 
 }
@@ -158,13 +154,12 @@ return emitAuthenticated();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  check,required TResult Function()  signedOut,required TResult Function()  forceRefresh,required TResult Function()  emitAuthenticated,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( Completer<void>? onComplete)  check,required TResult Function( Completer<void>? onComplete)  authToken,required TResult Function()  signedOut,}) {final _that = this;
 switch (_that) {
 case _Check():
-return check();case _SignedOut():
-return signedOut();case _ForceRefresh():
-return forceRefresh();case _EmitAuthenticated():
-return emitAuthenticated();case _:
+return check(_that.onComplete);case _authToken():
+return authToken(_that.onComplete);case _SignedOut():
+return signedOut();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -181,13 +176,12 @@ return emitAuthenticated();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  check,TResult? Function()?  signedOut,TResult? Function()?  forceRefresh,TResult? Function()?  emitAuthenticated,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( Completer<void>? onComplete)?  check,TResult? Function( Completer<void>? onComplete)?  authToken,TResult? Function()?  signedOut,}) {final _that = this;
 switch (_that) {
 case _Check() when check != null:
-return check();case _SignedOut() when signedOut != null:
-return signedOut();case _ForceRefresh() when forceRefresh != null:
-return forceRefresh();case _EmitAuthenticated() when emitAuthenticated != null:
-return emitAuthenticated();case _:
+return check(_that.onComplete);case _authToken() when authToken != null:
+return authToken(_that.onComplete);case _SignedOut() when signedOut != null:
+return signedOut();case _:
   return null;
 
 }
@@ -199,39 +193,145 @@ return emitAuthenticated();case _:
 
 
 class _Check with DiagnosticableTreeMixin implements AuthEvent {
-  const _Check();
+  const _Check({this.onComplete});
   
 
+ final  Completer<void>? onComplete;
 
-
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CheckCopyWith<_Check> get copyWith => __$CheckCopyWithImpl<_Check>(this, _$identity);
 
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'AuthEvent.check'))
-    ;
+    ..add(DiagnosticsProperty('onComplete', onComplete));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Check);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Check&&(identical(other.onComplete, onComplete) || other.onComplete == onComplete));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,onComplete);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthEvent.check()';
+  return 'AuthEvent.check(onComplete: $onComplete)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$CheckCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+  factory _$CheckCopyWith(_Check value, $Res Function(_Check) _then) = __$CheckCopyWithImpl;
+@useResult
+$Res call({
+ Completer<void>? onComplete
+});
 
 
+
+
+}
+/// @nodoc
+class __$CheckCopyWithImpl<$Res>
+    implements _$CheckCopyWith<$Res> {
+  __$CheckCopyWithImpl(this._self, this._then);
+
+  final _Check _self;
+  final $Res Function(_Check) _then;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? onComplete = freezed,}) {
+  return _then(_Check(
+onComplete: freezed == onComplete ? _self.onComplete : onComplete // ignore: cast_nullable_to_non_nullable
+as Completer<void>?,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _authToken with DiagnosticableTreeMixin implements AuthEvent {
+  const _authToken({this.onComplete});
+  
+
+ final  Completer<void>? onComplete;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$authTokenCopyWith<_authToken> get copyWith => __$authTokenCopyWithImpl<_authToken>(this, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthEvent.authToken'))
+    ..add(DiagnosticsProperty('onComplete', onComplete));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _authToken&&(identical(other.onComplete, onComplete) || other.onComplete == onComplete));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,onComplete);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'AuthEvent.authToken(onComplete: $onComplete)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$authTokenCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+  factory _$authTokenCopyWith(_authToken value, $Res Function(_authToken) _then) = __$authTokenCopyWithImpl;
+@useResult
+$Res call({
+ Completer<void>? onComplete
+});
+
+
+
+
+}
+/// @nodoc
+class __$authTokenCopyWithImpl<$Res>
+    implements _$authTokenCopyWith<$Res> {
+  __$authTokenCopyWithImpl(this._self, this._then);
+
+  final _authToken _self;
+  final $Res Function(_authToken) _then;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? onComplete = freezed,}) {
+  return _then(_authToken(
+onComplete: freezed == onComplete ? _self.onComplete : onComplete // ignore: cast_nullable_to_non_nullable
+as Completer<void>?,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
@@ -263,82 +363,6 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthEvent.signedOut()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _ForceRefresh with DiagnosticableTreeMixin implements AuthEvent {
-  const _ForceRefresh();
-  
-
-
-
-
-
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'AuthEvent.forceRefresh'))
-    ;
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ForceRefresh);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthEvent.forceRefresh()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _EmitAuthenticated with DiagnosticableTreeMixin implements AuthEvent {
-  const _EmitAuthenticated();
-  
-
-
-
-
-
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'AuthEvent.emitAuthenticated'))
-    ;
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EmitAuthenticated);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthEvent.emitAuthenticated()';
 }
 
 

@@ -32,7 +32,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
           } catch (e) {
             emit(
               NotificationsState.failure(
-                apiErrorModel: ApiErrorModel(message: e.toString()),
+                apiErrorModel: ErrorInfo(message: e.toString()),
               ),
             );
           }

@@ -122,7 +122,7 @@ return update(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( PasswordInput? password,  PasswordInput? confirmPassword)?  dataChanged,TResult Function()?  update,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( PasswordFormInput? password,  PasswordFormInput? confirmPassword)?  dataChanged,TResult Function()?  update,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
 return dataChanged(_that.password,_that.confirmPassword);case _Update() when update != null:
@@ -144,7 +144,7 @@ return update();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( PasswordInput? password,  PasswordInput? confirmPassword)  dataChanged,required TResult Function()  update,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( PasswordFormInput? password,  PasswordFormInput? confirmPassword)  dataChanged,required TResult Function()  update,}) {final _that = this;
 switch (_that) {
 case _DataChanged():
 return dataChanged(_that.password,_that.confirmPassword);case _Update():
@@ -165,7 +165,7 @@ return update();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( PasswordInput? password,  PasswordInput? confirmPassword)?  dataChanged,TResult? Function()?  update,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( PasswordFormInput? password,  PasswordFormInput? confirmPassword)?  dataChanged,TResult? Function()?  update,}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
 return dataChanged(_that.password,_that.confirmPassword);case _Update() when update != null:
@@ -184,8 +184,8 @@ class _DataChanged implements ChangePassEvent {
   const _DataChanged({this.password, this.confirmPassword});
   
 
- final  PasswordInput? password;
- final  PasswordInput? confirmPassword;
+ final  PasswordFormInput? password;
+ final  PasswordFormInput? confirmPassword;
 
 /// Create a copy of ChangePassEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -217,7 +217,7 @@ abstract mixin class _$DataChangedCopyWith<$Res> implements $ChangePassEventCopy
   factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
 @useResult
 $Res call({
- PasswordInput? password, PasswordInput? confirmPassword
+ PasswordFormInput? password, PasswordFormInput? confirmPassword
 });
 
 
@@ -237,8 +237,8 @@ class __$DataChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? password = freezed,Object? confirmPassword = freezed,}) {
   return _then(_DataChanged(
 password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordInput?,confirmPassword: freezed == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
-as PasswordInput?,
+as PasswordFormInput?,confirmPassword: freezed == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
+as PasswordFormInput?,
   ));
 }
 
@@ -394,7 +394,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PasswordInput password,  PasswordInput confirmPassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PasswordFormInput password,  PasswordFormInput confirmPassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case ChangePassLoading() when loading != null:
 return loading();case _Loaded() when loaded != null:
@@ -418,7 +418,7 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PasswordInput password,  PasswordInput confirmPassword,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PasswordFormInput password,  PasswordFormInput confirmPassword,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
 switch (_that) {
 case ChangePassLoading():
 return loading();case _Loaded():
@@ -441,7 +441,7 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PasswordInput password,  PasswordInput confirmPassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PasswordFormInput password,  PasswordFormInput confirmPassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
 switch (_that) {
 case ChangePassLoading() when loading != null:
 return loading();case _Loaded() when loaded != null:
@@ -494,8 +494,8 @@ class _Loaded implements ChangePassState {
   const _Loaded({required this.password, required this.confirmPassword, required this.formzSubmissionStatus});
   
 
- final  PasswordInput password;
- final  PasswordInput confirmPassword;
+ final  PasswordFormInput password;
+ final  PasswordFormInput confirmPassword;
  final  FormzSubmissionStatus formzSubmissionStatus;
 
 /// Create a copy of ChangePassState
@@ -528,7 +528,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $ChangePassStateCopyWith<
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- PasswordInput password, PasswordInput confirmPassword, FormzSubmissionStatus formzSubmissionStatus
+ PasswordFormInput password, PasswordFormInput confirmPassword, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
@@ -548,8 +548,8 @@ class __$LoadedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? password = null,Object? confirmPassword = null,Object? formzSubmissionStatus = null,}) {
   return _then(_Loaded(
 password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordInput,confirmPassword: null == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
-as PasswordInput,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+as PasswordFormInput,confirmPassword: null == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
+as PasswordFormInput,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,
   ));
 }

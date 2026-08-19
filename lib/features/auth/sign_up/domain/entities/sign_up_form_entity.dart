@@ -3,33 +3,31 @@ import 'package:formz/formz.dart';
 
 import 'signup_req_entity.dart';
 
-/// كيان يمثل حالة نموذج التسجيل
-/// يحتوي على جميع الحقول المُدخلة والقيم المُشتقة منها
 class SignUpFormEntity {
-  final GenericFormzInput name;
-  final PhoneNumberInput phone;
-  final EmailInput email;
-  final PasswordInput password;
-  final PasswordInput confirmPassword;
-  final bool obscurePassword;
+  final GenericFormInput name;
+  final PhoneNumberFormInput phone;
+  final EmailFormInput email;
+  final PasswordFormInput password;
+  final PasswordFormInput confirmPassword;
+  final BoolFormInput obscurePassword;
 
   const SignUpFormEntity({
-    this.name = const GenericFormzInput.dirty(''),
-    this.phone = const PhoneNumberInput.dirty(''),
-    this.email = const EmailInput.dirty(''),
-    this.password = const PasswordInput.dirty(''),
-    this.confirmPassword = const PasswordInput.dirty(''),
-    this.obscurePassword = true,
+    this.name = const GenericFormInput.dirty(value: ''),
+    this.phone = const PhoneNumberFormInput.dirty(''),
+    this.email = const EmailFormInput.dirty(''),
+    this.password = const PasswordFormInput.dirty(''),
+    this.confirmPassword = const PasswordFormInput.dirty(''),
+    this.obscurePassword = const BoolFormInput.dirty(true),
   });
 
   /// إنشاء نسخة جديدة مع تغيير بعض الحقول
   SignUpFormEntity copyWith({
-    GenericFormzInput? name,
-    PhoneNumberInput? phone,
-    EmailInput? email,
-    PasswordInput? password,
-    PasswordInput? confirmPassword,
-    bool? obscurePassword,
+    GenericFormInput? name,
+    PhoneNumberFormInput? phone,
+    EmailFormInput? email,
+    PasswordFormInput? password,
+    PasswordFormInput? confirmPassword,
+    BoolFormInput? obscurePassword,
   }) {
     return SignUpFormEntity(
       name: name ?? this.name,
@@ -48,7 +46,7 @@ class SignUpFormEntity {
       email,
       phone,
       password,
-      ConfirmPasswordInput.dirty(
+      ConfirmPasswordFormInput.dirty(
         value: confirmPassword.value,
         password: password.value,
       ),

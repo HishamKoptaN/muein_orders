@@ -8,13 +8,11 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/utils/app_logger.dart';
 
-import '../../../../../core/database/shared_pref_helper.dart';
-import '../../../../../core/database/shared_pref_keys.dart';
-import '../../../../../core/di/api_module.dart';
-import '../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/utils/database/shared_pref_helper.dart';
+import '../../../../../core/utils/database/shared_pref_keys.dart';
 import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../../../../core/services/device_service.dart';
+import '../../../../../core/utils/services/device_service.dart';
 import '../../domain/entities/signup_req_entity.dart';
 import '../../domain/repo/sign_up_repo.dart';
 import '../data_sources/sign_up_api.dart';
@@ -24,8 +22,7 @@ import '../models/sign_up_req_model.dart';
 class SignUpRepoImpl implements SignUpRepo {
   final SignUpApi _api;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final TokenStorage tokenStorage;
-  SignUpRepoImpl(this._api, this.tokenStorage);
+  SignUpRepoImpl(this._api);
 
   @override
   Future<ApiResult<void>> signUp({required SignUpReqEntity signUpReq}) async {
@@ -87,7 +84,6 @@ class SignUpRepoImpl implements SignUpRepo {
           value: res.token!,
         );
       }
-      await getIt<AuthInterceptor>().updateToken();
       return const ApiResult.success(data: null);
     } on FirebaseAuthException catch (e, st) {
       if (userCredential?.user != null) {
@@ -99,7 +95,7 @@ class SignUpRepoImpl implements SignUpRepo {
         reason: 'FirebaseAuthException during sign up: ${e.code}',
       );
       return ApiResult.failure(
-        apiErrorModel: ApiErrorModel(
+        errorInfo: ErrorInfo(
           message: e.message ?? 'Firebase authentication failed',
         ),
       );
@@ -113,7 +109,7 @@ class SignUpRepoImpl implements SignUpRepo {
         reason: 'DioException during sign up: ${error.message}',
       );
       return ApiResult.failure(
-        apiErrorModel: ApiErrorModel(
+        errorInfo: ErrorInfo(
           message:
               error.response?.data?['message']?.toString() ?? 'Sign up failed',
         ),
@@ -128,7 +124,7 @@ class SignUpRepoImpl implements SignUpRepo {
         reason: 'Unexpected error during sign up',
       );
       return const ApiResult.failure(
-        apiErrorModel: ApiErrorModel(message: 'An unexpected error occurred'),
+        errorInfo: ErrorInfo(message: 'An unexpected error occurred'),
       );
     }
   }

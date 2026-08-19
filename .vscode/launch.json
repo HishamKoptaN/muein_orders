@@ -2,11 +2,11 @@
   "version": "0.3.0",
   "configurations": [
     /* ================= DEV ================= */
-
     {
-      "name": "Flutter Dev (Android)",
+      "name": "Android Dev",
       "type": "dart",
       "request": "launch",
+      "preLaunchTask": "run-adb-reverse",
       "program": "lib/main.dart",
       "flutterMode": "debug",
       "args": [

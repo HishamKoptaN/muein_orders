@@ -323,7 +323,7 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( FinancialAccountEntity? financialAccount)?  loaded,TResult Function( ApiErrorModel? apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( FinancialAccountEntity? financialAccount)?  loaded,TResult Function( ErrorInfo? apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
@@ -348,7 +348,7 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( FinancialAccountEntity? financialAccount)  loaded,required TResult Function( ApiErrorModel? apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( FinancialAccountEntity? financialAccount)  loaded,required TResult Function( ErrorInfo? apiErrorModel)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
@@ -372,7 +372,7 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( FinancialAccountEntity? financialAccount)?  loaded,TResult? Function( ApiErrorModel? apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( FinancialAccountEntity? financialAccount)?  loaded,TResult? Function( ErrorInfo? apiErrorModel)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
@@ -568,7 +568,7 @@ class _Failure implements FinancialState {
   const _Failure({this.apiErrorModel});
   
 
- final  ApiErrorModel? apiErrorModel;
+ final  ErrorInfo? apiErrorModel;
 
 /// Create a copy of FinancialState
 /// with the given fields replaced by the non-null parameter values.
@@ -600,11 +600,11 @@ abstract mixin class _$FailureCopyWith<$Res> implements $FinancialStateCopyWith<
   factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
 @useResult
 $Res call({
- ApiErrorModel? apiErrorModel
+ ErrorInfo? apiErrorModel
 });
 
 
-$ApiErrorModelCopyWith<$Res>? get apiErrorModel;
+$ErrorInfoCopyWith<$Res>? get apiErrorModel;
 
 }
 /// @nodoc
@@ -620,7 +620,7 @@ class __$FailureCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = freezed,}) {
   return _then(_Failure(
 apiErrorModel: freezed == apiErrorModel ? _self.apiErrorModel : apiErrorModel // ignore: cast_nullable_to_non_nullable
-as ApiErrorModel?,
+as ErrorInfo?,
   ));
 }
 
@@ -628,12 +628,12 @@ as ApiErrorModel?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ApiErrorModelCopyWith<$Res>? get apiErrorModel {
+$ErrorInfoCopyWith<$Res>? get apiErrorModel {
     if (_self.apiErrorModel == null) {
     return null;
   }
 
-  return $ApiErrorModelCopyWith<$Res>(_self.apiErrorModel!, (value) {
+  return $ErrorInfoCopyWith<$Res>(_self.apiErrorModel!, (value) {
     return _then(_self.copyWith(apiErrorModel: value));
   });
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../styles/container_styles.dart';
+import '../container_styles.dart';
 
 class AppContainer extends StatelessWidget {
   final Widget child;

@@ -7,9 +7,9 @@ class ApiConstants {
   static const String logout = 'logout';
   static const String profile = 'me';
   static const String refreshToken = 'refresh-token';
-
   // Other endpoints
   static const String orders = 'orders';
+  static const String orderItems = 'order/items';
   static const String stats = 'stats';
   static const String docs = 'docs';
   static const String notifications = 'notifications';

@@ -1,18 +1,43 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
+import 'package:flutter/foundation.dart';
 
 import '../env.dart';
 import '../firebase/dev/firebase_options.dart';
-import '../firebase/dev_firebase_options.dart';
 
 class DevEnv extends Env {
   @override
-  FirebaseOptions get firebaseOptions => DevFirebaseOptions.currentPlatform;
+  String get envName {
+    return 'dev';
+  }
+
   @override
-  String get baseUrl =>
-      'https://hotpink-gnu-383634.hostingersite.com/mapi/api/';
+  FirebaseOptions get firebaseOptions {
+    return DevFirebaseOptions.currentPlatform;
+  }
   @override
-  String get authBaseUrl =>
-      'https://hotpink-gnu-383634.hostingersite.com/mapi/auth/';
+  String get baseUrl {
+    if (kReleaseMode) {
+      return 'https://dev.muein.online/api';
+    } else {
+      return 'http://127.0.0.1:8000/api';
+    }
+  }
+
   @override
-  String get envName => 'dev';
+  String get authBaseUrl {
+    if (kReleaseMode) {
+      return '$baseUrl/auth/';
+    } else {
+      return '$baseUrl/auth/';
+    }
+  }
+
+  @override
+  String get userBaseUrl {
+    if (kReleaseMode) {
+      return '$baseUrl/user/';
+    } else {
+      return '$baseUrl/user/';
+    }
+  }
 }

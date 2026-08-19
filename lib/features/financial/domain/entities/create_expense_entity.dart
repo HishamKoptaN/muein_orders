@@ -2,11 +2,11 @@ import 'package:form_inputs/form_inputs.dart';
 
 class CreateExpenseReqEntity {
   CreateExpenseReqEntity({this.amount, this.notes});
-  final GenericFormzInput<String>? amount;
-  final GenericFormzInput<String>? notes;
+  final GenericFormInput? amount;
+  final GenericFormInput? notes;
   CreateExpenseReqEntity copyWith({
-    GenericFormzInput<String>? amount,
-    GenericFormzInput<String>? notes,
+    GenericFormInput? amount,
+    GenericFormInput? notes,
   }) {
     return CreateExpenseReqEntity(
       amount: amount ?? this.amount,

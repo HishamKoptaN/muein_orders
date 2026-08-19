@@ -7,7 +7,7 @@ import 'package:formz/formz.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/gloabal_widgets/custom_scaffold.dart';
+import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/localization/auto_localizer.dart';
 import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
@@ -84,9 +84,7 @@ class _ChangePassViewState extends State<ChangePassView> {
                           obscureText: true,
                           onChanged: (v) {
                             getIt<ChangePassBloc>().add(
-                              ChangePassEvent.dataChanged(
-                                password: PasswordInput.dirty(v),
-                              ),
+                              ChangePassEvent.dataChanged(password: .dirty(v)),
                             );
                           },
                         ),
@@ -97,7 +95,7 @@ class _ChangePassViewState extends State<ChangePassView> {
                           onChanged: (v) {
                             getIt<ChangePassBloc>().add(
                               ChangePassEvent.dataChanged(
-                                confirmPassword: PasswordInput.dirty(v),
+                                confirmPassword: .dirty(v),
                               ),
                             );
                           },
@@ -224,9 +222,7 @@ class _DebugAutoFillState extends State<DebugAutoFill> {
     final testEmail = testEmails[0];
 
     getIt<ChangePassBloc>()
-      ..add(
-        ChangePassEvent.dataChanged(password: PasswordInput.dirty(testEmail)),
-      )
+      ..add(ChangePassEvent.dataChanged(password: .dirty(testEmail)))
       ..add(const ChangePassEvent.update());
 
     debugPrint('✅ Autofill Login Done (via BLoC)');

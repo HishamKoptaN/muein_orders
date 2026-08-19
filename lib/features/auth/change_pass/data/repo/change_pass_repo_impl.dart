@@ -16,13 +16,13 @@ class ChangePassRepositoryImpl implements ChangePassRepo {
       return const ApiResult.success(data: null);
     } on FirebaseAuthException catch (e) {
       return ApiResult.failure(
-        apiErrorModel: ApiErrorModel(
+        errorInfo: ErrorInfo(
           message: e.message ?? 'Failed to send password reset email',
         ),
       );
     } catch (e) {
       return const ApiResult.failure(
-        apiErrorModel: ApiErrorModel(
+        errorInfo: ErrorInfo(
           message: 'Failed to update password. Please try again.',
         ),
       );

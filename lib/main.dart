@@ -11,14 +11,15 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl_standalone.dart';
 import 'config/env_config.dart';
-import 'core/app/app_widget.dart';
-import 'core/app/error_handler.dart';
+import 'core/utils/database/shared_pref_helper.dart';
+import 'core/utils/database/shared_pref_keys.dart';
+import 'features/auth/auth/present/bloc/auth_bloc.dart';
+import 'muein_orders_app.dart';
+import 'core/widgets/custom_error_widget.dart';
 import 'core/app_observer.dart';
 import 'core/config/app_initializer.dart';
-import 'core/database/shared_pref_helper.dart';
-import 'core/database/shared_pref_keys.dart';
 import 'core/di/dependency_injection.dart';
-import 'core/services/firebase_messaging/firebase_messaging_service.dart';
+import 'core/utils/services/firebase_messaging/firebase_messaging_service.dart';
 import 'core/utils/app_logger.dart';
 
 void main() {
@@ -49,7 +50,11 @@ void main() {
       };
       try {
         await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
-        AppLogger.info('✅ Firebase initialized', tag: 'MAIN');
+        if (!Platform.isIOS) {
+          await Future.microtask(() {
+            return getIt<FirebaseMessagingService>().initialize();
+          });
+        }
         await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
           !kDebugMode,
         );
@@ -61,15 +66,10 @@ void main() {
           stackTrace: st,
         );
       }
+      Bloc.observer = AppBlocObserver();
       await _initializeApp();
     },
     (error, stack) {
-      AppLogger.error(
-        'Unhandled Zone Error',
-        tag: 'ZONE',
-        error: error,
-        stackTrace: stack,
-      );
       if (!kDebugMode) {
         FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       }
@@ -88,27 +88,20 @@ Future<void> _initializeApp() async {
     await GetStorage.init('translations_cache');
     if (!Platform.isIOS) {
       await getIt<FirebaseMessagingService>().initialize();
-      AppLogger.info('✅ Firebase Messaging initialized', tag: 'INIT');
-    } else {
-      AppLogger.warning('⚠️ Firebase Messaging skipped on iOS', tag: 'INIT');
     }
-    AppLogger.info('✅ All services initialized successfully!', tag: 'INIT');
     if (kDebugMode) {
       await SharedPrefHelper.setSecuredString(
         key: SharedPrefKeys.jwtToken,
-        value: '15|aHyF6hoYkwAi5PuSmPOAxBYdnsJnFGh3d4Y9IU8W85d83752',
+        value: ' 75|p3B7hh4EpWaP2TH130nLbfGXqkjQQMqRvcJ5pcGa91a37a6b',
       );
-      // await SharedPrefHelper.clearAllData();
-      // await SharedPrefHelper.clearAllSecuredData();
+      //  await SharedPrefHelper.clearAllData();
+      //  await SharedPrefHelper.clearAllSecuredData();
     }
+    final completer = Completer();
+    getIt<AuthBloc>().add(.check(onComplete: completer));
+    await completer.future;
     runApp(const MueinOrdersApp());
   } catch (error, stackTrace) {
-    AppLogger.error(
-      'App initialization failed',
-      tag: 'INIT',
-      error: error,
-      stackTrace: stackTrace,
-    );
     _handleError(
       error: error,
       stackTrace: stackTrace,

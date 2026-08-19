@@ -5,10 +5,9 @@ abstract class SignInState with _$SignInState {
   const factory SignInState.initial() = _Initial;
   const factory SignInState.loading() = _Loading;
   const factory SignInState.loaded({
-    required EmailInput email,
-    required PasswordInput password,
-    required GenericFormzInput obscurePassword,
-    required FormzSubmissionStatus formzSubmissionStatus,
+    required SignInReqEntity signInReq,
+    @Default(FormzSubmissionStatus.initial)
+    FormzSubmissionStatus formzSubmissionStatus,
   }) = _Loaded;
   const factory SignInState.success() = _Success;
 

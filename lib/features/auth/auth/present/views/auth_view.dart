@@ -16,29 +16,23 @@ class AuthView extends StatefulWidget {
 
 class _AuthViewState extends State<AuthView> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      getIt<AuthBloc>().add(const AuthEvent.check());
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF003A45),
       body: BlocBuilder<AuthBloc, AuthState>(
+        bloc: getIt<AuthBloc>(),
         builder: (context, state) {
-          return state.when(
-            authenticated: () => const CustomCircularProgress(),
-            unauthenticated: () => const CustomCircularProgress(),
-            loading: () => const CustomCircularProgress(),
-            failure: (message) => Center(
-              child: TrText(
-                'خطأ: $message',
-                style: const TextStyle(color: Colors.red),
-              ),
-            ),
+          return state.maybeMap(
+            orElse: () {
+              return const CustomCircularProgress();
+            },
+            failure: (message) {
+              return Center(
+                child: TrText(
+                  'خطأ: $message',
+                  style: const TextStyle(color: Colors.red),
+                ),
+              );
+            },
           );
         },
       ),

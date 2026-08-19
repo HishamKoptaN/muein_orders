@@ -11,44 +11,41 @@ part of 'api_error_model.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-
 /// @nodoc
-mixin _$ApiErrorModel {
+mixin _$ErrorInfo {
 
-@JsonKey(name: 'message') String? get message;@JsonKey(name: 'errors') List<String>? get errors; int? get statusCode;
-/// Create a copy of ApiErrorModel
+ String get title; String get message; Object? get data; bool get reportToCrashlytics; bool get fatal;
+/// Create a copy of ErrorInfo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$ApiErrorModelCopyWith<ApiErrorModel> get copyWith => _$ApiErrorModelCopyWithImpl<ApiErrorModel>(this as ApiErrorModel, _$identity);
+$ErrorInfoCopyWith<ErrorInfo> get copyWith => _$ErrorInfoCopyWithImpl<ErrorInfo>(this as ErrorInfo, _$identity);
 
-  /// Serializes this ApiErrorModel to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ApiErrorModel&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.errors, errors)&&(identical(other.statusCode, statusCode) || other.statusCode == statusCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ErrorInfo&&(identical(other.title, title) || other.title == title)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.reportToCrashlytics, reportToCrashlytics) || other.reportToCrashlytics == reportToCrashlytics)&&(identical(other.fatal, fatal) || other.fatal == fatal));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
-int get hashCode => Object.hash(runtimeType,message,const DeepCollectionEquality().hash(errors),statusCode);
+int get hashCode => Object.hash(runtimeType,title,message,const DeepCollectionEquality().hash(data),reportToCrashlytics,fatal);
 
 @override
 String toString() {
-  return 'ApiErrorModel(message: $message, errors: $errors, statusCode: $statusCode)';
+  return 'ErrorInfo(title: $title, message: $message, data: $data, reportToCrashlytics: $reportToCrashlytics, fatal: $fatal)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $ApiErrorModelCopyWith<$Res>  {
-  factory $ApiErrorModelCopyWith(ApiErrorModel value, $Res Function(ApiErrorModel) _then) = _$ApiErrorModelCopyWithImpl;
+abstract mixin class $ErrorInfoCopyWith<$Res>  {
+  factory $ErrorInfoCopyWith(ErrorInfo value, $Res Function(ErrorInfo) _then) = _$ErrorInfoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'message') String? message,@JsonKey(name: 'errors') List<String>? errors, int? statusCode
+ String title, String message, Object? data, bool reportToCrashlytics, bool fatal
 });
 
 
@@ -56,29 +53,30 @@ $Res call({
 
 }
 /// @nodoc
-class _$ApiErrorModelCopyWithImpl<$Res>
-    implements $ApiErrorModelCopyWith<$Res> {
-  _$ApiErrorModelCopyWithImpl(this._self, this._then);
+class _$ErrorInfoCopyWithImpl<$Res>
+    implements $ErrorInfoCopyWith<$Res> {
+  _$ErrorInfoCopyWithImpl(this._self, this._then);
 
-  final ApiErrorModel _self;
-  final $Res Function(ApiErrorModel) _then;
+  final ErrorInfo _self;
+  final $Res Function(ErrorInfo) _then;
 
-/// Create a copy of ApiErrorModel
+/// Create a copy of ErrorInfo
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? message = freezed,Object? errors = freezed,Object? statusCode = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? message = null,Object? data = freezed,Object? reportToCrashlytics = null,Object? fatal = null,}) {
   return _then(_self.copyWith(
-message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String?,errors: freezed == errors ? _self.errors : errors // ignore: cast_nullable_to_non_nullable
-as List<String>?,statusCode: freezed == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable
-as int?,
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,data: freezed == data ? _self.data : data ,reportToCrashlytics: null == reportToCrashlytics ? _self.reportToCrashlytics : reportToCrashlytics // ignore: cast_nullable_to_non_nullable
+as bool,fatal: null == fatal ? _self.fatal : fatal // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
 }
 
 
-/// Adds pattern-matching-related methods to [ApiErrorModel].
-extension ApiErrorModelPatterns on ApiErrorModel {
+/// Adds pattern-matching-related methods to [ErrorInfo].
+extension ErrorInfoPatterns on ErrorInfo {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -91,10 +89,10 @@ extension ApiErrorModelPatterns on ApiErrorModel {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ApiErrorModel value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ErrorInfo value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _ApiErrorModel() when $default != null:
+case _ErrorInfo() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -113,10 +111,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ApiErrorModel value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ErrorInfo value)  $default,){
 final _that = this;
 switch (_that) {
-case _ApiErrorModel():
+case _ErrorInfo():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -134,10 +132,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ApiErrorModel value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ErrorInfo value)?  $default,){
 final _that = this;
 switch (_that) {
-case _ApiErrorModel() when $default != null:
+case _ErrorInfo() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -155,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'message')  String? message, @JsonKey(name: 'errors')  List<String>? errors,  int? statusCode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String message,  Object? data,  bool reportToCrashlytics,  bool fatal)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _ApiErrorModel() when $default != null:
-return $default(_that.message,_that.errors,_that.statusCode);case _:
+case _ErrorInfo() when $default != null:
+return $default(_that.title,_that.message,_that.data,_that.reportToCrashlytics,_that.fatal);case _:
   return orElse();
 
 }
@@ -176,10 +174,10 @@ return $default(_that.message,_that.errors,_that.statusCode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'message')  String? message, @JsonKey(name: 'errors')  List<String>? errors,  int? statusCode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String message,  Object? data,  bool reportToCrashlytics,  bool fatal)  $default,) {final _that = this;
 switch (_that) {
-case _ApiErrorModel():
-return $default(_that.message,_that.errors,_that.statusCode);case _:
+case _ErrorInfo():
+return $default(_that.title,_that.message,_that.data,_that.reportToCrashlytics,_that.fatal);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +194,10 @@ return $default(_that.message,_that.errors,_that.statusCode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'message')  String? message, @JsonKey(name: 'errors')  List<String>? errors,  int? statusCode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String message,  Object? data,  bool reportToCrashlytics,  bool fatal)?  $default,) {final _that = this;
 switch (_that) {
-case _ApiErrorModel() when $default != null:
-return $default(_that.message,_that.errors,_that.statusCode);case _:
+case _ErrorInfo() when $default != null:
+return $default(_that.title,_that.message,_that.data,_that.reportToCrashlytics,_that.fatal);case _:
   return null;
 
 }
@@ -208,58 +206,49 @@ return $default(_that.message,_that.errors,_that.statusCode);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
 
-class _ApiErrorModel implements ApiErrorModel {
-  const _ApiErrorModel({@JsonKey(name: 'message') this.message, @JsonKey(name: 'errors') final  List<String>? errors, this.statusCode}): _errors = errors;
-  factory _ApiErrorModel.fromJson(Map<String, dynamic> json) => _$ApiErrorModelFromJson(json);
 
-@override@JsonKey(name: 'message') final  String? message;
- final  List<String>? _errors;
-@override@JsonKey(name: 'errors') List<String>? get errors {
-  final value = _errors;
-  if (value == null) return null;
-  if (_errors is EqualUnmodifiableListView) return _errors;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
+class _ErrorInfo implements ErrorInfo {
+  const _ErrorInfo({this.title = '', this.message = '', this.data, this.reportToCrashlytics = false, this.fatal = false});
+  
 
-@override final  int? statusCode;
+@override@JsonKey() final  String title;
+@override@JsonKey() final  String message;
+@override final  Object? data;
+@override@JsonKey() final  bool reportToCrashlytics;
+@override@JsonKey() final  bool fatal;
 
-/// Create a copy of ApiErrorModel
+/// Create a copy of ErrorInfo
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$ApiErrorModelCopyWith<_ApiErrorModel> get copyWith => __$ApiErrorModelCopyWithImpl<_ApiErrorModel>(this, _$identity);
+_$ErrorInfoCopyWith<_ErrorInfo> get copyWith => __$ErrorInfoCopyWithImpl<_ErrorInfo>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$ApiErrorModelToJson(this, );
-}
+
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApiErrorModel&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other._errors, _errors)&&(identical(other.statusCode, statusCode) || other.statusCode == statusCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ErrorInfo&&(identical(other.title, title) || other.title == title)&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.reportToCrashlytics, reportToCrashlytics) || other.reportToCrashlytics == reportToCrashlytics)&&(identical(other.fatal, fatal) || other.fatal == fatal));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
-int get hashCode => Object.hash(runtimeType,message,const DeepCollectionEquality().hash(_errors),statusCode);
+int get hashCode => Object.hash(runtimeType,title,message,const DeepCollectionEquality().hash(data),reportToCrashlytics,fatal);
 
 @override
 String toString() {
-  return 'ApiErrorModel(message: $message, errors: $errors, statusCode: $statusCode)';
+  return 'ErrorInfo(title: $title, message: $message, data: $data, reportToCrashlytics: $reportToCrashlytics, fatal: $fatal)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ApiErrorModelCopyWith<$Res> implements $ApiErrorModelCopyWith<$Res> {
-  factory _$ApiErrorModelCopyWith(_ApiErrorModel value, $Res Function(_ApiErrorModel) _then) = __$ApiErrorModelCopyWithImpl;
+abstract mixin class _$ErrorInfoCopyWith<$Res> implements $ErrorInfoCopyWith<$Res> {
+  factory _$ErrorInfoCopyWith(_ErrorInfo value, $Res Function(_ErrorInfo) _then) = __$ErrorInfoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'message') String? message,@JsonKey(name: 'errors') List<String>? errors, int? statusCode
+ String title, String message, Object? data, bool reportToCrashlytics, bool fatal
 });
 
 
@@ -267,21 +256,22 @@ $Res call({
 
 }
 /// @nodoc
-class __$ApiErrorModelCopyWithImpl<$Res>
-    implements _$ApiErrorModelCopyWith<$Res> {
-  __$ApiErrorModelCopyWithImpl(this._self, this._then);
+class __$ErrorInfoCopyWithImpl<$Res>
+    implements _$ErrorInfoCopyWith<$Res> {
+  __$ErrorInfoCopyWithImpl(this._self, this._then);
 
-  final _ApiErrorModel _self;
-  final $Res Function(_ApiErrorModel) _then;
+  final _ErrorInfo _self;
+  final $Res Function(_ErrorInfo) _then;
 
-/// Create a copy of ApiErrorModel
+/// Create a copy of ErrorInfo
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? message = freezed,Object? errors = freezed,Object? statusCode = freezed,}) {
-  return _then(_ApiErrorModel(
-message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String?,errors: freezed == errors ? _self._errors : errors // ignore: cast_nullable_to_non_nullable
-as List<String>?,statusCode: freezed == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable
-as int?,
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? message = null,Object? data = freezed,Object? reportToCrashlytics = null,Object? fatal = null,}) {
+  return _then(_ErrorInfo(
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,data: freezed == data ? _self.data : data ,reportToCrashlytics: null == reportToCrashlytics ? _self.reportToCrashlytics : reportToCrashlytics // ignore: cast_nullable_to_non_nullable
+as bool,fatal: null == fatal ? _self.fatal : fatal // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

@@ -11,7 +11,6 @@ part of 'meta_entity.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-
 /// @nodoc
 mixin _$MetaEntity {
 
@@ -22,8 +21,6 @@ mixin _$MetaEntity {
 @pragma('vm:prefer-inline')
 $MetaEntityCopyWith<MetaEntity> get copyWith => _$MetaEntityCopyWithImpl<MetaEntity>(this as MetaEntity, _$identity);
 
-  /// Serializes this MetaEntity to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
@@ -31,7 +28,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaEntity&&(identical(other.total, total) || other.total == total)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.hasPreviousPage, hasPreviousPage) || other.hasPreviousPage == hasPreviousPage));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
 int get hashCode => Object.hash(runtimeType,total,currentPage,totalPages,perPage,hasNextPage,hasPreviousPage);
 
@@ -211,11 +208,11 @@ return $default(_that.total,_that.currentPage,_that.totalPages,_that.perPage,_th
 }
 
 /// @nodoc
-@JsonSerializable()
+
 
 class _MetaEntity implements MetaEntity {
   const _MetaEntity({this.total, this.currentPage, this.totalPages, this.perPage, this.hasNextPage, this.hasPreviousPage});
-  factory _MetaEntity.fromJson(Map<String, dynamic> json) => _$MetaEntityFromJson(json);
+  
 
 @override final  int? total;
 @override final  int? currentPage;
@@ -230,17 +227,14 @@ class _MetaEntity implements MetaEntity {
 @pragma('vm:prefer-inline')
 _$MetaEntityCopyWith<_MetaEntity> get copyWith => __$MetaEntityCopyWithImpl<_MetaEntity>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$MetaEntityToJson(this, );
-}
+
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaEntity&&(identical(other.total, total) || other.total == total)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.hasPreviousPage, hasPreviousPage) || other.hasPreviousPage == hasPreviousPage));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
 int get hashCode => Object.hash(runtimeType,total,currentPage,totalPages,perPage,hasNextPage,hasPreviousPage);
 

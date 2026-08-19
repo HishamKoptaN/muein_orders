@@ -5,7 +5,7 @@ import '../../core/routing/navigation_service.dart';
 import '../../core/widgets/buttons/custom_icon_tn.dart';
 import '../../core/widgets/translated_text.dart';
 import '../../l10n/app_localizations.dart';
-import '../language/view/select_language.dart';
+import '../../core/language/view/select_language.dart';
 
 class StartView extends StatelessWidget {
   const StartView({super.key});

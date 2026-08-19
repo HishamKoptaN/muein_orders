@@ -37,7 +37,7 @@ class _ProfileViewState extends State<ProfileView> {
     getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
   }
 
-  Future<File?> _selectImageFromGallery() async {
+  Future<XFile?> _selectImageFromGallery() async {
     try {
       final XFile? pickedFile = await _imagePicker.pickImage(
         source: ImageSource.gallery,
@@ -47,7 +47,7 @@ class _ProfileViewState extends State<ProfileView> {
       );
 
       if (pickedFile != null) {
-        return File(pickedFile.path);
+        return pickedFile;
       }
       return null;
     } catch (e) {
@@ -89,7 +89,7 @@ class _ProfileViewState extends State<ProfileView> {
                             profile: state.profile,
                             updateProfileReq: state.updateProfileReq,
                             onEditImageTap: () async {
-                              final File? pickedImage =
+                              final XFile? pickedImage =
                                   await _selectImageFromGallery();
                               if (pickedImage != null) {
                                 getIt<ProfileBloc>().add(
@@ -97,10 +97,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     loadedState: state.copyWith(
                                       updateProfileReq: state.updateProfileReq
                                           ?.copyWith(
-                                            avatar:
-                                                GenericFormzInput<File>.dirty(
-                                                  pickedImage,
-                                                ),
+                                            avatar: .dirty(pickedImage),
                                           ),
                                     ),
                                   ),
@@ -149,11 +146,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 ProfileEvent.dataChanged(
                                   loadedState: state.copyWith(
                                     updateProfileReq: state.updateProfileReq
-                                        ?.copyWith(
-                                          name: GenericFormzInput<String>.dirty(
-                                            v,
-                                          ),
-                                        ),
+                                        ?.copyWith(name: .dirty(value: v)),
                                   ),
                                 ),
                               );
@@ -182,9 +175,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 ProfileEvent.dataChanged(
                                   loadedState: state.copyWith(
                                     updateProfileReq: state.updateProfileReq
-                                        ?.copyWith(
-                                          phone: PhoneNumberInput.dirty(v),
-                                        ),
+                                        ?.copyWith(phone: .dirty(v)),
                                   ),
                                 ),
                               );
@@ -201,8 +192,8 @@ class _ProfileViewState extends State<ProfileView> {
                                   ProfileEvent.dataChanged(
                                     loadedState: state.copyWith(
                                       updateProfileReq: UpdateProfileReqEntity(
-                                        id: GenericFormzInput.dirty(
-                                          state.profile.id ?? 0,
+                                        id: .dirty(
+                                          value: state.profile.id.toString(),
                                         ),
                                       ),
                                     ),

@@ -5,7 +5,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../config/env_config.dart';
 import '../../networking/slow_upload_interceptor.dart';
-import 'api_module.dart';
+import 'Interceptor.dart';
 
 @module
 abstract class DioModule {
@@ -17,7 +17,7 @@ abstract class DioModule {
   ) {
     final dio = Dio(
       BaseOptions(
-        baseUrl: EnvConfig.config.baseUrl,
+        baseUrl: EnvConfig.config.userBaseUrl,
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
         sendTimeout: const Duration(seconds: 60),

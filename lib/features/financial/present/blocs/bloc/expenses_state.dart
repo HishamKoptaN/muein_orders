@@ -12,6 +12,6 @@ class ExpensesState with _$ExpensesState {
   }) = _Loaded;
   const factory ExpensesState.loading() = _Loading;
   const factory ExpensesState.success() = _Success;
-  const factory ExpensesState.failure({required ApiErrorModel apiErrorModel}) =
+  const factory ExpensesState.failure({required ErrorInfo apiErrorModel}) =
       _Failure;
 }
