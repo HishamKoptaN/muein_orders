@@ -9,8 +9,6 @@ class DocMediaTable extends Table {
       text().named('file_type').withDefault(const Constant('image'))();
   TextColumn get thumbnail => text().named('thumbnail').nullable()();
   IntColumn get sequence => integer().withDefault(const Constant(1))();
-  BoolColumn get isServerFile =>
-      boolean().named('is_server_file').withDefault(const Constant(true))();
   @override
   Set<Column> get primaryKey => {id};
 }

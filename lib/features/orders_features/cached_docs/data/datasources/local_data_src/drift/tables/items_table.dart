@@ -17,11 +17,4 @@ class ItemUnitsTable extends Table {
   TextColumn get executionNumber => text().nullable()();
   @override
   Set<Column> get primaryKey => {id};
-  @override
-  List<Index> get indexes => [
-    Index(
-      'item_id_idx',
-      'CREATE INDEX IF NOT EXISTS item_id_idx ON item_units_table (item_id);',
-    ),
-  ];
 }
