@@ -50,11 +50,11 @@ void main() {
       };
       try {
         await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
-        if (!Platform.isIOS) {
-          await Future.microtask(() {
-            return getIt<FirebaseMessagingService>().initialize();
-          });
-        }
+        // if (!Platform.isIOS) {
+        //   await Future.microtask(() {
+        //     return getIt<FirebaseMessagingService>().initialize();
+        //   });
+        // }
         await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
           !kDebugMode,
         );

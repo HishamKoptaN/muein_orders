@@ -5,7 +5,7 @@ import 'dart:async';
 
 import '../../../../../core/entities/meta_entity.dart';
 import '../../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../cached_docs/data/datasources/local/drift/cached_docs_table.dart';
+import '../../../cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/usecases/orders_use_cases.dart';
 
@@ -16,29 +16,11 @@ part 'orders_state.dart';
 @lazySingleton
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   final OrdersUseCases _useCases;
-  StreamSubscription? _subscription;
-  int? _currentSubCategoryId;
-  FileUploadStatus? _currentFilter;
   OrdersBloc(this._useCases) : super(const OrdersState.initial()) {
-    on<OrdersEvent>((event, emit) async {
-      await event.when(
-        started: (subCategoryId) async {
-          return _onStarted(subCategoryId, emit);
-        },
-        loadMore: () async {
-          return _onLoadMore(emit: emit);
-        },
-        filterChanged: (status) async {
-          return _onFilterChanged(emit: emit, status: status);
-        },
-      );
-    });
+    on<OrdersEvent>((event, emit) async {});
   }
 
   Future<void> _onStarted(int subCategoryId, Emitter<OrdersState> emit) async {
-    _currentSubCategoryId = subCategoryId;
-    _currentFilter = null;
-    await _subscription?.cancel();
     emit(const OrdersState.loading());
     // await emit.onEach<OrdersResEntity>(
     //   _useCases.watch(subCategoryId: subCategoryId, filter: null),
@@ -66,42 +48,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   }
 
   Future<void> _onFilterChanged({
-    required FileUploadStatus? status,
+    required UploadStatus? status,
     required Emitter<OrdersState> emit,
   }) async {
-    if (_currentSubCategoryId == null) return;
-    _currentFilter = status;
-    final currentOrdersRes = state.maybeWhen(
-      loaded: (ordersRes, selectedUploadStatus) => ordersRes,
-      orElse: () => null,
-    );
-    if (currentOrdersRes != null) {
-      emit(
-        OrdersState.loaded(
-          ordersRes: currentOrdersRes,
-          selectedUploadStatus: status,
-        ),
-      );
-    }
-    await _subscription?.cancel();
-    // await emit.onEach<OrdersResEntity>(
-    //   _useCases.watch(subCategoryId: _currentSubCategoryId!, filter: status),
-    //   onData: (ordersRes) {
-    //     emit(
-    //       OrdersState.loaded(
-    //         ordersRes: ordersRes,
-    //         selectedUploadStatus: status,
-    //       ),
-    //     );
-    //   },
-    //   onError: (error, stackTrace) {
-    //     emit(
-    //       OrdersState.failure(
-    //         apiErrorModel: ErrorInfo(message: error.toString()),
-    //       ),
-    //     );
-    //   },
-    // );
+    // await _subscription?.cancel();
   }
 
   // @override
@@ -176,7 +126,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     required Emitter<OrdersState> emit,
     OrdersResEntity? ordersResEntity,
     List<OrderEntity>? filteredOrders,
-    FileUploadStatus? selectedUploadStatus,
+    UploadStatus? selectedUploadStatus,
   }) {
     emit(
       OrdersState.loaded(
@@ -186,11 +136,5 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
         selectedUploadStatus: selectedUploadStatus,
       ),
     );
-  }
-
-  @override
-  Future<void> close() {
-    _subscription?.cancel();
-    return super.close();
   }
 }

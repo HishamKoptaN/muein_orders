@@ -6,7 +6,7 @@ import '../../features/orders_features/cached_docs/present/view/add_cached_doc_v
 import '../../features/home_features/home/present/view/stats_view.dart';
 import '../../features/instructions/present/view/instructions_view.dart';
 import '../../features/notifications/present/view/notifications_view.dart';
-import '../../features/orders_features/orders_items/present/views/salla_order_items_view.dart';
+import '../../features/orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
 import '../../features/profile/present/views/profile_view.dart';
 
 class AppRouterRedirect {

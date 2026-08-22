@@ -1,8 +1,8 @@
 import 'package:drift/drift.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../../features/orders_features/cached_docs/data/datasources/local/drift/app_database.dart';
-import '../../../features/orders_features/cached_docs/data/datasources/local/drift/cached_docs_table.dart';
+import '../../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/app_database.dart';
+import '../../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
 import '../../../features/orders_features/docs/data/mapper/docs_mapper.dart';
 import '../../../features/orders_features/docs/domain/usecases/docs_use_cases.dart';
 import '../../config/upload_settings.dart';
@@ -12,10 +12,10 @@ Future<void> startUploadDocs() async {
   final db = getIt<AppDatabase>();
   final docsUseCase = getIt<DocsUseCase>();
   final statuses = [
-    FileUploadStatus.pending,
-    FileUploadStatus.uploading,
-    FileUploadStatus.failed,
-    if (!kReleaseMode) FileUploadStatus.uploaded,
+    UploadStatus.pending,
+    UploadStatus.uploading,
+    UploadStatus.failed,
+    if (!kReleaseMode) UploadStatus.uploaded,
   ];
   // final query = db.select(db.cachedDocsTable)
   //   ..where((tbl) {

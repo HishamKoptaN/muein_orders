@@ -4,7 +4,6 @@ import 'package:retrofit/retrofit.dart';
 import '../../../../../../core/constants/api_constants.dart';
 import '../../../../../profile/data/models/presigned/presigned_url_model.dart';
 import '../../models/doc_req_model.dart';
-import '../../models/doc_media_req_model.dart';
 import '../../models/docs_res_model.dart';
 import '../../models/presigned_doc_url_req_model.dart';
 

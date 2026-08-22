@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 
-import '../../features/orders_features/cached_docs/data/datasources/local/drift/cached_docs_table.dart';
+import '../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
 
 /// Event fired when upload status changes for any document
 class UploadStatusChangedEvent extends Equatable {
   final int docId;
-  final FileUploadStatus oldStatus;
-  final FileUploadStatus newStatus;
+  final UploadStatus oldStatus;
+  final UploadStatus newStatus;
   final DateTime timestamp;
 
   const UploadStatusChangedEvent({
@@ -34,8 +34,8 @@ class UploadEventBus {
 
   void fireStatusChanged({
     required int docId,
-    required FileUploadStatus oldStatus,
-    required FileUploadStatus newStatus,
+    required UploadStatus oldStatus,
+    required UploadStatus newStatus,
   }) {
     _controller.add(
       UploadStatusChangedEvent(

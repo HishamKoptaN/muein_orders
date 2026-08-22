@@ -11,7 +11,6 @@ import '../device_service.dart';
 class FirebaseMessagingService {
   static final FirebaseMessaging _firebaseMessaging =
       FirebaseMessaging.instance;
-  //! تهيئة خدمة الإشعارات
   Future<void> initialize() async {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     FirebaseMessaging.onMessageOpenedApp.listen(_handleMessageOpenedApp);
@@ -21,7 +20,6 @@ class FirebaseMessagingService {
     log('subscribed To Topic all ');
   }
 
-  //! معالج الإشعارات عند ورودها أثناء تشغيل التطبيق في الخلفية
   static Future<void> _firebaseMessagingBackgroundHandler(
     RemoteMessage message,
   ) async {
@@ -29,17 +27,14 @@ class FirebaseMessagingService {
     log('📩 رسالة إشعار في الخلفية: ${message.messageId}');
   }
 
-  //! معالج فتح التطبيق من الإشعار
   void _handleMessageOpenedApp(RemoteMessage message) {
     log('📨 تم فتح التطبيق من خلال الإشعار: ${message.notification?.title}');
   }
 
-  //! معالج الإشعارات أثناء تشغيل التطبيق
   void _handleForegroundMessage(RemoteMessage message) {
     log('📨 إشعار أثناء تشغيل التطبيق: ${message.notification?.title}');
   }
 
-  //! طلب إذن استقبال الإشعارات
   Future<void> _requestPermission() async {
     if (DeviceService.isDesktopPlatform()) {
       log('💻 Desktop platform - skipping notification permissions');
@@ -70,13 +65,11 @@ class FirebaseMessagingService {
     }
   }
 
-  //! جلب FCM Token
   static Future<String> getFcmToken() async {
     if (DeviceService.isDesktopPlatform()) {
       return '';
     }
     try {
-      // على iOS: انتظار APNS token أولاً
       if (Platform.isIOS) {
         final apnsToken = await _firebaseMessaging.getAPNSToken();
         if (apnsToken == null) {

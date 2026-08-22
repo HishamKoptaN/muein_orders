@@ -87,8 +87,10 @@ import '../../features/notifications/domain/usecases/notifications_use_cases.dar
     as _i139;
 import '../../features/notifications/present/bloc/notifications_bloc.dart'
     as _i781;
-import '../../features/orders_features/cached_docs/data/datasources/local/drift/app_database.dart'
-    as _i649;
+import '../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/app_database.dart'
+    as _i576;
+import '../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/daos/items_dao.dart'
+    as _i249;
 import '../../features/orders_features/cached_docs/data/repo_impl/cached_docs_repo_impl.dart'
     as _i1022;
 import '../../features/orders_features/cached_docs/domain/repo/cached_docs_repo.dart'
@@ -123,16 +125,16 @@ import '../../features/orders_features/orders/domain/usecases/watch_doc_use_case
     as _i281;
 import '../../features/orders_features/orders/present/bloc/orders_bloc.dart'
     as _i106;
-import '../../features/orders_features/orders_items/data/datasources/order_items_api.dart'
-    as _i10;
-import '../../features/orders_features/orders_items/data/repo_impl/order_items_repo_impl.dart'
-    as _i290;
-import '../../features/orders_features/orders_items/domain/repo/order_items_repo.dart'
-    as _i859;
-import '../../features/orders_features/orders_items/domain/usecases/order_items_use_cases.dart'
-    as _i1014;
-import '../../features/orders_features/orders_items/present/bloc/order_items_bloc.dart'
-    as _i884;
+import '../../features/orders_features/salla_orders_items/data/datasources/order_items_api.dart'
+    as _i170;
+import '../../features/orders_features/salla_orders_items/data/repo_impl/order_items_repo_impl.dart'
+    as _i58;
+import '../../features/orders_features/salla_orders_items/domain/repo/order_items_repo.dart'
+    as _i624;
+import '../../features/orders_features/salla_orders_items/domain/usecases/order_items_use_cases.dart'
+    as _i812;
+import '../../features/orders_features/salla_orders_items/present/bloc/order_items_bloc.dart'
+    as _i677;
 import '../../features/profile/data/datasources/profile_api.dart' as _i191;
 import '../../features/profile/data/repo/profile_repo_impl.dart' as _i256;
 import '../../features/profile/domain/repo/profile_repo.dart' as _i364;
@@ -201,9 +203,10 @@ Future<_i174.GetIt> $initGetIt(
     () => _i608.FirebaseMessagingService(),
   );
   gh.singleton<_i197.InstructionsBloc>(() => _i197.InstructionsBloc());
-  gh.lazySingleton<_i649.AppDatabase>(() => _i649.AppDatabase());
-  gh.singleton<_i576.CachedDocsRepo>(
-    () => _i1022.CachedDocsRepoImpl(gh<_i649.AppDatabase>()),
+  gh.lazySingleton<_i576.AppDatabase>(() => _i576.AppDatabase());
+  gh.singleton<_i84.OrdersRepo>(() => _i588.OrdersRepoImpl());
+  gh.lazySingleton<_i249.ItemsDao>(
+    () => _i249.ItemsDao(gh<_i576.AppDatabase>()),
   );
   gh.singleton<_i361.Dio>(() => dioModule.s3Dio(), instanceName: 's3Dio');
   gh.lazySingleton<_i129.PasteLocationFromClipboardUseCase>(
@@ -221,6 +224,9 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i510.LoggingInterceptor>(),
     ),
     instanceName: 'authDio',
+  );
+  gh.singleton<_i968.OrdersUseCases>(
+    () => _i968.OrdersUseCases(gh<_i84.OrdersRepo>()),
   );
   gh.lazySingleton<_i1.S3Repo>(
     () => _i758.S3RepoImpl(gh<_i361.Dio>(instanceName: 's3Dio')),
@@ -244,6 +250,12 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i614.ForgotPassRepo>(
     () => _i877.ForgotPasswordRepositoryImpl(gh<_i59.FirebaseAuth>()),
   );
+  gh.lazySingleton<_i106.OrdersBloc>(
+    () => _i106.OrdersBloc(gh<_i968.OrdersUseCases>()),
+  );
+  gh.singleton<_i281.WatchDocUseCase>(
+    () => _i281.WatchDocUseCase(gh<_i576.AppDatabase>()),
+  );
   gh.singleton<_i303.NetworkInfo>(
     () => _i303.NetworkInfoImpl(
       connectionChecker: gh<_i161.InternetConnection>(),
@@ -255,8 +267,8 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i532.ChangePassRepo>(
     () => _i901.ChangePassRepositoryImpl(gh<_i59.FirebaseAuth>()),
   );
-  gh.singleton<_i281.WatchDocUseCase>(
-    () => _i281.WatchDocUseCase(gh<_i649.AppDatabase>()),
+  gh.singleton<_i576.CachedDocsRepo>(
+    () => _i1022.CachedDocsRepoImpl(gh<_i576.AppDatabase>()),
   );
   gh.lazySingleton<_i711.LocationPickerBloc>(
     () =>
@@ -271,7 +283,14 @@ Future<_i174.GetIt> $initGetIt(
     () => _i352.NotificationsApi(gh<_i361.Dio>()),
   );
   gh.singleton<_i890.OrdersApi>(() => _i890.OrdersApi(gh<_i361.Dio>()));
-  gh.singleton<_i10.OrderItemsApi>(() => _i10.OrderItemsApi(gh<_i361.Dio>()));
+  gh.singleton<_i170.OrderItemsApi>(() => _i170.OrderItemsApi(gh<_i361.Dio>()));
+  gh.lazySingleton<_i744.DocsRepo>(
+    () => _i807.DocsRepoImpl(
+      docsApi: gh<_i128.DocsApi>(),
+      db: gh<_i576.AppDatabase>(),
+      s3Repo: gh<_i1.S3Repo>(),
+    ),
+  );
   gh.lazySingleton<_i629.SendPassResetEmailUseCase>(
     () => _i629.SendPassResetEmailUseCase(gh<_i614.ForgotPassRepo>()),
   );
@@ -285,19 +304,16 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i146.SendPassResetEmailUseCase>(
     () => _i146.SendPassResetEmailUseCase(gh<_i532.ChangePassRepo>()),
   );
+  gh.singleton<_i624.OrderItemsRepo>(
+    () =>
+        _i58.OrdersRepoImpl(gh<_i170.OrderItemsApi>(), gh<_i576.AppDatabase>()),
+  );
   gh.singleton<_i610.AuthRepo>(
     () => _i246.AuthRepoImpl(
       gh<_i59.FirebaseAuth>(),
       gh<_i976.AuthApi>(),
       gh<_i1052.TokenService>(),
       gh<_i566.AuthStorageService>(),
-    ),
-  );
-  gh.lazySingleton<_i744.DocsRepo>(
-    () => _i807.DocsRepoImpl(
-      docsApi: gh<_i128.DocsApi>(),
-      db: gh<_i649.AppDatabase>(),
-      s3Repo: gh<_i1.S3Repo>(),
     ),
   );
   gh.lazySingleton<_i251.SignUpUseCases>(
@@ -335,11 +351,11 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i967.NotificationsRepo>(
     () => _i666.NotificationsRepoImpl(gh<_i352.NotificationsApi>()),
   );
-  gh.singleton<_i859.OrderItemsRepo>(
-    () => _i290.OrdersRepoImpl(gh<_i10.OrderItemsApi>()),
+  gh.singleton<_i812.OrderItemsUseCases>(
+    () => _i812.OrderItemsUseCases(gh<_i624.OrderItemsRepo>()),
   );
-  gh.singleton<_i1014.OrderItemsUseCases>(
-    () => _i1014.OrderItemsUseCases(gh<_i859.OrderItemsRepo>()),
+  gh.lazySingleton<_i677.OrderItemsBloc>(
+    () => _i677.OrderItemsBloc(gh<_i812.OrderItemsUseCases>()),
   );
   gh.singleton<_i99.AuthBloc>(
     () => _i99.AuthBloc(authUseCases: gh<_i151.AuthUseCases>()),
@@ -355,9 +371,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i226.SignUpBloc>(
     () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()),
   );
-  gh.singleton<_i84.OrdersRepo>(
-    () => _i588.OrdersRepoImpl(gh<_i890.OrdersApi>(), gh<_i649.AppDatabase>()),
-  );
   gh.lazySingleton<_i332.DocsUseCase>(
     () => _i332.DocsUseCase(
       docsRepo: gh<_i744.DocsRepo>(),
@@ -367,11 +380,14 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i941.SignInUseCases>(
     () => _i941.SignInUseCases(gh<_i305.SignInRepo>()),
   );
+  gh.lazySingleton<_i396.DocsBloc>(
+    () => _i396.DocsBloc(
+      docsUseCase: gh<_i332.DocsUseCase>(),
+      db: gh<_i576.AppDatabase>(),
+    ),
+  );
   gh.lazySingleton<_i154.ForgotPassBloc>(
     () => _i154.ForgotPassBloc(gh<_i629.SendPassResetEmailUseCase>()),
-  );
-  gh.singleton<_i968.OrdersUseCases>(
-    () => _i968.OrdersUseCases(gh<_i84.OrdersRepo>()),
   );
   gh.singleton<_i868.FinancialUseCases>(
     () => _i868.FinancialUseCases(gh<_i1011.FinancialRepo>()),
@@ -385,12 +401,6 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i246.AppFileManager>(),
     ),
   );
-  gh.lazySingleton<_i106.OrdersBloc>(
-    () => _i106.OrdersBloc(gh<_i968.OrdersUseCases>()),
-  );
-  gh.lazySingleton<_i884.OrderItemsBloc>(
-    () => _i884.OrderItemsBloc(gh<_i1014.OrderItemsUseCases>()),
-  );
   gh.singleton<_i475.ProfileBloc>(
     () => _i475.ProfileBloc(gh<_i995.ProfileUseCases>()),
   );
@@ -399,12 +409,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i468.FinancialBloc>(
     () => _i468.FinancialBloc(reportsUseCases: gh<_i868.FinancialUseCases>()),
-  );
-  gh.lazySingleton<_i396.DocsBloc>(
-    () => _i396.DocsBloc(
-      docsUseCase: gh<_i332.DocsUseCase>(),
-      db: gh<_i649.AppDatabase>(),
-    ),
   );
   gh.lazySingleton<_i665.SignInBloc>(
     () => _i665.SignInBloc(

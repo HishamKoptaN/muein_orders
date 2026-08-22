@@ -3,15 +3,15 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
-
 import '../../../../../core/errors/handlers/api_error_handler/error_handler.dart';
 import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../domain/entities/cached_doc_entity.dart';
+import '../../../docs/domain/entities/doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
 import '../../domain/repo/cached_docs_repo.dart';
-import '../datasources/local/drift/app_database.dart';
-import '../datasources/local/drift/cached_docs_table.dart';
+import '../datasources/local_data_src/drift/app_database.dart';
+import '../datasources/local_data_src/drift/tables/docs_table.dart';
+import '../mappers/cached_doc_mapper.dart';
 
 @Singleton(as: CachedDocsRepo)
 class CachedDocsRepoImpl implements CachedDocsRepo {
@@ -20,17 +20,16 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
   CachedDocsRepoImpl(this._db);
 
   @override
-  Stream<CachedDocEntity?> watchDoc(int docId) {
-    return _db.watchDoc(docId: docId);
+  Stream<DocEntity> watchDoc({required int id}) {
+    return _db.watchDoc(id: id);
   }
 
   @override
-  Future<ApiResult<CachedDocEntity>> getCachedDoc({required int docId}) async {
+  Future<ApiResult<DocEntity>> getCachedDoc({required int id}) async {
     try {
-      final row = await _db.getCachedDoc(docId: docId);
+      final row = await _db.getCachedDoc(id: id);
       if (row == null) return const ApiResult.success(data: null);
-      // return ApiResult.success(data: CachedDocEntity.fromDb(row));
-      return ApiResult.success(data: null);
+      return ApiResult.success(data: row.toEntity());
     } catch (error) {
       return ApiResult.failure(errorInfo: ErrorHandler.handle(error: error));
     }
@@ -85,8 +84,8 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
 
   @override
   Future<ApiResult<void>> updateProgress({
-    required int docId,
-    required FileUploadStatus status,
+    required int id,
+    required UploadStatus status,
     required double? progress,
   }) async {
     try {
@@ -108,19 +107,24 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
   }
 
   @override
-  Future<bool> orderMatchesStatus(int orderId, FileUploadStatus status) async {
+  Future<bool> orderMatchesStatus({
+    required int id,
+    required UploadStatus status,
+  }) async {
     try {
-      final result = await (_db.select(
-        _db.cachedDocsTable,
-      )..where((tbl) => tbl.docId.equals(orderId))).get();
-      if (result.isEmpty) return status == FileUploadStatus.init;
+      final result =
+          await (_db.select(_db.docsTable)..where((tbl) {
+                return tbl.id.equals(id);
+              }))
+              .get();
+      if (result.isEmpty) return status == UploadStatus.init;
       final cachedDoc = result.first;
-      if (cachedDoc.uploadStatus == status.name) return true;
-      if (cachedDoc.files != null) {
-        for (final file in cachedDoc.files!) {
-          if (file.status == status) return true;
-        }
-      }
+      //if (cachedDoc.uploadStatus == status.name) return true;
+      // if (cachedDoc.files != null) {
+      //   for (final file in cachedDoc.files!) {
+      //     if (file.status == status) return true;
+      //   }
+      // }
       if (cachedDoc.location?.status == status) return true;
       return false;
     } catch (e) {

@@ -12,40 +12,40 @@ part of 'cached_doc_entity.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$CachedDocEntity {
+mixin _$LocationDocEntity {
 
- int? get docId; List<DocFile>? get files; LocationDoc? get location; FileUploadStatus get uploadStatus; double get uploadProgress;
-/// Create a copy of CachedDocEntity
+ double get latitude; double get longitude; UploadStatus get status;
+/// Create a copy of LocationDocEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$CachedDocEntityCopyWith<CachedDocEntity> get copyWith => _$CachedDocEntityCopyWithImpl<CachedDocEntity>(this as CachedDocEntity, _$identity);
+$LocationDocEntityCopyWith<LocationDocEntity> get copyWith => _$LocationDocEntityCopyWithImpl<LocationDocEntity>(this as LocationDocEntity, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.location, location) || other.location == location)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationDocEntity&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.status, status) || other.status == status));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(files),location,uploadStatus,uploadProgress);
+int get hashCode => Object.hash(runtimeType,latitude,longitude,status);
 
 @override
 String toString() {
-  return 'CachedDocEntity(docId: $docId, files: $files, location: $location, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress)';
+  return 'LocationDocEntity(latitude: $latitude, longitude: $longitude, status: $status)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $CachedDocEntityCopyWith<$Res>  {
-  factory $CachedDocEntityCopyWith(CachedDocEntity value, $Res Function(CachedDocEntity) _then) = _$CachedDocEntityCopyWithImpl;
+abstract mixin class $LocationDocEntityCopyWith<$Res>  {
+  factory $LocationDocEntityCopyWith(LocationDocEntity value, $Res Function(LocationDocEntity) _then) = _$LocationDocEntityCopyWithImpl;
 @useResult
 $Res call({
- int? docId, List<DocFile>? files, LocationDoc? location, FileUploadStatus uploadStatus, double uploadProgress
+ double latitude, double longitude, UploadStatus status
 });
 
 
@@ -53,31 +53,29 @@ $Res call({
 
 }
 /// @nodoc
-class _$CachedDocEntityCopyWithImpl<$Res>
-    implements $CachedDocEntityCopyWith<$Res> {
-  _$CachedDocEntityCopyWithImpl(this._self, this._then);
+class _$LocationDocEntityCopyWithImpl<$Res>
+    implements $LocationDocEntityCopyWith<$Res> {
+  _$LocationDocEntityCopyWithImpl(this._self, this._then);
 
-  final CachedDocEntity _self;
-  final $Res Function(CachedDocEntity) _then;
+  final LocationDocEntity _self;
+  final $Res Function(LocationDocEntity) _then;
 
-/// Create a copy of CachedDocEntity
+/// Create a copy of LocationDocEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? docId = freezed,Object? files = freezed,Object? location = freezed,Object? uploadStatus = null,Object? uploadProgress = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? latitude = null,Object? longitude = null,Object? status = null,}) {
   return _then(_self.copyWith(
-docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int?,files: freezed == files ? _self.files : files // ignore: cast_nullable_to_non_nullable
-as List<DocFile>?,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as LocationDoc?,uploadStatus: null == uploadStatus ? _self.uploadStatus : uploadStatus // ignore: cast_nullable_to_non_nullable
-as FileUploadStatus,uploadProgress: null == uploadProgress ? _self.uploadProgress : uploadProgress // ignore: cast_nullable_to_non_nullable
-as double,
+latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as UploadStatus,
   ));
 }
 
 }
 
 
-/// Adds pattern-matching-related methods to [CachedDocEntity].
-extension CachedDocEntityPatterns on CachedDocEntity {
+/// Adds pattern-matching-related methods to [LocationDocEntity].
+extension LocationDocEntityPatterns on LocationDocEntity {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -90,10 +88,10 @@ extension CachedDocEntityPatterns on CachedDocEntity {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CachedDocEntity value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LocationDocEntity value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _CachedDocEntity() when $default != null:
+case _LocationDocEntity() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -112,10 +110,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CachedDocEntity value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LocationDocEntity value)  $default,){
 final _that = this;
 switch (_that) {
-case _CachedDocEntity():
+case _LocationDocEntity():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -133,10 +131,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CachedDocEntity value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LocationDocEntity value)?  $default,){
 final _that = this;
 switch (_that) {
-case _CachedDocEntity() when $default != null:
+case _LocationDocEntity() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -154,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? docId,  List<DocFile>? files,  LocationDoc? location,  FileUploadStatus uploadStatus,  double uploadProgress)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double latitude,  double longitude,  UploadStatus status)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _CachedDocEntity() when $default != null:
-return $default(_that.docId,_that.files,_that.location,_that.uploadStatus,_that.uploadProgress);case _:
+case _LocationDocEntity() when $default != null:
+return $default(_that.latitude,_that.longitude,_that.status);case _:
   return orElse();
 
 }
@@ -175,10 +173,10 @@ return $default(_that.docId,_that.files,_that.location,_that.uploadStatus,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? docId,  List<DocFile>? files,  LocationDoc? location,  FileUploadStatus uploadStatus,  double uploadProgress)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double latitude,  double longitude,  UploadStatus status)  $default,) {final _that = this;
 switch (_that) {
-case _CachedDocEntity():
-return $default(_that.docId,_that.files,_that.location,_that.uploadStatus,_that.uploadProgress);case _:
+case _LocationDocEntity():
+return $default(_that.latitude,_that.longitude,_that.status);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +193,10 @@ return $default(_that.docId,_that.files,_that.location,_that.uploadStatus,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? docId,  List<DocFile>? files,  LocationDoc? location,  FileUploadStatus uploadStatus,  double uploadProgress)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double latitude,  double longitude,  UploadStatus status)?  $default,) {final _that = this;
 switch (_that) {
-case _CachedDocEntity() when $default != null:
-return $default(_that.docId,_that.files,_that.location,_that.uploadStatus,_that.uploadProgress);case _:
+case _LocationDocEntity() when $default != null:
+return $default(_that.latitude,_that.longitude,_that.status);case _:
   return null;
 
 }
@@ -209,55 +207,45 @@ return $default(_that.docId,_that.files,_that.location,_that.uploadStatus,_that.
 /// @nodoc
 
 
-class _CachedDocEntity extends CachedDocEntity {
-  const _CachedDocEntity({this.docId, final  List<DocFile>? files, this.location, this.uploadStatus = FileUploadStatus.pending, this.uploadProgress = 0.0}): _files = files,super._();
+class _LocationDocEntity implements LocationDocEntity {
+  const _LocationDocEntity({this.latitude = 0.0, this.longitude = 0.0, this.status = UploadStatus.init});
   
 
-@override final  int? docId;
- final  List<DocFile>? _files;
-@override List<DocFile>? get files {
-  final value = _files;
-  if (value == null) return null;
-  if (_files is EqualUnmodifiableListView) return _files;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
+@override@JsonKey() final  double latitude;
+@override@JsonKey() final  double longitude;
+@override@JsonKey() final  UploadStatus status;
 
-@override final  LocationDoc? location;
-@override@JsonKey() final  FileUploadStatus uploadStatus;
-@override@JsonKey() final  double uploadProgress;
-
-/// Create a copy of CachedDocEntity
+/// Create a copy of LocationDocEntity
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$CachedDocEntityCopyWith<_CachedDocEntity> get copyWith => __$CachedDocEntityCopyWithImpl<_CachedDocEntity>(this, _$identity);
+_$LocationDocEntityCopyWith<_LocationDocEntity> get copyWith => __$LocationDocEntityCopyWithImpl<_LocationDocEntity>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CachedDocEntity&&(identical(other.docId, docId) || other.docId == docId)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.location, location) || other.location == location)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationDocEntity&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.status, status) || other.status == status));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,docId,const DeepCollectionEquality().hash(_files),location,uploadStatus,uploadProgress);
+int get hashCode => Object.hash(runtimeType,latitude,longitude,status);
 
 @override
 String toString() {
-  return 'CachedDocEntity(docId: $docId, files: $files, location: $location, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress)';
+  return 'LocationDocEntity(latitude: $latitude, longitude: $longitude, status: $status)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$CachedDocEntityCopyWith<$Res> implements $CachedDocEntityCopyWith<$Res> {
-  factory _$CachedDocEntityCopyWith(_CachedDocEntity value, $Res Function(_CachedDocEntity) _then) = __$CachedDocEntityCopyWithImpl;
+abstract mixin class _$LocationDocEntityCopyWith<$Res> implements $LocationDocEntityCopyWith<$Res> {
+  factory _$LocationDocEntityCopyWith(_LocationDocEntity value, $Res Function(_LocationDocEntity) _then) = __$LocationDocEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int? docId, List<DocFile>? files, LocationDoc? location, FileUploadStatus uploadStatus, double uploadProgress
+ double latitude, double longitude, UploadStatus status
 });
 
 
@@ -265,23 +253,21 @@ $Res call({
 
 }
 /// @nodoc
-class __$CachedDocEntityCopyWithImpl<$Res>
-    implements _$CachedDocEntityCopyWith<$Res> {
-  __$CachedDocEntityCopyWithImpl(this._self, this._then);
+class __$LocationDocEntityCopyWithImpl<$Res>
+    implements _$LocationDocEntityCopyWith<$Res> {
+  __$LocationDocEntityCopyWithImpl(this._self, this._then);
 
-  final _CachedDocEntity _self;
-  final $Res Function(_CachedDocEntity) _then;
+  final _LocationDocEntity _self;
+  final $Res Function(_LocationDocEntity) _then;
 
-/// Create a copy of CachedDocEntity
+/// Create a copy of LocationDocEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? docId = freezed,Object? files = freezed,Object? location = freezed,Object? uploadStatus = null,Object? uploadProgress = null,}) {
-  return _then(_CachedDocEntity(
-docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int?,files: freezed == files ? _self._files : files // ignore: cast_nullable_to_non_nullable
-as List<DocFile>?,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as LocationDoc?,uploadStatus: null == uploadStatus ? _self.uploadStatus : uploadStatus // ignore: cast_nullable_to_non_nullable
-as FileUploadStatus,uploadProgress: null == uploadProgress ? _self.uploadProgress : uploadProgress // ignore: cast_nullable_to_non_nullable
-as double,
+@override @pragma('vm:prefer-inline') $Res call({Object? latitude = null,Object? longitude = null,Object? status = null,}) {
+  return _then(_LocationDocEntity(
+latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as UploadStatus,
   ));
 }
 

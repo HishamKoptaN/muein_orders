@@ -23,15 +23,12 @@ class _DocsViewState extends State<DocsView> {
   @override
   void initState() {
     super.initState();
-    getIt<DocsBloc>().add(DocsEvent.getDocs(orderId: widget.orderId));
     _scrollController.addListener(_onScroll);
   }
 
   void _onScroll() {
     if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent) {
-      getIt<DocsBloc>().add(DocsEvent.getDocs(orderId: widget.orderId));
-    }
+        _scrollController.position.maxScrollExtent) {}
   }
 
   @override

@@ -14,259 +14,33 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DocsEvent {
 
- int get orderId;
-/// Create a copy of DocsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$DocsEventCopyWith<DocsEvent> get copyWith => _$DocsEventCopyWithImpl<DocsEvent>(this as DocsEvent, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsEvent&&(identical(other.orderId, orderId) || other.orderId == orderId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsEvent);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,orderId);
-
-@override
-String toString() {
-  return 'DocsEvent(orderId: $orderId)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $DocsEventCopyWith<$Res>  {
-  factory $DocsEventCopyWith(DocsEvent value, $Res Function(DocsEvent) _then) = _$DocsEventCopyWithImpl;
-@useResult
-$Res call({
- int orderId
-});
-
-
-
-
-}
-/// @nodoc
-class _$DocsEventCopyWithImpl<$Res>
-    implements $DocsEventCopyWith<$Res> {
-  _$DocsEventCopyWithImpl(this._self, this._then);
-
-  final DocsEvent _self;
-  final $Res Function(DocsEvent) _then;
-
-/// Create a copy of DocsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? orderId = null,}) {
-  return _then(_self.copyWith(
-orderId: null == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [DocsEvent].
-extension DocsEventPatterns on DocsEvent {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GetDocs value)?  getDocs,required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _GetDocs() when getDocs != null:
-return getDocs(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GetDocs value)  getDocs,}){
-final _that = this;
-switch (_that) {
-case _GetDocs():
-return getDocs(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GetDocs value)?  getDocs,}){
-final _that = this;
-switch (_that) {
-case _GetDocs() when getDocs != null:
-return getDocs(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int orderId)?  getDocs,required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _GetDocs() when getDocs != null:
-return getDocs(_that.orderId);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int orderId)  getDocs,}) {final _that = this;
-switch (_that) {
-case _GetDocs():
-return getDocs(_that.orderId);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int orderId)?  getDocs,}) {final _that = this;
-switch (_that) {
-case _GetDocs() when getDocs != null:
-return getDocs(_that.orderId);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-
-
-class _GetDocs implements DocsEvent {
-  const _GetDocs({required this.orderId});
-  
-
-@override final  int orderId;
-
-/// Create a copy of DocsEvent
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$GetDocsCopyWith<_GetDocs> get copyWith => __$GetDocsCopyWithImpl<_GetDocs>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetDocs&&(identical(other.orderId, orderId) || other.orderId == orderId));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,orderId);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DocsEvent.getDocs(orderId: $orderId)';
+  return 'DocsEvent()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$GetDocsCopyWith<$Res> implements $DocsEventCopyWith<$Res> {
-  factory _$GetDocsCopyWith(_GetDocs value, $Res Function(_GetDocs) _then) = __$GetDocsCopyWithImpl;
-@override @useResult
-$Res call({
- int orderId
-});
-
-
-
-
-}
-/// @nodoc
-class __$GetDocsCopyWithImpl<$Res>
-    implements _$GetDocsCopyWith<$Res> {
-  __$GetDocsCopyWithImpl(this._self, this._then);
-
-  final _GetDocs _self;
-  final $Res Function(_GetDocs) _then;
-
-/// Create a copy of DocsEvent
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? orderId = null,}) {
-  return _then(_GetDocs(
-orderId: null == orderId ? _self.orderId : orderId // ignore: cast_nullable_to_non_nullable
-as int,
-  ));
+class $DocsEventCopyWith<$Res>  {
+$DocsEventCopyWith(DocsEvent _, $Res Function(DocsEvent) __);
 }
 
 
-}
 
 /// @nodoc
 mixin _$DocsState {

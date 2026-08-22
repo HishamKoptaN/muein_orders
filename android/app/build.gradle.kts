@@ -61,21 +61,15 @@ android {
     }
     flavorDimensions += "env"
     productFlavors {
-        create("local") {
-            dimension = "env"
-            applicationIdSuffix = ".local"
-            versionNameSuffix = "-local"
-            resValue("string", "app_name", "الإدارة Local")
-        }
         create("dev") {
             dimension = "env"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            resValue("string", "app_name", "الإدارة Dev")
+            resValue("string", "app_name", "معين Dev")
         }
         create("prod") {
             dimension = "env"
-            resValue("string", "app_name", "الإدارة")
+            resValue("string", "app_name", "معين")
         }
     }
 }

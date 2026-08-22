@@ -5,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/widgets/translated_text.dart';
-import '../../../data/datasources/local/drift/cached_docs_table.dart';
+import '../../../data/datasources/local_data_src/drift/tables/docs_table.dart';
 import '../../../domain/entities/create_cached_doc_entity.dart';
 import '../../bloc/cached_doc_bloc.dart';
 import '../../bloc/location_picker_bloc/location_picker_bloc.dart';
@@ -139,8 +139,8 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
             start: 8,
             child: buildStatusIndicator(
               docFileStatus:
-                  widget.loaded.createCachedDoc.location?.status ??
-                  FileUploadStatus.pending,
+                  widget.loaded.createCachedDoc.location?.fileUploadStatus ??
+                  UploadStatus.init,
             ),
           ),
         ],

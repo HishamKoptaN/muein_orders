@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateCachedDocEntity implements DiagnosticableTreeMixin {
 
- GenericFormInput? get docId; List<DocFileEntity> get files; LocationEntity? get location;
+ GenericFormInput? get docId; List<DocMediaEntity> get files; LocationEntity? get location;
 /// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -51,7 +51,7 @@ abstract mixin class $CreateCachedDocEntityCopyWith<$Res>  {
   factory $CreateCachedDocEntityCopyWith(CreateCachedDocEntity value, $Res Function(CreateCachedDocEntity) _then) = _$CreateCachedDocEntityCopyWithImpl;
 @useResult
 $Res call({
- GenericFormInput? docId, List<DocFileEntity> files, LocationEntity? location
+ GenericFormInput? docId, List<DocMediaEntity> files, LocationEntity? location
 });
 
 
@@ -72,7 +72,7 @@ class _$CreateCachedDocEntityCopyWithImpl<$Res>
   return _then(_self.copyWith(
 docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as GenericFormInput?,files: null == files ? _self.files : files // ignore: cast_nullable_to_non_nullable
-as List<DocFileEntity>,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as List<DocMediaEntity>,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as LocationEntity?,
   ));
 }
@@ -170,7 +170,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormInput? docId,  List<DocFileEntity> files,  LocationEntity? location)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GenericFormInput? docId,  List<DocMediaEntity> files,  LocationEntity? location)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateCachedDocEntity() when $default != null:
 return $default(_that.docId,_that.files,_that.location);case _:
@@ -191,7 +191,7 @@ return $default(_that.docId,_that.files,_that.location);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormInput? docId,  List<DocFileEntity> files,  LocationEntity? location)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GenericFormInput? docId,  List<DocMediaEntity> files,  LocationEntity? location)  $default,) {final _that = this;
 switch (_that) {
 case _CreateCachedDocEntity():
 return $default(_that.docId,_that.files,_that.location);case _:
@@ -211,7 +211,7 @@ return $default(_that.docId,_that.files,_that.location);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormInput? docId,  List<DocFileEntity> files,  LocationEntity? location)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GenericFormInput? docId,  List<DocMediaEntity> files,  LocationEntity? location)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateCachedDocEntity() when $default != null:
 return $default(_that.docId,_that.files,_that.location);case _:
@@ -226,12 +226,12 @@ return $default(_that.docId,_that.files,_that.location);case _:
 
 
 class _CreateCachedDocEntity extends CreateCachedDocEntity with DiagnosticableTreeMixin {
-  const _CreateCachedDocEntity({this.docId, final  List<DocFileEntity> files = const <DocFileEntity>[], this.location}): _files = files,super._();
+  const _CreateCachedDocEntity({this.docId, final  List<DocMediaEntity> files = const <DocMediaEntity>[], this.location}): _files = files,super._();
   
 
 @override final  GenericFormInput? docId;
- final  List<DocFileEntity> _files;
-@override@JsonKey() List<DocFileEntity> get files {
+ final  List<DocMediaEntity> _files;
+@override@JsonKey() List<DocMediaEntity> get files {
   if (_files is EqualUnmodifiableListView) return _files;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_files);
@@ -275,7 +275,7 @@ abstract mixin class _$CreateCachedDocEntityCopyWith<$Res> implements $CreateCac
   factory _$CreateCachedDocEntityCopyWith(_CreateCachedDocEntity value, $Res Function(_CreateCachedDocEntity) _then) = __$CreateCachedDocEntityCopyWithImpl;
 @override @useResult
 $Res call({
- GenericFormInput? docId, List<DocFileEntity> files, LocationEntity? location
+ GenericFormInput? docId, List<DocMediaEntity> files, LocationEntity? location
 });
 
 
@@ -296,7 +296,7 @@ class __$CreateCachedDocEntityCopyWithImpl<$Res>
   return _then(_CreateCachedDocEntity(
 docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as GenericFormInput?,files: null == files ? _self._files : files // ignore: cast_nullable_to_non_nullable
-as List<DocFileEntity>,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
+as List<DocMediaEntity>,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as LocationEntity?,
   ));
 }
@@ -317,284 +317,9 @@ $LocationEntityCopyWith<$Res>? get location {
 }
 
 /// @nodoc
-mixin _$DocFileEntity implements DiagnosticableTreeMixin {
-
- FileFormInput? get file; DocFile? get docFile; FileUploadStatus get docFileStatus;
-/// Create a copy of DocFileEntity
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$DocFileEntityCopyWith<DocFileEntity> get copyWith => _$DocFileEntityCopyWithImpl<DocFileEntity>(this as DocFileEntity, _$identity);
-
-
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'DocFileEntity'))
-    ..add(DiagnosticsProperty('file', file))..add(DiagnosticsProperty('docFile', docFile))..add(DiagnosticsProperty('docFileStatus', docFileStatus));
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocFileEntity&&(identical(other.file, file) || other.file == file)&&(identical(other.docFile, docFile) || other.docFile == docFile)&&(identical(other.docFileStatus, docFileStatus) || other.docFileStatus == docFileStatus));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,file,docFile,docFileStatus);
-
-@override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'DocFileEntity(file: $file, docFile: $docFile, docFileStatus: $docFileStatus)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $DocFileEntityCopyWith<$Res>  {
-  factory $DocFileEntityCopyWith(DocFileEntity value, $Res Function(DocFileEntity) _then) = _$DocFileEntityCopyWithImpl;
-@useResult
-$Res call({
- FileFormInput? file, DocFile? docFile, FileUploadStatus docFileStatus
-});
-
-
-
-
-}
-/// @nodoc
-class _$DocFileEntityCopyWithImpl<$Res>
-    implements $DocFileEntityCopyWith<$Res> {
-  _$DocFileEntityCopyWithImpl(this._self, this._then);
-
-  final DocFileEntity _self;
-  final $Res Function(DocFileEntity) _then;
-
-/// Create a copy of DocFileEntity
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? file = freezed,Object? docFile = freezed,Object? docFileStatus = null,}) {
-  return _then(_self.copyWith(
-file: freezed == file ? _self.file : file // ignore: cast_nullable_to_non_nullable
-as FileFormInput?,docFile: freezed == docFile ? _self.docFile : docFile // ignore: cast_nullable_to_non_nullable
-as DocFile?,docFileStatus: null == docFileStatus ? _self.docFileStatus : docFileStatus // ignore: cast_nullable_to_non_nullable
-as FileUploadStatus,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [DocFileEntity].
-extension DocFileEntityPatterns on DocFileEntity {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _DocFileEntity value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _DocFileEntity() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _DocFileEntity value)  $default,){
-final _that = this;
-switch (_that) {
-case _DocFileEntity():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _DocFileEntity value)?  $default,){
-final _that = this;
-switch (_that) {
-case _DocFileEntity() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FileFormInput? file,  DocFile? docFile,  FileUploadStatus docFileStatus)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _DocFileEntity() when $default != null:
-return $default(_that.file,_that.docFile,_that.docFileStatus);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FileFormInput? file,  DocFile? docFile,  FileUploadStatus docFileStatus)  $default,) {final _that = this;
-switch (_that) {
-case _DocFileEntity():
-return $default(_that.file,_that.docFile,_that.docFileStatus);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FileFormInput? file,  DocFile? docFile,  FileUploadStatus docFileStatus)?  $default,) {final _that = this;
-switch (_that) {
-case _DocFileEntity() when $default != null:
-return $default(_that.file,_that.docFile,_that.docFileStatus);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-
-
-class _DocFileEntity with DiagnosticableTreeMixin implements DocFileEntity {
-  const _DocFileEntity({this.file, this.docFile, this.docFileStatus = FileUploadStatus.init});
-  
-
-@override final  FileFormInput? file;
-@override final  DocFile? docFile;
-@override@JsonKey() final  FileUploadStatus docFileStatus;
-
-/// Create a copy of DocFileEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$DocFileEntityCopyWith<_DocFileEntity> get copyWith => __$DocFileEntityCopyWithImpl<_DocFileEntity>(this, _$identity);
-
-
-@override
-void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
-    ..add(DiagnosticsProperty('type', 'DocFileEntity'))
-    ..add(DiagnosticsProperty('file', file))..add(DiagnosticsProperty('docFile', docFile))..add(DiagnosticsProperty('docFileStatus', docFileStatus));
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocFileEntity&&(identical(other.file, file) || other.file == file)&&(identical(other.docFile, docFile) || other.docFile == docFile)&&(identical(other.docFileStatus, docFileStatus) || other.docFileStatus == docFileStatus));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,file,docFile,docFileStatus);
-
-@override
-String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'DocFileEntity(file: $file, docFile: $docFile, docFileStatus: $docFileStatus)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$DocFileEntityCopyWith<$Res> implements $DocFileEntityCopyWith<$Res> {
-  factory _$DocFileEntityCopyWith(_DocFileEntity value, $Res Function(_DocFileEntity) _then) = __$DocFileEntityCopyWithImpl;
-@override @useResult
-$Res call({
- FileFormInput? file, DocFile? docFile, FileUploadStatus docFileStatus
-});
-
-
-
-
-}
-/// @nodoc
-class __$DocFileEntityCopyWithImpl<$Res>
-    implements _$DocFileEntityCopyWith<$Res> {
-  __$DocFileEntityCopyWithImpl(this._self, this._then);
-
-  final _DocFileEntity _self;
-  final $Res Function(_DocFileEntity) _then;
-
-/// Create a copy of DocFileEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? file = freezed,Object? docFile = freezed,Object? docFileStatus = null,}) {
-  return _then(_DocFileEntity(
-file: freezed == file ? _self.file : file // ignore: cast_nullable_to_non_nullable
-as FileFormInput?,docFile: freezed == docFile ? _self.docFile : docFile // ignore: cast_nullable_to_non_nullable
-as DocFile?,docFileStatus: null == docFileStatus ? _self.docFileStatus : docFileStatus // ignore: cast_nullable_to_non_nullable
-as FileUploadStatus,
-  ));
-}
-
-
-}
-
-/// @nodoc
 mixin _$LocationEntity implements DiagnosticableTreeMixin {
 
- double? get latitude; double? get longitude; FileUploadStatus get status;
+ double? get latitude; double? get longitude; UploadStatus get fileUploadStatus;
 /// Create a copy of LocationEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -606,21 +331,21 @@ $LocationEntityCopyWith<LocationEntity> get copyWith => _$LocationEntityCopyWith
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'LocationEntity'))
-    ..add(DiagnosticsProperty('latitude', latitude))..add(DiagnosticsProperty('longitude', longitude))..add(DiagnosticsProperty('status', status));
+    ..add(DiagnosticsProperty('latitude', latitude))..add(DiagnosticsProperty('longitude', longitude))..add(DiagnosticsProperty('fileUploadStatus', fileUploadStatus));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationEntity&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationEntity&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,latitude,longitude,status);
+int get hashCode => Object.hash(runtimeType,latitude,longitude,fileUploadStatus);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'LocationEntity(latitude: $latitude, longitude: $longitude, status: $status)';
+  return 'LocationEntity(latitude: $latitude, longitude: $longitude, fileUploadStatus: $fileUploadStatus)';
 }
 
 
@@ -631,7 +356,7 @@ abstract mixin class $LocationEntityCopyWith<$Res>  {
   factory $LocationEntityCopyWith(LocationEntity value, $Res Function(LocationEntity) _then) = _$LocationEntityCopyWithImpl;
 @useResult
 $Res call({
- double? latitude, double? longitude, FileUploadStatus status
+ double? latitude, double? longitude, UploadStatus fileUploadStatus
 });
 
 
@@ -648,12 +373,12 @@ class _$LocationEntityCopyWithImpl<$Res>
 
 /// Create a copy of LocationEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? latitude = freezed,Object? longitude = freezed,Object? status = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? latitude = freezed,Object? longitude = freezed,Object? fileUploadStatus = null,}) {
   return _then(_self.copyWith(
 latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as double?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as FileUploadStatus,
+as double?,fileUploadStatus: null == fileUploadStatus ? _self.fileUploadStatus : fileUploadStatus // ignore: cast_nullable_to_non_nullable
+as UploadStatus,
   ));
 }
 
@@ -738,10 +463,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double? latitude,  double? longitude,  FileUploadStatus status)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double? latitude,  double? longitude,  UploadStatus fileUploadStatus)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LocationEntity() when $default != null:
-return $default(_that.latitude,_that.longitude,_that.status);case _:
+return $default(_that.latitude,_that.longitude,_that.fileUploadStatus);case _:
   return orElse();
 
 }
@@ -759,10 +484,10 @@ return $default(_that.latitude,_that.longitude,_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double? latitude,  double? longitude,  FileUploadStatus status)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double? latitude,  double? longitude,  UploadStatus fileUploadStatus)  $default,) {final _that = this;
 switch (_that) {
 case _LocationEntity():
-return $default(_that.latitude,_that.longitude,_that.status);case _:
+return $default(_that.latitude,_that.longitude,_that.fileUploadStatus);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -779,10 +504,10 @@ return $default(_that.latitude,_that.longitude,_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double? latitude,  double? longitude,  FileUploadStatus status)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double? latitude,  double? longitude,  UploadStatus fileUploadStatus)?  $default,) {final _that = this;
 switch (_that) {
 case _LocationEntity() when $default != null:
-return $default(_that.latitude,_that.longitude,_that.status);case _:
+return $default(_that.latitude,_that.longitude,_that.fileUploadStatus);case _:
   return null;
 
 }
@@ -794,12 +519,12 @@ return $default(_that.latitude,_that.longitude,_that.status);case _:
 
 
 class _LocationEntity extends LocationEntity with DiagnosticableTreeMixin {
-  const _LocationEntity({this.latitude, this.longitude, this.status = FileUploadStatus.init}): super._();
+  const _LocationEntity({this.latitude, this.longitude, this.fileUploadStatus = UploadStatus.init}): super._();
   
 
 @override final  double? latitude;
 @override final  double? longitude;
-@override@JsonKey() final  FileUploadStatus status;
+@override@JsonKey() final  UploadStatus fileUploadStatus;
 
 /// Create a copy of LocationEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -812,21 +537,21 @@ _$LocationEntityCopyWith<_LocationEntity> get copyWith => __$LocationEntityCopyW
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'LocationEntity'))
-    ..add(DiagnosticsProperty('latitude', latitude))..add(DiagnosticsProperty('longitude', longitude))..add(DiagnosticsProperty('status', status));
+    ..add(DiagnosticsProperty('latitude', latitude))..add(DiagnosticsProperty('longitude', longitude))..add(DiagnosticsProperty('fileUploadStatus', fileUploadStatus));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationEntity&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationEntity&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,latitude,longitude,status);
+int get hashCode => Object.hash(runtimeType,latitude,longitude,fileUploadStatus);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'LocationEntity(latitude: $latitude, longitude: $longitude, status: $status)';
+  return 'LocationEntity(latitude: $latitude, longitude: $longitude, fileUploadStatus: $fileUploadStatus)';
 }
 
 
@@ -837,7 +562,7 @@ abstract mixin class _$LocationEntityCopyWith<$Res> implements $LocationEntityCo
   factory _$LocationEntityCopyWith(_LocationEntity value, $Res Function(_LocationEntity) _then) = __$LocationEntityCopyWithImpl;
 @override @useResult
 $Res call({
- double? latitude, double? longitude, FileUploadStatus status
+ double? latitude, double? longitude, UploadStatus fileUploadStatus
 });
 
 
@@ -854,12 +579,12 @@ class __$LocationEntityCopyWithImpl<$Res>
 
 /// Create a copy of LocationEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? latitude = freezed,Object? longitude = freezed,Object? status = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? latitude = freezed,Object? longitude = freezed,Object? fileUploadStatus = null,}) {
   return _then(_LocationEntity(
 latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as double?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as FileUploadStatus,
+as double?,fileUploadStatus: null == fileUploadStatus ? _self.fileUploadStatus : fileUploadStatus // ignore: cast_nullable_to_non_nullable
+as UploadStatus,
   ));
 }
 

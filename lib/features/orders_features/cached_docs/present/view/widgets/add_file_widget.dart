@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../../../core/widgets/translated_text.dart';
-import '../../../data/datasources/local/drift/cached_docs_table.dart';
+import '../../../data/datasources/local_data_src/drift/tables/docs_table.dart';
 
 enum AddDocWidgetType { image, video }
 
@@ -26,7 +26,7 @@ class AddFileWidget extends StatefulWidget {
   final String? errorText;
   final String? initialValue;
   final AddDocWidgetType addDocWidgetType;
-  final FileUploadStatus docFileStatus;
+  final UploadStatus docFileStatus;
   @override
   State<AddFileWidget> createState() => _AddFileWidgetState();
 }
@@ -253,25 +253,25 @@ class _AddFileWidgetState extends State<AddFileWidget> {
   }
 }
 
-Widget buildStatusIndicator({required FileUploadStatus docFileStatus}) {
+Widget buildStatusIndicator({required UploadStatus docFileStatus}) {
   IconData icon;
   Color color;
   bool isRotating = false;
   switch (docFileStatus) {
-    case FileUploadStatus.uploading:
+    case UploadStatus.uploading:
       icon = Icons.sync;
       color = Colors.blue;
       isRotating = true;
       break;
-    case FileUploadStatus.uploaded:
+    case UploadStatus.uploaded:
       icon = Icons.check_circle;
       color = Colors.green;
       break;
-    case FileUploadStatus.failed:
+    case UploadStatus.failed:
       icon = Icons.error;
       color = Colors.red;
       break;
-    case FileUploadStatus.pending:
+    case UploadStatus.pending:
     default:
       icon = Icons.cloud_upload_outlined;
       color = Colors.orange;

@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../core/models/meta_model.dart';
 import '../../../docs/data/models/docs_res_model.dart';
-import '../../../orders_items/data/models/order_items_res_model.dart';
+import '../../../salla_orders_items/data/models/order_items_res_model.dart';
 import 'order_status_model.dart';
 
 part 'orders_res_model.freezed.dart';

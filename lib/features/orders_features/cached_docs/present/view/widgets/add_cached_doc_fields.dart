@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../../core/di/dependency_injection.dart';
-import '../../../data/datasources/local/drift/cached_docs_table.dart';
-import '../../../domain/entities/create_cached_doc_entity.dart';
+import '../../../../docs/domain/entities/doc_entity.dart';
 import '../../bloc/cached_doc_bloc.dart';
 import 'add_file_widget.dart';
 import 'file_picker_utils.dart';
@@ -18,11 +17,10 @@ class AddDocFieldsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FilePickerUtils filePicker = FilePickerUtils();
-    final bloc = getIt<CachedDocBloc>();
-    final List<DocFileEntity> currentFiles =
+    final List<DocMediaEntity> currentFiles =
         (state.createCachedDoc.files.isNotEmpty)
         ? state.createCachedDoc.files
-        : List.generate(4, (_) => const DocFileEntity());
+        : List.generate(4, (_) => const DocMediaEntity());
     Future<void> onFileSelected(int index, bool isImage) async {
       try {
         final file = await filePicker.pickAndPop(
@@ -31,19 +29,19 @@ class AddDocFieldsWidget extends StatelessWidget {
           source: .gallery,
         );
         if (file != null) {
-          final List<DocFileEntity> updatedList = List.from(currentFiles);
+          final List<DocMediaEntity> updatedList = List.from(currentFiles);
           updatedList[index] = updatedList[index].copyWith(
-            file: .dirty(file),
-            docFile:
-                (updatedList[index].docFile ??
-                        DocFile(
-                          path: file.path,
-                          type: _getDocTypeByIndex(index),
-                        ))
-                    .copyWith(path: file.path),
-            docFileStatus: .pending,
+            filePath: file.path,
+            // docFile:
+            //     (updatedList[index].docFile ??
+            //             MediaEntity(
+            //               // path: file.path,
+            //               type: _getDocType(index),
+            //             ))
+            //         .copyWith(path: file.path),
+            // docFileStatus: .pending,
           );
-          bloc.add(
+          getIt<CachedDocBloc>().add(
             CachedDocEvent.updateData(
               loaded: state,
               createCachedDoc: state.createCachedDoc.copyWith(
@@ -62,52 +60,42 @@ class AddDocFieldsWidget extends StatelessWidget {
       spacing: 10,
       runSpacing: 10,
       children: [
-        if (subCategoryId != 5)
-          ...currentFiles.asMap().entries.map((entry) {
-            final index = entry.key;
-            final fileEntity = entry.value;
-            final bool isImage = index < 2;
-            return AddFileWidget(
-              key: ValueKey('file_field_$index'),
-              initialValue: fileEntity.docFile?.path,
-              path:
-                  fileEntity.docFile?.path ??
-                  (isImage ? 'إضافة صورة' : 'إضافة فيديو'),
-              addDocWidgetType: isImage
-                  ? AddDocWidgetType.image
-                  : AddDocWidgetType.video,
-              docFileStatus: fileEntity.docFileStatus,
-              onChanged: (_) {
-                return onFileSelected(index, isImage);
-              },
-              validator: (_) {
-                return fileEntity.file?.isNotValid ?? false
-                    ? fileEntity.file?.errorMessage
-                    : null;
-              },
-            );
-          })
-        else
-          AddFileWidget(
-            key: const ValueKey('file_field'),
-            initialValue: currentFiles[2].docFile?.path,
-            path: currentFiles[2].docFile?.path ?? 'اضف فيديو',
-            addDocWidgetType: AddDocWidgetType.video,
-            docFileStatus: currentFiles[2].docFileStatus,
-            onChanged: (_) => onFileSelected(2, false),
-            validator: (_) => currentFiles[2].file?.isNotValid ?? false
-                ? currentFiles[2].file?.errorMessage
-                : null,
-          ),
-        if (subCategoryId != 5) LocationPickerButton(loaded: state),
+        ...currentFiles.asMap().entries.map((entry) {
+          final index = entry.key;
+          final fileEntity = entry.value;
+          final bool isImage = index < 2;
+          return AddFileWidget(
+            key: ValueKey('file_field_$index'),
+            initialValue: fileEntity.filePath,
+            path:
+                fileEntity.filePath ?? (isImage ? 'إضافة صورة' : 'إضافة فيديو'),
+            addDocWidgetType: isImage ? .image : .video,
+            docFileStatus: fileEntity.fileUploadStatus,
+            onChanged: (_) {
+              return onFileSelected(index, isImage);
+            },
+            // validator: (_) {
+            //   return fileEntity.file?.isNotValid ?? false
+            //       ? fileEntity.file?.errorMessage
+            //       : null;
+            // },
+          );
+        }),
+        // if (subCategoryId != 5)
+        // else
+        //   AddFileWidget(
+        //     key: const ValueKey('file_field'),
+        //     initialValue: currentFiles[2].docFile.v?.path,
+        //     path: currentFiles[2].docFile?.path ?? 'اضف فيديو',
+        //     addDocWidgetType: AddDocWidgetType.video,
+        //     docFileStatus: currentFiles[2].docFileStatus,
+        //     onChanged: (_) => onFileSelected(2, false),
+        //     validator: (_) => currentFiles[2].file?.isNotValid ?? false
+        //         ? currentFiles[2].file?.errorMessage
+        //         : null,
+        //   ),
+        LocationPickerButton(loaded: state),
       ],
     );
-  }
-
-  DocFileType _getDocTypeByIndex(int index) {
-    if (index == 0) return DocFileType.image;
-    if (index == 1) return DocFileType.image;
-    if (index == 2) return DocFileType.video;
-    return DocFileType.video;
   }
 }

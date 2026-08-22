@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/translated_text.dart';
-import '../../../../../orders_features/orders_items/present/views/salla_order_items_view.dart';
+import '../../../../../orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
 import '../../../domain/entities/order_type_res_entity.dart';
 
 class StatCard extends StatelessWidget {

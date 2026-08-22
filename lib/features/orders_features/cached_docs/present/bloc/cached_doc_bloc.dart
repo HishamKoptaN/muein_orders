@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../core/networking/api_result.dart';
 import '../../../../../core/utils/app_file_manager.dart';
+import '../../../docs/domain/entities/doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
 import '../../domain/usecases/cached_docs_use_cases.dart';
 
@@ -22,8 +23,8 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
     : super(const CachedDocState.loading()) {
     on<CachedDocEvent>((event, emit) async {
       await event.when(
-        initialize: (docId) async {
-          final res = await _docsUseCase.getCachedDoc(docId: docId);
+        initialize: (id) async {
+          final res = await _docsUseCase.getCachedDoc(id: id);
           await res.when(
             success: (cachedDoc) async {
               if (cachedDoc != null) {
@@ -107,15 +108,19 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
         const CreateCachedDocEntity();
     if (currentEntity.files.isEmpty) {
       currentEntity = currentEntity.copyWith(
-        files: List.generate(4, (_) => const DocFileEntity()),
+        files: List.generate(4, (_) {
+          return const DocMediaEntity();
+        }),
       );
     }
     final bool isValid = Formz.validate([
-      currentEntity.docId ?? const GenericFormInput.pure(),
-      if (subCategoryId == 5)
-        currentEntity.files[2].file ?? const FileFormInput.pure()
-      else
-        ...currentEntity.files.map((f) => f.file ?? const FileFormInput.pure()),
+      // currentEntity.docId ?? const GenericFormInput.pure(),
+      // if (subCategoryId == 5)
+      // currentEntity.files[2].file ?? const FileFormInput.pure(),
+      // else
+      //   ...currentEntity.files.map((f) {
+      //     return f. ?? const FileFormInput.pure();
+      //   }),
     ]);
     emit(
       loaded?.copyWith(

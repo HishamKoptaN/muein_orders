@@ -15,10 +15,11 @@ import '../../../features/financial/present/view/financial_account_view.dart';
 import '../../../features/home_features/home/domain/entities/order_type_res_entity.dart';
 import '../../../features/home_features/home/present/view/stats_view.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
+import '../../../features/orders_features/docs/domain/entities/doc_entity.dart';
 import '../../language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
-import '../../../features/orders_features/orders_items/present/views/salla_order_items_view.dart';
-import '../../../features/orders_features/orders_items/present/views/sitcker_pdf/sitcker_pdf_preview_view.dart';
+import '../../../features/orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
+import '../../../features/orders_features/salla_orders_items/present/views/sitcker_pdf/sitcker_pdf_preview_view.dart';
 import '../../../features/profile/present/views/profile_view.dart';
 import '../../../features/splash/start_view.dart';
 import '../utils/route_builder.dart' show RouteBuilder;
@@ -118,9 +119,7 @@ class RouteConfig {
         builder: (context, state) {
           final args = state.extra as Map<String, dynamic>?;
           return AddCachedDocView(
-            cachedDoc:
-                args?['cachedDoc'] as CachedDocEntity? ??
-                const CachedDocEntity(),
+            doc: args?['cachedDoc'] as DocEntity,
             subCategoryId: args?['subCategoryId'] as int? ?? 0,
           );
         },

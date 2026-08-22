@@ -1,4 +1,4 @@
-import '../../../../orders_features/orders_items/domain/entities/order_items_res_entity.dart';
+import '../../../../orders_features/salla_orders_items/domain/entities/salla_order_items_res_entity.dart';
 
 class StatEntity {
   final int? id;

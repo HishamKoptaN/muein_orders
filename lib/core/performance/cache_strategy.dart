@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:injectable/injectable.dart';
-import '../../features/orders_features/cached_docs/data/datasources/local/drift/cached_docs_table.dart';
+import '../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
 
 /// Cache strategy for optimizing repeated operations
 @singleton
@@ -70,7 +70,7 @@ class OrdersFilterCache extends CacheStrategy<String, List<int>> {
   OrdersFilterCache() : super(defaultTtl: const Duration(minutes: 2));
 
   String _generateKey({
-    required FileUploadStatus? status,
+    required UploadStatus? status,
     required bool hasDocsOnly,
     required int subCategoryId,
   }) {
@@ -78,7 +78,7 @@ class OrdersFilterCache extends CacheStrategy<String, List<int>> {
   }
 
   List<int>? getCachedOrderIds({
-    required FileUploadStatus? status,
+    required UploadStatus? status,
     required bool hasDocsOnly,
     required int subCategoryId,
   }) {
@@ -92,7 +92,7 @@ class OrdersFilterCache extends CacheStrategy<String, List<int>> {
   }
 
   void cacheOrderIds({
-    required FileUploadStatus? status,
+    required UploadStatus? status,
     required bool hasDocsOnly,
     required int subCategoryId,
     required List<int> orderIds,

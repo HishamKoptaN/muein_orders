@@ -1,9 +1,7 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../../core/di/dependency_injection.dart';
@@ -11,20 +9,19 @@ import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/navigation/custom_app_bar.dart';
-import '../../domain/entities/cached_doc_entity.dart';
+import '../../../docs/domain/entities/doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
 import '../bloc/cached_doc_bloc.dart';
-import 'debug/debug_auto_fill_tools.dart';
 import 'widgets/add_cached_doc_fields.dart';
 
 class AddCachedDocView extends StatefulWidget {
   const AddCachedDocView({
     super.key,
-    required this.cachedDoc,
+    required this.doc,
     required this.subCategoryId,
   });
-  static const String routeName = 'add-cached-doc';
-  final CachedDocEntity cachedDoc;
+  static const String routeName = 'create';
+  final DocEntity doc;
   final int subCategoryId;
   @override
   State<AddCachedDocView> createState() => _AddCachedDocViewState();
@@ -36,31 +33,27 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
   @override
   void initState() {
     super.initState();
-    // _coordsController.text =
-    //     '${_selectedPoint.latitude}, ${_selectedPoint.longitude}';
+    _coordsController.text =
+        '${widget.doc.location.latitude}, ${widget.doc.location.longitude}';
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkClipboardForCoordinates();
     });
     getIt<CachedDocBloc>().add(
       CachedDocEvent.updateData(
-        createCachedDoc: widget.cachedDoc.toCreateCachedDocEntity().copyWith(
-          docId: .dirty(value: widget.cachedDoc.docId.toString()),
-          files:
-              widget.cachedDoc.files?.map((file) {
-                return DocFileEntity(
-                  file: file.path != null ? .dirty(File(file.path!)) : null,
-                  docFile: file,
-                  docFileStatus: file.status,
-                );
-              }).toList() ??
-              [],
-          location: widget.cachedDoc.location != null
-              ? LocationEntity(
-                  latitude: widget.cachedDoc.location!.latitude,
-                  longitude: widget.cachedDoc.location!.longitude,
-                  status: widget.cachedDoc.location!.status,
-                )
-              : null,
+        createCachedDoc: CreateCachedDocEntity(
+          docId: .dirty(value: widget.doc.id.toString()),
+          files: widget.doc.files.map((file) {
+            return DocMediaEntity(
+              filePath: file.path,
+              docId: widget.doc.id,
+              sequence: file.sequence,
+            );
+          }).toList(),
+          location: LocationEntity(
+            latitude: widget.doc.location.latitude,
+            longitude: widget.doc.location.longitude,
+            fileUploadStatus: widget.doc.location.status,
+          ),
         ),
         subCategoryId: widget.subCategoryId,
       ),
@@ -88,8 +81,8 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
   }
 
   void _updateCoordsText() {
-    // _coordsController.text =
-    //     '${_selectedPoint.latitude}, ${_selectedPoint.longitude}';
+    _coordsController.text =
+        '${widget.doc.location.latitude}, ${widget.doc.location.longitude}';
   }
 
   Future<void> _pasteLocationFromClipboard() async {
@@ -97,7 +90,6 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
       final String? clipboardData = await Clipboard.getData(
         'text/plain',
       ).then((data) => data?.text);
-
       if (clipboardData == null || clipboardData.isEmpty) {
         if (mounted) {
           ScaffoldMessenger.of(
@@ -176,48 +168,45 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
         builder: (context, state) {
           return state.maybeMap(
             loaded: (state) {
-              return DebugAutoFillDoc(
-                loadedState: state,
-                child: SingleChildScrollView(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: .spaceEvenly,
-                      children: [
-                        AddDocFieldsWidget(
-                          state: state,
-                          subCategoryId: widget.subCategoryId,
-                        ),
-                        SizedBox(height: 8.h),
-                        CustomBtnWidget(
-                          key: const Key('button'),
-                          text: 'حفظ',
-                          backgroundColor:
-                              (state.createCachedDoc.hasChanged(
-                                    original: widget.cachedDoc,
-                                  ) &&
-                                  state.formzSubmissionStatus.isSuccess)
-                              ? Colors.green
-                              : Colors.grey,
-                          onPressed: () {
-                            for (
-                              int i = 0;
-                              i < state.createCachedDoc.files.length;
-                              i++
-                            ) {
-                              final file = state.createCachedDoc.files[i];
-                              if (file.file?.isNotValid == true) {}
-                            }
-                            if (state.formzSubmissionStatus.isSuccess) {
-                              getIt<CachedDocBloc>().add(
-                                CachedDocEvent.cachedDoc(loaded: state),
-                              );
-                            } else {}
-                          },
-                          formzSubmissionStatus: state.formzSubmissionStatus,
-                        ),
-                        const SizedBox(height: 80),
-                      ],
-                    ),
+              return SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: .spaceEvenly,
+                    children: [
+                      AddDocFieldsWidget(
+                        state: state,
+                        subCategoryId: widget.subCategoryId,
+                      ),
+                      SizedBox(height: 8.h),
+                      CustomBtnWidget(
+                        key: const Key('button'),
+                        text: 'حفظ',
+                        backgroundColor:
+                            (state.createCachedDoc.hasChanged(
+                                  original: widget.doc,
+                                ) &&
+                                state.formzSubmissionStatus.isSuccess)
+                            ? Colors.green
+                            : Colors.grey,
+                        onPressed: () {
+                          for (
+                            int i = 0;
+                            i < state.createCachedDoc.files.length;
+                            i++
+                          ) {
+                            final file = state.createCachedDoc.files[i];
+                            // if (file.file.isNotValid == true) {}
+                          }
+                          if (state.formzSubmissionStatus.isSuccess) {
+                            getIt<CachedDocBloc>().add(
+                              CachedDocEvent.cachedDoc(loaded: state),
+                            );
+                          } else {}
+                        },
+                        formzSubmissionStatus: state.formzSubmissionStatus,
+                      ),
+                      const SizedBox(height: 80),
+                    ],
                   ),
                 ),
               );

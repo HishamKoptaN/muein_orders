@@ -6,10 +6,8 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../../core/entities/meta_entity.dart';
 import '../../../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../../../core/networking/api_result.dart';
-import '../../../../cached_docs/data/datasources/local/drift/app_database.dart';
-import '../../../../orders/domain/entities/orders_res_entity.dart';
-import '../../../../orders_items/domain/entities/order_items_res_entity.dart';
+import '../../../../cached_docs/data/datasources/local_data_src/drift/app_database.dart';
+import '../../../../salla_orders_items/domain/entities/salla_order_items_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';
 
 part 'docs_bloc.freezed.dart';
@@ -25,31 +23,7 @@ class DocsBloc extends Bloc<DocsEvent, DocsState> {
   MetaEntity? _meta;
   DocsBloc({required this.docsUseCase, required this.db})
     : super(const DocsState.loaded(docs: [], hasMore: false)) {
-    on<DocsEvent>((event, emit) async {
-      await event.when(
-        getDocs: (orderId) async {
-          try {
-            final res = await docsUseCase.get(orderId: orderId);
-            await res.when(
-              success: (res) async {
-                emitCustomLoaded(emit: emit);
-              },
-              failure: (apiErrorModel) async {
-                emit(DocsState.failure(apiErrorModel: apiErrorModel));
-                emitCustomLoaded(emit: emit);
-              },
-            );
-          } catch (e) {
-            emit(
-              DocsState.failure(
-                apiErrorModel: ErrorInfo(message: e.toString()),
-              ),
-            );
-            emitCustomLoaded(emit: emit);
-          }
-        },
-      );
-    });
+    on<DocsEvent>((event, emit) async {});
   }
 
   void emitCustomLoaded({required Emitter<DocsState> emit}) {
