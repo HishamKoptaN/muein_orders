@@ -30,7 +30,6 @@ class _StatsViewState extends State<StatsView> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(_initializeWorkManager);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!_initialized) {
         _initializeData();
@@ -39,12 +38,6 @@ class _StatsViewState extends State<StatsView> {
     });
   }
 
-  Future<void> _initializeWorkManager() async {
-    final workManager = getIt<WorkManagerInitializer>();
-    await workManager.initialize();
-    await workManager.registerSystemUploadTask();
-    await Future.microtask(workManager.startPendingUploads);
-  }
 
   void _initializeData() {
     getIt<StatsBloc>().add(const StatsEvent.getStats());

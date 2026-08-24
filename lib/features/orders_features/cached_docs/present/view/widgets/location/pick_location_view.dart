@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../../../../../../core/widgets/translated_text.dart';
+import '../../../../../../../core/widgets/translated_text.dart';
 import 'location_service.dart';
 
 class PickLocationView extends StatefulWidget {

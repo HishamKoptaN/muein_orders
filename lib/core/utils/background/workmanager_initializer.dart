@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'dart:developer';
 import 'package:injectable/injectable.dart';
 import 'package:workmanager/workmanager.dart';
 import 'background_tasks.dart';
@@ -8,9 +8,12 @@ const String uploadTaskName = 'upload_docs_task';
 
 @pragma('vm:entry-point')
 void callbackDispatcher() {
+  log('work manager is starting');
   Workmanager().executeTask((taskName, inputData) async {
     if (taskName == uploadTaskName) {
+      log('work manager is running in task $uploadTaskName');
       await startUploadDocs();
+      log('work manager is stopped');
     }
     return Future.value(true);
   });
@@ -23,11 +26,9 @@ class WorkManagerInitializer {
   }
 
   void startPendingUploads() {
-    startUploadDocs().catchError(
-      (error) {
-        debugPrint('خطأ في بدء رفع التوثيقات المعلقة: $error');
-      },
-    );
+    startUploadDocs().catchError((error) {
+      log('خطأ في بدء رفع التوثيقات المعلقة: $error');
+    });
   }
 
   Future<void> registerSystemUploadTask() async {
@@ -37,7 +38,14 @@ class WorkManagerInitializer {
       frequency: const Duration(minutes: 15),
       initialDelay: const Duration(minutes: 15),
       constraints: Constraints(networkType: NetworkType.connected),
-      // existingWorkPolicy: ExistingPeriodicWorkPolicy.replace,
+      foregroundServiceConfig: ForegroundServiceConfig(
+        notificationTitle: 'رفع التوثيقات المعلقة',
+        notificationText: 'جاري رفع التوثيقات في الخلفية...',
+        notificationChannelId: 'sync_docs_channel',
+        notificationChannelName: 'رفع التوثيقات المعلقة',
+        notificationId: 24,
+        foregroundServiceType: ForegroundServiceType.dataSync,
+      ),
     );
   }
 }

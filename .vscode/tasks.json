@@ -2,37 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Prepare Android Local Env",
-      "dependsOn": [
-        "Start Laravel Server",
-        "run-adb-reverse"
-      ],
-      "dependsOrder": "sequence"
-    },
-    {
-      "label": "Start Laravel Server",
-      "type": "shell",
-      "command": "cd ~/coding/backend/elzefir && php artisan serve --host=0.0.0.0 --port=8000",
-      "isBackground": true,
-      "problemMatcher": {
-        "pattern": {
-          "regexp": "."
-        },
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": ".",
-          "endsPattern": "Server running on"
-        }
-      },
-      "presentation": {
-        "reveal": "silent",
-        "panel": "shared"
-      }
-    },
-    {
       "label": "run-adb-reverse",
       "type": "shell",
-      "command": "adb reverse tcp:8000 tcp:8000",
+      "command": "adb reverse tcp:8000 tcp:8000 || true",
       "presentation": {
         "reveal": "silent",
         "panel": "shared"

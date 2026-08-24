@@ -54,7 +54,6 @@ class CustomBtnWidget extends StatelessWidget {
             : TrText(
                 text,
                 style: TextStyle(
-                  fontFamily: 'Almarai',
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w400,
                   color: const Color(0xffffffff),

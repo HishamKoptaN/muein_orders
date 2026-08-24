@@ -21,17 +21,16 @@ class StatusWidget extends StatelessWidget {
       mainAxisAlignment: .start,
       children: [
         if (icon != null) icon!,
-        SizedBox(width: 5.w),
-        if (text != null)
-          Flexible(
-            child: TrText(
-              text ?? '',
-              softWrap: true,
-              maxLines: 2,
-              overflow: .ellipsis,
-              style: TextStyle(color: color),
-            ),
-          ),
+        // SizedBox(width: 5.w),
+        //Flexible(
+        //  child: TrText(
+        //    text ?? '',
+        //    softWrap: true,
+        //    maxLines: 2,
+        //    overflow: .ellipsis,
+        //    style: TextStyle(color: color),
+        //  ),
+        //),
       ],
     );
   }

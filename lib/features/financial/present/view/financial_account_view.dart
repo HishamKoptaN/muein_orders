@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../blocs/financial_bloc/financial_bloc.dart';
@@ -22,7 +21,6 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.brandBackground,
       appBar: const CustomAppBar(title: 'الحساب المالي'),
       body: _buildAccountView(),
     );
@@ -43,15 +41,15 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          AppColors.brandMint.withValues(alpha: 0.3),
-                          AppColors.brandMint.withValues(alpha: 0.1),
+                          // AppColors.brandMint.withValues(alpha: 0.3),
+                          // AppColors.brandMint.withValues(alpha: 0.1),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
                       borderRadius: BorderRadius.circular(16.r),
                       border: Border.all(
-                        color: AppColors.brandMint.withValues(alpha: 0.3),
+                        //    color: AppColors.brandMint.withValues(alpha: 0.3),
                         width: 1,
                       ),
                     ),
@@ -60,7 +58,7 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
                         FaIcon(
                           FontAwesomeIcons.wallet,
                           size: 48.sp,
-                          color: AppColors.brandMint,
+                          // color: AppColors.brandMint,
                         ),
                         SizedBox(height: 16.h),
                         Text(
@@ -128,14 +126,14 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
       child: Container(
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
-          color: isPrimary
-              ? AppColors.brandMint.withValues(alpha: 0.2)
-              : AppColors.translucentFieldFill,
+          //color: isPrimary
+          //    ? AppColors.brandMint.withValues(alpha: 0.2)
+          //    : AppColors.translucentFieldFill,
           borderRadius: BorderRadius.circular(12.r),
           border: Border.all(
-            color: isPrimary
-                ? AppColors.brandMint.withValues(alpha: 0.5)
-                : AppColors.outline,
+            //  color: isPrimary
+            //      ? AppColors.brandMint.withValues(alpha: 0.5)
+            //      : AppColors.outline,
             width: 1,
           ),
         ),
@@ -144,15 +142,15 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
             Container(
               padding: EdgeInsets.all(12.w),
               decoration: BoxDecoration(
-                color: isPrimary
-                    ? AppColors.brandMint
-                    : AppColors.brandMint.withValues(alpha: 0.2),
+                //    color: isPrimary
+                //        ? AppColors.brandMint
+                //        : AppColors.brandMint.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(10.r),
               ),
               child: FaIcon(
                 icon,
                 size: 20.sp,
-                color: isPrimary ? Colors.white : AppColors.brandMint,
+                //    color: isPrimary ? Colors.white : AppColors.brandMint,
               ),
             ),
             SizedBox(width: 16.w),
@@ -180,7 +178,7 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
             FaIcon(
               FontAwesomeIcons.chevronLeft,
               size: 16.sp,
-              color: AppColors.brandMint,
+              //   color: AppColors.brandMint,
             ),
           ],
         ),

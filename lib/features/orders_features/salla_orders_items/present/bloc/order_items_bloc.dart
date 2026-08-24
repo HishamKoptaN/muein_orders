@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../core/entities/meta_entity.dart';
 import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
-import '../../../cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
+import '../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 import '../../data/models/order_items_res_model.dart';
 import '../../domain/entities/salla_order_items_res_entity.dart';
 import '../../domain/usecases/order_items_use_cases.dart';

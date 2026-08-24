@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:injectable/injectable.dart';
-import '../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
+
+import '../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 
 /// Cache strategy for optimizing repeated operations
 @singleton

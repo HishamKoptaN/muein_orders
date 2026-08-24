@@ -6,8 +6,6 @@ import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../../core/widgets/translated_text.dart';
 import '../../../../cached_docs/data/datasources/local_data_src/drift/app_database.dart';
-import '../../../../cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
-import '../../../../cached_docs/domain/entities/cached_doc_entity.dart';
 import '../../../../docs/domain/entities/doc_entity.dart';
 
 void showTestMenu({
@@ -26,40 +24,40 @@ void showTestMenu({
             ListTile(
               title: const TrText('معلق'),
               onTap: () {
-                db.updateFileStatus(
-                  id: cachedDoc.id ?? 0,
-                  status: UploadStatus.pending,
-                );
+                // db.updateFileStatus(
+                //   id: cachedDoc.id ?? 0,
+                //   status: UploadStatus.pending,
+                // );
                 Navigator.pop(context);
               },
             ),
             ListTile(
               title: const TrText('جاري الرفع'),
               onTap: () {
-                db.updateFileStatus(
-                  id: cachedDoc.id ?? 0,
-                  status: UploadStatus.uploading,
-                );
+                // db.updateFileStatus(
+                //   id: cachedDoc.id ?? 0,
+                //   status: UploadStatus.uploading,
+                // );
                 Navigator.pop(context);
               },
             ),
             ListTile(
               title: const TrText('مكتمل'),
               onTap: () async {
-                await db.updateFileStatus(
-                  id: cachedDoc.id ?? 0,
-                  status: UploadStatus.uploaded,
-                );
+                // await db.updateFileStatus(
+                //   id: cachedDoc.id ?? 0,
+                //   status: UploadStatus.uploaded,
+                // );
                 Navigator.pop(context);
               },
             ),
             ListTile(
               title: const TrText('فاشل'),
               onTap: () async {
-                await db.updateFileStatus(
-                  id: cachedDoc.id ?? 0,
-                  status: UploadStatus.failed,
-                );
+                // await db.updateFileStatus(
+                //   id: cachedDoc.id ?? 0,
+                //   status: UploadStatus.failed,
+                // );
                 Navigator.pop(context);
               },
             ),
@@ -143,5 +141,5 @@ Future<void> _clearOrderDocs({
   required int docId,
   required AppDatabase db,
 }) async {
-  await db.deleteDoc(docId: docId);
+  // await db.deleteDoc(docId: docId);
 }

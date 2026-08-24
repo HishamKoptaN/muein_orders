@@ -33,6 +33,7 @@ abstract class SallaOrderItemStatusEntity with _$SallaOrderItemStatusEntity {
 abstract class SallaOrderItemUnitEntity with _$SallaOrderItemUnitEntity {
   const factory SallaOrderItemUnitEntity({
     @Default(0) int id,
+    @Default(0) int itemId,
     @Default('') String executionNumber,
     @Default(0) int unitNumber,
     @Default([]) List<DocEntity> docs,

@@ -845,7 +845,7 @@ as String,
 /// @nodoc
 mixin _$SallaOrderItemUnitEntity {
 
- int get id; String get executionNumber; int get unitNumber; List<DocEntity> get docs; String get createdAt; String get updatedAt;
+ int get id; int get itemId; String get executionNumber; int get unitNumber; List<DocEntity> get docs; String get createdAt; String get updatedAt;
 /// Create a copy of SallaOrderItemUnitEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -856,16 +856,16 @@ $SallaOrderItemUnitEntityCopyWith<SallaOrderItemUnitEntity> get copyWith => _$Sa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemUnitEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&const DeepCollectionEquality().equals(other.docs, docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemUnitEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&const DeepCollectionEquality().equals(other.docs, docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,executionNumber,unitNumber,const DeepCollectionEquality().hash(docs),createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,itemId,executionNumber,unitNumber,const DeepCollectionEquality().hash(docs),createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'SallaOrderItemUnitEntity(id: $id, executionNumber: $executionNumber, unitNumber: $unitNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'SallaOrderItemUnitEntity(id: $id, itemId: $itemId, executionNumber: $executionNumber, unitNumber: $unitNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -876,7 +876,7 @@ abstract mixin class $SallaOrderItemUnitEntityCopyWith<$Res>  {
   factory $SallaOrderItemUnitEntityCopyWith(SallaOrderItemUnitEntity value, $Res Function(SallaOrderItemUnitEntity) _then) = _$SallaOrderItemUnitEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, String executionNumber, int unitNumber, List<DocEntity> docs, String createdAt, String updatedAt
+ int id, int itemId, String executionNumber, int unitNumber, List<DocEntity> docs, String createdAt, String updatedAt
 });
 
 
@@ -893,9 +893,10 @@ class _$SallaOrderItemUnitEntityCopyWithImpl<$Res>
 
 /// Create a copy of SallaOrderItemUnitEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? executionNumber = null,Object? unitNumber = null,Object? docs = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? itemId = null,Object? executionNumber = null,Object? unitNumber = null,Object? docs = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,itemId: null == itemId ? _self.itemId : itemId // ignore: cast_nullable_to_non_nullable
 as int,executionNumber: null == executionNumber ? _self.executionNumber : executionNumber // ignore: cast_nullable_to_non_nullable
 as String,unitNumber: null == unitNumber ? _self.unitNumber : unitNumber // ignore: cast_nullable_to_non_nullable
 as int,docs: null == docs ? _self.docs : docs // ignore: cast_nullable_to_non_nullable
@@ -986,10 +987,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String executionNumber,  int unitNumber,  List<DocEntity> docs,  String createdAt,  String updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int itemId,  String executionNumber,  int unitNumber,  List<DocEntity> docs,  String createdAt,  String updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SallaOrderItemUnitEntity() when $default != null:
-return $default(_that.id,_that.executionNumber,_that.unitNumber,_that.docs,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.itemId,_that.executionNumber,_that.unitNumber,_that.docs,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -1007,10 +1008,10 @@ return $default(_that.id,_that.executionNumber,_that.unitNumber,_that.docs,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String executionNumber,  int unitNumber,  List<DocEntity> docs,  String createdAt,  String updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int itemId,  String executionNumber,  int unitNumber,  List<DocEntity> docs,  String createdAt,  String updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _SallaOrderItemUnitEntity():
-return $default(_that.id,_that.executionNumber,_that.unitNumber,_that.docs,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.itemId,_that.executionNumber,_that.unitNumber,_that.docs,_that.createdAt,_that.updatedAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1027,10 +1028,10 @@ return $default(_that.id,_that.executionNumber,_that.unitNumber,_that.docs,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String executionNumber,  int unitNumber,  List<DocEntity> docs,  String createdAt,  String updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int itemId,  String executionNumber,  int unitNumber,  List<DocEntity> docs,  String createdAt,  String updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _SallaOrderItemUnitEntity() when $default != null:
-return $default(_that.id,_that.executionNumber,_that.unitNumber,_that.docs,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.itemId,_that.executionNumber,_that.unitNumber,_that.docs,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -1042,10 +1043,11 @@ return $default(_that.id,_that.executionNumber,_that.unitNumber,_that.docs,_that
 
 
 class _SallaOrderItemUnitEntity implements SallaOrderItemUnitEntity {
-  const _SallaOrderItemUnitEntity({this.id = 0, this.executionNumber = '', this.unitNumber = 0, final  List<DocEntity> docs = const [], this.createdAt = '', this.updatedAt = ''}): _docs = docs;
+  const _SallaOrderItemUnitEntity({this.id = 0, this.itemId = 0, this.executionNumber = '', this.unitNumber = 0, final  List<DocEntity> docs = const [], this.createdAt = '', this.updatedAt = ''}): _docs = docs;
   
 
 @override@JsonKey() final  int id;
+@override@JsonKey() final  int itemId;
 @override@JsonKey() final  String executionNumber;
 @override@JsonKey() final  int unitNumber;
  final  List<DocEntity> _docs;
@@ -1068,16 +1070,16 @@ _$SallaOrderItemUnitEntityCopyWith<_SallaOrderItemUnitEntity> get copyWith => __
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemUnitEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&const DeepCollectionEquality().equals(other._docs, _docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemUnitEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&const DeepCollectionEquality().equals(other._docs, _docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,executionNumber,unitNumber,const DeepCollectionEquality().hash(_docs),createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,itemId,executionNumber,unitNumber,const DeepCollectionEquality().hash(_docs),createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'SallaOrderItemUnitEntity(id: $id, executionNumber: $executionNumber, unitNumber: $unitNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'SallaOrderItemUnitEntity(id: $id, itemId: $itemId, executionNumber: $executionNumber, unitNumber: $unitNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -1088,7 +1090,7 @@ abstract mixin class _$SallaOrderItemUnitEntityCopyWith<$Res> implements $SallaO
   factory _$SallaOrderItemUnitEntityCopyWith(_SallaOrderItemUnitEntity value, $Res Function(_SallaOrderItemUnitEntity) _then) = __$SallaOrderItemUnitEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String executionNumber, int unitNumber, List<DocEntity> docs, String createdAt, String updatedAt
+ int id, int itemId, String executionNumber, int unitNumber, List<DocEntity> docs, String createdAt, String updatedAt
 });
 
 
@@ -1105,9 +1107,10 @@ class __$SallaOrderItemUnitEntityCopyWithImpl<$Res>
 
 /// Create a copy of SallaOrderItemUnitEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? executionNumber = null,Object? unitNumber = null,Object? docs = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? itemId = null,Object? executionNumber = null,Object? unitNumber = null,Object? docs = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_SallaOrderItemUnitEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,itemId: null == itemId ? _self.itemId : itemId // ignore: cast_nullable_to_non_nullable
 as int,executionNumber: null == executionNumber ? _self.executionNumber : executionNumber // ignore: cast_nullable_to_non_nullable
 as String,unitNumber: null == unitNumber ? _self.unitNumber : unitNumber // ignore: cast_nullable_to_non_nullable
 as int,docs: null == docs ? _self._docs : docs // ignore: cast_nullable_to_non_nullable

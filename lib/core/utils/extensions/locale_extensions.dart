@@ -4,13 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../language/bloc/language_bloc.dart';
 
 extension LocaleExtension on BuildContext {
-  /// الحصول على اللغة الحالية من الـ language state
   Locale get currentLocale {
     try {
       final languageState = read<LanguageBloc>().state;
       return languageState.maybeWhen(
-        loaded: (locale) => locale,
-        orElse: () => const Locale('ar'),
+        loaded: (locale) {
+          return locale;
+        },
+        orElse: () {
+          return const Locale('ar');
+        },
       );
     } catch (e) {
       debugPrint('Error getting current locale: $e');

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import '../../../../../../core/widgets/translated_text.dart';
 import '../../../domain/entities/salla_order_items_res_entity.dart';
 import '../sitcker_pdf/sitcker_pdf_preview_view.dart';
@@ -7,9 +8,11 @@ import 'salla_order_item_unit_card_widget.dart';
 
 class SallaOrderItemCardWidget extends StatelessWidget {
   final List<SallaOrderItemUnitEntity> sallaOrderItemUnits;
+  final String printedName;
   const SallaOrderItemCardWidget({
     super.key,
     required this.sallaOrderItemUnits,
+    required this.printedName,
   });
 
   @override
@@ -30,24 +33,29 @@ class SallaOrderItemCardWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: ListView.builder(
+        child: ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: sallaOrderItemUnits.length,
+          separatorBuilder: (context, index) {
+            return Gap(8.h);
+          },
           itemBuilder: (context, index) {
             final sallaOrderItemUnit = sallaOrderItemUnits[index];
             return Column(
               children: [
-                ListView.builder(
+                ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: sallaOrderItemUnit.docs.length,
+                  separatorBuilder: (context, index) {
+                    return Gap(8.h);
+                  },
                   itemBuilder: (context, index) {
-                    final doc = sallaOrderItemUnit.docs[index];
                     return SallaOrderItemUnitCardWidget(
+                      doc: sallaOrderItemUnit.docs[index],
                       executionNumber: sallaOrderItemUnit.executionNumber,
-                      doc: doc,
-                      printedName: '',
+                      printedName: printedName,
                     );
                   },
                 ),
@@ -73,7 +81,7 @@ class MakeStickerPdfBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 200.w,
+        width: 160.w,
         child: OutlinedButton(
           onPressed: () {
             Navigator.of(context).push(
@@ -90,7 +98,6 @@ class MakeStickerPdfBtn extends StatelessWidget {
           style: OutlinedButton.styleFrom(
             side: const BorderSide(color: Color(0xFF0062B7)),
             shape: RoundedRectangleBorder(borderRadius: .circular(8)),
-            padding: const .symmetric(vertical: 12, horizontal: 16),
           ),
           child: const TrText(
             'الملصق',

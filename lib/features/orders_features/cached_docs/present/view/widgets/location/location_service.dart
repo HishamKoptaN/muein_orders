@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../../../../../../core/widgets/translated_text.dart';
+import '../../../../../../../core/widgets/translated_text.dart';
 
 class LocationService {
   static Future<bool> isLocationServiceEnabled() async {
@@ -28,14 +28,17 @@ class LocationService {
   static void showLocationServiceDisabledDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (context) {
+        return AlertDialog(
         title: const TrText('خدمة الموقع معطلة'),
         content: const TrText(
           'يرجى تفعيل خدمة الموقع في إعدادات الجهاز لتحديد موقعك الحالي',
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              Navigator.pop(context);
+            },
             child: const TrText('إلغاء'),
           ),
           TextButton(
@@ -46,14 +49,16 @@ class LocationService {
             child: const TrText('فتح الإعدادات'),
           ),
         ],
-      ),
+      );
+      },
     );
   }
 
   static void showPermissionDeniedDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (context) {
+        return AlertDialog(
         title: const TrText('إذن الموقع مرفوض'),
         content: const TrText(
           'تم رفض إذن الوصول إلى الموقع بشكل دائم. يرجى تفعيل الإذن من إعدادات التطبيق',
@@ -71,7 +76,8 @@ class LocationService {
             child: const TrText('فتح الإعدادات'),
           ),
         ],
-      ),
+      );
+      },
     );
   }
 

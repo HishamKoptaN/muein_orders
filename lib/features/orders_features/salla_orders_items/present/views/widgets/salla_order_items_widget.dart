@@ -52,6 +52,7 @@ class SallaOrderItemsWidget extends StatelessWidget {
             final item = items[i];
             return SallaOrderItemCardWidget(
               sallaOrderItemUnits: item.sallaOrderItemUnits,
+              printedName: item.printedName,
             );
           }),
         ),

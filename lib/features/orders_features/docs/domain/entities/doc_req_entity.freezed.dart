@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DocReqEntity {
 
- int get id; List<DocMediaEntity> get files; LocationDocEntity get location;
+ int get id; double get latitude; double get longitude; UploadStatus get locationUploadStatus;
 /// Create a copy of DocReqEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $DocReqEntityCopyWith<DocReqEntity> get copyWith => _$DocReqEntityCopyWithImpl<D
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocReqEntity&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.location, location) || other.location == location));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(files),location);
+int get hashCode => Object.hash(runtimeType,id,latitude,longitude,locationUploadStatus);
 
 @override
 String toString() {
-  return 'DocReqEntity(id: $id, files: $files, location: $location)';
+  return 'DocReqEntity(id: $id, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $DocReqEntityCopyWith<$Res>  {
   factory $DocReqEntityCopyWith(DocReqEntity value, $Res Function(DocReqEntity) _then) = _$DocReqEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, List<DocMediaEntity> files, LocationDocEntity location
+ int id, double latitude, double longitude, UploadStatus locationUploadStatus
 });
 
 
-$LocationDocEntityCopyWith<$Res> get location;
+
 
 }
 /// @nodoc
@@ -62,24 +62,16 @@ class _$DocReqEntityCopyWithImpl<$Res>
 
 /// Create a copy of DocReqEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? files = null,Object? location = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? latitude = null,Object? longitude = null,Object? locationUploadStatus = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,files: null == files ? _self.files : files // ignore: cast_nullable_to_non_nullable
-as List<DocMediaEntity>,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as LocationDocEntity,
+as int,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double,locationUploadStatus: null == locationUploadStatus ? _self.locationUploadStatus : locationUploadStatus // ignore: cast_nullable_to_non_nullable
+as UploadStatus,
   ));
 }
-/// Create a copy of DocReqEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$LocationDocEntityCopyWith<$Res> get location {
-  
-  return $LocationDocEntityCopyWith<$Res>(_self.location, (value) {
-    return _then(_self.copyWith(location: value));
-  });
-}
+
 }
 
 
@@ -161,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  List<DocMediaEntity> files,  LocationDocEntity location)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  double latitude,  double longitude,  UploadStatus locationUploadStatus)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocReqEntity() when $default != null:
-return $default(_that.id,_that.files,_that.location);case _:
+return $default(_that.id,_that.latitude,_that.longitude,_that.locationUploadStatus);case _:
   return orElse();
 
 }
@@ -182,10 +174,10 @@ return $default(_that.id,_that.files,_that.location);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  List<DocMediaEntity> files,  LocationDocEntity location)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  double latitude,  double longitude,  UploadStatus locationUploadStatus)  $default,) {final _that = this;
 switch (_that) {
 case _DocReqEntity():
-return $default(_that.id,_that.files,_that.location);case _:
+return $default(_that.id,_that.latitude,_that.longitude,_that.locationUploadStatus);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -202,10 +194,10 @@ return $default(_that.id,_that.files,_that.location);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  List<DocMediaEntity> files,  LocationDocEntity location)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  double latitude,  double longitude,  UploadStatus locationUploadStatus)?  $default,) {final _that = this;
 switch (_that) {
 case _DocReqEntity() when $default != null:
-return $default(_that.id,_that.files,_that.location);case _:
+return $default(_that.id,_that.latitude,_that.longitude,_that.locationUploadStatus);case _:
   return null;
 
 }
@@ -217,18 +209,13 @@ return $default(_that.id,_that.files,_that.location);case _:
 
 
 class _DocReqEntity implements DocReqEntity {
-  const _DocReqEntity({required this.id, required final  List<DocMediaEntity> files, required this.location}): _files = files;
+  const _DocReqEntity({required this.id, this.latitude = 0.0, this.longitude = 0.0, this.locationUploadStatus = UploadStatus.init});
   
 
 @override final  int id;
- final  List<DocMediaEntity> _files;
-@override List<DocMediaEntity> get files {
-  if (_files is EqualUnmodifiableListView) return _files;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_files);
-}
-
-@override final  LocationDocEntity location;
+@override@JsonKey() final  double latitude;
+@override@JsonKey() final  double longitude;
+@override@JsonKey() final  UploadStatus locationUploadStatus;
 
 /// Create a copy of DocReqEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -240,16 +227,16 @@ _$DocReqEntityCopyWith<_DocReqEntity> get copyWith => __$DocReqEntityCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocReqEntity&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.location, location) || other.location == location));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_files),location);
+int get hashCode => Object.hash(runtimeType,id,latitude,longitude,locationUploadStatus);
 
 @override
 String toString() {
-  return 'DocReqEntity(id: $id, files: $files, location: $location)';
+  return 'DocReqEntity(id: $id, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus)';
 }
 
 
@@ -260,11 +247,11 @@ abstract mixin class _$DocReqEntityCopyWith<$Res> implements $DocReqEntityCopyWi
   factory _$DocReqEntityCopyWith(_DocReqEntity value, $Res Function(_DocReqEntity) _then) = __$DocReqEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, List<DocMediaEntity> files, LocationDocEntity location
+ int id, double latitude, double longitude, UploadStatus locationUploadStatus
 });
 
 
-@override $LocationDocEntityCopyWith<$Res> get location;
+
 
 }
 /// @nodoc
@@ -277,31 +264,23 @@ class __$DocReqEntityCopyWithImpl<$Res>
 
 /// Create a copy of DocReqEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? files = null,Object? location = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? latitude = null,Object? longitude = null,Object? locationUploadStatus = null,}) {
   return _then(_DocReqEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,files: null == files ? _self._files : files // ignore: cast_nullable_to_non_nullable
-as List<DocMediaEntity>,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as LocationDocEntity,
+as int,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double,locationUploadStatus: null == locationUploadStatus ? _self.locationUploadStatus : locationUploadStatus // ignore: cast_nullable_to_non_nullable
+as UploadStatus,
   ));
 }
 
-/// Create a copy of DocReqEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$LocationDocEntityCopyWith<$Res> get location {
-  
-  return $LocationDocEntityCopyWith<$Res>(_self.location, (value) {
-    return _then(_self.copyWith(location: value));
-  });
-}
+
 }
 
 /// @nodoc
 mixin _$DocMediaReqEntity {
 
- int get id; int get docId; String get filePath; String get thumbnail; FileType get fileType;
+ int get id; int get docId; String get filePath; String get thumbnail; DocMediaType get fileType;
 /// Create a copy of DocMediaReqEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -332,7 +311,7 @@ abstract mixin class $DocMediaReqEntityCopyWith<$Res>  {
   factory $DocMediaReqEntityCopyWith(DocMediaReqEntity value, $Res Function(DocMediaReqEntity) _then) = _$DocMediaReqEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, int docId, String filePath, String thumbnail, FileType fileType
+ int id, int docId, String filePath, String thumbnail, DocMediaType fileType
 });
 
 
@@ -356,7 +335,7 @@ as int,docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_no
 as int,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
 as String,thumbnail: null == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
 as String,fileType: null == fileType ? _self.fileType : fileType // ignore: cast_nullable_to_non_nullable
-as FileType,
+as DocMediaType,
   ));
 }
 
@@ -441,7 +420,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int docId,  String filePath,  String thumbnail,  FileType fileType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int docId,  String filePath,  String thumbnail,  DocMediaType fileType)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocMediaReqEntity() when $default != null:
 return $default(_that.id,_that.docId,_that.filePath,_that.thumbnail,_that.fileType);case _:
@@ -462,7 +441,7 @@ return $default(_that.id,_that.docId,_that.filePath,_that.thumbnail,_that.fileTy
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int docId,  String filePath,  String thumbnail,  FileType fileType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int docId,  String filePath,  String thumbnail,  DocMediaType fileType)  $default,) {final _that = this;
 switch (_that) {
 case _DocMediaReqEntity():
 return $default(_that.id,_that.docId,_that.filePath,_that.thumbnail,_that.fileType);case _:
@@ -482,7 +461,7 @@ return $default(_that.id,_that.docId,_that.filePath,_that.thumbnail,_that.fileTy
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int docId,  String filePath,  String thumbnail,  FileType fileType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int docId,  String filePath,  String thumbnail,  DocMediaType fileType)?  $default,) {final _that = this;
 switch (_that) {
 case _DocMediaReqEntity() when $default != null:
 return $default(_that.id,_that.docId,_that.filePath,_that.thumbnail,_that.fileType);case _:
@@ -504,7 +483,7 @@ class _DocMediaReqEntity implements DocMediaReqEntity {
 @override final  int docId;
 @override final  String filePath;
 @override final  String thumbnail;
-@override final  FileType fileType;
+@override final  DocMediaType fileType;
 
 /// Create a copy of DocMediaReqEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -536,7 +515,7 @@ abstract mixin class _$DocMediaReqEntityCopyWith<$Res> implements $DocMediaReqEn
   factory _$DocMediaReqEntityCopyWith(_DocMediaReqEntity value, $Res Function(_DocMediaReqEntity) _then) = __$DocMediaReqEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int docId, String filePath, String thumbnail, FileType fileType
+ int id, int docId, String filePath, String thumbnail, DocMediaType fileType
 });
 
 
@@ -560,7 +539,7 @@ as int,docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_no
 as int,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
 as String,thumbnail: null == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
 as String,fileType: null == fileType ? _self.fileType : fileType // ignore: cast_nullable_to_non_nullable
-as FileType,
+as DocMediaType,
   ));
 }
 

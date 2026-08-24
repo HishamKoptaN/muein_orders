@@ -1,16 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../cached_docs/domain/entities/cached_doc_entity.dart';
-import '../../../cached_docs/present/view/widgets/file_picker_utils.dart';
-import 'doc_entity.dart';
+import '../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 part 'doc_req_entity.freezed.dart';
 
 @freezed
 abstract class DocReqEntity with _$DocReqEntity {
   const factory DocReqEntity({
     required int id,
-    required List<DocMediaEntity> files,
-    required LocationDocEntity location,
+    @Default(0.0) double latitude,
+    @Default(0.0) double longitude,
+    @Default(UploadStatus.init) UploadStatus locationUploadStatus,
   }) = _DocReqEntity;
 }
 
@@ -21,6 +19,6 @@ abstract class DocMediaReqEntity with _$DocMediaReqEntity {
     required int docId,
     required String filePath,
     required String thumbnail,
-    required FileType fileType,
+    required DocMediaType fileType,
   }) = _DocMediaReqEntity;
 }

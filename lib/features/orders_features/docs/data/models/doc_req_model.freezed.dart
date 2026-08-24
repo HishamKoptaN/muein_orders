@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DocReqModel {
 
-@JsonKey(name: 'doc_id') int get docId;@JsonKey(name: 'latitude') String get latitude;@JsonKey(name: 'longitude') String get longitude;
+@JsonKey(name: 'latitude') String get latitude;@JsonKey(name: 'longitude') String get longitude;
 /// Create a copy of DocReqModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $DocReqModelCopyWith<DocReqModel> get copyWith => _$DocReqModelCopyWithImpl<DocR
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocReqModel&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocReqModel&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,docId,latitude,longitude);
+int get hashCode => Object.hash(runtimeType,latitude,longitude);
 
 @override
 String toString() {
-  return 'DocReqModel(docId: $docId, latitude: $latitude, longitude: $longitude)';
+  return 'DocReqModel(latitude: $latitude, longitude: $longitude)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $DocReqModelCopyWith<$Res>  {
   factory $DocReqModelCopyWith(DocReqModel value, $Res Function(DocReqModel) _then) = _$DocReqModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'doc_id') int docId,@JsonKey(name: 'latitude') String latitude,@JsonKey(name: 'longitude') String longitude
+@JsonKey(name: 'latitude') String latitude,@JsonKey(name: 'longitude') String longitude
 });
 
 
@@ -65,10 +65,9 @@ class _$DocReqModelCopyWithImpl<$Res>
 
 /// Create a copy of DocReqModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? docId = null,Object? latitude = null,Object? longitude = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? latitude = null,Object? longitude = null,}) {
   return _then(_self.copyWith(
-docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as String,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -155,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int docId, @JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocReqModel() when $default != null:
-return $default(_that.docId,_that.latitude,_that.longitude);case _:
+return $default(_that.latitude,_that.longitude);case _:
   return orElse();
 
 }
@@ -176,10 +175,10 @@ return $default(_that.docId,_that.latitude,_that.longitude);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int docId, @JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude)  $default,) {final _that = this;
 switch (_that) {
 case _DocReqModel():
-return $default(_that.docId,_that.latitude,_that.longitude);case _:
+return $default(_that.latitude,_that.longitude);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +195,10 @@ return $default(_that.docId,_that.latitude,_that.longitude);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'doc_id')  int docId, @JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude)?  $default,) {final _that = this;
 switch (_that) {
 case _DocReqModel() when $default != null:
-return $default(_that.docId,_that.latitude,_that.longitude);case _:
+return $default(_that.latitude,_that.longitude);case _:
   return null;
 
 }
@@ -211,10 +210,9 @@ return $default(_that.docId,_that.latitude,_that.longitude);case _:
 @JsonSerializable()
 
 class _DocReqModel implements DocReqModel {
-  const _DocReqModel({@JsonKey(name: 'doc_id') this.docId = 0, @JsonKey(name: 'latitude') this.latitude = '', @JsonKey(name: 'longitude') this.longitude = ''});
+  const _DocReqModel({@JsonKey(name: 'latitude') this.latitude = '', @JsonKey(name: 'longitude') this.longitude = ''});
   factory _DocReqModel.fromJson(Map<String, dynamic> json) => _$DocReqModelFromJson(json);
 
-@override@JsonKey(name: 'doc_id') final  int docId;
 @override@JsonKey(name: 'latitude') final  String latitude;
 @override@JsonKey(name: 'longitude') final  String longitude;
 
@@ -231,16 +229,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocReqModel&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocReqModel&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,docId,latitude,longitude);
+int get hashCode => Object.hash(runtimeType,latitude,longitude);
 
 @override
 String toString() {
-  return 'DocReqModel(docId: $docId, latitude: $latitude, longitude: $longitude)';
+  return 'DocReqModel(latitude: $latitude, longitude: $longitude)';
 }
 
 
@@ -251,7 +249,7 @@ abstract mixin class _$DocReqModelCopyWith<$Res> implements $DocReqModelCopyWith
   factory _$DocReqModelCopyWith(_DocReqModel value, $Res Function(_DocReqModel) _then) = __$DocReqModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'doc_id') int docId,@JsonKey(name: 'latitude') String latitude,@JsonKey(name: 'longitude') String longitude
+@JsonKey(name: 'latitude') String latitude,@JsonKey(name: 'longitude') String longitude
 });
 
 
@@ -268,10 +266,9 @@ class __$DocReqModelCopyWithImpl<$Res>
 
 /// Create a copy of DocReqModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? docId = null,Object? latitude = null,Object? longitude = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? latitude = null,Object? longitude = null,}) {
   return _then(_DocReqModel(
-docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as String,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -284,7 +281,7 @@ as String,
 /// @nodoc
 mixin _$DocMediaReqModel {
 
- int get id; int get docId; String get filePath; String get fileType; String get thumbnail;
+ int get id;@JsonKey(name: 'file_path') String get filePath; String get thumbnail;
 /// Create a copy of DocMediaReqModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -297,16 +294,16 @@ $DocMediaReqModelCopyWith<DocMediaReqModel> get copyWith => _$DocMediaReqModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaReqModel&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.fileType, fileType) || other.fileType == fileType)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaReqModel&&(identical(other.id, id) || other.id == id)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,filePath,fileType,thumbnail);
+int get hashCode => Object.hash(runtimeType,id,filePath,thumbnail);
 
 @override
 String toString() {
-  return 'DocMediaReqModel(id: $id, docId: $docId, filePath: $filePath, fileType: $fileType, thumbnail: $thumbnail)';
+  return 'DocMediaReqModel(id: $id, filePath: $filePath, thumbnail: $thumbnail)';
 }
 
 
@@ -317,7 +314,7 @@ abstract mixin class $DocMediaReqModelCopyWith<$Res>  {
   factory $DocMediaReqModelCopyWith(DocMediaReqModel value, $Res Function(DocMediaReqModel) _then) = _$DocMediaReqModelCopyWithImpl;
 @useResult
 $Res call({
- int id, int docId, String filePath, String fileType, String thumbnail
+ int id,@JsonKey(name: 'file_path') String filePath, String thumbnail
 });
 
 
@@ -334,12 +331,10 @@ class _$DocMediaReqModelCopyWithImpl<$Res>
 
 /// Create a copy of DocMediaReqModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? docId = null,Object? filePath = null,Object? fileType = null,Object? thumbnail = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? filePath = null,Object? thumbnail = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as int,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
-as String,fileType: null == fileType ? _self.fileType : fileType // ignore: cast_nullable_to_non_nullable
 as String,thumbnail: null == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -426,10 +421,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int docId,  String filePath,  String fileType,  String thumbnail)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'file_path')  String filePath,  String thumbnail)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocMediaReqModel() when $default != null:
-return $default(_that.id,_that.docId,_that.filePath,_that.fileType,_that.thumbnail);case _:
+return $default(_that.id,_that.filePath,_that.thumbnail);case _:
   return orElse();
 
 }
@@ -447,10 +442,10 @@ return $default(_that.id,_that.docId,_that.filePath,_that.fileType,_that.thumbna
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int docId,  String filePath,  String fileType,  String thumbnail)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'file_path')  String filePath,  String thumbnail)  $default,) {final _that = this;
 switch (_that) {
 case _DocMediaReqModel():
-return $default(_that.id,_that.docId,_that.filePath,_that.fileType,_that.thumbnail);case _:
+return $default(_that.id,_that.filePath,_that.thumbnail);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -467,10 +462,10 @@ return $default(_that.id,_that.docId,_that.filePath,_that.fileType,_that.thumbna
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int docId,  String filePath,  String fileType,  String thumbnail)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'file_path')  String filePath,  String thumbnail)?  $default,) {final _that = this;
 switch (_that) {
 case _DocMediaReqModel() when $default != null:
-return $default(_that.id,_that.docId,_that.filePath,_that.fileType,_that.thumbnail);case _:
+return $default(_that.id,_that.filePath,_that.thumbnail);case _:
   return null;
 
 }
@@ -482,13 +477,11 @@ return $default(_that.id,_that.docId,_that.filePath,_that.fileType,_that.thumbna
 @JsonSerializable()
 
 class _DocMediaReqModel implements DocMediaReqModel {
-  const _DocMediaReqModel({this.id = 0, this.docId = 0, this.filePath = '', this.fileType = '', this.thumbnail = ''});
+  const _DocMediaReqModel({this.id = 0, @JsonKey(name: 'file_path') this.filePath = '', this.thumbnail = ''});
   factory _DocMediaReqModel.fromJson(Map<String, dynamic> json) => _$DocMediaReqModelFromJson(json);
 
 @override@JsonKey() final  int id;
-@override@JsonKey() final  int docId;
-@override@JsonKey() final  String filePath;
-@override@JsonKey() final  String fileType;
+@override@JsonKey(name: 'file_path') final  String filePath;
 @override@JsonKey() final  String thumbnail;
 
 /// Create a copy of DocMediaReqModel
@@ -504,16 +497,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaReqModel&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.fileType, fileType) || other.fileType == fileType)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaReqModel&&(identical(other.id, id) || other.id == id)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,filePath,fileType,thumbnail);
+int get hashCode => Object.hash(runtimeType,id,filePath,thumbnail);
 
 @override
 String toString() {
-  return 'DocMediaReqModel(id: $id, docId: $docId, filePath: $filePath, fileType: $fileType, thumbnail: $thumbnail)';
+  return 'DocMediaReqModel(id: $id, filePath: $filePath, thumbnail: $thumbnail)';
 }
 
 
@@ -524,7 +517,7 @@ abstract mixin class _$DocMediaReqModelCopyWith<$Res> implements $DocMediaReqMod
   factory _$DocMediaReqModelCopyWith(_DocMediaReqModel value, $Res Function(_DocMediaReqModel) _then) = __$DocMediaReqModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int docId, String filePath, String fileType, String thumbnail
+ int id,@JsonKey(name: 'file_path') String filePath, String thumbnail
 });
 
 
@@ -541,12 +534,10 @@ class __$DocMediaReqModelCopyWithImpl<$Res>
 
 /// Create a copy of DocMediaReqModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? docId = null,Object? filePath = null,Object? fileType = null,Object? thumbnail = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? filePath = null,Object? thumbnail = null,}) {
   return _then(_DocMediaReqModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as int,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
-as String,fileType: null == fileType ? _self.fileType : fileType // ignore: cast_nullable_to_non_nullable
 as String,thumbnail: null == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
 as String,
   ));

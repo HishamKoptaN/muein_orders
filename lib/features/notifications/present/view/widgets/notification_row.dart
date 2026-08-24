@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/widgets/translated_text.dart';
 import '../../../domain/entities/notification_entity.dart';
 
@@ -22,7 +20,7 @@ class NotificationRow extends StatelessWidget {
             height: 40,
             child: FaIcon(
               FontAwesomeIcons.bell,
-              color: AppColors.brandMint,
+              // color: AppColors.brandMint,
               size: 24.w,
             ),
           ),

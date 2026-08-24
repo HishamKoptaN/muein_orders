@@ -1,25 +1,14 @@
 part of 'location_picker_bloc.dart';
 
-class LocationPickerState extends Equatable {
-  final bool hasValidClipboardLocation;
-  final LatLng? pastedLocation;
-
-  const LocationPickerState({
-    this.hasValidClipboardLocation = false,
-    this.pastedLocation,
-  });
-
-  LocationPickerState copyWith({
-    bool? hasValidClipboardLocation,
-    LatLng? pastedLocation,
-  }) {
-    return LocationPickerState(
-      hasValidClipboardLocation:
-          hasValidClipboardLocation ?? this.hasValidClipboardLocation,
-      pastedLocation: pastedLocation,
-    );
-  }
-
-  @override
-  List<Object?> get props => [hasValidClipboardLocation, pastedLocation];
+@freezed
+abstract class LocationPickerState with _$LocationPickerState {
+  const factory LocationPickerState.initial() = _Initial;
+  const factory LocationPickerState.loading() = _Loading;
+  const factory LocationPickerState.loaded({
+    @Default(false) bool hasValidClipboardLocation,
+    @Default(null) LatLng? pastedLocation,
+  }) = _Loaded;
+  const factory LocationPickerState.failure({
+    required ErrorInfo apiErrorModel,
+  }) = _Failure;
 }

@@ -12,7 +12,7 @@ import '../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../features/auth/sign_in/present/views/sign_in_view.dart';
 import '../../features/auth/sign_up/present/views/sign_up_views.dart';
 import '../../features/orders_features/cached_docs/present/view/add_cached_doc_view.dart';
-import '../../features/orders_features/cached_docs/present/view/widgets/pick_location_view.dart';
+import '../../features/orders_features/cached_docs/present/view/widgets/location/pick_location_view.dart';
 import '../../features/financial/present/view/expenses_view.dart';
 import '../../features/financial/present/view/financial_account_view.dart';
 import '../../features/home_features/home/present/view/stats_view.dart';

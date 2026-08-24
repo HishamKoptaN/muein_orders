@@ -305,7 +305,7 @@ $MetaModelCopyWith<$Res> get meta {
 /// @nodoc
 mixin _$DocModel {
 
-@JsonKey(name: 'id') int get id;@JsonKey(name: 'media') List<DocMediaModel> get files;@JsonKey(name: 'latitude') String get latitude;@JsonKey(name: 'longitude') String get longitude;@JsonKey(name: 'doc_status') DocStatusModel get docStatus;@JsonKey(name: 'copies_count') int get copiesCount;@JsonKey(name: 'reviewed_by') String get reviewedBy;@JsonKey(name: 'reviewed_at') String get reviewedAt;@JsonKey(name: 'admin_notes') String get adminNotes;@JsonKey(name: 'created_at') String get createdAt;@JsonKey(name: 'updated_at') String get updatedAt;
+@JsonKey(name: 'id') int get id;@JsonKey(name: 'unit_id') int get unitId;@JsonKey(name: 'media') List<DocMediaModel> get files;@JsonKey(name: 'latitude') String get latitude;@JsonKey(name: 'longitude') String get longitude;@JsonKey(name: 'doc_status') DocStatusModel get docStatus;@JsonKey(name: 'copies_count') int get copiesCount;@JsonKey(name: 'reviewed_by') String get reviewedBy;@JsonKey(name: 'reviewed_at') String get reviewedAt;@JsonKey(name: 'admin_notes') String get adminNotes;@JsonKey(name: 'created_at') String get createdAt;@JsonKey(name: 'updated_at') String get updatedAt;
 /// Create a copy of DocModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -318,16 +318,16 @@ $DocModelCopyWith<DocModel> get copyWith => _$DocModelCopyWithImpl<DocModel>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocModel&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocModel&&(identical(other.id, id) || other.id == id)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(files),latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,unitId,const DeepCollectionEquality().hash(files),latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'DocModel(id: $id, files: $files, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DocModel(id: $id, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -338,7 +338,7 @@ abstract mixin class $DocModelCopyWith<$Res>  {
   factory $DocModelCopyWith(DocModel value, $Res Function(DocModel) _then) = _$DocModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'media') List<DocMediaModel> files,@JsonKey(name: 'latitude') String latitude,@JsonKey(name: 'longitude') String longitude,@JsonKey(name: 'doc_status') DocStatusModel docStatus,@JsonKey(name: 'copies_count') int copiesCount,@JsonKey(name: 'reviewed_by') String reviewedBy,@JsonKey(name: 'reviewed_at') String reviewedAt,@JsonKey(name: 'admin_notes') String adminNotes,@JsonKey(name: 'created_at') String createdAt,@JsonKey(name: 'updated_at') String updatedAt
+@JsonKey(name: 'id') int id,@JsonKey(name: 'unit_id') int unitId,@JsonKey(name: 'media') List<DocMediaModel> files,@JsonKey(name: 'latitude') String latitude,@JsonKey(name: 'longitude') String longitude,@JsonKey(name: 'doc_status') DocStatusModel docStatus,@JsonKey(name: 'copies_count') int copiesCount,@JsonKey(name: 'reviewed_by') String reviewedBy,@JsonKey(name: 'reviewed_at') String reviewedAt,@JsonKey(name: 'admin_notes') String adminNotes,@JsonKey(name: 'created_at') String createdAt,@JsonKey(name: 'updated_at') String updatedAt
 });
 
 
@@ -355,9 +355,10 @@ class _$DocModelCopyWithImpl<$Res>
 
 /// Create a copy of DocModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? docStatus = null,Object? copiesCount = null,Object? reviewedBy = null,Object? reviewedAt = null,Object? adminNotes = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? unitId = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? docStatus = null,Object? copiesCount = null,Object? reviewedBy = null,Object? reviewedAt = null,Object? adminNotes = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,unitId: null == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
 as int,files: null == files ? _self.files : files // ignore: cast_nullable_to_non_nullable
 as List<DocMediaModel>,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as String,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
@@ -462,10 +463,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'media')  List<DocMediaModel> files, @JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude, @JsonKey(name: 'doc_status')  DocStatusModel docStatus, @JsonKey(name: 'copies_count')  int copiesCount, @JsonKey(name: 'reviewed_by')  String reviewedBy, @JsonKey(name: 'reviewed_at')  String reviewedAt, @JsonKey(name: 'admin_notes')  String adminNotes, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'unit_id')  int unitId, @JsonKey(name: 'media')  List<DocMediaModel> files, @JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude, @JsonKey(name: 'doc_status')  DocStatusModel docStatus, @JsonKey(name: 'copies_count')  int copiesCount, @JsonKey(name: 'reviewed_by')  String reviewedBy, @JsonKey(name: 'reviewed_at')  String reviewedAt, @JsonKey(name: 'admin_notes')  String adminNotes, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocModel() when $default != null:
-return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.unitId,_that.files,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -483,10 +484,10 @@ return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docSta
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'media')  List<DocMediaModel> files, @JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude, @JsonKey(name: 'doc_status')  DocStatusModel docStatus, @JsonKey(name: 'copies_count')  int copiesCount, @JsonKey(name: 'reviewed_by')  String reviewedBy, @JsonKey(name: 'reviewed_at')  String reviewedAt, @JsonKey(name: 'admin_notes')  String adminNotes, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'unit_id')  int unitId, @JsonKey(name: 'media')  List<DocMediaModel> files, @JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude, @JsonKey(name: 'doc_status')  DocStatusModel docStatus, @JsonKey(name: 'copies_count')  int copiesCount, @JsonKey(name: 'reviewed_by')  String reviewedBy, @JsonKey(name: 'reviewed_at')  String reviewedAt, @JsonKey(name: 'admin_notes')  String adminNotes, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _DocModel():
-return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.unitId,_that.files,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -503,10 +504,10 @@ return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docSta
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'media')  List<DocMediaModel> files, @JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude, @JsonKey(name: 'doc_status')  DocStatusModel docStatus, @JsonKey(name: 'copies_count')  int copiesCount, @JsonKey(name: 'reviewed_by')  String reviewedBy, @JsonKey(name: 'reviewed_at')  String reviewedAt, @JsonKey(name: 'admin_notes')  String adminNotes, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'unit_id')  int unitId, @JsonKey(name: 'media')  List<DocMediaModel> files, @JsonKey(name: 'latitude')  String latitude, @JsonKey(name: 'longitude')  String longitude, @JsonKey(name: 'doc_status')  DocStatusModel docStatus, @JsonKey(name: 'copies_count')  int copiesCount, @JsonKey(name: 'reviewed_by')  String reviewedBy, @JsonKey(name: 'reviewed_at')  String reviewedAt, @JsonKey(name: 'admin_notes')  String adminNotes, @JsonKey(name: 'created_at')  String createdAt, @JsonKey(name: 'updated_at')  String updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _DocModel() when $default != null:
-return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.unitId,_that.files,_that.latitude,_that.longitude,_that.docStatus,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -518,10 +519,11 @@ return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docSta
 @JsonSerializable()
 
 class _DocModel implements DocModel {
-  const _DocModel({@JsonKey(name: 'id') this.id = -1, @JsonKey(name: 'media') final  List<DocMediaModel> files = const [], @JsonKey(name: 'latitude') this.latitude = '', @JsonKey(name: 'longitude') this.longitude = '', @JsonKey(name: 'doc_status') this.docStatus = const DocStatusModel(), @JsonKey(name: 'copies_count') this.copiesCount = 0, @JsonKey(name: 'reviewed_by') this.reviewedBy = '', @JsonKey(name: 'reviewed_at') this.reviewedAt = '', @JsonKey(name: 'admin_notes') this.adminNotes = '', @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _files = files;
+  const _DocModel({@JsonKey(name: 'id') this.id = -1, @JsonKey(name: 'unit_id') this.unitId = -1, @JsonKey(name: 'media') final  List<DocMediaModel> files = const [], @JsonKey(name: 'latitude') this.latitude = '', @JsonKey(name: 'longitude') this.longitude = '', @JsonKey(name: 'doc_status') this.docStatus = const DocStatusModel(), @JsonKey(name: 'copies_count') this.copiesCount = 0, @JsonKey(name: 'reviewed_by') this.reviewedBy = '', @JsonKey(name: 'reviewed_at') this.reviewedAt = '', @JsonKey(name: 'admin_notes') this.adminNotes = '', @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _files = files;
   factory _DocModel.fromJson(Map<String, dynamic> json) => _$DocModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;
+@override@JsonKey(name: 'unit_id') final  int unitId;
  final  List<DocMediaModel> _files;
 @override@JsonKey(name: 'media') List<DocMediaModel> get files {
   if (_files is EqualUnmodifiableListView) return _files;
@@ -552,16 +554,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocModel&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocModel&&(identical(other.id, id) || other.id == id)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_files),latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,unitId,const DeepCollectionEquality().hash(_files),latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'DocModel(id: $id, files: $files, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DocModel(id: $id, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -572,7 +574,7 @@ abstract mixin class _$DocModelCopyWith<$Res> implements $DocModelCopyWith<$Res>
   factory _$DocModelCopyWith(_DocModel value, $Res Function(_DocModel) _then) = __$DocModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'media') List<DocMediaModel> files,@JsonKey(name: 'latitude') String latitude,@JsonKey(name: 'longitude') String longitude,@JsonKey(name: 'doc_status') DocStatusModel docStatus,@JsonKey(name: 'copies_count') int copiesCount,@JsonKey(name: 'reviewed_by') String reviewedBy,@JsonKey(name: 'reviewed_at') String reviewedAt,@JsonKey(name: 'admin_notes') String adminNotes,@JsonKey(name: 'created_at') String createdAt,@JsonKey(name: 'updated_at') String updatedAt
+@JsonKey(name: 'id') int id,@JsonKey(name: 'unit_id') int unitId,@JsonKey(name: 'media') List<DocMediaModel> files,@JsonKey(name: 'latitude') String latitude,@JsonKey(name: 'longitude') String longitude,@JsonKey(name: 'doc_status') DocStatusModel docStatus,@JsonKey(name: 'copies_count') int copiesCount,@JsonKey(name: 'reviewed_by') String reviewedBy,@JsonKey(name: 'reviewed_at') String reviewedAt,@JsonKey(name: 'admin_notes') String adminNotes,@JsonKey(name: 'created_at') String createdAt,@JsonKey(name: 'updated_at') String updatedAt
 });
 
 
@@ -589,9 +591,10 @@ class __$DocModelCopyWithImpl<$Res>
 
 /// Create a copy of DocModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? docStatus = null,Object? copiesCount = null,Object? reviewedBy = null,Object? reviewedAt = null,Object? adminNotes = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? unitId = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? docStatus = null,Object? copiesCount = null,Object? reviewedBy = null,Object? reviewedAt = null,Object? adminNotes = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_DocModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,unitId: null == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
 as int,files: null == files ? _self._files : files // ignore: cast_nullable_to_non_nullable
 as List<DocMediaModel>,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as String,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable

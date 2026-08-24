@@ -19,6 +19,7 @@ abstract class DocsResModel with _$DocsResModel {
 abstract class DocModel with _$DocModel {
   const factory DocModel({
     @Default(-1) @JsonKey(name: 'id') int id,
+    @Default(-1) @JsonKey(name: 'unit_id') int unitId,
     @Default([]) @JsonKey(name: 'media') List<DocMediaModel> files,
     @Default('') @JsonKey(name: 'latitude') String latitude,
     @Default('') @JsonKey(name: 'longitude') String longitude,

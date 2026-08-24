@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
+import '../../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 import '../../../../cached_docs/data/datasources/local_data_src/drift/file_upload_status_extension.dart';
-import '../../../../orders/present/bloc/orders_bloc.dart';
 import '../../bloc/order_items_bloc.dart';
 
 class OrdersFilterWidget extends StatelessWidget {

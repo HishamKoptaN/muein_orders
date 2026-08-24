@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../../../../core/theme/app_colors.dart';
 import '../../../domain/entities/profile_res_entity.dart';
 import '../../../domain/entities/update_profile_req_entity.dart';
 
@@ -68,7 +66,7 @@ class ProfileAvatar extends StatelessWidget {
               height: 120,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColors.brandMint, width: 3),
+                //   border: Border.all(color: AppColors.brandMint, width: 3),
               ),
               child: _buildAvatarImage(),
             ),

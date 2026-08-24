@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tables/docs_table.dart';
+import 'tables/items_table.dart';
 
 extension FileUploadStatusUI on UploadStatus {
   String get label => switch (this) {

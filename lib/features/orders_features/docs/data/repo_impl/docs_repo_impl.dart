@@ -1,23 +1,19 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:drift/drift.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../../../core/networking/api_result.dart';
 import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../cached_docs/data/datasources/local_data_src/drift/app_database.dart';
-import '../../../cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
+import '../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 import '../../../cached_docs/data/models/cached_doc_model.dart';
 import '../../../salla_orders_items/domain/entities/salla_order_items_res_entity.dart';
 import '../../../../s3/data/repo/s3_repo.dart';
 import '../../domain/entities/doc_req_entity.dart';
 import '../../domain/repo/docs_repo.dart';
 import '../datasources/remote_data_sr/docs_api.dart';
-import '../mapper/docs_mapper.dart';
 import '../models/doc_req_model.dart';
-import '../models/docs_res_model.dart';
 import '../models/presigned_doc_url_req_model.dart';
 
 @LazySingleton(as: DocsRepo)
@@ -31,144 +27,100 @@ class DocsRepoImpl implements DocsRepo {
   DocsRepoImpl({required this.docsApi, required this.db, required this.s3Repo});
 
   @override
-  Future<ApiResult<SallaOrderItemUnitEntity?>> createDoc({
-    required DocReqEntity doc,
+  Future<ApiResult<SallaOrderItemUnitEntity?>> updateDoc({
+    required DocReqEntity docReq,
   }) async {
-    //await (db.update(db.docsTable)..where((t) {
-    //      return t.id.equals(doc.id);
-    //    }))
-    //    .write(
-    //      DocsTableCompanion(uploadStatus: Value(UploadStatus.uploading.name)),
-    //    );
-    final cachedDocs =
-        await (db.select(db.docsTable)..where((t) {
-              return t.id.equals(doc.id);
+    await db.docsDao.updateUploadStatus(
+      id: docReq.id,
+      status: UploadStatus.uploading.name,
+    );
+    final docMediaFiles =
+        await (db.select(db.docMediaTable)..where((t) {
+              return t.docId.equals(docReq.id);
             }))
             .get();
-    if (cachedDocs.isNotEmpty) {
-      final cachedDoc = cachedDocs.first;
-      // final files = cachedDoc.docMediafiles ?? [];
-      for (int index = 0; index < doc.files.length; index++) {
-        final file = doc.files[index];
-        if (file.fileUploadStatus == .uploaded) {
-          continue;
-        }
-        await updateFileStatus(id: doc.id, status: UploadStatus.uploading);
-        final finalUrl = await _uploadS3File(
-          docId: doc.id,
-          filePath: file.path,
-          fileType: .image,
-        );
-        try {
-          await docsApi.docMedia(
-            docMediaReq: DocMediaReqModel(
-              id: doc.id,
-              docId: doc.id,
-              filePath: finalUrl ?? '',
-              fileType: file.fileUploadStatus.name,
-            ),
-          );
-          // await updateFileStatus(
-          //   files: files,
-          //   media: file,
-          //   docId: doc.id,
-          //   status: UploadStatus.uploaded,
-          // );
-        } catch (error) {
-          // await updateFileStatus(
-          //   files: files,
-          //   media: file,
-          //   docId: doc.id,
-          //   status: UploadStatus.failed,
-          // );
-          return const ApiResult.failure(errorInfo: ErrorInfo());
-        }
-      }
-    }
-    await _uploadLocationIfNeeded(doc);
-    await _updateDocStatusBasedOnUpload(doc: doc);
-    //await (db.update(db.docsTable)..where((t) {
-    //      return t.id.equals(doc.id);
-    //    }))
-    //    .write(
-    //      DocsTableCompanion(uploadStatus: Value(UploadStatus.uploaded.name)),
-    //    );
+    await syncFiles(docMediaFiles);
+    await _uploadLocation(doc: docReq);
+    await db.docsDao.updateUploadStatus(
+      id: docReq.id,
+      status: UploadStatus.uploaded.name,
+    );
     return const ApiResult.success(data: null);
   }
 
-  Future<void> updateFileStatus({
-    required int id,
-    required UploadStatus status,
-  }) async {}
+  Future<void> syncFiles(List<DocMediaEntry> docMediaFiles) async {
+    for (final docMediaFile in docMediaFiles) {
+      if ([
+        UploadStatus.init.name,
+        UploadStatus.uploaded.name,
+      ].contains(docMediaFile.uploadStatus)) {
+        continue;
+      }
+      await db.docMediaDao.updateUploadStatus(
+        id: docMediaFile.id,
+        status: UploadStatus.uploading.name,
+      );
 
-  Future<void> _uploadLocationIfNeeded(DocReqEntity doc) async {
-    final cachedDoc = await (db.select(
-      db.docsTable,
-    )..where((t) => t.id.equals(doc.id))).getSingleOrNull();
-    if (cachedDoc?.location != null &&
-        cachedDoc!.location!.status != UploadStatus.uploaded &&
-        (cachedDoc.location!.latitude != 0.0 ||
-            cachedDoc.location!.longitude != 0.0)) {
       try {
-        await docsApi.createDoc(
-          docReq: DocReqModel(
-            docId: doc.id,
-            latitude: doc.location.latitude.toString(),
-            longitude: doc.location.longitude.toString(),
-          ),
+        final finalUrl = await _uploadS3File(
+          id: docMediaFile.id,
+          filePath: docMediaFile.localFilePath,
         );
-        await db.updateDocLocationStatus(
-          docId: doc.id,
-          status: UploadStatus.uploaded,
+        await docsApi.updateMedia(
+          id: docMediaFile.id,
+          docMediaReq: DocMediaReqModel(filePath: finalUrl ?? ''),
+        );
+        await db.docMediaDao.updateUploadStatus(
+          id: docMediaFile.id,
+          status: UploadStatus.uploaded.name,
         );
       } catch (error) {
-        await db.updateDocLocationStatus(
-          docId: doc.id,
-          status: UploadStatus.failed,
+        await db.docMediaDao.updateUploadStatus(
+          id: docMediaFile.id,
+          status: UploadStatus.failed.name,
         );
       }
     }
   }
 
-  Future<void> _updateDocStatusBasedOnUpload({
-    required DocReqEntity doc,
-  }) async {
-    final isAllUploaded = await _isAllContentUploaded(doc: doc);
-    final newStatus = isAllUploaded
-        ? UploadStatus.uploaded
-        : UploadStatus.pending;
-    // await (db.update(db.docsTable)..where((t) {
-    //       return t.id.equals(doc.id);
-    //     }))
-    //     .write(DocsTableCompanion(uploadStatus: Value(newStatus.name)));
-  }
-
-  Future<bool> _isAllContentUploaded({required DocReqEntity doc}) async {
-    for (final file in doc.files) {
-      if (file.fileUploadStatus != UploadStatus.uploaded) {
-        return false;
+  Future<void> _uploadLocation({required DocReqEntity doc}) async {
+    if ([
+        UploadStatus.init.name,
+        UploadStatus.uploaded.name,
+      ].contains(doc.locationUploadStatus)) {
+        return;
       }
-    }
-    if (doc.location.status != UploadStatus.uploaded) {
-      return false;
-    }
-
-    return true;
+  try {
+        await docsApi.updateDoc(
+          id: doc.id,
+          docReq: DocReqModel(
+            latitude: doc.latitude.toString(),
+            longitude: doc.longitude.toString(),
+          ),
+        );
+        await db.docsDao.updateDocLocationStatus(
+          id: doc.id,
+          status: UploadStatus.uploaded.name,
+        );
+      } catch (error) {
+        await db.docsDao.updateDocLocationStatus(
+          id: doc.id,
+          status: UploadStatus.failed.name,
+        );
+      }
   }
 
   Future<String?> _uploadS3File({
-    required int docId,
+    required int id,
     required String? filePath,
-    required DocMediaType fileType,
   }) async {
     if (filePath == null || filePath.isEmpty) return null;
     final file = File(filePath);
     if (!file.existsSync()) return null;
     final presignedInfo = await docsApi.presigned(
       presignedDocUrlReqModel: PresignedDocUrlReqModel(
-        docId: docId,
+        id: id,
         extension: filePath.split('.').last,
-        fileType: fileType.name,
       ),
     );
     await s3Repo.uploadFile(
@@ -177,16 +129,6 @@ class DocsRepoImpl implements DocsRepo {
       contentType: presignedInfo.contentType ?? '',
     );
     return presignedInfo.filePath;
-  }
-
-  Future<void> uploadLocation({required DocReqEntity doc}) async {
-    await docsApi.createDoc(
-      docReq: DocReqModel(
-        docId: doc.id,
-        latitude: doc.location.latitude.toString(),
-        longitude: doc.location.longitude.toString(),
-      ),
-    );
   }
 
   Future<void> _initializeNotifications() async {
@@ -240,11 +182,11 @@ class DocsRepoImpl implements DocsRepo {
               }))
               .get();
       for (final doc in docs) {
-        await docsApi.createDoc(
+        await docsApi.updateDoc(
+          id: doc.id,
           docReq: DocReqModel(
-            docId: doc.id,
-            latitude: doc.location?.latitude.toString() ?? '',
-            longitude: doc.location?.longitude.toString() ?? '',
+            latitude: doc.latitude.toString(),
+            longitude: doc.longitude.toString(),
           ),
         );
       }
@@ -257,14 +199,16 @@ class DocsRepoImpl implements DocsRepo {
   @override
   Future<ApiResult<void>> retryUpload({required int id}) async {
     try {
-      final doc = await (db.select(
-        db.docsTable,
-      )..where((tbl) => tbl.id.equals(id))).getSingle();
-      await docsApi.createDoc(
+      final doc =
+          await (db.select(db.docsTable)..where((tbl) {
+                return tbl.id.equals(id);
+              }))
+              .getSingle();
+      await docsApi.updateDoc(
+        id: doc.id,
         docReq: DocReqModel(
-          docId: doc.id,
-          latitude: doc.location?.latitude.toString() ?? '',
-          longitude: doc.location?.longitude.toString() ?? '',
+          latitude: doc.latitude.toString(),
+          longitude: doc.longitude.toString(),
         ),
       );
       return const ApiResult.success(data: null);
@@ -273,21 +217,10 @@ class DocsRepoImpl implements DocsRepo {
     }
   }
 
-  File? fileFromPath(String? path) {
-    if (path == null || path.isEmpty) return null;
-    final file = File(path);
-    return file.existsSync() ? file : null;
-  }
-
   @override
-  Future<ApiResult<SallaOrderItemUnitEntity>> docMedia({
+  Future<ApiResult<void>> updateMedia({
     required DocMediaReqEntity docMediaReq,
-  }) async {
-    try {
-      final res = await docsApi.docMedia(docMediaReq: docMediaReq.toModel());
-      return ApiResult.success(data: null);
-    } catch (error) {
-      return const ApiResult.failure(errorInfo: ErrorInfo());
-    }
+  }) {
+    throw UnimplementedError();
   }
 }

@@ -26,6 +26,7 @@ Map<String, dynamic> _$DocsResModelToJson(_DocsResModel instance) =>
 
 _DocModel _$DocModelFromJson(Map<String, dynamic> json) => _DocModel(
   id: (json['id'] as num?)?.toInt() ?? -1,
+  unitId: (json['unit_id'] as num?)?.toInt() ?? -1,
   files:
       (json['media'] as List<dynamic>?)
           ?.map((e) => DocMediaModel.fromJson(e as Map<String, dynamic>))
@@ -46,6 +47,7 @@ _DocModel _$DocModelFromJson(Map<String, dynamic> json) => _DocModel(
 
 Map<String, dynamic> _$DocModelToJson(_DocModel instance) => <String, dynamic>{
   'id': instance.id,
+  'unit_id': instance.unitId,
   'media': instance.files.map((e) => e.toJson()).toList(),
   'latitude': instance.latitude,
   'longitude': instance.longitude,

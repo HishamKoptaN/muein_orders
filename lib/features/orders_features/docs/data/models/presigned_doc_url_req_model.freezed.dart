@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PresignedDocUrlReqModel {
 
-@JsonKey(name: 'doc_id') int? get docId;@JsonKey(name: 'file_type') String? get fileType;@JsonKey(name: 'extension') String? get extension;
+@JsonKey(name: 'id') int get id;@JsonKey(name: 'extension') String get extension;
 /// Create a copy of PresignedDocUrlReqModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $PresignedDocUrlReqModelCopyWith<PresignedDocUrlReqModel> get copyWith => _$Pres
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PresignedDocUrlReqModel&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.fileType, fileType) || other.fileType == fileType)&&(identical(other.extension, extension) || other.extension == extension));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PresignedDocUrlReqModel&&(identical(other.id, id) || other.id == id)&&(identical(other.extension, extension) || other.extension == extension));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,docId,fileType,extension);
+int get hashCode => Object.hash(runtimeType,id,extension);
 
 @override
 String toString() {
-  return 'PresignedDocUrlReqModel(docId: $docId, fileType: $fileType, extension: $extension)';
+  return 'PresignedDocUrlReqModel(id: $id, extension: $extension)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $PresignedDocUrlReqModelCopyWith<$Res>  {
   factory $PresignedDocUrlReqModelCopyWith(PresignedDocUrlReqModel value, $Res Function(PresignedDocUrlReqModel) _then) = _$PresignedDocUrlReqModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'doc_id') int? docId,@JsonKey(name: 'file_type') String? fileType,@JsonKey(name: 'extension') String? extension
+@JsonKey(name: 'id') int id,@JsonKey(name: 'extension') String extension
 });
 
 
@@ -65,12 +65,11 @@ class _$PresignedDocUrlReqModelCopyWithImpl<$Res>
 
 /// Create a copy of PresignedDocUrlReqModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? docId = freezed,Object? fileType = freezed,Object? extension = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? extension = null,}) {
   return _then(_self.copyWith(
-docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int?,fileType: freezed == fileType ? _self.fileType : fileType // ignore: cast_nullable_to_non_nullable
-as String?,extension: freezed == extension ? _self.extension : extension // ignore: cast_nullable_to_non_nullable
-as String?,
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,extension: null == extension ? _self.extension : extension // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -155,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int? docId, @JsonKey(name: 'file_type')  String? fileType, @JsonKey(name: 'extension')  String? extension)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'extension')  String extension)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PresignedDocUrlReqModel() when $default != null:
-return $default(_that.docId,_that.fileType,_that.extension);case _:
+return $default(_that.id,_that.extension);case _:
   return orElse();
 
 }
@@ -176,10 +175,10 @@ return $default(_that.docId,_that.fileType,_that.extension);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'doc_id')  int? docId, @JsonKey(name: 'file_type')  String? fileType, @JsonKey(name: 'extension')  String? extension)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'extension')  String extension)  $default,) {final _that = this;
 switch (_that) {
 case _PresignedDocUrlReqModel():
-return $default(_that.docId,_that.fileType,_that.extension);case _:
+return $default(_that.id,_that.extension);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +195,10 @@ return $default(_that.docId,_that.fileType,_that.extension);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'doc_id')  int? docId, @JsonKey(name: 'file_type')  String? fileType, @JsonKey(name: 'extension')  String? extension)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'extension')  String extension)?  $default,) {final _that = this;
 switch (_that) {
 case _PresignedDocUrlReqModel() when $default != null:
-return $default(_that.docId,_that.fileType,_that.extension);case _:
+return $default(_that.id,_that.extension);case _:
   return null;
 
 }
@@ -211,12 +210,11 @@ return $default(_that.docId,_that.fileType,_that.extension);case _:
 @JsonSerializable()
 
 class _PresignedDocUrlReqModel implements PresignedDocUrlReqModel {
-  const _PresignedDocUrlReqModel({@JsonKey(name: 'doc_id') required this.docId, @JsonKey(name: 'file_type') required this.fileType, @JsonKey(name: 'extension') required this.extension});
+  const _PresignedDocUrlReqModel({@JsonKey(name: 'id') required this.id, @JsonKey(name: 'extension') required this.extension});
   factory _PresignedDocUrlReqModel.fromJson(Map<String, dynamic> json) => _$PresignedDocUrlReqModelFromJson(json);
 
-@override@JsonKey(name: 'doc_id') final  int? docId;
-@override@JsonKey(name: 'file_type') final  String? fileType;
-@override@JsonKey(name: 'extension') final  String? extension;
+@override@JsonKey(name: 'id') final  int id;
+@override@JsonKey(name: 'extension') final  String extension;
 
 /// Create a copy of PresignedDocUrlReqModel
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +229,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PresignedDocUrlReqModel&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.fileType, fileType) || other.fileType == fileType)&&(identical(other.extension, extension) || other.extension == extension));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PresignedDocUrlReqModel&&(identical(other.id, id) || other.id == id)&&(identical(other.extension, extension) || other.extension == extension));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,docId,fileType,extension);
+int get hashCode => Object.hash(runtimeType,id,extension);
 
 @override
 String toString() {
-  return 'PresignedDocUrlReqModel(docId: $docId, fileType: $fileType, extension: $extension)';
+  return 'PresignedDocUrlReqModel(id: $id, extension: $extension)';
 }
 
 
@@ -251,7 +249,7 @@ abstract mixin class _$PresignedDocUrlReqModelCopyWith<$Res> implements $Presign
   factory _$PresignedDocUrlReqModelCopyWith(_PresignedDocUrlReqModel value, $Res Function(_PresignedDocUrlReqModel) _then) = __$PresignedDocUrlReqModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'doc_id') int? docId,@JsonKey(name: 'file_type') String? fileType,@JsonKey(name: 'extension') String? extension
+@JsonKey(name: 'id') int id,@JsonKey(name: 'extension') String extension
 });
 
 
@@ -268,12 +266,11 @@ class __$PresignedDocUrlReqModelCopyWithImpl<$Res>
 
 /// Create a copy of PresignedDocUrlReqModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? docId = freezed,Object? fileType = freezed,Object? extension = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? extension = null,}) {
   return _then(_PresignedDocUrlReqModel(
-docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int?,fileType: freezed == fileType ? _self.fileType : fileType // ignore: cast_nullable_to_non_nullable
-as String?,extension: freezed == extension ? _self.extension : extension // ignore: cast_nullable_to_non_nullable
-as String?,
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,extension: null == extension ? _self.extension : extension // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

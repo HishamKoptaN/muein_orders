@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:equatable/equatable.dart';
 
-import '../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/tables/docs_table.dart';
+import '../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 
 /// Event fired when upload status changes for any document
 class UploadStatusChangedEvent extends Equatable {

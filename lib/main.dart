@@ -11,6 +11,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl_standalone.dart';
 import 'config/env_config.dart';
+import 'core/utils/background/workmanager_initializer.dart';
 import 'core/utils/database/shared_pref_helper.dart';
 import 'core/utils/database/shared_pref_keys.dart';
 import 'features/auth/auth/present/bloc/auth_bloc.dart';
@@ -97,10 +98,8 @@ Future<void> _initializeApp() async {
       //  await SharedPrefHelper.clearAllData();
       //  await SharedPrefHelper.clearAllSecuredData();
     }
-    final completer = Completer();
-    getIt<AuthBloc>().add(.check(onComplete: completer));
-    await completer.future;
     runApp(const MueinOrdersApp());
+    await _initializeWorkManager();
   } catch (error, stackTrace) {
     _handleError(
       error: error,
@@ -108,6 +107,13 @@ Future<void> _initializeApp() async {
       context: 'app initialization',
     );
   }
+}
+
+Future<void> _initializeWorkManager() async {
+  final workManager = getIt<WorkManagerInitializer>();
+  await workManager.initialize();
+  await workManager.registerSystemUploadTask();
+  await Future.microtask(workManager.startPendingUploads);
 }
 
 void _handleError({

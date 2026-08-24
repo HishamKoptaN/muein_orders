@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-import '../../../../../../core/theme/app_colors.dart';
 
 class SignInBackground extends StatelessWidget {
   final Widget child;
@@ -16,15 +15,13 @@ class SignInBackground extends StatelessWidget {
           image: AssetImage('assets/images/rectangle_14.png'),
           alignment: Alignment.topLeft,
           fit: BoxFit.none,
-          colorFilter: ColorFilter.mode(
-            AppColors.brandMint,
-            BlendMode.srcIn,
-          ),
+          // colorFilter: ColorFilter.mode(
+          // AppColors.brandMint,
+          // BlendMode.srcIn,
+          // ),
         ),
       ),
-      child: IntrinsicHeight(
-        child: child,
-      ),
+      child: IntrinsicHeight(child: child),
     );
   }
 }

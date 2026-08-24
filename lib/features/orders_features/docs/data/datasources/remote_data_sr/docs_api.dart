@@ -4,9 +4,7 @@ import 'package:retrofit/retrofit.dart';
 import '../../../../../../core/constants/api_constants.dart';
 import '../../../../../profile/data/models/presigned/presigned_url_model.dart';
 import '../../models/doc_req_model.dart';
-import '../../models/docs_res_model.dart';
 import '../../models/presigned_doc_url_req_model.dart';
-
 part 'docs_api.g.dart';
 
 @lazySingleton
@@ -14,18 +12,21 @@ part 'docs_api.g.dart';
 abstract class DocsApi {
   @factoryMethod
   factory DocsApi(Dio dio) = _DocsApi;
-  //! get
-  @GET('/docs/{orderId}')
-  Future<List<DocModel>?> get({@Path('orderId') required int orderId});
   //! presignedAvatarUrl
-  @POST('/docs/presigned')
+  @POST('/media/presigned')
   Future<PresignedUrlModel> presigned({
     @Body() required PresignedDocUrlReqModel presignedDocUrlReqModel,
   });
   //! createDoc
-  @POST(ApiConstants.docs)
-  Future<DocModel> createDoc({@Body() required DocReqModel docReq});
+  @PATCH('${ApiConstants.docs}/{id}')
+  Future<void> updateDoc({
+    @Path('id') required int id,
+    @Body() required DocReqModel docReq,
+  });
   //! docMedia
-  @POST('/docs/media')
-  Future<DocModel> docMedia({@Body() required DocMediaReqModel docMediaReq});
+  @PATCH('${ApiConstants.media}/{id}/')
+  Future<void> updateMedia({
+    @Path('id') required int id,
+    @Body() required DocMediaReqModel docMediaReq,
+  });
 }

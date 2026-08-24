@@ -7,6 +7,7 @@ mixin _$ItemsDaoMixin on DatabaseAccessor<AppDatabase> {
   $ItemsTableTable get itemsTable => attachedDatabase.itemsTable;
   $ItemUnitsTableTable get itemUnitsTable => attachedDatabase.itemUnitsTable;
   $DocsTableTable get docsTable => attachedDatabase.docsTable;
+  $DocMediaTableTable get docMediaTable => attachedDatabase.docMediaTable;
   ItemsDaoManager get managers => ItemsDaoManager(this);
 }
 
@@ -22,4 +23,6 @@ class ItemsDaoManager {
       );
   $$DocsTableTableTableManager get docsTable =>
       $$DocsTableTableTableManager(_db.attachedDatabase, _db.docsTable);
+  $$DocMediaTableTableTableManager get docMediaTable =>
+      $$DocMediaTableTableTableManager(_db.attachedDatabase, _db.docMediaTable);
 }

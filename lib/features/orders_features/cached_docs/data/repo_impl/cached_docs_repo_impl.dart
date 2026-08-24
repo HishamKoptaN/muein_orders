@@ -1,16 +1,14 @@
 import 'dart:async';
-
-import 'package:flutter/foundation.dart';
+import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
-import '../../../../../core/errors/handlers/api_error_handler/error_handler.dart';
 import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../docs/domain/entities/doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
 import '../../domain/repo/cached_docs_repo.dart';
 import '../datasources/local_data_src/drift/app_database.dart';
-import '../datasources/local_data_src/drift/tables/docs_table.dart';
+import '../datasources/local_data_src/drift/tables/items_table.dart';
 import '../mappers/cached_doc_mapper.dart';
 
 @Singleton(as: CachedDocsRepo)
@@ -20,22 +18,6 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
   CachedDocsRepoImpl(this._db);
 
   @override
-  Stream<DocEntity> watchDoc({required int id}) {
-    return _db.watchDoc(id: id);
-  }
-
-  @override
-  Future<ApiResult<DocEntity>> getCachedDoc({required int id}) async {
-    try {
-      final row = await _db.getCachedDoc(id: id);
-      if (row == null) return const ApiResult.success(data: null);
-      return ApiResult.success(data: row.toEntity());
-    } catch (error) {
-      return ApiResult.failure(errorInfo: ErrorHandler.handle(error: error));
-    }
-  }
-
-  @override
   Future<({double lat, double lng})> getCurrentLocation() async {
     bool serviceEnabled = await location.serviceEnabled();
     if (!serviceEnabled) {
@@ -43,41 +25,71 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
       if (!serviceEnabled) throw Exception('Location service disabled');
     }
     PermissionStatus permissionGranted = await location.hasPermission();
-    if (permissionGranted == PermissionStatus.denied) {
+    if (permissionGranted == .denied) {
       permissionGranted = await location.requestPermission();
-      if (permissionGranted != PermissionStatus.granted) {
+      if (permissionGranted != .granted) {
         throw Exception('Location permission not granted');
       }
     }
 
     final locationData = await location.getLocation();
-    return (lat: locationData.latitude!, lng: locationData.longitude!);
+    return (lat: locationData.latitude, lng: locationData.longitude);
+  }
+
+  @override
+  Future<ApiResult<List<DocEntity>>> getPendings() async {
+    final query = _db.select(_db.docsTable)
+      ..where((tbl) {
+        return tbl.uploadStatus.isIn([
+          UploadStatus.pending.name,
+          UploadStatus.uploading.name,
+          UploadStatus.failed.name,
+        ]);
+      });
+    return ApiResult.success(
+      data: (await query.get()).map((r) {
+        return r.toDocEntity();
+      }).toList(),
+    );
   }
 
   @override
   Future<ApiResult<void>> cachedDoc({
-    required CreateCachedDocEntity doc,
+    required CreateCachedDocEntity createCachedDoc,
   }) async {
-    // debugPrint('=== DEBUG: Repo cachedDoc START ===');
-    // debugPrint('Doc files count: ${doc.files.length}');
-
-    // for (int i = 0; i < doc.files.length; i++) {
-    //   final file = doc.files[i];
-    //   debugPrint(
-    //     'Repo File $i: path=${file.docFile?.path}, status=${file.docFileStatus}, hasFile=${file.file != null}',
-    //   );
-    // }
-
     try {
-      // final companion = doc.toCachedDocsTableCompanion();
-      // debugPrint('Table companion: ${companion.toString()}');
-
-      // await _db.cachedDoc(cachedDocsTableCompanion: companion);
-
-      // debugPrint('Database save successful!');
+      await _db.transaction(() async {
+        await _db.itemsDao.upsert(
+          ItemsTableCompanion(id: Value(createCachedDoc.itemId ?? 0)),
+        );
+        await _db.unitsDao.upsert(
+          unit: ItemUnitsTableCompanion(
+            id: Value(createCachedDoc.unitId ?? 0),
+            itemId: Value(createCachedDoc.itemId ?? 0),
+          ),
+        );
+        await _db.docsDao.upsert(
+          doc: DocsTableCompanion(
+            id: Value(createCachedDoc.id ?? 0),
+            unitId: Value(createCachedDoc.unitId ?? 0),
+            uploadStatus: Value(UploadStatus.pending.name),
+          ),
+        );
+        for (final docMedia in createCachedDoc.files.where((e) {
+          return e.isEdited;
+        })) {
+          await _db.docMediaDao.upsert(
+            DocMediaTableCompanion(
+              id: Value(docMedia.id),
+              docId: Value(createCachedDoc.id ?? 0),
+              localFilePath: Value(docMedia.localFilePath),
+              uploadStatus: Value(UploadStatus.pending.name),
+            ),
+          );
+        }
+      });
       return const ApiResult.success(data: null);
-    } catch (e) {
-      debugPrint('Database save failed: $e');
+    } catch (e, st) {
       return ApiResult.failure(errorInfo: ErrorInfo(message: e.toString()));
     }
   }
@@ -125,7 +137,7 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
       //     if (file.status == status) return true;
       //   }
       // }
-      if (cachedDoc.location?.status == status) return true;
+      // if (cachedDoc.location?.status == status) return true;
       return false;
     } catch (e) {
       return false;

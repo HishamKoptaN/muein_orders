@@ -20,35 +20,6 @@ class _DocsApi implements DocsApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<DocModel>?> get({required int orderId}) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<DocModel>?>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            '/docs/${orderId}',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<DocModel>? _value;
-    try {
-      _value = _result.data
-          ?.map((dynamic i) => DocModel.fromJson(i as Map<String, dynamic>))
-          .toList();
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
   Future<PresignedUrlModel> presigned({
     required PresignedDocUrlReqModel presignedDocUrlReqModel,
   }) async {
@@ -60,7 +31,7 @@ class _DocsApi implements DocsApi {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/docs/presigned',
+            '/media/presigned',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -78,57 +49,44 @@ class _DocsApi implements DocsApi {
   }
 
   @override
-  Future<DocModel> createDoc({required DocReqModel docReq}) async {
+  Future<void> updateDoc({required int id, required DocReqModel docReq}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = docReq;
-    final _options = _setStreamType<DocModel>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+    final _options = _setStreamType<void>(
+      Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'docs',
+            'docs/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late DocModel _value;
-    try {
-      _value = DocModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
+    await _dio.fetch<void>(_options);
   }
 
   @override
-  Future<DocModel> docMedia({required DocMediaReqModel docMediaReq}) async {
+  Future<void> updateMedia({
+    required int id,
+    required DocMediaReqModel docMediaReq,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = docMediaReq;
-    final _options = _setStreamType<DocModel>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+    final _options = _setStreamType<void>(
+      Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/docs/media',
+            'media/${id}/',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late DocModel _value;
-    try {
-      _value = DocModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
+    await _dio.fetch<void>(_options);
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

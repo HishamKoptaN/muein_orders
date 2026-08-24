@@ -18,19 +18,8 @@ class $ItemsTableTable extends ItemsTable
     type: DriftSqlType.int,
     requiredDuringInsert: false,
   );
-  static const VerificationMeta _printedNameMeta = const VerificationMeta(
-    'printedName',
-  );
   @override
-  late final GeneratedColumn<String> printedName = GeneratedColumn<String>(
-    'printed_name',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  @override
-  List<GeneratedColumn> get $columns => [id, printedName];
+  List<GeneratedColumn> get $columns => [id];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -46,15 +35,6 @@ class $ItemsTableTable extends ItemsTable
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
-    if (data.containsKey('printed_name')) {
-      context.handle(
-        _printedNameMeta,
-        printedName.isAcceptableOrUnknown(
-          data['printed_name']!,
-          _printedNameMeta,
-        ),
-      );
-    }
     return context;
   }
 
@@ -68,10 +48,6 @@ class $ItemsTableTable extends ItemsTable
         DriftSqlType.int,
         data['${effectivePrefix}id'],
       )!,
-      printedName: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}printed_name'],
-      ),
     );
   }
 
@@ -83,25 +59,16 @@ class $ItemsTableTable extends ItemsTable
 
 class ItemEntry extends DataClass implements Insertable<ItemEntry> {
   final int id;
-  final String? printedName;
-  const ItemEntry({required this.id, this.printedName});
+  const ItemEntry({required this.id});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
-    if (!nullToAbsent || printedName != null) {
-      map['printed_name'] = Variable<String>(printedName);
-    }
     return map;
   }
 
   ItemsTableCompanion toCompanion(bool nullToAbsent) {
-    return ItemsTableCompanion(
-      id: Value(id),
-      printedName: printedName == null && nullToAbsent
-          ? const Value.absent()
-          : Value(printedName),
-    );
+    return ItemsTableCompanion(id: Value(id));
   }
 
   factory ItemEntry.fromJson(
@@ -109,81 +76,44 @@ class ItemEntry extends DataClass implements Insertable<ItemEntry> {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return ItemEntry(
-      id: serializer.fromJson<int>(json['id']),
-      printedName: serializer.fromJson<String?>(json['printedName']),
-    );
+    return ItemEntry(id: serializer.fromJson<int>(json['id']));
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'printedName': serializer.toJson<String?>(printedName),
-    };
+    return <String, dynamic>{'id': serializer.toJson<int>(id)};
   }
 
-  ItemEntry copyWith({
-    int? id,
-    Value<String?> printedName = const Value.absent(),
-  }) => ItemEntry(
-    id: id ?? this.id,
-    printedName: printedName.present ? printedName.value : this.printedName,
-  );
+  ItemEntry copyWith({int? id}) => ItemEntry(id: id ?? this.id);
   ItemEntry copyWithCompanion(ItemsTableCompanion data) {
-    return ItemEntry(
-      id: data.id.present ? data.id.value : this.id,
-      printedName: data.printedName.present
-          ? data.printedName.value
-          : this.printedName,
-    );
+    return ItemEntry(id: data.id.present ? data.id.value : this.id);
   }
 
   @override
   String toString() {
     return (StringBuffer('ItemEntry(')
-          ..write('id: $id, ')
-          ..write('printedName: $printedName')
+          ..write('id: $id')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, printedName);
+  int get hashCode => id.hashCode;
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is ItemEntry &&
-          other.id == this.id &&
-          other.printedName == this.printedName);
+      identical(this, other) || (other is ItemEntry && other.id == this.id);
 }
 
 class ItemsTableCompanion extends UpdateCompanion<ItemEntry> {
   final Value<int> id;
-  final Value<String?> printedName;
-  const ItemsTableCompanion({
-    this.id = const Value.absent(),
-    this.printedName = const Value.absent(),
-  });
-  ItemsTableCompanion.insert({
-    this.id = const Value.absent(),
-    this.printedName = const Value.absent(),
-  });
-  static Insertable<ItemEntry> custom({
-    Expression<int>? id,
-    Expression<String>? printedName,
-  }) {
-    return RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (printedName != null) 'printed_name': printedName,
-    });
+  const ItemsTableCompanion({this.id = const Value.absent()});
+  ItemsTableCompanion.insert({this.id = const Value.absent()});
+  static Insertable<ItemEntry> custom({Expression<int>? id}) {
+    return RawValuesInsertable({if (id != null) 'id': id});
   }
 
-  ItemsTableCompanion copyWith({Value<int>? id, Value<String?>? printedName}) {
-    return ItemsTableCompanion(
-      id: id ?? this.id,
-      printedName: printedName ?? this.printedName,
-    );
+  ItemsTableCompanion copyWith({Value<int>? id}) {
+    return ItemsTableCompanion(id: id ?? this.id);
   }
 
   @override
@@ -192,17 +122,13 @@ class ItemsTableCompanion extends UpdateCompanion<ItemEntry> {
     if (id.present) {
       map['id'] = Variable<int>(id.value);
     }
-    if (printedName.present) {
-      map['printed_name'] = Variable<String>(printedName.value);
-    }
     return map;
   }
 
   @override
   String toString() {
     return (StringBuffer('ItemsTableCompanion(')
-          ..write('id: $id, ')
-          ..write('printedName: $printedName')
+          ..write('id: $id')
           ..write(')'))
         .toString();
   }
@@ -235,35 +161,8 @@ class $ItemUnitsTableTable extends ItemUnitsTable
       'REFERENCES items_table (id) ON DELETE CASCADE',
     ),
   );
-  static const VerificationMeta _unitNumberMeta = const VerificationMeta(
-    'unitNumber',
-  );
   @override
-  late final GeneratedColumn<int> unitNumber = GeneratedColumn<int>(
-    'unit_number',
-    aliasedName,
-    true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _executionNumberMeta = const VerificationMeta(
-    'executionNumber',
-  );
-  @override
-  late final GeneratedColumn<String> executionNumber = GeneratedColumn<String>(
-    'execution_number',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  @override
-  List<GeneratedColumn> get $columns => [
-    id,
-    itemId,
-    unitNumber,
-    executionNumber,
-  ];
+  List<GeneratedColumn> get $columns => [id, itemId];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -287,21 +186,6 @@ class $ItemUnitsTableTable extends ItemUnitsTable
     } else if (isInserting) {
       context.missing(_itemIdMeta);
     }
-    if (data.containsKey('unit_number')) {
-      context.handle(
-        _unitNumberMeta,
-        unitNumber.isAcceptableOrUnknown(data['unit_number']!, _unitNumberMeta),
-      );
-    }
-    if (data.containsKey('execution_number')) {
-      context.handle(
-        _executionNumberMeta,
-        executionNumber.isAcceptableOrUnknown(
-          data['execution_number']!,
-          _executionNumberMeta,
-        ),
-      );
-    }
     return context;
   }
 
@@ -319,14 +203,6 @@ class $ItemUnitsTableTable extends ItemUnitsTable
         DriftSqlType.int,
         data['${effectivePrefix}item_id'],
       )!,
-      unitNumber: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}unit_number'],
-      ),
-      executionNumber: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}execution_number'],
-      ),
     );
   }
 
@@ -339,39 +215,17 @@ class $ItemUnitsTableTable extends ItemUnitsTable
 class ItemUnitEntry extends DataClass implements Insertable<ItemUnitEntry> {
   final int id;
   final int itemId;
-  final int? unitNumber;
-  final String? executionNumber;
-  const ItemUnitEntry({
-    required this.id,
-    required this.itemId,
-    this.unitNumber,
-    this.executionNumber,
-  });
+  const ItemUnitEntry({required this.id, required this.itemId});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['item_id'] = Variable<int>(itemId);
-    if (!nullToAbsent || unitNumber != null) {
-      map['unit_number'] = Variable<int>(unitNumber);
-    }
-    if (!nullToAbsent || executionNumber != null) {
-      map['execution_number'] = Variable<String>(executionNumber);
-    }
     return map;
   }
 
   ItemUnitsTableCompanion toCompanion(bool nullToAbsent) {
-    return ItemUnitsTableCompanion(
-      id: Value(id),
-      itemId: Value(itemId),
-      unitNumber: unitNumber == null && nullToAbsent
-          ? const Value.absent()
-          : Value(unitNumber),
-      executionNumber: executionNumber == null && nullToAbsent
-          ? const Value.absent()
-          : Value(executionNumber),
-    );
+    return ItemUnitsTableCompanion(id: Value(id), itemId: Value(itemId));
   }
 
   factory ItemUnitEntry.fromJson(
@@ -382,8 +236,6 @@ class ItemUnitEntry extends DataClass implements Insertable<ItemUnitEntry> {
     return ItemUnitEntry(
       id: serializer.fromJson<int>(json['id']),
       itemId: serializer.fromJson<int>(json['itemId']),
-      unitNumber: serializer.fromJson<int?>(json['unitNumber']),
-      executionNumber: serializer.fromJson<String?>(json['executionNumber']),
     );
   }
   @override
@@ -392,34 +244,15 @@ class ItemUnitEntry extends DataClass implements Insertable<ItemUnitEntry> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'itemId': serializer.toJson<int>(itemId),
-      'unitNumber': serializer.toJson<int?>(unitNumber),
-      'executionNumber': serializer.toJson<String?>(executionNumber),
     };
   }
 
-  ItemUnitEntry copyWith({
-    int? id,
-    int? itemId,
-    Value<int?> unitNumber = const Value.absent(),
-    Value<String?> executionNumber = const Value.absent(),
-  }) => ItemUnitEntry(
-    id: id ?? this.id,
-    itemId: itemId ?? this.itemId,
-    unitNumber: unitNumber.present ? unitNumber.value : this.unitNumber,
-    executionNumber: executionNumber.present
-        ? executionNumber.value
-        : this.executionNumber,
-  );
+  ItemUnitEntry copyWith({int? id, int? itemId}) =>
+      ItemUnitEntry(id: id ?? this.id, itemId: itemId ?? this.itemId);
   ItemUnitEntry copyWithCompanion(ItemUnitsTableCompanion data) {
     return ItemUnitEntry(
       id: data.id.present ? data.id.value : this.id,
       itemId: data.itemId.present ? data.itemId.value : this.itemId,
-      unitNumber: data.unitNumber.present
-          ? data.unitNumber.value
-          : this.unitNumber,
-      executionNumber: data.executionNumber.present
-          ? data.executionNumber.value
-          : this.executionNumber,
     );
   }
 
@@ -427,67 +260,46 @@ class ItemUnitEntry extends DataClass implements Insertable<ItemUnitEntry> {
   String toString() {
     return (StringBuffer('ItemUnitEntry(')
           ..write('id: $id, ')
-          ..write('itemId: $itemId, ')
-          ..write('unitNumber: $unitNumber, ')
-          ..write('executionNumber: $executionNumber')
+          ..write('itemId: $itemId')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, itemId, unitNumber, executionNumber);
+  int get hashCode => Object.hash(id, itemId);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is ItemUnitEntry &&
           other.id == this.id &&
-          other.itemId == this.itemId &&
-          other.unitNumber == this.unitNumber &&
-          other.executionNumber == this.executionNumber);
+          other.itemId == this.itemId);
 }
 
 class ItemUnitsTableCompanion extends UpdateCompanion<ItemUnitEntry> {
   final Value<int> id;
   final Value<int> itemId;
-  final Value<int?> unitNumber;
-  final Value<String?> executionNumber;
   const ItemUnitsTableCompanion({
     this.id = const Value.absent(),
     this.itemId = const Value.absent(),
-    this.unitNumber = const Value.absent(),
-    this.executionNumber = const Value.absent(),
   });
   ItemUnitsTableCompanion.insert({
     this.id = const Value.absent(),
     required int itemId,
-    this.unitNumber = const Value.absent(),
-    this.executionNumber = const Value.absent(),
   }) : itemId = Value(itemId);
   static Insertable<ItemUnitEntry> custom({
     Expression<int>? id,
     Expression<int>? itemId,
-    Expression<int>? unitNumber,
-    Expression<String>? executionNumber,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (itemId != null) 'item_id': itemId,
-      if (unitNumber != null) 'unit_number': unitNumber,
-      if (executionNumber != null) 'execution_number': executionNumber,
     });
   }
 
-  ItemUnitsTableCompanion copyWith({
-    Value<int>? id,
-    Value<int>? itemId,
-    Value<int?>? unitNumber,
-    Value<String?>? executionNumber,
-  }) {
+  ItemUnitsTableCompanion copyWith({Value<int>? id, Value<int>? itemId}) {
     return ItemUnitsTableCompanion(
       id: id ?? this.id,
       itemId: itemId ?? this.itemId,
-      unitNumber: unitNumber ?? this.unitNumber,
-      executionNumber: executionNumber ?? this.executionNumber,
     );
   }
 
@@ -500,12 +312,6 @@ class ItemUnitsTableCompanion extends UpdateCompanion<ItemUnitEntry> {
     if (itemId.present) {
       map['item_id'] = Variable<int>(itemId.value);
     }
-    if (unitNumber.present) {
-      map['unit_number'] = Variable<int>(unitNumber.value);
-    }
-    if (executionNumber.present) {
-      map['execution_number'] = Variable<String>(executionNumber.value);
-    }
     return map;
   }
 
@@ -513,9 +319,7 @@ class ItemUnitsTableCompanion extends UpdateCompanion<ItemUnitEntry> {
   String toString() {
     return (StringBuffer('ItemUnitsTableCompanion(')
           ..write('id: $id, ')
-          ..write('itemId: $itemId, ')
-          ..write('unitNumber: $unitNumber, ')
-          ..write('executionNumber: $executionNumber')
+          ..write('itemId: $itemId')
           ..write(')'))
         .toString();
   }
@@ -533,21 +337,6 @@ class $DocsTableTable extends DocsTable
     'id',
     aliasedName,
     false,
-    hasAutoIncrement: true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
-  );
-  static const VerificationMeta _serverMediaIdMeta = const VerificationMeta(
-    'serverMediaId',
-  );
-  @override
-  late final GeneratedColumn<int> serverMediaId = GeneratedColumn<int>(
-    'server_media_id',
-    aliasedName,
-    true,
     type: DriftSqlType.int,
     requiredDuringInsert: false,
   );
@@ -563,15 +352,50 @@ class $DocsTableTable extends DocsTable
       'REFERENCES item_units_table (id) ON DELETE CASCADE',
     ),
   );
+  static const VerificationMeta _uploadStatusMeta = const VerificationMeta(
+    'uploadStatus',
+  );
   @override
-  late final GeneratedColumnWithTypeConverter<LocationDocModel?, String>
-  location = GeneratedColumn<String>(
-    'location',
+  late final GeneratedColumn<String> uploadStatus = GeneratedColumn<String>(
+    'upload_status',
     aliasedName,
     true,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-  ).withConverter<LocationDocModel?>($DocsTableTable.$converterlocation);
+  );
+  static const VerificationMeta _locationUploadStatusMeta =
+      const VerificationMeta('locationUploadStatus');
+  @override
+  late final GeneratedColumn<String> locationUploadStatus =
+      GeneratedColumn<String>(
+        'location_upload_status',
+        aliasedName,
+        true,
+        type: DriftSqlType.string,
+        requiredDuringInsert: false,
+      );
+  static const VerificationMeta _latitudeMeta = const VerificationMeta(
+    'latitude',
+  );
+  @override
+  late final GeneratedColumn<double> latitude = GeneratedColumn<double>(
+    'latitude',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _longitudeMeta = const VerificationMeta(
+    'longitude',
+  );
+  @override
+  late final GeneratedColumn<double> longitude = GeneratedColumn<double>(
+    'longitude',
+    aliasedName,
+    true,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _createdAtMeta = const VerificationMeta(
     'createdAt',
   );
@@ -587,9 +411,11 @@ class $DocsTableTable extends DocsTable
   @override
   List<GeneratedColumn> get $columns => [
     id,
-    serverMediaId,
     unitId,
-    location,
+    uploadStatus,
+    locationUploadStatus,
+    latitude,
+    longitude,
     createdAt,
   ];
   @override
@@ -607,15 +433,6 @@ class $DocsTableTable extends DocsTable
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
-    if (data.containsKey('server_media_id')) {
-      context.handle(
-        _serverMediaIdMeta,
-        serverMediaId.isAcceptableOrUnknown(
-          data['server_media_id']!,
-          _serverMediaIdMeta,
-        ),
-      );
-    }
     if (data.containsKey('unit_id')) {
       context.handle(
         _unitIdMeta,
@@ -623,6 +440,36 @@ class $DocsTableTable extends DocsTable
       );
     } else if (isInserting) {
       context.missing(_unitIdMeta);
+    }
+    if (data.containsKey('upload_status')) {
+      context.handle(
+        _uploadStatusMeta,
+        uploadStatus.isAcceptableOrUnknown(
+          data['upload_status']!,
+          _uploadStatusMeta,
+        ),
+      );
+    }
+    if (data.containsKey('location_upload_status')) {
+      context.handle(
+        _locationUploadStatusMeta,
+        locationUploadStatus.isAcceptableOrUnknown(
+          data['location_upload_status']!,
+          _locationUploadStatusMeta,
+        ),
+      );
+    }
+    if (data.containsKey('latitude')) {
+      context.handle(
+        _latitudeMeta,
+        latitude.isAcceptableOrUnknown(data['latitude']!, _latitudeMeta),
+      );
+    }
+    if (data.containsKey('longitude')) {
+      context.handle(
+        _longitudeMeta,
+        longitude.isAcceptableOrUnknown(data['longitude']!, _longitudeMeta),
+      );
     }
     if (data.containsKey('created_at')) {
       context.handle(
@@ -643,19 +490,25 @@ class $DocsTableTable extends DocsTable
         DriftSqlType.int,
         data['${effectivePrefix}id'],
       )!,
-      serverMediaId: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}server_media_id'],
-      ),
       unitId: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}unit_id'],
       )!,
-      location: $DocsTableTable.$converterlocation.fromSql(
-        attachedDatabase.typeMapping.read(
-          DriftSqlType.string,
-          data['${effectivePrefix}location'],
-        ),
+      uploadStatus: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}upload_status'],
+      ),
+      locationUploadStatus: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}location_upload_status'],
+      ),
+      latitude: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}latitude'],
+      ),
+      longitude: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}longitude'],
       ),
       createdAt: attachedDatabase.typeMapping.read(
         DriftSqlType.dateTime,
@@ -668,36 +521,41 @@ class $DocsTableTable extends DocsTable
   $DocsTableTable createAlias(String alias) {
     return $DocsTableTable(attachedDatabase, alias);
   }
-
-  static TypeConverter<LocationDocModel?, String?> $converterlocation =
-      const LocationDocConverter();
 }
 
 class DocEntry extends DataClass implements Insertable<DocEntry> {
   final int id;
-  final int? serverMediaId;
   final int unitId;
-  final LocationDocModel? location;
+  final String? uploadStatus;
+  final String? locationUploadStatus;
+  final double? latitude;
+  final double? longitude;
   final DateTime createdAt;
   const DocEntry({
     required this.id,
-    this.serverMediaId,
     required this.unitId,
-    this.location,
+    this.uploadStatus,
+    this.locationUploadStatus,
+    this.latitude,
+    this.longitude,
     required this.createdAt,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
-    if (!nullToAbsent || serverMediaId != null) {
-      map['server_media_id'] = Variable<int>(serverMediaId);
-    }
     map['unit_id'] = Variable<int>(unitId);
-    if (!nullToAbsent || location != null) {
-      map['location'] = Variable<String>(
-        $DocsTableTable.$converterlocation.toSql(location),
-      );
+    if (!nullToAbsent || uploadStatus != null) {
+      map['upload_status'] = Variable<String>(uploadStatus);
+    }
+    if (!nullToAbsent || locationUploadStatus != null) {
+      map['location_upload_status'] = Variable<String>(locationUploadStatus);
+    }
+    if (!nullToAbsent || latitude != null) {
+      map['latitude'] = Variable<double>(latitude);
+    }
+    if (!nullToAbsent || longitude != null) {
+      map['longitude'] = Variable<double>(longitude);
     }
     map['created_at'] = Variable<DateTime>(createdAt);
     return map;
@@ -706,13 +564,19 @@ class DocEntry extends DataClass implements Insertable<DocEntry> {
   DocsTableCompanion toCompanion(bool nullToAbsent) {
     return DocsTableCompanion(
       id: Value(id),
-      serverMediaId: serverMediaId == null && nullToAbsent
-          ? const Value.absent()
-          : Value(serverMediaId),
       unitId: Value(unitId),
-      location: location == null && nullToAbsent
+      uploadStatus: uploadStatus == null && nullToAbsent
           ? const Value.absent()
-          : Value(location),
+          : Value(uploadStatus),
+      locationUploadStatus: locationUploadStatus == null && nullToAbsent
+          ? const Value.absent()
+          : Value(locationUploadStatus),
+      latitude: latitude == null && nullToAbsent
+          ? const Value.absent()
+          : Value(latitude),
+      longitude: longitude == null && nullToAbsent
+          ? const Value.absent()
+          : Value(longitude),
       createdAt: Value(createdAt),
     );
   }
@@ -724,9 +588,13 @@ class DocEntry extends DataClass implements Insertable<DocEntry> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return DocEntry(
       id: serializer.fromJson<int>(json['id']),
-      serverMediaId: serializer.fromJson<int?>(json['serverMediaId']),
       unitId: serializer.fromJson<int>(json['unitId']),
-      location: serializer.fromJson<LocationDocModel?>(json['location']),
+      uploadStatus: serializer.fromJson<String?>(json['uploadStatus']),
+      locationUploadStatus: serializer.fromJson<String?>(
+        json['locationUploadStatus'],
+      ),
+      latitude: serializer.fromJson<double?>(json['latitude']),
+      longitude: serializer.fromJson<double?>(json['longitude']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
@@ -735,36 +603,46 @@ class DocEntry extends DataClass implements Insertable<DocEntry> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
-      'serverMediaId': serializer.toJson<int?>(serverMediaId),
       'unitId': serializer.toJson<int>(unitId),
-      'location': serializer.toJson<LocationDocModel?>(location),
+      'uploadStatus': serializer.toJson<String?>(uploadStatus),
+      'locationUploadStatus': serializer.toJson<String?>(locationUploadStatus),
+      'latitude': serializer.toJson<double?>(latitude),
+      'longitude': serializer.toJson<double?>(longitude),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
 
   DocEntry copyWith({
     int? id,
-    Value<int?> serverMediaId = const Value.absent(),
     int? unitId,
-    Value<LocationDocModel?> location = const Value.absent(),
+    Value<String?> uploadStatus = const Value.absent(),
+    Value<String?> locationUploadStatus = const Value.absent(),
+    Value<double?> latitude = const Value.absent(),
+    Value<double?> longitude = const Value.absent(),
     DateTime? createdAt,
   }) => DocEntry(
     id: id ?? this.id,
-    serverMediaId: serverMediaId.present
-        ? serverMediaId.value
-        : this.serverMediaId,
     unitId: unitId ?? this.unitId,
-    location: location.present ? location.value : this.location,
+    uploadStatus: uploadStatus.present ? uploadStatus.value : this.uploadStatus,
+    locationUploadStatus: locationUploadStatus.present
+        ? locationUploadStatus.value
+        : this.locationUploadStatus,
+    latitude: latitude.present ? latitude.value : this.latitude,
+    longitude: longitude.present ? longitude.value : this.longitude,
     createdAt: createdAt ?? this.createdAt,
   );
   DocEntry copyWithCompanion(DocsTableCompanion data) {
     return DocEntry(
       id: data.id.present ? data.id.value : this.id,
-      serverMediaId: data.serverMediaId.present
-          ? data.serverMediaId.value
-          : this.serverMediaId,
       unitId: data.unitId.present ? data.unitId.value : this.unitId,
-      location: data.location.present ? data.location.value : this.location,
+      uploadStatus: data.uploadStatus.present
+          ? data.uploadStatus.value
+          : this.uploadStatus,
+      locationUploadStatus: data.locationUploadStatus.present
+          ? data.locationUploadStatus.value
+          : this.locationUploadStatus,
+      latitude: data.latitude.present ? data.latitude.value : this.latitude,
+      longitude: data.longitude.present ? data.longitude.value : this.longitude,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
     );
   }
@@ -773,76 +651,102 @@ class DocEntry extends DataClass implements Insertable<DocEntry> {
   String toString() {
     return (StringBuffer('DocEntry(')
           ..write('id: $id, ')
-          ..write('serverMediaId: $serverMediaId, ')
           ..write('unitId: $unitId, ')
-          ..write('location: $location, ')
+          ..write('uploadStatus: $uploadStatus, ')
+          ..write('locationUploadStatus: $locationUploadStatus, ')
+          ..write('latitude: $latitude, ')
+          ..write('longitude: $longitude, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, serverMediaId, unitId, location, createdAt);
+  int get hashCode => Object.hash(
+    id,
+    unitId,
+    uploadStatus,
+    locationUploadStatus,
+    latitude,
+    longitude,
+    createdAt,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is DocEntry &&
           other.id == this.id &&
-          other.serverMediaId == this.serverMediaId &&
           other.unitId == this.unitId &&
-          other.location == this.location &&
+          other.uploadStatus == this.uploadStatus &&
+          other.locationUploadStatus == this.locationUploadStatus &&
+          other.latitude == this.latitude &&
+          other.longitude == this.longitude &&
           other.createdAt == this.createdAt);
 }
 
 class DocsTableCompanion extends UpdateCompanion<DocEntry> {
   final Value<int> id;
-  final Value<int?> serverMediaId;
   final Value<int> unitId;
-  final Value<LocationDocModel?> location;
+  final Value<String?> uploadStatus;
+  final Value<String?> locationUploadStatus;
+  final Value<double?> latitude;
+  final Value<double?> longitude;
   final Value<DateTime> createdAt;
   const DocsTableCompanion({
     this.id = const Value.absent(),
-    this.serverMediaId = const Value.absent(),
     this.unitId = const Value.absent(),
-    this.location = const Value.absent(),
+    this.uploadStatus = const Value.absent(),
+    this.locationUploadStatus = const Value.absent(),
+    this.latitude = const Value.absent(),
+    this.longitude = const Value.absent(),
     this.createdAt = const Value.absent(),
   });
   DocsTableCompanion.insert({
     this.id = const Value.absent(),
-    this.serverMediaId = const Value.absent(),
     required int unitId,
-    this.location = const Value.absent(),
+    this.uploadStatus = const Value.absent(),
+    this.locationUploadStatus = const Value.absent(),
+    this.latitude = const Value.absent(),
+    this.longitude = const Value.absent(),
     this.createdAt = const Value.absent(),
   }) : unitId = Value(unitId);
   static Insertable<DocEntry> custom({
     Expression<int>? id,
-    Expression<int>? serverMediaId,
     Expression<int>? unitId,
-    Expression<String>? location,
+    Expression<String>? uploadStatus,
+    Expression<String>? locationUploadStatus,
+    Expression<double>? latitude,
+    Expression<double>? longitude,
     Expression<DateTime>? createdAt,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (serverMediaId != null) 'server_media_id': serverMediaId,
       if (unitId != null) 'unit_id': unitId,
-      if (location != null) 'location': location,
+      if (uploadStatus != null) 'upload_status': uploadStatus,
+      if (locationUploadStatus != null)
+        'location_upload_status': locationUploadStatus,
+      if (latitude != null) 'latitude': latitude,
+      if (longitude != null) 'longitude': longitude,
       if (createdAt != null) 'created_at': createdAt,
     });
   }
 
   DocsTableCompanion copyWith({
     Value<int>? id,
-    Value<int?>? serverMediaId,
     Value<int>? unitId,
-    Value<LocationDocModel?>? location,
+    Value<String?>? uploadStatus,
+    Value<String?>? locationUploadStatus,
+    Value<double?>? latitude,
+    Value<double?>? longitude,
     Value<DateTime>? createdAt,
   }) {
     return DocsTableCompanion(
       id: id ?? this.id,
-      serverMediaId: serverMediaId ?? this.serverMediaId,
       unitId: unitId ?? this.unitId,
-      location: location ?? this.location,
+      uploadStatus: uploadStatus ?? this.uploadStatus,
+      locationUploadStatus: locationUploadStatus ?? this.locationUploadStatus,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
       createdAt: createdAt ?? this.createdAt,
     );
   }
@@ -853,16 +757,22 @@ class DocsTableCompanion extends UpdateCompanion<DocEntry> {
     if (id.present) {
       map['id'] = Variable<int>(id.value);
     }
-    if (serverMediaId.present) {
-      map['server_media_id'] = Variable<int>(serverMediaId.value);
-    }
     if (unitId.present) {
       map['unit_id'] = Variable<int>(unitId.value);
     }
-    if (location.present) {
-      map['location'] = Variable<String>(
-        $DocsTableTable.$converterlocation.toSql(location.value),
+    if (uploadStatus.present) {
+      map['upload_status'] = Variable<String>(uploadStatus.value);
+    }
+    if (locationUploadStatus.present) {
+      map['location_upload_status'] = Variable<String>(
+        locationUploadStatus.value,
       );
+    }
+    if (latitude.present) {
+      map['latitude'] = Variable<double>(latitude.value);
+    }
+    if (longitude.present) {
+      map['longitude'] = Variable<double>(longitude.value);
     }
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
@@ -874,9 +784,11 @@ class DocsTableCompanion extends UpdateCompanion<DocEntry> {
   String toString() {
     return (StringBuffer('DocsTableCompanion(')
           ..write('id: $id, ')
-          ..write('serverMediaId: $serverMediaId, ')
           ..write('unitId: $unitId, ')
-          ..write('location: $location, ')
+          ..write('uploadStatus: $uploadStatus, ')
+          ..write('locationUploadStatus: $locationUploadStatus, ')
+          ..write('latitude: $latitude, ')
+          ..write('longitude: $longitude, ')
           ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
@@ -906,77 +818,38 @@ class $DocMediaTableTable extends DocMediaTable
     false,
     type: DriftSqlType.int,
     requiredDuringInsert: true,
-  );
-  static const VerificationMeta _filePathMeta = const VerificationMeta(
-    'filePath',
-  );
-  @override
-  late final GeneratedColumn<String> filePath = GeneratedColumn<String>(
-    'file_path',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _fileTypeMeta = const VerificationMeta(
-    'fileType',
-  );
-  @override
-  late final GeneratedColumn<String> fileType = GeneratedColumn<String>(
-    'file_type',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-    defaultValue: const Constant('image'),
-  );
-  static const VerificationMeta _thumbnailMeta = const VerificationMeta(
-    'thumbnail',
-  );
-  @override
-  late final GeneratedColumn<String> thumbnail = GeneratedColumn<String>(
-    'thumbnail',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _sequenceMeta = const VerificationMeta(
-    'sequence',
-  );
-  @override
-  late final GeneratedColumn<int> sequence = GeneratedColumn<int>(
-    'sequence',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultValue: const Constant(1),
-  );
-  static const VerificationMeta _isServerFileMeta = const VerificationMeta(
-    'isServerFile',
-  );
-  @override
-  late final GeneratedColumn<bool> isServerFile = GeneratedColumn<bool>(
-    'is_server_file',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("is_server_file" IN (0, 1))',
+      'REFERENCES docs_table (id) ON DELETE CASCADE',
     ),
-    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _localFilePathMeta = const VerificationMeta(
+    'localFilePath',
+  );
+  @override
+  late final GeneratedColumn<String> localFilePath = GeneratedColumn<String>(
+    'local_file_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _uploadStatusMeta = const VerificationMeta(
+    'uploadStatus',
+  );
+  @override
+  late final GeneratedColumn<String> uploadStatus = GeneratedColumn<String>(
+    'upload_status',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
   );
   @override
   List<GeneratedColumn> get $columns => [
     id,
     docId,
-    filePath,
-    fileType,
-    thumbnail,
-    sequence,
-    isServerFile,
+    localFilePath,
+    uploadStatus,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1001,36 +874,21 @@ class $DocMediaTableTable extends DocMediaTable
     } else if (isInserting) {
       context.missing(_docIdMeta);
     }
-    if (data.containsKey('file_path')) {
+    if (data.containsKey('local_file_path')) {
       context.handle(
-        _filePathMeta,
-        filePath.isAcceptableOrUnknown(data['file_path']!, _filePathMeta),
+        _localFilePathMeta,
+        localFilePath.isAcceptableOrUnknown(
+          data['local_file_path']!,
+          _localFilePathMeta,
+        ),
       );
     }
-    if (data.containsKey('file_type')) {
+    if (data.containsKey('upload_status')) {
       context.handle(
-        _fileTypeMeta,
-        fileType.isAcceptableOrUnknown(data['file_type']!, _fileTypeMeta),
-      );
-    }
-    if (data.containsKey('thumbnail')) {
-      context.handle(
-        _thumbnailMeta,
-        thumbnail.isAcceptableOrUnknown(data['thumbnail']!, _thumbnailMeta),
-      );
-    }
-    if (data.containsKey('sequence')) {
-      context.handle(
-        _sequenceMeta,
-        sequence.isAcceptableOrUnknown(data['sequence']!, _sequenceMeta),
-      );
-    }
-    if (data.containsKey('is_server_file')) {
-      context.handle(
-        _isServerFileMeta,
-        isServerFile.isAcceptableOrUnknown(
-          data['is_server_file']!,
-          _isServerFileMeta,
+        _uploadStatusMeta,
+        uploadStatus.isAcceptableOrUnknown(
+          data['upload_status']!,
+          _uploadStatusMeta,
         ),
       );
     }
@@ -1051,26 +909,14 @@ class $DocMediaTableTable extends DocMediaTable
         DriftSqlType.int,
         data['${effectivePrefix}doc_id'],
       )!,
-      filePath: attachedDatabase.typeMapping.read(
+      localFilePath: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
-        data['${effectivePrefix}file_path'],
+        data['${effectivePrefix}local_file_path'],
       ),
-      fileType: attachedDatabase.typeMapping.read(
+      uploadStatus: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
-        data['${effectivePrefix}file_type'],
-      )!,
-      thumbnail: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}thumbnail'],
+        data['${effectivePrefix}upload_status'],
       ),
-      sequence: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}sequence'],
-      )!,
-      isServerFile: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}is_server_file'],
-      )!,
     );
   }
 
@@ -1083,34 +929,25 @@ class $DocMediaTableTable extends DocMediaTable
 class DocMediaEntry extends DataClass implements Insertable<DocMediaEntry> {
   final int id;
   final int docId;
-  final String? filePath;
-  final String fileType;
-  final String? thumbnail;
-  final int sequence;
-  final bool isServerFile;
+  final String? localFilePath;
+  final String? uploadStatus;
   const DocMediaEntry({
     required this.id,
     required this.docId,
-    this.filePath,
-    required this.fileType,
-    this.thumbnail,
-    required this.sequence,
-    required this.isServerFile,
+    this.localFilePath,
+    this.uploadStatus,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['doc_id'] = Variable<int>(docId);
-    if (!nullToAbsent || filePath != null) {
-      map['file_path'] = Variable<String>(filePath);
+    if (!nullToAbsent || localFilePath != null) {
+      map['local_file_path'] = Variable<String>(localFilePath);
     }
-    map['file_type'] = Variable<String>(fileType);
-    if (!nullToAbsent || thumbnail != null) {
-      map['thumbnail'] = Variable<String>(thumbnail);
+    if (!nullToAbsent || uploadStatus != null) {
+      map['upload_status'] = Variable<String>(uploadStatus);
     }
-    map['sequence'] = Variable<int>(sequence);
-    map['is_server_file'] = Variable<bool>(isServerFile);
     return map;
   }
 
@@ -1118,15 +955,12 @@ class DocMediaEntry extends DataClass implements Insertable<DocMediaEntry> {
     return DocMediaTableCompanion(
       id: Value(id),
       docId: Value(docId),
-      filePath: filePath == null && nullToAbsent
+      localFilePath: localFilePath == null && nullToAbsent
           ? const Value.absent()
-          : Value(filePath),
-      fileType: Value(fileType),
-      thumbnail: thumbnail == null && nullToAbsent
+          : Value(localFilePath),
+      uploadStatus: uploadStatus == null && nullToAbsent
           ? const Value.absent()
-          : Value(thumbnail),
-      sequence: Value(sequence),
-      isServerFile: Value(isServerFile),
+          : Value(uploadStatus),
     );
   }
 
@@ -1138,11 +972,8 @@ class DocMediaEntry extends DataClass implements Insertable<DocMediaEntry> {
     return DocMediaEntry(
       id: serializer.fromJson<int>(json['id']),
       docId: serializer.fromJson<int>(json['docId']),
-      filePath: serializer.fromJson<String?>(json['filePath']),
-      fileType: serializer.fromJson<String>(json['fileType']),
-      thumbnail: serializer.fromJson<String?>(json['thumbnail']),
-      sequence: serializer.fromJson<int>(json['sequence']),
-      isServerFile: serializer.fromJson<bool>(json['isServerFile']),
+      localFilePath: serializer.fromJson<String?>(json['localFilePath']),
+      uploadStatus: serializer.fromJson<String?>(json['uploadStatus']),
     );
   }
   @override
@@ -1151,42 +982,34 @@ class DocMediaEntry extends DataClass implements Insertable<DocMediaEntry> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'docId': serializer.toJson<int>(docId),
-      'filePath': serializer.toJson<String?>(filePath),
-      'fileType': serializer.toJson<String>(fileType),
-      'thumbnail': serializer.toJson<String?>(thumbnail),
-      'sequence': serializer.toJson<int>(sequence),
-      'isServerFile': serializer.toJson<bool>(isServerFile),
+      'localFilePath': serializer.toJson<String?>(localFilePath),
+      'uploadStatus': serializer.toJson<String?>(uploadStatus),
     };
   }
 
   DocMediaEntry copyWith({
     int? id,
     int? docId,
-    Value<String?> filePath = const Value.absent(),
-    String? fileType,
-    Value<String?> thumbnail = const Value.absent(),
-    int? sequence,
-    bool? isServerFile,
+    Value<String?> localFilePath = const Value.absent(),
+    Value<String?> uploadStatus = const Value.absent(),
   }) => DocMediaEntry(
     id: id ?? this.id,
     docId: docId ?? this.docId,
-    filePath: filePath.present ? filePath.value : this.filePath,
-    fileType: fileType ?? this.fileType,
-    thumbnail: thumbnail.present ? thumbnail.value : this.thumbnail,
-    sequence: sequence ?? this.sequence,
-    isServerFile: isServerFile ?? this.isServerFile,
+    localFilePath: localFilePath.present
+        ? localFilePath.value
+        : this.localFilePath,
+    uploadStatus: uploadStatus.present ? uploadStatus.value : this.uploadStatus,
   );
   DocMediaEntry copyWithCompanion(DocMediaTableCompanion data) {
     return DocMediaEntry(
       id: data.id.present ? data.id.value : this.id,
       docId: data.docId.present ? data.docId.value : this.docId,
-      filePath: data.filePath.present ? data.filePath.value : this.filePath,
-      fileType: data.fileType.present ? data.fileType.value : this.fileType,
-      thumbnail: data.thumbnail.present ? data.thumbnail.value : this.thumbnail,
-      sequence: data.sequence.present ? data.sequence.value : this.sequence,
-      isServerFile: data.isServerFile.present
-          ? data.isServerFile.value
-          : this.isServerFile,
+      localFilePath: data.localFilePath.present
+          ? data.localFilePath.value
+          : this.localFilePath,
+      uploadStatus: data.uploadStatus.present
+          ? data.uploadStatus.value
+          : this.uploadStatus,
     );
   }
 
@@ -1195,101 +1018,66 @@ class DocMediaEntry extends DataClass implements Insertable<DocMediaEntry> {
     return (StringBuffer('DocMediaEntry(')
           ..write('id: $id, ')
           ..write('docId: $docId, ')
-          ..write('filePath: $filePath, ')
-          ..write('fileType: $fileType, ')
-          ..write('thumbnail: $thumbnail, ')
-          ..write('sequence: $sequence, ')
-          ..write('isServerFile: $isServerFile')
+          ..write('localFilePath: $localFilePath, ')
+          ..write('uploadStatus: $uploadStatus')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-    id,
-    docId,
-    filePath,
-    fileType,
-    thumbnail,
-    sequence,
-    isServerFile,
-  );
+  int get hashCode => Object.hash(id, docId, localFilePath, uploadStatus);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is DocMediaEntry &&
           other.id == this.id &&
           other.docId == this.docId &&
-          other.filePath == this.filePath &&
-          other.fileType == this.fileType &&
-          other.thumbnail == this.thumbnail &&
-          other.sequence == this.sequence &&
-          other.isServerFile == this.isServerFile);
+          other.localFilePath == this.localFilePath &&
+          other.uploadStatus == this.uploadStatus);
 }
 
 class DocMediaTableCompanion extends UpdateCompanion<DocMediaEntry> {
   final Value<int> id;
   final Value<int> docId;
-  final Value<String?> filePath;
-  final Value<String> fileType;
-  final Value<String?> thumbnail;
-  final Value<int> sequence;
-  final Value<bool> isServerFile;
+  final Value<String?> localFilePath;
+  final Value<String?> uploadStatus;
   const DocMediaTableCompanion({
     this.id = const Value.absent(),
     this.docId = const Value.absent(),
-    this.filePath = const Value.absent(),
-    this.fileType = const Value.absent(),
-    this.thumbnail = const Value.absent(),
-    this.sequence = const Value.absent(),
-    this.isServerFile = const Value.absent(),
+    this.localFilePath = const Value.absent(),
+    this.uploadStatus = const Value.absent(),
   });
   DocMediaTableCompanion.insert({
     this.id = const Value.absent(),
     required int docId,
-    this.filePath = const Value.absent(),
-    this.fileType = const Value.absent(),
-    this.thumbnail = const Value.absent(),
-    this.sequence = const Value.absent(),
-    this.isServerFile = const Value.absent(),
+    this.localFilePath = const Value.absent(),
+    this.uploadStatus = const Value.absent(),
   }) : docId = Value(docId);
   static Insertable<DocMediaEntry> custom({
     Expression<int>? id,
     Expression<int>? docId,
-    Expression<String>? filePath,
-    Expression<String>? fileType,
-    Expression<String>? thumbnail,
-    Expression<int>? sequence,
-    Expression<bool>? isServerFile,
+    Expression<String>? localFilePath,
+    Expression<String>? uploadStatus,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (docId != null) 'doc_id': docId,
-      if (filePath != null) 'file_path': filePath,
-      if (fileType != null) 'file_type': fileType,
-      if (thumbnail != null) 'thumbnail': thumbnail,
-      if (sequence != null) 'sequence': sequence,
-      if (isServerFile != null) 'is_server_file': isServerFile,
+      if (localFilePath != null) 'local_file_path': localFilePath,
+      if (uploadStatus != null) 'upload_status': uploadStatus,
     });
   }
 
   DocMediaTableCompanion copyWith({
     Value<int>? id,
     Value<int>? docId,
-    Value<String?>? filePath,
-    Value<String>? fileType,
-    Value<String?>? thumbnail,
-    Value<int>? sequence,
-    Value<bool>? isServerFile,
+    Value<String?>? localFilePath,
+    Value<String?>? uploadStatus,
   }) {
     return DocMediaTableCompanion(
       id: id ?? this.id,
       docId: docId ?? this.docId,
-      filePath: filePath ?? this.filePath,
-      fileType: fileType ?? this.fileType,
-      thumbnail: thumbnail ?? this.thumbnail,
-      sequence: sequence ?? this.sequence,
-      isServerFile: isServerFile ?? this.isServerFile,
+      localFilePath: localFilePath ?? this.localFilePath,
+      uploadStatus: uploadStatus ?? this.uploadStatus,
     );
   }
 
@@ -1302,20 +1090,11 @@ class DocMediaTableCompanion extends UpdateCompanion<DocMediaEntry> {
     if (docId.present) {
       map['doc_id'] = Variable<int>(docId.value);
     }
-    if (filePath.present) {
-      map['file_path'] = Variable<String>(filePath.value);
+    if (localFilePath.present) {
+      map['local_file_path'] = Variable<String>(localFilePath.value);
     }
-    if (fileType.present) {
-      map['file_type'] = Variable<String>(fileType.value);
-    }
-    if (thumbnail.present) {
-      map['thumbnail'] = Variable<String>(thumbnail.value);
-    }
-    if (sequence.present) {
-      map['sequence'] = Variable<int>(sequence.value);
-    }
-    if (isServerFile.present) {
-      map['is_server_file'] = Variable<bool>(isServerFile.value);
+    if (uploadStatus.present) {
+      map['upload_status'] = Variable<String>(uploadStatus.value);
     }
     return map;
   }
@@ -1325,11 +1104,8 @@ class DocMediaTableCompanion extends UpdateCompanion<DocMediaEntry> {
     return (StringBuffer('DocMediaTableCompanion(')
           ..write('id: $id, ')
           ..write('docId: $docId, ')
-          ..write('filePath: $filePath, ')
-          ..write('fileType: $fileType, ')
-          ..write('thumbnail: $thumbnail, ')
-          ..write('sequence: $sequence, ')
-          ..write('isServerFile: $isServerFile')
+          ..write('localFilePath: $localFilePath, ')
+          ..write('uploadStatus: $uploadStatus')
           ..write(')'))
         .toString();
   }
@@ -1345,6 +1121,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final ItemsDao itemsDao = ItemsDao(this as AppDatabase);
   late final UnitsDao unitsDao = UnitsDao(this as AppDatabase);
   late final DocsDao docsDao = DocsDao(this as AppDatabase);
+  late final DocMediaDao docMediaDao = DocMediaDao(this as AppDatabase);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -1371,13 +1148,20 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       ),
       result: [TableUpdate('docs_table', kind: UpdateKind.delete)],
     ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'docs_table',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('doc_media_table', kind: UpdateKind.delete)],
+    ),
   ]);
 }
 
 typedef $$ItemsTableTableCreateCompanionBuilder =
-    ItemsTableCompanion Function({Value<int> id, Value<String?> printedName});
+    ItemsTableCompanion Function({Value<int> id});
 typedef $$ItemsTableTableUpdateCompanionBuilder =
-    ItemsTableCompanion Function({Value<int> id, Value<String?> printedName});
+    ItemsTableCompanion Function({Value<int> id});
 
 final class $$ItemsTableTableReferences
     extends BaseReferences<_$AppDatabase, $ItemsTableTable, ItemEntry> {
@@ -1413,11 +1197,6 @@ class $$ItemsTableTableFilterComposer
   });
   ColumnFilters<int> get id => $composableBuilder(
     column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get printedName => $composableBuilder(
-    column: $table.printedName,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -1460,11 +1239,6 @@ class $$ItemsTableTableOrderingComposer
     column: $table.id,
     builder: (column) => ColumnOrderings(column),
   );
-
-  ColumnOrderings<String> get printedName => $composableBuilder(
-    column: $table.printedName,
-    builder: (column) => ColumnOrderings(column),
-  );
 }
 
 class $$ItemsTableTableAnnotationComposer
@@ -1478,11 +1252,6 @@ class $$ItemsTableTableAnnotationComposer
   });
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
-
-  GeneratedColumn<String> get printedName => $composableBuilder(
-    column: $table.printedName,
-    builder: (column) => column,
-  );
 
   Expression<T> itemUnitsTableRefs<T extends Object>(
     Expression<T> Function($$ItemUnitsTableTableAnnotationComposer a) f,
@@ -1536,17 +1305,10 @@ class $$ItemsTableTableTableManager
               $$ItemsTableTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$ItemsTableTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<String?> printedName = const Value.absent(),
-              }) => ItemsTableCompanion(id: id, printedName: printedName),
-          createCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<String?> printedName = const Value.absent(),
-              }) =>
-                  ItemsTableCompanion.insert(id: id, printedName: printedName),
+          updateCompanionCallback: ({Value<int> id = const Value.absent()}) =>
+              ItemsTableCompanion(id: id),
+          createCompanionCallback: ({Value<int> id = const Value.absent()}) =>
+              ItemsTableCompanion.insert(id: id),
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
@@ -1606,19 +1368,9 @@ typedef $$ItemsTableTableProcessedTableManager =
       PrefetchHooks Function({bool itemUnitsTableRefs})
     >;
 typedef $$ItemUnitsTableTableCreateCompanionBuilder =
-    ItemUnitsTableCompanion Function({
-      Value<int> id,
-      required int itemId,
-      Value<int?> unitNumber,
-      Value<String?> executionNumber,
-    });
+    ItemUnitsTableCompanion Function({Value<int> id, required int itemId});
 typedef $$ItemUnitsTableTableUpdateCompanionBuilder =
-    ItemUnitsTableCompanion Function({
-      Value<int> id,
-      Value<int> itemId,
-      Value<int?> unitNumber,
-      Value<String?> executionNumber,
-    });
+    ItemUnitsTableCompanion Function({Value<int> id, Value<int> itemId});
 
 final class $$ItemUnitsTableTableReferences
     extends BaseReferences<_$AppDatabase, $ItemUnitsTableTable, ItemUnitEntry> {
@@ -1675,16 +1427,6 @@ class $$ItemUnitsTableTableFilterComposer
   });
   ColumnFilters<int> get id => $composableBuilder(
     column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get unitNumber => $composableBuilder(
-    column: $table.unitNumber,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get executionNumber => $composableBuilder(
-    column: $table.executionNumber,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -1751,16 +1493,6 @@ class $$ItemUnitsTableTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<int> get unitNumber => $composableBuilder(
-    column: $table.unitNumber,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get executionNumber => $composableBuilder(
-    column: $table.executionNumber,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   $$ItemsTableTableOrderingComposer get itemId {
     final $$ItemsTableTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -1796,16 +1528,6 @@ class $$ItemUnitsTableTableAnnotationComposer
   });
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
-
-  GeneratedColumn<int> get unitNumber => $composableBuilder(
-    column: $table.unitNumber,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<String> get executionNumber => $composableBuilder(
-    column: $table.executionNumber,
-    builder: (column) => column,
-  );
 
   $$ItemsTableTableAnnotationComposer get itemId {
     final $$ItemsTableTableAnnotationComposer composer = $composerBuilder(
@@ -1888,26 +1610,10 @@ class $$ItemUnitsTableTableTableManager
               ({
                 Value<int> id = const Value.absent(),
                 Value<int> itemId = const Value.absent(),
-                Value<int?> unitNumber = const Value.absent(),
-                Value<String?> executionNumber = const Value.absent(),
-              }) => ItemUnitsTableCompanion(
-                id: id,
-                itemId: itemId,
-                unitNumber: unitNumber,
-                executionNumber: executionNumber,
-              ),
+              }) => ItemUnitsTableCompanion(id: id, itemId: itemId),
           createCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                required int itemId,
-                Value<int?> unitNumber = const Value.absent(),
-                Value<String?> executionNumber = const Value.absent(),
-              }) => ItemUnitsTableCompanion.insert(
-                id: id,
-                itemId: itemId,
-                unitNumber: unitNumber,
-                executionNumber: executionNumber,
-              ),
+              ({Value<int> id = const Value.absent(), required int itemId}) =>
+                  ItemUnitsTableCompanion.insert(id: id, itemId: itemId),
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
@@ -1999,17 +1705,21 @@ typedef $$ItemUnitsTableTableProcessedTableManager =
 typedef $$DocsTableTableCreateCompanionBuilder =
     DocsTableCompanion Function({
       Value<int> id,
-      Value<int?> serverMediaId,
       required int unitId,
-      Value<LocationDocModel?> location,
+      Value<String?> uploadStatus,
+      Value<String?> locationUploadStatus,
+      Value<double?> latitude,
+      Value<double?> longitude,
       Value<DateTime> createdAt,
     });
 typedef $$DocsTableTableUpdateCompanionBuilder =
     DocsTableCompanion Function({
       Value<int> id,
-      Value<int?> serverMediaId,
       Value<int> unitId,
-      Value<LocationDocModel?> location,
+      Value<String?> uploadStatus,
+      Value<String?> locationUploadStatus,
+      Value<double?> latitude,
+      Value<double?> longitude,
       Value<DateTime> createdAt,
     });
 
@@ -2034,6 +1744,24 @@ final class $$DocsTableTableReferences
       manager.$state.copyWith(prefetchedData: [item]),
     );
   }
+
+  static MultiTypedResultKey<$DocMediaTableTable, List<DocMediaEntry>>
+  _docMediaTableRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.docMediaTable,
+    aliasName: 'docs_table__id__doc_media_table__doc_id',
+  );
+
+  $$DocMediaTableTableProcessedTableManager get docMediaTableRefs {
+    final manager = $$DocMediaTableTableTableManager(
+      $_db,
+      $_db.docMediaTable,
+    ).filter((f) => f.docId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_docMediaTableRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$DocsTableTableFilterComposer
@@ -2050,15 +1778,24 @@ class $$DocsTableTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<int> get serverMediaId => $composableBuilder(
-    column: $table.serverMediaId,
+  ColumnFilters<String> get uploadStatus => $composableBuilder(
+    column: $table.uploadStatus,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnWithTypeConverterFilters<LocationDocModel?, LocationDocModel, String>
-  get location => $composableBuilder(
-    column: $table.location,
-    builder: (column) => ColumnWithTypeConverterFilters(column),
+  ColumnFilters<String> get locationUploadStatus => $composableBuilder(
+    column: $table.locationUploadStatus,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get latitude => $composableBuilder(
+    column: $table.latitude,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get longitude => $composableBuilder(
+    column: $table.longitude,
+    builder: (column) => ColumnFilters(column),
   );
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
@@ -2088,6 +1825,31 @@ class $$DocsTableTableFilterComposer
     );
     return composer;
   }
+
+  Expression<bool> docMediaTableRefs(
+    Expression<bool> Function($$DocMediaTableTableFilterComposer f) f,
+  ) {
+    final $$DocMediaTableTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.docMediaTable,
+      getReferencedColumn: (t) => t.docId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DocMediaTableTableFilterComposer(
+            $db: $db,
+            $table: $db.docMediaTable,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$DocsTableTableOrderingComposer
@@ -2104,13 +1866,23 @@ class $$DocsTableTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<int> get serverMediaId => $composableBuilder(
-    column: $table.serverMediaId,
+  ColumnOrderings<String> get uploadStatus => $composableBuilder(
+    column: $table.uploadStatus,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get location => $composableBuilder(
-    column: $table.location,
+  ColumnOrderings<String> get locationUploadStatus => $composableBuilder(
+    column: $table.locationUploadStatus,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get latitude => $composableBuilder(
+    column: $table.latitude,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get longitude => $composableBuilder(
+    column: $table.longitude,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -2155,13 +1927,21 @@ class $$DocsTableTableAnnotationComposer
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<int> get serverMediaId => $composableBuilder(
-    column: $table.serverMediaId,
+  GeneratedColumn<String> get uploadStatus => $composableBuilder(
+    column: $table.uploadStatus,
     builder: (column) => column,
   );
 
-  GeneratedColumnWithTypeConverter<LocationDocModel?, String> get location =>
-      $composableBuilder(column: $table.location, builder: (column) => column);
+  GeneratedColumn<String> get locationUploadStatus => $composableBuilder(
+    column: $table.locationUploadStatus,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get latitude =>
+      $composableBuilder(column: $table.latitude, builder: (column) => column);
+
+  GeneratedColumn<double> get longitude =>
+      $composableBuilder(column: $table.longitude, builder: (column) => column);
 
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
@@ -2188,6 +1968,31 @@ class $$DocsTableTableAnnotationComposer
     );
     return composer;
   }
+
+  Expression<T> docMediaTableRefs<T extends Object>(
+    Expression<T> Function($$DocMediaTableTableAnnotationComposer a) f,
+  ) {
+    final $$DocMediaTableTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.docMediaTable,
+      getReferencedColumn: (t) => t.docId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DocMediaTableTableAnnotationComposer(
+            $db: $db,
+            $table: $db.docMediaTable,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $$DocsTableTableTableManager
@@ -2203,7 +2008,7 @@ class $$DocsTableTableTableManager
           $$DocsTableTableUpdateCompanionBuilder,
           (DocEntry, $$DocsTableTableReferences),
           DocEntry,
-          PrefetchHooks Function({bool unitId})
+          PrefetchHooks Function({bool unitId, bool docMediaTableRefs})
         > {
   $$DocsTableTableTableManager(_$AppDatabase db, $DocsTableTable table)
     : super(
@@ -2219,29 +2024,37 @@ class $$DocsTableTableTableManager
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                Value<int?> serverMediaId = const Value.absent(),
                 Value<int> unitId = const Value.absent(),
-                Value<LocationDocModel?> location = const Value.absent(),
+                Value<String?> uploadStatus = const Value.absent(),
+                Value<String?> locationUploadStatus = const Value.absent(),
+                Value<double?> latitude = const Value.absent(),
+                Value<double?> longitude = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
               }) => DocsTableCompanion(
                 id: id,
-                serverMediaId: serverMediaId,
                 unitId: unitId,
-                location: location,
+                uploadStatus: uploadStatus,
+                locationUploadStatus: locationUploadStatus,
+                latitude: latitude,
+                longitude: longitude,
                 createdAt: createdAt,
               ),
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                Value<int?> serverMediaId = const Value.absent(),
                 required int unitId,
-                Value<LocationDocModel?> location = const Value.absent(),
+                Value<String?> uploadStatus = const Value.absent(),
+                Value<String?> locationUploadStatus = const Value.absent(),
+                Value<double?> latitude = const Value.absent(),
+                Value<double?> longitude = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
               }) => DocsTableCompanion.insert(
                 id: id,
-                serverMediaId: serverMediaId,
                 unitId: unitId,
-                location: location,
+                uploadStatus: uploadStatus,
+                locationUploadStatus: locationUploadStatus,
+                latitude: latitude,
+                longitude: longitude,
                 createdAt: createdAt,
               ),
           withReferenceMapper: (p0) => p0
@@ -2252,10 +2065,12 @@ class $$DocsTableTableTableManager
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({unitId = false}) {
+          prefetchHooksCallback: ({unitId = false, docMediaTableRefs = false}) {
             return PrefetchHooks(
               db: db,
-              explicitlyWatchedTables: [],
+              explicitlyWatchedTables: [
+                if (docMediaTableRefs) db.docMediaTable,
+              ],
               addJoins:
                   <
                     T extends TableManagerState<
@@ -2289,7 +2104,27 @@ class $$DocsTableTableTableManager
                     return state;
                   },
               getPrefetchedDataCallback: (items) async {
-                return [];
+                return [
+                  if (docMediaTableRefs)
+                    await $_getPrefetchedData<
+                      DocEntry,
+                      $DocsTableTable,
+                      DocMediaEntry
+                    >(
+                      currentTable: table,
+                      referencedTable: $$DocsTableTableReferences
+                          ._docMediaTableRefsTable(db),
+                      managerFromTypedResult: (p0) =>
+                          $$DocsTableTableReferences(
+                            db,
+                            table,
+                            p0,
+                          ).docMediaTableRefs,
+                      referencedItemsForCurrentItem: (item, referencedItems) =>
+                          referencedItems.where((e) => e.docId == item.id),
+                      typedResults: items,
+                    ),
+                ];
               },
             );
           },
@@ -2309,28 +2144,48 @@ typedef $$DocsTableTableProcessedTableManager =
       $$DocsTableTableUpdateCompanionBuilder,
       (DocEntry, $$DocsTableTableReferences),
       DocEntry,
-      PrefetchHooks Function({bool unitId})
+      PrefetchHooks Function({bool unitId, bool docMediaTableRefs})
     >;
 typedef $$DocMediaTableTableCreateCompanionBuilder =
     DocMediaTableCompanion Function({
       Value<int> id,
       required int docId,
-      Value<String?> filePath,
-      Value<String> fileType,
-      Value<String?> thumbnail,
-      Value<int> sequence,
-      Value<bool> isServerFile,
+      Value<String?> localFilePath,
+      Value<String?> uploadStatus,
     });
 typedef $$DocMediaTableTableUpdateCompanionBuilder =
     DocMediaTableCompanion Function({
       Value<int> id,
       Value<int> docId,
-      Value<String?> filePath,
-      Value<String> fileType,
-      Value<String?> thumbnail,
-      Value<int> sequence,
-      Value<bool> isServerFile,
+      Value<String?> localFilePath,
+      Value<String?> uploadStatus,
     });
+
+final class $$DocMediaTableTableReferences
+    extends BaseReferences<_$AppDatabase, $DocMediaTableTable, DocMediaEntry> {
+  $$DocMediaTableTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $DocsTableTable _docIdTable(_$AppDatabase db) =>
+      db.docsTable.createAlias('doc_media_table__doc_id__docs_table__id');
+
+  $$DocsTableTableProcessedTableManager get docId {
+    final $_column = $_itemColumn<int>('doc_id')!;
+
+    final manager = $$DocsTableTableTableManager(
+      $_db,
+      $_db.docsTable,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_docIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
 
 class $$DocMediaTableTableFilterComposer
     extends Composer<_$AppDatabase, $DocMediaTableTable> {
@@ -2346,35 +2201,38 @@ class $$DocMediaTableTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<int> get docId => $composableBuilder(
-    column: $table.docId,
+  ColumnFilters<String> get localFilePath => $composableBuilder(
+    column: $table.localFilePath,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get filePath => $composableBuilder(
-    column: $table.filePath,
+  ColumnFilters<String> get uploadStatus => $composableBuilder(
+    column: $table.uploadStatus,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get fileType => $composableBuilder(
-    column: $table.fileType,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get thumbnail => $composableBuilder(
-    column: $table.thumbnail,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get sequence => $composableBuilder(
-    column: $table.sequence,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<bool> get isServerFile => $composableBuilder(
-    column: $table.isServerFile,
-    builder: (column) => ColumnFilters(column),
-  );
+  $$DocsTableTableFilterComposer get docId {
+    final $$DocsTableTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.docId,
+      referencedTable: $db.docsTable,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DocsTableTableFilterComposer(
+            $db: $db,
+            $table: $db.docsTable,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
 }
 
 class $$DocMediaTableTableOrderingComposer
@@ -2391,35 +2249,38 @@ class $$DocMediaTableTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<int> get docId => $composableBuilder(
-    column: $table.docId,
+  ColumnOrderings<String> get localFilePath => $composableBuilder(
+    column: $table.localFilePath,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get filePath => $composableBuilder(
-    column: $table.filePath,
+  ColumnOrderings<String> get uploadStatus => $composableBuilder(
+    column: $table.uploadStatus,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get fileType => $composableBuilder(
-    column: $table.fileType,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<String> get thumbnail => $composableBuilder(
-    column: $table.thumbnail,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get sequence => $composableBuilder(
-    column: $table.sequence,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<bool> get isServerFile => $composableBuilder(
-    column: $table.isServerFile,
-    builder: (column) => ColumnOrderings(column),
-  );
+  $$DocsTableTableOrderingComposer get docId {
+    final $$DocsTableTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.docId,
+      referencedTable: $db.docsTable,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DocsTableTableOrderingComposer(
+            $db: $db,
+            $table: $db.docsTable,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
 }
 
 class $$DocMediaTableTableAnnotationComposer
@@ -2434,25 +2295,38 @@ class $$DocMediaTableTableAnnotationComposer
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<int> get docId =>
-      $composableBuilder(column: $table.docId, builder: (column) => column);
-
-  GeneratedColumn<String> get filePath =>
-      $composableBuilder(column: $table.filePath, builder: (column) => column);
-
-  GeneratedColumn<String> get fileType =>
-      $composableBuilder(column: $table.fileType, builder: (column) => column);
-
-  GeneratedColumn<String> get thumbnail =>
-      $composableBuilder(column: $table.thumbnail, builder: (column) => column);
-
-  GeneratedColumn<int> get sequence =>
-      $composableBuilder(column: $table.sequence, builder: (column) => column);
-
-  GeneratedColumn<bool> get isServerFile => $composableBuilder(
-    column: $table.isServerFile,
+  GeneratedColumn<String> get localFilePath => $composableBuilder(
+    column: $table.localFilePath,
     builder: (column) => column,
   );
+
+  GeneratedColumn<String> get uploadStatus => $composableBuilder(
+    column: $table.uploadStatus,
+    builder: (column) => column,
+  );
+
+  $$DocsTableTableAnnotationComposer get docId {
+    final $$DocsTableTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.docId,
+      referencedTable: $db.docsTable,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$DocsTableTableAnnotationComposer(
+            $db: $db,
+            $table: $db.docsTable,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
 }
 
 class $$DocMediaTableTableTableManager
@@ -2466,12 +2340,9 @@ class $$DocMediaTableTableTableManager
           $$DocMediaTableTableAnnotationComposer,
           $$DocMediaTableTableCreateCompanionBuilder,
           $$DocMediaTableTableUpdateCompanionBuilder,
-          (
-            DocMediaEntry,
-            BaseReferences<_$AppDatabase, $DocMediaTableTable, DocMediaEntry>,
-          ),
+          (DocMediaEntry, $$DocMediaTableTableReferences),
           DocMediaEntry,
-          PrefetchHooks Function()
+          PrefetchHooks Function({bool docId})
         > {
   $$DocMediaTableTableTableManager(_$AppDatabase db, $DocMediaTableTable table)
     : super(
@@ -2488,42 +2359,75 @@ class $$DocMediaTableTableTableManager
               ({
                 Value<int> id = const Value.absent(),
                 Value<int> docId = const Value.absent(),
-                Value<String?> filePath = const Value.absent(),
-                Value<String> fileType = const Value.absent(),
-                Value<String?> thumbnail = const Value.absent(),
-                Value<int> sequence = const Value.absent(),
-                Value<bool> isServerFile = const Value.absent(),
+                Value<String?> localFilePath = const Value.absent(),
+                Value<String?> uploadStatus = const Value.absent(),
               }) => DocMediaTableCompanion(
                 id: id,
                 docId: docId,
-                filePath: filePath,
-                fileType: fileType,
-                thumbnail: thumbnail,
-                sequence: sequence,
-                isServerFile: isServerFile,
+                localFilePath: localFilePath,
+                uploadStatus: uploadStatus,
               ),
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
                 required int docId,
-                Value<String?> filePath = const Value.absent(),
-                Value<String> fileType = const Value.absent(),
-                Value<String?> thumbnail = const Value.absent(),
-                Value<int> sequence = const Value.absent(),
-                Value<bool> isServerFile = const Value.absent(),
+                Value<String?> localFilePath = const Value.absent(),
+                Value<String?> uploadStatus = const Value.absent(),
               }) => DocMediaTableCompanion.insert(
                 id: id,
                 docId: docId,
-                filePath: filePath,
-                fileType: fileType,
-                thumbnail: thumbnail,
-                sequence: sequence,
-                isServerFile: isServerFile,
+                localFilePath: localFilePath,
+                uploadStatus: uploadStatus,
               ),
           withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$DocMediaTableTableReferences(db, table, e),
+                ),
+              )
               .toList(),
-          prefetchHooksCallback: null,
+          prefetchHooksCallback: ({docId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (docId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.docId,
+                                referencedTable: $$DocMediaTableTableReferences
+                                    ._docIdTable(db),
+                                referencedColumn: $$DocMediaTableTableReferences
+                                    ._docIdTable(db)
+                                    .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
         ),
       );
 }
@@ -2538,12 +2442,9 @@ typedef $$DocMediaTableTableProcessedTableManager =
       $$DocMediaTableTableAnnotationComposer,
       $$DocMediaTableTableCreateCompanionBuilder,
       $$DocMediaTableTableUpdateCompanionBuilder,
-      (
-        DocMediaEntry,
-        BaseReferences<_$AppDatabase, $DocMediaTableTable, DocMediaEntry>,
-      ),
+      (DocMediaEntry, $$DocMediaTableTableReferences),
       DocMediaEntry,
-      PrefetchHooks Function()
+      PrefetchHooks Function({bool docId})
     >;
 
 class $AppDatabaseManager {

@@ -19,7 +19,7 @@ class _AuthViewState extends State<AuthView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<AuthBloc, AuthState>(
-        bloc: getIt<AuthBloc>(),
+        bloc: getIt<AuthBloc>()..add(const AuthEvent.check()),
         builder: (context, state) {
           return state.maybeMap(
             orElse: () {

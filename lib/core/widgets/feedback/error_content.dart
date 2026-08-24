@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
 import '../../theme/app_text_styles.dart';
+import '../../theme/core/extensions/theme_ext.dart';
 import '../translated_text.dart';
 
 class ErrorContent extends StatelessWidget {
@@ -41,14 +41,14 @@ class ErrorContent extends StatelessWidget {
           Icon(
             icon ?? Icons.error_outline,
             size: iconSize ?? 64,
-            color: iconColor ?? AppColors.error,
+            color: iconColor ?? context.colorScheme.error,
           ),
           const SizedBox(height: 16),
           TrText(
             message,
             overflow: TextOverflow.fade,
             style: AppTextStyles.bodyLarge.copyWith(
-              color: textColor ?? Colors.red,
+              color: textColor ?? context.colorScheme.error,
             ),
             textAlign: TextAlign.center,
           ),
@@ -57,8 +57,9 @@ class ErrorContent extends StatelessWidget {
             ElevatedButton(
               onPressed: onRetry,
               style: ElevatedButton.styleFrom(
-                backgroundColor: buttonColor ?? AppColors.brandMint,
-                foregroundColor: buttonTextColor ?? Colors.white,
+                backgroundColor: buttonColor ?? context.colorScheme.primary,
+                foregroundColor:
+                    buttonTextColor ?? context.colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(buttonBorderRadius ?? 12),
                 ),

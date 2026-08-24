@@ -43,7 +43,7 @@ class _ContinuousFillIconState extends State<ContinuousFillIcon>
             return LinearGradient(
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
-              colors: [widget.color, widget.color.withOpacity(0.1)],
+              colors: [widget.color, widget.color.withValues(alpha: 0.1)],
               stops: [_controller.value, _controller.value],
             ).createShader(rect);
           },

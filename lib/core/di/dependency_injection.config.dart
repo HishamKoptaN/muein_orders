@@ -97,10 +97,8 @@ import '../../features/orders_features/cached_docs/domain/repo/cached_docs_repo.
     as _i576;
 import '../../features/orders_features/cached_docs/domain/usecases/cached_docs_use_cases.dart'
     as _i945;
-import '../../features/orders_features/cached_docs/domain/usecases/paste_location_from_clipboard_usecase.dart'
-    as _i129;
-import '../../features/orders_features/cached_docs/present/bloc/cached_doc_bloc.dart'
-    as _i984;
+import '../../features/orders_features/cached_docs/present/bloc/cached_doc/cached_doc_bloc.dart'
+    as _i912;
 import '../../features/orders_features/cached_docs/present/bloc/location_picker_bloc/location_picker_bloc.dart'
     as _i711;
 import '../../features/orders_features/docs/data/datasources/remote_data_sr/docs_api.dart'
@@ -151,7 +149,6 @@ import '../performance/cache_strategy.dart' as _i46;
 import '../utils/app_file_manager.dart' as _i246;
 import '../utils/background/workmanager_initializer.dart' as _i45;
 import '../utils/services/auth_storage_service.dart' as _i566;
-import '../utils/services/clipboard_service.dart' as _i684;
 import '../utils/services/firebase_messaging/firebase_messaging_service.dart'
     as _i608;
 import '../utils/services/notification_manager.dart' as _i749;
@@ -192,7 +189,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i558.FlutterSecureStorage>(() => injectionModule.secureStorage);
   gh.singleton<Duration>(() => injectionModule.cacheDefaultTtl);
-  gh.singleton<_i684.ClipboardService>(() => injectionModule.clipboardService);
   gh.singleton<_i48.LanguageBloc>(() => _i48.LanguageBloc());
   gh.singleton<_i46.OrdersFilterCache>(() => _i46.OrdersFilterCache());
   gh.singleton<_i246.AppFileManager>(() => _i246.AppFileManager());
@@ -209,9 +205,6 @@ Future<_i174.GetIt> $initGetIt(
     () => _i249.ItemsDao(gh<_i576.AppDatabase>()),
   );
   gh.singleton<_i361.Dio>(() => dioModule.s3Dio(), instanceName: 's3Dio');
-  gh.lazySingleton<_i129.PasteLocationFromClipboardUseCase>(
-    () => _i129.PasteLocationFromClipboardUseCase(gh<_i684.ClipboardService>()),
-  );
   gh.singleton<_i361.Dio>(
     () => dioModule.dio(
       gh<_i510.AuthInterceptor>(),
@@ -270,10 +263,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i576.CachedDocsRepo>(
     () => _i1022.CachedDocsRepoImpl(gh<_i576.AppDatabase>()),
   );
-  gh.lazySingleton<_i711.LocationPickerBloc>(
-    () =>
-        _i711.LocationPickerBloc(gh<_i129.PasteLocationFromClipboardUseCase>()),
-  );
   gh.lazySingleton<_i128.DocsApi>(() => _i128.DocsApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i191.ProfileApi>(() => _i191.ProfileApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i335.S3Api>(() => _i335.S3Api(gh<_i361.Dio>()));
@@ -294,6 +283,13 @@ Future<_i174.GetIt> $initGetIt(
   gh.lazySingleton<_i629.SendPassResetEmailUseCase>(
     () => _i629.SendPassResetEmailUseCase(gh<_i614.ForgotPassRepo>()),
   );
+  gh.singleton<_i945.CachedDocsUseCases>(
+    () => _i945.CachedDocsUseCases(
+      docsRepo: gh<_i744.DocsRepo>(),
+      cachedDocsRepo: gh<_i576.CachedDocsRepo>(),
+      fileManager: gh<_i246.AppFileManager>(),
+    ),
+  );
   gh.lazySingleton<_i871.SignUpRepo>(
     () => _i17.SignUpRepoImpl(gh<_i552.SignUpApi>()),
   );
@@ -303,6 +299,9 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i146.SendPassResetEmailUseCase>(
     () => _i146.SendPassResetEmailUseCase(gh<_i532.ChangePassRepo>()),
+  );
+  gh.lazySingleton<_i711.LocationPickerBloc>(
+    () => _i711.LocationPickerBloc(gh<_i945.CachedDocsUseCases>()),
   );
   gh.singleton<_i624.OrderItemsRepo>(
     () =>
@@ -324,6 +323,12 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i288.StatsRepo>(
     () => _i312.StatsRepoImpl(gh<_i598.StatsApi>()),
+  );
+  gh.lazySingleton<_i912.CachedDocBloc>(
+    () => _i912.CachedDocBloc(
+      gh<_i945.CachedDocsUseCases>(),
+      gh<_i246.AppFileManager>(),
+    ),
   );
   gh.lazySingleton<_i305.SignInRepo>(
     () => _i218.SignInRepoImpl(
@@ -360,14 +365,6 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i99.AuthBloc>(
     () => _i99.AuthBloc(authUseCases: gh<_i151.AuthUseCases>()),
   );
-  gh.singleton<_i945.CachedDocsUseCases>(
-    () => _i945.CachedDocsUseCases(
-      docsRepo: gh<_i744.DocsRepo>(),
-      cachedDocsRepo: gh<_i576.CachedDocsRepo>(),
-      fileManager: gh<_i246.AppFileManager>(),
-      pasteLocationUseCase: gh<_i129.PasteLocationFromClipboardUseCase>(),
-    ),
-  );
   gh.lazySingleton<_i226.SignUpBloc>(
     () => _i226.SignUpBloc(signUpUseCases: gh<_i251.SignUpUseCases>()),
   );
@@ -394,12 +391,6 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.singleton<_i139.NotificationsUseCases>(
     () => _i139.NotificationsUseCases(gh<_i967.NotificationsRepo>()),
-  );
-  gh.lazySingleton<_i984.CachedDocBloc>(
-    () => _i984.CachedDocBloc(
-      gh<_i945.CachedDocsUseCases>(),
-      gh<_i246.AppFileManager>(),
-    ),
   );
   gh.singleton<_i475.ProfileBloc>(
     () => _i475.ProfileBloc(gh<_i995.ProfileUseCases>()),

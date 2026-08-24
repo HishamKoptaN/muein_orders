@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/di/dependency_injection.dart';
+import '../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../core/widgets/translated_text.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -157,7 +157,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
                               color: currentPageIndex == i
-                                  ? AppColors.primary
+                                  ? context.colorScheme.primary
                                   : Colors.grey[300],
                             ),
                           ),
@@ -177,7 +177,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                                 child: TrText(
                                   'تخطي',
                                   style: TextStyle(
-                                    color: AppColors.primary,
+                                    color: context.colorScheme.primary,
                                     fontSize: 16,
                                   ),
                                 ),

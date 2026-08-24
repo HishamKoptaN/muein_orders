@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../theme/core/extensions/theme_ext.dart';
 import '../translated_text.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -29,14 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       foregroundColor: Colors.black,
       iconTheme: const IconThemeData(color: Colors.black),
       automaticallyImplyLeading: automaticallyImplyLeading,
-      title: TrText(
-        title,
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 25.sp,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      title: TrText(title, style: context.textTheme.titleLarge),
       bottom: bottom,
       leading: GestureDetector(
         onTap: () {
@@ -49,7 +43,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ? FontAwesomeIcons.arrowRight
                   : FontAwesomeIcons.arrowLeft,
               color: Colors.black,
-              size: 25.w,
+              size: 25.r,
             ),
       ),
       actions: actions,

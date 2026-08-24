@@ -20,7 +20,7 @@ extension SallaOrderItemMapper on SallaOrderItemModel {
       id: id,
       printedName: printedName,
       sallaOrderItemUnits: sallaOrderItemUnits.map((e) {
-        return e.toEntity();
+        return e.toEntity(itemId: id);
       }).toList(),
       sallaOrderItemStatus: sallaOrderItemStatus.toEntity(),
     );
@@ -34,13 +34,14 @@ extension SallaOrderItemStatusMapper on SallaOrderItemStatusModel {
 }
 
 extension SallaOrderItemUnitMapper on SallaOrderItemUnitModel {
-  SallaOrderItemUnitEntity toEntity() {
+  SallaOrderItemUnitEntity toEntity({required int itemId}) {
     return SallaOrderItemUnitEntity(
       id: id,
+      itemId: itemId,
       unitNumber: unitNumber,
       executionNumber: executionNumber,
       docs: docs.map((e) {
-        return e.toEntity();
+        return e.toEntity(itemId: itemId, unitId: id);
       }).toList(),
     );
   }

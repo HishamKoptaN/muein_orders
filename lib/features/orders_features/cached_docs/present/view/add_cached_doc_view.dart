@@ -1,149 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
-import 'package:latlong2/latlong.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
-import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/navigation/custom_app_bar.dart';
+import '../../../docs/data/mapper/docs_mapper.dart';
 import '../../../docs/domain/entities/doc_entity.dart';
-import '../../domain/entities/create_cached_doc_entity.dart';
-import '../bloc/cached_doc_bloc.dart';
-import 'widgets/add_cached_doc_fields.dart';
+import '../bloc/cached_doc/cached_doc_bloc.dart';
+import 'widgets/file/add_cached_doc_fields.dart';
 
 class AddCachedDocView extends StatefulWidget {
-  const AddCachedDocView({
-    super.key,
-    required this.doc,
-    required this.subCategoryId,
-  });
+  const AddCachedDocView({super.key, required this.doc});
   static const String routeName = 'create';
   final DocEntity doc;
-  final int subCategoryId;
   @override
   State<AddCachedDocView> createState() => _AddCachedDocViewState();
 }
 
 class _AddCachedDocViewState extends State<AddCachedDocView> {
-  final TextEditingController _coordsController = TextEditingController();
-  bool _hasValidCoordsInClipboard = false;
   @override
   void initState() {
     super.initState();
-    _coordsController.text =
-        '${widget.doc.location.latitude}, ${widget.doc.location.longitude}';
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _checkClipboardForCoordinates();
-    });
     getIt<CachedDocBloc>().add(
       CachedDocEvent.updateData(
-        createCachedDoc: CreateCachedDocEntity(
-          docId: .dirty(value: widget.doc.id.toString()),
-          files: widget.doc.files.map((file) {
-            return DocMediaEntity(
-              filePath: file.path,
-              docId: widget.doc.id,
-              sequence: file.sequence,
-            );
-          }).toList(),
-          location: LocationEntity(
-            latitude: widget.doc.location.latitude,
-            longitude: widget.doc.location.longitude,
-            fileUploadStatus: widget.doc.location.status,
-          ),
-        ),
-        subCategoryId: widget.subCategoryId,
+        createCachedDoc: widget.doc.toCreateCachedDocEntity(),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _coordsController.dispose();
-    super.dispose();
-  }
-
-  Future<void> _checkClipboardForCoordinates() async {
-    try {
-      final clipboardData = await Clipboard.getData('text/plain');
-      if (clipboardData?.text != null) {
-        final hasValid = _parseCoordinates(clipboardData!.text!) != null;
-        if (hasValid != _hasValidCoordsInClipboard) {
-          setState(() {
-            _hasValidCoordsInClipboard = hasValid;
-          });
-        }
-      }
-    } catch (_) {}
-  }
-
-  void _updateCoordsText() {
-    _coordsController.text =
-        '${widget.doc.location.latitude}, ${widget.doc.location.longitude}';
-  }
-
-  Future<void> _pasteLocationFromClipboard() async {
-    try {
-      final String? clipboardData = await Clipboard.getData(
-        'text/plain',
-      ).then((data) => data?.text);
-      if (clipboardData == null || clipboardData.isEmpty) {
-        if (mounted) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('الحافظة فارغة')));
-        }
-        return;
-      }
-      final LatLng? parsedLocation = _parseCoordinates(clipboardData);
-      if (parsedLocation != null) {
-        setState(() {
-          // _selectedPoint = parsedLocation;
-          _hasValidCoordsInClipboard = false;
-        });
-        _updateCoordsText();
-        // _mapController.move(parsedLocation, 15.0);
-        if (mounted) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('تم لصق الموقع')));
-        }
-      } else {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('تنسيق الموقع غير صحيح. المتوقع: 24.7136, 46.6753'),
-            ),
-          );
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('خطأ في القراءة من الحافظة: $e')),
-        );
-      }
-    }
-  }
-
-  LatLng? _parseCoordinates(String text) {
-    final cleaned = text.trim().replaceAll(RegExp(r'[\s]+'), ' ');
-    final regex = RegExp(r'^(-?\d+\.?\d*)[,\s]+(-?\d+\.?\d*)$');
-    final match = regex.firstMatch(cleaned);
-    if (match != null) {
-      final lat = double.tryParse(match.group(1)!);
-      final lng = double.tryParse(match.group(2)!);
-      if (lat != null && lng != null) {
-        if (lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180) {
-          return LatLng(lat, lng);
-        }
-      }
-    }
-
-    return null;
   }
 
   @override
@@ -169,45 +53,27 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
           return state.maybeMap(
             loaded: (state) {
               return SingleChildScrollView(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: .spaceEvenly,
-                    children: [
-                      AddDocFieldsWidget(
-                        state: state,
-                        subCategoryId: widget.subCategoryId,
-                      ),
-                      SizedBox(height: 8.h),
-                      CustomBtnWidget(
-                        key: const Key('button'),
-                        text: 'حفظ',
-                        backgroundColor:
-                            (state.createCachedDoc.hasChanged(
-                                  original: widget.doc,
-                                ) &&
-                                state.formzSubmissionStatus.isSuccess)
-                            ? Colors.green
-                            : Colors.grey,
-                        onPressed: () {
-                          for (
-                            int i = 0;
-                            i < state.createCachedDoc.files.length;
-                            i++
-                          ) {
-                            final file = state.createCachedDoc.files[i];
-                            // if (file.file.isNotValid == true) {}
-                          }
-                          if (state.formzSubmissionStatus.isSuccess) {
-                            getIt<CachedDocBloc>().add(
-                              CachedDocEvent.cachedDoc(loaded: state),
-                            );
-                          } else {}
-                        },
-                        formzSubmissionStatus: state.formzSubmissionStatus,
-                      ),
-                      const SizedBox(height: 80),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: .spaceEvenly,
+                  spacing: 8.h,
+                  children: [
+                    AddDocFieldsWidget(createCachedDoc: state.createCachedDoc),
+                    FilledButton(
+                      onPressed:
+                          state.formzSubmissionStatus ==
+                              FormzSubmissionStatus.success
+                          ? () {
+                              if (state.formzSubmissionStatus.isSuccess) {
+                                getIt<CachedDocBloc>().add(
+                                  const CachedDocEvent.cachedDoc(),
+                                );
+                              }
+                            }
+                          : null,
+                      child: const Text('حفظ'),
+                    ),
+                    SizedBox(height: 80.h),
+                  ],
                 ),
               );
             },

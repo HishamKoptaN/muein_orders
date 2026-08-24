@@ -12,6 +12,7 @@ class ApiConstants {
   static const String orderItems = 'order/items';
   static const String stats = 'stats';
   static const String docs = 'docs';
+  static const String media = 'media';
   static const String notifications = 'notifications';
   static const String externalNotifications = 'external-notifications';
   static const String financialAccounts = 'financial/accounts';

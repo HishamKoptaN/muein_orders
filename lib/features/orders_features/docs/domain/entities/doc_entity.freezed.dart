@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DocEntity {
 
- int get id; List<DocMediaEntity> get files; String get latitude; String get longitude; DocStatusEntity get docStatus; LocationDocEntity get location; UploadStatus get uploadStatus; double get uploadProgress; int? get copiesCount; String? get reviewedBy; String? get reviewedAt; String? get adminNotes; String? get createdAt; String? get updatedAt;
+ int get id; int get itemId; int get unitId; List<DocMediaEntity> get files; String get latitude; String get longitude; UploadStatus get locationUploadStatus; DocStatusEntity get docStatus; UploadStatus get uploadStatus; double get uploadProgress; int? get copiesCount; String? get reviewedBy; String? get reviewedAt; String? get adminNotes; String? get createdAt; String? get updatedAt;
 /// Create a copy of DocEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $DocEntityCopyWith<DocEntity> get copyWith => _$DocEntityCopyWithImpl<DocEntity>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocEntity&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.location, location) || other.location == location)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(files),latitude,longitude,docStatus,location,uploadStatus,uploadProgress,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,itemId,unitId,const DeepCollectionEquality().hash(files),latitude,longitude,locationUploadStatus,docStatus,uploadStatus,uploadProgress,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'DocEntity(id: $id, files: $files, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, location: $location, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DocEntity(id: $id, itemId: $itemId, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus, docStatus: $docStatus, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $DocEntityCopyWith<$Res>  {
   factory $DocEntityCopyWith(DocEntity value, $Res Function(DocEntity) _then) = _$DocEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, List<DocMediaEntity> files, String latitude, String longitude, DocStatusEntity docStatus, LocationDocEntity location, UploadStatus uploadStatus, double uploadProgress, int? copiesCount, String? reviewedBy, String? reviewedAt, String? adminNotes, String? createdAt, String? updatedAt
+ int id, int itemId, int unitId, List<DocMediaEntity> files, String latitude, String longitude, UploadStatus locationUploadStatus, DocStatusEntity docStatus, UploadStatus uploadStatus, double uploadProgress, int? copiesCount, String? reviewedBy, String? reviewedAt, String? adminNotes, String? createdAt, String? updatedAt
 });
 
 
-$DocStatusEntityCopyWith<$Res> get docStatus;$LocationDocEntityCopyWith<$Res> get location;
+$DocStatusEntityCopyWith<$Res> get docStatus;
 
 }
 /// @nodoc
@@ -62,15 +62,17 @@ class _$DocEntityCopyWithImpl<$Res>
 
 /// Create a copy of DocEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? docStatus = null,Object? location = null,Object? uploadStatus = null,Object? uploadProgress = null,Object? copiesCount = freezed,Object? reviewedBy = freezed,Object? reviewedAt = freezed,Object? adminNotes = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? itemId = null,Object? unitId = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? locationUploadStatus = null,Object? docStatus = null,Object? uploadStatus = null,Object? uploadProgress = null,Object? copiesCount = freezed,Object? reviewedBy = freezed,Object? reviewedAt = freezed,Object? adminNotes = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,itemId: null == itemId ? _self.itemId : itemId // ignore: cast_nullable_to_non_nullable
+as int,unitId: null == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
 as int,files: null == files ? _self.files : files // ignore: cast_nullable_to_non_nullable
 as List<DocMediaEntity>,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as String,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as String,docStatus: null == docStatus ? _self.docStatus : docStatus // ignore: cast_nullable_to_non_nullable
-as DocStatusEntity,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as LocationDocEntity,uploadStatus: null == uploadStatus ? _self.uploadStatus : uploadStatus // ignore: cast_nullable_to_non_nullable
+as String,locationUploadStatus: null == locationUploadStatus ? _self.locationUploadStatus : locationUploadStatus // ignore: cast_nullable_to_non_nullable
+as UploadStatus,docStatus: null == docStatus ? _self.docStatus : docStatus // ignore: cast_nullable_to_non_nullable
+as DocStatusEntity,uploadStatus: null == uploadStatus ? _self.uploadStatus : uploadStatus // ignore: cast_nullable_to_non_nullable
 as UploadStatus,uploadProgress: null == uploadProgress ? _self.uploadProgress : uploadProgress // ignore: cast_nullable_to_non_nullable
 as double,copiesCount: freezed == copiesCount ? _self.copiesCount : copiesCount // ignore: cast_nullable_to_non_nullable
 as int?,reviewedBy: freezed == reviewedBy ? _self.reviewedBy : reviewedBy // ignore: cast_nullable_to_non_nullable
@@ -89,15 +91,6 @@ $DocStatusEntityCopyWith<$Res> get docStatus {
   
   return $DocStatusEntityCopyWith<$Res>(_self.docStatus, (value) {
     return _then(_self.copyWith(docStatus: value));
-  });
-}/// Create a copy of DocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$LocationDocEntityCopyWith<$Res> get location {
-  
-  return $LocationDocEntityCopyWith<$Res>(_self.location, (value) {
-    return _then(_self.copyWith(location: value));
   });
 }
 }
@@ -181,10 +174,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  List<DocMediaEntity> files,  String latitude,  String longitude,  DocStatusEntity docStatus,  LocationDocEntity location,  UploadStatus uploadStatus,  double uploadProgress,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int itemId,  int unitId,  List<DocMediaEntity> files,  String latitude,  String longitude,  UploadStatus locationUploadStatus,  DocStatusEntity docStatus,  UploadStatus uploadStatus,  double uploadProgress,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  String? createdAt,  String? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocEntity() when $default != null:
-return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docStatus,_that.location,_that.uploadStatus,_that.uploadProgress,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.itemId,_that.unitId,_that.files,_that.latitude,_that.longitude,_that.locationUploadStatus,_that.docStatus,_that.uploadStatus,_that.uploadProgress,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -202,10 +195,10 @@ return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docSta
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  List<DocMediaEntity> files,  String latitude,  String longitude,  DocStatusEntity docStatus,  LocationDocEntity location,  UploadStatus uploadStatus,  double uploadProgress,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int itemId,  int unitId,  List<DocMediaEntity> files,  String latitude,  String longitude,  UploadStatus locationUploadStatus,  DocStatusEntity docStatus,  UploadStatus uploadStatus,  double uploadProgress,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  String? createdAt,  String? updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _DocEntity():
-return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docStatus,_that.location,_that.uploadStatus,_that.uploadProgress,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.itemId,_that.unitId,_that.files,_that.latitude,_that.longitude,_that.locationUploadStatus,_that.docStatus,_that.uploadStatus,_that.uploadProgress,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -222,10 +215,10 @@ return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docSta
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  List<DocMediaEntity> files,  String latitude,  String longitude,  DocStatusEntity docStatus,  LocationDocEntity location,  UploadStatus uploadStatus,  double uploadProgress,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int itemId,  int unitId,  List<DocMediaEntity> files,  String latitude,  String longitude,  UploadStatus locationUploadStatus,  DocStatusEntity docStatus,  UploadStatus uploadStatus,  double uploadProgress,  int? copiesCount,  String? reviewedBy,  String? reviewedAt,  String? adminNotes,  String? createdAt,  String? updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _DocEntity() when $default != null:
-return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docStatus,_that.location,_that.uploadStatus,_that.uploadProgress,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.itemId,_that.unitId,_that.files,_that.latitude,_that.longitude,_that.locationUploadStatus,_that.docStatus,_that.uploadStatus,_that.uploadProgress,_that.copiesCount,_that.reviewedBy,_that.reviewedAt,_that.adminNotes,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -237,10 +230,12 @@ return $default(_that.id,_that.files,_that.latitude,_that.longitude,_that.docSta
 
 
 class _DocEntity implements DocEntity {
-  const _DocEntity({this.id = 0, final  List<DocMediaEntity> files = const [], this.latitude = '', this.longitude = '', this.docStatus = const DocStatusEntity(), this.location = const LocationDocEntity(), this.uploadStatus = UploadStatus.pending, this.uploadProgress = 0.0, this.copiesCount, this.reviewedBy, this.reviewedAt, this.adminNotes, this.createdAt, this.updatedAt}): _files = files;
+  const _DocEntity({this.id = 0, this.itemId = 0, this.unitId = 0, final  List<DocMediaEntity> files = const [], this.latitude = '', this.longitude = '', this.locationUploadStatus = UploadStatus.init, this.docStatus = const DocStatusEntity(), this.uploadStatus = UploadStatus.init, this.uploadProgress = 0.0, this.copiesCount, this.reviewedBy, this.reviewedAt, this.adminNotes, this.createdAt, this.updatedAt}): _files = files;
   
 
 @override@JsonKey() final  int id;
+@override@JsonKey() final  int itemId;
+@override@JsonKey() final  int unitId;
  final  List<DocMediaEntity> _files;
 @override@JsonKey() List<DocMediaEntity> get files {
   if (_files is EqualUnmodifiableListView) return _files;
@@ -250,8 +245,8 @@ class _DocEntity implements DocEntity {
 
 @override@JsonKey() final  String latitude;
 @override@JsonKey() final  String longitude;
+@override@JsonKey() final  UploadStatus locationUploadStatus;
 @override@JsonKey() final  DocStatusEntity docStatus;
-@override@JsonKey() final  LocationDocEntity location;
 @override@JsonKey() final  UploadStatus uploadStatus;
 @override@JsonKey() final  double uploadProgress;
 @override final  int? copiesCount;
@@ -271,16 +266,16 @@ _$DocEntityCopyWith<_DocEntity> get copyWith => __$DocEntityCopyWithImpl<_DocEnt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocEntity&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.location, location) || other.location == location)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_files),latitude,longitude,docStatus,location,uploadStatus,uploadProgress,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,itemId,unitId,const DeepCollectionEquality().hash(_files),latitude,longitude,locationUploadStatus,docStatus,uploadStatus,uploadProgress,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'DocEntity(id: $id, files: $files, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, location: $location, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DocEntity(id: $id, itemId: $itemId, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus, docStatus: $docStatus, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -291,11 +286,11 @@ abstract mixin class _$DocEntityCopyWith<$Res> implements $DocEntityCopyWith<$Re
   factory _$DocEntityCopyWith(_DocEntity value, $Res Function(_DocEntity) _then) = __$DocEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, List<DocMediaEntity> files, String latitude, String longitude, DocStatusEntity docStatus, LocationDocEntity location, UploadStatus uploadStatus, double uploadProgress, int? copiesCount, String? reviewedBy, String? reviewedAt, String? adminNotes, String? createdAt, String? updatedAt
+ int id, int itemId, int unitId, List<DocMediaEntity> files, String latitude, String longitude, UploadStatus locationUploadStatus, DocStatusEntity docStatus, UploadStatus uploadStatus, double uploadProgress, int? copiesCount, String? reviewedBy, String? reviewedAt, String? adminNotes, String? createdAt, String? updatedAt
 });
 
 
-@override $DocStatusEntityCopyWith<$Res> get docStatus;@override $LocationDocEntityCopyWith<$Res> get location;
+@override $DocStatusEntityCopyWith<$Res> get docStatus;
 
 }
 /// @nodoc
@@ -308,15 +303,17 @@ class __$DocEntityCopyWithImpl<$Res>
 
 /// Create a copy of DocEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? docStatus = null,Object? location = null,Object? uploadStatus = null,Object? uploadProgress = null,Object? copiesCount = freezed,Object? reviewedBy = freezed,Object? reviewedAt = freezed,Object? adminNotes = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? itemId = null,Object? unitId = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? locationUploadStatus = null,Object? docStatus = null,Object? uploadStatus = null,Object? uploadProgress = null,Object? copiesCount = freezed,Object? reviewedBy = freezed,Object? reviewedAt = freezed,Object? adminNotes = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
   return _then(_DocEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,itemId: null == itemId ? _self.itemId : itemId // ignore: cast_nullable_to_non_nullable
+as int,unitId: null == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
 as int,files: null == files ? _self._files : files // ignore: cast_nullable_to_non_nullable
 as List<DocMediaEntity>,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as String,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
-as String,docStatus: null == docStatus ? _self.docStatus : docStatus // ignore: cast_nullable_to_non_nullable
-as DocStatusEntity,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as LocationDocEntity,uploadStatus: null == uploadStatus ? _self.uploadStatus : uploadStatus // ignore: cast_nullable_to_non_nullable
+as String,locationUploadStatus: null == locationUploadStatus ? _self.locationUploadStatus : locationUploadStatus // ignore: cast_nullable_to_non_nullable
+as UploadStatus,docStatus: null == docStatus ? _self.docStatus : docStatus // ignore: cast_nullable_to_non_nullable
+as DocStatusEntity,uploadStatus: null == uploadStatus ? _self.uploadStatus : uploadStatus // ignore: cast_nullable_to_non_nullable
 as UploadStatus,uploadProgress: null == uploadProgress ? _self.uploadProgress : uploadProgress // ignore: cast_nullable_to_non_nullable
 as double,copiesCount: freezed == copiesCount ? _self.copiesCount : copiesCount // ignore: cast_nullable_to_non_nullable
 as int?,reviewedBy: freezed == reviewedBy ? _self.reviewedBy : reviewedBy // ignore: cast_nullable_to_non_nullable
@@ -337,22 +334,13 @@ $DocStatusEntityCopyWith<$Res> get docStatus {
   return $DocStatusEntityCopyWith<$Res>(_self.docStatus, (value) {
     return _then(_self.copyWith(docStatus: value));
   });
-}/// Create a copy of DocEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$LocationDocEntityCopyWith<$Res> get location {
-  
-  return $LocationDocEntityCopyWith<$Res>(_self.location, (value) {
-    return _then(_self.copyWith(location: value));
-  });
 }
 }
 
 /// @nodoc
 mixin _$DocMediaEntity {
 
- int get id; int get docId; String get filePath; DocMediaType get docMediaType; String get thumbnail; int get sequence; UploadStatus get fileUploadStatus; String get path; String get remoteUrl; String get createdAt; String get updatedAt;
+ int get id; int get docId; String get localFilePath; String get filePath; DocMediaType get docMediaType; String get thumbnail; int get sequence; UploadStatus get fileUploadStatus; String get createdAt; String get updatedAt; bool get isEdited;
 /// Create a copy of DocMediaEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -363,16 +351,16 @@ $DocMediaEntityCopyWith<DocMediaEntity> get copyWith => _$DocMediaEntityCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.path, path) || other.path == path)&&(identical(other.remoteUrl, remoteUrl) || other.remoteUrl == remoteUrl)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.localFilePath, localFilePath) || other.localFilePath == localFilePath)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.isEdited, isEdited) || other.isEdited == isEdited));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,filePath,docMediaType,thumbnail,sequence,fileUploadStatus,path,remoteUrl,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,docId,localFilePath,filePath,docMediaType,thumbnail,sequence,fileUploadStatus,createdAt,updatedAt,isEdited);
 
 @override
 String toString() {
-  return 'DocMediaEntity(id: $id, docId: $docId, filePath: $filePath, docMediaType: $docMediaType, thumbnail: $thumbnail, sequence: $sequence, fileUploadStatus: $fileUploadStatus, path: $path, remoteUrl: $remoteUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DocMediaEntity(id: $id, docId: $docId, localFilePath: $localFilePath, filePath: $filePath, docMediaType: $docMediaType, thumbnail: $thumbnail, sequence: $sequence, fileUploadStatus: $fileUploadStatus, createdAt: $createdAt, updatedAt: $updatedAt, isEdited: $isEdited)';
 }
 
 
@@ -383,7 +371,7 @@ abstract mixin class $DocMediaEntityCopyWith<$Res>  {
   factory $DocMediaEntityCopyWith(DocMediaEntity value, $Res Function(DocMediaEntity) _then) = _$DocMediaEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, int docId, String filePath, DocMediaType docMediaType, String thumbnail, int sequence, UploadStatus fileUploadStatus, String path, String remoteUrl, String createdAt, String updatedAt
+ int id, int docId, String localFilePath, String filePath, DocMediaType docMediaType, String thumbnail, int sequence, UploadStatus fileUploadStatus, String createdAt, String updatedAt, bool isEdited
 });
 
 
@@ -400,20 +388,20 @@ class _$DocMediaEntityCopyWithImpl<$Res>
 
 /// Create a copy of DocMediaEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? docId = null,Object? filePath = null,Object? docMediaType = null,Object? thumbnail = null,Object? sequence = null,Object? fileUploadStatus = null,Object? path = null,Object? remoteUrl = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? docId = null,Object? localFilePath = null,Object? filePath = null,Object? docMediaType = null,Object? thumbnail = null,Object? sequence = null,Object? fileUploadStatus = null,Object? createdAt = null,Object? updatedAt = null,Object? isEdited = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
+as int,localFilePath: null == localFilePath ? _self.localFilePath : localFilePath // ignore: cast_nullable_to_non_nullable
+as String,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
 as String,docMediaType: null == docMediaType ? _self.docMediaType : docMediaType // ignore: cast_nullable_to_non_nullable
 as DocMediaType,thumbnail: null == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
 as String,sequence: null == sequence ? _self.sequence : sequence // ignore: cast_nullable_to_non_nullable
 as int,fileUploadStatus: null == fileUploadStatus ? _self.fileUploadStatus : fileUploadStatus // ignore: cast_nullable_to_non_nullable
-as UploadStatus,path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
-as String,remoteUrl: null == remoteUrl ? _self.remoteUrl : remoteUrl // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as UploadStatus,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as String,
+as String,isEdited: null == isEdited ? _self.isEdited : isEdited // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -498,10 +486,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int docId,  String filePath,  DocMediaType docMediaType,  String thumbnail,  int sequence,  UploadStatus fileUploadStatus,  String path,  String remoteUrl,  String createdAt,  String updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int docId,  String localFilePath,  String filePath,  DocMediaType docMediaType,  String thumbnail,  int sequence,  UploadStatus fileUploadStatus,  String createdAt,  String updatedAt,  bool isEdited)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DocMediaEntity() when $default != null:
-return $default(_that.id,_that.docId,_that.filePath,_that.docMediaType,_that.thumbnail,_that.sequence,_that.fileUploadStatus,_that.path,_that.remoteUrl,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.docId,_that.localFilePath,_that.filePath,_that.docMediaType,_that.thumbnail,_that.sequence,_that.fileUploadStatus,_that.createdAt,_that.updatedAt,_that.isEdited);case _:
   return orElse();
 
 }
@@ -519,10 +507,10 @@ return $default(_that.id,_that.docId,_that.filePath,_that.docMediaType,_that.thu
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int docId,  String filePath,  DocMediaType docMediaType,  String thumbnail,  int sequence,  UploadStatus fileUploadStatus,  String path,  String remoteUrl,  String createdAt,  String updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int docId,  String localFilePath,  String filePath,  DocMediaType docMediaType,  String thumbnail,  int sequence,  UploadStatus fileUploadStatus,  String createdAt,  String updatedAt,  bool isEdited)  $default,) {final _that = this;
 switch (_that) {
 case _DocMediaEntity():
-return $default(_that.id,_that.docId,_that.filePath,_that.docMediaType,_that.thumbnail,_that.sequence,_that.fileUploadStatus,_that.path,_that.remoteUrl,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.docId,_that.localFilePath,_that.filePath,_that.docMediaType,_that.thumbnail,_that.sequence,_that.fileUploadStatus,_that.createdAt,_that.updatedAt,_that.isEdited);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -539,10 +527,10 @@ return $default(_that.id,_that.docId,_that.filePath,_that.docMediaType,_that.thu
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int docId,  String filePath,  DocMediaType docMediaType,  String thumbnail,  int sequence,  UploadStatus fileUploadStatus,  String path,  String remoteUrl,  String createdAt,  String updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int docId,  String localFilePath,  String filePath,  DocMediaType docMediaType,  String thumbnail,  int sequence,  UploadStatus fileUploadStatus,  String createdAt,  String updatedAt,  bool isEdited)?  $default,) {final _that = this;
 switch (_that) {
 case _DocMediaEntity() when $default != null:
-return $default(_that.id,_that.docId,_that.filePath,_that.docMediaType,_that.thumbnail,_that.sequence,_that.fileUploadStatus,_that.path,_that.remoteUrl,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.docId,_that.localFilePath,_that.filePath,_that.docMediaType,_that.thumbnail,_that.sequence,_that.fileUploadStatus,_that.createdAt,_that.updatedAt,_that.isEdited);case _:
   return null;
 
 }
@@ -554,20 +542,20 @@ return $default(_that.id,_that.docId,_that.filePath,_that.docMediaType,_that.thu
 
 
 class _DocMediaEntity implements DocMediaEntity {
-  const _DocMediaEntity({this.id = 0, this.docId = 0, this.filePath = '', this.docMediaType = DocMediaType.image, this.thumbnail = '', this.sequence = 0, this.fileUploadStatus = UploadStatus.init, this.path = '', this.remoteUrl = '', this.createdAt = '', this.updatedAt = ''});
+  const _DocMediaEntity({this.id = 0, this.docId = 0, this.localFilePath = '', this.filePath = '', this.docMediaType = DocMediaType.image, this.thumbnail = '', this.sequence = 0, this.fileUploadStatus = UploadStatus.init, this.createdAt = '', this.updatedAt = '', this.isEdited = false});
   
 
 @override@JsonKey() final  int id;
 @override@JsonKey() final  int docId;
+@override@JsonKey() final  String localFilePath;
 @override@JsonKey() final  String filePath;
 @override@JsonKey() final  DocMediaType docMediaType;
 @override@JsonKey() final  String thumbnail;
 @override@JsonKey() final  int sequence;
 @override@JsonKey() final  UploadStatus fileUploadStatus;
-@override@JsonKey() final  String path;
-@override@JsonKey() final  String remoteUrl;
 @override@JsonKey() final  String createdAt;
 @override@JsonKey() final  String updatedAt;
+@override@JsonKey() final  bool isEdited;
 
 /// Create a copy of DocMediaEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -579,16 +567,16 @@ _$DocMediaEntityCopyWith<_DocMediaEntity> get copyWith => __$DocMediaEntityCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.path, path) || other.path == path)&&(identical(other.remoteUrl, remoteUrl) || other.remoteUrl == remoteUrl)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.localFilePath, localFilePath) || other.localFilePath == localFilePath)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.isEdited, isEdited) || other.isEdited == isEdited));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,filePath,docMediaType,thumbnail,sequence,fileUploadStatus,path,remoteUrl,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,docId,localFilePath,filePath,docMediaType,thumbnail,sequence,fileUploadStatus,createdAt,updatedAt,isEdited);
 
 @override
 String toString() {
-  return 'DocMediaEntity(id: $id, docId: $docId, filePath: $filePath, docMediaType: $docMediaType, thumbnail: $thumbnail, sequence: $sequence, fileUploadStatus: $fileUploadStatus, path: $path, remoteUrl: $remoteUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'DocMediaEntity(id: $id, docId: $docId, localFilePath: $localFilePath, filePath: $filePath, docMediaType: $docMediaType, thumbnail: $thumbnail, sequence: $sequence, fileUploadStatus: $fileUploadStatus, createdAt: $createdAt, updatedAt: $updatedAt, isEdited: $isEdited)';
 }
 
 
@@ -599,7 +587,7 @@ abstract mixin class _$DocMediaEntityCopyWith<$Res> implements $DocMediaEntityCo
   factory _$DocMediaEntityCopyWith(_DocMediaEntity value, $Res Function(_DocMediaEntity) _then) = __$DocMediaEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int docId, String filePath, DocMediaType docMediaType, String thumbnail, int sequence, UploadStatus fileUploadStatus, String path, String remoteUrl, String createdAt, String updatedAt
+ int id, int docId, String localFilePath, String filePath, DocMediaType docMediaType, String thumbnail, int sequence, UploadStatus fileUploadStatus, String createdAt, String updatedAt, bool isEdited
 });
 
 
@@ -616,20 +604,20 @@ class __$DocMediaEntityCopyWithImpl<$Res>
 
 /// Create a copy of DocMediaEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? docId = null,Object? filePath = null,Object? docMediaType = null,Object? thumbnail = null,Object? sequence = null,Object? fileUploadStatus = null,Object? path = null,Object? remoteUrl = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? docId = null,Object? localFilePath = null,Object? filePath = null,Object? docMediaType = null,Object? thumbnail = null,Object? sequence = null,Object? fileUploadStatus = null,Object? createdAt = null,Object? updatedAt = null,Object? isEdited = null,}) {
   return _then(_DocMediaEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
-as int,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
+as int,localFilePath: null == localFilePath ? _self.localFilePath : localFilePath // ignore: cast_nullable_to_non_nullable
+as String,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
 as String,docMediaType: null == docMediaType ? _self.docMediaType : docMediaType // ignore: cast_nullable_to_non_nullable
 as DocMediaType,thumbnail: null == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
 as String,sequence: null == sequence ? _self.sequence : sequence // ignore: cast_nullable_to_non_nullable
 as int,fileUploadStatus: null == fileUploadStatus ? _self.fileUploadStatus : fileUploadStatus // ignore: cast_nullable_to_non_nullable
-as UploadStatus,path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
-as String,remoteUrl: null == remoteUrl ? _self.remoteUrl : remoteUrl // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as UploadStatus,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as String,
+as String,isEdited: null == isEdited ? _self.isEdited : isEdited // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

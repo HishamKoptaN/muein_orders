@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../datasources/local_data_src/drift/tables/docs_table.dart';
+import '../datasources/local_data_src/drift/tables/items_table.dart';
 part 'cached_doc_model.freezed.dart';
 part 'cached_doc_model.g.dart';
 

@@ -11,7 +11,6 @@ import 'package:get/get_utils/src/extensions/export.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../core/widgets/feedback/error_content.dart';
 import '../../../../core/widgets/translated_text.dart';
@@ -256,9 +255,9 @@ class _ProfileViewState extends State<ProfileView> {
                 loading: (state) {
                   return const Center(
                     child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        AppColors.brandMint,
-                      ),
+                      //   valueColor: AlwaysStoppedAnimation<Color>(
+                      //   AppColors.brandMint,
+                      //),
                     ),
                   );
                 },
@@ -405,7 +404,7 @@ class _ProfileViewState extends State<ProfileView> {
           height: 120,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: AppColors.brandMint, width: 3),
+            // border: Border.all(color: AppColors.brandMint, width: 3),
             image: DecorationImage(
               image: isEditing && selectedImage != null
                   ? FileImage(selectedImage)
@@ -425,7 +424,7 @@ class _ProfileViewState extends State<ProfileView> {
                 height: 40,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.brandMint,
+                  //  color: AppColors.brandMint,
                   border: Border.all(color: Colors.white, width: 2),
                 ),
                 child: const Icon(
@@ -443,7 +442,7 @@ class _ProfileViewState extends State<ProfileView> {
   Widget buildDivider() {
     return Divider(
       height: 1,
-      color: AppColors.outline.withValues(alpha: 0.3),
+      //   color: AppColors.outline.withValues(alpha: 0.3),
       indent: 16,
       endIndent: 16,
     );
