@@ -102,7 +102,9 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
   Widget _buildMapPickerButton({required BuildContext context}) {
     return GestureDetector(
       onTap: () {
-        _openMapPicker(context);
+        context.showInfoSnackBar(title: '', message: 'تم لصق الموقع');
+        // test
+        //   _openMapPicker(context);
       },
       child: Stack(
         children: [
