@@ -5,7 +5,7 @@ import '../../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../../../features/auth/change_pass/present/views/change_pass_view.dart';
 import '../../../features/auth/forgot_password/present/views/forgot_pass_view.dart';
 import '../../../features/auth/sign_in/present/views/sign_in_view.dart';
-import '../../../features/auth/sign_up/present/views/sign_up_views.dart';
+import '../../../features/auth/sign_up/present/views/sign_up_view.dart';
 import '../../../features/orders_features/cached_docs/present/view/add_cached_doc_view.dart';
 import '../../../features/orders_features/cached_docs/present/view/widgets/location/pick_location_view.dart';
 import '../../../features/financial/present/view/create_expense.dart';

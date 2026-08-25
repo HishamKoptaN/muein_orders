@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../extensions/theme_ext.dart';
 
-
 InputDecorationTheme inputDecorationTheme({
   required BuildContext context,
   required TextTheme textTheme,
@@ -27,7 +26,7 @@ InputDecorationTheme inputDecorationTheme({
     floatingLabelStyle: textTheme.labelLarge,
     labelStyle: textTheme.bodyLarge,
     hintStyle: textTheme.bodyMedium?.copyWith(
-      color: context.colorScheme.onSurfaceVariant,
+      color: context.colorScheme.onPrimary.withValues(alpha: .7),
     ),
     errorStyle: textTheme.bodySmall,
     border: buildBorder(color: context.colorScheme.outline),

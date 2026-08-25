@@ -17,8 +17,7 @@ part 'profile_state.dart';
 @singleton
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ProfileUseCases _profileUseCases;
-
-  ProfileBloc(this._profileUseCases) : super(const ProfileState.loading()) {
+  ProfileBloc(this._profileUseCases) : super(const .loading()) {
     on<ProfileEvent>((event, emit) async {
       await event.when(
         getProfile: () async {
@@ -30,21 +29,24 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                 ProfileState.loaded(
                   profile: res ?? ProfileResEntity(),
                   updateProfileReq: null,
-                  formzSubmissionStatus: FormzSubmissionStatus.initial,
+                  formzSubmissionStatus: .initial,
                 ),
               );
             },
             failure: (error) {
-              emit(
-                ProfileState.failure(
-                  error: error.message ?? 'حدث خطأ غير متوقع',
-                ),
-              );
+              emit(ProfileState.failure(error: error.message));
             },
           );
         },
-        dataChanged: (state) async {
-          emitCustomLoaded(emit: emit, state: state);
+        dataChanged: (updateProfileReq) async {
+          state.mapOrNull(
+            loaded: (state) {
+              emitCustomLoaded(
+                emit: emit,
+                state: state.copyWith(updateProfileReq: updateProfileReq),
+              );
+            },
+          );
         },
         updateProfile: () async {
           await state.mapOrNull(
@@ -52,38 +54,39 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               emitCustomLoaded(
                 emit: emit,
                 state: state,
-                formzSubmissionStatus: FormzSubmissionStatus.inProgress,
+                formzSubmissionStatus: .inProgress,
               );
-              final result = await _profileUseCases.updateProfile(
-                updateProfileReqEntity:
-                    state.updateProfileReq ?? const UpdateProfileReqEntity(),
-              );
-              await result.when(
-                success: (profile) {
-                  emit(const ProfileState.success());
-                  emitCustomLoaded(
-                    emit: emit,
-                    state: state.copyWith(
-                      profile:
-                          profile?.copyWith(
-                            avatar: profile.avatar ?? state.profile.avatar,
-                            name: profile.name ?? state.profile.name,
-                            phone: profile.phone ?? state.profile.phone,
-                          ) ??
-                          state.profile,
-                      updateProfileReq: null,
-                    ),
-                  );
-                },
-                failure: (error) {
-                  emit(
-                    ProfileState.failure(
-                      error: error.message ?? 'حدث خطأ غير متوقع',
-                    ),
-                  );
-                  emitCustomLoaded(emit: emit, state: state);
-                },
-              );
+              await _profileUseCases
+                  .updateProfile(
+                    updateProfileReqEntity:
+                        state.updateProfileReq ??
+                        const UpdateProfileReqEntity(),
+                  )
+                  .then((result) async {
+                    await result.when(
+                      success: (profile) {
+                        emit(const ProfileState.success());
+                        emitCustomLoaded(
+                          emit: emit,
+                          state: state.copyWith(
+                            profile:
+                                profile?.copyWith(
+                                  avatar:
+                                      profile.avatar ?? state.profile.avatar,
+                                  name: profile.name ?? state.profile.name,
+                                  phone: profile.phone ?? state.profile.phone,
+                                ) ??
+                                state.profile,
+                            updateProfileReq: null,
+                          ),
+                        );
+                      },
+                      failure: (error) {
+                        emit(ProfileState.failure(error: error.message));
+                        emitCustomLoaded(emit: emit, state: state);
+                      },
+                    );
+                  });
             },
           );
         },
@@ -92,26 +95,23 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
   void emitCustomLoaded({
     required Emitter<ProfileState> emit,
-    required _Loaded? state,
+    required _Loaded state,
     ProfileResEntity? profile,
     UpdateProfileReqEntity? updateProfileReq,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     emit(
-      state ??
-          ProfileState.loaded(
-            profile: profile ?? state?.profile ?? ProfileResEntity(),
-            updateProfileReq: updateProfileReq ?? state?.updateProfileReq,
-            formzSubmissionStatus:
-                formzSubmissionStatus ??
-                formzSubmissionStatus ??
-                (Formz.validate([
-                      state?.updateProfileReq?.name ??
-                          const GenericFormInput.pure(),
-                    ])
-                    ? FormzSubmissionStatus.success
-                    : FormzSubmissionStatus.failure),
-          ),
+      state.copyWith(
+        profile: profile ?? state.profile,
+        updateProfileReq: updateProfileReq ?? state.updateProfileReq,
+        formzSubmissionStatus:
+            formzSubmissionStatus ??
+            (Formz.validate([
+                  state.updateProfileReq?.name ?? const GenericFormInput.pure(),
+                ])
+                ? FormzSubmissionStatus.success
+                : FormzSubmissionStatus.failure),
+      ),
     );
   }
 
@@ -119,6 +119,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     required Emitter<ProfileState> emit,
     required ErrorInfo apiErrorModel,
   }) {
-    return emit(ProfileState.failure(error: apiErrorModel.message ?? ''));
+    return emit(ProfileState.failure(error: apiErrorModel.message));
   }
 }

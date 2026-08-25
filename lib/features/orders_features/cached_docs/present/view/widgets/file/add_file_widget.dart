@@ -3,18 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../core/widgets/translated_text.dart';
 import '../../../../../docs/domain/entities/doc_entity.dart';
 import '../../../../data/datasources/local_data_src/drift/tables/items_table.dart';
+import '../../../../domain/entities/create_cached_doc_entity.dart';
 import 'place_holder.dart';
 import '../preview/preview_widget.dart';
 
 class AddFileWidget extends StatefulWidget {
   const AddFileWidget({
     super.key,
-    required this.docMedia,
+    required this.updateDocMedia,
     this.onChanged,
     this.validator,
     this.errorText,
   });
-  final DocMediaEntity docMedia;
+  final UpdateDocMediaEntity updateDocMedia;
   final Function()? onChanged;
   final String? Function(String?)? validator;
   final String? errorText;
@@ -25,7 +26,7 @@ class AddFileWidget extends StatefulWidget {
 class _AddFileWidgetState extends State<AddFileWidget> {
   @override
   Widget build(BuildContext context) {
-    final hasPreview = widget.docMedia.localFilePath.isNotEmpty;
+    final hasPreview = widget.updateDocMedia.localFilePath.value.isNotEmpty;
     return Column(
       children: [
         Stack(
@@ -44,7 +45,7 @@ class _AddFileWidgetState extends State<AddFileWidget> {
                         ? Colors.red
                         : const Color(0xFFF0EFEF),
                   ),
-                  borderRadius: .circular(12.r),
+                  borderRadius: .circular(6.r),
                   boxShadow: const [
                     BoxShadow(
                       blurRadius: 4,
@@ -54,19 +55,19 @@ class _AddFileWidgetState extends State<AddFileWidget> {
                   ],
                 ),
                 child: hasPreview
-                    ? PreviewWidget(docMedia: widget.docMedia)
+                    ? PreviewWidget(updateDocMedia: widget.updateDocMedia)
                     : PlaceholderWidget(
-                        docMediaType: widget.docMedia.docMediaType,
+                        docMediaType: widget.updateDocMedia.docMediaType,
                       ),
               ),
             ),
-            if (widget.docMedia.localFilePath.isNotEmpty)
+            if (widget.updateDocMedia.localFilePath.value.isNotEmpty)
               Positioned.directional(
                 textDirection: Directionality.of(context),
                 top: 8.h,
                 start: 8.w,
                 child: buildStatusIndicator(
-                  docFileStatus: widget.docMedia.fileUploadStatus,
+                  docFileStatus: widget.updateDocMedia.fileUploadStatus,
                 ),
               ),
           ],

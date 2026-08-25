@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../l10n/app_localizations.dart';
 import '../../di/dependency_injection.dart';
+import '../../theme/core/extensions/theme_ext.dart';
 import '../../widgets/custom_scaffold.dart';
-import '../../routing/navigation_service.dart';
-import '../../widgets/navigation/custom_app_bar.dart';
 import '../../widgets/translated_text.dart';
-import '../../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../bloc/language_bloc.dart';
 
-// قائمة اللغات المتاحة في التطبيق
-// العربية
-// الانجليزية
-// الفرنسية
-// كيينا
-// تنزانيا
-// الكاميرون
-// غانا
-// غينيا
-// بنين
 class SelectLanguageView extends StatelessWidget {
   const SelectLanguageView({super.key});
   static const String routeName = 'select-language';
@@ -36,159 +25,157 @@ class SelectLanguageView extends StatelessWidget {
       {'name': 'Yorùbá', 'code': 'yo'}, // اليوروبا عامة
       {'name': 'Luganda', 'code': 'lg'}, // اللوغندية عامة
     ];
-    final t = AppLocalizations.of(context);
     return CustomScaffold(
-      backgroundColor: const Color(0xFF003A45),
-      appBar: Navigator.canPop(context)
-          ? const CustomAppBar(title: 'تغيير اللغة')
-          : null,
+      backgroundColor: context.colorScheme.primary,
+      appBar: AppBar(
+        title: TrText(
+          'تغيير اللغة',
+          style: TextStyle(color: context.colorScheme.primary),
+        ),
+        iconTheme: IconThemeData(color: context.colorScheme.primary),
+        backgroundColor: context.colorScheme.onPrimary,
+      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: IntrinsicHeight(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: BlocBuilder<LanguageBloc, LanguageState>(
-                    builder: (context, state) {
-                      return state.maybeWhen(
-                        loaded: (currentLocale) {
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              const SizedBox(height: 40),
-                              const TrText(
-                                'اختر اللغة',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.5,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(height: 32),
-                              ...languages.map((language) {
-                                final langCode = language['code']!
-                                    .split('-')
-                                    .first;
-                                final countryCode =
-                                    language['code']!.split('-').length > 1
-                                    ? language['code']!
-                                          .split('-')
-                                          .last
-                                          .toUpperCase()
-                                    : null;
-                                final isSelected =
-                                    currentLocale.languageCode == langCode &&
-                                    (countryCode == null ||
-                                        currentLocale.countryCode
-                                                ?.toUpperCase() ==
-                                            countryCode);
+            child: BlocBuilder<LanguageBloc, LanguageState>(
+              bloc: getIt<LanguageBloc>(),
+              builder: (context, state) {
+                return state.maybeWhen(
+                  loaded: (currentLocale) {
+                    return BodyWidget(
+                      currentLocale: currentLocale,
+                      languages: languages,
+                    );
+                  },
+                  orElse: () {
+                    return Skeletonizer(
+                      enabled: true,
+                      child: BodyWidget(
+                        languages: List.generate(10, (index) {
+                          return {'name': 'language$index', 'code': 'en'};
+                        }),
+                        currentLocale: const Locale('ar'),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
 
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 12.0),
-                                  child: Material(
-                                    color: isSelected
-                                        ? const Color(
-                                            0xFF83BEA8,
-                                          ).withOpacity(0.2)
-                                        : Colors.white.withOpacity(0.1),
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: InkWell(
-                                      onTap: () {
-                                        final parts = language['code']!.split(
-                                          '-',
-                                        );
-                                        getIt<LanguageBloc>().add(
-                                          LanguageEvent.changeLanguage(
-                                            languageCode: parts[0],
-                                            countryCode: parts.length > 1
-                                                ? parts[1]
-                                                : null,
-                                          ),
-                                        );
-                                      },
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Container(
-                                        width: double.infinity,
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 16.0,
-                                          horizontal: 20.0,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                language['name']!,
-                                                style: TextStyle(
-                                                  color: isSelected
-                                                      ? const Color(0xFF83BEA8)
-                                                      : Colors.white,
-                                                  fontSize: 16,
-                                                  fontWeight: isSelected
-                                                      ? FontWeight.bold
-                                                      : FontWeight.normal,
-                                                ),
-                                              ),
-                                            ),
-                                            if (isSelected)
-                                              const Icon(
-                                                Icons.check_circle,
-                                                color: Color(0xFF83BEA8),
-                                              ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }),
-                              const SizedBox(height: 20),
-                              if (!Navigator.canPop(context))
-                                ElevatedButton(
-                                  key: const Key('follow'),
-                                  onPressed: () {
-                                    NavigationService.pushNamed(
-                                      context: context,
-                                      routeName: AuthChoiceView.routeName,
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF83BEA8),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 16,
-                                    ),
-                                  ),
-                                  child: const TrText(
-                                    'متابعة',
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              const SizedBox(height: 20),
-                            ],
-                          );
-                        },
-                        orElse: () =>
-                            const Center(child: CircularProgressIndicator()),
-                      );
-                    },
+class BodyWidget extends StatelessWidget {
+  const BodyWidget({
+    super.key,
+    required this.languages,
+    required this.currentLocale,
+  });
+
+  final List<Map<String, String>> languages;
+  final Locale currentLocale;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: .min,
+      crossAxisAlignment: .stretch,
+      children: [
+        SizedBox(height: 40.h),
+        TrText(
+          'اختر اللغة',
+          textAlign: .center,
+          style: context.textTheme.displayLarge,
+        ),
+        SizedBox(height: 32.h),
+        ...languages.map((language) {
+          final langCode = language['code']!.split('-').first;
+          final countryCode = language['code']!.split('-').length > 1
+              ? language['code']!.split('-').last.toUpperCase()
+              : null;
+          final isSelected =
+              currentLocale.languageCode == langCode &&
+              (countryCode == null ||
+                  currentLocale.countryCode?.toUpperCase() == countryCode);
+
+          return Padding(
+            padding: .only(bottom: 6.h),
+            child: Material(
+              color: isSelected
+                  ? const Color(0xFF83BEA8).withValues(alpha: 0.2)
+                  : Colors.white.withValues(alpha: 0.1),
+              borderRadius: .circular(6.r),
+              child: InkWell(
+                onTap: () {
+                  final parts = language['code']!.split('-');
+                  getIt<LanguageBloc>().add(
+                    LanguageEvent.changeLanguage(
+                      languageCode: parts[0],
+                      countryCode: parts.length > 1 ? parts[1] : null,
+                    ),
+                  );
+                },
+                borderRadius: .circular(6.r),
+                child: Container(
+                  width: .infinity,
+                  padding: .symmetric(vertical: 12.h, horizontal: 16.w),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          language['name']!,
+                          style: context.textTheme.titleLarge?.copyWith(
+                            fontWeight: isSelected ? .bold : .normal,
+                            color: isSelected
+                                ? const Color(0xFF83BEA8)
+                                : Colors.white,
+                          ),
+                        ),
+                      ),
+                      if (isSelected)
+                        const Icon(
+                          Icons.check_circle,
+                          color: Color(0xFF83BEA8),
+                        ),
+                    ],
                   ),
                 ),
               ),
             ),
           );
-        },
-      ),
+        }),
+        // SizedBox(height: 20.h),
+        // if (!Navigator.canPop(context))
+        //   ElevatedButton(
+        //     key: const Key('follow'),
+        //     onPressed: () {
+        //       NavigationService.pushNamed(
+        //         context: context,
+        //         routeName: AuthChoiceView.routeName,
+        //       );
+        //     },
+        //     style: ElevatedButton.styleFrom(
+        //       backgroundColor: const Color(0xFF83BEA8),
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: .circular(8.r),
+        //       ),
+        //       padding: .symmetric(vertical: 16.h),
+        //     ),
+        //     child: const TrText(
+        //       'متابعة',
+        //       style: TextStyle(
+        //         fontSize: 17,
+        //         color: Colors.white,
+        //         fontWeight: FontWeight.bold,
+        //       ),
+        //     ),
+        //   ),
+        // const SizedBox(height: 20),
+      ],
     );
   }
 }

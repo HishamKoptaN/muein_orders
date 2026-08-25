@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../../../core/networking/api_result.dart';
+import '../../../../../../core/errors/handlers/api_error_handler/error_handler.dart';
 import '../../../../../../core/utils/coordinate_parser.dart';
 import '../../../domain/usecases/cached_docs_use_cases.dart';
 part 'location_picker_bloc.freezed.dart';
@@ -15,30 +15,30 @@ part 'location_picker_state.dart';
 class LocationPickerBloc
     extends Bloc<LocationPickerEvent, LocationPickerState> {
   final CachedDocsUseCases cachedDocsUseCases;
-
   LocationPickerBloc(this.cachedDocsUseCases)
     : super(const LocationPickerState.initial()) {
     on<LocationPickerEvent>((event, emit) async {
       await event.when(
-        initialize: () async {},
         checkClipboard: () async {
           try {
-            final data = await Clipboard.getData('text/plain');
-            final text = data?.text?.trim();
-            if (text == null || text.isEmpty) {
-              return const ApiResult.success(data: null);
-            }
-            final coordinates = CoordinateParser.parse(text);
-            if (coordinates == null) {
-              emit(
-                LocationPickerState.loaded(
-                  pastedLocation: coordinates,
-                  hasValidClipboardLocation: false,
-                ),
-              );
-            }
+            await Clipboard.getData('text/plain').then((data) {
+              final text = data?.text?.trim();
+              if (text == null || text.isEmpty) {
+                final coordinates = CoordinateParser.parse(text ?? '');
+                emit(
+                  LocationPickerState.loaded(
+                    pastedLocation: coordinates,
+                    hasValidClipboardLocation: coordinates != null,
+                  ),
+                );
+              }
+            });
           } catch (e) {
-            emit(const LocationPickerState.loaded());
+            emit(
+              LocationPickerState.failure(
+                errorInfo: ErrorHandler.handle(error: e),
+              ),
+            );
           }
         },
         pasteFromClipboardEvent: () {},

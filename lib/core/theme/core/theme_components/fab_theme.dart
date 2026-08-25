@@ -8,26 +8,21 @@ FloatingActionButtonThemeData fabTheme({
   return FloatingActionButtonThemeData(
     backgroundColor: colorScheme.primary,
     foregroundColor: colorScheme.onPrimary,
-    splashColor: colorScheme.primary.withOpacity(0.12),
-    focusColor: colorScheme.primary.withOpacity(0.24),
-    hoverColor: colorScheme.primary.withOpacity(0.08),
-    elevation: 6,
-    focusElevation: 8,
-    hoverElevation: 10,
+    splashColor: colorScheme.primary.withValues(alpha: 0.12),
+    focusColor: colorScheme.primary.withValues(alpha: 0.24),
+    hoverColor: colorScheme.primary.withValues(alpha: 0.08),
+    elevation: 3,
+    focusElevation: 5,
+    hoverElevation: 4,
     disabledElevation: 0,
     highlightElevation: 12,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16.r),
-    ),
+    shape: RoundedRectangleBorder(borderRadius: .circular(6.r)),
     extendedIconLabelSpacing: 12.w,
-    extendedPadding: EdgeInsets.symmetric(horizontal: 20.w),
+    extendedPadding: .symmetric(horizontal: 20.w, vertical: 10.h),
     extendedTextStyle: textTheme.labelLarge?.copyWith(
       color: colorScheme.onPrimary,
-      fontWeight: FontWeight.w600,
+      fontWeight: .w600,
     ),
-    sizeConstraints: BoxConstraints.tightFor(
-      width: 56.w,
-      height: 56.w,
-    ),
+    sizeConstraints: .tightFor(width: 56.w, height: 56.w),
   );
 }

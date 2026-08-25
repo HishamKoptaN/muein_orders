@@ -58,7 +58,7 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
                   spacing: 8.h,
                   children: [
                     AddDocFieldsWidget(createCachedDoc: state.createCachedDoc),
-                    FilledButton(
+                    FilledButton.tonal(
                       onPressed:
                           state.formzSubmissionStatus ==
                               FormzSubmissionStatus.success

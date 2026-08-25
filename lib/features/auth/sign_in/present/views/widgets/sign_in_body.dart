@@ -17,17 +17,21 @@ class SignInBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: .center,
-      crossAxisAlignment: .center,
-      children: [
-        Image.asset('assets/logos/logo_solid.png'),
-        SizedBox(height: 50.h),
-        SignInForm(signInReq: signInReq),
-        SizedBox(height: 5.h),
-        SignInActions(formzSubmissionStatus: formzSubmissionStatus),
-        SizedBox(height: 20.h),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: .center,
+        crossAxisAlignment: .center,
+        mainAxisSize: .min,
+        children: [
+          SizedBox(height: 140.h),
+          Image.asset('assets/logos/logo_solid.png'),
+          SizedBox(height: 50.h),
+          SignInForm(signInReq: signInReq),
+          SizedBox(height: 5.h),
+          SignInActions(formzSubmissionStatus: formzSubmissionStatus),
+          SizedBox(height: 20.h),
+        ],
+      ),
     );
   }
 }

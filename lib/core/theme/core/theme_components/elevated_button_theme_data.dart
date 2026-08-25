@@ -25,7 +25,7 @@ ElevatedButtonThemeData elevatedButtonTheme({
       textStyle: .all(textTheme.labelLarge),
       padding: .all(.symmetric(vertical: 8.h, horizontal: 20.w)),
       minimumSize: .all(Size(120.w, 48.h)),
-      shape: .all(RoundedRectangleBorder(borderRadius: .circular(12.r))),
+      shape: .all(RoundedRectangleBorder(borderRadius: .circular(6.r))),
       alignment: .center,
     ),
   );

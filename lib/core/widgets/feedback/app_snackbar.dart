@@ -127,8 +127,8 @@ class AppSnackBar {
                   SizedBox(width: 12.w),
                   Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: .center,
+                      crossAxisAlignment: .start,
                       children: [
                         TrText(
                           title,

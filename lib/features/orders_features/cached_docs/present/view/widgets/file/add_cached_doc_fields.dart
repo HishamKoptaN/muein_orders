@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_inputs/form_inputs.dart';
 import '../../../../../../../core/di/dependency_injection.dart';
 import '../../../../domain/entities/create_cached_doc_entity.dart';
 import '../../../bloc/cached_doc/cached_doc_bloc.dart';
@@ -21,7 +22,7 @@ class AddDocFieldsWidget extends StatelessWidget {
           final docMedia = entry.value;
           return AddFileWidget(
             key: ValueKey('file_field_$entry.key'),
-            docMedia: docMedia,
+            updateDocMedia: docMedia,
             onChanged: () async {
               final file = await filePicker.pickAndPop(
                 context: context,
@@ -31,7 +32,10 @@ class AddDocFieldsWidget extends StatelessWidget {
               if (file != null) {
                 final updatedList = createCachedDoc.files.map((e) {
                   if (e.id == docMedia.id) {
-                    return e.copyWith(localFilePath: file.path, isEdited: true);
+                    return e.copyWith(
+                      localFilePath: GenericFormInput.dirty(value: file.path),
+                      isEdited: true,
+                    );
                   }
                   return e;
                 }).toList();

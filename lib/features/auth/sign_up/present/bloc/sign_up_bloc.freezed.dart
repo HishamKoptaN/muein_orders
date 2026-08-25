@@ -128,10 +128,10 @@ return signUp(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( GenericFormInput? name,  EmailFormInput? email,  PhoneNumberFormInput? phone,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  BoolFormInput? obscurePassword)?  dataChanged,TResult Function()?  signUp,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( SignUpReqEntity signUpReq)?  dataChanged,TResult Function()?  signUp,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
-return dataChanged(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.obscurePassword);case _SignUp() when signUp != null:
+return dataChanged(_that.signUpReq);case _SignUp() when signUp != null:
 return signUp();case _:
   return orElse();
 
@@ -150,10 +150,10 @@ return signUp();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( GenericFormInput? name,  EmailFormInput? email,  PhoneNumberFormInput? phone,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  BoolFormInput? obscurePassword)  dataChanged,required TResult Function()  signUp,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( SignUpReqEntity signUpReq)  dataChanged,required TResult Function()  signUp,}) {final _that = this;
 switch (_that) {
 case _DataChanged():
-return dataChanged(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.obscurePassword);case _SignUp():
+return dataChanged(_that.signUpReq);case _SignUp():
 return signUp();case _:
   throw StateError('Unexpected subclass');
 
@@ -171,10 +171,10 @@ return signUp();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( GenericFormInput? name,  EmailFormInput? email,  PhoneNumberFormInput? phone,  PasswordFormInput? password,  PasswordFormInput? confirmPassword,  BoolFormInput? obscurePassword)?  dataChanged,TResult? Function()?  signUp,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( SignUpReqEntity signUpReq)?  dataChanged,TResult? Function()?  signUp,}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
-return dataChanged(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.obscurePassword);case _SignUp() when signUp != null:
+return dataChanged(_that.signUpReq);case _SignUp() when signUp != null:
 return signUp();case _:
   return null;
 
@@ -187,15 +187,10 @@ return signUp();case _:
 
 
 class _DataChanged with DiagnosticableTreeMixin implements SignUpEvent {
-  const _DataChanged({this.name, this.email, this.phone, this.password, this.confirmPassword, this.obscurePassword});
+  const _DataChanged({required this.signUpReq});
   
 
- final  GenericFormInput? name;
- final  EmailFormInput? email;
- final  PhoneNumberFormInput? phone;
- final  PasswordFormInput? password;
- final  PasswordFormInput? confirmPassword;
- final  BoolFormInput? obscurePassword;
+ final  SignUpReqEntity signUpReq;
 
 /// Create a copy of SignUpEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -208,21 +203,21 @@ _$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'SignUpEvent.dataChanged'))
-    ..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('phone', phone))..add(DiagnosticsProperty('password', password))..add(DiagnosticsProperty('confirmPassword', confirmPassword))..add(DiagnosticsProperty('obscurePassword', obscurePassword));
+    ..add(DiagnosticsProperty('signUpReq', signUpReq));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.signUpReq, signUpReq) || other.signUpReq == signUpReq));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,email,phone,password,confirmPassword,obscurePassword);
+int get hashCode => Object.hash(runtimeType,signUpReq);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignUpEvent.dataChanged(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword)';
+  return 'SignUpEvent.dataChanged(signUpReq: $signUpReq)';
 }
 
 
@@ -233,11 +228,11 @@ abstract mixin class _$DataChangedCopyWith<$Res> implements $SignUpEventCopyWith
   factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
 @useResult
 $Res call({
- GenericFormInput? name, EmailFormInput? email, PhoneNumberFormInput? phone, PasswordFormInput? password, PasswordFormInput? confirmPassword, BoolFormInput? obscurePassword
+ SignUpReqEntity signUpReq
 });
 
 
-
+$SignUpReqEntityCopyWith<$Res> get signUpReq;
 
 }
 /// @nodoc
@@ -250,19 +245,23 @@ class __$DataChangedCopyWithImpl<$Res>
 
 /// Create a copy of SignUpEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? email = freezed,Object? phone = freezed,Object? password = freezed,Object? confirmPassword = freezed,Object? obscurePassword = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? signUpReq = null,}) {
   return _then(_DataChanged(
-name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as GenericFormInput?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as EmailFormInput?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as PhoneNumberFormInput?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordFormInput?,confirmPassword: freezed == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
-as PasswordFormInput?,obscurePassword: freezed == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
-as BoolFormInput?,
+signUpReq: null == signUpReq ? _self.signUpReq : signUpReq // ignore: cast_nullable_to_non_nullable
+as SignUpReqEntity,
   ));
 }
 
-
+/// Create a copy of SignUpEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SignUpReqEntityCopyWith<$Res> get signUpReq {
+  
+  return $SignUpReqEntityCopyWith<$Res>(_self.signUpReq, (value) {
+    return _then(_self.copyWith(signUpReq: value));
+  });
+}
 }
 
 /// @nodoc
@@ -432,14 +431,14 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  settingsLoading,TResult Function()?  success,TResult Function( GenericFormInput name,  EmailFormInput email,  PhoneNumberFormInput phone,  PasswordFormInput password,  PasswordFormInput confirmPassword,  ConfirmPasswordFormInput confirmPasswordInput,  BoolFormInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  settingsLoading,TResult Function()?  success,TResult Function( SignUpReqEntity signUpReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _SettingsLoading() when settingsLoading != null:
 return settingsLoading();case _Success() when success != null:
 return success();case _Loaded() when loaded != null:
-return loaded(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.confirmPasswordInput,_that.obscurePassword,_that.formzSubmissionStatus);case _Failure() when failure != null:
+return loaded(_that.signUpReq,_that.formzSubmissionStatus);case _Failure() when failure != null:
 return failure(_that.error);case _:
   return orElse();
 
@@ -458,14 +457,14 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  settingsLoading,required TResult Function()  success,required TResult Function( GenericFormInput name,  EmailFormInput email,  PhoneNumberFormInput phone,  PasswordFormInput password,  PasswordFormInput confirmPassword,  ConfirmPasswordFormInput confirmPasswordInput,  BoolFormInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function( String error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  settingsLoading,required TResult Function()  success,required TResult Function( SignUpReqEntity signUpReq,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function( String error)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _SettingsLoading():
 return settingsLoading();case _Success():
 return success();case _Loaded():
-return loaded(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.confirmPasswordInput,_that.obscurePassword,_that.formzSubmissionStatus);case _Failure():
+return loaded(_that.signUpReq,_that.formzSubmissionStatus);case _Failure():
 return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
 
@@ -483,14 +482,14 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  settingsLoading,TResult? Function()?  success,TResult? Function( GenericFormInput name,  EmailFormInput email,  PhoneNumberFormInput phone,  PasswordFormInput password,  PasswordFormInput confirmPassword,  ConfirmPasswordFormInput confirmPasswordInput,  BoolFormInput obscurePassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function( String error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  settingsLoading,TResult? Function()?  success,TResult? Function( SignUpReqEntity signUpReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function( String error)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _SettingsLoading() when settingsLoading != null:
 return settingsLoading();case _Success() when success != null:
 return success();case _Loaded() when loaded != null:
-return loaded(_that.name,_that.email,_that.phone,_that.password,_that.confirmPassword,_that.confirmPasswordInput,_that.obscurePassword,_that.formzSubmissionStatus);case _Failure() when failure != null:
+return loaded(_that.signUpReq,_that.formzSubmissionStatus);case _Failure() when failure != null:
 return failure(_that.error);case _:
   return null;
 
@@ -655,16 +654,10 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
 
 
 class _Loaded with DiagnosticableTreeMixin implements SignUpState {
-  const _Loaded({required this.name, required this.email, required this.phone, required this.password, required this.confirmPassword, required this.confirmPasswordInput, this.obscurePassword = const BoolFormInput.dirty(true), required this.formzSubmissionStatus});
+  const _Loaded({required this.signUpReq, required this.formzSubmissionStatus});
   
 
- final  GenericFormInput name;
- final  EmailFormInput email;
- final  PhoneNumberFormInput phone;
- final  PasswordFormInput password;
- final  PasswordFormInput confirmPassword;
- final  ConfirmPasswordFormInput confirmPasswordInput;
-@JsonKey() final  BoolFormInput obscurePassword;
+ final  SignUpReqEntity signUpReq;
  final  FormzSubmissionStatus formzSubmissionStatus;
 
 /// Create a copy of SignUpState
@@ -678,21 +671,21 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'SignUpState.loaded'))
-    ..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('email', email))..add(DiagnosticsProperty('phone', phone))..add(DiagnosticsProperty('password', password))..add(DiagnosticsProperty('confirmPassword', confirmPassword))..add(DiagnosticsProperty('confirmPasswordInput', confirmPasswordInput))..add(DiagnosticsProperty('obscurePassword', obscurePassword))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
+    ..add(DiagnosticsProperty('signUpReq', signUpReq))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.confirmPasswordInput, confirmPasswordInput) || other.confirmPasswordInput == confirmPasswordInput)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.signUpReq, signUpReq) || other.signUpReq == signUpReq)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,email,phone,password,confirmPassword,confirmPasswordInput,obscurePassword,formzSubmissionStatus);
+int get hashCode => Object.hash(runtimeType,signUpReq,formzSubmissionStatus);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignUpState.loaded(name: $name, email: $email, phone: $phone, password: $password, confirmPassword: $confirmPassword, confirmPasswordInput: $confirmPasswordInput, obscurePassword: $obscurePassword, formzSubmissionStatus: $formzSubmissionStatus)';
+  return 'SignUpState.loaded(signUpReq: $signUpReq, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -703,11 +696,11 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $SignUpStateCopyWith<$Res
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- GenericFormInput name, EmailFormInput email, PhoneNumberFormInput phone, PasswordFormInput password, PasswordFormInput confirmPassword, ConfirmPasswordFormInput confirmPasswordInput, BoolFormInput obscurePassword, FormzSubmissionStatus formzSubmissionStatus
+ SignUpReqEntity signUpReq, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
-
+$SignUpReqEntityCopyWith<$Res> get signUpReq;
 
 }
 /// @nodoc
@@ -720,21 +713,24 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of SignUpState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? name = null,Object? email = null,Object? phone = null,Object? password = null,Object? confirmPassword = null,Object? confirmPasswordInput = null,Object? obscurePassword = null,Object? formzSubmissionStatus = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? signUpReq = null,Object? formzSubmissionStatus = null,}) {
   return _then(_Loaded(
-name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as GenericFormInput,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as EmailFormInput,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as PhoneNumberFormInput,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordFormInput,confirmPassword: null == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
-as PasswordFormInput,confirmPasswordInput: null == confirmPasswordInput ? _self.confirmPasswordInput : confirmPasswordInput // ignore: cast_nullable_to_non_nullable
-as ConfirmPasswordFormInput,obscurePassword: null == obscurePassword ? _self.obscurePassword : obscurePassword // ignore: cast_nullable_to_non_nullable
-as BoolFormInput,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+signUpReq: null == signUpReq ? _self.signUpReq : signUpReq // ignore: cast_nullable_to_non_nullable
+as SignUpReqEntity,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,
   ));
 }
 
-
+/// Create a copy of SignUpState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SignUpReqEntityCopyWith<$Res> get signUpReq {
+  
+  return $SignUpReqEntityCopyWith<$Res>(_self.signUpReq, (value) {
+    return _then(_self.copyWith(signUpReq: value));
+  });
+}
 }
 
 /// @nodoc

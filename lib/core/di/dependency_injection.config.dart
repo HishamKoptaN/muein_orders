@@ -263,6 +263,16 @@ Future<_i174.GetIt> $initGetIt(
   gh.singleton<_i576.CachedDocsRepo>(
     () => _i1022.CachedDocsRepoImpl(gh<_i576.AppDatabase>()),
   );
+  gh.lazySingleton<_i305.SignInRepo>(
+    () => _i218.SignInRepoImpl(
+      gh<_i59.FirebaseAuth>(),
+      gh<_i804.SignInApi>(),
+      gh<_i976.AuthApi>(),
+    ),
+  );
+  gh.lazySingleton<_i941.SignInUseCases>(
+    () => _i941.SignInUseCases(gh<_i305.SignInRepo>()),
+  );
   gh.lazySingleton<_i128.DocsApi>(() => _i128.DocsApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i191.ProfileApi>(() => _i191.ProfileApi(gh<_i361.Dio>()));
   gh.lazySingleton<_i335.S3Api>(() => _i335.S3Api(gh<_i361.Dio>()));
@@ -315,9 +325,6 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i566.AuthStorageService>(),
     ),
   );
-  gh.lazySingleton<_i251.SignUpUseCases>(
-    () => _i251.SignUpUseCasesImpl(gh<_i871.SignUpRepo>()),
-  );
   gh.singleton<_i151.AuthUseCases>(
     () => _i151.AuthUseCases(authRepo: gh<_i610.AuthRepo>()),
   );
@@ -330,14 +337,6 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i246.AppFileManager>(),
     ),
   );
-  gh.lazySingleton<_i305.SignInRepo>(
-    () => _i218.SignInRepoImpl(
-      gh<_i59.FirebaseAuth>(),
-      gh<_i892.FirebaseMessaging>(),
-      gh<_i804.SignInApi>(),
-      gh<_i1052.TokenService>(),
-    ),
-  );
   gh.singleton<_i545.StatsUseCases>(
     () => _i545.StatsUseCases(gh<_i288.StatsRepo>()),
   );
@@ -346,6 +345,9 @@ Future<_i174.GetIt> $initGetIt(
   );
   gh.lazySingleton<_i494.ChangePassBloc>(
     () => _i494.ChangePassBloc(gh<_i146.SendPassResetEmailUseCase>()),
+  );
+  gh.lazySingleton<_i251.SignUpUseCases>(
+    () => _i251.SignUpUseCases(gh<_i871.SignUpRepo>()),
   );
   gh.singleton<_i995.ProfileUseCases>(
     () => _i995.ProfileUseCases(gh<_i364.ProfileRepo>(), gh<_i1.S3Repo>()),
@@ -373,9 +375,6 @@ Future<_i174.GetIt> $initGetIt(
       docsRepo: gh<_i744.DocsRepo>(),
       cachedDocsRepo: gh<_i576.CachedDocsRepo>(),
     ),
-  );
-  gh.lazySingleton<_i941.SignInUseCases>(
-    () => _i941.SignInUseCases(gh<_i305.SignInRepo>()),
   );
   gh.lazySingleton<_i396.DocsBloc>(
     () => _i396.DocsBloc(

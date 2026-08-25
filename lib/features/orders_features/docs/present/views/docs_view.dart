@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/widgets/layouts/custom_container.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
-import '../../../../../core/widgets/Layouts/app_container.dart';
 import '../../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../../core/widgets/translated_text.dart';
 import '../../../../../l10n/app_localizations.dart';
@@ -51,7 +51,7 @@ class _DocsViewState extends State<DocsView> {
                 itemBuilder: (context, i) {
                   if (i < docs!.length) {
                     final order = docs[i];
-                    return AppContainer(
+                    return CustomContainer(
                       height: height / 3,
                       child: Card(
                         semanticContainer: true,
@@ -97,7 +97,7 @@ class GestureDetectorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: const AppContainer(child: Icon(Icons.location_on)),
+      child: const CustomContainer(child: Icon(Icons.location_on)),
     );
   }
 }

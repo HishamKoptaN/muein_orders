@@ -8,23 +8,19 @@ String formatDate({required dynamic dateTime}) {
 
   if (dateTime is String) {
     try {
-      // Handle different date formats
       if (dateTime.contains('-')) {
-        // Format: "26-02-28" or similar
         if (dateTime.length <= 6) {
-          // Assume current year and add time
           final currentYear = DateTime.now().year.toString();
           final fullDate = '$currentYear-$dateTime';
           parsedDateTime = DateTime.parse(fullDate);
         } else {
-          // Try standard parsing first
           parsedDateTime = DateTime.parse(dateTime);
         }
       } else {
         parsedDateTime = DateTime.parse(dateTime);
       }
     } catch (_) {
-      return dateTime; // Return original string if parsing fails
+      return dateTime;
     }
   } else if (dateTime is DateTime) {
     parsedDateTime = dateTime;

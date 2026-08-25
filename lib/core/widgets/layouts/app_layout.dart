@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../../../l10n/app_localizations.dart';
-import '../buttons/language_icon_button.dart';
 import '../translated_text.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../language/view/select_language.dart';
 
 class AppLayout extends StatefulWidget {
   const AppLayout({
@@ -51,6 +52,20 @@ class _AppLayoutState extends State<AppLayout> {
             )
           : null,
       body: widget.body,
+    );
+  }
+}
+
+class LanguageIconButton extends StatelessWidget {
+  const LanguageIconButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.language, color: Colors.black),
+      onPressed: () {
+        context.goNamed(SelectLanguageView.routeName);
+      },
     );
   }
 }

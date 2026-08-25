@@ -9,9 +9,8 @@ abstract class DeviceModel with _$DeviceModel {
     required String model,
     required String os,
     @JsonKey(name: 'device_id') required String deviceId,
+    @JsonKey(name: 'fcm_token') required String fcmToken,
   }) = _DeviceModel;
   factory DeviceModel.fromJson(Map<String, dynamic> json) =>
       _$DeviceModelFromJson(json);
-  @override
-  Map<String, dynamic> toJson() => (this as _DeviceModel).toJson();
 }

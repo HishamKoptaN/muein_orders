@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../container_styles.dart';
 
-class AppContainer extends StatelessWidget {
+class CustomContainer extends StatelessWidget {
   final Widget child;
   final double? height;
   final Color? color;
 
-  const AppContainer({super.key, required this.child, this.height, this.color});
+  const CustomContainer({super.key, required this.child, this.height, this.color});
 
   @override
   Widget build(BuildContext context) {

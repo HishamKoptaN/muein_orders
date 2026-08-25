@@ -1,3 +1,5 @@
+import 'package:form_inputs/form_inputs/generic_form_input.dart';
+
 import '../../../cached_docs/domain/entities/create_cached_doc_entity.dart';
 import '../../domain/entities/doc_entity.dart';
 import '../../domain/entities/doc_req_entity.dart';
@@ -47,16 +49,18 @@ extension CreateCachedDocEntityMapper on DocEntity {
       itemId: itemId,
       unitId: unitId,
       files: files.map((file) {
-        return DocMediaEntity(
+        return UpdateDocMediaEntity(
           id: file.id,
           docId: id,
-          localFilePath: file.localFilePath,
+          localFilePath: GenericFormInput.dirty(value: file.localFilePath),
           filePath: file.filePath,
           thumbnail: file.thumbnail,
           docMediaType: file.docMediaType,
-          sequence: file.sequence,
+          fileUploadStatus: file.fileUploadStatus,
         );
       }).toList(),
+      latitude: GenericFormInput.dirty(value: latitude.toString()),
+      longitude: GenericFormInput.dirty(value: longitude.toString()),
     );
   }
 }

@@ -11,10 +11,6 @@ extension UpdateProfileReqX on UpdateProfileReqEntity {
       phone: phone?.value,
     );
   }
-
-  bool get isBlank {
-    return name == null && phone == null && avatar == null;
-  }
 }
 
 extension PresignedUrlX on PresignedUrlModel {

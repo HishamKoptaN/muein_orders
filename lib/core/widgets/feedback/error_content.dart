@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/app_text_styles.dart';
 import '../../theme/core/extensions/theme_ext.dart';
 import '../translated_text.dart';
 
@@ -47,7 +46,7 @@ class ErrorContent extends StatelessWidget {
           TrText(
             message,
             overflow: TextOverflow.fade,
-            style: AppTextStyles.bodyLarge.copyWith(
+            style: context.textTheme.bodyLarge?.copyWith(
               color: textColor ?? context.colorScheme.error,
             ),
             textAlign: TextAlign.center,

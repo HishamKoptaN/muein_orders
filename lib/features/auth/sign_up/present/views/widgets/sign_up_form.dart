@@ -1,32 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_inputs/form_inputs.dart';
-
 import '../../../../../../core/di/dependency_injection.dart';
+import '../../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/forms/auth_text_form_field.dart';
-import '../../../../../../l10n/app_localizations.dart';
+import '../../../domain/entities/sign_up_req_entity.dart';
 import '../../bloc/sign_up_bloc.dart';
 
 class SignUpForm extends StatelessWidget {
-  final GenericFormInput name;
-  final PhoneNumberFormInput phone;
-  final EmailFormInput email;
-  final PasswordFormInput password;
-  final PasswordFormInput confirmPassword;
-  final ConfirmPasswordFormInput confirmPasswordInput;
+  final SignUpReqEntity signUpReq;
 
-  final BoolFormInput obscurePassword;
-
-  const SignUpForm({
-    super.key,
-    required this.name,
-    required this.phone,
-    required this.email,
-    required this.password,
-    required this.confirmPassword,
-    required this.confirmPasswordInput,
-    required this.obscurePassword,
-  });
+  const SignUpForm({super.key, required this.signUpReq});
 
   @override
   Widget build(BuildContext context) {
@@ -35,64 +18,101 @@ class SignUpForm extends StatelessWidget {
       children: [
         CustomAuthTextFormField(
           key: const Key('name_field'),
-          initialValue: name.value,
+          initialValue: signUpReq.name?.value,
           hintText: 'الاسم',
-          prefixIcon: const Icon(Icons.person_outline, color: Colors.white),
+          prefixIcon: Icon(
+            Icons.person_outline,
+            color: context.colorScheme.onPrimary,
+          ),
           onChanged: (v) {
             getIt<SignUpBloc>().add(
-              SignUpEvent.dataChanged(name: .dirty(value: v)),
+              SignUpEvent.dataChanged(
+                signUpReq: signUpReq.copyWith(name: .dirty(value: v)),
+              ),
             );
           },
-          validator: (value) =>
-              value?.isNotEmpty == true ? null : 'الاسم مطلوب',
+          validator: (value) {
+            return value?.isNotEmpty == true ? null : 'الاسم مطلوب';
+          },
         ),
         CustomAuthTextFormField(
           key: const Key('email_field'),
-          initialValue: email.value,
+          initialValue: signUpReq.email?.value,
           hintText: 'البريد الإلكتروني',
-          prefixIcon: const Icon(Icons.email_outlined, color: Colors.white),
-          keyboardType: TextInputType.emailAddress,
-          onChanged: (v) => getIt<SignUpBloc>().add(
-            SignUpEvent.dataChanged(email: .dirty(v)),
+          prefixIcon: Icon(
+            Icons.email_outlined,
+            color: context.colorScheme.onPrimary,
           ),
+          keyboardType: TextInputType.emailAddress,
+          onChanged: (v) {
+            getIt<SignUpBloc>().add(
+              SignUpEvent.dataChanged(
+                signUpReq: signUpReq.copyWith(email: .dirty(v)),
+              ),
+            );
+          },
           // validator: (value) {
           //   return .dirty(value ?? '').error?.message;
           // },
         ),
         CustomAuthTextFormField(
           key: const Key('phone_field'),
-          initialValue: phone.value,
+          initialValue: signUpReq.phone?.value,
           hintText: 'رقم الهاتف',
-          prefixIcon: const Icon(Icons.phone_outlined, color: Colors.white),
-          onChanged: (v) => getIt<SignUpBloc>().add(
-            SignUpEvent.dataChanged(phone: .dirty(v)),
+          prefixIcon: Icon(
+            Icons.phone_outlined,
+            color: context.colorScheme.onPrimary,
           ),
+          onChanged: (v) {
+            getIt<SignUpBloc>().add(
+              SignUpEvent.dataChanged(
+                signUpReq: signUpReq.copyWith(phone: .dirty(v)),
+              ),
+            );
+          },
         ),
         CustomAuthTextFormField(
           key: const Key('password_field'),
           hintText: 'كلمة المرور',
-          initialValue: password.value,
-          prefixIcon: const Icon(Icons.lock_outline, color: Colors.white),
-          isPassword: true,
-          obscureText: obscurePassword.value,
-          showPasswordToggle: true,
-          onChanged: (v) => getIt<SignUpBloc>().add(
-            SignUpEvent.dataChanged(password: .dirty(v)),
+          initialValue: signUpReq.password?.value,
+          prefixIcon: Icon(
+            Icons.lock_outline,
+            color: context.colorScheme.onPrimary,
           ),
+          isPassword: true,
+          obscureText: signUpReq.obscurePassword,
+          showPasswordToggle: true,
+          onChanged: (v) {
+            getIt<SignUpBloc>().add(
+              SignUpEvent.dataChanged(
+                signUpReq: signUpReq.copyWith(password: .dirty(v)),
+              ),
+            );
+          },
         ),
         CustomAuthTextFormField(
           key: const Key('confirm_password_field'),
-          initialValue: confirmPassword.value,
+          initialValue: signUpReq.confirmPassword?.value,
           hintText: 'تأكيد كلمة المرور',
-          prefixIcon: const Icon(Icons.lock_outline, color: Colors.white),
-          isPassword: true,
-          obscureText: obscurePassword.value,
-          showPasswordToggle: true,
-          onChanged: (v) => getIt<SignUpBloc>().add(
-            SignUpEvent.dataChanged(confirmPassword: .dirty(v)),
+          prefixIcon: Icon(
+            Icons.lock_outline,
+            color: context.colorScheme.onPrimary,
           ),
-          validator: (value) =>
-              value == password.value ? null : 'كلمتا المرور غير متطابقتين',
+          isPassword: true,
+          obscureText: signUpReq.obscurePassword,
+          showPasswordToggle: true,
+          onChanged: (v) {
+            getIt<SignUpBloc>().add(
+              SignUpEvent.dataChanged(
+                signUpReq: signUpReq.copyWith(confirmPassword: .dirty(v)),
+              ),
+            );
+          },
+          validator: (value) {
+            return value == signUpReq.password?.value
+                ? null
+                : 'كلمتا المرور غير متطابقتين';
+          },
         ),
       ],
     );

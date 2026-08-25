@@ -18,7 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         check: (completer) async {
           await authUseCases.check().then((res) async {
             await res.when(
-              success: (isAuthenticated) {
+              success: (_) {
                 emit(const .authenticated());
               },
               failure: (e) {

@@ -5,6 +5,8 @@
     {
       "name": "Android Dev",
       "type": "dart",
+      "debugExternalLibraries": false,
+      "debugSdkLibraries": false,
       "request": "launch",
       "preLaunchTask": "run-adb-reverse",
       "program": "lib/main.dart",

@@ -10,6 +10,7 @@ _DeviceModel _$DeviceModelFromJson(Map<String, dynamic> json) => _DeviceModel(
   model: json['model'] as String,
   os: json['os'] as String,
   deviceId: json['device_id'] as String,
+  fcmToken: json['fcm_token'] as String,
 );
 
 Map<String, dynamic> _$DeviceModelToJson(_DeviceModel instance) =>
@@ -17,4 +18,5 @@ Map<String, dynamic> _$DeviceModelToJson(_DeviceModel instance) =>
       'model': instance.model,
       'os': instance.os,
       'device_id': instance.deviceId,
+      'fcm_token': instance.fcmToken,
     };

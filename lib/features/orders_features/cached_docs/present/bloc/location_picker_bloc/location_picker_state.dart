@@ -8,7 +8,6 @@ abstract class LocationPickerState with _$LocationPickerState {
     @Default(false) bool hasValidClipboardLocation,
     @Default(null) LatLng? pastedLocation,
   }) = _Loaded;
-  const factory LocationPickerState.failure({
-    required ErrorInfo apiErrorModel,
-  }) = _Failure;
+  const factory LocationPickerState.failure({required ErrorInfo errorInfo}) =
+      _Failure;
 }

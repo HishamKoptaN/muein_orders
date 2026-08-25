@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../core/routing/navigation_service.dart';
-import '../../core/widgets/buttons/custom_icon_tn.dart';
 import '../../core/widgets/translated_text.dart';
-import '../../l10n/app_localizations.dart';
 import '../../core/language/view/select_language.dart';
 
 class StartView extends StatelessWidget {
@@ -14,7 +11,6 @@ class StartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
     return Scaffold(
       body: Stack(
         children: [
@@ -69,7 +65,7 @@ class StartView extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: Column(
                       children: [
-                        CustomTextIconBtnWidget(
+                        FilledButton.icon(
                           onPressed: () {
                             NavigationService.pushNamed(
                               context: context,
@@ -85,7 +81,7 @@ class StartView extends StatelessWidget {
                               BlendMode.srcIn,
                             ),
                           ),
-                          text: 'اختر اللغة',
+                          label: const TrText('اختر اللغة'),
                         ),
                       ],
                     ),

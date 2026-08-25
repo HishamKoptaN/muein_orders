@@ -20,13 +20,16 @@ class StatsBloc extends Bloc<StatsEvent, StatsState> {
       await event.when(
         getStats: () async {
           emit(const StatsState.loading());
-          final result = await statsUseCases.stats();
-          result.when(
-            success: (stats) {
-              emit(StatsState.loaded(stats: stats ?? []));
-            },
-            failure: (error) => emit(StatsState.failure(apiErrorModel: error)),
-          );
+          await statsUseCases.stats().then((result) async {
+            result.when(
+              success: (stats) {
+                emit(StatsState.loaded(stats: stats ?? []));
+              },
+              failure: (error) {
+                emit(StatsState.failure(apiErrorModel: error));
+              },
+            );
+          });
         },
       );
     });

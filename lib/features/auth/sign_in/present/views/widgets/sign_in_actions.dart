@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/routing/navigation_service.dart';
-import '../../../../../../core/widgets/buttons/custom_button.dart';
+import '../../../../../../core/theme/core/extensions/theme_ext.dart';
+import '../../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../../../core/widgets/translated_text.dart';
-import '../../../../sign_up/present/views/sign_up_views.dart';
+import '../../../../sign_up/present/views/sign_up_view.dart';
 import '../../bloc/sign_in_bloc.dart';
 
 class SignInActions extends StatelessWidget {
@@ -15,14 +16,20 @@ class SignInActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomBtnWidget(
-          text: 'تسجيل الدخول',
-          formzSubmissionStatus: formzSubmissionStatus,
-          onPressed: () {
-            if (formzSubmissionStatus.isSuccess) {
-              getIt<SignInBloc>().add(const .signIn());
-            }
-          },
+        FilledButton(
+          onPressed: formzSubmissionStatus.isSuccess
+              ? () {
+                  getIt<SignInBloc>().add(const .signIn());
+                }
+              : null,
+          child: formzSubmissionStatus.isInProgress
+              ? const CustomCircularProgress()
+              : TrText(
+                  'تسجيل الدخول',
+                  style: context.textTheme.labelLarge?.copyWith(
+                    color: context.colorScheme.onPrimary,
+                  ),
+                ),
         ),
         TextButton(
           onPressed: () {

@@ -4,8 +4,7 @@ part of 'change_pass_bloc.dart';
 abstract class ChangePassState with _$ChangePassState {
   const factory ChangePassState.loading() = ChangePassLoading;
   const factory ChangePassState.loaded({
-    required PasswordFormInput password,
-    required PasswordFormInput confirmPassword,
+    required ChangePasswordReqEntity changePasswordReq,
     required FormzSubmissionStatus formzSubmissionStatus,
   }) = _Loaded;
   const factory ChangePassState.success() = ChangePassSuccess;

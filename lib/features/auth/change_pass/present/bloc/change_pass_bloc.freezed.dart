@@ -122,10 +122,10 @@ return update(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( PasswordFormInput? password,  PasswordFormInput? confirmPassword)?  dataChanged,TResult Function()?  update,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( ChangePasswordReqEntity changePasswordReq)?  dataChanged,TResult Function()?  update,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
-return dataChanged(_that.password,_that.confirmPassword);case _Update() when update != null:
+return dataChanged(_that.changePasswordReq);case _Update() when update != null:
 return update();case _:
   return orElse();
 
@@ -144,10 +144,10 @@ return update();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( PasswordFormInput? password,  PasswordFormInput? confirmPassword)  dataChanged,required TResult Function()  update,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( ChangePasswordReqEntity changePasswordReq)  dataChanged,required TResult Function()  update,}) {final _that = this;
 switch (_that) {
 case _DataChanged():
-return dataChanged(_that.password,_that.confirmPassword);case _Update():
+return dataChanged(_that.changePasswordReq);case _Update():
 return update();case _:
   throw StateError('Unexpected subclass');
 
@@ -165,10 +165,10 @@ return update();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( PasswordFormInput? password,  PasswordFormInput? confirmPassword)?  dataChanged,TResult? Function()?  update,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( ChangePasswordReqEntity changePasswordReq)?  dataChanged,TResult? Function()?  update,}) {final _that = this;
 switch (_that) {
 case _DataChanged() when dataChanged != null:
-return dataChanged(_that.password,_that.confirmPassword);case _Update() when update != null:
+return dataChanged(_that.changePasswordReq);case _Update() when update != null:
 return update();case _:
   return null;
 
@@ -181,11 +181,10 @@ return update();case _:
 
 
 class _DataChanged implements ChangePassEvent {
-  const _DataChanged({this.password, this.confirmPassword});
+  const _DataChanged({required this.changePasswordReq});
   
 
- final  PasswordFormInput? password;
- final  PasswordFormInput? confirmPassword;
+ final  ChangePasswordReqEntity changePasswordReq;
 
 /// Create a copy of ChangePassEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -197,16 +196,16 @@ _$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.changePasswordReq, changePasswordReq) || other.changePasswordReq == changePasswordReq));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,password,confirmPassword);
+int get hashCode => Object.hash(runtimeType,changePasswordReq);
 
 @override
 String toString() {
-  return 'ChangePassEvent.dataChanged(password: $password, confirmPassword: $confirmPassword)';
+  return 'ChangePassEvent.dataChanged(changePasswordReq: $changePasswordReq)';
 }
 
 
@@ -217,11 +216,11 @@ abstract mixin class _$DataChangedCopyWith<$Res> implements $ChangePassEventCopy
   factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
 @useResult
 $Res call({
- PasswordFormInput? password, PasswordFormInput? confirmPassword
+ ChangePasswordReqEntity changePasswordReq
 });
 
 
-
+$ChangePasswordReqEntityCopyWith<$Res> get changePasswordReq;
 
 }
 /// @nodoc
@@ -234,15 +233,23 @@ class __$DataChangedCopyWithImpl<$Res>
 
 /// Create a copy of ChangePassEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? password = freezed,Object? confirmPassword = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? changePasswordReq = null,}) {
   return _then(_DataChanged(
-password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordFormInput?,confirmPassword: freezed == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
-as PasswordFormInput?,
+changePasswordReq: null == changePasswordReq ? _self.changePasswordReq : changePasswordReq // ignore: cast_nullable_to_non_nullable
+as ChangePasswordReqEntity,
   ));
 }
 
-
+/// Create a copy of ChangePassEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ChangePasswordReqEntityCopyWith<$Res> get changePasswordReq {
+  
+  return $ChangePasswordReqEntityCopyWith<$Res>(_self.changePasswordReq, (value) {
+    return _then(_self.copyWith(changePasswordReq: value));
+  });
+}
 }
 
 /// @nodoc
@@ -394,11 +401,11 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( PasswordFormInput password,  PasswordFormInput confirmPassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( ChangePasswordReqEntity changePasswordReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult Function()?  success,TResult Function( String error)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case ChangePassLoading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.password,_that.confirmPassword,_that.formzSubmissionStatus);case ChangePassSuccess() when success != null:
+return loaded(_that.changePasswordReq,_that.formzSubmissionStatus);case ChangePassSuccess() when success != null:
 return success();case ChangePassFailure() when failure != null:
 return failure(_that.error);case _:
   return orElse();
@@ -418,11 +425,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( PasswordFormInput password,  PasswordFormInput confirmPassword,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( ChangePasswordReqEntity changePasswordReq,  FormzSubmissionStatus formzSubmissionStatus)  loaded,required TResult Function()  success,required TResult Function( String error)  failure,}) {final _that = this;
 switch (_that) {
 case ChangePassLoading():
 return loading();case _Loaded():
-return loaded(_that.password,_that.confirmPassword,_that.formzSubmissionStatus);case ChangePassSuccess():
+return loaded(_that.changePasswordReq,_that.formzSubmissionStatus);case ChangePassSuccess():
 return success();case ChangePassFailure():
 return failure(_that.error);case _:
   throw StateError('Unexpected subclass');
@@ -441,11 +448,11 @@ return failure(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( PasswordFormInput password,  PasswordFormInput confirmPassword,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( ChangePasswordReqEntity changePasswordReq,  FormzSubmissionStatus formzSubmissionStatus)?  loaded,TResult? Function()?  success,TResult? Function( String error)?  failure,}) {final _that = this;
 switch (_that) {
 case ChangePassLoading() when loading != null:
 return loading();case _Loaded() when loaded != null:
-return loaded(_that.password,_that.confirmPassword,_that.formzSubmissionStatus);case ChangePassSuccess() when success != null:
+return loaded(_that.changePasswordReq,_that.formzSubmissionStatus);case ChangePassSuccess() when success != null:
 return success();case ChangePassFailure() when failure != null:
 return failure(_that.error);case _:
   return null;
@@ -491,11 +498,10 @@ String toString() {
 
 
 class _Loaded implements ChangePassState {
-  const _Loaded({required this.password, required this.confirmPassword, required this.formzSubmissionStatus});
+  const _Loaded({required this.changePasswordReq, required this.formzSubmissionStatus});
   
 
- final  PasswordFormInput password;
- final  PasswordFormInput confirmPassword;
+ final  ChangePasswordReqEntity changePasswordReq;
  final  FormzSubmissionStatus formzSubmissionStatus;
 
 /// Create a copy of ChangePassState
@@ -508,16 +514,16 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.changePasswordReq, changePasswordReq) || other.changePasswordReq == changePasswordReq)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,password,confirmPassword,formzSubmissionStatus);
+int get hashCode => Object.hash(runtimeType,changePasswordReq,formzSubmissionStatus);
 
 @override
 String toString() {
-  return 'ChangePassState.loaded(password: $password, confirmPassword: $confirmPassword, formzSubmissionStatus: $formzSubmissionStatus)';
+  return 'ChangePassState.loaded(changePasswordReq: $changePasswordReq, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -528,11 +534,11 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $ChangePassStateCopyWith<
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- PasswordFormInput password, PasswordFormInput confirmPassword, FormzSubmissionStatus formzSubmissionStatus
+ ChangePasswordReqEntity changePasswordReq, FormzSubmissionStatus formzSubmissionStatus
 });
 
 
-
+$ChangePasswordReqEntityCopyWith<$Res> get changePasswordReq;
 
 }
 /// @nodoc
@@ -545,16 +551,24 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of ChangePassState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? password = null,Object? confirmPassword = null,Object? formzSubmissionStatus = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? changePasswordReq = null,Object? formzSubmissionStatus = null,}) {
   return _then(_Loaded(
-password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
-as PasswordFormInput,confirmPassword: null == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
-as PasswordFormInput,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
+changePasswordReq: null == changePasswordReq ? _self.changePasswordReq : changePasswordReq // ignore: cast_nullable_to_non_nullable
+as ChangePasswordReqEntity,formzSubmissionStatus: null == formzSubmissionStatus ? _self.formzSubmissionStatus : formzSubmissionStatus // ignore: cast_nullable_to_non_nullable
 as FormzSubmissionStatus,
   ));
 }
 
-
+/// Create a copy of ChangePassState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ChangePasswordReqEntityCopyWith<$Res> get changePasswordReq {
+  
+  return $ChangePasswordReqEntityCopyWith<$Res>(_self.changePasswordReq, (value) {
+    return _then(_self.copyWith(changePasswordReq: value));
+  });
+}
 }
 
 /// @nodoc

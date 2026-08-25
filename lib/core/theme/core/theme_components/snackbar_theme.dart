@@ -13,9 +13,7 @@ SnackBarThemeData snackBarTheme({
     actionTextColor: colorScheme.primary,
     disabledActionTextColor: colorScheme.onSurface.withOpacity(0.38),
     elevation: 6,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12.r),
-    ),
+    shape: RoundedRectangleBorder(borderRadius: .circular(6.r)),
     behavior: SnackBarBehavior.floating,
     insetPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
     showCloseIcon: true,

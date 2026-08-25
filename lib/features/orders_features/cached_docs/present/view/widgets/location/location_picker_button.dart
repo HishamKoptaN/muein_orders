@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_inputs/form_inputs/generic_form_input.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../../core/theme/core/extensions/theme_ext.dart';
@@ -22,17 +23,6 @@ class LocationPickerButton extends StatefulWidget {
 
 class _LocationPickerButtonState extends State<LocationPickerButton>
     with WidgetsBindingObserver {
-  LatLng? get _currentLocation {
-    if (widget.createCachedDoc.latitude != null &&
-        widget.createCachedDoc.longitude != null) {
-      return LatLng(
-        widget.createCachedDoc.latitude!,
-        widget.createCachedDoc.longitude!,
-      );
-    }
-    return null;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -40,15 +30,15 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
     _checkClipboard();
   }
 
-  void _checkClipboard() {
-    getIt<LocationPickerBloc>().add(const LocationPickerEvent.checkClipboard());
-  }
-
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       _checkClipboard();
     }
+  }
+
+  void _checkClipboard() {
+    getIt<LocationPickerBloc>().add(const LocationPickerEvent.checkClipboard());
   }
 
   @override
@@ -60,10 +50,10 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
   @override
   Widget build(BuildContext context) {
     final hasLocation =
-        widget.createCachedDoc.latitude != null &&
-        widget.createCachedDoc.longitude != null;
+        widget.createCachedDoc.latitude.value.isNotEmpty &&
+        widget.createCachedDoc.longitude.value.isNotEmpty;
     final locationText = hasLocation
-        ? '${widget.createCachedDoc.latitude}, ${widget.createCachedDoc.longitude}'
+        ? '${widget.createCachedDoc.latitude.value}, ${widget.createCachedDoc.longitude.value}'
         : 'اختر الموقع';
     return BlocConsumer<LocationPickerBloc, LocationPickerState>(
       bloc: getIt<LocationPickerBloc>()
@@ -71,17 +61,14 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
       listener: (context, state) async {
         await state.mapOrNull(
           loaded: (state) {
-            context.showInfoSnackBar(title: '', message: 'تم لصق الموقع');
+            if (state.hasValidClipboardLocation) {
+              context.showInfoSnackBar(
+                title: 'يوجد موقع في الحافظة',
+                message: 'اضغط على زر اللصق لإضافة الموقع',
+              );
+            }
           },
         );
-        //getIt<CachedDocBloc>().add(
-        //  CachedDocEvent.updateData(
-        //    createCachedDoc: widget.createCachedDoc.copyWith(
-        //      latitude: state.pastedLocation?.latitude,
-        //      longitude: state.pastedLocation?.longitude,
-        //    ),
-        //  ),
-        //);
       },
       builder: (context, state) {
         return Row(
@@ -89,9 +76,14 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
             _buildMapPickerButton(context: context),
             _buildLocationDisplay(
               context: context,
-              hasLocation: hasLocation,
+              hasValidClipboardLocation:
+                  getIt<LocationPickerBloc>().state.mapOrNull(
+                    loaded: (state) {
+                      return state.hasValidClipboardLocation;
+                    },
+                  ) ??
+                  false,
               locationText: locationText,
-              pickerState: state,
             ),
           ],
         );
@@ -102,9 +94,7 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
   Widget _buildMapPickerButton({required BuildContext context}) {
     return GestureDetector(
       onTap: () {
-        context.showInfoSnackBar(title: '', message: 'تم لصق الموقع');
-        // test
-        //   _openMapPicker(context);
+        _openMapPicker(context);
       },
       child: Stack(
         children: [
@@ -114,8 +104,8 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
             decoration: BoxDecoration(
               color: context.colorScheme.primary,
               borderRadius: BorderRadiusDirectional.only(
-                topStart: .circular(12.r),
-                bottomStart: .circular(12.r),
+                topStart: .circular(6.r),
+                bottomStart: .circular(6.r),
                 topEnd: .zero,
                 bottomEnd: .zero,
               ),
@@ -124,17 +114,17 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
             child: Row(
               mainAxisAlignment: .center,
               children: [
-                Icon(
-                  Icons.location_on,
-                  color: context.colorScheme.onPrimary,
-                  size: 18.r,
-                ),
-                SizedBox(width: 4.w),
                 TrText(
                   'اختر',
                   style: context.textTheme.labelLarge?.copyWith(
                     color: context.colorScheme.onPrimary,
+                    height: 3.5.h,
                   ),
+                ),
+                Icon(
+                  Icons.location_on,
+                  color: context.colorScheme.onPrimary,
+                  size: 16.r,
                 ),
               ],
             ),
@@ -154,22 +144,21 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
 
   Widget _buildLocationDisplay({
     required BuildContext context,
-    required bool hasLocation,
+    required bool hasValidClipboardLocation,
     required String locationText,
-    required LocationPickerState pickerState,
   }) {
     return Expanded(
       child: Container(
         height: 54.h,
         decoration: BoxDecoration(
-          color: hasLocation
+          color: hasValidClipboardLocation
               ? Colors.green.withValues(alpha: 0.1)
               : Colors.grey.withValues(alpha: 0.2),
-          borderRadius: const BorderRadiusDirectional.only(
+          borderRadius: BorderRadiusDirectional.only(
             topStart: .zero,
             bottomStart: .zero,
-            topEnd: .circular(12),
-            bottomEnd: .circular(12),
+            topEnd: .circular(6.r),
+            bottomEnd: .circular(6.r),
           ),
         ),
         alignment: .centerRight,
@@ -178,18 +167,47 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
           mainAxisAlignment: .spaceBetween,
           children: [
             Expanded(
-              child: TrText(locationText, style: context.textTheme.bodyMedium),
+              child: TrText(
+                locationText,
+                textAlign: .center,
+                style: context.textTheme.bodyMedium,
+              ),
             ),
-            // if (pickerState.hasValidClipboardLocation)
-            //   IconButton(
-            //     icon: Icon(Icons.paste, size: 22.r),
-            //     onPressed: () {
-            //       getIt<LocationPickerBloc>().add(PasteFromClipboardEvent());
-            //     },
-            //     tooltip: 'لصق من الحافظة',
-            //     padding: .zero,
-            //     constraints: const BoxConstraints(),
-            //   ),
+            if (hasValidClipboardLocation)
+              IconButton(
+                icon: Icon(Icons.paste, size: 22.r),
+                onPressed: () {
+                  getIt<CachedDocBloc>().add(
+                    CachedDocEvent.updateData(
+                      createCachedDoc: widget.createCachedDoc.copyWith(
+                        latitude: GenericFormInput.dirty(
+                          value:
+                              getIt<LocationPickerBloc>().state.mapOrNull(
+                                loaded: (state) {
+                                  return state.pastedLocation?.latitude
+                                      .toString();
+                                },
+                              ) ??
+                              widget.createCachedDoc.latitude.value,
+                        ),
+                        longitude: GenericFormInput.dirty(
+                          value:
+                              getIt<LocationPickerBloc>().state.mapOrNull(
+                                loaded: (state) {
+                                  return state.pastedLocation?.longitude
+                                      .toString();
+                                },
+                              ) ??
+                              widget.createCachedDoc.longitude.value,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                tooltip: 'لصق من الحافظة',
+                padding: .zero,
+                constraints: const BoxConstraints(),
+              ),
           ],
         ),
       ),
@@ -209,8 +227,10 @@ class _LocationPickerButtonState extends State<LocationPickerButton>
       getIt<CachedDocBloc>().add(
         CachedDocEvent.updateData(
           createCachedDoc: widget.createCachedDoc.copyWith(
-            latitude: result.latitude,
-            longitude: result.longitude,
+            latitude: GenericFormInput.dirty(value: result.latitude.toString()),
+            longitude: GenericFormInput.dirty(
+              value: result.longitude.toString(),
+            ),
           ),
         ),
       );

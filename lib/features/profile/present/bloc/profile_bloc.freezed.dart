@@ -125,11 +125,11 @@ return updateProfile(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getProfile,TResult Function( _Loaded loadedState)?  dataChanged,TResult Function()?  updateProfile,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  getProfile,TResult Function( UpdateProfileReqEntity? updateProfileReq)?  dataChanged,TResult Function()?  updateProfile,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetProfile() when getProfile != null:
 return getProfile();case _DataChanged() when dataChanged != null:
-return dataChanged(_that.loadedState);case _UpdateProfile() when updateProfile != null:
+return dataChanged(_that.updateProfileReq);case _UpdateProfile() when updateProfile != null:
 return updateProfile();case _:
   return orElse();
 
@@ -148,11 +148,11 @@ return updateProfile();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getProfile,required TResult Function( _Loaded loadedState)  dataChanged,required TResult Function()  updateProfile,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  getProfile,required TResult Function( UpdateProfileReqEntity? updateProfileReq)  dataChanged,required TResult Function()  updateProfile,}) {final _that = this;
 switch (_that) {
 case _GetProfile():
 return getProfile();case _DataChanged():
-return dataChanged(_that.loadedState);case _UpdateProfile():
+return dataChanged(_that.updateProfileReq);case _UpdateProfile():
 return updateProfile();case _:
   throw StateError('Unexpected subclass');
 
@@ -170,11 +170,11 @@ return updateProfile();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getProfile,TResult? Function( _Loaded loadedState)?  dataChanged,TResult? Function()?  updateProfile,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  getProfile,TResult? Function( UpdateProfileReqEntity? updateProfileReq)?  dataChanged,TResult? Function()?  updateProfile,}) {final _that = this;
 switch (_that) {
 case _GetProfile() when getProfile != null:
 return getProfile();case _DataChanged() when dataChanged != null:
-return dataChanged(_that.loadedState);case _UpdateProfile() when updateProfile != null:
+return dataChanged(_that.updateProfileReq);case _UpdateProfile() when updateProfile != null:
 return updateProfile();case _:
   return null;
 
@@ -219,10 +219,10 @@ String toString() {
 
 
 class _DataChanged implements ProfileEvent {
-  const _DataChanged({required this.loadedState});
+  const _DataChanged({required this.updateProfileReq});
   
 
- final  _Loaded loadedState;
+ final  UpdateProfileReqEntity? updateProfileReq;
 
 /// Create a copy of ProfileEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -234,16 +234,16 @@ _$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&const DeepCollectionEquality().equals(other.loadedState, loadedState));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.updateProfileReq, updateProfileReq) || other.updateProfileReq == updateProfileReq));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(loadedState));
+int get hashCode => Object.hash(runtimeType,updateProfileReq);
 
 @override
 String toString() {
-  return 'ProfileEvent.dataChanged(loadedState: $loadedState)';
+  return 'ProfileEvent.dataChanged(updateProfileReq: $updateProfileReq)';
 }
 
 
@@ -254,11 +254,11 @@ abstract mixin class _$DataChangedCopyWith<$Res> implements $ProfileEventCopyWit
   factory _$DataChangedCopyWith(_DataChanged value, $Res Function(_DataChanged) _then) = __$DataChangedCopyWithImpl;
 @useResult
 $Res call({
- _Loaded loadedState
+ UpdateProfileReqEntity? updateProfileReq
 });
 
 
-
+$UpdateProfileReqEntityCopyWith<$Res>? get updateProfileReq;
 
 }
 /// @nodoc
@@ -271,14 +271,26 @@ class __$DataChangedCopyWithImpl<$Res>
 
 /// Create a copy of ProfileEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? loadedState = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? updateProfileReq = freezed,}) {
   return _then(_DataChanged(
-loadedState: freezed == loadedState ? _self.loadedState : loadedState // ignore: cast_nullable_to_non_nullable
-as _Loaded,
+updateProfileReq: freezed == updateProfileReq ? _self.updateProfileReq : updateProfileReq // ignore: cast_nullable_to_non_nullable
+as UpdateProfileReqEntity?,
   ));
 }
 
+/// Create a copy of ProfileEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UpdateProfileReqEntityCopyWith<$Res>? get updateProfileReq {
+    if (_self.updateProfileReq == null) {
+    return null;
+  }
 
+  return $UpdateProfileReqEntityCopyWith<$Res>(_self.updateProfileReq!, (value) {
+    return _then(_self.copyWith(updateProfileReq: value));
+  });
+}
 }
 
 /// @nodoc

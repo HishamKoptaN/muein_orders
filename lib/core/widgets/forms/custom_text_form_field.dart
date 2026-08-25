@@ -98,8 +98,6 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  final bool _obscureText = true;
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -115,130 +113,23 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           ),
           child: TextFormField(
             textAlign: TextAlign.right,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Almarai',
-              fontSize: 16.sp,
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 16.sp),
             decoration: InputDecoration(
-              hintText: 'البريد الإلكتروني',
+              labelText: widget.labelText,
+              hintText: widget.hintText,
               hintStyle: TextStyle(
                 color: const Color.fromRGBO(255, 255, 255, 0.57),
                 fontSize: 16.sp,
-                fontFamily: 'Almarai',
               ),
               contentPadding: EdgeInsets.symmetric(
-                horizontal: 24.w,
                 vertical: 18.h,
+                horizontal: 24.w,
               ),
-              border: InputBorder.none,
+              border: .none,
             ),
           ),
         ),
       ),
     );
-    //         Container(
-    //   width: widget.width ?? 332.w,
-    //   height: 60.h,
-    //   margin: widget.margin ?? EdgeInsets.only(bottom: 16.h),
-    //   decoration: BoxDecoration(
-    //     color:
-    //         widget.backGroundColor ?? const Color.fromRGBO(255, 255, 255, 0.19),
-    //     borderRadius: BorderRadius.circular(14.r),
-    //   ),
-    //   child: Container(
-    //     decoration: BoxDecoration(
-    //       color: const Color.fromRGBO(255, 255, 255, 0.19),
-    //       borderRadius: BorderRadius.circular(14.r),
-    //     ),
-    //     child: TextFormField(
-    //       controller: widget.controller,
-    //       initialValue: widget.controller == null ? widget.initialValue : null,
-    //       keyboardType: widget.keyboardType ?? widget.textInputType,
-    //       textInputAction: widget.textInputAction,
-    //       obscureText: widget.isPassword ? _obscureText : widget.obscureText,
-    //       maxLines: widget.maxLines,
-    //       onChanged: widget.onChanged,
-    //       onSaved: widget.onSaved,
-    //       validator: widget.validator,
-    //       readOnly: widget.readOnly ?? false,
-    //       enabled: widget.enabled,
-    //       textAlign: TextAlign.right,
-    //       textDirection: TextDirection.rtl,
-    //       style:
-    //           widget.style ??
-    //           theme.textTheme.bodyMedium?.copyWith(
-    //             color: Colors.white,
-    //             fontFamily: 'Almarai',
-    //             fontSize: 16.sp,
-    //             fontWeight: FontWeight.w400,
-    //           ),
-    //       onFieldSubmitted: widget.onFieldSubmitted,
-    //       focusNode: widget.focusNode,
-    //       inputFormatters: widget.inputFormatters,
-    //       decoration:
-    //           widget.decoration ??
-    //           InputDecoration(
-    //             fillColor: widget.fillColor,
-    //             filled: widget.filled,
-    //             hintText: widget.hintText,
-    //             hintStyle:
-    //                 widget.hintStyle ??
-    //                 theme.textTheme.bodyMedium?.copyWith(
-    //                   color: Colors.white.withOpacity(0.57),
-    //                   fontFamily: 'Almarai',
-    //                   fontSize: 16.sp,
-    //                   fontWeight: FontWeight.w400,
-    //                 ),
-    //             labelText: widget.labelText,
-    //             labelStyle:
-    //                 widget.labelStyle ??
-    //                 theme.textTheme.bodyMedium?.copyWith(
-    //                   color: Colors.white,
-    //                   fontFamily: 'Almarai',
-    //                   fontSize: 16.sp,
-    //                   fontWeight: FontWeight.w400,
-    //                 ),
-    //             errorText: widget.errorText,
-    //             errorStyle:
-    //                 widget.errorStyle ??
-    //                 theme.textTheme.bodyMedium?.copyWith(
-    //                   color: Colors.white.withOpacity(0.57),
-    //                   fontFamily: 'Almarai',
-    //                   fontSize: 16.sp,
-    //                   fontWeight: FontWeight.w400,
-    //                 ),
-    //             border: widget.border ?? InputBorder.none,
-    //             enabledBorder: widget.enabledBorder ?? InputBorder.none,
-    //             focusedBorder: widget.focusedBorder ?? InputBorder.none,
-    //             errorBorder: widget.errorBorder ?? InputBorder.none,
-    //             disabledBorder: InputBorder.none,
-    //             contentPadding: EdgeInsets.symmetric(
-    //               horizontal: 24.w,
-    //               vertical: 18.h,
-    //             ),
-    //             isDense: true,
-    //             prefixIcon: widget.prefixIcon,
-    //             suffixIcon: widget.isPassword && widget.showPasswordToggle
-    //                 ? IconButton(
-    //                     icon: Icon(
-    //                       _obscureText
-    //                           ? Icons.visibility_off
-    //                           : Icons.visibility,
-    //                       color: Colors.white.withOpacity(0.57),
-    //                       size: 24.sp,
-    //                     ),
-    //                     onPressed: () {
-    //                       setState(() {
-    //                         _obscureText = !_obscureText;
-    //                       });
-    //                       widget.onToggleObscure?.call();
-    //                     },
-    //                   )
-    //                 : widget.suffixIcon,
-    //           ),
-    //     ),
-    //   ),
-    // );
   }
 }

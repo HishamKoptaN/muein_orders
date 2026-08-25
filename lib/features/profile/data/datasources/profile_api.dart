@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../../../core/models/device_model.dart';
 import '../models/presigned/presigned_url_model.dart';
 import '../models/presigned/presigned_url_req_model.dart';
 import '../models/profile_res_model.dart';
@@ -17,12 +18,14 @@ abstract class ProfileApi {
   @GET('/profile')
   Future<ProfileResModel> getProfile();
   //! presignedAvatarUrl
-  @POST('/profile')
+  @POST('/profile/presigned')
   Future<PresignedUrlModel> presignedAvatarUrl({
     @Body() required PresignedUrlReqModel presignedUrlReqModel,
   });
-  @PUT('/profile')
+  @POST('/profile')
   Future<ProfileResModel> updateProfile({
     @Body() required UpdateProfileReqModel updateProfileReqModel,
   });
+  @POST('/devices')
+  Future<void> devices({@Body() required DeviceModel device});
 }

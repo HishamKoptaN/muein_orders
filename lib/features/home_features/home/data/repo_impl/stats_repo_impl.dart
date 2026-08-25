@@ -16,7 +16,11 @@ class StatsRepoImpl implements StatsRepo {
   Future<ApiResult<List<StatEntity>>> stats() async {
     try {
       final model = await _remote.stats();
-      return ApiResult.success(data: model.map((e) => e.toEntity()).toList());
+      return ApiResult.success(
+        data: model.map((e) {
+          return e.toEntity();
+        }).toList(),
+      );
     } catch (e) {
       return ApiResult.failure(errorInfo: ErrorHandler.handle(error: e));
     }

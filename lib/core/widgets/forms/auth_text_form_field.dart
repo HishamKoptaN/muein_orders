@@ -31,25 +31,15 @@ class CustomAuthTextFormField extends StatefulWidget {
     this.focusedBorder,
     this.errorBorder,
     this.disabledBorder,
-    this.hintStyle,
-    this.labelStyle,
-    this.errorStyle,
-    this.style,
-    this.filled = true,
-    this.fillColor,
-    this.backGroundColor,
-    this.isDense = true,
     this.width,
     this.height,
     this.margin,
     this.showPasswordToggle = true,
-    this.iconColor,
     this.errorText,
     this.onFieldSubmitted,
     this.focusNode,
     this.onToggleObscure,
     this.inputFormatters,
-    this.decoration,
     this.enabled = true,
   });
 
@@ -75,25 +65,15 @@ class CustomAuthTextFormField extends StatefulWidget {
   final InputBorder? focusedBorder;
   final InputBorder? errorBorder;
   final InputBorder? disabledBorder;
-  final TextStyle? hintStyle;
-  final TextStyle? labelStyle;
-  final TextStyle? errorStyle;
-  final TextStyle? style;
-  final bool filled;
-  final Color? fillColor;
-  final Color? backGroundColor;
-  final bool isDense;
   final double? width;
   final double? height;
   final EdgeInsetsGeometry? margin;
   final bool showPasswordToggle;
-  final Color? iconColor;
   final String? errorText;
   final ValueChanged<String?>? onFieldSubmitted;
   final VoidCallback? onToggleObscure;
   final FocusNode? focusNode;
   final List<TextInputFormatter>? inputFormatters;
-  final InputDecoration? decoration;
   final bool enabled;
   @override
   State<CustomAuthTextFormField> createState() =>
@@ -105,16 +85,12 @@ class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
   Widget build(BuildContext context) {
     final lang = Localizations.localeOf(context).languageCode;
     return ClipRRect(
-      borderRadius: BorderRadius.circular(14.r),
+      borderRadius: .circular(6.r),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
         child: Container(
           width: 332.w,
           constraints: BoxConstraints(minHeight: 60.h),
-          decoration: BoxDecoration(
-            color: const Color.fromRGBO(255, 255, 255, 0.19),
-            borderRadius: BorderRadius.circular(14.r),
-          ),
           child: FutureBuilder<String>(
             future: AutoLocalizer.translate(widget.hintText ?? '', lang),
             initialData: widget.hintText,
@@ -127,26 +103,9 @@ class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
                 textInputAction: widget.textInputAction,
                 onSaved: widget.onSaved,
                 validator: widget.validator,
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'Almarai',
-                  fontSize: 16.sp,
-                ),
                 decoration: InputDecoration(
                   hintText: asyncSnapshot.data ?? '',
-                  hintStyle: TextStyle(
-                    color: const Color.fromRGBO(255, 255, 255, 0.57),
-                    fontSize: 16.sp,
-                    fontFamily: 'Almarai',
-                  ),
                   errorText: widget.errorText,
-                  errorStyle: widget.errorStyle,
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 24.w,
-                    vertical: 18.h,
-                  ),
-                  border: InputBorder.none,
                   prefixIcon: widget.prefixIcon,
                   suffixIcon: widget.suffixIcon,
                 ),

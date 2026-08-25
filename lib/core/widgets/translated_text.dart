@@ -24,9 +24,11 @@ class TrText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String lang = Localizations.localeOf(context).languageCode;
     return FutureBuilder<String>(
-      future: AutoLocalizer.translate(text, lang),
+      future: AutoLocalizer.translate(
+        text,
+        Localizations.localeOf(context).languageCode,
+      ),
       initialData: text,
       builder: (context, snapshot) {
         return Text(

@@ -9,15 +9,16 @@ class AuthUseCases {
   final AuthRepo authRepo;
   AuthUseCases({required this.authRepo});
   Future<ApiResult<void>> check() async {
-    final res = await authRepo.checkFirebase();
-    return res.when(
-      success: (v) async {
-        return await authRepo.check();
-      },
-      failure: (e) async {
-        return await getIt<AuthUseCases>().authToken();
-      },
-    );
+    return await authRepo.checkFirebase().then((res) async {
+      return res.when(
+        success: (v) async {
+          return await authRepo.check();
+        },
+        failure: (_) async {
+          return await authRepo.signOut();
+        },
+      );
+    });
   }
 
   Future<ApiResult<void>> authToken() async {

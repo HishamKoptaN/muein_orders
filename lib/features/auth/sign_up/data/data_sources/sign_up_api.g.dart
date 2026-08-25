@@ -20,13 +20,13 @@ class _SignUpApi implements SignUpApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<SignUpResModel> signUp(SignUpReqModel signUpReq) async {
+  Future<void> signUp(SignUpReqModel signUpReq) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Content-Type': 'application/json'};
     _headers.removeWhere((k, v) => v == null);
     final _data = signUpReq;
-    final _options = _setStreamType<SignUpResModel>(
+    final _options = _setStreamType<void>(
       Options(
             method: 'POST',
             headers: _headers,
@@ -41,15 +41,7 @@ class _SignUpApi implements SignUpApi {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SignUpResModel _value;
-    try {
-      _value = SignUpResModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
+    await _dio.fetch<void>(_options);
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

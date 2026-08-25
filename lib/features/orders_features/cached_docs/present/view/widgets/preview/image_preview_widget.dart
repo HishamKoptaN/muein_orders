@@ -10,7 +10,7 @@ class ImagePreviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: .circular(12.r),
+      borderRadius: .circular(6.r),
       child: Image.file(
         File(path),
         fit: .cover,

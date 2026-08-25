@@ -1,17 +1,15 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
-
 import '../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
-import '../../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../../core/widgets/translated_text.dart';
-import '../../../../../l10n/app_localizations.dart';
 import '../bloc/forgot_pass_bloc.dart';
 
 class ForgotPassView extends StatelessWidget {
@@ -20,167 +18,92 @@ class ForgotPassView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
-    return DebugAutoFill(
-      child: CustomScaffold(
-        backgroundColor: const Color(0xFF003A46),
-        appBar: const CustomAppBar(title: 'نسيت كلمة المرور'),
-        body: BlocConsumer<ForgotPassBloc, ForgotPassState>(
-          listener: (context, state) {
-            state.whenOrNull(
-              success: () {
-                context.showSuccessSnackBar(
-                  title: 'نجاح',
-                  message:
-                      'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
-                );
-              },
-              failure: (error) {
-                context.showErrorSnackBar(title: 'خطأ', message: error);
-              },
-            );
-          },
-          builder: (context, state) {
-            return state.maybeWhen(
-              loaded: (email, formzSubmissionStatus) {
-                return Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+    return CustomScaffold(
+      backgroundColor: const Color(0xFF003A46),
+      appBar: const CustomAppBar(title: 'نسيت كلمة المرور'),
+      body: BlocConsumer<ForgotPassBloc, ForgotPassState>(
+        bloc: getIt<ForgotPassBloc>(),
+        listener: (context, state) {
+          state.whenOrNull(
+            success: () {
+              context.showSuccessSnackBar(
+                title: 'نجاح',
+                message:
+                    'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
+              );
+            },
+            failure: (error) {
+              context.showErrorSnackBar(title: 'خطأ', message: error);
+            },
+          );
+        },
+        builder: (context, state) {
+          return state.maybeWhen(
+            loaded: (email, formzSubmissionStatus) {
+              return Column(
+                mainAxisAlignment: .center,
+                crossAxisAlignment: .center,
+                children: [
+                  CustomAuthTextFormField(
+                    initialValue: email.value,
+                    keyboardType: TextInputType.emailAddress,
+                    labelText: 'البريد الإلكتروني',
+                    onChanged: (value) {
+                      getIt<ForgotPassBloc>().add(
+                        ForgotPassEvent.dataChanged(
+                          email: EmailFormInput.dirty(value),
+                        ),
+                      );
+                    },
+                    validator: (val) {
+                      if (val == null || val.isEmpty) {
+                        return 'البريد الإلكتروني مطلوب';
+                      }
+                      if (!val.contains('@')) {
+                        return 'البريد الإلكتروني غير صحيح';
+                      }
+                      return null;
+                    },
+                  ),
+                  Row(
                     children: [
-                      const SizedBox(height: 30),
-                      CustomAuthTextFormField(
-                        initialValue: email.value,
-                        keyboardType: TextInputType.emailAddress,
-                        labelText: 'البريد الإلكتروني',
-                        onChanged: (value) {
-                          getIt<ForgotPassBloc>().add(
-                            ForgotPassEvent.dataChanged(
-                              email: EmailFormInput.dirty(value),
-                            ),
-                          );
-                        },
-                        validator: (val) {
-                          if (val == null || val.isEmpty) {
-                            return 'البريد الإلكتروني مطلوب';
-                          }
-                          if (!val.contains('@')) {
-                            return 'البريد الإلكتروني غير صحيح';
-                          }
-                          return null;
-                        },
+                      TrText(
+                        '*',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 20.r,
+                          fontWeight: .bold,
+                        ),
                       ),
-                      const Row(
-                        children: [
-                          SizedBox(width: 10),
-                          TrText(
-                            '*',
-                            style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TrText(
-                            'سيتم إرسال رابط لإعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
-                            style: TextStyle(
-                              fontFamily: 'Almarai',
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
-                              height: 3,
-                              color: Colors.white,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                      TrText(
+                        'سيتم إرسال رابط لإعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
+                        style: context.textTheme.bodyMedium?.copyWith(
+                          color: context.colorScheme.onPrimary,
+                        ),
+                        maxLines: 2,
                       ),
-                      const SizedBox(height: 24),
-                      CustomBtnWidget(
-                        text: 'إرسال',
-                        formzSubmissionStatus: formzSubmissionStatus,
-                        onPressed: () {
-                          if (formzSubmissionStatus.isSuccess) {
+                    ],
+                  ),
+                  SizedBox(height: 24.h),
+                  FilledButton(
+                    onPressed: formzSubmissionStatus.isSuccess
+                        ? () {
                             getIt<ForgotPassBloc>().add(
                               const ForgotPassEvent.sendPassResetEmail(),
                             );
                           }
-                        },
-                      ),
-                    ],
+                        : null,
+                    child: const TrText('إرسال'),
                   ),
-                );
-              },
-              loading: () => const Center(child: CircularProgressIndicator()),
-              orElse: () => const SizedBox.shrink(),
-            );
-          },
-        ),
+                ],
+              );
+            },
+            orElse: () {
+              return const Center(child: CircularProgressIndicator());
+            },
+          );
+        },
       ),
-    );
-  }
-}
-
-class DebugAutoFill extends StatefulWidget {
-  final Widget child;
-  const DebugAutoFill({super.key, required this.child});
-
-  @override
-  State<DebugAutoFill> createState() => _DebugAutoFillState();
-}
-
-class _DebugAutoFillState extends State<DebugAutoFill> {
-  int _tapCount = 0;
-  DateTime? _lastTap;
-
-  void _handleTap(BuildContext context) {
-    final now = DateTime.now();
-
-    if (_lastTap != null &&
-        now.difference(_lastTap!) > const Duration(seconds: 1)) {
-      _tapCount = 0;
-    }
-
-    _lastTap = now;
-    _tapCount++;
-    debugPrint('Tap detected! Count: $_tapCount');
-
-    if (_tapCount >= 3) {
-      debugPrint('✅ Triple tap detected! Running login scenario...');
-      _tapCount = 0;
-      _runLoginScenario(context);
-    }
-  }
-
-  void _runLoginScenario(BuildContext context) {
-    debugPrint('🚀 Running Debug Autofill Login with BLoC...');
-
-    const testEmails = [
-      'heshamkoptan@gmail.com',
-      'heshamkoptan@gmail.com',
-      'heshamkoptan@gmail.com',
-    ];
-
-    final testEmail = testEmails[0];
-
-    getIt<ForgotPassBloc>()
-      ..add(ForgotPassEvent.dataChanged(email: EmailFormInput.dirty(testEmail)))
-      ..add(const ForgotPassEvent.sendPassResetEmail());
-
-    debugPrint('✅ Autofill Login Done (via BLoC)');
-    debugPrint('🔍 Check your email at: $testEmail');
-    debugPrint('⚠️ Make sure this email is authorized in Firebase Console');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (kReleaseMode) return widget.child;
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () => _handleTap(context),
-      child: widget.child,
     );
   }
 }

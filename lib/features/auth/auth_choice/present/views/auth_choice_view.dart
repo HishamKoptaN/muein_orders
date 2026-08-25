@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/routing/navigation_service.dart';
-import '../../../../../core/widgets/buttons/custom_button.dart';
+import '../../../../../core/widgets/translated_text.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../sign_in/present/views/sign_in_view.dart';
-import '../../../sign_up/present/views/sign_up_views.dart';
+import '../../../sign_up/present/views/sign_up_view.dart';
 
 class AuthChoiceView extends StatelessWidget {
   const AuthChoiceView({super.key});
@@ -49,8 +49,8 @@ class AuthChoiceView extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CustomBtnWidget(
-                    text: 'إنشاء حساب',
+                  FilledButton(
+                    child: const TrText('إنشاء حساب'),
                     onPressed: () {
                       NavigationService.navigateAndRemoveUntil(
                         context: context,
@@ -59,14 +59,14 @@ class AuthChoiceView extends StatelessWidget {
                     },
                   ),
                   SizedBox(height: 40.h),
-                  CustomBtnWidget(
+                  FilledButton(
                     onPressed: () {
                       NavigationService.navigateAndRemoveUntil(
                         context: context,
                         routeName: SignInView.routeName,
                       );
                     },
-                    text: 'تسجيل الدخول',
+                    child: const TrText('تسجيل الدخول'),
                   ),
                 ],
               ),

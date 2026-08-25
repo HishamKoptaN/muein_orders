@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../theme_components/app_bar_theme.dart';
 import '../theme_components/bottom_sheet_theme.dart';
 import '../theme_components/checkbox_theme.dart';
@@ -15,48 +17,50 @@ import '../typography/app_typography.dart';
 
 ThemeData lightTheme({required BuildContext context}) {
   final textTheme = AppTypography.getTextTheme(context: context);
+  const colorScheme = ColorScheme(
+    brightness: Brightness.light,
+    primary: Color(0xFF003A46),
+    onPrimary: Colors.white,
+    primaryContainer: Color(0xFF003A46),
+    onPrimaryContainer: Colors.white,
+    primaryFixed: Color(0xFF003A46),
+    primaryFixedDim: Color(0xFF003A46),
+    onPrimaryFixed: Color(0xFF003A46),
+    onPrimaryFixedVariant: Color(0xFF003A46),
+    secondary: Color(0xFF83BEA8),
+    onSecondary: Colors.white,
+    secondaryFixed: Color(0xFFFDBA74),
+    secondaryFixedDim: Color(0xFFFDBA74),
+    onSecondaryFixed: Color(0xFFFDBA74),
+    onSecondaryFixedVariant: Color(0xFFFDBA74),
+    surface: Color(0xFF0F172A),
+    onSurface: Color(0xFF111827),
+    surfaceBright: Color(0xFF111827),
+    surfaceContainerHighest: Color(0xFF111827),
+    surfaceContainerHigh: Color(0xFF111827),
+    surfaceContainer: Color(0xFF111827),
+    surfaceContainerLow: Color(0xFF111827),
+    surfaceContainerLowest: Color(0xFFFFFFFF),
+    onSurfaceVariant: Colors.white,
+    outline: Colors.transparent,
+    outlineVariant: Color(0xFFDCE4E5),
+    error: Color(0xFFDC2626),
+    onError: Colors.white,
+  );
   return ThemeData(
+    extensions: const [SkeletonizerConfigData()],
     useMaterial3: true,
-    scaffoldBackgroundColor: const Color(0xFF003A46),
-    colorScheme: const ColorScheme(
-      brightness: Brightness.light,
-      primary: Color(0xFF003A46),
-      onPrimary: Colors.white,
-      primaryContainer: Color(0xFF003A46),
-      onPrimaryContainer: Colors.white,
-      primaryFixed: Color(0xFF003A46),
-      primaryFixedDim: Color(0xFF003A46),
-      onPrimaryFixed: Color(0xFF003A46),
-      onPrimaryFixedVariant: Color(0xFF003A46),
-      secondary: Color(0xFF83BEA8),
-      onSecondary: Colors.white,
-      secondaryFixed: Color(0xFFFDBA74),
-      secondaryFixedDim: Color(0xFFFDBA74),
-      onSecondaryFixed: Color(0xFFFDBA74),
-      onSecondaryFixedVariant: Color(0xFFFDBA74),
-      surface: Color(0xFF0F172A),
-      onSurface: Color(0xFF111827),
-      surfaceBright: Color(0xFF111827),
-      surfaceContainerHighest: Color(0xFF111827),
-      surfaceContainerHigh: Color(0xFF111827),
-      surfaceContainer: Color(0xFF111827),
-      surfaceContainerLow: Color(0xFF111827),
-      surfaceContainerLowest: Color(0xFFFFFFFF),
-      onSurfaceVariant: Colors.white,
-      outline: Colors.transparent,
-      outlineVariant: Color(0xFFDCE4E5),
-      error: Color(0xFFDC2626),
-      onError: Colors.white,
-    ),
+    scaffoldBackgroundColor: colorScheme.primary,
+    colorScheme: colorScheme,
     brightness: Brightness.light,
     fontFamily: AppTypography.fontFamily,
-    primaryColor: context.colorScheme.primary,
+    primaryColor: colorScheme.primary,
     textTheme: AppTypography.getTextTheme(context: context),
-    appBarTheme: appBarTheme(colorScheme: context.colorScheme),
-    iconTheme: IconThemeData(color: context.colorScheme.onSurface, size: 24),
-    cardColor: context.colorScheme.surface,
+    appBarTheme: appBarTheme(colorScheme: colorScheme),
+    iconTheme: IconThemeData(color: colorScheme.onSurface, size: 24),
+    cardColor: colorScheme.surface,
     textSelectionTheme: TextSelectionThemeData(
-      cursorColor: context.colorScheme.primary,
+      cursorColor: colorScheme.primary,
       selectionColor: context.colorScheme.primary.withValues(alpha: 0.2),
       selectionHandleColor: context.colorScheme.primary,
     ),
@@ -67,22 +71,32 @@ ThemeData lightTheme({required BuildContext context}) {
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
+        textStyle: WidgetStatePropertyAll(
+          context.textTheme.labelLarge?.copyWith(color: Colors.white),
+        ),
+        iconAlignment: .end,
+        minimumSize: .all(Size(.infinity, 50.h)),
+        maximumSize: .all(Size(.infinity, 50.h)),
+        fixedSize: .all(Size(.infinity, 50.h)),
+        tapTargetSize: .padded,
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(borderRadius: .circular(6.r)),
+        ),
         backgroundColor: WidgetStateProperty.resolveWith((states) {
-          final colors = context.colorScheme;
           if (states.contains(WidgetState.disabled)) {
-            return colors.onSurface.withValues(alpha: 0.12);
+            return colorScheme.onSurface.withValues(alpha: .35);
           }
           if (states.contains(WidgetState.pressed)) {
-            return colors.secondaryFixedDim;
+            return colorScheme.secondaryFixedDim;
           }
           if (states.contains(WidgetState.hovered)) {
-            return colors.secondaryContainer;
+            return colorScheme.secondaryContainer;
           }
-          return colors.secondary;
+          return colorScheme.secondary;
         }),
         foregroundColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
-            return context.colorScheme.onSurface.withValues(alpha: 0.38);
+            return context.colorScheme.onSurface.withValues(alpha: 0.98);
           }
 
           return context.colorScheme.onSecondary;
@@ -100,7 +114,7 @@ ThemeData lightTheme({required BuildContext context}) {
     ),
     checkboxTheme: checkboxTheme(colorScheme: context.colorScheme),
     floatingActionButtonTheme: fabTheme(
-      colorScheme: context.colorScheme,
+      colorScheme: colorScheme,
       textTheme: textTheme,
     ),
     snackBarTheme: snackBarTheme(

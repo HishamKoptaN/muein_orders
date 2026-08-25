@@ -58,7 +58,7 @@ class _ProfileApi implements ProfileApi {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/profile',
+            '/profile/presigned',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -84,7 +84,7 @@ class _ProfileApi implements ProfileApi {
     final _headers = <String, dynamic>{};
     final _data = updateProfileReqModel;
     final _options = _setStreamType<ProfileResModel>(
-      Options(method: 'PUT', headers: _headers, extra: _extra)
+      Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
             '/profile',
@@ -102,6 +102,25 @@ class _ProfileApi implements ProfileApi {
       rethrow;
     }
     return _value;
+  }
+
+  @override
+  Future<void> devices({required DeviceModel device}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = device;
+    final _options = _setStreamType<void>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/devices',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    await _dio.fetch<void>(_options);
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

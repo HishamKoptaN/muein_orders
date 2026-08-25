@@ -1,8 +1,6 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../features/orders_features/cached_docs/data/datasources/local_data_src/drift/app_database.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../di/dependency_injection.dart';
 import '../../utils/services/notification_manager.dart';
@@ -21,8 +19,6 @@ class _NotificationIconState extends State<NotificationIcon> {
   void initState() {
     super.initState();
     _notificationManager = getIt<NotificationManager>();
-
-    // مراقبة عدد الإشعارات النشطة
     _notificationCountStream = Stream.periodic(
       const Duration(seconds: 5),
       (_) => _getActiveNotificationsCount(),

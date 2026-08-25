@@ -24,18 +24,18 @@ class StatCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: .circular(12.r),
-          // image: DecorationImage(
-          //   image: CachedNetworkImageProvider(
-          //     stat.subCategory?.image ?? '',
-          //     cacheKey: stat.subCategory?.image,
-          //   ),
-          //   fit: .fill,
-          // ),
+          borderRadius: .circular(6.r),
+          image: DecorationImage(
+            image: CachedNetworkImageProvider(
+              stat.subCategory?.image ?? '',
+              cacheKey: stat.subCategory?.image,
+            ),
+            fit: .fill,
+          ),
         ),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: .circular(12.r),
+            borderRadius: .circular(6.r),
             gradient: LinearGradient(
               begin: .topCenter,
               end: .bottomCenter,
@@ -54,24 +54,24 @@ class StatCard extends StatelessWidget {
                 padding: .all(8.r),
                 decoration: BoxDecoration(
                   color: Colors.black.withValues(alpha: 0.25),
-                  borderRadius: .circular(12.r),
+                  borderRadius: .circular(6.r),
                 ),
                 child: Column(
                   mainAxisAlignment: .center,
                   crossAxisAlignment: .center,
                   mainAxisSize: .min,
                   children: [
-                    // Flexible(
-                    //   child: TrText(
-                    //     stat.subCategory?.name ?? '',
-                    //     style: context.textTheme.bodyLarge?.copyWith(
-                    //       color: context.colorScheme.onPrimary,
-                    //     ),
-                    //     maxLines: 2,
-                    //     overflow: .ellipsis,
-                    //     textAlign: .center,
-                    //   ),
-                    // ),
+                    Flexible(
+                      child: TrText(
+                        stat.subCategory?.name ?? '',
+                        style: context.textTheme.bodyLarge?.copyWith(
+                          color: context.colorScheme.onPrimary,
+                        ),
+                        maxLines: 2,
+                        overflow: .ellipsis,
+                        textAlign: .center,
+                      ),
+                    ),
                     if (stat.id != 5)
                       Flexible(
                         child: Row(

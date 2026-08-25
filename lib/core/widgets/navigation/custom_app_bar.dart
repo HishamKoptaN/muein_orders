@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../theme/core/extensions/theme_ext.dart';
 import '../translated_text.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -12,7 +7,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool automaticallyImplyLeading;
   final List<Widget>? actions;
   final Widget? leading;
-
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final TextStyle? style;
   const CustomAppBar({
     super.key,
     required this.title,
@@ -20,36 +17,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.bottom,
     this.automaticallyImplyLeading = true,
     this.leading,
+    this.backgroundColor,
+    this.foregroundColor,
+    this.style,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: true,
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.black,
-      iconTheme: const IconThemeData(color: Colors.black),
-      automaticallyImplyLeading: automaticallyImplyLeading,
-      title: TrText(title, style: context.textTheme.titleLarge),
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
+      title: TrText(title, style: style),
       bottom: bottom,
-      leading: GestureDetector(
-        onTap: () {
-          context.pop();
-        },
-        child:
-            leading ??
-            FaIcon(
-              Directionality.of(context) == TextDirection.rtl
-                  ? FontAwesomeIcons.arrowRight
-                  : FontAwesomeIcons.arrowLeft,
-              color: Colors.black,
-              size: 25.r,
-            ),
-      ),
       actions: actions,
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize {
+    return const Size.fromHeight(kToolbarHeight);
+  }
 }

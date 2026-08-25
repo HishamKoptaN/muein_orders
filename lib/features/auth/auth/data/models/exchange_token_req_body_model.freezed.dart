@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ExchangeTokenReqBodyModel {
 
-@JsonKey(name: 'id_token') String get idToken;@JsonKey(name: 'fcm_token') String? get fcmToken; DeviceModel? get device;
+@JsonKey(name: 'id_token') String get idToken;
 /// Create a copy of ExchangeTokenReqBodyModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ExchangeTokenReqBodyModelCopyWith<ExchangeTokenReqBodyModel> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExchangeTokenReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.device, device) || other.device == device));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExchangeTokenReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,idToken,fcmToken,device);
+int get hashCode => Object.hash(runtimeType,idToken);
 
 @override
 String toString() {
-  return 'ExchangeTokenReqBodyModel(idToken: $idToken, fcmToken: $fcmToken, device: $device)';
+  return 'ExchangeTokenReqBodyModel(idToken: $idToken)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $ExchangeTokenReqBodyModelCopyWith<$Res>  {
   factory $ExchangeTokenReqBodyModelCopyWith(ExchangeTokenReqBodyModel value, $Res Function(ExchangeTokenReqBodyModel) _then) = _$ExchangeTokenReqBodyModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id_token') String idToken,@JsonKey(name: 'fcm_token') String? fcmToken, DeviceModel? device
+@JsonKey(name: 'id_token') String idToken
 });
 
 
-$DeviceModelCopyWith<$Res>? get device;
+
 
 }
 /// @nodoc
@@ -65,27 +65,13 @@ class _$ExchangeTokenReqBodyModelCopyWithImpl<$Res>
 
 /// Create a copy of ExchangeTokenReqBodyModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? idToken = null,Object? fcmToken = freezed,Object? device = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? idToken = null,}) {
   return _then(_self.copyWith(
 idToken: null == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
-as String,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
-as String?,device: freezed == device ? _self.device : device // ignore: cast_nullable_to_non_nullable
-as DeviceModel?,
+as String,
   ));
 }
-/// Create a copy of ExchangeTokenReqBodyModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DeviceModelCopyWith<$Res>? get device {
-    if (_self.device == null) {
-    return null;
-  }
 
-  return $DeviceModelCopyWith<$Res>(_self.device!, (value) {
-    return _then(_self.copyWith(device: value));
-  });
-}
 }
 
 
@@ -167,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken, @JsonKey(name: 'fcm_token')  String? fcmToken,  DeviceModel? device)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ExchangeTokenReqBodyModel() when $default != null:
-return $default(_that.idToken,_that.fcmToken,_that.device);case _:
+return $default(_that.idToken);case _:
   return orElse();
 
 }
@@ -188,10 +174,10 @@ return $default(_that.idToken,_that.fcmToken,_that.device);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken, @JsonKey(name: 'fcm_token')  String? fcmToken,  DeviceModel? device)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id_token')  String idToken)  $default,) {final _that = this;
 switch (_that) {
 case _ExchangeTokenReqBodyModel():
-return $default(_that.idToken,_that.fcmToken,_that.device);case _:
+return $default(_that.idToken);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -208,10 +194,10 @@ return $default(_that.idToken,_that.fcmToken,_that.device);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_token')  String idToken, @JsonKey(name: 'fcm_token')  String? fcmToken,  DeviceModel? device)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id_token')  String idToken)?  $default,) {final _that = this;
 switch (_that) {
 case _ExchangeTokenReqBodyModel() when $default != null:
-return $default(_that.idToken,_that.fcmToken,_that.device);case _:
+return $default(_that.idToken);case _:
   return null;
 
 }
@@ -223,12 +209,10 @@ return $default(_that.idToken,_that.fcmToken,_that.device);case _:
 @JsonSerializable()
 
 class _ExchangeTokenReqBodyModel implements ExchangeTokenReqBodyModel {
-  const _ExchangeTokenReqBodyModel({@JsonKey(name: 'id_token') required this.idToken, @JsonKey(name: 'fcm_token') this.fcmToken, this.device});
+  const _ExchangeTokenReqBodyModel({@JsonKey(name: 'id_token') required this.idToken});
   factory _ExchangeTokenReqBodyModel.fromJson(Map<String, dynamic> json) => _$ExchangeTokenReqBodyModelFromJson(json);
 
 @override@JsonKey(name: 'id_token') final  String idToken;
-@override@JsonKey(name: 'fcm_token') final  String? fcmToken;
-@override final  DeviceModel? device;
 
 /// Create a copy of ExchangeTokenReqBodyModel
 /// with the given fields replaced by the non-null parameter values.
@@ -243,16 +227,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExchangeTokenReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.device, device) || other.device == device));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExchangeTokenReqBodyModel&&(identical(other.idToken, idToken) || other.idToken == idToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,idToken,fcmToken,device);
+int get hashCode => Object.hash(runtimeType,idToken);
 
 @override
 String toString() {
-  return 'ExchangeTokenReqBodyModel(idToken: $idToken, fcmToken: $fcmToken, device: $device)';
+  return 'ExchangeTokenReqBodyModel(idToken: $idToken)';
 }
 
 
@@ -263,11 +247,11 @@ abstract mixin class _$ExchangeTokenReqBodyModelCopyWith<$Res> implements $Excha
   factory _$ExchangeTokenReqBodyModelCopyWith(_ExchangeTokenReqBodyModel value, $Res Function(_ExchangeTokenReqBodyModel) _then) = __$ExchangeTokenReqBodyModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id_token') String idToken,@JsonKey(name: 'fcm_token') String? fcmToken, DeviceModel? device
+@JsonKey(name: 'id_token') String idToken
 });
 
 
-@override $DeviceModelCopyWith<$Res>? get device;
+
 
 }
 /// @nodoc
@@ -280,28 +264,14 @@ class __$ExchangeTokenReqBodyModelCopyWithImpl<$Res>
 
 /// Create a copy of ExchangeTokenReqBodyModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? idToken = null,Object? fcmToken = freezed,Object? device = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? idToken = null,}) {
   return _then(_ExchangeTokenReqBodyModel(
 idToken: null == idToken ? _self.idToken : idToken // ignore: cast_nullable_to_non_nullable
-as String,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
-as String?,device: freezed == device ? _self.device : device // ignore: cast_nullable_to_non_nullable
-as DeviceModel?,
+as String,
   ));
 }
 
-/// Create a copy of ExchangeTokenReqBodyModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DeviceModelCopyWith<$Res>? get device {
-    if (_self.device == null) {
-    return null;
-  }
 
-  return $DeviceModelCopyWith<$Res>(_self.device!, (value) {
-    return _then(_self.copyWith(device: value));
-  });
-}
 }
 
 // dart format on

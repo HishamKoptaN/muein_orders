@@ -20,7 +20,6 @@ class DeepLinkTester {
     }
   }
 
-  /// تحليل المسار من الرابط العميق
   static String? _parseRouteFromLink(String link) {
     try {
       final uri = Uri.parse(link);

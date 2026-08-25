@@ -52,7 +52,7 @@ class _SallaOrderItemUnitCardWidgetState
               offset: Offset(0, 2),
             ),
           ],
-          borderRadius: .circular(12.r),
+          borderRadius: .circular(6.r),
         ),
         child: Column(
           crossAxisAlignment: .start,

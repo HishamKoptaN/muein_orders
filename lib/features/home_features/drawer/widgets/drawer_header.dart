@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/di/dependency_injection.dart';
+import '../../../../core/theme/core/extensions/theme_ext.dart';
+import '../../../../core/utils/extensions/locale_extensions.dart';
 import '../../../../core/widgets/translated_text.dart';
 import '../../../profile/present/bloc/profile_bloc.dart';
 
@@ -11,63 +14,40 @@ class CustomDrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        top: 30.h,
-        bottom: 10.h,
-        right: 20.w,
-        left: 20.w,
-      ),
+      padding: .only(top: 30.h, bottom: 10.h, right: 20.w, left: 20.w),
       child: BlocBuilder<ProfileBloc, ProfileState>(
+        bloc: getIt<ProfileBloc>(),
         builder: (context, state) {
           return state.maybeWhen(
             loaded: (profile, updateProfileReq, formzSubmissionStatus) {
               return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: .start,
+                mainAxisAlignment: .start,
+                mainAxisSize: .min,
                 children: [
-                  const CircleAvatar(
-                    radius: 45,
-                    backgroundColor: Color(0xFFE0E0E0),
-                    // backgroundImage: NetworkImage('https://via.placeholder.com/150'),
-                    child: Icon(
-                      Icons.person_rounded, // أيقونة شخص بشكل عصري
-                      size: 50,
-                      color: Color(
-                        0xFF003A46,
-                      ), // استخدام اللون الداكن المعتمد في هويتك البصرية
-                    ),
+                  CircleAvatar(
+                    radius: 50.r,
+                    backgroundColor: context.colorScheme.primaryContainer,
+                    backgroundImage: NetworkImage(profile.avatar ?? ''),
+                    child: profile.avatar == null
+                        ? Icon(
+                            Icons.person_rounded,
+                            size: 50.r,
+                            color: context.colorScheme.onPrimary,
+                          )
+                        : null,
                   ),
-                  const SizedBox(height: 15),
+                  SizedBox(height: 10.h),
                   TrText(
                     profile.name ?? '',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF003A46),
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      color: context.colorScheme.primary,
                     ),
                   ),
                   TrText(
-                    '${profile.id.toString()}654321' ?? '',
-                    style: const TextStyle(color: Colors.grey, fontSize: 14),
+                    '${profile.id.toString()}@',
+                    style: context.textTheme.bodyMedium,
                   ),
-                  const SizedBox(height: 5),
-                  // InkWell(
-                  //   onTap: () {
-                  //     // منطق النسخ
-                  //   },
-                  //   child: const Row(
-                  //     mainAxisSize: MainAxisSize.min,
-                  //     children: [
-                  //       Icon(Icons.copy_outlined, size: 14, color: Colors.grey),
-                  //       SizedBox(width: 5),
-                  //       TrText(
-                  //         'رابط الملف الشخصي',
-                  //         style: TextStyle(color: Colors.grey, fontSize: 12),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               );
             },

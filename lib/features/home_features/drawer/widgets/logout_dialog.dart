@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/di/dependency_injection.dart';
+import '../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../core/widgets/translated_text.dart';
 import '../../../auth/auth/present/bloc/auth_bloc.dart';
 
@@ -8,67 +9,55 @@ void showLogoutBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     backgroundColor: Colors.white,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+    shape: RoundedRectangleBorder(
+      borderRadius: .vertical(top: .circular(12.r)),
     ),
     builder: (context) {
       return Container(
         height: 204,
-        padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+        padding: const .fromLTRB(20, 8, 20, 16),
         child: Column(
           children: [
             Container(
-              width: 36,
-              height: 5,
+              width: 36.w,
+              height: 5.h,
               decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(100),
+                color: Colors.grey.withValues(alpha: 0.3),
+                borderRadius: .circular(100),
               ),
             ),
-            const SizedBox(height: 24),
-            const TrText(
+            SizedBox(height: 24.h),
+            TrText(
               'تسجيل الخروج من معين',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF003A46),
+              style: context.textTheme.titleLarge?.copyWith(
+                color: context.colorScheme.primary,
               ),
             ),
-            const SizedBox(height: 8),
-            const TrText(
-              'هل تريد تسجيل الخروج ؟',
-              style: TextStyle(color: Colors.grey),
+            SizedBox(height: 8.h),
+            TrText(
+              'هل أنت متأكد أنك تريد تسجيل الخروج؟',
+              style: context.textTheme.bodyLarge!.copyWith(
+                color: context.colorScheme.primary,
+              ),
             ),
             const Spacer(),
             Row(
               children: [
                 Expanded(
-                  child: ElevatedButton(
+                  child: FilledButton(
                     onPressed: () {
                       getIt<AuthBloc>().add(const AuthEvent.signedOut());
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF83BEA8),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                    ),
-                    child: const TrText(
-                      'نعم',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    child: const Text('تأكيد'),
                   ),
                 ),
-                const SizedBox(width: 12),
+                SizedBox(width: 12.w),
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Color(0xFF83BEA8)),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                    ),
-                    child: const TrText(
-                      'لا',
-                      style: TextStyle(color: Color(0xFF83BEA8)),
-                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const TrText('الغاء'),
                   ),
                 ),
               ],

@@ -83,7 +83,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
   Widget build(BuildContext context) {
     if (_hasError) {
       return ClipRRect(
-        borderRadius: .circular(12.r),
+        borderRadius: .circular(6.r),
         child: Container(
           color: Colors.black12,
           child: const Center(
@@ -94,7 +94,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
     }
     if (!_isInitialized || _controller == null) {
       return ClipRRect(
-        borderRadius: .circular(12.r),
+        borderRadius: .circular(6.r),
         child: Container(
           color: Colors.black12,
           child: const Center(child: CircularProgressIndicator.adaptive()),
@@ -103,7 +103,7 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
     }
 
     return ClipRRect(
-      borderRadius: .circular(12.r),
+      borderRadius: .circular(6.r),
       child: Stack(
         fit: .expand,
         children: [

@@ -14,7 +14,6 @@ import 'config/env_config.dart';
 import 'core/utils/background/workmanager_initializer.dart';
 import 'core/utils/database/shared_pref_helper.dart';
 import 'core/utils/database/shared_pref_keys.dart';
-import 'features/auth/auth/present/bloc/auth_bloc.dart';
 import 'muein_orders_app.dart';
 import 'core/widgets/custom_error_widget.dart';
 import 'core/app_observer.dart';
@@ -91,10 +90,10 @@ Future<void> _initializeApp() async {
       await getIt<FirebaseMessagingService>().initialize();
     }
     if (kDebugMode) {
-      await SharedPrefHelper.setSecuredString(
-        key: SharedPrefKeys.jwtToken,
-        value: ' 75|p3B7hh4EpWaP2TH130nLbfGXqkjQQMqRvcJ5pcGa91a37a6b',
-      );
+      // await SharedPrefHelper.setSecuredString(
+      //   key: SharedPrefKeys.jwtToken,
+      //   value: ' 75|p3B7hh4EpWaP2TH130nLbfGXqkjQQMqRvcJ5pcGa91a37a6b',
+      // );
       //  await SharedPrefHelper.clearAllData();
       //  await SharedPrefHelper.clearAllSecuredData();
     }

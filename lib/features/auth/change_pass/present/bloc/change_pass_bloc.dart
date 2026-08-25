@@ -3,10 +3,9 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../../core/networking/api_result.dart';
+import '../../domain/entities/change_pass_req_entity.dart';
 import '../../domain/usecases/change_pass_usecase.dart';
-
 part 'change_pass_bloc.freezed.dart';
 part 'change_pass_event.dart';
 part 'change_pass_state.dart';
@@ -18,31 +17,19 @@ class ChangePassBloc extends Bloc<ChangePassEvent, ChangePassState> {
   ChangePassBloc(this.sendPassResetEmailUseCase)
     : super(
         const ChangePassState.loaded(
-          password: PasswordFormInput.pure(),
-          confirmPassword: PasswordFormInput.pure(),
-          formzSubmissionStatus: FormzSubmissionStatus.initial,
+          changePasswordReq: ChangePasswordReqEntity(),
+          formzSubmissionStatus: .initial,
         ),
       ) {
     on<ChangePassEvent>((event, emit) async {
       await event.when(
-        dataChanged: (password, confirmPassword) async {
+        dataChanged: (changePasswordReq) async {
           state.mapOrNull(
             loaded: (state) {
-              final isValid = Formz.validate([
-                ConfirmPasswordFormInput.dirty(
-                  value: password?.value ?? state.password.value,
-                  password:
-                      confirmPassword?.value ?? state.confirmPassword.value,
-                ),
-              ]);
               customLoaded(
                 emit: emit,
                 state: state,
-                password: password ?? state.password,
-                confirmPassword: confirmPassword ?? state.confirmPassword,
-                formzSubmissionStatus: isValid
-                    ? FormzSubmissionStatus.success
-                    : FormzSubmissionStatus.initial,
+                changePasswordReq: changePasswordReq,
               );
             },
           );
@@ -50,32 +37,18 @@ class ChangePassBloc extends Bloc<ChangePassEvent, ChangePassState> {
         update: () async {
           await state.mapOrNull(
             loaded: (state) async {
-              emit(
-                state.copyWith(
-                  formzSubmissionStatus: FormzSubmissionStatus.inProgress,
-                ),
-              );
+              emit(state.copyWith(formzSubmissionStatus: .inProgress));
               final res = await sendPassResetEmailUseCase.update(
-                password: state.password.value,
+                password: state.changePasswordReq.password?.value ?? '',
               );
               await res.when(
                 success: (_) {
                   emit(const ChangePassState.success());
-                  customLoaded(
-                    emit: emit,
-                    state: state,
-                    password: const PasswordFormInput.pure(),
-                    confirmPassword: const PasswordFormInput.pure(),
-                  );
+                  customLoaded(emit: emit, state: state);
                 },
                 failure: (e) {
-                  emit(ChangePassState.failure(e.toString()));
-                  customLoaded(
-                    emit: emit,
-                    state: state,
-                    password: const PasswordFormInput.pure(),
-                    confirmPassword: const PasswordFormInput.pure(),
-                  );
+                  emit(.failure(e.toString()));
+                  customLoaded(emit: emit, state: state);
                 },
               );
             },
@@ -87,16 +60,21 @@ class ChangePassBloc extends Bloc<ChangePassEvent, ChangePassState> {
   customLoaded({
     required Emitter<ChangePassState> emit,
     required _Loaded state,
-    PasswordFormInput? password,
-    PasswordFormInput? confirmPassword,
+    ChangePasswordReqEntity? changePasswordReq,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     emit(
-      ChangePassState.loaded(
-        password: password ?? state.password,
-        confirmPassword: confirmPassword ?? state.confirmPassword,
+      state.copyWith(
+        changePasswordReq: changePasswordReq ?? state.changePasswordReq,
         formzSubmissionStatus:
-            formzSubmissionStatus ?? FormzSubmissionStatus.initial,
+            Formz.validate([
+              ConfirmPasswordFormInput.dirty(
+                value: changePasswordReq?.password?.value ?? '',
+                password: changePasswordReq?.confirmPassword?.value ?? '',
+              ),
+            ])
+            ? .success
+            : .initial,
       ),
     );
   }

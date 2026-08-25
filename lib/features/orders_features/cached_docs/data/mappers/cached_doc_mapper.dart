@@ -1,3 +1,5 @@
+import 'package:form_inputs/form_inputs/generic_form_input.dart';
+
 import '../../../docs/domain/entities/doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
 import '../datasources/local_data_src/drift/app_database.dart';
@@ -18,7 +20,7 @@ extension CreateCachedDocMapper on CreateCachedDocEntity {
       itemId: itemId,
       unitId: unitId,
       files: files.map((file) {
-        return DocMediaEntity(
+        return UpdateDocMediaEntity(
           id: file.id,
           docId: file.docId,
           localFilePath: file.localFilePath,
@@ -27,8 +29,8 @@ extension CreateCachedDocMapper on CreateCachedDocEntity {
           fileUploadStatus: file.fileUploadStatus,
         );
       }).toList(),
-      latitude: latitude,
-      longitude: longitude,
+      latitude: GenericFormInput.dirty(value: latitude.toString()),
+      longitude: GenericFormInput.dirty(value: longitude.toString()),
     );
   }
 }

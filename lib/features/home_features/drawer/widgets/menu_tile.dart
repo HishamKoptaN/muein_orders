@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/widgets/translated_text.dart';
 
@@ -25,7 +26,7 @@ class MenuTile extends StatelessWidget {
                 color: textColor == Colors.black87
                     ? const Color(0xFF6C7072)
                     : textColor,
-                size: 22,
+                size: 22.r,
               ),
               child: icon!,
             )
@@ -34,7 +35,7 @@ class MenuTile extends StatelessWidget {
         title,
         style: TextStyle(
           color: textColor,
-          fontSize: 15,
+          fontSize: 15.sp,
           fontWeight: FontWeight.w500,
         ),
       ),

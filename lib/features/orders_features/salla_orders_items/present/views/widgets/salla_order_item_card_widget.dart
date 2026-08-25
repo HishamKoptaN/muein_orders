@@ -20,11 +20,11 @@ class SallaOrderItemCardWidget extends StatelessWidget {
     return Padding(
       padding: .symmetric(vertical: 2.w),
       child: Container(
-        padding: .all(12.r),
+        padding: .all(6.r),
         decoration: BoxDecoration(
           color: Colors.white,
           border: .all(color: const Color(0xFFF0EFEF)),
-          borderRadius: .circular(12.r),
+          borderRadius: .circular(6.r),
           boxShadow: const [
             BoxShadow(
               color: Colors.black12,

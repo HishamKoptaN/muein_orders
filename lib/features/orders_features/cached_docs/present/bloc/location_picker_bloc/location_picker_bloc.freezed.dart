@@ -55,11 +55,10 @@ extension LocationPickerEventPatterns on LocationPickerEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initialize value)?  initialize,TResult Function( _CheckClipboard value)?  checkClipboard,TResult Function( _PasteFromClipboardEvent value)?  pasteFromClipboardEvent,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _CheckClipboard value)?  checkClipboard,TResult Function( _PasteFromClipboardEvent value)?  pasteFromClipboardEvent,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Initialize() when initialize != null:
-return initialize(_that);case _CheckClipboard() when checkClipboard != null:
+case _CheckClipboard() when checkClipboard != null:
 return checkClipboard(_that);case _PasteFromClipboardEvent() when pasteFromClipboardEvent != null:
 return pasteFromClipboardEvent(_that);case _:
   return orElse();
@@ -79,11 +78,10 @@ return pasteFromClipboardEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initialize value)  initialize,required TResult Function( _CheckClipboard value)  checkClipboard,required TResult Function( _PasteFromClipboardEvent value)  pasteFromClipboardEvent,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _CheckClipboard value)  checkClipboard,required TResult Function( _PasteFromClipboardEvent value)  pasteFromClipboardEvent,}){
 final _that = this;
 switch (_that) {
-case _Initialize():
-return initialize(_that);case _CheckClipboard():
+case _CheckClipboard():
 return checkClipboard(_that);case _PasteFromClipboardEvent():
 return pasteFromClipboardEvent(_that);case _:
   throw StateError('Unexpected subclass');
@@ -102,11 +100,10 @@ return pasteFromClipboardEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initialize value)?  initialize,TResult? Function( _CheckClipboard value)?  checkClipboard,TResult? Function( _PasteFromClipboardEvent value)?  pasteFromClipboardEvent,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _CheckClipboard value)?  checkClipboard,TResult? Function( _PasteFromClipboardEvent value)?  pasteFromClipboardEvent,}){
 final _that = this;
 switch (_that) {
-case _Initialize() when initialize != null:
-return initialize(_that);case _CheckClipboard() when checkClipboard != null:
+case _CheckClipboard() when checkClipboard != null:
 return checkClipboard(_that);case _PasteFromClipboardEvent() when pasteFromClipboardEvent != null:
 return pasteFromClipboardEvent(_that);case _:
   return null;
@@ -125,10 +122,9 @@ return pasteFromClipboardEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initialize,TResult Function()?  checkClipboard,TResult Function()?  pasteFromClipboardEvent,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  checkClipboard,TResult Function()?  pasteFromClipboardEvent,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Initialize() when initialize != null:
-return initialize();case _CheckClipboard() when checkClipboard != null:
+case _CheckClipboard() when checkClipboard != null:
 return checkClipboard();case _PasteFromClipboardEvent() when pasteFromClipboardEvent != null:
 return pasteFromClipboardEvent();case _:
   return orElse();
@@ -148,10 +144,9 @@ return pasteFromClipboardEvent();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initialize,required TResult Function()  checkClipboard,required TResult Function()  pasteFromClipboardEvent,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  checkClipboard,required TResult Function()  pasteFromClipboardEvent,}) {final _that = this;
 switch (_that) {
-case _Initialize():
-return initialize();case _CheckClipboard():
+case _CheckClipboard():
 return checkClipboard();case _PasteFromClipboardEvent():
 return pasteFromClipboardEvent();case _:
   throw StateError('Unexpected subclass');
@@ -170,10 +165,9 @@ return pasteFromClipboardEvent();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initialize,TResult? Function()?  checkClipboard,TResult? Function()?  pasteFromClipboardEvent,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  checkClipboard,TResult? Function()?  pasteFromClipboardEvent,}) {final _that = this;
 switch (_that) {
-case _Initialize() when initialize != null:
-return initialize();case _CheckClipboard() when checkClipboard != null:
+case _CheckClipboard() when checkClipboard != null:
 return checkClipboard();case _PasteFromClipboardEvent() when pasteFromClipboardEvent != null:
 return pasteFromClipboardEvent();case _:
   return null;
@@ -182,38 +176,6 @@ return pasteFromClipboardEvent();case _:
 }
 
 }
-
-/// @nodoc
-
-
-class _Initialize implements LocationPickerEvent {
-  const _Initialize();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initialize);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'LocationPickerEvent.initialize()';
-}
-
-
-}
-
-
-
 
 /// @nodoc
 
@@ -396,13 +358,13 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( bool hasValidClipboardLocation,  LatLng? pastedLocation)?  loaded,TResult Function( ErrorInfo apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( bool hasValidClipboardLocation,  LatLng? pastedLocation)?  loaded,TResult Function( ErrorInfo errorInfo)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
 return loaded(_that.hasValidClipboardLocation,_that.pastedLocation);case _Failure() when failure != null:
-return failure(_that.apiErrorModel);case _:
+return failure(_that.errorInfo);case _:
   return orElse();
 
 }
@@ -420,13 +382,13 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( bool hasValidClipboardLocation,  LatLng? pastedLocation)  loaded,required TResult Function( ErrorInfo apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( bool hasValidClipboardLocation,  LatLng? pastedLocation)  loaded,required TResult Function( ErrorInfo errorInfo)  failure,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Loaded():
 return loaded(_that.hasValidClipboardLocation,_that.pastedLocation);case _Failure():
-return failure(_that.apiErrorModel);case _:
+return failure(_that.errorInfo);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -443,13 +405,13 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( bool hasValidClipboardLocation,  LatLng? pastedLocation)?  loaded,TResult? Function( ErrorInfo apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( bool hasValidClipboardLocation,  LatLng? pastedLocation)?  loaded,TResult? Function( ErrorInfo errorInfo)?  failure,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
 return loaded(_that.hasValidClipboardLocation,_that.pastedLocation);case _Failure() when failure != null:
-return failure(_that.apiErrorModel);case _:
+return failure(_that.errorInfo);case _:
   return null;
 
 }
@@ -593,10 +555,10 @@ as LatLng?,
 
 
 class _Failure implements LocationPickerState {
-  const _Failure({required this.apiErrorModel});
+  const _Failure({required this.errorInfo});
   
 
- final  ErrorInfo apiErrorModel;
+ final  ErrorInfo errorInfo;
 
 /// Create a copy of LocationPickerState
 /// with the given fields replaced by the non-null parameter values.
@@ -608,16 +570,16 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.errorInfo, errorInfo) || other.errorInfo == errorInfo));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,apiErrorModel);
+int get hashCode => Object.hash(runtimeType,errorInfo);
 
 @override
 String toString() {
-  return 'LocationPickerState.failure(apiErrorModel: $apiErrorModel)';
+  return 'LocationPickerState.failure(errorInfo: $errorInfo)';
 }
 
 
@@ -628,11 +590,11 @@ abstract mixin class _$FailureCopyWith<$Res> implements $LocationPickerStateCopy
   factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) _then) = __$FailureCopyWithImpl;
 @useResult
 $Res call({
- ErrorInfo apiErrorModel
+ ErrorInfo errorInfo
 });
 
 
-$ErrorInfoCopyWith<$Res> get apiErrorModel;
+$ErrorInfoCopyWith<$Res> get errorInfo;
 
 }
 /// @nodoc
@@ -645,9 +607,9 @@ class __$FailureCopyWithImpl<$Res>
 
 /// Create a copy of LocationPickerState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? apiErrorModel = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? errorInfo = null,}) {
   return _then(_Failure(
-apiErrorModel: null == apiErrorModel ? _self.apiErrorModel : apiErrorModel // ignore: cast_nullable_to_non_nullable
+errorInfo: null == errorInfo ? _self.errorInfo : errorInfo // ignore: cast_nullable_to_non_nullable
 as ErrorInfo,
   ));
 }
@@ -656,10 +618,10 @@ as ErrorInfo,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ErrorInfoCopyWith<$Res> get apiErrorModel {
+$ErrorInfoCopyWith<$Res> get errorInfo {
   
-  return $ErrorInfoCopyWith<$Res>(_self.apiErrorModel, (value) {
-    return _then(_self.copyWith(apiErrorModel: value));
+  return $ErrorInfoCopyWith<$Res>(_self.errorInfo, (value) {
+    return _then(_self.copyWith(errorInfo: value));
   });
 }
 }

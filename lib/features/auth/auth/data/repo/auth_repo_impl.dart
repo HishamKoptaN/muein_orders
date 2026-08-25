@@ -1,14 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../../core/utils/database/shared_pref_helper.dart';
-import '../../../../../core/utils/database/shared_pref_keys.dart';
 import '../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../../core/errors/handlers/api_error_handler/error_handler.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../../core/utils/services/auth_storage_service.dart';
-import '../../../../../core/utils/services/device_service.dart';
-import '../../../../../core/utils/services/firebase_messaging/firebase_messaging_service.dart';
 import '../../../../../core/utils/services/token_service.dart';
 import '../../domain/repo/auth_repo.dart';
 import '../datasources/auth_api.dart';
@@ -29,17 +25,14 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<ApiResult<void>> checkFirebase() async {
-    if (await SharedPrefHelper.getBool(key: SharedPrefKeys.rememberMe)) {
-      try {
-        if (_fa.currentUser == null) {
-          return const ApiResult.failure(errorInfo: ErrorInfo(message: ''));
-        }
-        return const ApiResult.success(data: null);
-      } catch (e) {
-        return ApiResult.failure(errorInfo: ErrorHandler.handle(error: e));
+    try {
+      if (_fa.currentUser == null) {
+        return const ApiResult.failure(errorInfo: ErrorInfo(message: ''));
       }
+      return const ApiResult.success(data: null);
+    } catch (e) {
+      return ApiResult.failure(errorInfo: ErrorHandler.handle(error: e));
     }
-    return signOut();
   }
 
   @override
@@ -59,8 +52,6 @@ class AuthRepoImpl implements AuthRepo {
           .authToken(
             exchangeToken: ExchangeTokenReqBodyModel(
               idToken: await _tokenService.getIdToken(forceRefresh: true),
-              fcmToken: await FirebaseMessagingService.getFcmToken(),
-              device: await DeviceService.getDeviceInfo(),
             ),
           )
           .then((result) async {

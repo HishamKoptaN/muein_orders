@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/widgets/buttons/custom_button.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/create_expense_entity.dart';
 import '../blocs/bloc/expenses_bloc.dart';
-import '../blocs/financial_bloc/financial_bloc.dart';
 
 class CreateExpenseView extends StatefulWidget {
   const CreateExpenseView({super.key});
@@ -91,33 +87,33 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
                       },
                     ),
                     const SizedBox(height: 15),
-                    CustomBtnWidget(
-                      key: const Key('button'),
-                      text: 'إضافة',
-                      onPressed: () {
-                        // getItFinancialBloc>().add(
-                        //   FinancialEvent.updateData(
-                        //     createExpenseReqEntity:
-                        //         createExpenseReqEntity?.copyWith(
-                        //           amount: const GenericFormzInput.dirty('75'),
-                        //           notes: const GenericFormzInput.dirty('100'),
-                        //         ) ??
-                        //         CreateExpenseReqEntity(
-                        //           amount: const GenericFormzInput.dirty('75'),
-                        //           notes: const GenericFormzInput.dirty(
-                        //             'مصاريف تنقل',
-                        //           ),
-                        //         ),
-                        //   ),
-                        // );
-                        if (formzSubmissionStatus?.isSuccess == true) {
-                          getIt<ExpensesBloc>().add(
-                            const ExpensesEvent.create(),
-                          );
-                        }
-                      },
-                      formzSubmissionStatus: formzSubmissionStatus,
-                    ),
+                    // FilledButton(
+                    //   key: const Key('button'),
+                    //   text: 'إضافة',
+                    //   onPressed: () {
+                    //     // getItFinancialBloc>().add(
+                    //     //   FinancialEvent.updateData(
+                    //     //     createExpenseReqEntity:
+                    //     //         createExpenseReqEntity?.copyWith(
+                    //     //           amount: const GenericFormzInput.dirty('75'),
+                    //     //           notes: const GenericFormzInput.dirty('100'),
+                    //     //         ) ??
+                    //     //         CreateExpenseReqEntity(
+                    //     //           amount: const GenericFormzInput.dirty('75'),
+                    //     //           notes: const GenericFormzInput.dirty(
+                    //     //             'مصاريف تنقل',
+                    //     //           ),
+                    //     //         ),
+                    //     //   ),
+                    //     // );
+                    //     if (formzSubmissionStatus?.isSuccess == true) {
+                    //       getIt<ExpensesBloc>().add(
+                    //         const ExpensesEvent.create(),
+                    //       );
+                    //     }
+                    //   },
+                    //   formzSubmissionStatus: formzSubmissionStatus,
+                    // ),
                     const SizedBox(height: 80),
                   ],
                 ),

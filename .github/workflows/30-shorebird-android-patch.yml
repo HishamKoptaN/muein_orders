@@ -83,32 +83,20 @@ jobs:
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
-          echo "🔍 التحقق السريع من إمكانية تطبيق الباتش..."
-          echo "   للإصدار: $VERSION_CODE ($VERSION_NAME)"
-
-          # استخدام --dry-run للتحقق السريع بدون بناء كامل
           if ! shorebird patch android \
             --dart-define=ENV=prod \
             --flavor=prod \
             --release-version=$VERSION_NAME+$VERSION_CODE \
             --dry-run 2>&1 | tee patch_output.log; then
-            
-            # التحقق إذا كان الفشل بسبب تغييرات native
             if grep -q "Your app contains native changes, which cannot be applied with a patch" patch_output.log; then
-              echo "❌ فشل التحقق: توجد تغييرات Native!"
-              echo ""
               echo "requires_new_release=true" >> $GITHUB_OUTPUT
-              exit 0  # نخرج بنجاح لكن مع إشارة أننا نحتاج release
+              exit 0  
             else
-              echo "❌ فشل الباتش لسبب آخر"
               cat patch_output.log
               exit 1
             fi
           fi
-
-          echo "✅ التحقق نجح - يمكن تطبيق الباتش"
           echo "requires_new_release=false" >> $GITHUB_OUTPUT
-
       - name: Execute Shorebird Patch
         if: steps.verify.outputs.requires_new_release != 'true'
         env:

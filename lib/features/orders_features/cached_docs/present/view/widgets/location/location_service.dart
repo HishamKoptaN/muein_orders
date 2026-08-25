@@ -30,26 +30,26 @@ class LocationService {
       context: context,
       builder: (context) {
         return AlertDialog(
-        title: const TrText('خدمة الموقع معطلة'),
-        content: const TrText(
-          'يرجى تفعيل خدمة الموقع في إعدادات الجهاز لتحديد موقعك الحالي',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const TrText('إلغاء'),
+          title: const TrText('خدمة الموقع معطلة'),
+          content: const TrText(
+            'يرجى تفعيل خدمة الموقع في إعدادات الجهاز لتحديد موقعك الحالي',
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              Geolocator.openLocationSettings();
-            },
-            child: const TrText('فتح الإعدادات'),
-          ),
-        ],
-      );
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const TrText('إلغاء'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Geolocator.openLocationSettings();
+              },
+              child: const TrText('فتح الإعدادات'),
+            ),
+          ],
+        );
       },
     );
   }
@@ -59,24 +59,26 @@ class LocationService {
       context: context,
       builder: (context) {
         return AlertDialog(
-        title: const TrText('إذن الموقع مرفوض'),
-        content: const TrText(
-          'تم رفض إذن الوصول إلى الموقع بشكل دائم. يرجى تفعيل الإذن من إعدادات التطبيق',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const TrText('إلغاء'),
+          title: const TrText('إذن الموقع مرفوض'),
+          content: const TrText(
+            'تم رفض إذن الوصول إلى الموقع بشكل دائم. يرجى تفعيل الإذن من إعدادات التطبيق',
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              Geolocator.openAppSettings();
-            },
-            child: const TrText('فتح الإعدادات'),
-          ),
-        ],
-      );
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const TrText('إلغاء'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Geolocator.openAppSettings();
+              },
+              child: const TrText('فتح الإعدادات'),
+            ),
+          ],
+        );
       },
     );
   }

@@ -30,19 +30,20 @@ class _NotificationsViewState extends State<NotificationsView> {
       appBar: const CustomAppBar(title: 'الإشعارات'),
       body: Container(
         color: const Color(0xFFFFFFFF),
-        width: double.infinity,
-        height: double.infinity,
+        width: .infinity,
+        height: .infinity,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: .circular(6.r),
             color: const Color(0xFFF7F7F7),
           ),
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: .start,
               children: [
                 const SizedBox(height: 8),
                 BlocBuilder<NotificationsBloc, NotificationsState>(
+                  bloc: getIt<NotificationsBloc>(),
                   builder: (context, state) {
                     return state.maybeWhen(
                       loaded: (notifications) {

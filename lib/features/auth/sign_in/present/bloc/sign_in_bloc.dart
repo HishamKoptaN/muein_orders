@@ -21,7 +21,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SignInEvent>((event, emit) async {
       await event.map(
         dataChanged: (e) async {
-          await state.maybeMap(
+          await state.mapOrNull(
             loaded: (loaded) {
               _emitCustomLoaded(
                 emit: emit,
@@ -29,7 +29,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
                 loaded: loaded,
               );
             },
-            orElse: () {},
           );
         },
         signIn: (e) async {

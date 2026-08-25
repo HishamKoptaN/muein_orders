@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DeviceModel {
 
- String get model; String get os;@JsonKey(name: 'device_id') String get deviceId;
+ String get model; String get os;@JsonKey(name: 'device_id') String get deviceId;@JsonKey(name: 'fcm_token') String get fcmToken;
 /// Create a copy of DeviceModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $DeviceModelCopyWith<DeviceModel> get copyWith => _$DeviceModelCopyWithImpl<Devi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeviceModel&&(identical(other.model, model) || other.model == model)&&(identical(other.os, os) || other.os == os)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeviceModel&&(identical(other.model, model) || other.model == model)&&(identical(other.os, os) || other.os == os)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,model,os,deviceId);
+int get hashCode => Object.hash(runtimeType,model,os,deviceId,fcmToken);
 
 @override
 String toString() {
-  return 'DeviceModel(model: $model, os: $os, deviceId: $deviceId)';
+  return 'DeviceModel(model: $model, os: $os, deviceId: $deviceId, fcmToken: $fcmToken)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $DeviceModelCopyWith<$Res>  {
   factory $DeviceModelCopyWith(DeviceModel value, $Res Function(DeviceModel) _then) = _$DeviceModelCopyWithImpl;
 @useResult
 $Res call({
- String model, String os,@JsonKey(name: 'device_id') String deviceId
+ String model, String os,@JsonKey(name: 'device_id') String deviceId,@JsonKey(name: 'fcm_token') String fcmToken
 });
 
 
@@ -65,11 +65,12 @@ class _$DeviceModelCopyWithImpl<$Res>
 
 /// Create a copy of DeviceModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? model = null,Object? os = null,Object? deviceId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? model = null,Object? os = null,Object? deviceId = null,Object? fcmToken = null,}) {
   return _then(_self.copyWith(
 model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
 as String,os: null == os ? _self.os : os // ignore: cast_nullable_to_non_nullable
 as String,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
+as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -155,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String model,  String os, @JsonKey(name: 'device_id')  String deviceId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String model,  String os, @JsonKey(name: 'device_id')  String deviceId, @JsonKey(name: 'fcm_token')  String fcmToken)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DeviceModel() when $default != null:
-return $default(_that.model,_that.os,_that.deviceId);case _:
+return $default(_that.model,_that.os,_that.deviceId,_that.fcmToken);case _:
   return orElse();
 
 }
@@ -176,10 +177,10 @@ return $default(_that.model,_that.os,_that.deviceId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String model,  String os, @JsonKey(name: 'device_id')  String deviceId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String model,  String os, @JsonKey(name: 'device_id')  String deviceId, @JsonKey(name: 'fcm_token')  String fcmToken)  $default,) {final _that = this;
 switch (_that) {
 case _DeviceModel():
-return $default(_that.model,_that.os,_that.deviceId);case _:
+return $default(_that.model,_that.os,_that.deviceId,_that.fcmToken);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +197,10 @@ return $default(_that.model,_that.os,_that.deviceId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String model,  String os, @JsonKey(name: 'device_id')  String deviceId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String model,  String os, @JsonKey(name: 'device_id')  String deviceId, @JsonKey(name: 'fcm_token')  String fcmToken)?  $default,) {final _that = this;
 switch (_that) {
 case _DeviceModel() when $default != null:
-return $default(_that.model,_that.os,_that.deviceId);case _:
+return $default(_that.model,_that.os,_that.deviceId,_that.fcmToken);case _:
   return null;
 
 }
@@ -211,12 +212,13 @@ return $default(_that.model,_that.os,_that.deviceId);case _:
 @JsonSerializable()
 
 class _DeviceModel implements DeviceModel {
-  const _DeviceModel({required this.model, required this.os, @JsonKey(name: 'device_id') required this.deviceId});
+  const _DeviceModel({required this.model, required this.os, @JsonKey(name: 'device_id') required this.deviceId, @JsonKey(name: 'fcm_token') required this.fcmToken});
   factory _DeviceModel.fromJson(Map<String, dynamic> json) => _$DeviceModelFromJson(json);
 
 @override final  String model;
 @override final  String os;
 @override@JsonKey(name: 'device_id') final  String deviceId;
+@override@JsonKey(name: 'fcm_token') final  String fcmToken;
 
 /// Create a copy of DeviceModel
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +233,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeviceModel&&(identical(other.model, model) || other.model == model)&&(identical(other.os, os) || other.os == os)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeviceModel&&(identical(other.model, model) || other.model == model)&&(identical(other.os, os) || other.os == os)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,model,os,deviceId);
+int get hashCode => Object.hash(runtimeType,model,os,deviceId,fcmToken);
 
 @override
 String toString() {
-  return 'DeviceModel(model: $model, os: $os, deviceId: $deviceId)';
+  return 'DeviceModel(model: $model, os: $os, deviceId: $deviceId, fcmToken: $fcmToken)';
 }
 
 
@@ -251,7 +253,7 @@ abstract mixin class _$DeviceModelCopyWith<$Res> implements $DeviceModelCopyWith
   factory _$DeviceModelCopyWith(_DeviceModel value, $Res Function(_DeviceModel) _then) = __$DeviceModelCopyWithImpl;
 @override @useResult
 $Res call({
- String model, String os,@JsonKey(name: 'device_id') String deviceId
+ String model, String os,@JsonKey(name: 'device_id') String deviceId,@JsonKey(name: 'fcm_token') String fcmToken
 });
 
 
@@ -268,11 +270,12 @@ class __$DeviceModelCopyWithImpl<$Res>
 
 /// Create a copy of DeviceModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? model = null,Object? os = null,Object? deviceId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? model = null,Object? os = null,Object? deviceId = null,Object? fcmToken = null,}) {
   return _then(_DeviceModel(
 model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
 as String,os: null == os ? _self.os : os // ignore: cast_nullable_to_non_nullable
 as String,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
+as String,fcmToken: null == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

@@ -3,12 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/networking/api_result.dart';
 import '../../../../../../core/utils/app_file_manager.dart';
-import '../../../../../../core/utils/background/workmanager_initializer.dart';
-import '../../../../docs/domain/entities/doc_entity.dart';
 import '../../../domain/entities/create_cached_doc_entity.dart';
 import '../../../domain/usecases/cached_docs_use_cases.dart';
 
@@ -85,26 +81,23 @@ class CachedDocBloc extends Bloc<CachedDocEvent, CachedDocState> {
     required Loaded? loaded,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
-    CreateCachedDocEntity currentEntity =
-        loaded?.createCachedDoc ?? const CreateCachedDocEntity();
-    if (currentEntity.files.isEmpty) {
-      currentEntity = currentEntity.copyWith(
-        files: List.generate(4, (_) {
-          return const DocMediaEntity();
-        }),
-      );
-    }
-    final bool isValid = Formz.validate([]);
     emit(
       loaded?.copyWith(
-            createCachedDoc: currentEntity,
             formzSubmissionStatus:
-                formzSubmissionStatus ?? (isValid ? .success : .failure),
+                formzSubmissionStatus ??
+                (Formz.validate([
+                      loaded.createCachedDoc.latitude,
+                      loaded.createCachedDoc.longitude,
+                      ...loaded.createCachedDoc.files.map((e) {
+                        return e.localFilePath;
+                      }),
+                    ])
+                    ? .success
+                    : .failure),
           ) ??
           CachedDocState.loaded(
-            createCachedDoc: currentEntity,
-            formzSubmissionStatus:
-                formzSubmissionStatus ?? (isValid ? .success : .failure),
+            createCachedDoc: const CreateCachedDocEntity(),
+            formzSubmissionStatus: formzSubmissionStatus ?? .initial,
           ),
     );
   }

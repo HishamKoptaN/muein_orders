@@ -37,7 +37,6 @@ class FirebaseMessagingService {
 
   Future<void> _requestPermission() async {
     if (DeviceService.isDesktopPlatform()) {
-      log('💻 Desktop platform - skipping notification permissions');
       return;
     }
     final settings = await _firebaseMessaging.requestPermission(
@@ -51,16 +50,12 @@ class FirebaseMessagingService {
     );
     switch (settings.authorizationStatus) {
       case AuthorizationStatus.authorized:
-        log('✅ تم منح إذن الإشعارات');
         break;
       case AuthorizationStatus.provisional:
-        log('⚠️ إذن مؤقت للإشعارات');
         break;
       case AuthorizationStatus.denied:
-        log('🚫 تم رفض إذن الإشعارات');
         break;
       case AuthorizationStatus.notDetermined:
-        log('❓ لم يتم تحديد إذن الإشعارات');
         break;
     }
   }
@@ -73,25 +68,20 @@ class FirebaseMessagingService {
       if (Platform.isIOS) {
         final apnsToken = await _firebaseMessaging.getAPNSToken();
         if (apnsToken == null) {
-          log('⚠️ APNS token غير متوفر بعد، سيتم إعادة المحاولة...');
           return 'apns_token_not_ready';
         }
-        log('📱 APNS Token: $apnsToken');
       }
 
       final token = await _firebaseMessaging.getToken();
       if (token != null) {
-        log('📌 تم جلب FCM Token: $token');
         return token;
       } else {
         return 'no_fcm_token_available';
       }
     } catch (e) {
-      log('❌ خطأ في جلب FCM Token: $e');
       return e.toString();
     }
   }
 
-  //! مراقبة تغييرات الـ Token
   Stream<String> get onTokenRefresh => _firebaseMessaging.onTokenRefresh;
 }

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../blocs/financial_bloc/financial_bloc.dart';
 import 'expenses_view.dart';
@@ -63,17 +62,17 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
                         SizedBox(height: 16.h),
                         Text(
                           'الرصيد الحالي',
-                          style: AppTextStyles.arabicBodyLarge.copyWith(
-                            color: Colors.white70,
-                          ),
+                          // style: AppTextStyles.arabicBodyLarge.copyWith(
+                          //   color: Colors.white70,
+                          // ),
                         ),
                         SizedBox(height: 8.h),
                         Text(
                           '${state.financialAccount?.balance ?? 0}',
-                          style: AppTextStyles.arabicTitleLarge.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          //  style: AppTextStyles.arabicTitleLarge.copyWith(
+                          //    color: Colors.white,
+                          //    fontWeight: FontWeight.bold,
+                          //  ),
                         ),
                       ],
                     ),
@@ -122,14 +121,14 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
   }) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(12.r),
+      borderRadius: BorderRadius.circular(6.r),
       child: Container(
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
           //color: isPrimary
           //    ? AppColors.brandMint.withValues(alpha: 0.2)
           //    : AppColors.translucentFieldFill,
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(6.r),
           border: Border.all(
             //  color: isPrimary
             //      ? AppColors.brandMint.withValues(alpha: 0.5)
@@ -160,17 +159,17 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
                 children: [
                   Text(
                     title,
-                    style: AppTextStyles.arabicTitleMedium.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    //  style: AppTextStyles.arabicTitleMedium.copyWith(
+                    //    color: Colors.white,
+                    //    fontWeight: FontWeight.bold,
+                    //  ),
                   ),
                   SizedBox(height: 4.h),
                   Text(
                     subtitle,
-                    style: AppTextStyles.arabicBodySmall.copyWith(
-                      color: Colors.white70,
-                    ),
+                    //   style: AppTextStyles.arabicBodySmall.copyWith(
+                    //     color: Colors.white70,
+                    //   ),
                   ),
                 ],
               ),

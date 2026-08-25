@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 AppBarTheme appBarTheme({required ColorScheme colorScheme}) {
@@ -11,50 +10,29 @@ AppBarTheme appBarTheme({required ColorScheme colorScheme}) {
     shadowColor: colorScheme.shadow,
     centerTitle: true,
     toolbarHeight: 56.h,
+    leadingWidth: 50.w,
     titleSpacing: 16.w,
-    iconTheme: IconThemeData(color: colorScheme.onPrimary),
+    actionsPadding: .symmetric(horizontal: 10.w),
+    iconTheme: IconThemeData(
+      color: colorScheme.onPrimary,
+      size: 30.r,
+      opticalSize: 30.r,
+    ),
     actionsIconTheme: IconThemeData(
       color: colorScheme.onPrimary.withValues(alpha: 0.9),
+      size: 10.r,
     ),
     titleTextStyle: TextStyle(
       fontSize: 20.sp,
       fontWeight: FontWeight.w600,
       color: colorScheme.onPrimary,
     ),
-    systemOverlayStyle: SystemUiOverlayStyle.light,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(bottom: Radius.circular(12)),
+    systemOverlayStyle: .light,
+    shape: RoundedRectangleBorder(
+      borderRadius: .only(
+        bottomLeft: .circular(6.r),
+        bottomRight: .circular(6.r),
+      ),
     ),
   );
 }
-
-// AppBarTheme appBarTheme({
-//   required ColorScheme colorScheme,
-// }) {
-//   return AppBarTheme(
-//     backgroundColor: colorScheme.primary,
-//     foregroundColor: colorScheme.onPrimary,
-//     elevation: 4,
-//     scrolledUnderElevation: 4,
-//     shadowColor: colorScheme.shadow,
-//     centerTitle: true,
-//     toolbarHeight: 56.h,
-//     titleSpacing: 16.w,
-//     iconTheme: IconThemeData(color: colorScheme.onPrimary),
-//     actionsIconTheme: IconThemeData(
-//       color: colorScheme.onPrimary,
-//     ),
-//     titleTextStyle: TextStyle(
-//       fontSize: 20.sp,
-//       fontWeight: FontWeight.w600,
-//       color: colorScheme.onPrimary,
-//     ),
-//     systemOverlayStyle: SystemUiOverlayStyle.light,
-//     shape: RoundedRectangleBorder(
-//       borderRadius: .only(
-//         topLeft: .circular(24.r),
-//         topRight: .circular(24.r),
-//       ),
-//     ),
-//   );
-// }
