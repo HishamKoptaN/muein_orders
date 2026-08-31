@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_inputs/form_inputs.dart';
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/routing/navigation_service.dart';
+import '../../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../../core/widgets/translated_text.dart';
 import '../../../../forgot_password/present/views/forgot_pass_view.dart';
@@ -63,7 +64,8 @@ class SignInForm extends StatelessWidget {
           ),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: .spaceBetween,
+          crossAxisAlignment: .start,
           children: [
             TextButton(
               onPressed: () {
@@ -72,12 +74,10 @@ class SignInForm extends StatelessWidget {
                   routeName: ForgotPassView.routeName,
                 );
               },
-              child: const TrText(
+              child: TrText(
                 'نسيت كلمة المرور',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  decoration: TextDecoration.underline,
+                style: context.textTheme.labelLarge?.copyWith(
+                  color: context.colorScheme.onPrimary,
                 ),
               ),
             ),

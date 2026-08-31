@@ -10,12 +10,10 @@ class SallaOrderItemsWidget extends StatelessWidget {
     super.key,
     required this.items,
     required this.stat,
-    required this.filterTitle,
   });
 
   final List<SallaOrderItemEntity> items;
   final StatEntity stat;
-  final String filterTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,7 @@ class SallaOrderItemsWidget extends StatelessWidget {
                 Align(
                   alignment: .centerRight,
                   child: TrText(
-                    '$filterTitle ( ${items.length} )',
+                    '( ${items.length} )',
                     textAlign: .right,
                     style: context.textTheme.titleSmall,
                   ),

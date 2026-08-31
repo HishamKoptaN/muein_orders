@@ -1,5 +1,5 @@
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 
 abstract class ForgotPassRepo {
-  Future<ApiResult<void>> sendPassResetEmail({required String email});
+  Future<ExecuteGuard<void>> sendPassResetEmail({required String email});
 }

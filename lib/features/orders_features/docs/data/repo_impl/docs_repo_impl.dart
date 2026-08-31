@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../../core/networking/api_result.dart';
-import '../../../../../core/errors/api_error_model/api_error_model.dart';
+import 'package:error_handler/error_handler.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../cached_docs/data/datasources/local_data_src/drift/app_database.dart';
 import '../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 import '../../../cached_docs/data/models/cached_doc_model.dart';
@@ -27,7 +27,7 @@ class DocsRepoImpl implements DocsRepo {
   DocsRepoImpl({required this.docsApi, required this.db, required this.s3Repo});
 
   @override
-  Future<ApiResult<SallaOrderItemUnitEntity?>> updateDoc({
+  Future<ExecuteGuard<SallaOrderItemUnitEntity?>> updateDoc({
     required DocReqEntity docReq,
   }) async {
     await db.docsDao.updateUploadStatus(
@@ -45,7 +45,7 @@ class DocsRepoImpl implements DocsRepo {
       id: docReq.id,
       status: UploadStatus.uploaded.name,
     );
-    return const ApiResult.success(data: null);
+    return const ExecuteGuard.success(data: null);
   }
 
   Future<void> syncFiles(List<DocMediaEntry> docMediaFiles) async {
@@ -85,29 +85,29 @@ class DocsRepoImpl implements DocsRepo {
 
   Future<void> _uploadLocation({required DocReqEntity doc}) async {
     if ([
-        UploadStatus.init.name,
-        UploadStatus.uploaded.name,
-      ].contains(doc.locationUploadStatus)) {
-        return;
-      }
-  try {
-        await docsApi.updateDoc(
-          id: doc.id,
-          docReq: DocReqModel(
-            latitude: doc.latitude.toString(),
-            longitude: doc.longitude.toString(),
-          ),
-        );
-        await db.docsDao.updateDocLocationStatus(
-          id: doc.id,
-          status: UploadStatus.uploaded.name,
-        );
-      } catch (error) {
-        await db.docsDao.updateDocLocationStatus(
-          id: doc.id,
-          status: UploadStatus.failed.name,
-        );
-      }
+      UploadStatus.init.name,
+      UploadStatus.uploaded.name,
+    ].contains(doc.locationUploadStatus)) {
+      return;
+    }
+    try {
+      await docsApi.updateDoc(
+        id: doc.id,
+        docReq: DocReqModel(
+          latitude: doc.latitude.toString(),
+          longitude: doc.longitude.toString(),
+        ),
+      );
+      await db.docsDao.updateDocLocationStatus(
+        id: doc.id,
+        status: UploadStatus.uploaded.name,
+      );
+    } catch (error) {
+      await db.docsDao.updateDocLocationStatus(
+        id: doc.id,
+        status: UploadStatus.failed.name,
+      );
+    }
   }
 
   Future<String?> _uploadS3File({
@@ -174,7 +174,7 @@ class DocsRepoImpl implements DocsRepo {
   }
 
   @override
-  Future<ApiResult<void>> startUpload({required int id}) async {
+  Future<ExecuteGuard<void>> startUpload({required int id}) async {
     try {
       final docs =
           await (db.docsTable.select()..where((tbl) {
@@ -190,14 +190,14 @@ class DocsRepoImpl implements DocsRepo {
           ),
         );
       }
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (error) {
-      return const ApiResult.failure(errorInfo: ErrorInfo());
+      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
     }
   }
 
   @override
-  Future<ApiResult<void>> retryUpload({required int id}) async {
+  Future<ExecuteGuard<void>> retryUpload({required int id}) async {
     try {
       final doc =
           await (db.select(db.docsTable)..where((tbl) {
@@ -211,14 +211,14 @@ class DocsRepoImpl implements DocsRepo {
           longitude: doc.longitude.toString(),
         ),
       );
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (e) {
-      return const ApiResult.failure(errorInfo: ErrorInfo());
+      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
     }
   }
 
   @override
-  Future<ApiResult<void>> updateMedia({
+  Future<ExecuteGuard<void>> updateMedia({
     required DocMediaReqEntity docMediaReq,
   }) {
     throw UnimplementedError();

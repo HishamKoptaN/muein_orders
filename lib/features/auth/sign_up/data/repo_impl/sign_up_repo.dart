@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/errors/handlers/api_error_handler/error_handler.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../../../core/utils/services/token_service.dart';
 import '../../domain/entities/sign_up_req_entity.dart';
 import '../../domain/repo/sign_up_repo.dart';
@@ -17,7 +16,9 @@ class SignUpRepoImpl implements SignUpRepo {
   SignUpRepoImpl(this._api);
 
   @override
-  Future<ApiResult<void>> signUp({required SignUpReqEntity signUpReq}) async {
+  Future<ExecuteGuard<void>> signUp({
+    required SignUpReqEntity signUpReq,
+  }) async {
     try {
       await _firebaseAuth
           .createUserWithEmailAndPassword(
@@ -36,18 +37,18 @@ class SignUpRepoImpl implements SignUpRepo {
                   ),
                 )
                 .then((res) async {
-                  return const ApiResult.success(data: null);
+                  return const ExecuteGuard.success(data: null);
                 });
           });
 
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (e, st) {
       await FirebaseCrashlytics.instance.recordError(
         e,
         st,
         reason: 'FirebaseAuthException during sign up: $e',
       );
-      return ApiResult.failure(errorInfo: ErrorHandler.handle(error: e));
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }
   }
 }

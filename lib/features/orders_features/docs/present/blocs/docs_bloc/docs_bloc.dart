@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:error_handler/error_handler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../core/entities/meta_entity.dart';
-import '../../../../../../core/errors/api_error_model/api_error_model.dart';
 import '../../../../cached_docs/data/datasources/local_data_src/drift/app_database.dart';
 import '../../../../salla_orders_items/domain/entities/salla_order_items_res_entity.dart';
 import '../../../domain/usecases/docs_use_cases.dart';

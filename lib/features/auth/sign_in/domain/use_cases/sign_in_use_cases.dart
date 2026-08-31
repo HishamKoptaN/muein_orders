@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../repo/sign_in_repo.dart';
 
 @lazySingleton
 class SignInUseCases {
   final SignInRepo _repository;
   SignInUseCases(this._repository);
-  Future<ApiResult<void>> signIn({
+  Future<ExecuteGuard<void>> signIn({
     required String email,
     required String password,
   }) async {

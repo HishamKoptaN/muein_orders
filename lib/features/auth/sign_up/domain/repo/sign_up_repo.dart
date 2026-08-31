@@ -1,6 +1,6 @@
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../entities/sign_up_req_entity.dart';
 
 abstract class SignUpRepo {
-  Future<ApiResult<void>> signUp({required SignUpReqEntity signUpReq});
+  Future<ExecuteGuard<void>> signUp({required SignUpReqEntity signUpReq});
 }

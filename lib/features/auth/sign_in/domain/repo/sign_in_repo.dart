@@ -1,8 +1,8 @@
 import '../../../../../core/models/user_data.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 
 abstract class SignInRepo {
-  Future<ApiResult<UserData>> signIn({
+  Future<ExecuteGuard<UserData>> signIn({
     required String email,
     required String password,
   });

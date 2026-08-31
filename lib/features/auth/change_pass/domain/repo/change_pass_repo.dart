@@ -1,5 +1,5 @@
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 
 abstract class ChangePassRepo {
-  Future<ApiResult<void>> update({required String password});
+  Future<ExecuteGuard<void>> update({required String password});
 }

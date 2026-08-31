@@ -11,7 +11,7 @@ import 'widgets/salla_order_items_widget.dart';
 class SallaOrderItemsView extends StatefulWidget {
   final StatEntity stat;
   const SallaOrderItemsView({super.key, required this.stat});
-  static const String routeName = 'orders';
+  static const String routeName = 'items';
   @override
   State<SallaOrderItemsView> createState() {
     return _SallaOrderItemsViewState();
@@ -63,7 +63,6 @@ class _SallaOrderItemsViewState extends State<SallaOrderItemsView> {
               return SallaOrderItemsWidget(
                 items: state.orderItemsRes.sallaOrderItems,
                 stat: widget.stat,
-                filterTitle: '',
               );
             },
             orElse: () {

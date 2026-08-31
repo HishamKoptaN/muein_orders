@@ -4,7 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../domain/usecases/send_pass_reset_email_usecase.dart';
 
 part 'forgot_pass_bloc.freezed.dart';

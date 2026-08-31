@@ -4,8 +4,7 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../domain/entities/sign_up_req_entity.dart';
 import '../../domain/use_cases/sign_up_use_cases.dart';
 part 'sign_up_bloc.freezed.dart';
@@ -39,7 +38,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
                 ) async {
                   await result.when(
                     success: (_) async {
-                      emit(const SignUpState.success());
+                      emit(const .success());
                     },
                     failure: (apiErrorModel) {
                       emitCustomFailure(

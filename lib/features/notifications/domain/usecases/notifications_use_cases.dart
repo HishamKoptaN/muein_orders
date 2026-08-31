@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../entities/notification_entity.dart';
 import '../repo/notifications_repo.dart';
 
@@ -9,11 +9,11 @@ class NotificationsUseCases {
   final NotificationsRepo notificationsRepo;
   NotificationsUseCases(this.notificationsRepo);
 
-  Future<ApiResult<List<NotificationEntity>>> getNotifications() async {
+  Future<ExecuteGuard<List<NotificationEntity>>> getNotifications() async {
     return await notificationsRepo.getNotifications();
   }
 
-  Future<ApiResult<void>> markAsRead({required String id}) async {
+  Future<ExecuteGuard<void>> markAsRead({required String id}) async {
     return await notificationsRepo.markAsRead(id: id);
   }
 }

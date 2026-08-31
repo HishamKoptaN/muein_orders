@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../s3/data/repo/s3_repo.dart';
 import '../entities/profile_res_entity.dart';
@@ -16,11 +14,11 @@ class ProfileUseCases {
   final S3Repo s3Repo;
   const ProfileUseCases(this._profileRepo, this.s3Repo);
 
-  Future<ApiResult<ProfileResEntity>> getProfile() async {
+  Future<ExecuteGuard<ProfileResEntity>> getProfile() async {
     return await _profileRepo.getProfile();
   }
 
-  Future<ApiResult<ProfileResEntity>> updateProfile({
+  Future<ExecuteGuard<ProfileResEntity>> updateProfile({
     required UpdateProfileReqEntity updateProfileReqEntity,
   }) async {
     if (updateProfileReqEntity.avatar != null) {
@@ -42,13 +40,13 @@ class ProfileUseCases {
               ),
             );
           } catch (e) {
-            return const ApiResult.failure(
+            return const ExecuteGuard.failure(
               errorInfo: ErrorInfo(message: 'Failed to upload avatar'),
             );
           }
         },
         failure: (failure) {
-          return ApiResult.failure(errorInfo: failure);
+          return ExecuteGuard.failure(errorInfo: failure);
         },
       );
     } else {

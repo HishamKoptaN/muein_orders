@@ -55,11 +55,10 @@ extension OrderItemsEventPatterns on OrderItemsEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Watch value)?  watch,TResult Function( _Get value)?  get,TResult Function( _FilterChanged value)?  filterChanged,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Get value)?  get,TResult Function( _FilterChanged value)?  filterChanged,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Watch() when watch != null:
-return watch(_that);case _Get() when get != null:
+case _Get() when get != null:
 return get(_that);case _FilterChanged() when filterChanged != null:
 return filterChanged(_that);case _:
   return orElse();
@@ -79,11 +78,10 @@ return filterChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Watch value)  watch,required TResult Function( _Get value)  get,required TResult Function( _FilterChanged value)  filterChanged,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Get value)  get,required TResult Function( _FilterChanged value)  filterChanged,}){
 final _that = this;
 switch (_that) {
-case _Watch():
-return watch(_that);case _Get():
+case _Get():
 return get(_that);case _FilterChanged():
 return filterChanged(_that);case _:
   throw StateError('Unexpected subclass');
@@ -102,11 +100,10 @@ return filterChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Watch value)?  watch,TResult? Function( _Get value)?  get,TResult? Function( _FilterChanged value)?  filterChanged,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Get value)?  get,TResult? Function( _FilterChanged value)?  filterChanged,}){
 final _that = this;
 switch (_that) {
-case _Watch() when watch != null:
-return watch(_that);case _Get() when get != null:
+case _Get() when get != null:
 return get(_that);case _FilterChanged() when filterChanged != null:
 return filterChanged(_that);case _:
   return null;
@@ -125,10 +122,9 @@ return filterChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  watch,TResult Function( int subCategoryId)?  get,TResult Function( UploadStatus? status)?  filterChanged,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId)?  get,TResult Function( UploadStatus? status)?  filterChanged,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Watch() when watch != null:
-return watch();case _Get() when get != null:
+case _Get() when get != null:
 return get(_that.subCategoryId);case _FilterChanged() when filterChanged != null:
 return filterChanged(_that.status);case _:
   return orElse();
@@ -148,10 +144,9 @@ return filterChanged(_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  watch,required TResult Function( int subCategoryId)  get,required TResult Function( UploadStatus? status)  filterChanged,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId)  get,required TResult Function( UploadStatus? status)  filterChanged,}) {final _that = this;
 switch (_that) {
-case _Watch():
-return watch();case _Get():
+case _Get():
 return get(_that.subCategoryId);case _FilterChanged():
 return filterChanged(_that.status);case _:
   throw StateError('Unexpected subclass');
@@ -170,10 +165,9 @@ return filterChanged(_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  watch,TResult? Function( int subCategoryId)?  get,TResult? Function( UploadStatus? status)?  filterChanged,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId)?  get,TResult? Function( UploadStatus? status)?  filterChanged,}) {final _that = this;
 switch (_that) {
-case _Watch() when watch != null:
-return watch();case _Get() when get != null:
+case _Get() when get != null:
 return get(_that.subCategoryId);case _FilterChanged() when filterChanged != null:
 return filterChanged(_that.status);case _:
   return null;
@@ -182,38 +176,6 @@ return filterChanged(_that.status);case _:
 }
 
 }
-
-/// @nodoc
-
-
-class _Watch implements OrderItemsEvent {
-  const _Watch();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Watch);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'OrderItemsEvent.watch()';
-}
-
-
-}
-
-
-
 
 /// @nodoc
 

@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/errors/handlers/api_error_handler/error_handler.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../domain/entities/order_type_res_entity.dart';
 import '../../domain/repo/stats_repo.dart';
 import '../datasources/stats_api.dart';
@@ -13,16 +13,16 @@ class StatsRepoImpl implements StatsRepo {
   const StatsRepoImpl(this._remote);
 
   @override
-  Future<ApiResult<List<StatEntity>>> stats() async {
+  Future<ExecuteGuard<List<StatEntity>>> stats() async {
     try {
       final model = await _remote.stats();
-      return ApiResult.success(
+      return ExecuteGuard.success(
         data: model.map((e) {
           return e.toEntity();
         }).toList(),
       );
     } catch (e) {
-      return ApiResult.failure(errorInfo: ErrorHandler.handle(error: e));
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }
   }
 }

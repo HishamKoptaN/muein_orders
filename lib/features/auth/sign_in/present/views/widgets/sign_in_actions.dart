@@ -24,11 +24,8 @@ class SignInActions extends StatelessWidget {
               : null,
           child: formzSubmissionStatus.isInProgress
               ? const CustomCircularProgress()
-              : TrText(
+              : const TrText(
                   'تسجيل الدخول',
-                  style: context.textTheme.labelLarge?.copyWith(
-                    color: context.colorScheme.onPrimary,
-                  ),
                 ),
         ),
         TextButton(

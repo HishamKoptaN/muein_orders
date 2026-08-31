@@ -1,8 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/networking/api_result.dart';
-import '../../../../core/errors/handlers/api_error_handler/error_handler.dart';
-import '../../../../core/errors/api_error_model/api_error_model.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../domain/entities/create_expense_entity.dart';
 import '../../domain/entities/expenses_res_entity.dart';
 import '../../domain/entities/financial_account_entity.dart';
@@ -16,38 +14,38 @@ class FinancialRepoImpl implements FinancialRepo {
   FinancialRepoImpl(this.financialApi);
 
   @override
-  Future<ApiResult<FinancialAccountEntity?>> getFinancialAccounts() async {
+  Future<ExecuteGuard<FinancialAccountEntity?>> getFinancialAccounts() async {
     try {
       final res = await financialApi.getFinancialAccount();
       if (res.isNotEmpty) {
-        return ApiResult.success(data: res.first.toEntity());
+        return ExecuteGuard.success(data: res.first.toEntity());
       }
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (error) {
-      return const ApiResult.failure(errorInfo: ErrorInfo());
+      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
     }
   }
 
   @override
-  Future<ApiResult<ExpensesResEntity?>> get({required int page}) async {
+  Future<ExecuteGuard<ExpensesResEntity?>> get({required int page}) async {
     try {
       final res = await financialApi.get(page: page);
-      return ApiResult.success(data: res.toEntity());
+      return ExecuteGuard.success(data: res.toEntity());
     } catch (error, stackTrace) {
-      return const ApiResult.failure(errorInfo: ErrorInfo());
+      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
     }
   }
 
   @override
-  Future<ApiResult<ExpenseEntity?>> create({
+  Future<ExecuteGuard<ExpenseEntity?>> create({
     required CreateExpenseReqEntity createExpenseReqEntity,
   }) async {
     try {
       final model = createExpenseReqEntity.toModel();
       final res = await financialApi.create(createExpenseModel: model);
-      return ApiResult.success(data: res.toEntity());
+      return ExecuteGuard.success(data: res.toEntity());
     } catch (error) {
-      return ApiResult.failure(errorInfo: ErrorHandler.handle(error: error));
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: error));
     }
   }
 }

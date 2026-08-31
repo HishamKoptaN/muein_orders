@@ -1,7 +1,7 @@
-import '../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../entities/notification_entity.dart';
 
 abstract class NotificationsRepo {
-  Future<ApiResult<List<NotificationEntity>>> getNotifications();
-  Future<ApiResult<void>> markAsRead({required String id});
+  Future<ExecuteGuard<List<NotificationEntity>>> getNotifications();
+  Future<ExecuteGuard<void>> markAsRead({required String id});
 }

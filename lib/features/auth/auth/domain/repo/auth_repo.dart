@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
+
 
 abstract class AuthRepo {
-  Future<ApiResult<void>> check();
-  Future<ApiResult<void>> checkFirebase();
-  Future<ApiResult<void>> authToken();
-  Future<ApiResult<void>> signOut();
+  Future<ExecuteGuard<void>> check();
+  Future<ExecuteGuard<void>> checkFirebase();
+  Future<ExecuteGuard<void>> authToken();
+  Future<ExecuteGuard<void>> signOut();
 }

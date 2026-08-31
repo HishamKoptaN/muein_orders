@@ -3,9 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../data/repo/s3_repo.dart';
 
 @LazySingleton(as: S3Repo)
@@ -13,7 +11,7 @@ class S3RepoImpl implements S3Repo {
   final Dio _dio;
   S3RepoImpl(@Named('s3Dio') this._dio);
   @override
-  Future<ApiResult<void>> uploadFile({
+  Future<ExecuteGuard<void>> uploadFile({
     required File file,
     required String uploadUrl,
     required String contentType,
@@ -38,9 +36,9 @@ class S3RepoImpl implements S3Repo {
           }
         },
       );
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (e, st) {
-      return const ApiResult.failure(errorInfo: ErrorInfo());
+      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
     }
   }
 }

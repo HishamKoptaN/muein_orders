@@ -9,12 +9,13 @@ import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/feedback/error_content.dart';
 import '../../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../../gen/assets.gen.dart';
+import '../../../../orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
 import '../../../drawer/my_drawer.dart';
 import '../../../../notifications/present/view/notifications_view.dart';
 import '../../../../profile/present/bloc/profile_bloc.dart';
 import '../../domain/entities/order_type_res_entity.dart';
 import '../bloc/stats_bloc.dart';
-import 'widgets/order_cared_widget.dart';
+import 'widgets/stat_cared_widget.dart';
 
 class StatsView extends StatefulWidget {
   const StatsView({super.key});
@@ -75,12 +76,12 @@ class _StatsViewState extends State<StatsView> {
         listener: (context, state) {
           state.maybeWhen(
             loaded: (stats) {
-              //Future.microtask(() {
-              //  context.push(
-              //    '/${SallaOrderItemsView.routeName}',
-              //    extra: stats.first,
-              //  );
-              //});
+              Future.microtask(() {
+                context.push(
+                  '/${SallaOrderItemsView.routeName}',
+                  extra: stats.first,
+                );
+              });
             },
             orElse: () {},
           );

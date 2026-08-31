@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../domain/entities/financial_account_entity.dart';
 import '../../../domain/usecases/financial_use_cases.dart';
 part 'financial_bloc.freezed.dart';

@@ -8,12 +8,9 @@ const String uploadTaskName = 'upload_docs_task';
 
 @pragma('vm:entry-point')
 void callbackDispatcher() {
-  log('work manager is starting');
   Workmanager().executeTask((taskName, inputData) async {
     if (taskName == uploadTaskName) {
-      log('work manager is running in task $uploadTaskName');
       await startUploadDocs();
-      log('work manager is stopped');
     }
     return Future.value(true);
   });

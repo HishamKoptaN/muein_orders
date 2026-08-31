@@ -12,8 +12,6 @@ import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl_standalone.dart';
 import 'config/env_config.dart';
 import 'core/utils/background/workmanager_initializer.dart';
-import 'core/utils/database/shared_pref_helper.dart';
-import 'core/utils/database/shared_pref_keys.dart';
 import 'muein_orders_app.dart';
 import 'core/widgets/custom_error_widget.dart';
 import 'core/app_observer.dart';

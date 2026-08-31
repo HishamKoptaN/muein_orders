@@ -1,9 +1,7 @@
+import 'package:error_handler/error_handler.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../core/utils/database/shared_pref_helper.dart';
-import '../../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../../core/errors/handlers/api_error_handler/error_handler.dart';
-import '../../../../../core/networking/api_result.dart';
 import '../../../../../core/utils/services/auth_storage_service.dart';
 import '../../../../../core/utils/services/token_service.dart';
 import '../../domain/repo/auth_repo.dart';
@@ -24,29 +22,29 @@ class AuthRepoImpl implements AuthRepo {
   );
 
   @override
-  Future<ApiResult<void>> checkFirebase() async {
+  Future<ExecuteGuard<void>> checkFirebase() async {
     try {
       if (_fa.currentUser == null) {
-        return const ApiResult.failure(errorInfo: ErrorInfo(message: ''));
+        return const ExecuteGuard.failure(errorInfo: ErrorInfo(message: ''));
       }
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (e) {
-      return ApiResult.failure(errorInfo: ErrorHandler.handle(error: e));
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }
   }
 
   @override
-  Future<ApiResult<void>> check() async {
+  Future<ExecuteGuard<void>> check() async {
     try {
       await _api.check();
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (e) {
-      return ApiResult.failure(errorInfo: ErrorHandler.handle(error: e));
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }
   }
 
   @override
-  Future<ApiResult<void>> authToken() async {
+  Future<ExecuteGuard<void>> authToken() async {
     try {
       await _api
           .authToken(
@@ -56,24 +54,24 @@ class AuthRepoImpl implements AuthRepo {
           )
           .then((result) async {
             await _authStorageService.storeJwtToken(result.token);
-            return const ApiResult.success(data: null);
+            return const ExecuteGuard.success(data: null);
           });
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (e, st) {
-      return ApiResult.failure(errorInfo: ErrorHandler.handle(error: e));
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }
   }
 
   @override
-  Future<ApiResult<void>> signOut() async {
+  Future<ExecuteGuard<void>> signOut() async {
     try {
       await _api.logout();
       await _fa.signOut();
       await SharedPrefHelper.clearAllSecuredData();
       await SharedPrefHelper.clearAllData();
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (e) {
-      return ApiResult.failure(errorInfo: ErrorHandler.handle(error: e));
+      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }
   }
 }

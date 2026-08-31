@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'dart:async';
 
 import '../../../../../core/entities/meta_entity.dart';
-import '../../../../../core/errors/api_error_model/api_error_model.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 import '../../domain/entities/orders_res_entity.dart';
 import '../../domain/usecases/orders_use_cases.dart';

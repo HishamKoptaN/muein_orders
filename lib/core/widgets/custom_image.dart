@@ -22,12 +22,9 @@ class CustomImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 1. في حالة عدم وجود مسار أو كان فارغاً
     if (path == null || path!.isEmpty) {
       return _buildPlaceholder(context);
     }
-
-    // 2. إذا كانت الصورة ملف محلي (File / Cache)
     if (path!.startsWith('file://') || !path!.startsWith('http')) {
       final cleanPath = path!.replaceFirst('file://', '');
       return Image.file(

@@ -14,7 +14,7 @@ void showLogoutBottomSheet(BuildContext context) {
     ),
     builder: (context) {
       return Container(
-        height: 204,
+        height: 200.h,
         padding: const .fromLTRB(20, 8, 20, 16),
         child: Column(
           children: [
@@ -46,7 +46,7 @@ void showLogoutBottomSheet(BuildContext context) {
                 Expanded(
                   child: FilledButton(
                     onPressed: () {
-                      getIt<AuthBloc>().add(const AuthEvent.signedOut());
+                      getIt<AuthBloc>().add(const .signedOut());
                     },
                     child: const Text('تأكيد'),
                   ),

@@ -1,30 +1,19 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 
-/// نظام تسجيل Logs مركزي للمشروع
-/// يدعم:
-/// - Console logs في Debug mode
-/// - Firebase Crashlytics في Production
-/// - Log levels: info, warning, error
 class AppLogger {
   static bool _isCrashlyticsEnabled = false;
-
-  /// تهيئة Logger (تستدعى في main.dart)
   static void initialize({bool enableCrashlytics = true}) {
     _isCrashlyticsEnabled = enableCrashlytics && !kDebugMode;
   }
 
-  /// ✅ Log Info - للمعلومات العامة
   static void info(String message, {String? tag}) {
     final logMessage = _formatMessage(message, tag: tag, level: 'INFO');
-    // Always print to console (works in all environments)
     print('[INFO] $logMessage');
   }
 
-  /// ⚠️ Log Warning - للتحذيرات
   static void warning(String message, {String? tag, Object? error}) {
     final logMessage = _formatMessage(message, tag: tag, level: 'WARNING');
-    // Always print to console (works in all environments)
     print('[WARNING] $logMessage');
     if (error != null) {
       print('Error: $error');
@@ -35,7 +24,6 @@ class AppLogger {
     }
   }
 
-  /// ❌ Log Error - للأخطاء (مع إرسالها لـ Crashlytics)
   static void error(
     String message, {
     String? tag,
@@ -44,8 +32,6 @@ class AppLogger {
     bool sendToCrashlytics = true,
   }) {
     final logMessage = _formatMessage(message, tag: tag, level: 'ERROR');
-
-    // Always print to console (works in all environments)
     print('[ERROR] $logMessage');
     if (error != null) {
       print('Error: $error');
@@ -53,8 +39,6 @@ class AppLogger {
     if (stackTrace != null) {
       print('StackTrace:\n$stackTrace');
     }
-
-    // Crashlytics
     if (sendToCrashlytics && _isCrashlyticsEnabled) {
       FirebaseCrashlytics.instance.recordError(
         error ?? message,
@@ -65,20 +49,16 @@ class AppLogger {
     }
   }
 
-  /// 🐛 Log Debug - للـ Debug فقط (لا يُرسل لـ Crashlytics)
   static void debug(String message, {String? tag}) {
     final logMessage = _formatMessage(message, tag: tag, level: 'DEBUG');
-    // Always print to console (works in all environments)
     print('[DEBUG] $logMessage');
   }
 
-  /// 📊 Log Event - لتتبع أحداث المستخدم (Analytics)
   static void event(String eventName, {Map<String, dynamic>? parameters}) {
     final params =
         parameters?.entries.map((e) => '${e.key}: ${e.value}').join(', ') ?? '';
     final message =
         '📊 EVENT: $eventName ${params.isNotEmpty ? "{$params}" : ""}';
-    // Always print to console (works in all environments)
     print('[EVENT] $message');
 
     if (_isCrashlyticsEnabled) {
@@ -86,7 +66,6 @@ class AppLogger {
     }
   }
 
-  /// 🧑 Set User Context - لربط الأخطاء بمستخدم معين
   static void setUserContext(String userId, {String? email, String? role}) {
     info('Setting user context: $userId', tag: 'AUTH');
 
@@ -101,7 +80,6 @@ class AppLogger {
     }
   }
 
-  /// 🏷️ Set Screen Context - لربط الأخطاء بشاشة معينة
   static void setScreenContext(String screenName) {
     debug('Screen: $screenName', tag: 'NAVIGATION');
 
@@ -110,7 +88,6 @@ class AppLogger {
     }
   }
 
-  /// 🧹 Clear User Context - عند تسجيل الخروج
   static void clearUserContext() {
     info('Clearing user context', tag: 'AUTH');
 

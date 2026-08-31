@@ -1,7 +1,6 @@
 import 'package:injectable/injectable.dart';
 import '../database/shared_pref_helper.dart';
 import '../database/shared_pref_keys.dart';
-import 'package:injectable/injectable.dart';
 
 @Injectable()
 class AuthStorageService {

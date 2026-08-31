@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/entities/sign_in_req_entity.dart';
 import '../../domain/use_cases/sign_in_use_cases.dart';

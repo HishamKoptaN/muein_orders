@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../entities/create_expense_entity.dart';
 import '../entities/expenses_res_entity.dart';
 import '../entities/financial_account_entity.dart';
@@ -11,15 +11,15 @@ class FinancialUseCases {
   final FinancialRepo financialRepo;
   FinancialUseCases(this.financialRepo);
 
-  Future<ApiResult<FinancialAccountEntity?>> getFinancialAccounts() async {
+  Future<ExecuteGuard<FinancialAccountEntity?>> getFinancialAccounts() async {
     return await financialRepo.getFinancialAccounts();
   }
 
-  Future<ApiResult<ExpensesResEntity?>> get({required int page}) async {
+  Future<ExecuteGuard<ExpensesResEntity?>> get({required int page}) async {
     return await financialRepo.get(page: page);
   }
 
-  Future<ApiResult<ExpenseEntity?>> create({
+  Future<ExecuteGuard<ExpenseEntity?>> create({
     required CreateExpenseReqEntity createExpenseReqEntity,
   }) async {
     return await financialRepo.create(

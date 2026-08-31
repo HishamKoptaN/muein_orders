@@ -20,6 +20,7 @@ import '../../features/notifications/present/view/notifications_view.dart';
 import '../../features/orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
 import '../../features/orders_features/salla_orders_items/present/views/sitcker_pdf/sitcker_pdf_preview_view.dart';
 import '../../features/profile/present/views/profile_view.dart';
+import '../../material3.dart';
 import '../language/view/select_language.dart';
 import '../utils/global_variable.dart';
 import '../di/dependency_injection.dart';
@@ -55,7 +56,7 @@ class AppRouter {
               state.matchedLocation == '/${AuthView.routeName}') {
             return kReleaseMode
                 ? '/${SignInView.routeName}'
-                : '/${SignUpView.routeName}';
+                : '/${SignInView.routeName}';
           }
           return null;
         },

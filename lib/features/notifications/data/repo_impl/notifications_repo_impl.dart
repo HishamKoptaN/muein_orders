@@ -1,7 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/networking/api_result.dart';
-import '../../../../core/errors/api_error_model/api_error_model.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../../domain/repo/notifications_repo.dart';
 import '../datasources/notifications_api.dart';
@@ -13,20 +12,20 @@ class NotificationsRepoImpl implements NotificationsRepo {
   NotificationsRepoImpl(this.api);
 
   @override
-  Future<ApiResult<List<NotificationEntity>>> getNotifications() async {
+  Future<ExecuteGuard<List<NotificationEntity>>> getNotifications() async {
     try {
       final res = await api.get();
       final result = res.map((e) => e.toEntity()).toList();
-      return ApiResult.success(data: result);
+      return ExecuteGuard.success(data: result);
     } catch (error) {
-      return const ApiResult.failure(errorInfo: ErrorInfo());
+      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
     }
   }
 
   @override
-  Future<ApiResult<void>> markAsRead({required String id}) async {
+  Future<ExecuteGuard<void>> markAsRead({required String id}) async {
     // TODO: implement once API endpoint is confirmed in NotificationsApi
     // final res = await api.markAsRead(id);
-    return const ApiResult.failure(errorInfo: ErrorInfo());
+    return const ExecuteGuard.failure(errorInfo: ErrorInfo());
   }
 }

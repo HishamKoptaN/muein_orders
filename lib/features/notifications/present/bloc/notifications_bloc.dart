@@ -2,8 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../../domain/usecases/notifications_use_cases.dart';
 

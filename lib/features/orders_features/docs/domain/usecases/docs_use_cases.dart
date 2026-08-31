@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import '../../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../cached_docs/domain/repo/cached_docs_repo.dart';
 import '../entities/doc_req_entity.dart';
 import '../repo/docs_repo.dart';
@@ -10,15 +10,15 @@ class DocsUseCase {
   final CachedDocsRepo cachedDocsRepo;
   DocsUseCase({required this.docsRepo, required this.cachedDocsRepo});
 
-  Future<ApiResult<void>> updateDoc({required DocReqEntity docReq}) async {
+  Future<ExecuteGuard<void>> updateDoc({required DocReqEntity docReq}) async {
     return await docsRepo.updateDoc(docReq: docReq);
   }
 
-  Future<ApiResult<void>> startUpload({required int id}) async {
+  Future<ExecuteGuard<void>> startUpload({required int id}) async {
     return await docsRepo.startUpload(id: id);
   }
 
-  Future<ApiResult<void>> retryUpload({required int id}) async {
+  Future<ExecuteGuard<void>> retryUpload({required int id}) async {
     return await docsRepo.retryUpload(id: id);
   }
 }

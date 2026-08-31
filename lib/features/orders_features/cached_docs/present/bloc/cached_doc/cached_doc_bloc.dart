@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../../../../core/utils/app_file_manager.dart';
 import '../../../domain/entities/create_cached_doc_entity.dart';
 import '../../../domain/usecases/cached_docs_use_cases.dart';

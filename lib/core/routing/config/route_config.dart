@@ -15,6 +15,7 @@ import '../../../features/home_features/home/domain/entities/order_type_res_enti
 import '../../../features/home_features/home/present/view/stats_view.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/orders_features/docs/domain/entities/doc_entity.dart';
+import '../../../material3.dart';
 import '../../language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
 import '../../../features/orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
@@ -26,6 +27,12 @@ import '../utils/route_builder.dart' show RouteBuilder;
 class RouteConfig {
   static List<RouteBase> get routes {
     final routes = [
+      RouteBuilder.goRoute(
+        routeName: Material3View.routeName,
+        builder: (context, state) {
+          return const Material3View();
+        },
+      ),
       RouteBuilder.goRoute(
         routeName: StartView.routeName,
         builder: (context, state) {

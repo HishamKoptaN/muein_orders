@@ -1,11 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/entities/meta_entity.dart';
-import '../../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
-import '../../data/models/order_items_res_model.dart';
 import '../../domain/entities/salla_order_items_res_entity.dart';
 import '../../domain/usecases/order_items_use_cases.dart';
 part 'order_items_bloc.freezed.dart';
@@ -20,56 +17,50 @@ class OrderItemsBloc extends Bloc<OrderItemsEvent, OrderItemsState> {
       await event.when(
         get: (subCategoryId) async {
           emit(const .loading());
-          await _useCases.get(subCategoryId: subCategoryId).then((result) {
-            return result.when(
-              success: (entity) {},
-              failure: (apiErrorModel) {
-                emitFaliure(emit: emit, apiErrorModel: apiErrorModel);
-              },
-            );
-          });
-          await emit.forEach(
-            _useCases.watch(),
-            onData: (ordersRes) {
-              return OrderItemsState.loaded(
-                orderItemsRes: ordersRes,
-                selectedUploadStatus: .failed,
-              );
-            },
-            onError: (error, stackTrace) {
-              return OrderItemsState.failure(
-                apiErrorModel: ErrorInfo(message: error.toString()),
-              );
+          await _useCases.get(subCategoryId: subCategoryId);
+          await _listenToOrdersStream(emit);
+        },
+        filterChanged: (status) async {
+          await state.mapOrNull(
+            loaded: (st) async {
+              emit(st.copyWith(selectedUploadStatus: status));
+              await _listenToOrdersStream(emit);
             },
           );
         },
-        watch: () {},
-        filterChanged: (status) {},
       );
     });
   }
-  void emitFaliure({
-    required Emitter<OrderItemsState> emit,
-    required ErrorInfo apiErrorModel,
-  }) {
-    emit(OrderItemsState.failure(apiErrorModel: apiErrorModel));
-  }
+  Future<void> _listenToOrdersStream(Emitter<OrderItemsState> emit) async {
+    final currentStatus = state.maybeMap(
+      orElse: () {
+        return null;
+      },
+      loaded: (s) {
+        return s.selectedUploadStatus;
+      },
+    );
 
-  void emitLoaded({
-    required Emitter<OrderItemsState> emit,
-    SallaOrderItemsResEntity? ordersResEntity,
-    List<SallaOrderItemModel>? filteredOrders,
-    UploadStatus? selectedUploadStatus,
-  }) {
-    emit(
-      OrderItemsState.loaded(
-        orderItemsRes:
-            ordersResEntity ??
-            const SallaOrderItemsResEntity(
-              sallaOrderItems: [],
-              meta: MetaEntity(),
-            ),
-      ),
+    await emit.forEach(
+      _useCases.watch(uploadStatus: currentStatus),
+      onData: (ordersRes) {
+        return state.maybeMap(
+          loaded: (st) {
+            return st.copyWith(orderItemsRes: ordersRes);
+          },
+          orElse: () {
+            return .loaded(
+              orderItemsRes: ordersRes,
+              selectedUploadStatus: currentStatus,
+            );
+          },
+        );
+      },
+      onError: (error, stackTrace) {
+        return OrderItemsState.failure(
+          apiErrorModel: ErrorInfo(message: error.toString()),
+        );
+      },
     );
   }
 }

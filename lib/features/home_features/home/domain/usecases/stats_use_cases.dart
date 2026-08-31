@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../entities/order_type_res_entity.dart';
 import '../repo/stats_repo.dart';
 
@@ -8,7 +8,7 @@ import '../repo/stats_repo.dart';
 class StatsUseCases {
   final StatsRepo statsRepo;
   StatsUseCases(this.statsRepo);
-  Future<ApiResult<List<StatEntity>?>> stats() async {
+  Future<ExecuteGuard<List<StatEntity>?>> stats() async {
     return await statsRepo.stats();
   }
 }

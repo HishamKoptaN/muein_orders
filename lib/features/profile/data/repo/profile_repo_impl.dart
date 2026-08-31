@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../domain/entities/presigned_url_entity.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
@@ -20,26 +18,26 @@ class ProfileRepoImpl implements ProfileRepo {
   const ProfileRepoImpl(this._profileApi, this._firebaseAuth);
 
   @override
-  Future<ApiResult<ProfileResEntity>> getProfile() async {
+  Future<ExecuteGuard<ProfileResEntity>> getProfile() async {
     try {
       final result = await _profileApi.getProfile();
       final firebaseUser = _firebaseAuth.currentUser;
       if (firebaseUser == null) {
-        return const ApiResult.failure(
+        return const ExecuteGuard.failure(
           errorInfo: ErrorInfo(message: 'User not authenticated in Firebase'),
         );
       }
       final email = firebaseUser.email;
       final profileEntity = result.toEntity().copyWith(email: email ?? '');
 
-      return ApiResult.success(data: profileEntity);
+      return ExecuteGuard.success(data: profileEntity);
     } catch (e, st) {
-      return const ApiResult.failure(errorInfo: ErrorInfo());
+      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
     }
   }
 
   @override
-  Future<ApiResult<PresignedUrlEntity>> presignedAvatarUrl({
+  Future<ExecuteGuard<PresignedUrlEntity>> presignedAvatarUrl({
     required String extension,
   }) async {
     try {
@@ -48,16 +46,16 @@ class ProfileRepoImpl implements ProfileRepo {
           extensionProperty: extension,
         ),
       );
-      return ApiResult.success(data: result.toEntity());
+      return ExecuteGuard.success(data: result.toEntity());
     } catch (e, st) {
-      return const ApiResult.failure(
+      return const ExecuteGuard.failure(
         errorInfo: ErrorInfo(message: 'An error occurred'),
       );
     }
   }
 
   @override
-  Future<ApiResult<ProfileResEntity>> updateProfile({
+  Future<ExecuteGuard<ProfileResEntity>> updateProfile({
     required UpdateProfileReqEntity updateProfileReqEntity,
   }) async {
     try {
@@ -68,9 +66,9 @@ class ProfileRepoImpl implements ProfileRepo {
       final firebaseUser = _firebaseAuth.currentUser;
       final email = firebaseUser?.email;
       final profileEntity = result.toEntity().copyWith(email: email ?? '');
-      return ApiResult.success(data: profileEntity);
+      return ExecuteGuard.success(data: profileEntity);
     } catch (e, st) {
-      return const ApiResult.failure(errorInfo: ErrorInfo());
+      return const ExecuteGuard.failure(errorInfo: ErrorInfo());
     }
   }
 }

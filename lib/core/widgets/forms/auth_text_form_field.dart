@@ -1,10 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../localization/auto_localizer.dart';
+import '../../theme/core/extensions/theme_ext.dart';
 
 class CustomAuthTextFormField extends StatefulWidget {
   const CustomAuthTextFormField({
@@ -83,37 +80,37 @@ class CustomAuthTextFormField extends StatefulWidget {
 class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
   @override
   Widget build(BuildContext context) {
-    final lang = Localizations.localeOf(context).languageCode;
-    return ClipRRect(
-      borderRadius: .circular(6.r),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-        child: Container(
-          width: 332.w,
-          constraints: BoxConstraints(minHeight: 60.h),
-          child: FutureBuilder<String>(
-            future: AutoLocalizer.translate(widget.hintText ?? '', lang),
-            initialData: widget.hintText,
-            builder: (context, asyncSnapshot) {
-              return TextFormField(
-                initialValue: widget.initialValue,
-                onChanged: widget.onChanged,
-                obscureText: widget.obscureText,
-                keyboardType: widget.keyboardType ?? widget.textInputType,
-                textInputAction: widget.textInputAction,
-                onSaved: widget.onSaved,
-                validator: widget.validator,
-                decoration: InputDecoration(
-                  hintText: asyncSnapshot.data ?? '',
-                  errorText: widget.errorText,
-                  prefixIcon: widget.prefixIcon,
-                  suffixIcon: widget.suffixIcon,
-                ),
-              );
-            },
-          ),
-        ),
+    return FutureBuilder<String>(
+      future: AutoLocalizer.translate(
+        widget.hintText ?? '',
+        Localizations.localeOf(context).languageCode,
       ),
+      initialData: widget.hintText,
+      builder: (context, asyncSnapshot) {
+        return TextFormField(
+          initialValue: widget.initialValue,
+          onChanged: widget.onChanged,
+          obscureText: widget.obscureText,
+          keyboardType: widget.keyboardType ?? widget.textInputType,
+          textInputAction: widget.textInputAction,
+          onSaved: widget.onSaved,
+          validator: widget.validator,
+          decoration: InputDecoration(
+            filled: true,
+            hintStyle: context.textTheme.labelMedium?.copyWith(
+              color: context.colorScheme.onPrimary.withValues(alpha: .57),
+            ),
+            fillColor: context.colorScheme.secondaryFixed.withValues(
+              alpha: .15,
+            ),
+            border: .none,
+            hintText: asyncSnapshot.data ?? '',
+            errorText: widget.errorText,
+            prefixIcon: widget.prefixIcon,
+            suffixIcon: widget.suffixIcon,
+          ),
+        );
+      },
     );
   }
 }

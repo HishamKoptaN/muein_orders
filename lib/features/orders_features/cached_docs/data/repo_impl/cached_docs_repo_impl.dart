@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
-import '../../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../docs/domain/entities/doc_entity.dart';
 import '../../domain/entities/create_cached_doc_entity.dart';
 import '../../domain/repo/cached_docs_repo.dart';
@@ -17,7 +17,7 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
   final Location location = Location();
   CachedDocsRepoImpl(this._db);
   @override
-  Future<ApiResult<List<DocEntity>>> getPendings() async {
+  Future<ExecuteGuard<List<DocEntity>>> getPendings() async {
     final query = _db.select(_db.docsTable)
       ..where((tbl) {
         return tbl.uploadStatus.isIn([
@@ -26,7 +26,7 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
           UploadStatus.failed.name,
         ]);
       });
-    return ApiResult.success(
+    return ExecuteGuard.success(
       data: (await query.get()).map((r) {
         return r.toDocEntity();
       }).toList(),
@@ -34,7 +34,7 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
   }
 
   @override
-  Future<ApiResult<void>> cachedDoc({
+  Future<ExecuteGuard<void>> cachedDoc({
     required CreateCachedDocEntity createCachedDoc,
   }) async {
     try {
@@ -71,9 +71,9 @@ class CachedDocsRepoImpl implements CachedDocsRepo {
           );
         }
       });
-      return const ApiResult.success(data: null);
+      return const ExecuteGuard.success(data: null);
     } catch (e, st) {
-      return ApiResult.failure(errorInfo: ErrorInfo(message: e.toString()));
+      return ExecuteGuard.failure(errorInfo: ErrorInfo(message: e.toString()));
     }
   }
 }

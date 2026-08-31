@@ -10,23 +10,23 @@ class DeviceService {
   static final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
 
   static Future<DeviceModel> getDeviceInfo() async {
-    String model = "Unknown";
-    String os = "Unknown";
-    String deviceId = "Unknown";
+    String model = 'Unknown';
+    String os = 'Unknown';
+    String deviceId = 'Unknown';
     if (kIsWeb) {
       var webInfo = await _deviceInfo.webBrowserInfo;
       model = webInfo.browserName.name;
-      os = webInfo.platform ?? "Web";
+      os = webInfo.platform ?? 'Web';
     } else if (Platform.isAndroid) {
       var androidInfo = await _deviceInfo.androidInfo;
-      model = "${androidInfo.brand} ${androidInfo.model}";
-      os = "Android ${androidInfo.version.release}";
+      model = '${androidInfo.brand} ${androidInfo.model}';
+      os = 'Android ${androidInfo.version.release}';
       deviceId = androidInfo.id;
     } else if (Platform.isIOS) {
       var iosInfo = await _deviceInfo.iosInfo;
       model = iosInfo.utsname.machine;
-      os = "${iosInfo.systemName} ${iosInfo.systemVersion}";
-      deviceId = iosInfo.identifierForVendor ?? "Unknown";
+      os = '${iosInfo.systemName} ${iosInfo.systemVersion}';
+      deviceId = iosInfo.identifierForVendor ?? 'Unknown';
     }
     return DeviceModel(model: model, os: os, deviceId: deviceId, fcmToken: '');
   }

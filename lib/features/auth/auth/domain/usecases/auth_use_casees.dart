@@ -1,14 +1,12 @@
 import 'package:injectable/injectable.dart';
-
-import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../repo/auth_repo.dart';
 
 @singleton
 class AuthUseCases {
   final AuthRepo authRepo;
   AuthUseCases({required this.authRepo});
-  Future<ApiResult<void>> check() async {
+  Future<ExecuteGuard<void>> check() async {
     return await authRepo.checkFirebase().then((res) async {
       return res.when(
         success: (v) async {
@@ -21,11 +19,11 @@ class AuthUseCases {
     });
   }
 
-  Future<ApiResult<void>> authToken() async {
+  Future<ExecuteGuard<void>> authToken() async {
     return await authRepo.authToken();
   }
 
-  Future<ApiResult<void>> signOut() async {
+  Future<ExecuteGuard<void>> signOut() async {
     return await authRepo.signOut();
   }
 }

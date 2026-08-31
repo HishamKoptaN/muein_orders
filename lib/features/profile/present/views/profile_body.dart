@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../core/widgets/translated_text.dart';
-import '../../data/mappers/update_profile_mapper.dart';
 import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
 import '../bloc/profile_bloc.dart';

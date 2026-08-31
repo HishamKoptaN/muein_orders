@@ -3,7 +3,7 @@ import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../domain/entities/change_pass_req_entity.dart';
 import '../../domain/usecases/change_pass_usecase.dart';
 part 'change_pass_bloc.freezed.dart';

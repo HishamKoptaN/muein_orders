@@ -5,10 +5,10 @@ AppBarTheme appBarTheme({required ColorScheme colorScheme}) {
   return AppBarTheme(
     backgroundColor: colorScheme.primary,
     foregroundColor: colorScheme.onPrimary,
-    elevation: 2,
-    scrolledUnderElevation: 4,
     shadowColor: colorScheme.shadow,
     centerTitle: true,
+    elevation: 2,
+    scrolledUnderElevation: 4,
     toolbarHeight: 56.h,
     leadingWidth: 50.w,
     titleSpacing: 16.w,

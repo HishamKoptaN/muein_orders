@@ -12,22 +12,7 @@ import '../theme_components/switch_theme_data.dart';
 import '../typography/app_typography.dart';
 
 ThemeData darkTheme({required BuildContext context}) {
-  const colorScheme = ColorScheme.light(
-    brightness: Brightness.dark,
-    primary: Color(0xFF60A5FA),
-    onPrimary: Color(0xFF0F172A),
-
-    secondary: Color(0xFF),
-    onSecondary: Colors.white,
-
-    surface: Color(0xFF0F172A),
-    onSurface: Color(0xFFF8FAFC),
-
-    error: Color(0xFFF87171),
-    onError: Color(0xFF450A0A),
-
-    outline: Color(0xFF334155),
-  );
+  const colorScheme = ColorScheme.light();
   final textTheme = AppTypography.getTextTheme(context: context);
   return ThemeData(
     brightness: Brightness.dark,
@@ -39,10 +24,7 @@ ThemeData darkTheme({required BuildContext context}) {
       colorScheme: colorScheme,
       textTheme: textTheme,
     ),
-    inputDecorationTheme: inputDecorationTheme(
-      context: context,
-      textTheme: textTheme,
-    ),
+    inputDecorationTheme: inputDecorationTheme(context: context),
     appBarTheme: appBarTheme(colorScheme: colorScheme),
     bottomSheetTheme: bottomSheetTheme(colorScheme: colorScheme),
     checkboxTheme: checkboxTheme(colorScheme: colorScheme),

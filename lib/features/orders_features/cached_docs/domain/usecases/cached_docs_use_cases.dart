@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import '../../../../../../core/networking/api_result.dart';
+import 'package:error_handler/error_handler.dart';
 import '../../../../../core/utils/app_file_manager.dart';
 import '../../../docs/domain/entities/doc_entity.dart';
 import '../repo/cached_docs_repo.dart';
@@ -17,21 +17,21 @@ class CachedDocsUseCases {
     required this.cachedDocsRepo,
     required this.fileManager,
   });
-  Future<ApiResult<List<DocEntity>>> getPendings() async {
+  Future<ExecuteGuard<List<DocEntity>>> getPendings() async {
     return await cachedDocsRepo.getPendings();
   }
 
-  Future<ApiResult<void>> cachedDoc({
+  Future<ExecuteGuard<void>> cachedDoc({
     required CreateCachedDocEntity doc,
   }) async {
     return await cachedDocsRepo.cachedDoc(createCachedDoc: doc);
   }
 
-  Future<ApiResult<void>> startUpload({required int id}) async {
+  Future<ExecuteGuard<void>> startUpload({required int id}) async {
     return await docsRepo.startUpload(id: id);
   }
 
-  Future<ApiResult<void>> retryUpload({required int id}) async {
+  Future<ExecuteGuard<void>> retryUpload({required int id}) async {
     return await docsRepo.retryUpload(id: id);
   }
 }

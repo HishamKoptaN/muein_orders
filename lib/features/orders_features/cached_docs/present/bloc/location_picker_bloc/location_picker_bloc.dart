@@ -1,10 +1,9 @@
+import 'package:error_handler/error_handler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
-import '../../../../../../core/errors/api_error_model/api_error_model.dart';
-import '../../../../../../core/errors/handlers/api_error_handler/error_handler.dart';
 import '../../../../../../core/utils/coordinate_parser.dart';
 import '../../../domain/usecases/cached_docs_use_cases.dart';
 part 'location_picker_bloc.freezed.dart';
