@@ -87,14 +87,6 @@ Future<void> _initializeApp() async {
     if (!Platform.isIOS) {
       await getIt<FirebaseMessagingService>().initialize();
     }
-    if (kDebugMode) {
-      // await SharedPrefHelper.setSecuredString(
-      //   key: SharedPrefKeys.jwtToken,
-      //   value: ' 75|p3B7hh4EpWaP2TH130nLbfGXqkjQQMqRvcJ5pcGa91a37a6b',
-      // );
-      //  await SharedPrefHelper.clearAllData();
-      //  await SharedPrefHelper.clearAllSecuredData();
-    }
     runApp(const MueinOrdersApp());
     await _initializeWorkManager();
   } catch (error, stackTrace) {

@@ -132,7 +132,6 @@ class OrdersRepoImpl implements OrderItemsRepo {
             for (final item in existingItems) item.id: item,
             for (final item in newItems) item.id: item,
           };
-
           final mergedEntity = newEntity.copyWith(
             sallaOrderItems: mergedItemsMap.values.toList(),
           );
@@ -141,10 +140,9 @@ class OrdersRepoImpl implements OrderItemsRepo {
           _remoteDataSubject.add(newEntity);
         }
       }
-
-      return const ExecuteGuard.success(data: null);
+      return const .success(data: null);
     } catch (e, _) {
-      return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
+      return .failure(errorInfo: ErrorHandler.handle(error: e));
     }
   }
 }

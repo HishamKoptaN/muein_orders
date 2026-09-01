@@ -19,12 +19,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<ProfileEvent>((event, emit) async {
       await event.when(
         getProfile: () async {
-          emit(const ProfileState.loading());
+          emit(const .loading());
           final res = await _profileUseCases.getProfile();
           await res.when(
             success: (res) {
               emit(
-                ProfileState.loaded(
+                .loaded(
                   profile: res ?? ProfileResEntity(),
                   updateProfileReq: null,
                   formzSubmissionStatus: .initial,
@@ -32,7 +32,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               );
             },
             failure: (error) {
-              emit(ProfileState.failure(error: error.message));
+              emit(.failure(error: error.message));
             },
           );
         },
@@ -63,7 +63,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                   .then((result) async {
                     await result.when(
                       success: (profile) {
-                        emit(const ProfileState.success());
+                        emit(const .success());
                         emitCustomLoaded(
                           emit: emit,
                           state: state.copyWith(
@@ -80,7 +80,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                         );
                       },
                       failure: (error) {
-                        emit(ProfileState.failure(error: error.message));
+                        emit(.failure(error: error.message));
                         emitCustomLoaded(emit: emit, state: state);
                       },
                     );
@@ -90,6 +90,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         },
       );
     });
+    add(const .getProfile());
   }
   void emitCustomLoaded({
     required Emitter<ProfileState> emit,
@@ -107,8 +108,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             (Formz.validate([
                   state.updateProfileReq?.name ?? const GenericFormInput.pure(),
                 ])
-                ? FormzSubmissionStatus.success
-                : FormzSubmissionStatus.failure),
+                ? .success
+                : .failure),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,8 +39,7 @@ class _StatsViewState extends State<StatsView> {
   }
 
   void _initializeData() {
-    getIt<StatsBloc>().add(const StatsEvent.getStats());
-    getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
+    getIt<StatsBloc>().add(const .getStats());
   }
 
   @override
@@ -74,16 +74,17 @@ class _StatsViewState extends State<StatsView> {
       body: BlocConsumer<StatsBloc, StatsState>(
         bloc: getIt<StatsBloc>(),
         listener: (context, state) {
-          state.maybeWhen(
-            loaded: (stats) {
-              Future.microtask(() {
-                context.push(
-                  '/${SallaOrderItemsView.routeName}',
-                  extra: stats.first,
-                );
-              });
+          state.mapOrNull(
+            loaded: (st) {
+              if (kDebugMode) {
+                Future.microtask(() {
+                  context.push(
+                    '/${SallaOrderItemsView.routeName}',
+                    extra: st.stats.first,
+                  );
+                });
+              }
             },
-            orElse: () {},
           );
         },
         builder: (context, state) {

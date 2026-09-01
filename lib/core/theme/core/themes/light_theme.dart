@@ -11,7 +11,7 @@ ThemeData lightTheme({required BuildContext context}) {
   final colorScheme = ColorScheme.fromSeed(
     seedColor: const Color(0xFF003A46),
     brightness: .light,
-  );
+  ).copyWith(primaryFixed: const Color(0xFF83BEA8));
   return ThemeData(
     useMaterial3: true,
     colorScheme: colorScheme,
@@ -39,14 +39,14 @@ ThemeData lightTheme({required BuildContext context}) {
         ),
         backgroundColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {
-            return colorScheme.secondaryContainer.withValues(alpha: .20);
+            return colorScheme.primaryFixed.withValues(alpha: .20);
           }
-          return colorScheme.secondaryContainer;
+          return colorScheme.primaryFixed;
         }),
       ),
     ),
-    // iconTheme: IconThemeData(color: colorScheme.onSurface, size: 24),
-    // cardColor: colorScheme.surface,
+    iconTheme: IconThemeData(color: colorScheme.onSurface, size: 24),
+    cardColor: colorScheme.surface,
     // textSelectionTheme: TextSelectionThemeData(
     //   cursorColor: colorScheme.primary,
     //   selectionColor: context.colorScheme.primary.withValues(alpha: 0.2),
