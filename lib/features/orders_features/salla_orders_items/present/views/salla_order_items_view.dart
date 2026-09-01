@@ -19,12 +19,35 @@ class SallaOrderItemsView extends StatefulWidget {
 }
 
 class _SallaOrderItemsViewState extends State<SallaOrderItemsView> {
+  late final ScrollController _scrollController;
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController()..addListener(_onScroll);
     getIt<OrderItemsBloc>().add(
-      OrderItemsEvent.get(subCategoryId: widget.stat.subCategory?.id ?? 1),
+      OrderItemsEvent.get(
+        subCategoryId: widget.stat.subCategory?.id ?? 1,
+        loadMore: false,
+      ),
     );
+  }
+
+  void _onScroll() {
+    if (_isBottom) {
+      getIt<OrderItemsBloc>().add(
+        OrderItemsEvent.get(
+          subCategoryId: widget.stat.subCategory?.id ?? 1,
+          loadMore: true,
+        ),
+      );
+    }
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.5);
   }
 
   @override
@@ -63,6 +86,8 @@ class _SallaOrderItemsViewState extends State<SallaOrderItemsView> {
               return SallaOrderItemsWidget(
                 items: state.orderItemsRes.sallaOrderItems,
                 stat: widget.stat,
+                hasNextPage: state.orderItemsRes.meta.hasNextPage ?? false,
+                scrollController: _scrollController,
               );
             },
             orElse: () {

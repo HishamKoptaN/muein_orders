@@ -6,6 +6,6 @@ abstract class OrderItemsRepo {
   Stream<SallaOrderItemsResEntity> watch({UploadStatus? uploadStatus});
   Future<ExecuteGuard<void>> get({
     required int subCategoryId,
-    UploadStatus? filter,
+    required int page,
   });
 }

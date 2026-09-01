@@ -6,11 +6,9 @@ import '../../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/translated_text.dart';
 import '../../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 import '../../../../cached_docs/present/view/add_cached_doc_view.dart';
-import '../../../../docs/data/mapper/docs_mapper.dart';
 import '../../../../docs/domain/entities/doc_entity.dart';
 import 'doc/doc_status_icons.dart';
 import 'salla_order_item_card_widget.dart';
-import 'status_widget.dart';
 
 class SallaOrderItemUnitCardWidget extends StatefulWidget {
   const SallaOrderItemUnitCardWidget({
@@ -116,52 +114,34 @@ class _SallaOrderItemUnitCardWidgetState
   }) {
     switch (uploadStatus) {
       case UploadStatus.pending:
-        return StatusWidget(
-          icon: FaIcon(
-            FontAwesomeIcons.hourglassHalf,
-            color: Colors.orange,
-            size: 22.w,
-          ),
+        return FaIcon(
+          FontAwesomeIcons.hourglassHalf,
           color: Colors.orange,
+          size: 22.w,
         );
       case UploadStatus.uploading:
-        return StatusWidget(
-          icon: FaIcon(
-            FontAwesomeIcons.cloudArrowUp,
-            color: Colors.blue,
-            size: 22.w,
-          ),
+        return FaIcon(
+          FontAwesomeIcons.cloudArrowUp,
           color: Colors.blue,
+          size: 22.w,
         );
       case UploadStatus.uploaded:
-        return StatusWidget(
-          icon: FaIcon(
-            FontAwesomeIcons.checkCircle,
-            color: Colors.green,
-            size: 22.w,
-          ),
-          text: 'تم الرفع',
+        return FaIcon(
+          FontAwesomeIcons.checkCircle,
           color: Colors.green,
+          size: 22.w,
         );
       case UploadStatus.failed:
-        return StatusWidget(
-          icon: FaIcon(
-            FontAwesomeIcons.exclamationCircle,
-            color: Colors.red,
-            size: 22.w,
-          ),
-          text: 'فشل الرفع',
+        return FaIcon(
+          FontAwesomeIcons.exclamationCircle,
           color: Colors.red,
+          size: 22.w,
         );
       default:
-        return StatusWidget(
-          icon: FaIcon(
-            FontAwesomeIcons.cloudArrowUp,
-            color: Colors.grey,
-            size: 22.w,
-          ),
-          text: 'لم يرفع بعد',
+        return FaIcon(
+          FontAwesomeIcons.cloudArrowUp,
           color: Colors.grey,
+          size: 22.w,
         );
     }
   }

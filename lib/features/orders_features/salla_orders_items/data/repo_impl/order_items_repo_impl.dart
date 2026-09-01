@@ -35,8 +35,9 @@ class OrdersRepoImpl implements OrderItemsRepo {
       _remoteDataSubject.stream,
       _db.docsDao.watch(),
       _db.docMediaDao.watch(),
-      (remote, docsMap, mediaMap) =>
-          _mergeRemoteWithLocal(remote, docsMap, mediaMap, uploadStatus),
+      (remote, docsMap, mediaMap) {
+        return _mergeRemoteWithLocal(remote, docsMap, mediaMap, uploadStatus);
+      },
     );
   }
 
@@ -115,13 +116,34 @@ class OrdersRepoImpl implements OrderItemsRepo {
   @override
   Future<ExecuteGuard<void>> get({
     required int subCategoryId,
-    UploadStatus? filter,
+    required int page,
   }) async {
     try {
-      final res = await _api.get(subCategoryId: subCategoryId);
-      _remoteDataSubject.add(res.toEntity());
+      final res = await _api.get(subCategoryId: subCategoryId, page: page);
+      final newEntity = res.toEntity();
+      if (page == 1) {
+        _remoteDataSubject.add(newEntity);
+      } else {
+        final currentEntity = _remoteDataSubject.valueOrNull;
+        if (currentEntity != null) {
+          final existingItems = currentEntity.sallaOrderItems;
+          final newItems = newEntity.sallaOrderItems;
+          final mergedItemsMap = <int, SallaOrderItemEntity>{
+            for (final item in existingItems) item.id: item,
+            for (final item in newItems) item.id: item,
+          };
+
+          final mergedEntity = newEntity.copyWith(
+            sallaOrderItems: mergedItemsMap.values.toList(),
+          );
+          _remoteDataSubject.add(mergedEntity);
+        } else {
+          _remoteDataSubject.add(newEntity);
+        }
+      }
+
       return const ExecuteGuard.success(data: null);
-    } catch (e, st) {
+    } catch (e, _) {
       return ExecuteGuard.failure(errorInfo: ErrorHandler.handle(error: e));
     }
   }

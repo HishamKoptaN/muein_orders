@@ -122,10 +122,10 @@ return filterChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId)?  get,TResult Function( UploadStatus? status)?  filterChanged,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId,  bool loadMore)?  get,TResult Function( UploadStatus? status)?  filterChanged,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Get() when get != null:
-return get(_that.subCategoryId);case _FilterChanged() when filterChanged != null:
+return get(_that.subCategoryId,_that.loadMore);case _FilterChanged() when filterChanged != null:
 return filterChanged(_that.status);case _:
   return orElse();
 
@@ -144,10 +144,10 @@ return filterChanged(_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId)  get,required TResult Function( UploadStatus? status)  filterChanged,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId,  bool loadMore)  get,required TResult Function( UploadStatus? status)  filterChanged,}) {final _that = this;
 switch (_that) {
 case _Get():
-return get(_that.subCategoryId);case _FilterChanged():
+return get(_that.subCategoryId,_that.loadMore);case _FilterChanged():
 return filterChanged(_that.status);case _:
   throw StateError('Unexpected subclass');
 
@@ -165,10 +165,10 @@ return filterChanged(_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId)?  get,TResult? Function( UploadStatus? status)?  filterChanged,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId,  bool loadMore)?  get,TResult? Function( UploadStatus? status)?  filterChanged,}) {final _that = this;
 switch (_that) {
 case _Get() when get != null:
-return get(_that.subCategoryId);case _FilterChanged() when filterChanged != null:
+return get(_that.subCategoryId,_that.loadMore);case _FilterChanged() when filterChanged != null:
 return filterChanged(_that.status);case _:
   return null;
 
@@ -181,10 +181,11 @@ return filterChanged(_that.status);case _:
 
 
 class _Get implements OrderItemsEvent {
-  const _Get({required this.subCategoryId});
+  const _Get({required this.subCategoryId, required this.loadMore});
   
 
  final  int subCategoryId;
+ final  bool loadMore;
 
 /// Create a copy of OrderItemsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -196,16 +197,16 @@ _$GetCopyWith<_Get> get copyWith => __$GetCopyWithImpl<_Get>(this, _$identity);
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Get&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Get&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,subCategoryId);
+int get hashCode => Object.hash(runtimeType,subCategoryId,loadMore);
 
 @override
 String toString() {
-  return 'OrderItemsEvent.get(subCategoryId: $subCategoryId)';
+  return 'OrderItemsEvent.get(subCategoryId: $subCategoryId, loadMore: $loadMore)';
 }
 
 
@@ -216,7 +217,7 @@ abstract mixin class _$GetCopyWith<$Res> implements $OrderItemsEventCopyWith<$Re
   factory _$GetCopyWith(_Get value, $Res Function(_Get) _then) = __$GetCopyWithImpl;
 @useResult
 $Res call({
- int subCategoryId
+ int subCategoryId, bool loadMore
 });
 
 
@@ -233,10 +234,11 @@ class __$GetCopyWithImpl<$Res>
 
 /// Create a copy of OrderItemsEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? subCategoryId = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? subCategoryId = null,Object? loadMore = null,}) {
   return _then(_Get(
 subCategoryId: null == subCategoryId ? _self.subCategoryId : subCategoryId // ignore: cast_nullable_to_non_nullable
-as int,
+as int,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

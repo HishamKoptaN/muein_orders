@@ -5,6 +5,7 @@ import 'package:error_handler/error_handler.dart';
 import '../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 import '../../domain/entities/salla_order_items_res_entity.dart';
 import '../../domain/usecases/order_items_use_cases.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 part 'order_items_bloc.freezed.dart';
 part 'order_items_event.dart';
 part 'order_items_state.dart';
@@ -14,16 +15,27 @@ class OrderItemsBloc extends Bloc<OrderItemsEvent, OrderItemsState> {
   final OrderItemsUseCases _useCases;
   OrderItemsBloc(this._useCases) : super(const .initial()) {
     on<OrderItemsEvent>((event, emit) async {
-      await event.when(
-        get: (subCategoryId) async {
-          emit(const .loading());
-          await _useCases.get(subCategoryId: subCategoryId);
+      await droppable();
+      await event.map(
+        get: (ev) async {
+          await state.maybeMap(
+            loaded: (st) async {
+              await _useCases.get(
+                subCategoryId: ev.subCategoryId,
+                page: (st.orderItemsRes.meta.currentPage ?? 1) + 1,
+              );
+            },
+            orElse: () async {
+              emit(const .loading());
+              await _useCases.get(subCategoryId: ev.subCategoryId, page: 1);
+            },
+          );
           await _listenToOrdersStream(emit);
         },
-        filterChanged: (status) async {
+        filterChanged: (ev) async {
           await state.mapOrNull(
             loaded: (st) async {
-              emit(st.copyWith(selectedUploadStatus: status));
+              emit(st.copyWith(selectedUploadStatus: ev.status));
               await _listenToOrdersStream(emit);
             },
           );

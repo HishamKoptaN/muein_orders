@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/utils.dart';
 import '../../../../../../core/widgets/translated_text.dart';
 import '../../../../../home_features/home/domain/entities/order_type_res_entity.dart';
@@ -10,14 +11,19 @@ class SallaOrderItemsWidget extends StatelessWidget {
     super.key,
     required this.items,
     required this.stat,
+    required this.hasNextPage,
+    required this.scrollController,
   });
 
   final List<SallaOrderItemEntity> items;
   final StatEntity stat;
+  final bool hasNextPage;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      controller: scrollController,
       slivers: [
         SliverToBoxAdapter(
           child: SizedBox(
@@ -54,20 +60,13 @@ class SallaOrderItemsWidget extends StatelessWidget {
             );
           }),
         ),
-        // if (ordersRes.when(
-        //   orders: (orders, meta) {
-        //     return meta.hasNextPage ?? false;
-        //   },
-        //   individualDocs: (docs) {
-        //     return false;
-        //   },
-        // ))
-        //   SliverToBoxAdapter(
-        //     child: Padding(
-        //       padding: EdgeInsets.symmetric(vertical: 20.h),
-        //       child: const Center(child: CircularProgressIndicator()),
-        //     ),
-        //   ),
+        if (hasNextPage)
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: .symmetric(vertical: 20.h),
+              child: const Center(child: CircularProgressIndicator()),
+            ),
+          ),
       ],
     );
   }
