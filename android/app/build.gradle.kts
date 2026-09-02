@@ -27,6 +27,8 @@ android {
     }
     defaultConfig {
         applicationId = "com.muein.orders"
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
         minSdk = flutter.minSdkVersion
         targetSdk = 37
     }
