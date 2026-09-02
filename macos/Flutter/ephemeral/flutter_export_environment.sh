@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/home/code/flutter"
+export "FLUTTER_ROOT=/home/code/.shorebird/bin/cache/flutter/e16cf749ccaa38d7050335ff305def49b1c7c84c"
 export "FLUTTER_APPLICATION_PATH=/home/code/coding/flutter projects/muein_orders"
 export "FLUTTER_FRAMEWORK_SWIFT_PACKAGE_PATH=/home/code/coding/flutter projects/muein_orders/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"

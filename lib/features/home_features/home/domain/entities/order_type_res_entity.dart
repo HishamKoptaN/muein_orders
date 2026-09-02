@@ -1,37 +1,24 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../../orders_features/salla_orders_items/domain/entities/salla_order_items_res_entity.dart';
 
-class StatEntity {
-  final int? id;
-  final int? docsCount;
-  final SubCategoryEntity? subCategory;
-  final SallaOrderItemUnitEntity? doc;
+part 'order_type_res_entity.freezed.dart';
 
-  StatEntity({this.id, this.docsCount, this.subCategory, this.doc});
-
-  StatEntity copyWith({
-    int? id,
-    int? docsCount,
+@freezed
+abstract class StatEntity with _$StatEntity {
+  const factory StatEntity({
+    @Default(0) int id,
+    @Default(0) int docsCount,
     SubCategoryEntity? subCategory,
     SallaOrderItemUnitEntity? doc,
-  }) => StatEntity(
-    id: id ?? this.id,
-    docsCount: docsCount ?? this.docsCount,
-    subCategory: subCategory ?? this.subCategory,
-    doc: doc ?? this.doc,
-  );
+  }) = _StatEntity;
 }
 
-class SubCategoryEntity {
-  final int? id;
-  final String? name;
-  final String? image;
-
-  SubCategoryEntity({this.id, this.name, this.image});
-
-  SubCategoryEntity copyWith({int? id, String? name, String? image}) =>
-      SubCategoryEntity(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        image: image ?? this.image,
-      );
+@freezed
+abstract class SubCategoryEntity with _$SubCategoryEntity {
+  const factory SubCategoryEntity({
+    @Default(0) int id,
+    @Default('') String name,
+    @Default('') String image,
+  }) = _SubCategoryEntity;
 }

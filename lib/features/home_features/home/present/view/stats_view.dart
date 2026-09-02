@@ -13,7 +13,6 @@ import '../../../../../gen/assets.gen.dart';
 import '../../../../orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
 import '../../../drawer/my_drawer.dart';
 import '../../../../notifications/present/view/notifications_view.dart';
-import '../../../../profile/present/bloc/profile_bloc.dart';
 import '../../domain/entities/order_type_res_entity.dart';
 import '../bloc/stats_bloc.dart';
 import 'widgets/stat_cared_widget.dart';

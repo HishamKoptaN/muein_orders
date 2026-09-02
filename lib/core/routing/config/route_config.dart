@@ -102,7 +102,8 @@ class RouteConfig {
       RouteBuilder.goRoute(
         routeName: SallaOrderItemsView.routeName,
         builder: (context, state) {
-          return SallaOrderItemsView(stat: state.extra as StatEntity);
+          final args = state.extra as Map<String, dynamic>?;
+          return SallaOrderItemsView(stat: args?['stat'] as StatEntity);
         },
       ),
       RouteBuilder.goRoute(
