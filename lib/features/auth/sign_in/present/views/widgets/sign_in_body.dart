@@ -23,13 +23,12 @@ class SignInBody extends StatelessWidget {
         crossAxisAlignment: .center,
         mainAxisSize: .min,
         children: [
-          SizedBox(height: 140.h),
+          SizedBox(height: 130.h),
           Image.asset('assets/logos/logo_solid.png'),
           SizedBox(height: 50.h),
           SignInForm(signInReq: signInReq),
           SizedBox(height: 10.h),
           SignInActions(formzSubmissionStatus: formzSubmissionStatus),
-          SizedBox(height: 20.h),
         ],
       ),
     );

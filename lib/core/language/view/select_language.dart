@@ -6,6 +6,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../di/dependency_injection.dart';
 import '../../theme/core/extensions/theme_ext.dart';
 import '../../widgets/custom_scaffold.dart';
+import '../../widgets/navigation/custom_app_bar.dart';
 import '../../widgets/translated_text.dart';
 import '../bloc/language_bloc.dart';
 
@@ -27,14 +28,7 @@ class SelectLanguageView extends StatelessWidget {
     ];
     return CustomScaffold(
       backgroundColor: context.colorScheme.primary,
-      appBar: AppBar(
-        title: TrText(
-          'تغيير اللغة',
-          style: TextStyle(color: context.colorScheme.primary),
-        ),
-        iconTheme: IconThemeData(color: context.colorScheme.primary),
-        backgroundColor: context.colorScheme.onPrimary,
-      ),
+      appBar: const CustomAppBar(title: 'تغيير اللغة'),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
@@ -89,7 +83,9 @@ class BodyWidget extends StatelessWidget {
         TrText(
           'اختر اللغة',
           textAlign: .center,
-          style: context.textTheme.displayLarge,
+          style: context.textTheme.displayLarge?.copyWith(
+            color: context.colorScheme.onPrimary,
+          ),
         ),
         SizedBox(height: 32.h),
         ...languages.map((language) {
@@ -106,7 +102,7 @@ class BodyWidget extends StatelessWidget {
             padding: .only(bottom: 6.h),
             child: Material(
               color: isSelected
-                  ? const Color(0xFF83BEA8).withValues(alpha: 0.2)
+                  ? context.colorScheme.primaryFixed.withValues(alpha: 0.3)
                   : Colors.white.withValues(alpha: 0.1),
               borderRadius: .circular(6.r),
               child: InkWell(
@@ -131,15 +127,17 @@ class BodyWidget extends StatelessWidget {
                           style: context.textTheme.titleLarge?.copyWith(
                             fontWeight: isSelected ? .bold : .normal,
                             color: isSelected
-                                ? const Color(0xFF83BEA8)
-                                : Colors.white,
+                                ? context.colorScheme.onPrimary
+                                : context.colorScheme.onPrimary.withValues(
+                                    alpha: 0.6,
+                                  ),
                           ),
                         ),
                       ),
                       if (isSelected)
-                        const Icon(
+                        Icon(
                           Icons.check_circle,
-                          color: Color(0xFF83BEA8),
+                          color: context.colorScheme.onPrimary,
                         ),
                     ],
                   ),

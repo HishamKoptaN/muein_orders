@@ -19,8 +19,8 @@ class ForgotPassBloc extends Bloc<ForgotPassEvent, ForgotPassState> {
   ForgotPassBloc(this.sendPassResetEmailUseCase)
     : super(
         const ForgotPassState.loaded(
-          email: EmailFormInput.pure(),
-          formzSubmissionStatus: FormzSubmissionStatus.initial,
+          email: .pure(),
+          formzSubmissionStatus: .initial,
         ),
       ) {
     on<ForgotPassEvent>((event, emit) async {
@@ -33,7 +33,7 @@ class ForgotPassBloc extends Bloc<ForgotPassEvent, ForgotPassState> {
           emit(
             ForgotPassState.loaded(
               email: email!,
-              formzSubmissionStatus: FormzSubmissionStatus.inProgress,
+              formzSubmissionStatus: .inProgress,
             ),
           );
           final res = await sendPassResetEmailUseCase.sendPassResetEmail(
@@ -41,11 +41,11 @@ class ForgotPassBloc extends Bloc<ForgotPassEvent, ForgotPassState> {
           );
           await res.when(
             success: (_) {
-              emit(const ForgotPassState.success());
-              customLoaded(emit: emit);
+              emit(const .success());
+              customLoaded(emit: emit, formzSubmissionStatus: .initial);
             },
             failure: (e) {
-              emit(ForgotPassState.failure(e.toString()));
+              emit(.failure(e.toString()));
               customLoaded(emit: emit);
             },
           );
@@ -53,13 +53,16 @@ class ForgotPassBloc extends Bloc<ForgotPassEvent, ForgotPassState> {
       );
     });
   }
-  customLoaded({required Emitter<ForgotPassState> emit}) {
+  customLoaded({
+    required Emitter<ForgotPassState> emit,
+    FormzSubmissionStatus? formzSubmissionStatus,
+  }) {
     emit(
       ForgotPassState.loaded(
         email: email!,
-        formzSubmissionStatus: Formz.validate([email!])
-            ? FormzSubmissionStatus.success
-            : FormzSubmissionStatus.failure,
+        formzSubmissionStatus:
+            formzSubmissionStatus ??
+            (Formz.validate([email!]) ? .success : .failure),
       ),
     );
   }

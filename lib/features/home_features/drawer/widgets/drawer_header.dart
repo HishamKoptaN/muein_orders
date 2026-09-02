@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/core/extensions/theme_ext.dart';
-import '../../../../core/utils/extensions/locale_extensions.dart';
+import '../../../../core/widgets/custom_image.dart';
 import '../../../../core/widgets/translated_text.dart';
 import '../../../profile/present/bloc/profile_bloc.dart';
 
@@ -25,17 +24,14 @@ class CustomDrawerHeader extends StatelessWidget {
                 mainAxisAlignment: .start,
                 mainAxisSize: .min,
                 children: [
-                  CircleAvatar(
-                    radius: 50.r,
-                    backgroundColor: context.colorScheme.primaryContainer,
-                    backgroundImage: NetworkImage(profile.avatar ?? ''),
-                    child: profile.avatar == null
-                        ? Icon(
-                            Icons.person_rounded,
-                            size: 50.r,
-                            color: context.colorScheme.onPrimary,
-                          )
-                        : null,
+                  ClipOval(
+                    clipBehavior: .antiAlias,
+                    child: CustomImage(
+                      path: profile.avatar ?? '',
+                      width: 90.r,
+                      height: 90.r,
+                      fit: .cover,
+                    ),
                   ),
                   SizedBox(height: 10.h),
                   TrText(

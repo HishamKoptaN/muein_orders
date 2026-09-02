@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/translated_text.dart';
@@ -19,7 +18,7 @@ class StatCard extends StatelessWidget {
         NavigationService.pushNamed(
           context: context,
           routeName: SallaOrderItemsView.routeName,
-          extra: {'stat': stat},
+          extra: stat as Map<String, dynamic>,
         );
       },
       child: Container(
@@ -91,7 +90,7 @@ class StatCard extends StatelessWidget {
                             Gap(5.w),
                             Flexible(
                               child: TrText(
-                                '(${stat.docsCount ?? ''})',
+                                '(${stat.docsCount})',
                                 overflow: .ellipsis,
                                 style: context.textTheme.bodySmall?.copyWith(
                                   color: context.colorScheme.onPrimary,

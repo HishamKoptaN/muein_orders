@@ -79,7 +79,7 @@ class _StatsViewState extends State<StatsView> {
                 Future.microtask(() {
                   context.push(
                     '/${SallaOrderItemsView.routeName}',
-                    extra: st.stats.first,
+                    extra: st.stats.first as Map<String, dynamic>,
                   );
                 });
               }
@@ -121,7 +121,7 @@ class BodyWidget extends StatelessWidget {
       ),
       itemCount: stats?.length ?? 10,
       itemBuilder: (context, index) {
-        return StatCard(stat: stats?[index] ?? StatEntity());
+        return StatCard(stat: stats?[index] ?? const StatEntity());
       },
     );
   }

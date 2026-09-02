@@ -6,6 +6,7 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
+import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../core/widgets/translated_text.dart';
 import '../../../home_features/home/present/view/stats_view.dart';
 import '../bloc/instructions_bloc.dart';
@@ -44,16 +45,7 @@ class _InstructionsViewState extends State<InstructionsView> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       backgroundColor: context.colorScheme.primary,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        iconTheme: const IconThemeData(color: Colors.black),
-        title: TrText(
-          'التعليمات',
-          style: context.textTheme.titleMedium?.copyWith(color: Colors.black),
-        ),
-      ),
+      appBar: const CustomAppBar(title: 'التعليمات'),
       body: SingleChildScrollView(
         child: BlocConsumer<InstructionsBloc, InstructionsState>(
           bloc: getIt<InstructionsBloc>(),
