@@ -15,6 +15,7 @@ jobs:
             flavor: ${{ github.ref_name }}
             platforms: "android"
             environment: ${{ github.ref_name }}
+            shorebird_app_id: ${{ github.ref_name == 'prod' && '6bb908ca-da56-44da-ac93-6232282ada05' || 'dab69665-324c-439b-999e-f12d0b48e848' }}
         secrets:
             FIREBASE_ADMIN_SDK: ${{ secrets.FIREBASE_ADMIN_SDK }}
             SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
