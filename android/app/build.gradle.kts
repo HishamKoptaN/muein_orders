@@ -29,8 +29,6 @@ android {
         applicationId = "com.muein.orders"
         minSdk = flutter.minSdkVersion
         targetSdk = 37
-        versionCode = 10
-        versionName = "1.0.0"
     }
     signingConfigs {
         if (keystorePropertiesFile.exists()) {

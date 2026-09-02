@@ -65,8 +65,6 @@ jobs:
           if [ "$HAS_NATIVE" == "true" ]; then
             echo "⚠️ توجد تغييرات Native - لا يمكن استخدام Patch"
             if [ "$VERSION_EXISTS" == "true" ]; then
-              echo "   الإصدار موجود على المتجر"
-              echo "   → سيتم زيادة versionCode تلقائياً..."
               echo "action=bump-and-release" >> $GITHUB_OUTPUT
             else
               echo "   الإصدار غير موجود"
