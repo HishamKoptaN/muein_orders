@@ -76,9 +76,6 @@ jobs:
         env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         run: |
-          echo "🔍 التحقق من إمكانية تطبيق الباتش..."
-          echo "   للإصدار: ${{ inputs.version_code }} (${{ inputs.version_name }})"
-
           if ! shorebird patch android \
             --dart-define=ENV=prod \
             --flavor=prod \
