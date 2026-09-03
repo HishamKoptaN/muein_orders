@@ -5,7 +5,7 @@ extension OrderTypeResModelMapper on StatModel {
   StatEntity toEntity() {
     return StatEntity(
       id: id ?? 0,
-      docsCount: docsCount ?? 0,
+      count: count ?? 0,
       subCategory: subCategory?.toEntity(),
     );
   }

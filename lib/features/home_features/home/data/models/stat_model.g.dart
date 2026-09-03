@@ -8,7 +8,7 @@ part of 'stat_model.dart';
 
 _StatModel _$StatModelFromJson(Map<String, dynamic> json) => _StatModel(
   id: (json['id'] as num?)?.toInt(),
-  docsCount: (json['docs_count'] as num?)?.toInt(),
+  count: (json['count'] as num?)?.toInt(),
   subCategory: json['sub_category'] == null
       ? null
       : SubCategoryModel.fromJson(json['sub_category'] as Map<String, dynamic>),
@@ -20,7 +20,7 @@ _StatModel _$StatModelFromJson(Map<String, dynamic> json) => _StatModel(
 Map<String, dynamic> _$StatModelToJson(_StatModel instance) =>
     <String, dynamic>{
       'id': ?instance.id,
-      'docs_count': ?instance.docsCount,
+      'count': ?instance.count,
       'sub_category': ?instance.subCategory?.toJson(),
       'doc': ?instance.doc?.toJson(),
     };

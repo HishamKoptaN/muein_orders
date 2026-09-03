@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$StatEntity {
 
- int get id; int get docsCount; SubCategoryEntity? get subCategory; SallaOrderItemUnitEntity? get doc;
+ int get id; int get count; SubCategoryEntity? get subCategory;
 /// Create a copy of StatEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $StatEntityCopyWith<StatEntity> get copyWith => _$StatEntityCopyWithImpl<StatEnt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docsCount, docsCount) || other.docsCount == docsCount)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory)&&(identical(other.doc, doc) || other.doc == doc));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.count, count) || other.count == count)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docsCount,subCategory,doc);
+int get hashCode => Object.hash(runtimeType,id,count,subCategory);
 
 @override
 String toString() {
-  return 'StatEntity(id: $id, docsCount: $docsCount, subCategory: $subCategory, doc: $doc)';
+  return 'StatEntity(id: $id, count: $count, subCategory: $subCategory)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $StatEntityCopyWith<$Res>  {
   factory $StatEntityCopyWith(StatEntity value, $Res Function(StatEntity) _then) = _$StatEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, int docsCount, SubCategoryEntity? subCategory, SallaOrderItemUnitEntity? doc
+ int id, int count, SubCategoryEntity? subCategory
 });
 
 
-$SubCategoryEntityCopyWith<$Res>? get subCategory;$SallaOrderItemUnitEntityCopyWith<$Res>? get doc;
+$SubCategoryEntityCopyWith<$Res>? get subCategory;
 
 }
 /// @nodoc
@@ -62,13 +62,12 @@ class _$StatEntityCopyWithImpl<$Res>
 
 /// Create a copy of StatEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? docsCount = null,Object? subCategory = freezed,Object? doc = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? count = null,Object? subCategory = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,docsCount: null == docsCount ? _self.docsCount : docsCount // ignore: cast_nullable_to_non_nullable
+as int,count: null == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
 as int,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
-as SubCategoryEntity?,doc: freezed == doc ? _self.doc : doc // ignore: cast_nullable_to_non_nullable
-as SallaOrderItemUnitEntity?,
+as SubCategoryEntity?,
   ));
 }
 /// Create a copy of StatEntity
@@ -82,18 +81,6 @@ $SubCategoryEntityCopyWith<$Res>? get subCategory {
 
   return $SubCategoryEntityCopyWith<$Res>(_self.subCategory!, (value) {
     return _then(_self.copyWith(subCategory: value));
-  });
-}/// Create a copy of StatEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SallaOrderItemUnitEntityCopyWith<$Res>? get doc {
-    if (_self.doc == null) {
-    return null;
-  }
-
-  return $SallaOrderItemUnitEntityCopyWith<$Res>(_self.doc!, (value) {
-    return _then(_self.copyWith(doc: value));
   });
 }
 }
@@ -177,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int docsCount,  SubCategoryEntity? subCategory,  SallaOrderItemUnitEntity? doc)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int count,  SubCategoryEntity? subCategory)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StatEntity() when $default != null:
-return $default(_that.id,_that.docsCount,_that.subCategory,_that.doc);case _:
+return $default(_that.id,_that.count,_that.subCategory);case _:
   return orElse();
 
 }
@@ -198,10 +185,10 @@ return $default(_that.id,_that.docsCount,_that.subCategory,_that.doc);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int docsCount,  SubCategoryEntity? subCategory,  SallaOrderItemUnitEntity? doc)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int count,  SubCategoryEntity? subCategory)  $default,) {final _that = this;
 switch (_that) {
 case _StatEntity():
-return $default(_that.id,_that.docsCount,_that.subCategory,_that.doc);case _:
+return $default(_that.id,_that.count,_that.subCategory);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -218,10 +205,10 @@ return $default(_that.id,_that.docsCount,_that.subCategory,_that.doc);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int docsCount,  SubCategoryEntity? subCategory,  SallaOrderItemUnitEntity? doc)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int count,  SubCategoryEntity? subCategory)?  $default,) {final _that = this;
 switch (_that) {
 case _StatEntity() when $default != null:
-return $default(_that.id,_that.docsCount,_that.subCategory,_that.doc);case _:
+return $default(_that.id,_that.count,_that.subCategory);case _:
   return null;
 
 }
@@ -233,13 +220,12 @@ return $default(_that.id,_that.docsCount,_that.subCategory,_that.doc);case _:
 
 
 class _StatEntity implements StatEntity {
-  const _StatEntity({this.id = 0, this.docsCount = 0, this.subCategory, this.doc});
+  const _StatEntity({this.id = 0, this.count = 0, this.subCategory});
   
 
 @override@JsonKey() final  int id;
-@override@JsonKey() final  int docsCount;
+@override@JsonKey() final  int count;
 @override final  SubCategoryEntity? subCategory;
-@override final  SallaOrderItemUnitEntity? doc;
 
 /// Create a copy of StatEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -251,16 +237,16 @@ _$StatEntityCopyWith<_StatEntity> get copyWith => __$StatEntityCopyWithImpl<_Sta
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StatEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docsCount, docsCount) || other.docsCount == docsCount)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory)&&(identical(other.doc, doc) || other.doc == doc));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StatEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.count, count) || other.count == count)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docsCount,subCategory,doc);
+int get hashCode => Object.hash(runtimeType,id,count,subCategory);
 
 @override
 String toString() {
-  return 'StatEntity(id: $id, docsCount: $docsCount, subCategory: $subCategory, doc: $doc)';
+  return 'StatEntity(id: $id, count: $count, subCategory: $subCategory)';
 }
 
 
@@ -271,11 +257,11 @@ abstract mixin class _$StatEntityCopyWith<$Res> implements $StatEntityCopyWith<$
   factory _$StatEntityCopyWith(_StatEntity value, $Res Function(_StatEntity) _then) = __$StatEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int docsCount, SubCategoryEntity? subCategory, SallaOrderItemUnitEntity? doc
+ int id, int count, SubCategoryEntity? subCategory
 });
 
 
-@override $SubCategoryEntityCopyWith<$Res>? get subCategory;@override $SallaOrderItemUnitEntityCopyWith<$Res>? get doc;
+@override $SubCategoryEntityCopyWith<$Res>? get subCategory;
 
 }
 /// @nodoc
@@ -288,13 +274,12 @@ class __$StatEntityCopyWithImpl<$Res>
 
 /// Create a copy of StatEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? docsCount = null,Object? subCategory = freezed,Object? doc = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? count = null,Object? subCategory = freezed,}) {
   return _then(_StatEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,docsCount: null == docsCount ? _self.docsCount : docsCount // ignore: cast_nullable_to_non_nullable
+as int,count: null == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
 as int,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
-as SubCategoryEntity?,doc: freezed == doc ? _self.doc : doc // ignore: cast_nullable_to_non_nullable
-as SallaOrderItemUnitEntity?,
+as SubCategoryEntity?,
   ));
 }
 
@@ -309,18 +294,6 @@ $SubCategoryEntityCopyWith<$Res>? get subCategory {
 
   return $SubCategoryEntityCopyWith<$Res>(_self.subCategory!, (value) {
     return _then(_self.copyWith(subCategory: value));
-  });
-}/// Create a copy of StatEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SallaOrderItemUnitEntityCopyWith<$Res>? get doc {
-    if (_self.doc == null) {
-    return null;
-  }
-
-  return $SallaOrderItemUnitEntityCopyWith<$Res>(_self.doc!, (value) {
-    return _then(_self.copyWith(doc: value));
   });
 }
 }

@@ -90,7 +90,7 @@ class StatCard extends StatelessWidget {
                             Gap(5.w),
                             Flexible(
                               child: TrText(
-                                '(${stat.docsCount})',
+                                '(${stat.count})',
                                 overflow: .ellipsis,
                                 style: context.textTheme.bodySmall?.copyWith(
                                   color: context.colorScheme.onPrimary,

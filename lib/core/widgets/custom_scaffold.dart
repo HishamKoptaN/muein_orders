@@ -25,7 +25,7 @@ class CustomScaffold extends StatelessWidget {
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       primary: true,
       body: Padding(
-        padding: .symmetric(horizontal: 14.w),
+        padding: .symmetric(horizontal: 14.w, vertical: 10.h),
         child: body,
       ),
     );

@@ -8,9 +8,8 @@ part 'order_type_res_entity.freezed.dart';
 abstract class StatEntity with _$StatEntity {
   const factory StatEntity({
     @Default(0) int id,
-    @Default(0) int docsCount,
+    @Default(0) int count,
     SubCategoryEntity? subCategory,
-    SallaOrderItemUnitEntity? doc,
   }) = _StatEntity;
 }
 
