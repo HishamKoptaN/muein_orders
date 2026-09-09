@@ -3,6 +3,7 @@ description: muein_orders
 publish_to: "none"
 environment:
   sdk: ^3.12.2
+  flutter: ">=3.44.7"
 dependencies:
   flutter:
     sdk: flutter
