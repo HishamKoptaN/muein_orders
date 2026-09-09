@@ -55,23 +55,16 @@ jobs:
             exit 0
           fi
           if [ "$HAS_NATIVE" == "true" ]; then
-            echo "⚠️ توجد تغييرات Native - لا يمكن استخدام Patch"
             if [ "$VERSION_EXISTS" == "true" ]; then
               echo "action=bump-and-release" >> $GITHUB_OUTPUT
             else
-              echo "   الإصدار غير موجود"
-              echo "   → Release جديد"
               echo "action=release" >> $GITHUB_OUTPUT
             fi
             exit 0
           fi
           if [ "$VERSION_EXISTS" == "true" ]; then
-            echo "✅ لا توجد تغييرات Native + الإصدار موجود"
-            echo "   → Patch"
             echo "action=patch" >> $GITHUB_OUTPUT
           else
-            echo "✅ لا توجد تغييرات Native + الإصدار غير موجود"
-            echo "   → Release جديد"
             echo "action=release" >> $GITHUB_OUTPUT
           fi
   handle-patch:

@@ -63,32 +63,17 @@ jobs:
           echo "   منصة: iOS (App Store)"
           FORCE_PATCH="${{ inputs.force_patch }}"
           FORCE_RELEASE="${{ inputs.force_release }}"
-
-          echo "📊 تحليل الوضع:"
-          echo "   الإصدار موجود: $VERSION_EXISTS"
-          echo "   تغييرات Native: $HAS_NATIVE"
-          echo "   طريقة النشر: $METHOD"
-          echo "   force_patch: $FORCE_PATCH"
-          echo "   force_release: $FORCE_RELEASE"
-
           if [ "$FORCE_PATCH" == "true" ]; then
-            echo "🔧 Patch (فرض)"
             echo "action=patch" >> $GITHUB_OUTPUT
           elif [ "$FORCE_RELEASE" == "true" ]; then
-            echo "📦 Release (فرض)"
             echo "action=release" >> $GITHUB_OUTPUT
           elif [ "$HAS_NATIVE" == "true" ] && [ "$VERSION_EXISTS" == "true" ]; then
-            echo "⚠️ الإصدار موجود وتوجد تغييرات Native"
-            echo "   سيتم زيادة versionCode تلقائياً..."
             echo "action=bump-and-release" >> $GITHUB_OUTPUT
           elif [ "$HAS_NATIVE" == "true" ]; then
-            echo "📦 توجد تغييرات Native والإصدار غير موجود → Release جديد"
             echo "action=release" >> $GITHUB_OUTPUT
           elif [ "$VERSION_EXISTS" == "true" ]; then
-            echo "🔧 الإصدار موجود ولا توجد تغييرات Native → Patch"
             echo "action=patch" >> $GITHUB_OUTPUT
           else
-            echo "📦 الإصدار غير موجود ولا توجد تغييرات Native → Release جديد"
             echo "action=release" >> $GITHUB_OUTPUT
           fi
           echo "method=$METHOD" >> $GITHUB_OUTPUT
