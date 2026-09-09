@@ -1,6 +1,5 @@
 # Keystore files (Android signing)
 *.jks
-*.keystore
 # Miscellaneous
 *.class
 *.log
