@@ -26,13 +26,3 @@ jobs:
       version_name: ${{ inputs.version_name }}
       track: ${{ inputs.track }}
     secrets: inherit
-
-  release-after-bump:
-    needs: bump-version
-    if: inputs.action == 'bump-and-release'
-    uses: ./.github/workflows/30-shorebird-android-release.yml
-    with:
-      version_code: ${{ needs.bump-version.outputs.new_version_code }}
-      version_name: ${{ inputs.version_name }}
-      track: ${{ inputs.track }}
-    secrets: inherit
