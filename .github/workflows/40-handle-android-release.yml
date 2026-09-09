@@ -27,13 +27,6 @@ jobs:
       track: ${{ inputs.track }}
     secrets: inherit
 
-  bump-version:
-    if: inputs.action == 'bump-and-release'
-    uses: ./.github/workflows/20-version-android-bump.yml
-    with:
-      current_version_code: ${{ inputs.version_code }}
-    secrets: inherit
-
   release-after-bump:
     needs: bump-version
     if: inputs.action == 'bump-and-release'

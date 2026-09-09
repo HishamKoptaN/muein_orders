@@ -16,12 +16,10 @@ on:
           - beta
           - production
       force_patch:
-        description: "فرض استخدام Shorebird Patch"
         required: false
         default: false
         type: boolean
       force_release:
-        description: "فرض إنشاء إصدار جديد"
         required: false
         default: false
         type: boolean
@@ -47,13 +45,7 @@ jobs:
           echo "   منصة: Android (Google Play)"
           FORCE_PATCH="${{ github.event.inputs.force_patch }}"
           FORCE_RELEASE="${{ github.event.inputs.force_release }}"
-          echo "📊 تحليل الوضع:"
-          echo "   الإصدار موجود: $VERSION_EXISTS"
-          echo "   تغييرات Native: $HAS_NATIVE"
-          echo "   force_patch: $FORCE_PATCH"
-          echo "   force_release: $FORCE_RELEASE"
           if [ "$FORCE_PATCH" == "true" ]; then
-            echo "🔧 Patch (فرض)"
             echo "action=patch" >> $GITHUB_OUTPUT
             exit 0
           fi

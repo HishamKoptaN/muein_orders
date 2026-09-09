@@ -30,10 +30,6 @@ jobs:
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "version_name=$VERSION_NAME" >> $GITHUB_OUTPUT
 
-          echo "📱 الإصدار الحالي:"
-          echo "   versionName: $VERSION_NAME"
-          echo "   versionCode: $VERSION_CODE"
-
       - id: check-version
         env:
           APP_STORE_CONNECT_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
@@ -53,7 +49,6 @@ jobs:
           JWT_SIGNATURE=$(openssl dgst -sha256 -sign /tmp/asc_key.p8 -binary < <(echo -n "$JWT_SIGNING_INPUT") 2>/dev/null | base64 -w0 | tr '+/' '-_' | tr -d '=')
           rm -f /tmp/asc_key.p8
           if [ -z "$JWT_SIGNATURE" ]; then
-            echo "⚠️  فشل إنشاء JWT signature"
             echo "exists=false" >> $GITHUB_OUTPUT
             exit 0
           fi
@@ -69,8 +64,3 @@ jobs:
             "https://api.appstoreconnect.apple.com/v1/apps/$APP_ID/appStoreVersions")
           EXISTS=$(echo "$VERSIONS_RESPONSE" | grep -q "versionString.*$VERSION_NAME" && echo "true" || echo "false")
           echo "exists=$EXISTS" >> $GITHUB_OUTPUT
-          if [ "$EXISTS" == "true" ]; then
-            echo "⚠️  الإصدار $VERSION_NAME موجود بالفعل على App Store Connect!"
-          else
-            echo "✅ الإصدار $VERSION_NAME غير موجود على App Store Connect"
-          fi
