@@ -63,6 +63,7 @@ jobs:
               else
                 candidate_number=$((candidate_number + 1))
               fi  
+            fi  
           done
           echo "Calculated Build Name: $BUILD_NAME"
           echo "Calculated Build Number: $BUILD_NUMBER"
