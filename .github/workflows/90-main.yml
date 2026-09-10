@@ -10,9 +10,4 @@ jobs:
         uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-core-main.yml@prod
         with:
             shorebird_app_id: ${{ github.ref_name == 'prod' && '6bb908ca-da56-44da-ac93-6232282ada05' || 'dab69665-324c-439b-999e-f12d0b48e848' }}
-        secrets:
-            FIREBASE_ADMIN_SDK: ${{ secrets.FIREBASE_ADMIN_SDK }}
-            SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-            FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-            GOOGLE_PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
-            P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+        secrets: inherit
