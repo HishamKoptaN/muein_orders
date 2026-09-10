@@ -3,7 +3,7 @@ name: get-version
 on:
   push:
     branches:
-      - prod
+      - prods
 
 jobs:
   get-version:
