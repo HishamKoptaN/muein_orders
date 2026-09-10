@@ -1,10 +1,8 @@
 name: get-version
-
 on:
   push:
     branches:
       - prods
-
 jobs:
   get-version:
     runs-on: macos-latest
