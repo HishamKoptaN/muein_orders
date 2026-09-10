@@ -10,6 +10,7 @@ jobs:
     runs-on: macos-latest
     environment: ${{ github.ref_name }}
     steps:
+      - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: 3.44.7
