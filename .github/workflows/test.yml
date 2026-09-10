@@ -1,4 +1,4 @@
-name: Check Safe Shorebird Version
+name: get-version
 
 on:
   push:
@@ -6,33 +6,29 @@ on:
       - prod
 
 jobs:
-  get-safe-version:
+  get-version:
     runs-on: macos-latest
+    environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.47.2' 
           cache: true
-
       - uses: shorebirdtech/setup-shorebird@v1
-
       - shell: bash
         run: |
-          TARGET_ID="${{ secrets.SHOREBIRD_APP_ID }}"
-          PLATFORM="ios" # يمكنك تغييرها إلى android أو جعلها ديناميكية حسب الحاجة
+          TARGET_ID="6bb908ca-da56-44da-ac93-6232282ada05"
+          PLATFORM="ios" 
           if [ "$RUNNER_OS" == "macOS" ]; then
             sed -i '' "s/^app_id:.*/app_id: $TARGET_ID/" shorebird.yaml
           else
             sed -i "s/^app_id:.*/app_id: $TARGET_ID/" shorebird.yaml
           fi
-
-          echo "🔍 Fetching releases from Shorebird..."
           raw_list_platform=$(shorebird releases list --platform=$PLATFORM 2>/dev/null || true)
           raw_list_all=$(shorebird releases list 2>/dev/null || true)
           build_numbers=$(echo "$raw_list_all" | grep -oE '\+[0-9]+' | tr -d '+' || true)
           current_flutter_version=$(flutter --version | head -n 1 | awk '{print $2}')
-
           echo "🚀 Current Runner Flutter Version: $current_flutter_version"
           if [ -z "$raw_list_platform" ]; then
             BUILD_NAME="1.0.0"
@@ -76,7 +72,6 @@ jobs:
           echo "🎯 Final Calculated Build Number : $BUILD_NUMBER"
           echo "=================================================="
           if [ -z "$BUILD_NAME" ] || [ -z "$BUILD_NUMBER" ]; then
-            echo "❌ Error: Failed to generate build version!"
             exit 1
           else
             echo "✅ Version check completed successfully without conflicts!"
