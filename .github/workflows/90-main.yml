@@ -14,9 +14,3 @@ jobs:
             FIREBASE_ADMIN_SDK: ${{ secrets.FIREBASE_ADMIN_SDK }}
             SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
             FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
-
-
-
-
-            
