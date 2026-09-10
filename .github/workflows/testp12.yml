@@ -1,0 +1,45 @@
+name: Test P12 & Certificate on Prod Push
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  verify-certificate:
+    runs-on: macos-latest
+    environment: ${{ github.ref_name }}
+    env:
+      P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check P12_PASSWORD existence and length
+        run: |
+          echo "Checking P12_PASSWORD value..."
+          if [ -z "$P12_PASSWORD" ]; then
+            echo "Error: P12_PASSWORD is empty!"
+            exit 1
+          else
+            echo "P12_PASSWORD is set successfully (length: ${#P12_PASSWORD})"
+          fi
+
+      - name: Check files existence in ios folder
+        run: |
+          ls -la ios/*.p12 ios/*.mobileprovision
+
+      - name: Test Certificate Import & Provisioning Profile Setup
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp ios/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
+          
+          security create-keychain -p "" build.keychain
+          security import ios/certificate.p12 -k build.keychain -P "$P12_PASSWORD" -T /usr/bin/codesign
+          security unlock-keychain -p "" build.keychain
+          security set-keychain-settings -t 3600 -u build.keychain
+          security list-keychains -s build.keychain
+          security find-identity -v -p codesigning
+          
+          echo "SUCCESS: Certificate imported and keychain configured successfully!"
