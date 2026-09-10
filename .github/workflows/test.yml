@@ -13,66 +13,73 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.47.2' 
-          cache: true
+          flutter-version: 3.44.7
+          cache: true  
       - uses: shorebirdtech/setup-shorebird@v1
+        with:
+          cache: true
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.shorebird_token }}  
       - shell: bash
         run: |
           TARGET_ID="6bb908ca-da56-44da-ac93-6232282ada05"
-          PLATFORM="ios" 
+          PLATFORM="ios"
           if [ "$RUNNER_OS" == "macOS" ]; then
             sed -i '' "s/^app_id:.*/app_id: $TARGET_ID/" shorebird.yaml
           else
             sed -i "s/^app_id:.*/app_id: $TARGET_ID/" shorebird.yaml
           fi
+  
+          #==== جلب بيانات الإصدارات والبيئة الحالية ====
+  
           raw_list_platform=$(shorebird releases list --platform=$PLATFORM 2>/dev/null || true)
           raw_list_all=$(shorebird releases list 2>/dev/null || true)
           build_numbers=$(echo "$raw_list_all" | grep -oE '\+[0-9]+' | tr -d '+' || true)
           current_flutter_version=$(flutter --version | head -n 1 | awk '{print $2}')
-          echo "🚀 Current Runner Flutter Version: $current_flutter_version"
+  
+          # ==========================================
+          # 3. تحديد اسم الإصدار الأساسي (Build Name)
+          # ==========================================
+  
           if [ -z "$raw_list_platform" ]; then
             BUILD_NAME="1.0.0"
+            BUILD_NUMBER="1"
           else
             latest_full_version=$(echo "$raw_list_platform" | grep "$PLATFORM" | head -n 1 || echo "1.0.0+1")
             version_field=$(echo "$latest_full_version" | awk '{print $2}')
             raw_base=$(echo "$version_field" | cut -d'+' -f1)
             BUILD_NAME=$(echo "$raw_base" | cut -d'-' -f1)
           fi
-          [ -z "$BUILD_NAME" ] && BUILD_NAME="1.0.0"
+           [ -z "$BUILD_NAME" ] && BUILD_NAME="1.0.0"
+  
+          # ==========================================
+          # 4. خوارزمية البحث عن رقم بناء صالح (Smart Loop)
+          # ==========================================  
+  
           if [ -z "$build_numbers" ]; then
             BUILD_NUMBER="1"
-          else
+           else
             max_build=$(echo "$build_numbers" | sort -n | tail -n 1)
             candidate_number=$((max_build + 1))
-
+  
             while true; do
               existing_release=$(echo "$raw_list_all" | grep "+$candidate_number" || true)
-
+  
               if [ -z "$existing_release" ]; then
                 BUILD_NUMBER=$candidate_number
-                echo "✨ Found available build number: $BUILD_NUMBER"
                 break
               else
                 existing_flutter_version=$(echo "$existing_release" | awk '{print $NF}')
-                echo "⚠️ Build number $candidate_number exists with Flutter version: $existing_flutter_version"
-                
                 if [ "$current_flutter_version" == "$existing_flutter_version" ]; then
                   BUILD_NUMBER=$candidate_number
-                  echo "✅ Matching Flutter version found. Reusing build number."
                   break
                 else
-                  echo "❌ Version mismatch detected! Incrementing candidate number to avoid conflict."
                   candidate_number=$((candidate_number + 1))
                 fi  
               fi
             done
           fi
-          echo "=================================================="
-          echo "🎯 Final Calculated Build Name   : $BUILD_NAME"
-          echo "🎯 Final Calculated Build Number : $BUILD_NUMBER"
-          echo "=================================================="
-          if [ -z "$BUILD_NAME" ] || [ -z "$BUILD_NUMBER" ]; then
-            exit 1
-          else
-            echo "✅ Version check completed successfully without conflicts!"
-          fi
+          echo "Calculated Build Name: $BUILD_NAME"
+          echo "Calculated Build Number: $BUILD_NUMBER"
+          echo "BUILD_NAME=$BUILD_NAME" >> $GITHUB_OUTPUT
+          echo "BUILD_NUMBER=$BUILD_NUMBER" >> $GITHUB_OUTPUT
