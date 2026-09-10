@@ -13,13 +13,11 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.muein.orders</key>
-		<string>muein_orders_appstore_prod</string>
+		<string>prod_app_store_profile</string>
 	</dict>
 	<key>uploadSymbols</key>
 	<true/>
 	<key>teamID</key>
 	<string>5493DS73C7</string>
-	<key>destination</key>
-    <string>upload</string>
 </dict>
 </plist>
