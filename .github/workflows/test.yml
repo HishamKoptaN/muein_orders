@@ -4,30 +4,27 @@ on:
   push:
     branches:
       - prods
-
 jobs:
-  test-signing:
-    runs-on: macos-latest
-    environment: ${{ github.ref_name }}
+  test-shorebird:
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.47.2
+          flutter-version: '3.47.2'
           cache: true
-      - env:
-          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
-        run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp ios/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-          security create-keychain -p "" build.keychain
-          security default-keychain -s build.keychain
-          security unlock-keychain -p "" build.keychain
-          security import ios/certificate.p12 -k build.keychain -P "$P12_PASSWORD" -A -t cert -f pkcs12
-          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
-          security find-identity -v -p codesigning
-      - env:
-          API_KEY_ID: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
-          ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-        run: |
-          xcrun notarytool history --key-id "$API_KEY_ID" --issuer "$ISSUER_ID" --key ios/AuthKey_$API_KEY_ID.p8 || echo "API Check completed"
+      - uses: shorebirdtech/setup-shorebird@v1
+        with:
+          shorebird-token: ${{ secrets.SHOREBIRD_TOKEN }}
+      - run: |
+          shorebird release ios \
+            --flavor=prod \
+            --dart-define=ENV=prod \
+            --build-name=1.0.0 \
+            --build-number=11 \
+            --target=lib/main.dart \
+            --export-options-plist=ios/ExportOptions.plist \
+            --confirm \
+            --verbose
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
