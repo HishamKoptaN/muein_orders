@@ -3,22 +3,25 @@ name: Test Google Play Connection
 on:
   push:
     branches: [prod]
-  workflow_dispatch: # يتيح لك تشغيله يدوياً متى أردت من زر Run workflow
+  workflow_dispatch:
 
 jobs:
   test_play_auth:
     runs-on: ubuntu-latest
-    environment: prod # لاستدعاء أسرار بيئة الـ prod
+    environment: prod
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      # هذه الخطوة الجديدة تقوم بإنشاء ملف وهمي فارغ لكي يراه الأكشن
+      - name: Create Dummy File
+        run: touch dummy.aab
 
       - name: Authenticate and Test Google Play Connection
         uses: r0adkll/upload-google-play@v1
         with:
           packageName: com.muein.orders
-          # نستخدم ملف وهمي صغير جداً أو حزمة تجريبية فقط لفحص المصادقة والاتصال بالـ API
-          releaseFiles: unused_dummy_file.aab 
+          releaseFiles: dummy.aab
           track: internal
           status: draft
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
