@@ -1,7 +1,7 @@
 name: CI/CD Pipeline #122132222222
 on:
     push:
-        branches: [ dev , prod ]
+        branches: [ dev , prods ]
     workflow_dispatch:
 permissions:
     contents: write
