@@ -2,7 +2,7 @@ name: Test Google Play Connection
 
 on:
   push:
-    branches: [prod]
+    branches: [prods]
   workflow_dispatch:
 
 jobs:
