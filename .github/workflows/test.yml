@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.44.7
+          flutter-version: 3.47.2
           cache: true  
       - uses: shorebirdtech/setup-shorebird@v1
         with:
@@ -29,9 +29,7 @@ jobs:
           else
             sed -i "s/^app_id:.*/app_id: $TARGET_ID/" shorebird.yaml
           fi
-  
           #==== جلب بيانات الإصدارات والبيئة الحالية ====
-  
           raw_list_platform=$(shorebird releases list --platform=$PLATFORM 2>/dev/null || true)
           echo "raw_list_platform: $raw_list_platform"
           raw_list_all=$(shorebird releases list 2>/dev/null || true)
