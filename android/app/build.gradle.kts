@@ -1,10 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
-def keystoreProperties = new Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
+
 val keystoreProperties = Properties().apply {
     if (keystorePropertiesFile.exists()) {
         load(keystorePropertiesFile.inputStream())
@@ -35,14 +32,12 @@ android {
         targetSdk = 37
     }
     signingConfigs {
-        if (keystorePropertiesFile.exists()) {
             create("release") {
                 keyAlias = keystoreProperties["keyAlias"] as String
                 keyPassword = keystoreProperties["keyPassword"] as String
                 storeFile = keystoreProperties["storeFile"]?.let { file(it) }
                 storePassword = keystoreProperties["storePassword"] as String
             }
-        }
     }
     buildTypes {
         debug {
