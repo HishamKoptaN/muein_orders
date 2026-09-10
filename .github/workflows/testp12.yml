@@ -3,7 +3,7 @@ name: Test P12 & Certificate on Prod Push
 on:
   push:
     branches:
-      - prod
+      - prods
 
 jobs:
   verify-certificate:
