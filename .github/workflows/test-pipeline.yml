@@ -1,13 +1,14 @@
 name: Test & Dry-Run Pipeline
-
 on:
-  workflow_dispatch:
-    inputs:
-      track:
-        description: 'Target track for testing'
-        required: false
-        default: 'internal'
-        type: string
+    push:
+        branches: [prod]
+    workflow_dispatch:
+        inputs:
+            track:
+                description: 'Target track for testing'
+                required: false
+                default: 'internal'
+                type: string
 
 jobs:
   test_environment:
