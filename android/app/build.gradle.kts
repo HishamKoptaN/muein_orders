@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
 val keystorePropertiesFile = rootProject.file("key.properties")
-
 val keystoreProperties = Properties().apply {
     if (keystorePropertiesFile.exists()) {
         load(keystorePropertiesFile.inputStream())
