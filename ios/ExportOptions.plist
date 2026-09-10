@@ -4,8 +4,12 @@
 <dict>
 	<key>method</key>
 	<string>app-store</string>
+	<key>uploadBitcode</key>
+	<false/>
 	<key>signingStyle</key>
 	<string>manual</string>
+    <key>stripSwiftSymbols</key>
+    <true/>
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.muein.orders</key>
@@ -15,5 +19,7 @@
 	<true/>
 	<key>teamID</key>
 	<string>5493DS73C7</string>
+	<key>destination</key>
+    <string>upload</string>
 </dict>
 </plist>
