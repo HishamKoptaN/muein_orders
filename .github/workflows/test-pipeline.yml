@@ -1,63 +1,25 @@
-name: Test & Dry-Run Pipeline
+name: Test Google Play Connection
+
 on:
-    push:
-        branches: [prod]
-    workflow_dispatch:
-        inputs:
-            track:
-                description: 'Target track for testing'
-                required: false
-                default: 'internal'
-                type: string
+  push:
+    branches: [prod]
+  workflow_dispatch: # يتيح لك تشغيله يدوياً متى أردت من زر Run workflow
 
 jobs:
-  test_environment:
+  test_play_auth:
     runs-on: ubuntu-latest
-    environment: prod 
+    environment: prod # لاستدعاء أسرار بيئة الـ prod
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Authenticate and Test Google Play Connection
+        uses: r0adkll/upload-google-play@v1
         with:
-          fetch-depth: 1
-
-      - name: 1. Verify Secrets Availability
-        run: |
-          echo "Checking GitHub Secrets..."
-          if [ -z "${{ secrets.SHOREBIRD_TOKEN }}" ]; then
-            echo "❌ SHOREBIRD_TOKEN is missing or empty!"
-            exit 1
-          else
-            echo "✅ SHOREBIRD_TOKEN is configured correctly."
-          fi
-
-          if [ -z "${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}" ]; then
-            echo "❌ GOOGLE_PLAY_SERVICE_ACCOUNT_JSON is missing or empty!"
-            exit 1
-          else
-            echo "✅ GOOGLE_PLAY_SERVICE_ACCOUNT_JSON is configured correctly."
-          fi
-
-      - name: 2. Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          cache: true
-
-      - name: 3. Setup Shorebird & Verify Auth
-        uses: shorebirdtech/setup-shorebird@v1
-        with:
-          token: ${{ secrets.SHOREBIRD_TOKEN }}
-          cache: true
-
-      - name: 4. Check Shorebird Account Status
-        run: shorebird account
-        env:
-          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-
-      - name: 5. Test Dry-Run Build (AAB)
-        run: |
-          echo "Starting dry-run build for prod flavor..."
-          flutter build appbundle \
-            --flavor=prod \
-            --dart-define=ENV=prod \
-            --pub
-          echo "✅ Build test passed successfully! AAB bundle generated safely."
+          packageName: com.muein.orders
+          # نستخدم ملف وهمي صغير جداً أو حزمة تجريبية فقط لفحص المصادقة والاتصال بالـ API
+          releaseFiles: unused_dummy_file.aab 
+          track: internal
+          status: draft
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          changesNotSentForReview: true
