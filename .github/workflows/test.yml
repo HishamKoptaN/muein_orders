@@ -62,8 +62,8 @@ jobs:
             ios/.symlinks
           key: ios-patch-${{ github.sha }}-macos
           restore-keys: ios-patch-macos-
-      - run: flutter pub get
       - run: mkdir -p build/ios/SourcePackages
+      - run: flutter pub get
       - uses: shorebirdtech/setup-shorebird@v1
         with:
           cache: true
