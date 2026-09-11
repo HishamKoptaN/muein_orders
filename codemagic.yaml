@@ -1,0 +1,48 @@
+workflows:
+  prod:
+    name: iOS B2B Deployment
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    environment:
+      vars:
+        BUILD_TYPE: "release"
+        SHOREBIRD_TOKEN: ""
+      groups:
+        - muein_credentials
+      flutter: 3.44.7
+      xcode: latest
+    cache:
+      cache_paths:
+        - $CM_BUILD_DIR/dir/to/cache
+        - $HOME/.shorebird/cache
+        - $FLUTTER_ROOT/bin/cache/artifacts
+        - $CM_BUILD_DIR/build
+        - $HOME/.gradle/caches
+        - $FLUTTER_ROOT/.pub-cache
+
+    scripts:
+      - name: Shorebird Build or Patch
+        script: |
+          echo "Current Build Type is: $BUILD_TYPE"
+          if [ "$BUILD_TYPE" = "patch" ]; then
+            echo "Executing Shorebird Patch..."
+            shorebird patch ios --flavor=prod --dart-define=ENV=prod
+          else
+            echo "Executing Shorebird Release Build..."
+            shorebird release ios \
+              --flutter-version 3.44.7 \
+              --build-name=1.0.0 \
+              --build-number=53 \
+              --flavor=prod \
+              --dart-define=ENV=prod
+          fi
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_API_KEY
+        key_id: $APP_STORE_CONNECT_KEY_ID
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        submit_to_testflight: false
+        submit_to_app_store: false
