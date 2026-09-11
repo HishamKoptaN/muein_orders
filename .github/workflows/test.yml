@@ -72,17 +72,8 @@ jobs:
         shell: bash
         run: |
          if shorebird patch ios --flavor="${{ github.ref_name }}" --dry-run; then
-            echo "dry_run_status=success" >> $GITHUB_OUTPUT
+            echo "dry_run_status=success"
           else
-            echo "dry_run_status=failed" >> $GITHUB_OUTPUT
+            echo "dry_run_status=failed"
           fi
         continue-on-error: true
-      - id: set_output
-        shell: bash
-        run: |
-          STATUS="${{ steps.dry_run.outputs.dry_run_status }}"
-          if [ "$STATUS" == "success" ]; then
-            echo "build_type=patch" >> $GITHUB_OUTPUT
-          else
-            echo "build_type=release" >> $GITHUB_OUTPUT
-          fi
