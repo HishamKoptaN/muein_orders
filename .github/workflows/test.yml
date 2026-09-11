@@ -29,8 +29,6 @@ jobs:
             echo "Error: Provisioning profile not found in ios/"
             exit 1
           fi   
-
-      # Cache Pods فقط دون المساس بـ build/
       - uses: actions/cache@v4
         with:
           path: ios/Pods
@@ -77,6 +75,7 @@ jobs:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         shell: bash
         run: |
+          mkdir -p build/ios/SourcePackages build/macos/SourcePackages
           if shorebird patch ios --flavor="${{ github.ref_name }}" --release-version=latest --dry-run; then
             echo "dry_run_status=success"
           else
