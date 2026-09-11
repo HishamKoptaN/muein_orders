@@ -35,23 +35,21 @@ jobs:
       #    key: ios-pods-${{ hashFiles('ios/Podfile.lock') }}-${{ runner.os }}
       #    restore-keys: |
       #      ios-pods-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            ~/Library/Caches/swift-package-manager
-            ~/Library/Developer/Xcode/DerivedData
-          key: ${{ runner.os }}-pods-swift-${{ hashFiles('ios/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-swift-   
-
-      - uses: actions/cache@v4
-        with:
-          path: .dart_tool/
-          key: ${{ runner.os }}-flutter-build-${{ hashFiles('pubspec.lock') }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-flutter-build-${{ hashFiles('pubspec.lock') }}-
-            ${{ runner.os }}-flutter-build-
-
+      #- uses: actions/cache@v4
+      #  with:
+      #    path: |
+      #      ~/Library/Caches/swift-package-manager
+      #      ~/Library/Developer/Xcode/DerivedData
+      #    key: ${{ runner.os }}-pods-swift-${{ hashFiles('ios/Podfile.lock') }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-pods-swift-   
+      #- uses: actions/cache@v4
+      #  with:
+      #    path: .dart_tool/
+      #    key: ${{ runner.os }}-flutter-build-${{ hashFiles('pubspec.lock') }}-${{ github.sha }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-flutter-build-${{ hashFiles('pubspec.lock') }}-
+      #      ${{ runner.os }}-flutter-build-
       - uses: subosito/flutter-action@v2
         with:
           flutter-version-file: pubspec.yaml
