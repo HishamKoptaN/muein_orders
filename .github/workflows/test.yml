@@ -61,13 +61,13 @@ jobs:
           flutter-version-file: pubspec.yaml
           channel: "stable"
           cache: true
-      - run: mkdir -p build/ios/SourcePackages build/macos/SourcePackages
       - uses: shorebirdtech/setup-shorebird@v1
         with:
           cache: true
       - run: |
           flutter clean
           flutter pub get
+          mkdir -p build/ios/SourcePackages build/macos/SourcePackages
           cd ios
           pod install
       - id: dry_run
