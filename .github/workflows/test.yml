@@ -43,7 +43,6 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: |
-            build/
             .dart_tool/
           key: ${{ runner.os }}-flutter-build-${{ hashFiles('pubspec.lock') }}-${{ github.sha }}
           restore-keys: |
