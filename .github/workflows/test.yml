@@ -75,7 +75,7 @@ jobs:
           SHOREBIRD_TOKEN: ${{ secrets.shorebird_token }}
         shell: bash
         run: |
-         if shorebird patch ios --release-version=latest --dry-run; then
+         if shorebird patch ios --flavor="${{ github.ref_name }}" --release-version=latest --dry-run; then
             echo "dry_run_status=success"
           else
             echo "dry_run_status=failed"
