@@ -63,11 +63,12 @@ jobs:
           channel: "stable"
           cache: true
       - run: mkdir -p build/ios/SourcePackages build/macos/SourcePackages
-      - run: flutter pub get
       - uses: shorebirdtech/setup-shorebird@v1
         with:
           cache: true
       - run: |
+          flutter clean
+          flutter pub get
           cd ios
           pod install
       - id: dry_run
