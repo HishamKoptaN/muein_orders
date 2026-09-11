@@ -49,11 +49,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-flutter-build-${{ hashFiles('pubspec.lock') }}-
             ${{ runner.os }}-flutter-build-
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version-file: pubspec.yaml
-          channel: "stable"
-          cache: true
       - uses: actions/cache@v4
         with:
           path: |
@@ -62,6 +57,11 @@ jobs:
             ios/.symlinks
           key: ios-patch-${{ github.sha }}-macos
           restore-keys: ios-patch-macos-
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          channel: "stable"
+          cache: true
       - run: mkdir -p build/ios/SourcePackages build/macos/SourcePackages
       - run: flutter pub get
       - uses: shorebirdtech/setup-shorebird@v1
@@ -75,7 +75,7 @@ jobs:
           SHOREBIRD_TOKEN: ${{ secrets.shorebird_token }}
         shell: bash
         run: |
-         if shorebird patch ios --flavor="${{ github.ref_name }}" --dry-run; then
+         if shorebird patch ios --flutter-version=3.44.7 --flavor="${{ github.ref_name }}" --dry-run; then
             echo "dry_run_status=success"
           else
             echo "dry_run_status=failed"
