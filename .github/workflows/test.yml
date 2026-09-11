@@ -63,9 +63,13 @@ jobs:
           key: ios-patch-${{ github.sha }}-macos
           restore-keys: ios-patch-macos-
       - run: flutter pub get
+      - run: mkdir -p build/ios/SourcePackages
+      - uses: shorebirdtech/setup-shorebird@v1
+        with:
+          cache: true
       - run: |
           cd ios
-          pod install --repo-update
+          pod install
       - id: dry_run
         env:
           SHOREBIRD_TOKEN: ${{ secrets.shorebird_token }}
