@@ -75,7 +75,7 @@ jobs:
           SHOREBIRD_TOKEN: ${{ secrets.shorebird_token }}
         shell: bash
         run: |
-         if shorebird patch ios --flutter-version=3.44.7 --flavor="${{ github.ref_name }}" --dry-run; then
+         if shorebird patch ios --release-version=latest --dry-run; then
             echo "dry_run_status=success"
           else
             echo "dry_run_status=failed"
