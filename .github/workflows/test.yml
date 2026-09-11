@@ -32,23 +32,21 @@ jobs:
           flutter-version-file: pubspec.yaml
           channel: "stable"
           cache: true
-
       - run: |
+          mkdir -p build/ios/SourcePackages build/macos/SourcePackages
           flutter pub get
           cd ios
           pod install
       - uses: shorebirdtech/setup-shorebird@v1
         with:
           cache: true
-      - id: dry_run
-        env:
+      - env:
           SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         shell: bash
         run: |
-          mkdir -p build/ios/SourcePackages build/macos/SourcePackages
           if shorebird patch ios --flavor="${{ github.ref_name }}" --release-version=latest --dry-run; then
-            echo "dry_run_status=success"
+            echo "success"
           else
-            echo "dry_run_status=failed"
+            echo "failed"
           fi
         continue-on-error: true
