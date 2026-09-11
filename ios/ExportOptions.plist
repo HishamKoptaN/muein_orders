@@ -13,7 +13,7 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.muein.orders</key>
-		<string>prod_app_store_profile</string>
+		<string>muein_prod</string>
 	</dict>
 	<key>uploadSymbols</key>
 	<true/>
