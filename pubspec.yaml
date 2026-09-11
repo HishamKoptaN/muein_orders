@@ -69,7 +69,7 @@ dependencies:
   drift: ^2.28.2
   drift_sqflite: ^2.0.1
   flutter_local_notifications: ^22.3.0
-  workmanager: ^0.10.7
+  workmanager: ^0.10.10
   universal_platform: ^1.1.0
   flutter_svg: ^2.0.0
   device_info_plus: ^13.2.0
