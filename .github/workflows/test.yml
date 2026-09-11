@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-shorebird:
-    runs-on: macos-15
+    runs-on: macos-latest
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v6
