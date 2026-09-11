@@ -4,18 +4,21 @@ on:
   push:
     branches:
       - prod
+
 jobs:
   test-shorebird:
     runs-on: macos-14
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v6
+
       - uses: apple-actions/import-codesign-certs@v3
         with:
           p12-filepath: ios/certificate.p12  
           p12-password: ${{ secrets.P12_PASSWORD }}
           keychain: signing_temp
           create-keychain: true  
+
       - run: |
           PP_PATH="$HOME/Library/MobileDevice/Provisioning Profiles"
           mkdir -p "$PP_PATH"
@@ -26,12 +29,15 @@ jobs:
             echo "Error: Provisioning profile not found in ios/"
             exit 1
           fi   
+
+      # Cache Pods فقط دون المساس بـ build/
       - uses: actions/cache@v4
         with:
           path: ios/Pods
           key: ios-pods-${{ hashFiles('ios/Podfile.lock') }}-${{ runner.os }}
           restore-keys: |
             ios-pods-
+
       - uses: actions/cache@v4
         with:
           path: |
@@ -39,43 +45,39 @@ jobs:
             ~/Library/Developer/Xcode/DerivedData
           key: ${{ runner.os }}-pods-swift-${{ hashFiles('ios/Podfile.lock') }}
           restore-keys: |
-            ${- runner.os }}-pods-swift-   
+            ${{ runner.os }}-pods-swift-   
+
       - uses: actions/cache@v4
         with:
-          path: |
-            .dart_tool/
+          path: .dart_tool/
           key: ${{ runner.os }}-flutter-build-${{ hashFiles('pubspec.lock') }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-flutter-build-${{ hashFiles('pubspec.lock') }}-
             ${{ runner.os }}-flutter-build-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            build/
-            ios/Pods
-            ios/.symlinks
-          key: ios-patch-${{ github.sha }}-macos
-          restore-keys: ios-patch-macos-
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version-file: pubspec.yaml
           channel: "stable"
           cache: true
-      - uses: shorebirdtech/setup-shorebird@v1
-        with:
-          cache: true
+
       - run: |
           flutter clean
           flutter pub get
           mkdir -p build/ios/SourcePackages build/macos/SourcePackages
           cd ios
           pod install
+
+      - uses: shorebirdtech/setup-shorebird@v1
+        with:
+          cache: true
+
       - id: dry_run
         env:
-          SHOREBIRD_TOKEN: ${{ secrets.shorebird_token }}
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
         shell: bash
         run: |
-         if shorebird patch ios --flavor="${{ github.ref_name }}" --release-version=latest --dry-run; then
+          if shorebird patch ios --flavor="${{ github.ref_name }}" --release-version=latest --dry-run; then
             echo "dry_run_status=success"
           else
             echo "dry_run_status=failed"
