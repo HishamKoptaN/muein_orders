@@ -3,9 +3,47 @@ name: Test iOS Signing and Dry-Run Upload
 on:
   push:
     branches:
-      - prods
+      - prod
 jobs:
   test-shorebird:
     runs-on: macos-14
+    environment: ${{ github.ref_name }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          channel: "stable"
+          cache: true
+      - uses: actions/cache@v4
+        with:
+          path: |
+            build/
+            ios/Pods
+            ios/.symlinks
+          key: ios-patch-${{ github.sha }}-macos
+          restore-keys: ios-patch-macos-
+      - run: flutter pub get
+      - run: |
+          cd ios
+          pod install --repo-update
+      - id: dry_run
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.shorebird_token }}
+        shell: bash
+        run: |
+         if shorebird patch ios --flavor="${{ github.ref_name }}" --dry-run; then
+            echo "dry_run_status=success" >> $GITHUB_OUTPUT
+          else
+            echo "dry_run_status=failed" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true
+      - id: set_output
+        shell: bash
+        run: |
+          STATUS="${{ steps.dry_run.outputs.dry_run_status }}"
+          if [ "$STATUS" == "success" ]; then
+            echo "build_type=patch" >> $GITHUB_OUTPUT
+          else
+            echo "build_type=release" >> $GITHUB_OUTPUT
+          fi
