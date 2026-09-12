@@ -1,10 +1,8 @@
 name: Test iOS Signing and Dry-Run Upload
-
 on:
   push:
     branches:
-      - prod
-
+      - prods
 jobs:
   test-shorebird:
     runs-on: macos-latest
