@@ -2,53 +2,25 @@ name: Test iOS Signing and Dry-Run Upload
 on:
   push:
     branches:
-      - prods
+      - prod
 jobs:
   test-shorebird:
     runs-on: macos-latest
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v6
-      - uses: apple-actions/import-codesign-certs@v7
-        with:
-          p12-filepath: ios/certificate.p12  
-          p12-password: ${{ secrets.P12_PASSWORD }}
-          keychain: signing_temp
-          create-keychain: true  
       - run: |
-          PP_PATH="$HOME/Library/MobileDevice/Provisioning Profiles"
-          mkdir -p "$PP_PATH"
-          if [ -f "ios/muein_prod.mobileprovision" ]; then
-            cp ios/muein_prod.mobileprovision "$PP_PATH/"
-            echo "Provisioning profile copied successfully."
+          echo "=== Checking Keystore File ==="
+          if [ -f "android/app/keyStoreProd.jks" ]; then
+            file_size=$(ls -la android/app/keyStoreProd.jks | awk '{print $5}')
+            echo "File exists! Size: $file_size bytes"
+            if [ "$file_size" -eq 0 ]; then
+              echo "❌ Error: Keystore file size is 0 bytes! Base64 decoding failed."
+              exit 1
+            fi
+            echo "=== Testing with keytool ==="
+            keytool -list -v -keystore android/app/keyStoreProd.jks -storepass "${{ secrets.KEYSTORE_PASSWORD }}"
           else
-            echo "Error: Provisioning profile not found in ios/"
+            echo "❌ Error: Keystore file not found at path!"
             exit 1
-          fi   
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version-file: pubspec.yaml
-          channel: "stable"
-          cache: true
-      - run: |
-          mkdir -p build/ios/SourcePackages build/macos/SourcePackages
-          flutter pub get
-          cd ios
-          pod install
-      - uses: shorebirdtech/setup-shorebird@v1
-        with:
-          cache: true
-      - env:
-          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
-        shell: bash
-        run: |
-          if shorebird patch ios \
-          --export-options-plist=ios/ExportOptions.plist \
-          --flavor="${{ github.ref_name }}" \
-          --release-version=latest; then
-            echo "success"
-          else
-            echo "failed"
           fi
-        continue-on-error: true
-        #  --dry-run
