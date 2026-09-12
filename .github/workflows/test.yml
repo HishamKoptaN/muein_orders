@@ -9,18 +9,7 @@ jobs:
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v6
-      - run: |
-          echo "=== Checking Keystore File ==="
-          if [ -f "android/app/keyStoreProd.jks" ]; then
-            file_size=$(ls -la android/app/keyStoreProd.jks | awk '{print $5}')
-            echo "File exists! Size: $file_size bytes"
-            if [ "$file_size" -eq 0 ]; then
-              echo "❌ Error: Keystore file size is 0 bytes! Base64 decoding failed."
-              exit 1
-            fi
-            echo "=== Testing with keytool ==="
-            keytool -list -v -keystore android/app/keyStoreProd.jks -storepass "${{ secrets.KEYSTORE_PASSWORD }}"
-          else
-            echo "❌ Error: Keystore file not found at path!"
-            exit 1
-          fi
+      - shell: bash
+        run: |
+          sed -i 's|^storeFile=.*|storeFile=${{ github.ref_name }}/keyStore.jks|' android/key.properties
+          cat android/key.properties
