@@ -5,7 +5,7 @@ on:
       - prod
 jobs:
   test-shorebird:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v6
