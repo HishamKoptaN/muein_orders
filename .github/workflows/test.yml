@@ -2,7 +2,7 @@ name: Test iOS Signing and Dry-Run Upload
 on:
   push:
     branches:
-      - prod
+      - prods
 jobs:
   test-shorebird:
     runs-on: ubuntu-latest
@@ -11,5 +11,3 @@ jobs:
       - uses: actions/checkout@v6
       - shell: bash
         run: |
-          sed -i 's|^storeFile=.*|storeFile=${{ github.ref_name }}/keyStore.jks|' android/key.properties
-          cat android/key.properties
