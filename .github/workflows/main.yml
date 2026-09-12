@@ -7,7 +7,5 @@ permissions:
     contents: write
 jobs:
     workflows:
-        uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-core-main.yml@prod
-        with:
-            shorebird_app_id: ${{ github.ref_name == 'prod' && '6bb908ca-da56-44da-ac93-6232282ada05' || 'dab69665-324c-439b-999e-f12d0b48e848' }}
+        uses: HishamKoptaN/flutter-devops-core/.github/workflows/00-main.yml@prod
         secrets: inherit
