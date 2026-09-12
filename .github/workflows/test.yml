@@ -9,7 +9,7 @@ jobs:
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v6
-      - uses: apple-actions/import-codesign-certs@v3
+      - uses: apple-actions/import-codesign-certs@v7
         with:
           p12-filepath: ios/certificate.p12  
           p12-password: ${{ secrets.P12_PASSWORD }}
