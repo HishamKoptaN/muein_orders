@@ -48,11 +48,6 @@ void main() {
       };
       try {
         await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
-        // if (!Platform.isIOS) {
-        //   await Future.microtask(() {
-        //     return getIt<FirebaseMessagingService>().initialize();
-        //   });
-        // }
         await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
           !kDebugMode,
         );
@@ -84,9 +79,7 @@ Future<void> _initializeApp() async {
     FlutterNativeSplash.remove();
     Bloc.observer = AppBlocObserver();
     await GetStorage.init('translations_cache');
-    if (!Platform.isIOS) {
-      await getIt<FirebaseMessagingService>().initialize();
-    }
+    await getIt<FirebaseMessagingService>().initialize();
     runApp(const MueinOrdersApp());
     await _initializeWorkManager();
   } catch (error, stackTrace) {
