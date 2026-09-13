@@ -18,7 +18,7 @@ class ProdEnv extends Env {
   String get baseUrl {
     return 'https://muein.online/api';
   }
-
+  
   @override
   String get authBaseUrl {
     return '$baseUrl/auth/';
