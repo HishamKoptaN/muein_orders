@@ -25,20 +25,14 @@ class _SallaOrderItemsViewState extends State<SallaOrderItemsView> {
     super.initState();
     _scrollController = ScrollController()..addListener(_onScroll);
     getIt<OrderItemsBloc>().add(
-      OrderItemsEvent.get(
-        subCategoryId: widget.stat.subCategory?.id ?? 1,
-        loadMore: false,
-      ),
+      .get(subCategoryId: widget.stat.subCategory?.id ?? 1, loadMore: false),
     );
   }
 
   void _onScroll() {
     if (_isBottom) {
       getIt<OrderItemsBloc>().add(
-        OrderItemsEvent.get(
-          subCategoryId: widget.stat.subCategory?.id ?? 1,
-          loadMore: true,
-        ),
+        .get(subCategoryId: widget.stat.subCategory?.id ?? 1, loadMore: true),
       );
     }
   }

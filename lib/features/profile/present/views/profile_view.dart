@@ -13,20 +13,9 @@ import '../bloc/profile_bloc.dart';
 import 'profile_body.dart';
 import '../../../../core/theme/core/extensions/theme_ext.dart';
 
-class ProfileView extends StatefulWidget {
+class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
   static const String routeName = 'profile';
-
-  @override
-  State<ProfileView> createState() => _ProfileViewState();
-}
-
-class _ProfileViewState extends State<ProfileView> {
-  @override
-  void initState() {
-    super.initState();
-    getIt<ProfileBloc>().add(const ProfileEvent.getProfile());
-  }
 
   @override
   Widget build(BuildContext context) {

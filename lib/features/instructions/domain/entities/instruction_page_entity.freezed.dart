@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$InstructionPageEntity {
 
- String get titleKey; String get descriptionKey; String get imagePath;
+ String get title; String get description; String get imagePath;
 /// Create a copy of InstructionPageEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $InstructionPageEntityCopyWith<InstructionPageEntity> get copyWith => _$Instruct
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InstructionPageEntity&&(identical(other.titleKey, titleKey) || other.titleKey == titleKey)&&(identical(other.descriptionKey, descriptionKey) || other.descriptionKey == descriptionKey)&&(identical(other.imagePath, imagePath) || other.imagePath == imagePath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InstructionPageEntity&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.imagePath, imagePath) || other.imagePath == imagePath));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,titleKey,descriptionKey,imagePath);
+int get hashCode => Object.hash(runtimeType,title,description,imagePath);
 
 @override
 String toString() {
-  return 'InstructionPageEntity(titleKey: $titleKey, descriptionKey: $descriptionKey, imagePath: $imagePath)';
+  return 'InstructionPageEntity(title: $title, description: $description, imagePath: $imagePath)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $InstructionPageEntityCopyWith<$Res>  {
   factory $InstructionPageEntityCopyWith(InstructionPageEntity value, $Res Function(InstructionPageEntity) _then) = _$InstructionPageEntityCopyWithImpl;
 @useResult
 $Res call({
- String titleKey, String descriptionKey, String imagePath
+ String title, String description, String imagePath
 });
 
 
@@ -62,10 +62,10 @@ class _$InstructionPageEntityCopyWithImpl<$Res>
 
 /// Create a copy of InstructionPageEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? titleKey = null,Object? descriptionKey = null,Object? imagePath = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? description = null,Object? imagePath = null,}) {
   return _then(_self.copyWith(
-titleKey: null == titleKey ? _self.titleKey : titleKey // ignore: cast_nullable_to_non_nullable
-as String,descriptionKey: null == descriptionKey ? _self.descriptionKey : descriptionKey // ignore: cast_nullable_to_non_nullable
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,imagePath: null == imagePath ? _self.imagePath : imagePath // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -152,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String titleKey,  String descriptionKey,  String imagePath)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String description,  String imagePath)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _InstructionPageEntity() when $default != null:
-return $default(_that.titleKey,_that.descriptionKey,_that.imagePath);case _:
+return $default(_that.title,_that.description,_that.imagePath);case _:
   return orElse();
 
 }
@@ -173,10 +173,10 @@ return $default(_that.titleKey,_that.descriptionKey,_that.imagePath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String titleKey,  String descriptionKey,  String imagePath)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String description,  String imagePath)  $default,) {final _that = this;
 switch (_that) {
 case _InstructionPageEntity():
-return $default(_that.titleKey,_that.descriptionKey,_that.imagePath);case _:
+return $default(_that.title,_that.description,_that.imagePath);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +193,10 @@ return $default(_that.titleKey,_that.descriptionKey,_that.imagePath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String titleKey,  String descriptionKey,  String imagePath)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String description,  String imagePath)?  $default,) {final _that = this;
 switch (_that) {
 case _InstructionPageEntity() when $default != null:
-return $default(_that.titleKey,_that.descriptionKey,_that.imagePath);case _:
+return $default(_that.title,_that.description,_that.imagePath);case _:
   return null;
 
 }
@@ -208,11 +208,11 @@ return $default(_that.titleKey,_that.descriptionKey,_that.imagePath);case _:
 
 
 class _InstructionPageEntity implements InstructionPageEntity {
-  const _InstructionPageEntity({required this.titleKey, required this.descriptionKey, required this.imagePath});
+  const _InstructionPageEntity({required this.title, required this.description, required this.imagePath});
   
 
-@override final  String titleKey;
-@override final  String descriptionKey;
+@override final  String title;
+@override final  String description;
 @override final  String imagePath;
 
 /// Create a copy of InstructionPageEntity
@@ -225,16 +225,16 @@ _$InstructionPageEntityCopyWith<_InstructionPageEntity> get copyWith => __$Instr
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InstructionPageEntity&&(identical(other.titleKey, titleKey) || other.titleKey == titleKey)&&(identical(other.descriptionKey, descriptionKey) || other.descriptionKey == descriptionKey)&&(identical(other.imagePath, imagePath) || other.imagePath == imagePath));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InstructionPageEntity&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.imagePath, imagePath) || other.imagePath == imagePath));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,titleKey,descriptionKey,imagePath);
+int get hashCode => Object.hash(runtimeType,title,description,imagePath);
 
 @override
 String toString() {
-  return 'InstructionPageEntity(titleKey: $titleKey, descriptionKey: $descriptionKey, imagePath: $imagePath)';
+  return 'InstructionPageEntity(title: $title, description: $description, imagePath: $imagePath)';
 }
 
 
@@ -245,7 +245,7 @@ abstract mixin class _$InstructionPageEntityCopyWith<$Res> implements $Instructi
   factory _$InstructionPageEntityCopyWith(_InstructionPageEntity value, $Res Function(_InstructionPageEntity) _then) = __$InstructionPageEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String titleKey, String descriptionKey, String imagePath
+ String title, String description, String imagePath
 });
 
 
@@ -262,10 +262,10 @@ class __$InstructionPageEntityCopyWithImpl<$Res>
 
 /// Create a copy of InstructionPageEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? titleKey = null,Object? descriptionKey = null,Object? imagePath = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? description = null,Object? imagePath = null,}) {
   return _then(_InstructionPageEntity(
-titleKey: null == titleKey ? _self.titleKey : titleKey // ignore: cast_nullable_to_non_nullable
-as String,descriptionKey: null == descriptionKey ? _self.descriptionKey : descriptionKey // ignore: cast_nullable_to_non_nullable
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,imagePath: null == imagePath ? _self.imagePath : imagePath // ignore: cast_nullable_to_non_nullable
 as String,
   ));

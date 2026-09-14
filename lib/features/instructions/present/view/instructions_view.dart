@@ -29,9 +29,7 @@ class _InstructionsViewState extends State<InstructionsView> {
       if (_pageController.hasClients) {
         _pageController.jumpToPage(0);
       }
-      getIt<InstructionsBloc>().add(
-        const InstructionsEvent.pageChanged(pageIndex: 0),
-      );
+      getIt<InstructionsBloc>().add(const .pageChanged(pageIndex: 0));
     });
   }
 
@@ -69,7 +67,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                 return Column(
                   mainAxisAlignment: .center,
                   children: [
-                    Gap(60.h),
+                    Gap(40.h),
                     SizedBox(
                       height: 360.h,
                       width: 260.w,
@@ -78,7 +76,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                         physics: const NeverScrollableScrollPhysics(),
                         onPageChanged: (i) {
                           getIt<InstructionsBloc>().add(
-                            InstructionsEvent.pageChanged(pageIndex: i),
+                            .pageChanged(pageIndex: i),
                           );
                         },
                         itemCount: pages.length,
@@ -93,19 +91,23 @@ class _InstructionsViewState extends State<InstructionsView> {
                                 height: 220.h,
                                 width: 260.w,
                               ),
-                              Gap(32.h),
+                              Gap(20.h),
                               TrText(
-                                page.titleKey,
-                                textAlign: TextAlign.center,
+                                page.title,
+                                textAlign: .center,
+                                softWrap: true,
+                                overflow: .visible,
                                 style: context.textTheme.bodyLarge?.copyWith(
                                   color: context.colorScheme.onPrimary,
                                 ),
                               ),
-                              Gap(16.h),
-                              // Description
+                              Gap(12.h),
                               TrText(
-                                page.descriptionKey,
-                                style: context.textTheme.bodyLarge?.copyWith(
+                                page.description,
+                                textAlign: .center,
+                                overflow: .visible,
+                                softWrap: true,
+                                style: context.textTheme.bodyMedium?.copyWith(
                                   color: context.colorScheme.onPrimary,
                                 ),
                               ),
@@ -114,7 +116,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                         },
                       ),
                     ),
-                    Gap(20.h),
+                    Gap(16.h),
                     Row(
                       mainAxisAlignment: .center,
                       children: List.generate(pages.length, (i) {
@@ -134,24 +136,20 @@ class _InstructionsViewState extends State<InstructionsView> {
                     ),
                     Gap(20.h),
                     SizedBox(
-                      child:
-                          //  Navigator.canPop(context)
-                          //     ? const SizedBox.shrink()
-                          //     :
-                          TextButton(
-                            onPressed: () {
-                              NavigationService.navigateAndRemoveUntil(
-                                context: context,
-                                routeName: StatsView.routeName,
-                              );
-                            },
-                            child: TrText(
-                              'تخطي',
-                              style: context.textTheme.titleLarge?.copyWith(
-                                color: context.colorScheme.onPrimary,
-                              ),
-                            ),
+                      child: TextButton(
+                        onPressed: () {
+                          NavigationService.navigateAndRemoveUntil(
+                            context: context,
+                            routeName: StatsView.routeName,
+                          );
+                        },
+                        child: TrText(
+                          'تخطي',
+                          style: context.textTheme.titleLarge?.copyWith(
+                            color: context.colorScheme.onPrimary,
                           ),
+                        ),
+                      ),
                     ),
                     Gap(20.h),
                     FilledButton(
@@ -163,9 +161,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                           );
                         } else {
                           getIt<InstructionsBloc>().add(
-                            InstructionsEvent.pageChanged(
-                              pageIndex: currentPageIndex + 1,
-                            ),
+                            .pageChanged(pageIndex: currentPageIndex + 1),
                           );
                         }
                       },
@@ -175,13 +171,10 @@ class _InstructionsViewState extends State<InstructionsView> {
                   ],
                 );
               },
-              loading: () {
-                return const Center(child: CircularProgressIndicator());
-              },
               failure: (errorMessage) {
                 return Center(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: .center,
                     children: [
                       TrText(errorMessage),
                       const SizedBox(height: 16),

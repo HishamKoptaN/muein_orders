@@ -111,7 +111,6 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
-    - lib/l10n/
     - assets/
     - assets/icons/
     - assets/images/

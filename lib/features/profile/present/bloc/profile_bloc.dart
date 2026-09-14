@@ -118,6 +118,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     required Emitter<ProfileState> emit,
     required ErrorInfo apiErrorModel,
   }) {
-    return emit(ProfileState.failure(error: apiErrorModel.message));
+    return emit(.failure(error: apiErrorModel.message));
   }
 }

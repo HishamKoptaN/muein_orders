@@ -10,12 +10,11 @@ part 'instructions_state.dart';
 
 @singleton
 class InstructionsBloc extends Bloc<InstructionsEvent, InstructionsState> {
-  final int totalPages = 4;
   final List<InstructionPageEntity> pages;
   InstructionsBloc()
     : pages = _getInstructionPages(),
       super(
-        InstructionsState.loaded(
+        .loaded(
           pages: _getInstructionPages(),
           currentPageIndex: 0,
           isLastPage: false,
@@ -25,7 +24,7 @@ class InstructionsBloc extends Bloc<InstructionsEvent, InstructionsState> {
       await event.whenOrNull(
         pageChanged: (pageIndex) {
           emit(
-            InstructionsState.loaded(
+            .loaded(
               pages: pages,
               currentPageIndex: pageIndex,
               isLastPage: pageIndex == pages.length - 1,
@@ -39,25 +38,24 @@ class InstructionsBloc extends Bloc<InstructionsEvent, InstructionsState> {
   static List<InstructionPageEntity> _getInstructionPages() {
     return const [
       InstructionPageEntity(
-        titleKey: 'مرحبا',
-        descriptionKey: 'اهلا  بانضمامك الي معين',
+        title: 'مرحبا',
+        description: 'اهلا  بانضمامك الي معين',
         imagePath: 'assets/images/onboarding/welcome.png',
       ),
       InstructionPageEntity(
-        titleKey: 'تعرف على واجهة التطبيق',
-        descriptionKey: 'ستجد هنا المهام والطلبات والتنبيهات والفلاتر',
+        title: 'تعرف على واجهة التطبيق',
+        description: 'ستجد هنا المهام والطلبات والتنبيهات والفلاتر',
         imagePath: 'assets/images/onboarding/onboarding2.png',
       ),
       InstructionPageEntity(
-        titleKey: 'توثيق مع صور ومقاطع فيديو',
-        descriptionKey:
+        title: 'توثيق مع صور ومقاطع فيديو',
+        description:
             'تأكد من أن الصور واضحة والعدد الصحيح من النسخ من القرآن قبل الإرسال',
         imagePath: 'assets/images/onboarding/onboarding3.png',
       ),
       InstructionPageEntity(
-        titleKey:
-            'لا تقم بحذف ملفات التوثيق المحفوظة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة',
-        descriptionKey:
+        title: 'ملفات التوثيق',
+        description:
             'لا تقم بحذف ملفات التوثيق المحفوظة محلياً المستخدمة لتوثيق طلب حتى يتم الموافقة عليها من قبل الإدارة',
         imagePath: 'assets/images/onboarding/onboarding4.png',
       ),

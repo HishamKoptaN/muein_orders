@@ -17,30 +17,9 @@ import '../../domain/entities/order_type_res_entity.dart';
 import '../bloc/stats_bloc.dart';
 import 'widgets/stat_cared_widget.dart';
 
-class StatsView extends StatefulWidget {
+class StatsView extends StatelessWidget {
   const StatsView({super.key});
   static const String routeName = 'stats';
-  @override
-  State<StatsView> createState() => _StatsViewState();
-}
-
-class _StatsViewState extends State<StatsView> {
-  bool _initialized = false;
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!_initialized) {
-        _initializeData();
-        _initialized = true;
-      }
-    });
-  }
-
-  void _initializeData() {
-    getIt<StatsBloc>().add(const .getStats());
-  }
-
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(

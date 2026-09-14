@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import '../../../../../../core/routing/navigation_service.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/translated_text.dart';
 import '../../../../../orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
@@ -15,11 +15,7 @@ class StatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        NavigationService.pushNamed(
-          context: context,
-          routeName: SallaOrderItemsView.routeName,
-          extra: stat as Map<String, dynamic>,
-        );
+        context.pushNamed(SallaOrderItemsView.routeName, extra: stat);
       },
       child: Container(
         decoration: BoxDecoration(

@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../core/di/dependency_injection.dart';
+import '../../../../core/theme/core/extensions/theme_ext.dart';
+import '../../../../core/widgets/custom_empty_widget.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../bloc/notifications_bloc.dart';
 import 'widgets/widgets.dart';
@@ -37,44 +39,54 @@ class _NotificationsViewState extends State<NotificationsView> {
             borderRadius: .circular(6.r),
             color: const Color(0xFFF7F7F7),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: .start,
-              children: [
-                const SizedBox(height: 8),
-                BlocBuilder<NotificationsBloc, NotificationsState>(
-                  bloc: getIt<NotificationsBloc>(),
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      loaded: (notifications) {
-                        return ListView.separated(
-                          shrinkWrap: true,
-                          itemCount: notifications.length,
-                          itemBuilder: (context, i) {
-                            final noti = notifications[i];
-                            return NotificationRow(item: noti);
-                          },
-                          separatorBuilder: (context, i) {
-                            return Gap(10.h);
-                          },
-                        );
-                      },
-                      orElse: () {
-                        return const SizedBox();
-                      },
-                    );
-                  },
-                ),
-                // ...sectionsToShow.entries.expand(
-                //   (entry) => [
-                //     _SectionLabel(text: entry.key),
-                //     _NotificationsCard(items: entry.value),
-                //     const SizedBox(height: 16),
-                //   ],
-                // ),
-              ],
+          child: CustomEmptyWidget(
+            icon: Icon(
+              Icons.notification_add,
+              size: 40.sp,
+              color: context.colorScheme.primary,
             ),
+            title: 'لا توجد إشعارات',
+            subtitle:
+                'لا توجد إشعارات متاحة حاليًا، سيتم عرض الإشعارات هنا عند توفرها',
           ),
+          //SingleChildScrollView(
+          //  child: Column(
+          //    crossAxisAlignment: .start,
+          //    children: [
+          //      const SizedBox(height: 8),
+          //      BlocBuilder<NotificationsBloc, NotificationsState>(
+          //        bloc: getIt<NotificationsBloc>(),
+          //        builder: (context, state) {
+          //          return state.maybeWhen(
+          //            loaded: (notifications) {
+          //              return ListView.separated(
+          //                shrinkWrap: true,
+          //                itemCount: notifications.length,
+          //                itemBuilder: (context, i) {
+          //                  final noti = notifications[i];
+          //                  return NotificationRow(item: noti);
+          //                },
+          //                separatorBuilder: (context, i) {
+          //                  return Gap(10.h);
+          //                },
+          //              );
+          //            },
+          //            orElse: () {
+          //              return const SizedBox();
+          //            },
+          //          );
+          //        },
+          //      ),
+          //      // ...sectionsToShow.entries.expand(
+          //      //   (entry) => [
+          //      //     _SectionLabel(text: entry.key),
+          //      //     _NotificationsCard(items: entry.value),
+          //      //     const SizedBox(height: 16),
+          //      //   ],
+          //      // ),
+          //    ],
+          //  ),
+          //),
         ),
       ),
     );
