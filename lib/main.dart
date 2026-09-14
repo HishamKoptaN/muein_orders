@@ -54,30 +54,12 @@ Future<void> _initializeApp() async {
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       return true;
     };
-    try {
-      await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
-      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
-        !kDebugMode,
-      );
-    } catch (e, st) {
-      AppLogger.error(
-        'Firebase initialization failed',
-        tag: 'MAIN',
-        error: e,
-        stackTrace: st,
-      );
-    }
+    await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
+      !kDebugMode,
+    );
     Bloc.observer = AppBlocObserver();
-    if (kIsWeb) {
-      HydratedBloc.storage = await HydratedStorage.build(
-        storageDirectory: HydratedStorageDirectory.web,
-      );
-    } else {
-      final dir = await getApplicationDocumentsDirectory();
-      HydratedBloc.storage = await HydratedStorage.build(
-        storageDirectory: HydratedStorageDirectory(dir.path),
-      );
-    }
+    await initStorage();
     await PerformanceManager.initialize();
     await configureDependencies(environment: EnvConfig.config.envName);
     await findSystemLocale();
@@ -93,6 +75,19 @@ Future<void> _initializeApp() async {
       error: error,
       stackTrace: stackTrace,
       context: 'app initialization',
+    );
+  }
+}
+
+Future<void> initStorage() async {
+  if (kIsWeb) {
+    HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: HydratedStorageDirectory.web,
+    );
+  } else {
+    final dir = await getApplicationDocumentsDirectory();
+    HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: HydratedStorageDirectory(dir.path),
     );
   }
 }
