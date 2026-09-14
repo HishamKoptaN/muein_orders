@@ -4,7 +4,6 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../core/widgets/navigation/custom_app_bar.dart';
-import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/create_expense_entity.dart';
 import '../blocs/bloc/expenses_bloc.dart';
 
@@ -24,7 +23,6 @@ class _CreateExpenseViewState extends State<CreateExpenseView> {
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
     return Scaffold(
       appBar: const CustomAppBar(title: 'تدوين مصروفات'),
       backgroundColor: const Color(0xFF003A46),

@@ -22,8 +22,7 @@ class DeviceHelper {
       case DeviceType.tablet:
         return 400;
       case DeviceType.mobile:
-      default:
-        return 300;
+      return 300;
     }
   }
 

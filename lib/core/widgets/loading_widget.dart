@@ -25,19 +25,17 @@ class LoadingWidget extends StatelessWidget {
         width: 200.w,
         decoration: const BoxDecoration(
           color: Colors.green,
-          borderRadius: BorderRadius.all(
-            Radius.circular(25),
-          ),
+          borderRadius: BorderRadius.all(.circular(25)),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           children: [
             TrText(
               text,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontWeight: .bold,
               ),
             ),
             const SizedBox(height: 20),

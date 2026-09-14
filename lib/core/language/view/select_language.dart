@@ -97,7 +97,6 @@ class BodyWidget extends StatelessWidget {
               currentLocale.languageCode == langCode &&
               (countryCode == null ||
                   currentLocale.countryCode?.toUpperCase() == countryCode);
-
           return Padding(
             padding: .only(bottom: 6.h),
             child: Material(

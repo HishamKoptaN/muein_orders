@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../../../../../l10n/app_localizations.dart';
 import '../../../../orders/domain/entities/orders_res_entity.dart';
 import '../../../../salla_orders_items/domain/entities/salla_order_items_res_entity.dart';
 import 'preview/image_preview.dart';

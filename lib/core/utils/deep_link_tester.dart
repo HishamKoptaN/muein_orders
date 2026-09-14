@@ -5,31 +5,21 @@ import 'global_variable.dart';
 
 class DeepLinkTester {
   static void testDeepLink(String link) {
-    debugPrint('🔗 اختبار الرابط العميق: $link');
     final context = GlobalVariable.navState.currentContext;
     if (context != null) {
       final route = _parseRouteFromLink(link);
       if (route != null) {
-        debugPrint('✅ تحليل ناجح، المسار: $route');
         context.go(route);
-      } else {
-        debugPrint('❌ فشل تحليل المسار');
       }
-    } else {
-      debugPrint('❌ لا يمكن الحصول على سياق التنقل');
     }
   }
 
   static String? _parseRouteFromLink(String link) {
     try {
       final uri = Uri.parse(link);
-
-      // معالجة scheme مخصص: mueinorders://
       if (uri.scheme == 'mueinorders') {
         return '/${uri.path}';
       }
-
-      // معالجة رابط HTTPS: https://mueinorders.com/
       if (uri.scheme == 'https' &&
           (uri.host == 'mueinorders.com' ||
               uri.host == 'www.mueinorders.com')) {
@@ -43,7 +33,6 @@ class DeepLinkTester {
     }
   }
 
-  /// إنشاء أمثلة روابط للاختبار
   static List<String> getTestLinks() {
     return [
       'mueinorders://home',
@@ -57,7 +46,6 @@ class DeepLinkTester {
     ];
   }
 
-  /// عرض مربع حوار اختبار الروابط العميقة
   static void showTestDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -86,7 +74,9 @@ class DeepLinkTester {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
               child: const Text('إغلاق'),
             ),
           ],

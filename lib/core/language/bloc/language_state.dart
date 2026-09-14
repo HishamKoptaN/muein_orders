@@ -8,5 +8,14 @@ abstract class LanguageState with _$LanguageState {
 
   const LanguageState._();
 
-  bool get isLoaded => maybeWhen(loaded: (_) => true, orElse: () => false);
+  bool get isLoaded {
+    return maybeWhen(
+      loaded: (_) {
+        return true;
+      },
+      orElse: () {
+        return false;
+      },
+    );
+  }
 }

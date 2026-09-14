@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../l10n/app_localizations.dart';
 import '../translated_text.dart';
 import 'package:go_router/go_router.dart';
 
@@ -25,7 +24,6 @@ class AppLayout extends StatefulWidget {
 class _AppLayoutState extends State<AppLayout> {
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: widget.showAppBar
@@ -45,10 +43,7 @@ class _AppLayoutState extends State<AppLayout> {
                 style: const TextStyle(color: Colors.black),
               ),
               centerTitle: true,
-              actions: const [
-                LanguageIconButton(),
-                SizedBox(width: 8), // Add some spacing
-              ],
+              actions: const [LanguageIconButton(), SizedBox(width: 8)],
             )
           : null,
       body: widget.body,

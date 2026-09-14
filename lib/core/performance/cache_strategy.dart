@@ -116,8 +116,6 @@ class OrdersFilterCache extends CacheStrategy<String, List<int>> {
         keysToRemove.add(key);
       }
     }
-    for (final key in keysToRemove) {
-      invalidate(key);
-    }
+    keysToRemove.forEach(invalidate);
   }
 }

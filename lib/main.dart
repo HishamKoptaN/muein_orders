@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -10,12 +9,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl_standalone.dart';
+import 'package:path_provider/path_provider.dart';
 import 'config/env_config.dart';
+import 'core/performance/performance_manager.dart';
 import 'core/utils/background/workmanager_initializer.dart';
 import 'muein_orders_app.dart';
 import 'core/widgets/custom_error_widget.dart';
 import 'core/app_observer.dart';
-import 'core/config/app_initializer.dart';
 import 'core/di/dependency_injection.dart';
 import 'core/utils/services/firebase_messaging/firebase_messaging_service.dart';
 import 'core/utils/app_logger.dart';
@@ -23,56 +23,62 @@ import 'core/utils/app_logger.dart';
 void main() {
   runZonedGuarded(
     () async {
-      WidgetsFlutterBinding.ensureInitialized();
-      AppLogger.initialize(enableCrashlytics: true);
-      FlutterError.onError = (FlutterErrorDetails details) {
-        AppLogger.error(
-          'Flutter Framework Error: ${details.exceptionAsString()}',
-          tag: 'FLUTTER',
-          error: details.exception,
-          stackTrace: details.stack,
-        );
-        FirebaseCrashlytics.instance.recordFlutterError(details);
-      };
-      PlatformDispatcher.instance.onError = (error, stack) {
-        AppLogger.error(
-          'Platform Error',
-          tag: 'PLATFORM',
-          error: error,
-          stackTrace: stack,
-        );
-        if (!kDebugMode) {
-          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-        }
-        return true;
-      };
-      try {
-        await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
-        await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
-          !kDebugMode,
-        );
-      } catch (e, st) {
-        AppLogger.error(
-          'Firebase initialization failed',
-          tag: 'MAIN',
-          error: e,
-          stackTrace: st,
-        );
-      }
-      Bloc.observer = AppBlocObserver();
       await _initializeApp();
     },
     (error, stack) {
-      if (!kDebugMode) {
-        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-      }
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     },
   );
 }
 
 Future<void> _initializeApp() async {
   try {
-    await AppInitializer.initialize();
+    WidgetsFlutterBinding.ensureInitialized();
+    AppLogger.initialize(enableCrashlytics: true);
+    FlutterError.onError = (FlutterErrorDetails details) {
+      AppLogger.error(
+        'Flutter Framework Error: ${details.exceptionAsString()}',
+        tag: 'FLUTTER',
+        error: details.exception,
+        stackTrace: details.stack,
+      );
+      FirebaseCrashlytics.instance.recordFlutterError(details);
+    };
+    PlatformDispatcher.instance.onError = (error, stack) {
+      AppLogger.error(
+        'Platform Error',
+        tag: 'PLATFORM',
+        error: error,
+        stackTrace: stack,
+      );
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
+    try {
+      await Firebase.initializeApp(options: EnvConfig.config.firebaseOptions);
+      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
+        !kDebugMode,
+      );
+    } catch (e, st) {
+      AppLogger.error(
+        'Firebase initialization failed',
+        tag: 'MAIN',
+        error: e,
+        stackTrace: st,
+      );
+    }
+    Bloc.observer = AppBlocObserver();
+    if (kIsWeb) {
+      HydratedBloc.storage = await HydratedStorage.build(
+        storageDirectory: HydratedStorageDirectory.web,
+      );
+    } else {
+      final dir = await getApplicationDocumentsDirectory();
+      HydratedBloc.storage = await HydratedStorage.build(
+        storageDirectory: HydratedStorageDirectory(dir.path),
+      );
+    }
+    await PerformanceManager.initialize();
     await configureDependencies(environment: EnvConfig.config.envName);
     await findSystemLocale();
     intl.Intl.defaultLocale = 'en';

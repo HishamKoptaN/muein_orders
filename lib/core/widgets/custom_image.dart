@@ -17,7 +17,7 @@ class CustomImage extends StatelessWidget {
     required this.path,
     this.width,
     this.height,
-    this.fit = BoxFit.cover,
+    this.fit = .cover,
   });
 
   @override
@@ -32,18 +32,22 @@ class CustomImage extends StatelessWidget {
         width: width,
         height: height,
         fit: fit,
-        errorBuilder: (_, __, ___) => _buildPlaceholder(context),
+        errorBuilder: (_, __, ___) {
+          return _buildPlaceholder(context);
+        },
       );
     }
-
-    // 3. إذا كانت الصورة رابط شبكة (Network)
     return CachedNetworkImage(
       imageUrl: path!,
       width: width,
       height: height,
       fit: fit,
-      placeholder: (_, __) => _buildPlaceholder(context),
-      errorWidget: (_, __, ___) => _buildPlaceholder(context),
+      placeholder: (_, __) {
+        return _buildPlaceholder(context);
+      },
+      errorWidget: (_, __, ___) {
+        return _buildPlaceholder(context);
+      },
     );
   }
 
@@ -54,7 +58,7 @@ class CustomImage extends StatelessWidget {
       color: context.colorScheme.primaryContainer,
       child: Icon(
         Icons.person_rounded,
-        size: (width ?? 100.r) * 0.6, // حجم الأيقونة متناسب دائماً مع الأبعاد
+        size: (width ?? 100.r) * 0.6,
         color: context.colorScheme.onPrimaryContainer,
       ),
     );

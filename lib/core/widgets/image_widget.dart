@@ -19,7 +19,7 @@ class ImageWidget extends StatelessWidget {
               CachedNetworkImage(
                 imageUrl: imageUrl,
                 placeholder: (context, url) {
-                  return SizedBox();
+                  return const SizedBox();
                 },
                 fit: BoxFit.contain,
               ),

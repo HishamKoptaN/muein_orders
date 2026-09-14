@@ -19,13 +19,13 @@ class SimpleLoadingView extends StatelessWidget {
       backgroundColor: const Color(0xFF003A45),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: .center,
           children: [
             Container(
               width: 100.w,
               height: 100.h,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(
@@ -41,10 +41,8 @@ class SimpleLoadingView extends StatelessWidget {
                 fontSize: 16.sp,
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
-                fontFamily: 'Almarai',
               ),
             ),
-
             if (showProgressIndicator) ...[
               SizedBox(height: 24.h),
               SizedBox(
@@ -53,7 +51,7 @@ class SimpleLoadingView extends StatelessWidget {
                 child: CircularProgressIndicator(
                   strokeWidth: 2.5.w,
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.white.withOpacity(0.8),
+                    Colors.white.withValues(alpha: 0.8),
                   ),
                 ),
               ),

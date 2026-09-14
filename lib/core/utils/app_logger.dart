@@ -8,13 +8,11 @@ class AppLogger {
   }
 
   static void info(String message, {String? tag}) {
-    final logMessage = _formatMessage(message, tag: tag, level: 'INFO');
-    print('[INFO] $logMessage');
+    _formatMessage(message, tag: tag, level: 'INFO');
   }
 
   static void warning(String message, {String? tag, Object? error}) {
     final logMessage = _formatMessage(message, tag: tag, level: 'WARNING');
-    print('[WARNING] $logMessage');
     if (error != null) {
       print('Error: $error');
     }
@@ -81,8 +79,6 @@ class AppLogger {
   }
 
   static void setScreenContext(String screenName) {
-    debug('Screen: $screenName', tag: 'NAVIGATION');
-
     if (_isCrashlyticsEnabled) {
       FirebaseCrashlytics.instance.setCustomKey('current_screen', screenName);
     }
@@ -96,7 +92,6 @@ class AppLogger {
     }
   }
 
-  /// تنسيق الرسالة
   static String _formatMessage(
     String message, {
     String? tag,

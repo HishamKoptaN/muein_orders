@@ -7,12 +7,17 @@ class CustomContainer extends StatelessWidget {
   final double? height;
   final Color? color;
 
-  const CustomContainer({super.key, required this.child, this.height, this.color});
+  const CustomContainer({
+    super.key,
+    required this.child,
+    this.height,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const .all(4.0),
       child: Container(
         height: height,
         decoration: AppContainerStyles.defaultContainer(color: color),

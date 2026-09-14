@@ -21,7 +21,9 @@ class _NotificationIconState extends State<NotificationIcon> {
     _notificationManager = getIt<NotificationManager>();
     _notificationCountStream = Stream.periodic(
       const Duration(seconds: 5),
-      (_) => _getActiveNotificationsCount(),
+      (_) {
+        return _getActiveNotificationsCount();
+      },
     ).asyncMap((_) async => await _getActiveNotificationsCount());
   }
 

@@ -18,7 +18,7 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(widget.videoUrl)
+    _controller = .network(widget.videoUrl)
       ..initialize().then((_) {
         _controller.play();
         setState(() {});
@@ -40,9 +40,9 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
                 : Container(),
           ),
           Align(
-            alignment: Alignment.bottomCenter,
+            alignment: .bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 30.0),
+              padding: const .only(bottom: 30.0),
               child: FloatingActionButton(
                 onPressed: () {
                   setState(() {
