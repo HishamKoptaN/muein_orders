@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:get/utils.dart';
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/widgets/translated_text.dart';
@@ -89,8 +90,8 @@ class _SallaOrderItemsWidgetState extends State<SallaOrderItemsWidget> {
             (context, i) {
               final item = widget.items[i];
               return SallaOrderItemCardWidget(
-                sallaOrderItemUnits: item.sallaOrderItemUnits,
-                printedName: item.printedName,
+                item: item,
+                execuationTypeId: widget.stat.id,
               );
             },
           ),

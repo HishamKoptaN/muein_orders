@@ -18,12 +18,19 @@ extension SallaOrderItemMapper on SallaOrderItemModel {
   SallaOrderItemEntity toEntity() {
     return SallaOrderItemEntity(
       id: id,
+      sallaProduct: sallaProduct.toEntity(),
       printedName: printedName,
       sallaOrderItemUnits: sallaOrderItemUnits.map((e) {
         return e.toEntity(itemId: id);
       }).toList(),
       sallaOrderItemStatus: sallaOrderItemStatus.toEntity(),
     );
+  }
+}
+
+extension SallaProductMapper on SallaProductModel {
+  SallaProductEntity toEntity() {
+    return SallaProductEntity(id: id, name: name);
   }
 }
 

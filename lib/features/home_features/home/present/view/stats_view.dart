@@ -51,14 +51,14 @@ class StatsView extends StatelessWidget {
       drawer: const CustomSideDrawer(),
       body: BlocConsumer<StatsBloc, StatsState>(
         bloc: getIt<StatsBloc>(),
-        listener: (context, state) {
-          state.mapOrNull(
-            loaded: (st) {
+        listener: (context, state) async {
+          await state.mapOrNull(
+            loaded: (st) async {
               if (kDebugMode) {
-                Future.microtask(() {
-                  context.push(
+                await Future.microtask(() async {
+                  await context.push(
                     '/${SallaOrderItemsView.routeName}',
-                    extra: st.stats.first as Map<String, dynamic>,
+                    extra: st.stats.first,
                   );
                 });
               }

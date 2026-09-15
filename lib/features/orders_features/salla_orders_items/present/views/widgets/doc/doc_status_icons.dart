@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart' show SizeExtension;
+import '../../../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 import '../../../../../docs/domain/entities/doc_entity.dart';
 
@@ -8,19 +9,25 @@ class DocFileIconsWidget extends StatelessWidget {
   final DocEntity doc;
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      runSpacing: 4.h,
-      spacing: 10.h,
-      children: [
-        ...doc.files.map((file) {
-          return buildFileIcon(file: file);
-        }),
-        Icon(
-          Icons.location_on_rounded,
-          color: getStatusColor(status: doc.locationUploadStatus),
-          size: 24.r,
+    return Card(
+      color: context.colorScheme.onPrimary,
+      child: Padding(
+        padding: .all(8.r),
+        child: Wrap(
+          runSpacing: 4.h,
+          spacing: 10.h,
+          children: [
+            ...doc.files.map((file) {
+              return buildFileIcon(file: file);
+            }),
+            Icon(
+              Icons.location_on_rounded,
+              color: getStatusColor(status: doc.locationUploadStatus),
+              size: 24.r,
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 

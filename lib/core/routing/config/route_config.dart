@@ -15,6 +15,7 @@ import '../../../features/home_features/home/domain/entities/order_type_res_enti
 import '../../../features/home_features/home/present/view/stats_view.dart';
 import '../../../features/instructions/present/view/instructions_view.dart';
 import '../../../features/orders_features/docs/domain/entities/doc_entity.dart';
+import '../../../features/orders_features/salla_orders_items/data/models/sticker_pdf_preview_args.dart';
 import '../../../material3.dart';
 import '../../language/view/select_language.dart';
 import '../../../features/notifications/present/view/notifications_view.dart';
@@ -106,11 +107,10 @@ class RouteConfig {
         },
       ),
       RouteBuilder.goRoute(
-        routeName: PdfPreviewView.routeName,
+        routeName: StickerPdfPreviewView.routeName,
         builder: (context, state) {
-          return PdfPreviewView(
-            printedName: state.pathParameters['printedName'] ?? '',
-            executionNum: state.pathParameters['executionNum'] ?? '',
+          return StickerPdfPreviewView(
+            stickerPdfPreviewArgs: state.extra as StickerPdfPreviewArgs,
           );
         },
       ),
@@ -123,8 +123,7 @@ class RouteConfig {
       RouteBuilder.goRoute(
         routeName: AddCachedDocView.routeName,
         builder: (context, state) {
-          final args = state.extra as Map<String, dynamic>?;
-          return AddCachedDocView(doc: args?['cachedDoc'] as DocEntity);
+          return AddCachedDocView(doc: state.extra as DocEntity);
         },
       ),
       RouteBuilder.goRoute(

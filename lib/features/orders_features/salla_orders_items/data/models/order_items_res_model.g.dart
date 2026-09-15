@@ -30,6 +30,11 @@ _SallaOrderItemModel _$SallaOrderItemModelFromJson(Map<String, dynamic> json) =>
     _SallaOrderItemModel(
       id: (json['id'] as num?)?.toInt() ?? 0,
       printedName: json['printed_name'] as String? ?? '',
+      sallaProduct: json['salla_product'] == null
+          ? const SallaProductModel()
+          : SallaProductModel.fromJson(
+              json['salla_product'] as Map<String, dynamic>,
+            ),
       sallaOrderItemUnits:
           (json['salla_order_item_units'] as List<dynamic>?)
               ?.map(
@@ -52,6 +57,7 @@ Map<String, dynamic> _$SallaOrderItemModelToJson(
 ) => <String, dynamic>{
   'id': instance.id,
   'printed_name': instance.printedName,
+  'salla_product': instance.sallaProduct.toJson(),
   'salla_order_item_units': instance.sallaOrderItemUnits
       .map((e) => e.toJson())
       .toList(),
@@ -59,6 +65,15 @@ Map<String, dynamic> _$SallaOrderItemModelToJson(
   'created_at': instance.created_at,
   'updated_at': instance.updated_at,
 };
+
+_SallaProductModel _$SallaProductModelFromJson(Map<String, dynamic> json) =>
+    _SallaProductModel(
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      name: json['name'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$SallaProductModelToJson(_SallaProductModel instance) =>
+    <String, dynamic>{'id': instance.id, 'name': instance.name};
 
 _SallaOrderItemStatusModel _$SallaOrderItemStatusModelFromJson(
   Map<String, dynamic> json,

@@ -67,35 +67,34 @@ class StatCard extends StatelessWidget {
                         textAlign: .center,
                       ),
                     ),
-                    if (stat.id != 5)
-                      Flexible(
-                        child: Row(
-                          mainAxisAlignment: .spaceEvenly,
-                          crossAxisAlignment: .center,
-                          mainAxisSize: .min,
-                          children: [
-                            Flexible(
-                              child: TrText(
-                                'عدد الطلبات',
-                                overflow: .ellipsis,
-                                style: context.textTheme.bodyMedium?.copyWith(
-                                  color: context.colorScheme.onPrimary,
-                                ),
+                    Flexible(
+                      child: Row(
+                        mainAxisAlignment: .spaceEvenly,
+                        crossAxisAlignment: .center,
+                        mainAxisSize: .min,
+                        children: [
+                          Flexible(
+                            child: TrText(
+                              'عدد الطلبات',
+                              overflow: .ellipsis,
+                              style: context.textTheme.bodyMedium?.copyWith(
+                                color: context.colorScheme.onPrimary,
                               ),
                             ),
-                            Gap(5.w),
-                            Flexible(
-                              child: TrText(
-                                '(${stat.count})',
-                                overflow: .ellipsis,
-                                style: context.textTheme.bodySmall?.copyWith(
-                                  color: context.colorScheme.onPrimary,
-                                ),
+                          ),
+                          Gap(5.w),
+                          Flexible(
+                            child: TrText(
+                              '(${stat.count})',
+                              overflow: .ellipsis,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                color: context.colorScheme.onPrimary,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
+                    ),
                   ],
                 ),
               ),

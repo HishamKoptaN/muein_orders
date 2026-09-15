@@ -298,7 +298,7 @@ $MetaEntityCopyWith<$Res> get meta {
 /// @nodoc
 mixin _$SallaOrderItemEntity {
 
- int get id; String get printedName; List<SallaOrderItemUnitEntity> get sallaOrderItemUnits; SallaOrderItemStatusEntity get sallaOrderItemStatus;
+ int get id; SallaProductEntity get sallaProduct; String get printedName; List<SallaOrderItemUnitEntity> get sallaOrderItemUnits; SallaOrderItemStatusEntity get sallaOrderItemStatus;
 /// Create a copy of SallaOrderItemEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -309,16 +309,16 @@ $SallaOrderItemEntityCopyWith<SallaOrderItemEntity> get copyWith => _$SallaOrder
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,printedName,const DeepCollectionEquality().hash(sallaOrderItemUnits),sallaOrderItemStatus);
+int get hashCode => Object.hash(runtimeType,id,sallaProduct,printedName,const DeepCollectionEquality().hash(sallaOrderItemUnits),sallaOrderItemStatus);
 
 @override
 String toString() {
-  return 'SallaOrderItemEntity(id: $id, printedName: $printedName, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus)';
+  return 'SallaOrderItemEntity(id: $id, sallaProduct: $sallaProduct, printedName: $printedName, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus)';
 }
 
 
@@ -329,11 +329,11 @@ abstract mixin class $SallaOrderItemEntityCopyWith<$Res>  {
   factory $SallaOrderItemEntityCopyWith(SallaOrderItemEntity value, $Res Function(SallaOrderItemEntity) _then) = _$SallaOrderItemEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, String printedName, List<SallaOrderItemUnitEntity> sallaOrderItemUnits, SallaOrderItemStatusEntity sallaOrderItemStatus
+ int id, SallaProductEntity sallaProduct, String printedName, List<SallaOrderItemUnitEntity> sallaOrderItemUnits, SallaOrderItemStatusEntity sallaOrderItemStatus
 });
 
 
-$SallaOrderItemStatusEntityCopyWith<$Res> get sallaOrderItemStatus;
+$SallaProductEntityCopyWith<$Res> get sallaProduct;$SallaOrderItemStatusEntityCopyWith<$Res> get sallaOrderItemStatus;
 
 }
 /// @nodoc
@@ -346,16 +346,26 @@ class _$SallaOrderItemEntityCopyWithImpl<$Res>
 
 /// Create a copy of SallaOrderItemEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? printedName = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? sallaProduct = null,Object? printedName = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,printedName: null == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
+as int,sallaProduct: null == sallaProduct ? _self.sallaProduct : sallaProduct // ignore: cast_nullable_to_non_nullable
+as SallaProductEntity,printedName: null == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
 as String,sallaOrderItemUnits: null == sallaOrderItemUnits ? _self.sallaOrderItemUnits : sallaOrderItemUnits // ignore: cast_nullable_to_non_nullable
 as List<SallaOrderItemUnitEntity>,sallaOrderItemStatus: null == sallaOrderItemStatus ? _self.sallaOrderItemStatus : sallaOrderItemStatus // ignore: cast_nullable_to_non_nullable
 as SallaOrderItemStatusEntity,
   ));
 }
 /// Create a copy of SallaOrderItemEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SallaProductEntityCopyWith<$Res> get sallaProduct {
+  
+  return $SallaProductEntityCopyWith<$Res>(_self.sallaProduct, (value) {
+    return _then(_self.copyWith(sallaProduct: value));
+  });
+}/// Create a copy of SallaOrderItemEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -446,10 +456,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String printedName,  List<SallaOrderItemUnitEntity> sallaOrderItemUnits,  SallaOrderItemStatusEntity sallaOrderItemStatus)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  SallaProductEntity sallaProduct,  String printedName,  List<SallaOrderItemUnitEntity> sallaOrderItemUnits,  SallaOrderItemStatusEntity sallaOrderItemStatus)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SallaOrderItemEntity() when $default != null:
-return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus);case _:
+return $default(_that.id,_that.sallaProduct,_that.printedName,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus);case _:
   return orElse();
 
 }
@@ -467,10 +477,10 @@ return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.salla
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String printedName,  List<SallaOrderItemUnitEntity> sallaOrderItemUnits,  SallaOrderItemStatusEntity sallaOrderItemStatus)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  SallaProductEntity sallaProduct,  String printedName,  List<SallaOrderItemUnitEntity> sallaOrderItemUnits,  SallaOrderItemStatusEntity sallaOrderItemStatus)  $default,) {final _that = this;
 switch (_that) {
 case _SallaOrderItemEntity():
-return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus);case _:
+return $default(_that.id,_that.sallaProduct,_that.printedName,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -487,10 +497,10 @@ return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.salla
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String printedName,  List<SallaOrderItemUnitEntity> sallaOrderItemUnits,  SallaOrderItemStatusEntity sallaOrderItemStatus)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  SallaProductEntity sallaProduct,  String printedName,  List<SallaOrderItemUnitEntity> sallaOrderItemUnits,  SallaOrderItemStatusEntity sallaOrderItemStatus)?  $default,) {final _that = this;
 switch (_that) {
 case _SallaOrderItemEntity() when $default != null:
-return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus);case _:
+return $default(_that.id,_that.sallaProduct,_that.printedName,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus);case _:
   return null;
 
 }
@@ -502,10 +512,11 @@ return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.salla
 
 
 class _SallaOrderItemEntity implements SallaOrderItemEntity {
-  const _SallaOrderItemEntity({this.id = 0, this.printedName = '', final  List<SallaOrderItemUnitEntity> sallaOrderItemUnits = const [], this.sallaOrderItemStatus = const SallaOrderItemStatusEntity()}): _sallaOrderItemUnits = sallaOrderItemUnits;
+  const _SallaOrderItemEntity({this.id = 0, this.sallaProduct = const SallaProductEntity(), this.printedName = '', final  List<SallaOrderItemUnitEntity> sallaOrderItemUnits = const [], this.sallaOrderItemStatus = const SallaOrderItemStatusEntity()}): _sallaOrderItemUnits = sallaOrderItemUnits;
   
 
 @override@JsonKey() final  int id;
+@override@JsonKey() final  SallaProductEntity sallaProduct;
 @override@JsonKey() final  String printedName;
  final  List<SallaOrderItemUnitEntity> _sallaOrderItemUnits;
 @override@JsonKey() List<SallaOrderItemUnitEntity> get sallaOrderItemUnits {
@@ -526,16 +537,16 @@ _$SallaOrderItemEntityCopyWith<_SallaOrderItemEntity> get copyWith => __$SallaOr
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other._sallaOrderItemUnits, _sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other._sallaOrderItemUnits, _sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,printedName,const DeepCollectionEquality().hash(_sallaOrderItemUnits),sallaOrderItemStatus);
+int get hashCode => Object.hash(runtimeType,id,sallaProduct,printedName,const DeepCollectionEquality().hash(_sallaOrderItemUnits),sallaOrderItemStatus);
 
 @override
 String toString() {
-  return 'SallaOrderItemEntity(id: $id, printedName: $printedName, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus)';
+  return 'SallaOrderItemEntity(id: $id, sallaProduct: $sallaProduct, printedName: $printedName, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus)';
 }
 
 
@@ -546,11 +557,11 @@ abstract mixin class _$SallaOrderItemEntityCopyWith<$Res> implements $SallaOrder
   factory _$SallaOrderItemEntityCopyWith(_SallaOrderItemEntity value, $Res Function(_SallaOrderItemEntity) _then) = __$SallaOrderItemEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String printedName, List<SallaOrderItemUnitEntity> sallaOrderItemUnits, SallaOrderItemStatusEntity sallaOrderItemStatus
+ int id, SallaProductEntity sallaProduct, String printedName, List<SallaOrderItemUnitEntity> sallaOrderItemUnits, SallaOrderItemStatusEntity sallaOrderItemStatus
 });
 
 
-@override $SallaOrderItemStatusEntityCopyWith<$Res> get sallaOrderItemStatus;
+@override $SallaProductEntityCopyWith<$Res> get sallaProduct;@override $SallaOrderItemStatusEntityCopyWith<$Res> get sallaOrderItemStatus;
 
 }
 /// @nodoc
@@ -563,10 +574,11 @@ class __$SallaOrderItemEntityCopyWithImpl<$Res>
 
 /// Create a copy of SallaOrderItemEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? printedName = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? sallaProduct = null,Object? printedName = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,}) {
   return _then(_SallaOrderItemEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,printedName: null == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
+as int,sallaProduct: null == sallaProduct ? _self.sallaProduct : sallaProduct // ignore: cast_nullable_to_non_nullable
+as SallaProductEntity,printedName: null == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
 as String,sallaOrderItemUnits: null == sallaOrderItemUnits ? _self._sallaOrderItemUnits : sallaOrderItemUnits // ignore: cast_nullable_to_non_nullable
 as List<SallaOrderItemUnitEntity>,sallaOrderItemStatus: null == sallaOrderItemStatus ? _self.sallaOrderItemStatus : sallaOrderItemStatus // ignore: cast_nullable_to_non_nullable
 as SallaOrderItemStatusEntity,
@@ -577,12 +589,281 @@ as SallaOrderItemStatusEntity,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
+$SallaProductEntityCopyWith<$Res> get sallaProduct {
+  
+  return $SallaProductEntityCopyWith<$Res>(_self.sallaProduct, (value) {
+    return _then(_self.copyWith(sallaProduct: value));
+  });
+}/// Create a copy of SallaOrderItemEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
 $SallaOrderItemStatusEntityCopyWith<$Res> get sallaOrderItemStatus {
   
   return $SallaOrderItemStatusEntityCopyWith<$Res>(_self.sallaOrderItemStatus, (value) {
     return _then(_self.copyWith(sallaOrderItemStatus: value));
   });
 }
+}
+
+/// @nodoc
+mixin _$SallaProductEntity {
+
+ int get id; String get name;
+/// Create a copy of SallaProductEntity
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SallaProductEntityCopyWith<SallaProductEntity> get copyWith => _$SallaProductEntityCopyWithImpl<SallaProductEntity>(this as SallaProductEntity, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaProductEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id,name);
+
+@override
+String toString() {
+  return 'SallaProductEntity(id: $id, name: $name)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SallaProductEntityCopyWith<$Res>  {
+  factory $SallaProductEntityCopyWith(SallaProductEntity value, $Res Function(SallaProductEntity) _then) = _$SallaProductEntityCopyWithImpl;
+@useResult
+$Res call({
+ int id, String name
+});
+
+
+
+
+}
+/// @nodoc
+class _$SallaProductEntityCopyWithImpl<$Res>
+    implements $SallaProductEntityCopyWith<$Res> {
+  _$SallaProductEntityCopyWithImpl(this._self, this._then);
+
+  final SallaProductEntity _self;
+  final $Res Function(SallaProductEntity) _then;
+
+/// Create a copy of SallaProductEntity
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SallaProductEntity].
+extension SallaProductEntityPatterns on SallaProductEntity {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SallaProductEntity value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SallaProductEntity() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SallaProductEntity value)  $default,){
+final _that = this;
+switch (_that) {
+case _SallaProductEntity():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SallaProductEntity value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SallaProductEntity() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SallaProductEntity() when $default != null:
+return $default(_that.id,_that.name);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name)  $default,) {final _that = this;
+switch (_that) {
+case _SallaProductEntity():
+return $default(_that.id,_that.name);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name)?  $default,) {final _that = this;
+switch (_that) {
+case _SallaProductEntity() when $default != null:
+return $default(_that.id,_that.name);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _SallaProductEntity implements SallaProductEntity {
+  const _SallaProductEntity({this.id = 0, this.name = ''});
+  
+
+@override@JsonKey() final  int id;
+@override@JsonKey() final  String name;
+
+/// Create a copy of SallaProductEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SallaProductEntityCopyWith<_SallaProductEntity> get copyWith => __$SallaProductEntityCopyWithImpl<_SallaProductEntity>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaProductEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id,name);
+
+@override
+String toString() {
+  return 'SallaProductEntity(id: $id, name: $name)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SallaProductEntityCopyWith<$Res> implements $SallaProductEntityCopyWith<$Res> {
+  factory _$SallaProductEntityCopyWith(_SallaProductEntity value, $Res Function(_SallaProductEntity) _then) = __$SallaProductEntityCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String name
+});
+
+
+
+
+}
+/// @nodoc
+class __$SallaProductEntityCopyWithImpl<$Res>
+    implements _$SallaProductEntityCopyWith<$Res> {
+  __$SallaProductEntityCopyWithImpl(this._self, this._then);
+
+  final _SallaProductEntity _self;
+  final $Res Function(_SallaProductEntity) _then;
+
+/// Create a copy of SallaProductEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,}) {
+  return _then(_SallaProductEntity(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 /// @nodoc

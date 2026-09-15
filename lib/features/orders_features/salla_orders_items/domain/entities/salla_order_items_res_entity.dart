@@ -16,11 +16,20 @@ abstract class SallaOrderItemsResEntity with _$SallaOrderItemsResEntity {
 abstract class SallaOrderItemEntity with _$SallaOrderItemEntity {
   const factory SallaOrderItemEntity({
     @Default(0) int id,
+    @Default(SallaProductEntity()) SallaProductEntity sallaProduct,
     @Default('') String printedName,
     @Default([]) List<SallaOrderItemUnitEntity> sallaOrderItemUnits,
     @Default(SallaOrderItemStatusEntity())
     SallaOrderItemStatusEntity sallaOrderItemStatus,
   }) = _SallaOrderItemEntity;
+}
+
+@freezed
+abstract class SallaProductEntity with _$SallaProductEntity {
+  const factory SallaProductEntity({
+    @Default(0) int id,
+    @Default('') String name,
+  }) = _SallaProductEntity;
 }
 
 @freezed

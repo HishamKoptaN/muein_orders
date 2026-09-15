@@ -317,7 +317,7 @@ $MetaModelCopyWith<$Res> get meta {
 /// @nodoc
 mixin _$SallaOrderItemModel implements DiagnosticableTreeMixin {
 
-@JsonKey(name: 'id') int get id;@JsonKey(name: 'printed_name') String get printedName;@JsonKey(name: 'salla_order_item_units') List<SallaOrderItemUnitModel> get sallaOrderItemUnits;@JsonKey(name: 'salla_order_item_status') SallaOrderItemStatusModel get sallaOrderItemStatus;@JsonKey(name: 'created_at') String get created_at;@JsonKey(name: 'updated_at') String get updated_at;
+@JsonKey(name: 'id') int get id;@JsonKey(name: 'printed_name') String get printedName;@JsonKey(name: 'salla_product') SallaProductModel get sallaProduct;@JsonKey(name: 'salla_order_item_units') List<SallaOrderItemUnitModel> get sallaOrderItemUnits;@JsonKey(name: 'salla_order_item_status') SallaOrderItemStatusModel get sallaOrderItemStatus;@JsonKey(name: 'created_at') String get created_at;@JsonKey(name: 'updated_at') String get updated_at;
 /// Create a copy of SallaOrderItemModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -331,21 +331,21 @@ $SallaOrderItemModelCopyWith<SallaOrderItemModel> get copyWith => _$SallaOrderIt
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('printedName', printedName))..add(DiagnosticsProperty('sallaOrderItemUnits', sallaOrderItemUnits))..add(DiagnosticsProperty('sallaOrderItemStatus', sallaOrderItemStatus))..add(DiagnosticsProperty('created_at', created_at))..add(DiagnosticsProperty('updated_at', updated_at));
+    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('printedName', printedName))..add(DiagnosticsProperty('sallaProduct', sallaProduct))..add(DiagnosticsProperty('sallaOrderItemUnits', sallaOrderItemUnits))..add(DiagnosticsProperty('sallaOrderItemStatus', sallaOrderItemStatus))..add(DiagnosticsProperty('created_at', created_at))..add(DiagnosticsProperty('updated_at', updated_at));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,printedName,const DeepCollectionEquality().hash(sallaOrderItemUnits),sallaOrderItemStatus,created_at,updated_at);
+int get hashCode => Object.hash(runtimeType,id,printedName,sallaProduct,const DeepCollectionEquality().hash(sallaOrderItemUnits),sallaOrderItemStatus,created_at,updated_at);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemModel(id: $id, printedName: $printedName, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus, created_at: $created_at, updated_at: $updated_at)';
+  return 'SallaOrderItemModel(id: $id, printedName: $printedName, sallaProduct: $sallaProduct, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus, created_at: $created_at, updated_at: $updated_at)';
 }
 
 
@@ -356,11 +356,11 @@ abstract mixin class $SallaOrderItemModelCopyWith<$Res>  {
   factory $SallaOrderItemModelCopyWith(SallaOrderItemModel value, $Res Function(SallaOrderItemModel) _then) = _$SallaOrderItemModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'printed_name') String printedName,@JsonKey(name: 'salla_order_item_units') List<SallaOrderItemUnitModel> sallaOrderItemUnits,@JsonKey(name: 'salla_order_item_status') SallaOrderItemStatusModel sallaOrderItemStatus,@JsonKey(name: 'created_at') String created_at,@JsonKey(name: 'updated_at') String updated_at
+@JsonKey(name: 'id') int id,@JsonKey(name: 'printed_name') String printedName,@JsonKey(name: 'salla_product') SallaProductModel sallaProduct,@JsonKey(name: 'salla_order_item_units') List<SallaOrderItemUnitModel> sallaOrderItemUnits,@JsonKey(name: 'salla_order_item_status') SallaOrderItemStatusModel sallaOrderItemStatus,@JsonKey(name: 'created_at') String created_at,@JsonKey(name: 'updated_at') String updated_at
 });
 
 
-$SallaOrderItemStatusModelCopyWith<$Res> get sallaOrderItemStatus;
+$SallaProductModelCopyWith<$Res> get sallaProduct;$SallaOrderItemStatusModelCopyWith<$Res> get sallaOrderItemStatus;
 
 }
 /// @nodoc
@@ -373,11 +373,12 @@ class _$SallaOrderItemModelCopyWithImpl<$Res>
 
 /// Create a copy of SallaOrderItemModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? printedName = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,Object? created_at = null,Object? updated_at = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? printedName = null,Object? sallaProduct = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,Object? created_at = null,Object? updated_at = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,printedName: null == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
-as String,sallaOrderItemUnits: null == sallaOrderItemUnits ? _self.sallaOrderItemUnits : sallaOrderItemUnits // ignore: cast_nullable_to_non_nullable
+as String,sallaProduct: null == sallaProduct ? _self.sallaProduct : sallaProduct // ignore: cast_nullable_to_non_nullable
+as SallaProductModel,sallaOrderItemUnits: null == sallaOrderItemUnits ? _self.sallaOrderItemUnits : sallaOrderItemUnits // ignore: cast_nullable_to_non_nullable
 as List<SallaOrderItemUnitModel>,sallaOrderItemStatus: null == sallaOrderItemStatus ? _self.sallaOrderItemStatus : sallaOrderItemStatus // ignore: cast_nullable_to_non_nullable
 as SallaOrderItemStatusModel,created_at: null == created_at ? _self.created_at : created_at // ignore: cast_nullable_to_non_nullable
 as String,updated_at: null == updated_at ? _self.updated_at : updated_at // ignore: cast_nullable_to_non_nullable
@@ -385,6 +386,15 @@ as String,
   ));
 }
 /// Create a copy of SallaOrderItemModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SallaProductModelCopyWith<$Res> get sallaProduct {
+  
+  return $SallaProductModelCopyWith<$Res>(_self.sallaProduct, (value) {
+    return _then(_self.copyWith(sallaProduct: value));
+  });
+}/// Create a copy of SallaOrderItemModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -475,10 +485,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'printed_name')  String printedName, @JsonKey(name: 'salla_order_item_units')  List<SallaOrderItemUnitModel> sallaOrderItemUnits, @JsonKey(name: 'salla_order_item_status')  SallaOrderItemStatusModel sallaOrderItemStatus, @JsonKey(name: 'created_at')  String created_at, @JsonKey(name: 'updated_at')  String updated_at)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'printed_name')  String printedName, @JsonKey(name: 'salla_product')  SallaProductModel sallaProduct, @JsonKey(name: 'salla_order_item_units')  List<SallaOrderItemUnitModel> sallaOrderItemUnits, @JsonKey(name: 'salla_order_item_status')  SallaOrderItemStatusModel sallaOrderItemStatus, @JsonKey(name: 'created_at')  String created_at, @JsonKey(name: 'updated_at')  String updated_at)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SallaOrderItemModel() when $default != null:
-return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus,_that.created_at,_that.updated_at);case _:
+return $default(_that.id,_that.printedName,_that.sallaProduct,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus,_that.created_at,_that.updated_at);case _:
   return orElse();
 
 }
@@ -496,10 +506,10 @@ return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.salla
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'printed_name')  String printedName, @JsonKey(name: 'salla_order_item_units')  List<SallaOrderItemUnitModel> sallaOrderItemUnits, @JsonKey(name: 'salla_order_item_status')  SallaOrderItemStatusModel sallaOrderItemStatus, @JsonKey(name: 'created_at')  String created_at, @JsonKey(name: 'updated_at')  String updated_at)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'printed_name')  String printedName, @JsonKey(name: 'salla_product')  SallaProductModel sallaProduct, @JsonKey(name: 'salla_order_item_units')  List<SallaOrderItemUnitModel> sallaOrderItemUnits, @JsonKey(name: 'salla_order_item_status')  SallaOrderItemStatusModel sallaOrderItemStatus, @JsonKey(name: 'created_at')  String created_at, @JsonKey(name: 'updated_at')  String updated_at)  $default,) {final _that = this;
 switch (_that) {
 case _SallaOrderItemModel():
-return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus,_that.created_at,_that.updated_at);case _:
+return $default(_that.id,_that.printedName,_that.sallaProduct,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus,_that.created_at,_that.updated_at);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -516,10 +526,10 @@ return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.salla
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'printed_name')  String printedName, @JsonKey(name: 'salla_order_item_units')  List<SallaOrderItemUnitModel> sallaOrderItemUnits, @JsonKey(name: 'salla_order_item_status')  SallaOrderItemStatusModel sallaOrderItemStatus, @JsonKey(name: 'created_at')  String created_at, @JsonKey(name: 'updated_at')  String updated_at)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'printed_name')  String printedName, @JsonKey(name: 'salla_product')  SallaProductModel sallaProduct, @JsonKey(name: 'salla_order_item_units')  List<SallaOrderItemUnitModel> sallaOrderItemUnits, @JsonKey(name: 'salla_order_item_status')  SallaOrderItemStatusModel sallaOrderItemStatus, @JsonKey(name: 'created_at')  String created_at, @JsonKey(name: 'updated_at')  String updated_at)?  $default,) {final _that = this;
 switch (_that) {
 case _SallaOrderItemModel() when $default != null:
-return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus,_that.created_at,_that.updated_at);case _:
+return $default(_that.id,_that.printedName,_that.sallaProduct,_that.sallaOrderItemUnits,_that.sallaOrderItemStatus,_that.created_at,_that.updated_at);case _:
   return null;
 
 }
@@ -531,11 +541,12 @@ return $default(_that.id,_that.printedName,_that.sallaOrderItemUnits,_that.salla
 @JsonSerializable()
 
 class _SallaOrderItemModel with DiagnosticableTreeMixin implements SallaOrderItemModel {
-  const _SallaOrderItemModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'printed_name') this.printedName = '', @JsonKey(name: 'salla_order_item_units') final  List<SallaOrderItemUnitModel> sallaOrderItemUnits = const [], @JsonKey(name: 'salla_order_item_status') this.sallaOrderItemStatus = const SallaOrderItemStatusModel(), @JsonKey(name: 'created_at') this.created_at = '', @JsonKey(name: 'updated_at') this.updated_at = ''}): _sallaOrderItemUnits = sallaOrderItemUnits;
+  const _SallaOrderItemModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'printed_name') this.printedName = '', @JsonKey(name: 'salla_product') this.sallaProduct = const SallaProductModel(), @JsonKey(name: 'salla_order_item_units') final  List<SallaOrderItemUnitModel> sallaOrderItemUnits = const [], @JsonKey(name: 'salla_order_item_status') this.sallaOrderItemStatus = const SallaOrderItemStatusModel(), @JsonKey(name: 'created_at') this.created_at = '', @JsonKey(name: 'updated_at') this.updated_at = ''}): _sallaOrderItemUnits = sallaOrderItemUnits;
   factory _SallaOrderItemModel.fromJson(Map<String, dynamic> json) => _$SallaOrderItemModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;
 @override@JsonKey(name: 'printed_name') final  String printedName;
+@override@JsonKey(name: 'salla_product') final  SallaProductModel sallaProduct;
  final  List<SallaOrderItemUnitModel> _sallaOrderItemUnits;
 @override@JsonKey(name: 'salla_order_item_units') List<SallaOrderItemUnitModel> get sallaOrderItemUnits {
   if (_sallaOrderItemUnits is EqualUnmodifiableListView) return _sallaOrderItemUnits;
@@ -561,21 +572,21 @@ Map<String, dynamic> toJson() {
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('printedName', printedName))..add(DiagnosticsProperty('sallaOrderItemUnits', sallaOrderItemUnits))..add(DiagnosticsProperty('sallaOrderItemStatus', sallaOrderItemStatus))..add(DiagnosticsProperty('created_at', created_at))..add(DiagnosticsProperty('updated_at', updated_at));
+    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('printedName', printedName))..add(DiagnosticsProperty('sallaProduct', sallaProduct))..add(DiagnosticsProperty('sallaOrderItemUnits', sallaOrderItemUnits))..add(DiagnosticsProperty('sallaOrderItemStatus', sallaOrderItemStatus))..add(DiagnosticsProperty('created_at', created_at))..add(DiagnosticsProperty('updated_at', updated_at));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other._sallaOrderItemUnits, _sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&const DeepCollectionEquality().equals(other._sallaOrderItemUnits, _sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,printedName,const DeepCollectionEquality().hash(_sallaOrderItemUnits),sallaOrderItemStatus,created_at,updated_at);
+int get hashCode => Object.hash(runtimeType,id,printedName,sallaProduct,const DeepCollectionEquality().hash(_sallaOrderItemUnits),sallaOrderItemStatus,created_at,updated_at);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemModel(id: $id, printedName: $printedName, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus, created_at: $created_at, updated_at: $updated_at)';
+  return 'SallaOrderItemModel(id: $id, printedName: $printedName, sallaProduct: $sallaProduct, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus, created_at: $created_at, updated_at: $updated_at)';
 }
 
 
@@ -586,11 +597,11 @@ abstract mixin class _$SallaOrderItemModelCopyWith<$Res> implements $SallaOrderI
   factory _$SallaOrderItemModelCopyWith(_SallaOrderItemModel value, $Res Function(_SallaOrderItemModel) _then) = __$SallaOrderItemModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int id,@JsonKey(name: 'printed_name') String printedName,@JsonKey(name: 'salla_order_item_units') List<SallaOrderItemUnitModel> sallaOrderItemUnits,@JsonKey(name: 'salla_order_item_status') SallaOrderItemStatusModel sallaOrderItemStatus,@JsonKey(name: 'created_at') String created_at,@JsonKey(name: 'updated_at') String updated_at
+@JsonKey(name: 'id') int id,@JsonKey(name: 'printed_name') String printedName,@JsonKey(name: 'salla_product') SallaProductModel sallaProduct,@JsonKey(name: 'salla_order_item_units') List<SallaOrderItemUnitModel> sallaOrderItemUnits,@JsonKey(name: 'salla_order_item_status') SallaOrderItemStatusModel sallaOrderItemStatus,@JsonKey(name: 'created_at') String created_at,@JsonKey(name: 'updated_at') String updated_at
 });
 
 
-@override $SallaOrderItemStatusModelCopyWith<$Res> get sallaOrderItemStatus;
+@override $SallaProductModelCopyWith<$Res> get sallaProduct;@override $SallaOrderItemStatusModelCopyWith<$Res> get sallaOrderItemStatus;
 
 }
 /// @nodoc
@@ -603,11 +614,12 @@ class __$SallaOrderItemModelCopyWithImpl<$Res>
 
 /// Create a copy of SallaOrderItemModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? printedName = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,Object? created_at = null,Object? updated_at = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? printedName = null,Object? sallaProduct = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,Object? created_at = null,Object? updated_at = null,}) {
   return _then(_SallaOrderItemModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,printedName: null == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
-as String,sallaOrderItemUnits: null == sallaOrderItemUnits ? _self._sallaOrderItemUnits : sallaOrderItemUnits // ignore: cast_nullable_to_non_nullable
+as String,sallaProduct: null == sallaProduct ? _self.sallaProduct : sallaProduct // ignore: cast_nullable_to_non_nullable
+as SallaProductModel,sallaOrderItemUnits: null == sallaOrderItemUnits ? _self._sallaOrderItemUnits : sallaOrderItemUnits // ignore: cast_nullable_to_non_nullable
 as List<SallaOrderItemUnitModel>,sallaOrderItemStatus: null == sallaOrderItemStatus ? _self.sallaOrderItemStatus : sallaOrderItemStatus // ignore: cast_nullable_to_non_nullable
 as SallaOrderItemStatusModel,created_at: null == created_at ? _self.created_at : created_at // ignore: cast_nullable_to_non_nullable
 as String,updated_at: null == updated_at ? _self.updated_at : updated_at // ignore: cast_nullable_to_non_nullable
@@ -619,12 +631,299 @@ as String,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
+$SallaProductModelCopyWith<$Res> get sallaProduct {
+  
+  return $SallaProductModelCopyWith<$Res>(_self.sallaProduct, (value) {
+    return _then(_self.copyWith(sallaProduct: value));
+  });
+}/// Create a copy of SallaOrderItemModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
 $SallaOrderItemStatusModelCopyWith<$Res> get sallaOrderItemStatus {
   
   return $SallaOrderItemStatusModelCopyWith<$Res>(_self.sallaOrderItemStatus, (value) {
     return _then(_self.copyWith(sallaOrderItemStatus: value));
   });
 }
+}
+
+
+/// @nodoc
+mixin _$SallaProductModel implements DiagnosticableTreeMixin {
+
+@JsonKey(name: 'id') int get id;@JsonKey(name: 'name') String get name;
+/// Create a copy of SallaProductModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SallaProductModelCopyWith<SallaProductModel> get copyWith => _$SallaProductModelCopyWithImpl<SallaProductModel>(this as SallaProductModel, _$identity);
+
+  /// Serializes this SallaProductModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SallaProductModel'))
+    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('name', name));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaProductModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SallaProductModel(id: $id, name: $name)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SallaProductModelCopyWith<$Res>  {
+  factory $SallaProductModelCopyWith(SallaProductModel value, $Res Function(SallaProductModel) _then) = _$SallaProductModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'id') int id,@JsonKey(name: 'name') String name
+});
+
+
+
+
+}
+/// @nodoc
+class _$SallaProductModelCopyWithImpl<$Res>
+    implements $SallaProductModelCopyWith<$Res> {
+  _$SallaProductModelCopyWithImpl(this._self, this._then);
+
+  final SallaProductModel _self;
+  final $Res Function(SallaProductModel) _then;
+
+/// Create a copy of SallaProductModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SallaProductModel].
+extension SallaProductModelPatterns on SallaProductModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SallaProductModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SallaProductModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SallaProductModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _SallaProductModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SallaProductModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SallaProductModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String name)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SallaProductModel() when $default != null:
+return $default(_that.id,_that.name);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String name)  $default,) {final _that = this;
+switch (_that) {
+case _SallaProductModel():
+return $default(_that.id,_that.name);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int id, @JsonKey(name: 'name')  String name)?  $default,) {final _that = this;
+switch (_that) {
+case _SallaProductModel() when $default != null:
+return $default(_that.id,_that.name);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _SallaProductModel with DiagnosticableTreeMixin implements SallaProductModel {
+  const _SallaProductModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'name') this.name = ''});
+  factory _SallaProductModel.fromJson(Map<String, dynamic> json) => _$SallaProductModelFromJson(json);
+
+@override@JsonKey(name: 'id') final  int id;
+@override@JsonKey(name: 'name') final  String name;
+
+/// Create a copy of SallaProductModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SallaProductModelCopyWith<_SallaProductModel> get copyWith => __$SallaProductModelCopyWithImpl<_SallaProductModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SallaProductModelToJson(this, );
+}
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'SallaProductModel'))
+    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('name', name));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaProductModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'SallaProductModel(id: $id, name: $name)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SallaProductModelCopyWith<$Res> implements $SallaProductModelCopyWith<$Res> {
+  factory _$SallaProductModelCopyWith(_SallaProductModel value, $Res Function(_SallaProductModel) _then) = __$SallaProductModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'id') int id,@JsonKey(name: 'name') String name
+});
+
+
+
+
+}
+/// @nodoc
+class __$SallaProductModelCopyWithImpl<$Res>
+    implements _$SallaProductModelCopyWith<$Res> {
+  __$SallaProductModelCopyWithImpl(this._self, this._then);
+
+  final _SallaProductModel _self;
+  final $Res Function(_SallaProductModel) _then;
+
+/// Create a copy of SallaProductModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,}) {
+  return _then(_SallaProductModel(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 

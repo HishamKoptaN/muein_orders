@@ -22,6 +22,9 @@ abstract class SallaOrderItemModel with _$SallaOrderItemModel {
   const factory SallaOrderItemModel({
     @Default(0) @JsonKey(name: 'id') int id,
     @Default('') @JsonKey(name: 'printed_name') String printedName,
+    @Default(SallaProductModel())
+    @JsonKey(name: 'salla_product')
+    SallaProductModel sallaProduct,
     @Default([])
     @JsonKey(name: 'salla_order_item_units')
     List<SallaOrderItemUnitModel> sallaOrderItemUnits,
@@ -33,6 +36,16 @@ abstract class SallaOrderItemModel with _$SallaOrderItemModel {
   }) = _SallaOrderItemModel;
   factory SallaOrderItemModel.fromJson(Map<String, Object?> json) =>
       _$SallaOrderItemModelFromJson(json);
+}
+
+@freezed
+abstract class SallaProductModel with _$SallaProductModel {
+  const factory SallaProductModel({
+    @Default(0) @JsonKey(name: 'id') int id,
+    @Default('') @JsonKey(name: 'name') String name,
+  }) = _SallaProductModel;
+  factory SallaProductModel.fromJson(Map<String, Object?> json) =>
+      _$SallaProductModelFromJson(json);
 }
 
 @freezed

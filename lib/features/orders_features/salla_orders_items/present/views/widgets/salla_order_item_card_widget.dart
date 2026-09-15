@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../../core/widgets/translated_text.dart';
+import '../../../data/models/sticker_pdf_preview_args.dart';
 import '../../../domain/entities/salla_order_items_res_entity.dart';
 import '../sitcker_pdf/sitcker_pdf_preview_view.dart';
 import 'salla_order_item_unit_card_widget.dart';
 
 class SallaOrderItemCardWidget extends StatelessWidget {
-  final List<SallaOrderItemUnitEntity> sallaOrderItemUnits;
-  final String printedName;
+  final SallaOrderItemEntity item;
+  final int execuationTypeId;
   const SallaOrderItemCardWidget({
     super.key,
-    required this.sallaOrderItemUnits,
-    required this.printedName,
+    required this.item,
+    required this.execuationTypeId,
   });
 
   @override
@@ -36,12 +38,12 @@ class SallaOrderItemCardWidget extends StatelessWidget {
         child: ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: sallaOrderItemUnits.length,
+          itemCount: item.sallaOrderItemUnits.length,
           separatorBuilder: (context, index) {
             return Gap(8.h);
           },
           itemBuilder: (context, index) {
-            final sallaOrderItemUnit = sallaOrderItemUnits[index];
+            final sallaOrderItemUnit = item.sallaOrderItemUnits[index];
             return Column(
               children: [
                 ListView.separated(
@@ -51,11 +53,12 @@ class SallaOrderItemCardWidget extends StatelessWidget {
                   separatorBuilder: (context, index) {
                     return Gap(8.h);
                   },
-                  itemBuilder: (context, index) {
+                  itemBuilder: (context, i) {
                     return SallaOrderItemUnitCardWidget(
-                      doc: sallaOrderItemUnit.docs[index],
-                      executionNumber: sallaOrderItemUnit.executionNumber,
-                      printedName: printedName,
+                      execuationTypeId: execuationTypeId,
+                      item: item,
+                      sallaOrderItemUnit: sallaOrderItemUnit,
+                      doc: sallaOrderItemUnit.docs[i],
                     );
                   },
                 ),
@@ -69,44 +72,39 @@ class SallaOrderItemCardWidget extends StatelessWidget {
 }
 
 class MakeStickerPdfBtn extends StatelessWidget {
+  final int sallaProductId;
   final String printedName;
   final String executionNumber;
+  final int execuationTypeId;
   const MakeStickerPdfBtn({
     super.key,
-    required this.executionNumber,
+    required this.sallaProductId,
     required this.printedName,
+    required this.executionNumber,
+    required this.execuationTypeId,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: 160.w,
-        child: OutlinedButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return PdfPreviewView(
-                    printedName: printedName,
-                    executionNum: executionNumber,
-                  );
-                },
-              ),
-            );
-          },
-          style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: Color(0xFF0062B7)),
-            shape: RoundedRectangleBorder(borderRadius: .circular(8)),
+    return OutlinedButton(
+      onPressed: () {
+        context.push(
+          StickerPdfPreviewView.routeName,
+          extra: StickerPdfPreviewArgs(
+            execuationTypeId: execuationTypeId,
+            sallaProductId: sallaProductId,
+            executionNum: executionNumber,
+            printedName: printedName,
           ),
-          child: const TrText(
-            'الملصق',
-            style: TextStyle(
-              color: Color(0xFF0062B7),
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
+        );
+      },
+      style: OutlinedButton.styleFrom(
+        side: const BorderSide(color: Color(0xFF0062B7)),
+        shape: RoundedRectangleBorder(borderRadius: .circular(8)),
+      ),
+      child: const TrText(
+        'الملصق',
+        style: TextStyle(color: Color(0xFF0062B7), fontWeight: FontWeight.w700),
       ),
     );
   }

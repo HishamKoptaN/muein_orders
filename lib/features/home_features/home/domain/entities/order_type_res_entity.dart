@@ -1,7 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../orders_features/salla_orders_items/domain/entities/salla_order_items_res_entity.dart';
-
 part 'order_type_res_entity.freezed.dart';
 
 @freezed
