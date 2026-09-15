@@ -16,6 +16,7 @@ abstract class OrderItemsApi {
   @GET(ApiConstants.orderItems)
   Future<SallaOrderItemsResModel> get({
     @Query('page') int? page,
-    @Query('sub_category_id') required int subCategoryId,
+    @Query('per_page') int? perPage,
+    @Query('execution_type_id') required int executionTypeId,
   });
 }

@@ -22,6 +22,6 @@ class OrderItemsUseCases {
     required int subCategoryId,
     required int page,
   }) async {
-    return _repo.get(subCategoryId: subCategoryId, page: page);
+    return _repo.get(executionTypeId: subCategoryId, page: page);
   }
 }

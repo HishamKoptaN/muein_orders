@@ -5,7 +5,7 @@ import '../entities/salla_order_items_res_entity.dart';
 abstract class OrderItemsRepo {
   Stream<SallaOrderItemsResEntity> watch({UploadStatus? uploadStatus});
   Future<ExecuteGuard<void>> get({
-    required int subCategoryId,
+    required int executionTypeId,
     required int page,
   });
 }

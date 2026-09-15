@@ -22,12 +22,14 @@ class _OrderItemsApi implements OrderItemsApi {
   @override
   Future<SallaOrderItemsResModel> get({
     int? page,
-    required int subCategoryId,
+    int? perPage,
+    required int executionTypeId,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
-      r'sub_category_id': subCategoryId,
+      r'per_page': perPage,
+      r'execution_type_id': executionTypeId,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

@@ -115,11 +115,11 @@ class OrdersRepoImpl implements OrderItemsRepo {
 
   @override
   Future<ExecuteGuard<void>> get({
-    required int subCategoryId,
+    required int executionTypeId,
     required int page,
   }) async {
     try {
-      final res = await _api.get(subCategoryId: subCategoryId, page: page);
+      final res = await _api.get(executionTypeId: executionTypeId, page: page);
       final newEntity = res.toEntity();
       if (page == 1) {
         _remoteDataSubject.add(newEntity);
