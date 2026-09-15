@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
@@ -138,10 +139,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                     SizedBox(
                       child: TextButton(
                         onPressed: () {
-                          NavigationService.navigateAndRemoveUntil(
-                            context: context,
-                            routeName: StatsView.routeName,
-                          );
+                           context.go(StatsView.routeName);
                         },
                         child: TrText(
                           'تخطي',
@@ -155,10 +153,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                     FilledButton(
                       onPressed: () {
                         if (isLastPage) {
-                          NavigationService.navigateAndRemoveUntil(
-                            context: context,
-                            routeName: StatsView.routeName,
-                          );
+                          context.go(StatsView.routeName);
                         } else {
                           getIt<InstructionsBloc>().add(
                             .pageChanged(pageIndex: currentPageIndex + 1),

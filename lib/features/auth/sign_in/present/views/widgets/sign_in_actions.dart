@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../../core/di/dependency_injection.dart';
-import '../../../../../../core/routing/navigation_service.dart';
-import '../../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/loading/custom_circular_progress.dart';
 import '../../../../../../core/widgets/translated_text.dart';
 import '../../../../sign_up/present/views/sign_up_view.dart';
@@ -24,16 +23,11 @@ class SignInActions extends StatelessWidget {
               : null,
           child: formzSubmissionStatus.isInProgress
               ? const CustomCircularProgress()
-              : const TrText(
-                  'تسجيل الدخول',
-                ),
+              : const TrText('تسجيل الدخول'),
         ),
         TextButton(
           onPressed: () {
-            NavigationService.push(
-              context: context,
-              routeName: SignUpView.routeName,
-            );
+            context.go(SignUpView.routeName);
           },
           child: const TrText(
             'إنشاء حساب',

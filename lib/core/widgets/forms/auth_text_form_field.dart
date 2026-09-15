@@ -14,7 +14,6 @@ class CustomAuthTextFormField extends StatefulWidget {
     this.textInputType,
     this.textInputAction,
     this.obscureText = false,
-    this.isPassword = false,
     this.maxLines = 1,
     this.onChanged,
     this.onSaved,
@@ -48,7 +47,6 @@ class CustomAuthTextFormField extends StatefulWidget {
   final TextInputType? textInputType;
   final TextInputAction? textInputAction;
   final bool obscureText;
-  final bool isPassword;
   final int? maxLines;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String?>? onSaved;
@@ -97,13 +95,9 @@ class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
           validator: widget.validator,
           decoration: InputDecoration(
             filled: true,
-            hintStyle: context.textTheme.labelMedium?.copyWith(
-              color: context.colorScheme.onPrimary.withValues(alpha: .57),
-            ),
             fillColor: context.colorScheme.secondaryFixed.withValues(
-              alpha: .15,
+              alpha: .30,
             ),
-            border: .none,
             hintText: asyncSnapshot.data ?? '',
             errorText: widget.errorText,
             prefixIcon: widget.prefixIcon,

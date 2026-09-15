@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/routing/navigation_service.dart';
 import '../../../../../core/widgets/translated_text.dart';
 import '../../../../../gen/assets.gen.dart';
@@ -52,19 +53,13 @@ class AuthChoiceView extends StatelessWidget {
                   FilledButton(
                     child: const TrText('إنشاء حساب'),
                     onPressed: () {
-                      NavigationService.navigateAndRemoveUntil(
-                        context: context,
-                        routeName: SignUpView.routeName,
-                      );
+                      context.go(SignUpView.routeName);
                     },
                   ),
                   SizedBox(height: 40.h),
                   FilledButton(
                     onPressed: () {
-                      NavigationService.navigateAndRemoveUntil(
-                        context: context,
-                        routeName: SignInView.routeName,
-                      );
+                      context.go(SignInView.routeName);
                     },
                     child: const TrText('تسجيل الدخول'),
                   ),

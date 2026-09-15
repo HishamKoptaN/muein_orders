@@ -25,7 +25,7 @@ class SignUpView extends StatelessWidget {
                 context: context,
                 title: 'Error',
                 message: failure,
-                type: AppSnackBarType.error,
+                type: .error,
               );
             },
           );
@@ -39,7 +39,7 @@ class SignUpView extends StatelessWidget {
               );
             },
             orElse: () {
-              return const  CustomCircularProgress();
+              return const CustomCircularProgress();
             },
           );
         },

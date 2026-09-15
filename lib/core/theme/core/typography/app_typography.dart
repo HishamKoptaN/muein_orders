@@ -38,6 +38,7 @@ abstract final class AppTypography {
       ),
       //! -2                      وصف ثانوي، Hint، Supporting text، List content
       bodyMedium: TextStyle(
+        color: Colors.amber,
         fontSize: 12.sp.rf(context),
         height: 1.6,
         fontWeight: .w600,

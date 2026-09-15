@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/routing/navigation_service.dart';
 import '../../../auth/change_pass/present/views/change_pass_view.dart';
 import '../../../instructions/present/view/instructions_view.dart';
@@ -22,10 +23,7 @@ class DrawerMenuItems extends StatelessWidget {
             icon: const Icon(Icons.person_outline_rounded),
             title: 'ملفي الشخصي',
             onTap: () {
-              NavigationService.pushNamed(
-                context: context,
-                routeName: ProfileView.routeName,
-              );
+              context.push(ProfileView.routeName);
             },
           ),
           // MenuTile(
@@ -42,30 +40,21 @@ class DrawerMenuItems extends StatelessWidget {
             icon: const FaIcon(FontAwesomeIcons.language),
             title: 'اللغة',
             onTap: () {
-              NavigationService.pushNamed(
-                context: context,
-                routeName: SelectLanguageView.routeName,
-              );
+              context.push(SelectLanguageView.routeName);
             },
           ),
           MenuTile(
             icon: const Icon(Icons.info),
             title: 'التعليمات',
             onTap: () {
-              NavigationService.pushNamed(
-                context: context,
-                routeName: InstructionsView.routeName,
-              );
+              context.push(InstructionsView.routeName);
             },
           ),
           MenuTile(
             icon: const Icon(Icons.lock_outline_rounded),
             title: 'تغيير كلمة المرور',
             onTap: () {
-              NavigationService.pushNamed(
-                context: context,
-                routeName: ChangePassView.routeName,
-              );
+              context.push(ChangePassView.routeName);
             },
           ),
           const Divider(),

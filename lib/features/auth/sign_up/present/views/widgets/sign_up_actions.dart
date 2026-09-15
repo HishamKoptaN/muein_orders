@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/theme/core/extensions/theme_ext.dart';
@@ -45,10 +46,7 @@ class SignUpActions extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                NavigationService.navigateAndRemoveUntil(
-                  context: context,
-                  routeName: SignInView.routeName,
-                );
+                context.go(SignInView.routeName);
               },
               child: TrText(
                 'تسجيل الدخول',

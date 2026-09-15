@@ -1,6 +1,8 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class AppDimensions {
-  static const double defaultRadius = 12;
-  static const double padding = 16;
-  static const double buttonHeight = 48;
-  static const double customRadius = 15;
+  static double defaultRadius = 2.r;
+  static double padding = 16.r;
+  static double buttonHeight = 48.r;
+  static double customRadius = 15.r;
 }

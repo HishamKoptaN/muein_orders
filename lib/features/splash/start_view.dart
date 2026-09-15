@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../core/routing/navigation_service.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/widgets/translated_text.dart';
 import '../../core/language/view/select_language.dart';
 
@@ -67,10 +67,7 @@ class StartView extends StatelessWidget {
                       children: [
                         FilledButton.icon(
                           onPressed: () {
-                            NavigationService.pushNamed(
-                              context: context,
-                              routeName: SelectLanguageView.routeName,
-                            );
+                            context.push(SelectLanguageView.routeName);
                           },
                           icon: SvgPicture.asset(
                             'assets/icons/iconoir_language.svg',

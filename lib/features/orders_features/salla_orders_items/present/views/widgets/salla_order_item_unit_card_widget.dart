@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../../core/routing/navigation_service.dart';
 import '../../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../../core/widgets/translated_text.dart';
@@ -32,9 +33,8 @@ class _SallaOrderItemUnitCardWidgetState
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        NavigationService.pushNamed(
-          context: context,
-          routeName: AddCachedDocView.routeName,
+        context.push(
+          AddCachedDocView.routeName,
           extra: {'cachedDoc': widget.doc},
         );
       },
