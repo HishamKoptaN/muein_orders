@@ -6,7 +6,6 @@ import 'package:gap/gap.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../core/widgets/custom_empty_widget.dart';
-import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../bloc/notifications_bloc.dart';
 import 'widgets/widgets.dart';
 
@@ -29,7 +28,7 @@ class _NotificationsViewState extends State<NotificationsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'الإشعارات'),
+      appBar: AppBar(title: Text('الإشعارات')),
       body: Container(
         color: const Color(0xFFFFFFFF),
         width: .infinity,

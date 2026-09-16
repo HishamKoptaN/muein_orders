@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/layouts/custom_container.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
-import '../../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../../core/widgets/translated_text.dart';
 import '../blocs/docs_bloc/docs_bloc.dart';
 import 'widgets/doc_widget.dart';
@@ -38,7 +37,7 @@ class _DocsViewState extends State<DocsView> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     return CustomScaffold(
-      appBar: const CustomAppBar(title: 'توثيقات'),
+      appBar: AppBar(title: const Text('توثيقات')),
       body: BlocBuilder<DocsBloc, DocsState>(
         builder: (context, state) {
           return state.maybeWhen(

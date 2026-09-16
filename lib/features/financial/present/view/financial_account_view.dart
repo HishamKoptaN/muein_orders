@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../blocs/financial_bloc/financial_bloc.dart';
 import 'expenses_view.dart';
 
@@ -20,7 +19,7 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'الحساب المالي'),
+      appBar: AppBar(title: const Text('الحساب المالي')),
       body: _buildAccountView(),
     );
   }
@@ -38,7 +37,7 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
                   return Container(
                     padding: EdgeInsets.all(24.w),
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                         colors: [
                           // AppColors.brandMint.withValues(alpha: 0.3),
                           // AppColors.brandMint.withValues(alpha: 0.1),
@@ -60,7 +59,7 @@ class _FinancialAccountViewState extends State<FinancialAccountView> {
                           // color: AppColors.brandMint,
                         ),
                         SizedBox(height: 16.h),
-                        Text(
+                        const Text(
                           'الرصيد الحالي',
                           // style: AppTextStyles.arabicBodyLarge.copyWith(
                           //   color: Colors.white70,

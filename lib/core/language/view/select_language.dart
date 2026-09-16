@@ -6,7 +6,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../di/dependency_injection.dart';
 import '../../theme/core/extensions/theme_ext.dart';
 import '../../widgets/custom_scaffold.dart';
-import '../../widgets/navigation/custom_app_bar.dart';
 import '../../widgets/translated_text.dart';
 import '../bloc/language_bloc.dart';
 
@@ -28,7 +27,7 @@ class SelectLanguageView extends StatelessWidget {
     ];
     return CustomScaffold(
       backgroundColor: context.colorScheme.primary,
-      appBar: const CustomAppBar(title: 'تغيير اللغة'),
+      appBar: AppBar(title: const Text('تغيير اللغة')),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(

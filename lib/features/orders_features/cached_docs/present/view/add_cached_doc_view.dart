@@ -5,7 +5,6 @@ import 'package:formz/formz.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
-import '../../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../docs/data/mapper/docs_mapper.dart';
 import '../../../docs/domain/entities/doc_entity.dart';
 import '../bloc/cached_doc/cached_doc_bloc.dart';
@@ -33,7 +32,7 @@ class _AddCachedDocViewState extends State<AddCachedDocView> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: const CustomAppBar(title: 'توثيق'),
+      appBar: AppBar(title: const Text('توثيق')),
       body: BlocConsumer<CachedDocBloc, CachedDocState>(
         bloc: getIt<CachedDocBloc>(),
         listener: (context, state) async {

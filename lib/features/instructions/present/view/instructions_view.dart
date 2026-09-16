@@ -7,7 +7,6 @@ import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/routing/navigation_service.dart';
-import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../core/widgets/translated_text.dart';
 import '../../../home_features/home/present/view/stats_view.dart';
 import '../bloc/instructions_bloc.dart';
@@ -44,7 +43,7 @@ class _InstructionsViewState extends State<InstructionsView> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       backgroundColor: context.colorScheme.primary,
-      appBar: const CustomAppBar(title: 'التعليمات'),
+      appBar: AppBar(title: const Text('التعليمات')),
       body: SingleChildScrollView(
         child: BlocConsumer<InstructionsBloc, InstructionsState>(
           bloc: getIt<InstructionsBloc>(),
@@ -139,7 +138,7 @@ class _InstructionsViewState extends State<InstructionsView> {
                     SizedBox(
                       child: TextButton(
                         onPressed: () {
-                           context.go(StatsView.routeName);
+                          context.go(StatsView.routeName);
                         },
                         child: TrText(
                           'تخطي',

@@ -21,7 +21,7 @@ class CustomScaffold extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       drawer: drawer,
-      backgroundColor: backgroundColor ?? Colors.white,
+      backgroundColor: backgroundColor,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       primary: true,
       body: Padding(

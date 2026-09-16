@@ -2,11 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import '../dimensions.dart';
 import '../extensions/theme_ext.dart';
 import '../theme_components/app_bar_theme.dart';
 import '../theme_components/input_decoration_theme.dart';
-import '../typography/app_typography.dart';
 
 ThemeData lightTheme({required BuildContext context}) {
   final colorScheme = ColorScheme.fromSeed(
@@ -17,17 +15,13 @@ ThemeData lightTheme({required BuildContext context}) {
     useMaterial3: true,
     colorScheme: colorScheme,
     brightness: .light,
-    primaryColor: colorScheme.primary,
-    fontFamily: AppTypography.fontFamily,
     extensions: const [SkeletonizerConfigData()],
     appBarTheme: appBarTheme(colorScheme: colorScheme),
     inputDecorationTheme: inputDecorationTheme(context: context),
     filledButtonTheme: FilledButtonThemeData(
       style: ButtonStyle(
         textStyle: WidgetStateProperty.resolveWith((states) {
-          return AppTypography.getTextTheme(
-            context: context,
-          ).labelLarge?.copyWith(color: context.colorScheme.onPrimary);
+          return context.textTheme.labelLarge;
         }),
         iconAlignment: .end,
         minimumSize: .all(Size(.infinity, 50.h)),
@@ -35,9 +29,7 @@ ThemeData lightTheme({required BuildContext context}) {
         fixedSize: .all(Size(.infinity, 50.h)),
         tapTargetSize: .padded,
         shape: WidgetStatePropertyAll(
-          RoundedRectangleBorder(
-            borderRadius: .circular(AppDimensions.defaultRadius.r),
-          ),
+          RoundedRectangleBorder(borderRadius: .circular(8.r)),
         ),
         backgroundColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.disabled)) {

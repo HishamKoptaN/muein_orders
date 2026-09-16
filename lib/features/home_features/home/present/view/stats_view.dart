@@ -8,7 +8,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/feedback/error_content.dart';
-import '../../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
 import '../../../drawer/my_drawer.dart';
@@ -24,8 +23,8 @@ class StatsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(
-        title: 'الرئيسية',
+      appBar: AppBar(
+        title: const Text('الرئيسية'),
         leading: Builder(
           builder: (context) {
             return GestureDetector(

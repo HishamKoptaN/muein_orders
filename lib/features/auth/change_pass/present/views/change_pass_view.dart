@@ -9,7 +9,6 @@ import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/feedback/app_snackbar.dart';
 import '../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../core/widgets/loading/custom_circular_progress.dart';
-import '../../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../bloc/change_pass_bloc.dart';
 
 class ChangePassView extends StatefulWidget {
@@ -35,7 +34,7 @@ class _ChangePassViewState extends State<ChangePassView> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       backgroundColor: context.colorScheme.primary,
-      appBar: const CustomAppBar(title: 'تغيير كلمة المرور'),
+      appBar: AppBar(title: const Text('تغيير كلمة المرور')),
       body: BlocConsumer<ChangePassBloc, ChangePassState>(
         bloc: getIt<ChangePassBloc>(),
         listener: (context, state) async {

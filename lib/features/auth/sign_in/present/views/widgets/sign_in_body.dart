@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
-
 import '../../../domain/entities/sign_in_req_entity.dart';
 import 'sign_in_actions.dart';
 import 'sign_in_form.dart';

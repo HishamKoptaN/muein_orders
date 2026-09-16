@@ -35,10 +35,10 @@ class TrText extends StatelessWidget {
           snapshot.data ?? text,
           style: style,
           textAlign: textAlign,
+          softWrap: softWrap,
           overflow: overflow,
           textDirection: textDirection,
           maxLines: maxLines,
-          softWrap: softWrap,
         );
       },
     );

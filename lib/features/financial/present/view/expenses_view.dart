@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../core/widgets/feedback/app_snackbar.dart';
-import '../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../domain/entities/expenses_res_entity.dart';
 import '../blocs/bloc/expenses_bloc.dart';
 import '../blocs/financial_bloc/financial_bloc.dart';
@@ -64,7 +63,7 @@ class _ExpensesViewState extends State<ExpensesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'المصروفات'),
+      appBar: AppBar(title: const Text('المصروفات')),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pushNamed('create-expense'),
         child: const FaIcon(FontAwesomeIcons.plus, color: Colors.white),
@@ -197,10 +196,10 @@ class _ExpensesViewState extends State<ExpensesView> {
                 Expanded(
                   child: Text(
                     expense.expenseType?.name ?? 'مصروف',
-                  // style: AppTextStyles.arabicTitleMedium.copyWith(
-                  //   color: Colors.white,
-                  //   fontWeight: FontWeight.bold,
-                  // ),
+                    // style: AppTextStyles.arabicTitleMedium.copyWith(
+                    //   color: Colors.white,
+                    //   fontWeight: FontWeight.bold,
+                    // ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -218,10 +217,10 @@ class _ExpensesViewState extends State<ExpensesView> {
                 SizedBox(width: 8.w),
                 Text(
                   '${expense.amount ?? '0'} ${expense.currency ?? ''}',
-                 // style: AppTextStyles.arabicBodyLarge.copyWith(
-                 //   //    color: AppColors.brandMint,
-                 //   fontWeight: FontWeight.bold,
-                 // ),
+                  // style: AppTextStyles.arabicBodyLarge.copyWith(
+                  //   //    color: AppColors.brandMint,
+                  //   fontWeight: FontWeight.bold,
+                  // ),
                 ),
               ],
             ),
@@ -238,9 +237,9 @@ class _ExpensesViewState extends State<ExpensesView> {
                   Expanded(
                     child: Text(
                       expense.notes!,
-                     // style: AppTextStyles.arabicBodyMedium.copyWith(
-                     //   //     color: AppColors.hintOnDark,
-                     // ),
+                      // style: AppTextStyles.arabicBodyMedium.copyWith(
+                      //   //     color: AppColors.hintOnDark,
+                      // ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -274,17 +273,17 @@ class _ExpensesViewState extends State<ExpensesView> {
                         children: [
                           Text(
                             'سبب الرفض:',
-                         //  style: AppTextStyles.arabicBodySmall.copyWith(
-                         //    //    color: AppColors.error,
-                         //    fontWeight: FontWeight.bold,
-                         //  ),
+                            //  style: AppTextStyles.arabicBodySmall.copyWith(
+                            //    //    color: AppColors.error,
+                            //    fontWeight: FontWeight.bold,
+                            //  ),
                           ),
                           SizedBox(height: 4.h),
                           Text(
                             expense.adminNotes!,
-                         //   style: AppTextStyles.arabicBodySmall.copyWith(
-                         //     color: Colors.white70,
-                         //   ),
+                            //   style: AppTextStyles.arabicBodySmall.copyWith(
+                            //     color: Colors.white70,
+                            //   ),
                           ),
                         ],
                       ),
@@ -307,9 +306,9 @@ class _ExpensesViewState extends State<ExpensesView> {
                     SizedBox(width: 6.w),
                     Text(
                       _formatDate(expense.createdAt),
-                    //  style: AppTextStyles.arabicBodySmall.copyWith(
-                    //    //      color: AppColors.hintOnDark.withOpacity(0.7),
-                    //  ),
+                      //  style: AppTextStyles.arabicBodySmall.copyWith(
+                      //    //      color: AppColors.hintOnDark.withOpacity(0.7),
+                      //  ),
                     ),
                   ],
                 ),

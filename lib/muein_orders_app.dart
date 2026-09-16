@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/theme/core/themes/dark_theme.dart';
 import 'core/theme/core/themes/light_theme.dart';
 import 'core/language/bloc/language_bloc.dart';
 import 'core/blocs/theme_bloc.dart';
@@ -27,7 +28,7 @@ class MueinOrdersApp extends StatelessWidget {
                   title: '',
                   debugShowCheckedModeBanner: false,
                   theme: lightTheme(context: context),
-                  darkTheme: lightTheme(context: context),
+                  darkTheme: darkTheme(context: context),
                   themeMode: .light,
                   locale: languageState.maybeWhen(
                     loaded: (locale) {

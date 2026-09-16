@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
-import '../../../../../core/widgets/navigation/custom_app_bar.dart';
 import '../../../../home_features/home/domain/entities/order_type_res_entity.dart';
 import '../../domain/entities/salla_order_items_res_entity.dart';
 import 'widgets/orders_filter_widget.dart';
@@ -24,8 +23,8 @@ class _SallaOrderItemsViewState extends State<SallaOrderItemsView> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: CustomAppBar(
-        title: 'طلبات التوثيق',
+      appBar: AppBar(
+        title: const Text('طلبات التوثيق'),
         actions: [
           BlocBuilder<OrderItemsBloc, OrderItemsState>(
             bloc: getIt<OrderItemsBloc>(),

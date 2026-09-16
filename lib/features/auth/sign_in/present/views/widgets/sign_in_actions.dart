@@ -29,14 +29,7 @@ class SignInActions extends StatelessWidget {
           onPressed: () {
             context.go(SignUpView.routeName);
           },
-          child: const TrText(
-            'إنشاء حساب',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
-          ),
+          child: const TrText('إنشاء حساب'),
         ),
       ],
     );
