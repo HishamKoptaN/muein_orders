@@ -122,10 +122,10 @@ return filterChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int subCategoryId,  bool loadMore)?  get,TResult Function( UploadStatus? status)?  filterChanged,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( int? page,  int executionTypeId)?  get,TResult Function( UploadStatus? status)?  filterChanged,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Get() when get != null:
-return get(_that.subCategoryId,_that.loadMore);case _FilterChanged() when filterChanged != null:
+return get(_that.page,_that.executionTypeId);case _FilterChanged() when filterChanged != null:
 return filterChanged(_that.status);case _:
   return orElse();
 
@@ -144,10 +144,10 @@ return filterChanged(_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int subCategoryId,  bool loadMore)  get,required TResult Function( UploadStatus? status)  filterChanged,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( int? page,  int executionTypeId)  get,required TResult Function( UploadStatus? status)  filterChanged,}) {final _that = this;
 switch (_that) {
 case _Get():
-return get(_that.subCategoryId,_that.loadMore);case _FilterChanged():
+return get(_that.page,_that.executionTypeId);case _FilterChanged():
 return filterChanged(_that.status);case _:
   throw StateError('Unexpected subclass');
 
@@ -165,10 +165,10 @@ return filterChanged(_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int subCategoryId,  bool loadMore)?  get,TResult? Function( UploadStatus? status)?  filterChanged,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( int? page,  int executionTypeId)?  get,TResult? Function( UploadStatus? status)?  filterChanged,}) {final _that = this;
 switch (_that) {
 case _Get() when get != null:
-return get(_that.subCategoryId,_that.loadMore);case _FilterChanged() when filterChanged != null:
+return get(_that.page,_that.executionTypeId);case _FilterChanged() when filterChanged != null:
 return filterChanged(_that.status);case _:
   return null;
 
@@ -181,11 +181,11 @@ return filterChanged(_that.status);case _:
 
 
 class _Get implements OrderItemsEvent {
-  const _Get({required this.subCategoryId, required this.loadMore});
+  const _Get({this.page, required this.executionTypeId});
   
 
- final  int subCategoryId;
- final  bool loadMore;
+ final  int? page;
+ final  int executionTypeId;
 
 /// Create a copy of OrderItemsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -197,16 +197,16 @@ _$GetCopyWith<_Get> get copyWith => __$GetCopyWithImpl<_Get>(this, _$identity);
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Get&&(identical(other.subCategoryId, subCategoryId) || other.subCategoryId == subCategoryId)&&(identical(other.loadMore, loadMore) || other.loadMore == loadMore));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Get&&(identical(other.page, page) || other.page == page)&&(identical(other.executionTypeId, executionTypeId) || other.executionTypeId == executionTypeId));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,subCategoryId,loadMore);
+int get hashCode => Object.hash(runtimeType,page,executionTypeId);
 
 @override
 String toString() {
-  return 'OrderItemsEvent.get(subCategoryId: $subCategoryId, loadMore: $loadMore)';
+  return 'OrderItemsEvent.get(page: $page, executionTypeId: $executionTypeId)';
 }
 
 
@@ -217,7 +217,7 @@ abstract mixin class _$GetCopyWith<$Res> implements $OrderItemsEventCopyWith<$Re
   factory _$GetCopyWith(_Get value, $Res Function(_Get) _then) = __$GetCopyWithImpl;
 @useResult
 $Res call({
- int subCategoryId, bool loadMore
+ int? page, int executionTypeId
 });
 
 
@@ -234,11 +234,11 @@ class __$GetCopyWithImpl<$Res>
 
 /// Create a copy of OrderItemsEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? subCategoryId = null,Object? loadMore = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? page = freezed,Object? executionTypeId = null,}) {
   return _then(_Get(
-subCategoryId: null == subCategoryId ? _self.subCategoryId : subCategoryId // ignore: cast_nullable_to_non_nullable
-as int,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
-as bool,
+page: freezed == page ? _self.page : page // ignore: cast_nullable_to_non_nullable
+as int?,executionTypeId: null == executionTypeId ? _self.executionTypeId : executionTypeId // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -355,11 +355,10 @@ extension OrderItemsStatePatterns on OrderItemsState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Failure value)?  failure,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _Loading() when loading != null:
+case _Loading() when loading != null:
 return loading(_that);case _Loaded() when loaded != null:
 return loaded(_that);case _Failure() when failure != null:
 return failure(_that);case _:
@@ -380,11 +379,10 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Failure value)  failure,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Failure value)  failure,}){
 final _that = this;
 switch (_that) {
-case _Initial():
-return initial(_that);case _Loading():
+case _Loading():
 return loading(_that);case _Loaded():
 return loaded(_that);case _Failure():
 return failure(_that);case _:
@@ -404,11 +402,10 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Failure value)?  failure,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Failure value)?  failure,}){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _Loading() when loading != null:
+case _Loading() when loading != null:
 return loading(_that);case _Loaded() when loaded != null:
 return loaded(_that);case _Failure() when failure != null:
 return failure(_that);case _:
@@ -428,10 +425,9 @@ return failure(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( SallaOrderItemsResEntity orderItemsRes,  UploadStatus? selectedUploadStatus)?  loaded,TResult Function( ErrorInfo apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( SallaOrderItemsResEntity orderItemsRes,  UploadStatus? selectedUploadStatus)?  loaded,TResult Function( ErrorInfo apiErrorModel)?  failure,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _Loading() when loading != null:
+case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
 return loaded(_that.orderItemsRes,_that.selectedUploadStatus);case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
@@ -452,10 +448,9 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( SallaOrderItemsResEntity orderItemsRes,  UploadStatus? selectedUploadStatus)  loaded,required TResult Function( ErrorInfo apiErrorModel)  failure,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( SallaOrderItemsResEntity orderItemsRes,  UploadStatus? selectedUploadStatus)  loaded,required TResult Function( ErrorInfo apiErrorModel)  failure,}) {final _that = this;
 switch (_that) {
-case _Initial():
-return initial();case _Loading():
+case _Loading():
 return loading();case _Loaded():
 return loaded(_that.orderItemsRes,_that.selectedUploadStatus);case _Failure():
 return failure(_that.apiErrorModel);case _:
@@ -475,10 +470,9 @@ return failure(_that.apiErrorModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( SallaOrderItemsResEntity orderItemsRes,  UploadStatus? selectedUploadStatus)?  loaded,TResult? Function( ErrorInfo apiErrorModel)?  failure,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( SallaOrderItemsResEntity orderItemsRes,  UploadStatus? selectedUploadStatus)?  loaded,TResult? Function( ErrorInfo apiErrorModel)?  failure,}) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _Loading() when loading != null:
+case _Loading() when loading != null:
 return loading();case _Loaded() when loaded != null:
 return loaded(_that.orderItemsRes,_that.selectedUploadStatus);case _Failure() when failure != null:
 return failure(_that.apiErrorModel);case _:
@@ -488,38 +482,6 @@ return failure(_that.apiErrorModel);case _:
 }
 
 }
-
-/// @nodoc
-
-
-class _Initial implements OrderItemsState {
-  const _Initial();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'OrderItemsState.initial()';
-}
-
-
-}
-
-
-
 
 /// @nodoc
 

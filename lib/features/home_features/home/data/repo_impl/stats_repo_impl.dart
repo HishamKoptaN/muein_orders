@@ -1,6 +1,4 @@
 import 'package:injectable/injectable.dart';
-
-import 'package:error_handler/error_handler.dart';
 import 'package:error_handler/error_handler.dart';
 import '../../domain/entities/order_type_res_entity.dart';
 import '../../domain/repo/stats_repo.dart';

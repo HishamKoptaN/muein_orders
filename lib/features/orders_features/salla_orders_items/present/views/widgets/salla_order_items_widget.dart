@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 import 'package:get/utils.dart';
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/widgets/translated_text.dart';
@@ -31,16 +30,11 @@ class _SallaOrderItemsWidgetState extends State<SallaOrderItemsWidget> {
   void initState() {
     super.initState();
     _scrollController = ScrollController()..addListener(_onScroll);
-    getIt<OrderItemsBloc>().add(
-      .get(subCategoryId: widget.stat.subCategory?.id ?? 1, loadMore: false),
-    );
   }
 
   void _onScroll() {
     if (_isBottom) {
-      getIt<OrderItemsBloc>().add(
-        .get(subCategoryId: widget.stat.subCategory?.id ?? 1, loadMore: true),
-      );
+      getIt<OrderItemsBloc>().add(.get(executionTypeId: widget.stat.id));
     }
   }
 
@@ -76,7 +70,7 @@ class _SallaOrderItemsWidgetState extends State<SallaOrderItemsWidget> {
                   ),
                 ),
                 TrText(
-                  widget.stat.subCategory?.name ?? '',
+                  widget.stat.name,
                   textAlign: .center,
                   style: context.textTheme.titleSmall,
                 ),
@@ -88,9 +82,8 @@ class _SallaOrderItemsWidgetState extends State<SallaOrderItemsWidget> {
           delegate: SliverChildBuilderDelegate(
             childCount: widget.items.length,
             (context, i) {
-              final item = widget.items[i];
               return SallaOrderItemCardWidget(
-                item: item,
+                item: widget.items[i],
                 execuationTypeId: widget.stat.id,
               );
             },

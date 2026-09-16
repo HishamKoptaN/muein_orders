@@ -13,13 +13,18 @@ class SallaOrderItemsView extends StatefulWidget {
   final StatEntity stat;
   const SallaOrderItemsView({super.key, required this.stat});
   static const String routeName = 'items';
+
   @override
-  State<SallaOrderItemsView> createState() {
-    return _SallaOrderItemsViewState();
-  }
+  State<SallaOrderItemsView> createState() => _SallaOrderItemsViewState();
 }
 
 class _SallaOrderItemsViewState extends State<SallaOrderItemsView> {
+  @override
+  void initState() {
+    super.initState();
+    getIt<OrderItemsBloc>().add(.get(page: 1, executionTypeId: widget.stat.id));
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(

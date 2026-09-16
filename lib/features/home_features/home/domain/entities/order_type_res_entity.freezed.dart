@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$StatEntity {
 
- int get id; int get count; SubCategoryEntity? get subCategory;
+ int get id; String get name; String get image; int get count;
 /// Create a copy of StatEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $StatEntityCopyWith<StatEntity> get copyWith => _$StatEntityCopyWithImpl<StatEnt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.count, count) || other.count == count)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.image, image) || other.image == image)&&(identical(other.count, count) || other.count == count));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,count,subCategory);
+int get hashCode => Object.hash(runtimeType,id,name,image,count);
 
 @override
 String toString() {
-  return 'StatEntity(id: $id, count: $count, subCategory: $subCategory)';
+  return 'StatEntity(id: $id, name: $name, image: $image, count: $count)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $StatEntityCopyWith<$Res>  {
   factory $StatEntityCopyWith(StatEntity value, $Res Function(StatEntity) _then) = _$StatEntityCopyWithImpl;
 @useResult
 $Res call({
- int id, int count, SubCategoryEntity? subCategory
+ int id, String name, String image, int count
 });
 
 
-$SubCategoryEntityCopyWith<$Res>? get subCategory;
+
 
 }
 /// @nodoc
@@ -62,27 +62,16 @@ class _$StatEntityCopyWithImpl<$Res>
 
 /// Create a copy of StatEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? count = null,Object? subCategory = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? image = null,Object? count = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,count: null == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
-as int,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
-as SubCategoryEntity?,
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String,count: null == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
-/// Create a copy of StatEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SubCategoryEntityCopyWith<$Res>? get subCategory {
-    if (_self.subCategory == null) {
-    return null;
-  }
 
-  return $SubCategoryEntityCopyWith<$Res>(_self.subCategory!, (value) {
-    return _then(_self.copyWith(subCategory: value));
-  });
-}
 }
 
 
@@ -164,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int count,  SubCategoryEntity? subCategory)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String image,  int count)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StatEntity() when $default != null:
-return $default(_that.id,_that.count,_that.subCategory);case _:
+return $default(_that.id,_that.name,_that.image,_that.count);case _:
   return orElse();
 
 }
@@ -185,10 +174,10 @@ return $default(_that.id,_that.count,_that.subCategory);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int count,  SubCategoryEntity? subCategory)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String image,  int count)  $default,) {final _that = this;
 switch (_that) {
 case _StatEntity():
-return $default(_that.id,_that.count,_that.subCategory);case _:
+return $default(_that.id,_that.name,_that.image,_that.count);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -205,10 +194,10 @@ return $default(_that.id,_that.count,_that.subCategory);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int count,  SubCategoryEntity? subCategory)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String image,  int count)?  $default,) {final _that = this;
 switch (_that) {
 case _StatEntity() when $default != null:
-return $default(_that.id,_that.count,_that.subCategory);case _:
+return $default(_that.id,_that.name,_that.image,_that.count);case _:
   return null;
 
 }
@@ -220,12 +209,13 @@ return $default(_that.id,_that.count,_that.subCategory);case _:
 
 
 class _StatEntity implements StatEntity {
-  const _StatEntity({this.id = 0, this.count = 0, this.subCategory});
+  const _StatEntity({this.id = 0, this.name = '', this.image = '', this.count = 0});
   
 
 @override@JsonKey() final  int id;
+@override@JsonKey() final  String name;
+@override@JsonKey() final  String image;
 @override@JsonKey() final  int count;
-@override final  SubCategoryEntity? subCategory;
 
 /// Create a copy of StatEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -237,16 +227,16 @@ _$StatEntityCopyWith<_StatEntity> get copyWith => __$StatEntityCopyWithImpl<_Sta
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StatEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.count, count) || other.count == count)&&(identical(other.subCategory, subCategory) || other.subCategory == subCategory));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StatEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.image, image) || other.image == image)&&(identical(other.count, count) || other.count == count));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,count,subCategory);
+int get hashCode => Object.hash(runtimeType,id,name,image,count);
 
 @override
 String toString() {
-  return 'StatEntity(id: $id, count: $count, subCategory: $subCategory)';
+  return 'StatEntity(id: $id, name: $name, image: $image, count: $count)';
 }
 
 
@@ -257,11 +247,11 @@ abstract mixin class _$StatEntityCopyWith<$Res> implements $StatEntityCopyWith<$
   factory _$StatEntityCopyWith(_StatEntity value, $Res Function(_StatEntity) _then) = __$StatEntityCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int count, SubCategoryEntity? subCategory
+ int id, String name, String image, int count
 });
 
 
-@override $SubCategoryEntityCopyWith<$Res>? get subCategory;
+
 
 }
 /// @nodoc
@@ -274,287 +264,13 @@ class __$StatEntityCopyWithImpl<$Res>
 
 /// Create a copy of StatEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? count = null,Object? subCategory = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? image = null,Object? count = null,}) {
   return _then(_StatEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,count: null == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
-as int,subCategory: freezed == subCategory ? _self.subCategory : subCategory // ignore: cast_nullable_to_non_nullable
-as SubCategoryEntity?,
-  ));
-}
-
-/// Create a copy of StatEntity
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$SubCategoryEntityCopyWith<$Res>? get subCategory {
-    if (_self.subCategory == null) {
-    return null;
-  }
-
-  return $SubCategoryEntityCopyWith<$Res>(_self.subCategory!, (value) {
-    return _then(_self.copyWith(subCategory: value));
-  });
-}
-}
-
-/// @nodoc
-mixin _$SubCategoryEntity {
-
- int get id; String get name; String get image;
-/// Create a copy of SubCategoryEntity
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SubCategoryEntityCopyWith<SubCategoryEntity> get copyWith => _$SubCategoryEntityCopyWithImpl<SubCategoryEntity>(this as SubCategoryEntity, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SubCategoryEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.image, image) || other.image == image));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,id,name,image);
-
-@override
-String toString() {
-  return 'SubCategoryEntity(id: $id, name: $name, image: $image)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $SubCategoryEntityCopyWith<$Res>  {
-  factory $SubCategoryEntityCopyWith(SubCategoryEntity value, $Res Function(SubCategoryEntity) _then) = _$SubCategoryEntityCopyWithImpl;
-@useResult
-$Res call({
- int id, String name, String image
-});
-
-
-
-
-}
-/// @nodoc
-class _$SubCategoryEntityCopyWithImpl<$Res>
-    implements $SubCategoryEntityCopyWith<$Res> {
-  _$SubCategoryEntityCopyWithImpl(this._self, this._then);
-
-  final SubCategoryEntity _self;
-  final $Res Function(SubCategoryEntity) _then;
-
-/// Create a copy of SubCategoryEntity
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? image = null,}) {
-  return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [SubCategoryEntity].
-extension SubCategoryEntityPatterns on SubCategoryEntity {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SubCategoryEntity value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _SubCategoryEntity() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SubCategoryEntity value)  $default,){
-final _that = this;
-switch (_that) {
-case _SubCategoryEntity():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SubCategoryEntity value)?  $default,){
-final _that = this;
-switch (_that) {
-case _SubCategoryEntity() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String image)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _SubCategoryEntity() when $default != null:
-return $default(_that.id,_that.name,_that.image);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String image)  $default,) {final _that = this;
-switch (_that) {
-case _SubCategoryEntity():
-return $default(_that.id,_that.name,_that.image);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String image)?  $default,) {final _that = this;
-switch (_that) {
-case _SubCategoryEntity() when $default != null:
-return $default(_that.id,_that.name,_that.image);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-
-
-class _SubCategoryEntity implements SubCategoryEntity {
-  const _SubCategoryEntity({this.id = 0, this.name = '', this.image = ''});
-  
-
-@override@JsonKey() final  int id;
-@override@JsonKey() final  String name;
-@override@JsonKey() final  String image;
-
-/// Create a copy of SubCategoryEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SubCategoryEntityCopyWith<_SubCategoryEntity> get copyWith => __$SubCategoryEntityCopyWithImpl<_SubCategoryEntity>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubCategoryEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.image, image) || other.image == image));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,id,name,image);
-
-@override
-String toString() {
-  return 'SubCategoryEntity(id: $id, name: $name, image: $image)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SubCategoryEntityCopyWith<$Res> implements $SubCategoryEntityCopyWith<$Res> {
-  factory _$SubCategoryEntityCopyWith(_SubCategoryEntity value, $Res Function(_SubCategoryEntity) _then) = __$SubCategoryEntityCopyWithImpl;
-@override @useResult
-$Res call({
- int id, String name, String image
-});
-
-
-
-
-}
-/// @nodoc
-class __$SubCategoryEntityCopyWithImpl<$Res>
-    implements _$SubCategoryEntityCopyWith<$Res> {
-  __$SubCategoryEntityCopyWithImpl(this._self, this._then);
-
-  final _SubCategoryEntity _self;
-  final $Res Function(_SubCategoryEntity) _then;
-
-/// Create a copy of SubCategoryEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? image = null,}) {
-  return _then(_SubCategoryEntity(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as String,
+as String,count: null == count ? _self.count : count // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

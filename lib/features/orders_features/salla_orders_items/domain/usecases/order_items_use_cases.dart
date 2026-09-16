@@ -19,9 +19,9 @@ class OrderItemsUseCases {
   }
 
   Future<ExecuteGuard<void>> get({
-    required int subCategoryId,
+    required int executionTypeId,
     required int page,
   }) async {
-    return _repo.get(executionTypeId: subCategoryId, page: page);
+    return _repo.get(executionTypeId: executionTypeId, page: page);
   }
 }

@@ -21,10 +21,7 @@ class StatCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: .circular(6.r),
           image: DecorationImage(
-            image: CachedNetworkImageProvider(
-              stat.subCategory?.image ?? '',
-              cacheKey: stat.subCategory?.image,
-            ),
+            image: CachedNetworkImageProvider(stat.image, cacheKey: stat.image),
             fit: .fill,
           ),
         ),
@@ -58,7 +55,7 @@ class StatCard extends StatelessWidget {
                   children: [
                     Flexible(
                       child: TrText(
-                        stat.subCategory?.name ?? '',
+                        stat.name,
                         style: context.textTheme.bodyLarge?.copyWith(
                           color: context.colorScheme.onPrimary,
                         ),

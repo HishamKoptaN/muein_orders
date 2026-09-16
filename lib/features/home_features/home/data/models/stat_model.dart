@@ -8,23 +8,11 @@ part 'stat_model.g.dart';
 abstract class StatModel with _$StatModel {
   const factory StatModel({
     @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'image') String? image,
     @JsonKey(name: 'count') int? count,
-    @JsonKey(name: 'sub_category') SubCategoryModel? subCategory,
-    @JsonKey(name: 'doc') DocModel? doc,
   }) = _StatModel;
 
   factory StatModel.fromJson(Map<String, Object?> json) =>
       _$StatModelFromJson(json);
-}
-
-@freezed
-abstract class SubCategoryModel with _$SubCategoryModel {
-  const factory SubCategoryModel({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'image') String? image,
-  }) = _SubCategoryModel;
-
-  factory SubCategoryModel.fromJson(Map<String, Object?> json) =>
-      _$SubCategoryModelFromJson(json);
 }

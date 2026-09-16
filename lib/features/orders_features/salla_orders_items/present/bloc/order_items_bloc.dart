@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
+import '../../../../../core/entities/meta_entity.dart';
 import '../../../cached_docs/data/datasources/local_data_src/drift/tables/items_table.dart';
 import '../../domain/entities/salla_order_items_res_entity.dart';
 import '../../domain/usecases/order_items_use_cases.dart';
@@ -13,24 +14,32 @@ part 'order_items_state.dart';
 @lazySingleton
 class OrderItemsBloc extends Bloc<OrderItemsEvent, OrderItemsState> {
   final OrderItemsUseCases _useCases;
-  OrderItemsBloc(this._useCases) : super(const .initial()) {
+  OrderItemsBloc(this._useCases)
+    : super(
+        const .loaded(
+          orderItemsRes: SallaOrderItemsResEntity(
+            sallaOrderItems: [],
+            meta: MetaEntity(),
+          ),
+          selectedUploadStatus: null,
+        ),
+      ) {
     on<OrderItemsEvent>((event, emit) async {
       await droppable();
       await event.map(
         get: (ev) async {
-          await state.maybeMap(
+          await state.mapOrNull(
             loaded: (st) async {
+              if (ev.page == 1) {
+                emit(const .loading());
+              }
               await _useCases.get(
-                subCategoryId: ev.subCategoryId,
-                page: (st.orderItemsRes.meta.currentPage ?? 1) + 1,
+                page: ev.page ?? (st.orderItemsRes.meta.currentPage ?? 1) + 1,
+                executionTypeId: ev.executionTypeId,
               );
-            },
-            orElse: () async {
-              emit(const .loading());
-              await _useCases.get(subCategoryId: ev.subCategoryId, page: 1);
+              await _listenToOrdersStream(emit);
             },
           );
-          await _listenToOrdersStream(emit);
         },
         filterChanged: (ev) async {
           await state.mapOrNull(
@@ -69,9 +78,7 @@ class OrderItemsBloc extends Bloc<OrderItemsEvent, OrderItemsState> {
         );
       },
       onError: (error, stackTrace) {
-        return OrderItemsState.failure(
-          apiErrorModel: ErrorInfo(message: error.toString()),
-        );
+        return .failure(apiErrorModel: ErrorInfo(message: error.toString()));
       },
     );
   }

@@ -34,9 +34,7 @@ class OrdersFilterWidget extends StatelessWidget {
                 padding: .all(8.r),
               ),
               onPressed: () {
-                getIt<OrderItemsBloc>().add(
-                  const OrderItemsEvent.filterChanged(status: null),
-                );
+                getIt<OrderItemsBloc>().add(const .filterChanged(status: null));
               },
             ),
           ),
@@ -58,7 +56,7 @@ class OrdersFilterWidget extends StatelessWidget {
                       alpha: 0.5,
                     ),
               borderRadius: .circular(12.r),
-              border: Border.all(
+              border: .all(
                 color: hasFilter
                     ? selectedStatus!.color.withValues(alpha: 0.5)
                     : Colors.transparent,
@@ -74,15 +72,18 @@ class OrdersFilterWidget extends StatelessWidget {
             ),
           ),
           onSelected: (status) {
-            getIt<OrderItemsBloc>().add(
-              OrderItemsEvent.filterChanged(status: status),
-            );
+            getIt<OrderItemsBloc>().add(.filterChanged(status: status));
           },
           itemBuilder: (context) {
             return [
               PopupMenuItem<UploadStatus?>(
                 value: null,
                 height: 44.h,
+                onTap: () {
+                  getIt<OrderItemsBloc>().add(
+                    const .filterChanged(status: null),
+                  );
+                },
                 child: Container(
                   padding: .symmetric(horizontal: 2.w, vertical: 2.h),
                   decoration: BoxDecoration(
@@ -108,9 +109,7 @@ class OrdersFilterWidget extends StatelessWidget {
                       Text(
                         'كل الطلبات',
                         style: context.textTheme.labelMedium?.copyWith(
-                          fontWeight: selectedStatus == null
-                              ? FontWeight.bold
-                              : FontWeight.normal,
+                          fontWeight: selectedStatus == null ? .bold : .normal,
                           color: selectedStatus == null
                               ? context.colorScheme.primary
                               : context.colorScheme.onSurface,
@@ -127,10 +126,7 @@ class OrdersFilterWidget extends StatelessWidget {
                   value: status,
                   height: 44.h,
                   child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 2.w,
-                      vertical: 2.h,
-                    ),
+                    padding: .symmetric(vertical: 4.h, horizontal: 4.w),
                     decoration: BoxDecoration(
                       color: isSelected
                           ? status.color.withValues(alpha: 0.12)

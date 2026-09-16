@@ -119,7 +119,7 @@ class OrdersRepoImpl implements OrderItemsRepo {
     required int page,
   }) async {
     try {
-      final res = await _api.get(executionTypeId: executionTypeId, page: page);
+      final res = await _api.get(page: page, executionTypeId: executionTypeId);
       final newEntity = res.toEntity();
       if (page == 1) {
         _remoteDataSubject.add(newEntity);

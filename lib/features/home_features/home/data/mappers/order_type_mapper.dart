@@ -5,14 +5,9 @@ extension OrderTypeResModelMapper on StatModel {
   StatEntity toEntity() {
     return StatEntity(
       id: id ?? 0,
+      name: name ?? '',
+      image: image ?? '',
       count: count ?? 0,
-      subCategory: subCategory?.toEntity(),
     );
-  }
-}
-
-extension SubCategoryModelMapper on SubCategoryModel {
-  SubCategoryEntity toEntity() {
-    return SubCategoryEntity(id: id ?? 0, name: name ?? '', image: image ?? '');
   }
 }
