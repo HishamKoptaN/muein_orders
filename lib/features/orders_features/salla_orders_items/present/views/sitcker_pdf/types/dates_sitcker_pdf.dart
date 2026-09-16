@@ -18,69 +18,76 @@ abstract class DatesStickerPdf {
     final tajawalBold = pw.Font.ttf(fontDataBold);
     pw.Widget buildSingleCard() {
       return pw.Padding(
-        padding: const pw.EdgeInsets.symmetric(horizontal: 20),
-        child: pw.Column(
-          mainAxisAlignment: pw.MainAxisAlignment.center,
-          crossAxisAlignment: pw.CrossAxisAlignment.center,
-          children: [
-            pw.Container(
-              height: 100,
-              child: pw.Image(logoImage, fit: pw.BoxFit.contain),
-            ),
-            pw.SizedBox(height: 40),
-            pw.Container(
-              height: 30,
-              child: pw.Directionality(
-                textDirection: pw.TextDirection.rtl,
-                child: pw.Text(
-                  printedName,
-                  style: pw.TextStyle(
-                    font: tajawalBold,
-                    fontSize: 22,
-                    color: PdfColor.fromHex('#003A46'),
-                    height: 1.8,
+        padding: const pw.EdgeInsets.all(30),
+        child: pw.Directionality(
+          textDirection: .rtl,
+          child: pw.Column(
+            mainAxisAlignment: pw.MainAxisAlignment.start,
+            crossAxisAlignment: pw.CrossAxisAlignment.center,
+            children: [
+              pw.Expanded(
+                flex: 2,
+                child: pw.Image(logoImage, fit: pw.BoxFit.contain),
+              ),
+              pw.Expanded(
+                flex: 2,
+                child: pw.Align(
+                  alignment: pw.Alignment.center,
+                  child: pw.Text(
+                    printedName,
+                    textAlign: pw.TextAlign.center,
+                    style: pw.TextStyle(
+                      font: tajawalBold,
+                      fontSize: 24,
+                      height: 1.8,
+                    ),
                   ),
-                  textAlign: pw.TextAlign.center,
                 ),
               ),
-            ),
-            pw.SizedBox(height: 40),
-            pw.Align(
-              alignment: pw.Alignment.centerRight,
-              child: pw.Container(
-                height: 40,
-                child: pw.Directionality(
-                  textDirection: pw.TextDirection.rtl,
+              pw.Expanded(
+                child: pw.Align(
+                  alignment: pw.Alignment.bottomRight,
                   child: pw.Text(
                     'رقم التنفيذ: $executionNum',
+                    textAlign: pw.TextAlign.right,
                     style: pw.TextStyle(
                       font: tajawalBold,
                       fontSize: 20,
-                      color: PdfColor.fromHex('#003A46'),
                       height: 1.4,
                     ),
-                    textAlign: pw.TextAlign.right,
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }
 
+    pw.Widget buildVerticalDivider() {
+      return pw.Container(width: 0.2, color: PdfColors.grey500);
+    }
+
+    pw.Widget buildHorizontalDivider() {
+      return pw.Container(height: 0.2, color: PdfColors.grey500);
+    }
+
     pdf.addPage(
       pw.Page(
-        pageFormat: .a4,
         orientation: pw.PageOrientation.landscape,
-        margin: const pw.EdgeInsets.all(20),
+        margin: pw.EdgeInsets.zero,
         build: (pw.Context context) {
           return pw.Column(
+            mainAxisAlignment: pw.MainAxisAlignment.center,
+            crossAxisAlignment: pw.CrossAxisAlignment.center,
             children: [
               pw.Expanded(
                 child: pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: pw.CrossAxisAlignment.center,
                   children: [
                     pw.Expanded(child: buildSingleCard()),
+                    buildVerticalDivider(),
                     pw.Expanded(
                       child: !isSingle
                           ? buildSingleCard()
@@ -89,14 +96,18 @@ abstract class DatesStickerPdf {
                   ],
                 ),
               ),
+              buildHorizontalDivider(),
               pw.Expanded(
                 child: pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.center,
+                  crossAxisAlignment: pw.CrossAxisAlignment.center,
                   children: [
                     pw.Expanded(
                       child: !isSingle
                           ? buildSingleCard()
                           : pw.SizedBox.shrink(),
                     ),
+                    buildVerticalDivider(),
                     pw.Expanded(child: pw.SizedBox.shrink()),
                   ],
                 ),

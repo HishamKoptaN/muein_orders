@@ -95,7 +95,6 @@ class _CustomAuthTextFormFieldState extends State<CustomAuthTextFormField> {
           validator: widget.validator,
           decoration: InputDecoration(
             filled: true,
-            // fillColor: context.colorScheme.surface.withValues(alpha: .30),
             hintText: asyncSnapshot.data ?? '',
             errorText: widget.errorText,
             prefixIcon: widget.prefixIcon,

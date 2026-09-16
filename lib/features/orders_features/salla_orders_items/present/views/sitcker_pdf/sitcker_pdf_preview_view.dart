@@ -18,8 +18,14 @@ class StickerPdfPreviewView extends StatelessWidget {
         child: PdfPreview(
           canChangeOrientation: false,
           canChangePageFormat: false,
-          initialPageFormat: .a4.landscape,
           build: (format) async {
+            return await DatesStickerPdf.build(
+              isSingle: stickerPdfPreviewArgs.sallaProductId == 224011248
+                  ? true
+                  : false,
+              printedName: stickerPdfPreviewArgs.printedName,
+              executionNum: stickerPdfPreviewArgs.executionNum,
+            );
             switch (stickerPdfPreviewArgs.execuationTypeId) {
               case 5:
                 return await DatesStickerPdf.build(

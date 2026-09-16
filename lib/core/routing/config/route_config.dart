@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart' show RouteBase;
-
 import '../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../../../features/auth/change_pass/present/views/change_pass_view.dart';
