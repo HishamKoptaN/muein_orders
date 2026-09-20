@@ -225,7 +225,7 @@ return $default(_that.sallaOrderItems,_that.meta);case _:
 @JsonSerializable()
 
 class _SallaOrderItemsResModel with DiagnosticableTreeMixin implements SallaOrderItemsResModel {
-  const _SallaOrderItemsResModel({@JsonKey(name: 'data') final  List<SallaOrderItemModel> sallaOrderItems = const [], @JsonKey(name: 'meta') this.meta = const MetaModel()}): _sallaOrderItems = sallaOrderItems;
+  const _SallaOrderItemsResModel({@JsonKey(name: 'data')   List<SallaOrderItemModel> sallaOrderItems = const [], @JsonKey(name: 'meta') this.meta = const MetaModel()}): _sallaOrderItems = sallaOrderItems;
   factory _SallaOrderItemsResModel.fromJson(Map<String, dynamic> json) => _$SallaOrderItemsResModelFromJson(json);
 
  final  List<SallaOrderItemModel> _sallaOrderItems;
@@ -541,7 +541,7 @@ return $default(_that.id,_that.printedName,_that.sallaProduct,_that.sallaOrderIt
 @JsonSerializable()
 
 class _SallaOrderItemModel with DiagnosticableTreeMixin implements SallaOrderItemModel {
-  const _SallaOrderItemModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'printed_name') this.printedName = '', @JsonKey(name: 'salla_product') this.sallaProduct = const SallaProductModel(), @JsonKey(name: 'salla_order_item_units') final  List<SallaOrderItemUnitModel> sallaOrderItemUnits = const [], @JsonKey(name: 'salla_order_item_status') this.sallaOrderItemStatus = const SallaOrderItemStatusModel(), @JsonKey(name: 'created_at') this.created_at = '', @JsonKey(name: 'updated_at') this.updated_at = ''}): _sallaOrderItemUnits = sallaOrderItemUnits;
+  const _SallaOrderItemModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'printed_name') this.printedName = '', @JsonKey(name: 'salla_product') this.sallaProduct = const SallaProductModel(), @JsonKey(name: 'salla_order_item_units')   List<SallaOrderItemUnitModel> sallaOrderItemUnits = const [], @JsonKey(name: 'salla_order_item_status') this.sallaOrderItemStatus = const SallaOrderItemStatusModel(), @JsonKey(name: 'created_at') this.created_at = '', @JsonKey(name: 'updated_at') this.updated_at = ''}): _sallaOrderItemUnits = sallaOrderItemUnits;
   factory _SallaOrderItemModel.fromJson(Map<String, dynamic> json) => _$SallaOrderItemModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;
@@ -1419,7 +1419,7 @@ return $default(_that.id,_that.unitNumber,_that.executionNumber,_that.docs,_that
 @JsonSerializable()
 
 class _SallaOrderItemUnitModel with DiagnosticableTreeMixin implements SallaOrderItemUnitModel {
-  const _SallaOrderItemUnitModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'unit_number') this.unitNumber = 0, @JsonKey(name: 'execution_number') this.executionNumber = '', @JsonKey(name: 'documentations') final  List<DocModel> docs = const [], @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _docs = docs;
+  const _SallaOrderItemUnitModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'unit_number') this.unitNumber = 0, @JsonKey(name: 'execution_number') this.executionNumber = '', @JsonKey(name: 'documentations')   List<DocModel> docs = const [], @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _docs = docs;
   factory _SallaOrderItemUnitModel.fromJson(Map<String, dynamic> json) => _$SallaOrderItemUnitModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;

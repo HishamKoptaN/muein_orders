@@ -49,13 +49,15 @@ class FirebaseMessagingService {
       sound: true,
     );
     switch (settings.authorizationStatus) {
-      case AuthorizationStatus.authorized:
+      case .authorized:
         break;
-      case AuthorizationStatus.provisional:
+      case .provisional:
         break;
-      case AuthorizationStatus.denied:
+      case .denied:
         break;
-      case AuthorizationStatus.notDetermined:
+      case .notDetermined:
+        break;
+      case .deniedPermanently:
         break;
     }
   }

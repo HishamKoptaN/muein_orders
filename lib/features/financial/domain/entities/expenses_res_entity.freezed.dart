@@ -219,7 +219,7 @@ return $default(_that.data,_that.meta);case _:
 
 
 class _ExpensesResEntity implements ExpensesResEntity {
-  const _ExpensesResEntity({final  List<ExpenseEntity>? data, this.meta}): _data = data;
+  const _ExpensesResEntity({  List<ExpenseEntity>? data, this.meta}): _data = data;
   
 
  final  List<ExpenseEntity>? _data;

@@ -567,7 +567,7 @@ String toString() {
 
 
 class _Loaded implements ExpensesState {
-  const _Loaded({required final  List<ExpenseEntity>? expenses, required this.meta, required this.createExpenseReqEntity, required this.formzSubmissionStatus, this.loading}): _expenses = expenses;
+  const _Loaded({required   List<ExpenseEntity>? expenses, required this.meta, required this.createExpenseReqEntity, required this.formzSubmissionStatus, this.loading}): _expenses = expenses;
   
 
  final  List<ExpenseEntity>? _expenses;

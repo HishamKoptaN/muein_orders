@@ -288,7 +288,7 @@ String toString() {
 
 
 class _Loaded implements DocsState {
-  const _Loaded({final  List<SallaOrderItemUnitEntity>? docs = const [], this.hasMore = false}): _docs = docs;
+  const _Loaded({  List<SallaOrderItemUnitEntity>? docs = const [], this.hasMore = false}): _docs = docs;
   
 
  final  List<SallaOrderItemUnitEntity>? _docs;

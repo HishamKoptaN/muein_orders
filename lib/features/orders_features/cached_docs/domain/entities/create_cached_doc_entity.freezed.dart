@@ -228,7 +228,7 @@ return $default(_that.id,_that.itemId,_that.unitId,_that.files,_that.latitude,_t
 
 
 class _CreateCachedDocEntity with DiagnosticableTreeMixin implements CreateCachedDocEntity {
-  const _CreateCachedDocEntity({this.id, this.itemId, this.unitId, final  List<UpdateDocMediaEntity> files = const <UpdateDocMediaEntity>[], this.latitude = const GenericFormInput.pure(), this.longitude = const GenericFormInput.pure(), this.locationUploadStatus = UploadStatus.init, this.original = const DocEntity()}): _files = files;
+  const _CreateCachedDocEntity({this.id, this.itemId, this.unitId,   List<UpdateDocMediaEntity> files = const [], this.latitude = const GenericFormInput.pure(), this.longitude = const GenericFormInput.pure(), this.locationUploadStatus = UploadStatus.init, this.original = const DocEntity()}): _files = files;
   
 
 @override final  int? id;

@@ -216,7 +216,7 @@ return $default(_that.sallaOrderItems,_that.meta);case _:
 
 
 class _SallaOrderItemsResEntity implements SallaOrderItemsResEntity {
-  const _SallaOrderItemsResEntity({final  List<SallaOrderItemEntity> sallaOrderItems = const [], this.meta = const MetaEntity()}): _sallaOrderItems = sallaOrderItems;
+  const _SallaOrderItemsResEntity({  List<SallaOrderItemEntity> sallaOrderItems = const [], this.meta = const MetaEntity()}): _sallaOrderItems = sallaOrderItems;
   
 
  final  List<SallaOrderItemEntity> _sallaOrderItems;
@@ -512,7 +512,7 @@ return $default(_that.id,_that.sallaProduct,_that.printedName,_that.sallaOrderIt
 
 
 class _SallaOrderItemEntity implements SallaOrderItemEntity {
-  const _SallaOrderItemEntity({this.id = 0, this.sallaProduct = const SallaProductEntity(), this.printedName = '', final  List<SallaOrderItemUnitEntity> sallaOrderItemUnits = const [], this.sallaOrderItemStatus = const SallaOrderItemStatusEntity()}): _sallaOrderItemUnits = sallaOrderItemUnits;
+  const _SallaOrderItemEntity({this.id = 0, this.sallaProduct = const SallaProductEntity(), this.printedName = '',   List<SallaOrderItemUnitEntity> sallaOrderItemUnits = const [], this.sallaOrderItemStatus = const SallaOrderItemStatusEntity()}): _sallaOrderItemUnits = sallaOrderItemUnits;
   
 
 @override@JsonKey() final  int id;
@@ -1324,7 +1324,7 @@ return $default(_that.id,_that.itemId,_that.executionNumber,_that.unitNumber,_th
 
 
 class _SallaOrderItemUnitEntity implements SallaOrderItemUnitEntity {
-  const _SallaOrderItemUnitEntity({this.id = 0, this.itemId = 0, this.executionNumber = '', this.unitNumber = 0, final  List<DocEntity> docs = const [], this.createdAt = '', this.updatedAt = ''}): _docs = docs;
+  const _SallaOrderItemUnitEntity({this.id = 0, this.itemId = 0, this.executionNumber = '', this.unitNumber = 0,   List<DocEntity> docs = const [], this.createdAt = '', this.updatedAt = ''}): _docs = docs;
   
 
 @override@JsonKey() final  int id;

@@ -411,7 +411,7 @@ String toString() {
 
 
 class _Loaded implements StatsState {
-  const _Loaded({required final  List<StatEntity> stats}): _stats = stats;
+  const _Loaded({required   List<StatEntity> stats}): _stats = stats;
   
 
  final  List<StatEntity> _stats;

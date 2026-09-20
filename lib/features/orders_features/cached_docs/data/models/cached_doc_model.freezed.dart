@@ -225,7 +225,7 @@ return $default(_that.id,_that.files,_that.location,_that.uploadStatus,_that.upl
 @JsonSerializable()
 
 class _CachedDocModel implements CachedDocModel {
-  const _CachedDocModel({this.id = 0, final  List<CachedDocMediaModel> files = const [], this.location, this.uploadStatus = UploadStatus.pending, this.uploadProgress = 0.0}): _files = files;
+  const _CachedDocModel({this.id = 0,   List<CachedDocMediaModel> files = const [], this.location, this.uploadStatus = UploadStatus.pending, this.uploadProgress = 0.0}): _files = files;
   factory _CachedDocModel.fromJson(Map<String, dynamic> json) => _$CachedDocModelFromJson(json);
 
 @override@JsonKey() final  int id;

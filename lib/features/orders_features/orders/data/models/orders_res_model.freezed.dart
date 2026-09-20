@@ -235,7 +235,7 @@ return $default(_that.orders,_that.meta);case _:
 @JsonSerializable()
 
 class OrdersResponse with DiagnosticableTreeMixin implements OrdersResModel {
-  const OrdersResponse({@JsonKey(name: 'orders') final  List<OrderModel>? orders, @JsonKey(name: 'meta') this.meta}): _orders = orders;
+  const OrdersResponse({@JsonKey(name: 'orders')   List<OrderModel>? orders, @JsonKey(name: 'meta') this.meta}): _orders = orders;
   factory OrdersResponse.fromJson(Map<String, dynamic> json) => _$OrdersResponseFromJson(json);
 
  final  List<OrderModel>? _orders;
@@ -550,7 +550,7 @@ return $default(_that.id,_that.sallaOrderId,_that.sallaProductId,_that.sallaOrde
 @JsonSerializable()
 
 class _OrderModel with DiagnosticableTreeMixin implements OrderModel {
-  const _OrderModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'salla_order_id') this.sallaOrderId, @JsonKey(name: 'salla_product_id') this.sallaProductId, @JsonKey(name: 'salla_order_items') final  List<SallaOrderItemModel>? sallaOrderItems, @JsonKey(name: 'salla_order_status') this.sallaOrderStatus, @JsonKey(name: 'execution_number') this.executionNumber, @JsonKey(name: 'docs') final  List<DocModel>? docs}): _sallaOrderItems = sallaOrderItems,_docs = docs;
+  const _OrderModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'salla_order_id') this.sallaOrderId, @JsonKey(name: 'salla_product_id') this.sallaProductId, @JsonKey(name: 'salla_order_items')   List<SallaOrderItemModel>? sallaOrderItems, @JsonKey(name: 'salla_order_status') this.sallaOrderStatus, @JsonKey(name: 'execution_number') this.executionNumber, @JsonKey(name: 'docs')   List<DocModel>? docs}): _sallaOrderItems = sallaOrderItems,_docs = docs;
   factory _OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int? id;

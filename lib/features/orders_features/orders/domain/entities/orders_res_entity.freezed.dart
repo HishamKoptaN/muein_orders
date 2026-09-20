@@ -210,7 +210,7 @@ return $default(_that.orders,_that.meta);case _:
 
 
 class _OrdersEntity extends OrdersResEntity {
-  const _OrdersEntity({required final  List<OrderEntity> orders, required this.meta}): _orders = orders,super._();
+  const _OrdersEntity({required   List<OrderEntity> orders, required this.meta}): _orders = orders,super._();
   
 
  final  List<OrderEntity> _orders;
@@ -486,7 +486,7 @@ return $default(_that.id,_that.sallaOrderId,_that.sallaOrderItems);case _:
 
 
 class _OrderEntity extends OrderEntity {
-  const _OrderEntity({required this.id, required this.sallaOrderId, required final  List<SallaOrderItemEntity> sallaOrderItems}): _sallaOrderItems = sallaOrderItems,super._();
+  const _OrderEntity({required this.id, required this.sallaOrderId, required   List<SallaOrderItemEntity> sallaOrderItems}): _sallaOrderItems = sallaOrderItems,super._();
   
 
 @override final  int id;

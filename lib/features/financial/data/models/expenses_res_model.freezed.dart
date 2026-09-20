@@ -222,7 +222,7 @@ return $default(_that.expenses,_that.meta);case _:
 @JsonSerializable()
 
 class _ExpensesResModel implements ExpensesResModel {
-  const _ExpensesResModel({@JsonKey(name: 'data') final  List<ExpenseModel>? expenses, @JsonKey(name: 'meta') this.meta}): _expenses = expenses;
+  const _ExpensesResModel({@JsonKey(name: 'data')   List<ExpenseModel>? expenses, @JsonKey(name: 'meta') this.meta}): _expenses = expenses;
   factory _ExpensesResModel.fromJson(Map<String, dynamic> json) => _$ExpensesResModelFromJson(json);
 
  final  List<ExpenseModel>? _expenses;

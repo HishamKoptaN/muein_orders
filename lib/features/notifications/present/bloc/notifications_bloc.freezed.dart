@@ -555,7 +555,7 @@ String toString() {
 
 
 class _Loaded implements NotificationsState {
-  const _Loaded({required final  List<NotificationEntity> notifications}): _notifications = notifications;
+  const _Loaded({required   List<NotificationEntity> notifications}): _notifications = notifications;
   
 
  final  List<NotificationEntity> _notifications;

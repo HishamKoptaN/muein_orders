@@ -230,7 +230,7 @@ return $default(_that.id,_that.itemId,_that.unitId,_that.files,_that.latitude,_t
 
 
 class _DocEntity implements DocEntity {
-  const _DocEntity({this.id = 0, this.itemId = 0, this.unitId = 0, final  List<DocMediaEntity> files = const [], this.latitude = '', this.longitude = '', this.locationUploadStatus = UploadStatus.init, this.docStatus = const DocStatusEntity(), this.uploadStatus = UploadStatus.init, this.uploadProgress = 0.0, this.copiesCount, this.reviewedBy, this.reviewedAt, this.adminNotes, this.createdAt, this.updatedAt}): _files = files;
+  const _DocEntity({this.id = 0, this.itemId = 0, this.unitId = 0,   List<DocMediaEntity> files = const [], this.latitude = '', this.longitude = '', this.locationUploadStatus = UploadStatus.init, this.docStatus = const DocStatusEntity(), this.uploadStatus = UploadStatus.init, this.uploadProgress = 0.0, this.copiesCount, this.reviewedBy, this.reviewedAt, this.adminNotes, this.createdAt, this.updatedAt}): _files = files;
   
 
 @override@JsonKey() final  int id;

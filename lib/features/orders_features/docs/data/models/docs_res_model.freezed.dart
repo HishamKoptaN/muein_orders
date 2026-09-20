@@ -219,7 +219,7 @@ return $default(_that.docs,_that.meta);case _:
 @JsonSerializable()
 
 class _DocsResModel implements DocsResModel {
-  const _DocsResModel({@JsonKey(name: 'docs') final  List<DocModel> docs = const [], @JsonKey(name: 'meta') this.meta = const MetaModel()}): _docs = docs;
+  const _DocsResModel({@JsonKey(name: 'docs')   List<DocModel> docs = const [], @JsonKey(name: 'meta') this.meta = const MetaModel()}): _docs = docs;
   factory _DocsResModel.fromJson(Map<String, dynamic> json) => _$DocsResModelFromJson(json);
 
  final  List<DocModel> _docs;
@@ -519,7 +519,7 @@ return $default(_that.id,_that.unitId,_that.files,_that.latitude,_that.longitude
 @JsonSerializable()
 
 class _DocModel implements DocModel {
-  const _DocModel({@JsonKey(name: 'id') this.id = -1, @JsonKey(name: 'unit_id') this.unitId = -1, @JsonKey(name: 'media') final  List<DocMediaModel> files = const [], @JsonKey(name: 'latitude') this.latitude = '', @JsonKey(name: 'longitude') this.longitude = '', @JsonKey(name: 'doc_status') this.docStatus = const DocStatusModel(), @JsonKey(name: 'copies_count') this.copiesCount = 0, @JsonKey(name: 'reviewed_by') this.reviewedBy = '', @JsonKey(name: 'reviewed_at') this.reviewedAt = '', @JsonKey(name: 'admin_notes') this.adminNotes = '', @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _files = files;
+  const _DocModel({@JsonKey(name: 'id') this.id = -1, @JsonKey(name: 'unit_id') this.unitId = -1, @JsonKey(name: 'media')   List<DocMediaModel> files = const [], @JsonKey(name: 'latitude') this.latitude = '', @JsonKey(name: 'longitude') this.longitude = '', @JsonKey(name: 'doc_status') this.docStatus = const DocStatusModel(), @JsonKey(name: 'copies_count') this.copiesCount = 0, @JsonKey(name: 'reviewed_by') this.reviewedBy = '', @JsonKey(name: 'reviewed_at') this.reviewedAt = '', @JsonKey(name: 'admin_notes') this.adminNotes = '', @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _files = files;
   factory _DocModel.fromJson(Map<String, dynamic> json) => _$DocModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;

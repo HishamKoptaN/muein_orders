@@ -82,7 +82,7 @@ class BodyWidget extends StatelessWidget {
         TrText(
           'اختر اللغة',
           textAlign: .center,
-          style: context.textTheme.displayLarge?.copyWith(
+          style: context.textTheme.displaySmall?.copyWith(
             color: context.colorScheme.onPrimary,
           ),
         ),
@@ -100,14 +100,14 @@ class BodyWidget extends StatelessWidget {
             padding: .only(bottom: 6.h),
             child: Material(
               color: isSelected
-                  ? context.colorScheme.primaryFixed.withValues(alpha: 0.3)
-                  : Colors.white.withValues(alpha: 0.1),
+                  ? context.colorScheme.primaryFixed
+                  : context.colorScheme.primaryFixed.withValues(alpha: 0.3),
               borderRadius: .circular(6.r),
               child: InkWell(
                 onTap: () {
                   final parts = language['code']!.split('-');
                   getIt<LanguageBloc>().add(
-                    LanguageEvent.changeLanguage(
+                    .changeLanguage(
                       languageCode: parts[0],
                       countryCode: parts.length > 1 ? parts[1] : null,
                     ),
@@ -122,7 +122,7 @@ class BodyWidget extends StatelessWidget {
                       Expanded(
                         child: Text(
                           language['name']!,
-                          style: context.textTheme.titleLarge?.copyWith(
+                          style: context.textTheme.titleMedium?.copyWith(
                             fontWeight: isSelected ? .bold : .normal,
                             color: isSelected
                                 ? context.colorScheme.onPrimary
@@ -144,33 +144,6 @@ class BodyWidget extends StatelessWidget {
             ),
           );
         }),
-        // SizedBox(height: 20.h),
-        // if (!Navigator.canPop(context))
-        //   ElevatedButton(
-        //     key: const Key('follow'),
-        //     onPressed: () {
-        //       NavigationService.pushNamed(
-        //         context: context,
-        //         routeName: AuthChoiceView.routeName,
-        //       );
-        //     },
-        //     style: ElevatedButton.styleFrom(
-        //       backgroundColor: const Color(0xFF83BEA8),
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: .circular(8.r),
-        //       ),
-        //       padding: .symmetric(vertical: 16.h),
-        //     ),
-        //     child: const TrText(
-        //       'متابعة',
-        //       style: TextStyle(
-        //         fontSize: 17,
-        //         color: Colors.white,
-        //         fontWeight: FontWeight.bold,
-        //       ),
-        //     ),
-        //   ),
-        // const SizedBox(height: 20),
       ],
     );
   }

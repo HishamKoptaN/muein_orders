@@ -444,7 +444,7 @@ return failure(_that.errorMessage);case _:
 
 
 class _Loaded implements InstructionsState {
-  const _Loaded({required final  List<InstructionPageEntity> pages, required this.currentPageIndex, this.isLastPage = false}): _pages = pages;
+  const _Loaded({required   List<InstructionPageEntity> pages, required this.currentPageIndex, this.isLastPage = false}): _pages = pages;
   
 
  final  List<InstructionPageEntity> _pages;

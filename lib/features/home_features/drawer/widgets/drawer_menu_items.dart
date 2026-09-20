@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/routing/navigation_service.dart';
+
+import '../../../../core/theme/core/extensions/theme_ext.dart';
+import '../../../../core/widgets/translated_text.dart';
 import '../../../auth/change_pass/present/views/change_pass_view.dart';
 import '../../../instructions/present/view/instructions_view.dart';
 import '../../../../core/language/view/select_language.dart';
 import '../../../profile/present/views/profile_view.dart';
 import 'logout_dialog.dart';
 import 'menu_tile.dart';
+
+import 'package:package_info_plus/package_info_plus.dart';
 
 class DrawerMenuItems extends StatelessWidget {
   const DrawerMenuItems({super.key});
@@ -67,8 +72,34 @@ class DrawerMenuItems extends StatelessWidget {
             },
             textColor: const Color(0xFFD32F2F),
           ),
+          Gap(14.h),
+          const AppVersionWidget(),
         ],
       ),
+    );
+  }
+}
+
+class AppVersionWidget extends StatelessWidget {
+  const AppVersionWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<PackageInfo>(
+      future: PackageInfo.fromPlatform(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const SizedBox.shrink();
+        }
+        final info = snapshot.data!;
+        return TrText(
+          'الإصدار ${info.version}+${info.buildNumber}',
+          textAlign: .center,
+          style: context.textTheme.labelSmall?.copyWith(
+            color: context.colorScheme.onSurfaceVariant,
+          ),
+        );
+      },
     );
   }
 }

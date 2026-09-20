@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
+
+import '../../../../../home_features/drawer/widgets/drawer_menu_items.dart';
 import '../../../domain/entities/sign_in_req_entity.dart';
 import 'sign_in_actions.dart';
 import 'sign_in_form.dart';
@@ -28,6 +30,8 @@ class SignInBody extends StatelessWidget {
           SignInForm(signInReq: signInReq),
           SizedBox(height: 10.h),
           SignInActions(formzSubmissionStatus: formzSubmissionStatus),
+          SizedBox(height: 80.h),
+          const AppVersionWidget(),
         ],
       ),
     );
