@@ -93,7 +93,7 @@ class AppVersionWidget extends StatelessWidget {
         }
         final info = snapshot.data!;
         return TrText(
-          'الإصدار ${info.version}+${info.buildNumber}',
+          'الإصدار ${info.buildNumber}+${info.version}',
           textAlign: .center,
           style: context.textTheme.labelSmall?.copyWith(
             color: context.colorScheme.onSurfaceVariant,
