@@ -25,7 +25,8 @@ class _SignUpApi implements SignUpApi {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Content-Type': 'application/json'};
     _headers.removeWhere((k, v) => v == null);
-    final _data = signUpReq;
+    final _data = <String, dynamic>{};
+    _data.addAll(signUpReq.toJson());
     final _options = _setStreamType<void>(
       Options(
             method: 'POST',

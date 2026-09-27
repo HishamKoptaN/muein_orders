@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/feedback/error_content.dart';

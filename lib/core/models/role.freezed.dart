@@ -214,7 +214,7 @@ return $default(_that.id,_that.name,_that.guardName,_that.permissions,_that.crea
 @JsonSerializable()
 
 class _Role implements Role {
-  const _Role({@JsonKey(name: "id") this.id, @JsonKey(name: "name") this.name, @JsonKey(name: "guard_name") this.guardName, @JsonKey(name: "permissions") final  List<Permission>? permissions, @JsonKey(name: "created_at") this.createdAt, @JsonKey(name: "updated_at") this.updatedAt}): _permissions = permissions;
+  const _Role({@JsonKey(name: "id") this.id, @JsonKey(name: "name") this.name, @JsonKey(name: "guard_name") this.guardName, @JsonKey(name: "permissions") List<Permission>? permissions, @JsonKey(name: "created_at") this.createdAt, @JsonKey(name: "updated_at") this.updatedAt}): _permissions = permissions;
   factory _Role.fromJson(Map<String, dynamic> json) => _$RoleFromJson(json);
 
 @override@JsonKey(name: "id") final  int? id;

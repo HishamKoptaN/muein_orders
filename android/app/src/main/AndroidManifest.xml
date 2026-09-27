@@ -15,7 +15,6 @@
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
-      <!-- Deep Link for App -->
       <meta-data android:name="flutter_deeplinking_enabled" android:value="true"/>
       <intent-filter android:autoVerify="true">
         <action android:name="android.intent.action.VIEW"/>

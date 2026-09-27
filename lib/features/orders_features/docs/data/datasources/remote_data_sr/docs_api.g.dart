@@ -26,7 +26,8 @@ class _DocsApi implements DocsApi {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = presignedDocUrlReqModel;
+    final _data = <String, dynamic>{};
+    _data.addAll(presignedDocUrlReqModel.toJson());
     final _options = _setStreamType<PresignedUrlModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -53,7 +54,8 @@ class _DocsApi implements DocsApi {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = docReq;
+    final _data = <String, dynamic>{};
+    _data.addAll(docReq.toJson());
     final _options = _setStreamType<void>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
@@ -75,7 +77,8 @@ class _DocsApi implements DocsApi {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = docMediaReq;
+    final _data = <String, dynamic>{};
+    _data.addAll(docMediaReq.toJson());
     final _options = _setStreamType<void>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(

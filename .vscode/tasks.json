@@ -4,7 +4,7 @@
     {
       "label": "run-adb-reverse",
       "type": "shell",
-      "command": "adb reverse tcp:8000 tcp:8000 || true",
+      "command": "for dev in $(adb devices | grep -v 'List' | awk '{print $1}'); do adb -s $dev reverse tcp:8000 tcp:8000; done || true",
       "presentation": {
         "reveal": "silent",
         "panel": "shared"

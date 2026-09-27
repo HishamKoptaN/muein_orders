@@ -86,7 +86,8 @@ class _FinancialApi implements FinancialApi {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = createExpenseModel;
+    final _data = <String, dynamic>{};
+    _data.addAll(createExpenseModel.toJson());
     final _options = _setStreamType<ExpenseModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

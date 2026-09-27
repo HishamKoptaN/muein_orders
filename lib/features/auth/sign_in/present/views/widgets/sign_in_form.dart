@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/widgets/forms/auth_text_form_field.dart';
 import '../../../../../../core/widgets/translated_text.dart';
@@ -17,7 +18,6 @@ class SignInForm extends StatelessWidget {
     return Column(
       children: [
         CustomAuthTextFormField(
-          key: const Key('email_field'),
           initialValue: signInReq.email?.value,
           hintText: 'البريد الإلكتروني',
           prefixIcon: const Icon(Icons.email_outlined),
@@ -30,7 +30,6 @@ class SignInForm extends StatelessWidget {
         ),
         SizedBox(height: 10.h),
         CustomAuthTextFormField(
-          key: const Key('password_field'),
           hintText: 'كلمة المرور',
           onChanged: (v) {
             getIt<SignInBloc>().add(

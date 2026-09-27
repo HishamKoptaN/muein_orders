@@ -53,7 +53,8 @@ class _ProfileApi implements ProfileApi {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = presignedUrlReqModel;
+    final _data = <String, dynamic>{};
+    _data.addAll(presignedUrlReqModel.toJson());
     final _options = _setStreamType<PresignedUrlModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -82,7 +83,8 @@ class _ProfileApi implements ProfileApi {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = updateProfileReqModel;
+    final _data = <String, dynamic>{};
+    _data.addAll(updateProfileReqModel.toJson());
     final _options = _setStreamType<ProfileResModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -109,7 +111,8 @@ class _ProfileApi implements ProfileApi {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = device;
+    final _data = <String, dynamic>{};
+    _data.addAll(device.toJson());
     final _options = _setStreamType<void>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

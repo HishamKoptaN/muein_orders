@@ -1,10 +1,13 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
+
 import '../../../auth/present/bloc/auth_bloc.dart';
 import '../../domain/entities/sign_in_req_entity.dart';
 import '../../domain/use_cases/sign_in_use_cases.dart';
@@ -25,8 +28,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             loaded: (loaded) {
               _emitCustomLoaded(
                 emit: emit,
-                signInReq: e.signInReq,
-                loaded: loaded,
+                loaded: loaded.copyWith(signInReq: e.signInReq),
               );
             },
           );
@@ -50,7 +52,12 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
                         final completer = Completer();
                         authBloc.add(.authToken(onComplete: completer));
                         await completer.future;
-                        emit(const .loaded(signInReq: SignInReqEntity()));
+                        _emitCustomLoaded(
+                          emit: emit,
+                          loaded: loaded.copyWith(
+                            signInReq: const SignInReqEntity(),
+                          ),
+                        );
                       },
                       failure: (error) {
                         emit(.failure(errorMessage: error.message));
@@ -68,18 +75,16 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   void _emitCustomLoaded({
     required Emitter<SignInState> emit,
     required _Loaded? loaded,
-    SignInReqEntity? signInReq,
     FormzSubmissionStatus? formzSubmissionStatus,
   }) {
     if (loaded != null) {
       emit(
-        SignInState.loaded(
-          signInReq: signInReq ?? loaded.signInReq,
+        loaded.copyWith(
           formzSubmissionStatus:
               formzSubmissionStatus ??
               (Formz.validate([
-                    //   signInReq?.email ?? loaded.signInReq.email,
-                    //   signInReq?.password ?? loaded.signInReq.password,
+                    loaded.signInReq.email ?? EmailFormInput.dirty(''),
+                    loaded.signInReq.password ?? PasswordFormInput.dirty(''),
                   ])
                   ? .success
                   : .failure),

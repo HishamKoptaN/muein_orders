@@ -45,7 +45,8 @@ class _AuthApi implements AuthApi {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = exchangeToken;
+    final _data = <String, dynamic>{};
+    _data.addAll(exchangeToken.toJson());
     final _options = _setStreamType<AuthResModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

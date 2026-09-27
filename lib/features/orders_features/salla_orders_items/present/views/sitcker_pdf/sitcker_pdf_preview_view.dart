@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:printing/printing.dart';
+
 import '../../../../../../core/widgets/translated_text.dart';
 import '../../../data/models/sticker_pdf_preview_args.dart';
 import 'types/dates_sitcker_pdf.dart';
@@ -19,27 +21,30 @@ class StickerPdfPreviewView extends StatelessWidget {
           canChangeOrientation: false,
           canChangePageFormat: false,
           build: (format) async {
-            return await DatesStickerPdf.build(
-              isSingle: stickerPdfPreviewArgs.sallaProductId == 224011248
-                  ? true
-                  : false,
-              printedName: stickerPdfPreviewArgs.printedName,
-              executionNum: stickerPdfPreviewArgs.executionNum,
-            );
-            switch (stickerPdfPreviewArgs.execuationTypeId) {
-              case 5:
-                return await DatesStickerPdf.build(
-                  isSingle: stickerPdfPreviewArgs.sallaProductId == 224011248
-                      ? true
-                      : false,
-                  printedName: stickerPdfPreviewArgs.printedName,
-                  executionNum: stickerPdfPreviewArgs.executionNum,
-                );
-              default:
-                return await QuranStickerPdf.build(
-                  printedName: stickerPdfPreviewArgs.printedName,
-                  executionNum: stickerPdfPreviewArgs.executionNum,
-                );
+            if (kReleaseMode) {
+              switch (stickerPdfPreviewArgs.execuationTypeId) {
+                case 5:
+                  return await DatesStickerPdf.build(
+                    isSingle: stickerPdfPreviewArgs.sallaProductId == 224011248
+                        ? true
+                        : false,
+                    printedName: stickerPdfPreviewArgs.printedName,
+                    executionNum: stickerPdfPreviewArgs.executionNum,
+                  );
+                default:
+                  return await QuranStickerPdf.build(
+                    printedName: stickerPdfPreviewArgs.printedName,
+                    executionNum: stickerPdfPreviewArgs.executionNum,
+                  );
+              }
+            } else {
+              return await DatesStickerPdf.build(
+                isSingle: stickerPdfPreviewArgs.sallaProductId == 224011248
+                    ? true
+                    : false,
+                printedName: stickerPdfPreviewArgs.printedName,
+                executionNum: stickerPdfPreviewArgs.executionNum,
+              );
             }
           },
         ),
