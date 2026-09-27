@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'instructions_bloc.dart';
@@ -9,6 +9,7 @@ part of 'instructions_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $InstructionsEventCopyWith<InstructionsEvent> get copyWith => _$InstructionsEven
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InstructionsEvent&&(identical(other.pageIndex, pageIndex) || other.pageIndex == pageIndex));
+  final _this = this as InstructionsEvent;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InstructionsEvent&&(identical(other.pageIndex, _this.pageIndex) || other.pageIndex == _this.pageIndex));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,pageIndex);
+int get hashCode {
+  final _this = this as InstructionsEvent;
+  return Object.hash(runtimeType,_this.pageIndex);
+}
 
 @override
 String toString() {
-  return 'InstructionsEvent(pageIndex: $pageIndex)';
+  final _this = this as InstructionsEvent;
+  return 'InstructionsEvent(pageIndex: ${_this.pageIndex})';
 }
 
 
@@ -63,7 +69,7 @@ class _$InstructionsEventCopyWithImpl<$Res>
 /// Create a copy of InstructionsEvent
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? pageIndex = null,}) {
-  return _then(_self.copyWith(
+  return _then(InstructionsEvent.pageChanged(
 pageIndex: null == pageIndex ? _self.pageIndex : pageIndex // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -221,16 +227,18 @@ $PageChangedCopyWith<PageChanged> get copyWith => _$PageChangedCopyWithImpl<Page
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PageChanged&&(identical(other.pageIndex, pageIndex) || other.pageIndex == pageIndex));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is PageChanged&&(identical(other.pageIndex, pageIndex) || other.pageIndex == pageIndex));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,pageIndex);
+int get hashCode {
+    return Object.hash(runtimeType,pageIndex);
+}
 
 @override
 String toString() {
-  return 'InstructionsEvent.pageChanged(pageIndex: $pageIndex)';
+    return 'InstructionsEvent.pageChanged(pageIndex: $pageIndex)';
 }
 
 
@@ -277,7 +285,7 @@ mixin _$InstructionsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InstructionsState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is InstructionsState);
 }
 
 
@@ -286,7 +294,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'InstructionsState()';
+    return 'InstructionsState()';
 }
 
 
@@ -444,7 +452,7 @@ return failure(_that.errorMessage);case _:
 
 
 class _Loaded implements InstructionsState {
-  const _Loaded({required List<InstructionPageEntity> pages, required this.currentPageIndex, this.isLastPage = false}): _pages = pages;
+  const _Loaded({required  List<InstructionPageEntity> pages, required this.currentPageIndex, this.isLastPage = false}): _pages = pages;
   
 
  final  List<InstructionPageEntity> _pages;
@@ -467,16 +475,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._pages, _pages)&&(identical(other.currentPageIndex, currentPageIndex) || other.currentPageIndex == currentPageIndex)&&(identical(other.isLastPage, isLastPage) || other.isLastPage == isLastPage));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other.pages, _pages)&&(identical(other.currentPageIndex, currentPageIndex) || other.currentPageIndex == currentPageIndex)&&(identical(other.isLastPage, isLastPage) || other.isLastPage == isLastPage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_pages),currentPageIndex,isLastPage);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_pages),currentPageIndex,isLastPage);
+}
 
 @override
 String toString() {
-  return 'InstructionsState.loaded(pages: $pages, currentPageIndex: $currentPageIndex, isLastPage: $isLastPage)';
+    return 'InstructionsState.loaded(pages: $pages, currentPageIndex: $currentPageIndex, isLastPage: $isLastPage)';
 }
 
 
@@ -530,7 +540,7 @@ class _Loading implements InstructionsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -539,7 +549,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'InstructionsState.loading()';
+    return 'InstructionsState.loading()';
 }
 
 
@@ -567,16 +577,18 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorMessage);
+int get hashCode {
+    return Object.hash(runtimeType,errorMessage);
+}
 
 @override
 String toString() {
-  return 'InstructionsState.failure(errorMessage: $errorMessage)';
+    return 'InstructionsState.failure(errorMessage: $errorMessage)';
 }
 
 

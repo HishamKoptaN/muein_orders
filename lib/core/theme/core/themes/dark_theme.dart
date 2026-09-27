@@ -16,7 +16,7 @@ ThemeData darkTheme({required BuildContext context}) {
     colorScheme: colorScheme,
     brightness: .dark,
     primaryColor: colorScheme.primary,
-    extensions: const [SkeletonizerConfigData()],
+    // extensions: const [SkeletonizerConfigData()],
     appBarTheme: appBarTheme(colorScheme: colorScheme),
     inputDecorationTheme: inputDecorationTheme(context: context),
     filledButtonTheme: FilledButtonThemeData(

@@ -4,7 +4,7 @@ import 'package:error_handler/error_handler.dart';
 import '../entities/order_type_res_entity.dart';
 import '../repo/stats_repo.dart';
 
-@singleton
+@lazySingleton
 class StatsUseCases {
   final StatsRepo statsRepo;
   StatsUseCases(this.statsRepo);

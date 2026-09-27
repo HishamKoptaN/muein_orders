@@ -1158,10 +1158,12 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   ]);
 }
 
-typedef $$ItemsTableTableCreateCompanionBuilder =
-    ItemsTableCompanion Function({Value<int> id});
-typedef $$ItemsTableTableUpdateCompanionBuilder =
-    ItemsTableCompanion Function({Value<int> id});
+typedef $$ItemsTableTableCreateCompanionBuilder = ItemsTableCompanion Function({
+  Value<int> id,
+});
+typedef $$ItemsTableTableUpdateCompanionBuilder = ItemsTableCompanion Function({
+  Value<int> id,
+});
 
 final class $$ItemsTableTableReferences
     extends BaseReferences<_$AppDatabase, $ItemsTableTable, ItemEntry> {
@@ -1312,7 +1314,7 @@ class $$ItemsTableTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable(table),
+                  e.readTable<$ItemsTableTable, ItemEntry>(table),
                   $$ItemsTableTableReferences(db, table, e),
                 ),
               )
@@ -1606,18 +1608,18 @@ class $$ItemUnitsTableTableTableManager
               $$ItemUnitsTableTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$ItemUnitsTableTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<int> itemId = const Value.absent(),
-              }) => ItemUnitsTableCompanion(id: id, itemId: itemId),
-          createCompanionCallback:
-              ({Value<int> id = const Value.absent(), required int itemId}) =>
-                  ItemUnitsTableCompanion.insert(id: id, itemId: itemId),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<int> itemId = const Value.absent(),
+          }) => ItemUnitsTableCompanion(id: id, itemId: itemId),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required int itemId,
+          }) => ItemUnitsTableCompanion.insert(id: id, itemId: itemId),
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable(table),
+                  e.readTable<$ItemUnitsTableTable, ItemUnitEntry>(table),
                   $$ItemUnitsTableTableReferences(db, table, e),
                 ),
               )
@@ -1643,18 +1645,15 @@ class $$ItemUnitsTableTableTableManager
                     >
                   >(state) {
                     if (itemId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.itemId,
-                                referencedTable: $$ItemUnitsTableTableReferences
-                                    ._itemIdTable(db),
-                                referencedColumn:
-                                    $$ItemUnitsTableTableReferences
-                                        ._itemIdTable(db)
-                                        .id,
-                              )
-                              as T;
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.itemId,
+                        referencedTable: $$ItemUnitsTableTableReferences
+                            ._itemIdTable(db),
+                        referencedColumn: $$ItemUnitsTableTableReferences
+                            ._itemIdTable(db)
+                            .id,
+                      ) as T;
                     }
 
                     return state;
@@ -1702,26 +1701,24 @@ typedef $$ItemUnitsTableTableProcessedTableManager =
       ItemUnitEntry,
       PrefetchHooks Function({bool itemId, bool docsTableRefs})
     >;
-typedef $$DocsTableTableCreateCompanionBuilder =
-    DocsTableCompanion Function({
-      Value<int> id,
-      required int unitId,
-      Value<String?> uploadStatus,
-      Value<String?> locationUploadStatus,
-      Value<double?> latitude,
-      Value<double?> longitude,
-      Value<DateTime> createdAt,
-    });
-typedef $$DocsTableTableUpdateCompanionBuilder =
-    DocsTableCompanion Function({
-      Value<int> id,
-      Value<int> unitId,
-      Value<String?> uploadStatus,
-      Value<String?> locationUploadStatus,
-      Value<double?> latitude,
-      Value<double?> longitude,
-      Value<DateTime> createdAt,
-    });
+typedef $$DocsTableTableCreateCompanionBuilder = DocsTableCompanion Function({
+  Value<int> id,
+  required int unitId,
+  Value<String?> uploadStatus,
+  Value<String?> locationUploadStatus,
+  Value<double?> latitude,
+  Value<double?> longitude,
+  Value<DateTime> createdAt,
+});
+typedef $$DocsTableTableUpdateCompanionBuilder = DocsTableCompanion Function({
+  Value<int> id,
+  Value<int> unitId,
+  Value<String?> uploadStatus,
+  Value<String?> locationUploadStatus,
+  Value<double?> latitude,
+  Value<double?> longitude,
+  Value<DateTime> createdAt,
+});
 
 final class $$DocsTableTableReferences
     extends BaseReferences<_$AppDatabase, $DocsTableTable, DocEntry> {
@@ -2060,7 +2057,7 @@ class $$DocsTableTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable(table),
+                  e.readTable<$DocsTableTable, DocEntry>(table),
                   $$DocsTableTableReferences(db, table, e),
                 ),
               )
@@ -2088,17 +2085,15 @@ class $$DocsTableTableTableManager
                     >
                   >(state) {
                     if (unitId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.unitId,
-                                referencedTable: $$DocsTableTableReferences
-                                    ._unitIdTable(db),
-                                referencedColumn: $$DocsTableTableReferences
-                                    ._unitIdTable(db)
-                                    .id,
-                              )
-                              as T;
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.unitId,
+                        referencedTable: $$DocsTableTableReferences
+                            ._unitIdTable(db),
+                        referencedColumn: $$DocsTableTableReferences
+                            ._unitIdTable(db)
+                            .id,
+                      ) as T;
                     }
 
                     return state;
@@ -2382,7 +2377,7 @@ class $$DocMediaTableTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable(table),
+                  e.readTable<$DocMediaTableTable, DocMediaEntry>(table),
                   $$DocMediaTableTableReferences(db, table, e),
                 ),
               )
@@ -2408,17 +2403,15 @@ class $$DocMediaTableTableTableManager
                     >
                   >(state) {
                     if (docId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.docId,
-                                referencedTable: $$DocMediaTableTableReferences
-                                    ._docIdTable(db),
-                                referencedColumn: $$DocMediaTableTableReferences
-                                    ._docIdTable(db)
-                                    .id,
-                              )
-                              as T;
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.docId,
+                        referencedTable: $$DocMediaTableTableReferences
+                            ._docIdTable(db),
+                        referencedColumn: $$DocMediaTableTableReferences
+                            ._docIdTable(db)
+                            .id,
+                      ) as T;
                     }
 
                     return state;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'auth_bloc.dart';
@@ -9,6 +9,7 @@ part of 'auth_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -19,14 +20,14 @@ mixin _$AuthEvent implements DiagnosticableTreeMixin {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'AuthEvent'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthEvent);
 }
 
 
@@ -35,7 +36,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthEvent()';
+    return 'AuthEvent()';
 }
 
 
@@ -207,23 +208,25 @@ _$CheckCopyWith<_Check> get copyWith => __$CheckCopyWithImpl<_Check>(this, _$ide
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'AuthEvent.check'))
     ..add(DiagnosticsProperty('onComplete', onComplete));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Check&&(identical(other.onComplete, onComplete) || other.onComplete == onComplete));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Check&&(identical(other.onComplete, onComplete) || other.onComplete == onComplete));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,onComplete);
+int get hashCode {
+    return Object.hash(runtimeType,onComplete);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthEvent.check(onComplete: $onComplete)';
+    return 'AuthEvent.check(onComplete: $onComplete)';
 }
 
 
@@ -279,23 +282,25 @@ _$authTokenCopyWith<_authToken> get copyWith => __$authTokenCopyWithImpl<_authTo
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'AuthEvent.authToken'))
     ..add(DiagnosticsProperty('onComplete', onComplete));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _authToken&&(identical(other.onComplete, onComplete) || other.onComplete == onComplete));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _authToken&&(identical(other.onComplete, onComplete) || other.onComplete == onComplete));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,onComplete);
+int get hashCode {
+    return Object.hash(runtimeType,onComplete);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthEvent.authToken(onComplete: $onComplete)';
+    return 'AuthEvent.authToken(onComplete: $onComplete)';
 }
 
 
@@ -346,14 +351,14 @@ class _SignedOut with DiagnosticableTreeMixin implements AuthEvent {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'AuthEvent.signedOut'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignedOut);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignedOut);
 }
 
 
@@ -362,7 +367,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthEvent.signedOut()';
+    return 'AuthEvent.signedOut()';
 }
 
 
@@ -379,14 +384,14 @@ mixin _$AuthState implements DiagnosticableTreeMixin {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'AuthState'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthState);
 }
 
 
@@ -395,7 +400,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthState()';
+    return 'AuthState()';
 }
 
 
@@ -568,14 +573,14 @@ class _Loading with DiagnosticableTreeMixin implements AuthState {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'AuthState.loading'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -584,7 +589,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthState.loading()';
+    return 'AuthState.loading()';
 }
 
 
@@ -606,14 +611,14 @@ class _Authenticated with DiagnosticableTreeMixin implements AuthState {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'AuthState.authenticated'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Authenticated);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Authenticated);
 }
 
 
@@ -622,7 +627,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthState.authenticated()';
+    return 'AuthState.authenticated()';
 }
 
 
@@ -644,14 +649,14 @@ class _Unauthenticated with DiagnosticableTreeMixin implements AuthState {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'AuthState.unauthenticated'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Unauthenticated);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Unauthenticated);
 }
 
 
@@ -660,7 +665,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthState.unauthenticated()';
+    return 'AuthState.unauthenticated()';
 }
 
 
@@ -687,23 +692,25 @@ _$ErrorCopyWith<_Error> get copyWith => __$ErrorCopyWithImpl<_Error>(this, _$ide
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'AuthState.failure'))
     ..add(DiagnosticsProperty('message', message));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Error&&(identical(other.message, message) || other.message == message));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Error&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,message);
+int get hashCode {
+    return Object.hash(runtimeType,message);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'AuthState.failure(message: $message)';
+    return 'AuthState.failure(message: $message)';
 }
 
 

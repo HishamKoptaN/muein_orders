@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'stats_bloc.dart';
@@ -9,6 +9,7 @@ part of 'stats_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$StatsEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatsEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is StatsEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'StatsEvent()';
+    return 'StatsEvent()';
 }
 
 
@@ -185,7 +186,7 @@ class _GetStats implements StatsEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetStats);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GetStats);
 }
 
 
@@ -194,7 +195,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'StatsEvent.getStats()';
+    return 'StatsEvent.getStats()';
 }
 
 
@@ -212,7 +213,7 @@ mixin _$StatsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatsState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is StatsState);
 }
 
 
@@ -221,7 +222,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'StatsState()';
+    return 'StatsState()';
 }
 
 
@@ -389,7 +390,7 @@ class _Loading implements StatsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -398,7 +399,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'StatsState.loading()';
+    return 'StatsState.loading()';
 }
 
 
@@ -411,7 +412,7 @@ String toString() {
 
 
 class _Loaded implements StatsState {
-  const _Loaded({required List<StatEntity> stats}): _stats = stats;
+  const _Loaded({required  List<StatEntity> stats}): _stats = stats;
   
 
  final  List<StatEntity> _stats;
@@ -432,16 +433,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._stats, _stats));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other.stats, _stats));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_stats));
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_stats));
+}
 
 @override
 String toString() {
-  return 'StatsState.loaded(stats: $stats)';
+    return 'StatsState.loaded(stats: $stats)';
 }
 
 
@@ -498,16 +501,18 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,apiErrorModel);
+int get hashCode {
+    return Object.hash(runtimeType,apiErrorModel);
+}
 
 @override
 String toString() {
-  return 'StatsState.failure(apiErrorModel: $apiErrorModel)';
+    return 'StatsState.failure(apiErrorModel: $apiErrorModel)';
 }
 
 

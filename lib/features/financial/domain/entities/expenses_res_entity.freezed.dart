@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'expenses_res_entity.dart';
@@ -9,6 +9,7 @@ part of 'expenses_res_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $ExpensesResEntityCopyWith<ExpensesResEntity> get copyWith => _$ExpensesResEntit
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesResEntity&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.meta, meta) || other.meta == meta));
+  final _this = this as ExpensesResEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesResEntity&&const DeepCollectionEquality().equals(other.data, _this.data)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),meta);
+int get hashCode {
+  final _this = this as ExpensesResEntity;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.data),_this.meta);
+}
 
 @override
 String toString() {
-  return 'ExpensesResEntity(data: $data, meta: $meta)';
+  final _this = this as ExpensesResEntity;
+  return 'ExpensesResEntity(data: ${_this.data}, meta: ${_this.meta})';
 }
 
 
@@ -63,7 +69,7 @@ class _$ExpensesResEntityCopyWithImpl<$Res>
 /// Create a copy of ExpensesResEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? data = freezed,Object? meta = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ExpensesResEntity(
 data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
 as List<ExpenseEntity>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as MetaEntity?,
@@ -219,7 +225,7 @@ return $default(_that.data,_that.meta);case _:
 
 
 class _ExpensesResEntity implements ExpensesResEntity {
-  const _ExpensesResEntity({List<ExpenseEntity>? data, this.meta}): _data = data;
+  const _ExpensesResEntity({ List<ExpenseEntity>? data, this.meta}): _data = data;
   
 
  final  List<ExpenseEntity>? _data;
@@ -243,16 +249,18 @@ _$ExpensesResEntityCopyWith<_ExpensesResEntity> get copyWith => __$ExpensesResEn
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpensesResEntity&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.meta, meta) || other.meta == meta));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpensesResEntity&&const DeepCollectionEquality().equals(other.data, _data)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),meta);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),meta);
+}
 
 @override
 String toString() {
-  return 'ExpensesResEntity(data: $data, meta: $meta)';
+    return 'ExpensesResEntity(data: $data, meta: $meta)';
 }
 
 
@@ -317,16 +325,21 @@ $ExpenseEntityCopyWith<ExpenseEntity> get copyWith => _$ExpenseEntityCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpenseEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.notes, notes) || other.notes == notes)&&(identical(other.description, description) || other.description == description)&&(identical(other.receiptPath, receiptPath) || other.receiptPath == receiptPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.expenseType, expenseType) || other.expenseType == expenseType));
+  final _this = this as ExpenseEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpenseEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.amount, _this.amount) || other.amount == _this.amount)&&(identical(other.currency, _this.currency) || other.currency == _this.currency)&&(identical(other.notes, _this.notes) || other.notes == _this.notes)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.receiptPath, _this.receiptPath) || other.receiptPath == _this.receiptPath)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.adminNotes, _this.adminNotes) || other.adminNotes == _this.adminNotes)&&(identical(other.reviewedAt, _this.reviewedAt) || other.reviewedAt == _this.reviewedAt)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt)&&(identical(other.expenseType, _this.expenseType) || other.expenseType == _this.expenseType));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,amount,currency,notes,description,receiptPath,status,adminNotes,reviewedAt,createdAt,updatedAt,expenseType);
+int get hashCode {
+  final _this = this as ExpenseEntity;
+  return Object.hash(runtimeType,_this.id,_this.amount,_this.currency,_this.notes,_this.description,_this.receiptPath,_this.status,_this.adminNotes,_this.reviewedAt,_this.createdAt,_this.updatedAt,_this.expenseType);
+}
 
 @override
 String toString() {
-  return 'ExpenseEntity(id: $id, amount: $amount, currency: $currency, notes: $notes, description: $description, receiptPath: $receiptPath, status: $status, adminNotes: $adminNotes, reviewedAt: $reviewedAt, createdAt: $createdAt, updatedAt: $updatedAt, expenseType: $expenseType)';
+  final _this = this as ExpenseEntity;
+  return 'ExpenseEntity(id: ${_this.id}, amount: ${_this.amount}, currency: ${_this.currency}, notes: ${_this.notes}, description: ${_this.description}, receiptPath: ${_this.receiptPath}, status: ${_this.status}, adminNotes: ${_this.adminNotes}, reviewedAt: ${_this.reviewedAt}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt}, expenseType: ${_this.expenseType})';
 }
 
 
@@ -355,7 +368,7 @@ class _$ExpenseEntityCopyWithImpl<$Res>
 /// Create a copy of ExpenseEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? amount = freezed,Object? currency = freezed,Object? notes = freezed,Object? description = freezed,Object? receiptPath = freezed,Object? status = freezed,Object? adminNotes = freezed,Object? reviewedAt = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? expenseType = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ExpenseEntity(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,amount: freezed == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as String?,currency: freezed == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
@@ -547,16 +560,18 @@ _$ExpenseEntityCopyWith<_ExpenseEntity> get copyWith => __$ExpenseEntityCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpenseEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.notes, notes) || other.notes == notes)&&(identical(other.description, description) || other.description == description)&&(identical(other.receiptPath, receiptPath) || other.receiptPath == receiptPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.expenseType, expenseType) || other.expenseType == expenseType));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpenseEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.notes, notes) || other.notes == notes)&&(identical(other.description, description) || other.description == description)&&(identical(other.receiptPath, receiptPath) || other.receiptPath == receiptPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.expenseType, expenseType) || other.expenseType == expenseType));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,amount,currency,notes,description,receiptPath,status,adminNotes,reviewedAt,createdAt,updatedAt,expenseType);
+int get hashCode {
+    return Object.hash(runtimeType,id,amount,currency,notes,description,receiptPath,status,adminNotes,reviewedAt,createdAt,updatedAt,expenseType);
+}
 
 @override
 String toString() {
-  return 'ExpenseEntity(id: $id, amount: $amount, currency: $currency, notes: $notes, description: $description, receiptPath: $receiptPath, status: $status, adminNotes: $adminNotes, reviewedAt: $reviewedAt, createdAt: $createdAt, updatedAt: $updatedAt, expenseType: $expenseType)';
+    return 'ExpenseEntity(id: $id, amount: $amount, currency: $currency, notes: $notes, description: $description, receiptPath: $receiptPath, status: $status, adminNotes: $adminNotes, reviewedAt: $reviewedAt, createdAt: $createdAt, updatedAt: $updatedAt, expenseType: $expenseType)';
 }
 
 
@@ -631,16 +646,21 @@ $ExpenseTypeEntityCopyWith<ExpenseTypeEntity> get copyWith => _$ExpenseTypeEntit
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpenseTypeEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+  final _this = this as ExpenseTypeEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpenseTypeEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode {
+  final _this = this as ExpenseTypeEntity;
+  return Object.hash(runtimeType,_this.id,_this.name);
+}
 
 @override
 String toString() {
-  return 'ExpenseTypeEntity(id: $id, name: $name)';
+  final _this = this as ExpenseTypeEntity;
+  return 'ExpenseTypeEntity(id: ${_this.id}, name: ${_this.name})';
 }
 
 
@@ -669,7 +689,7 @@ class _$ExpenseTypeEntityCopyWithImpl<$Res>
 /// Create a copy of ExpenseTypeEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ExpenseTypeEntity(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -829,16 +849,18 @@ _$ExpenseTypeEntityCopyWith<_ExpenseTypeEntity> get copyWith => __$ExpenseTypeEn
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpenseTypeEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpenseTypeEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode {
+    return Object.hash(runtimeType,id,name);
+}
 
 @override
 String toString() {
-  return 'ExpenseTypeEntity(id: $id, name: $name)';
+    return 'ExpenseTypeEntity(id: $id, name: $name)';
 }
 
 

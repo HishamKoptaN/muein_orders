@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_data.dart';
@@ -9,6 +9,7 @@ part of 'user_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $UserDataCopyWith<UserData> get copyWith => _$UserDataCopyWithImpl<UserData>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserData&&(identical(other.token, token) || other.token == token)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.role, role) || other.role == role));
+  final _this = this as UserData;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserData&&(identical(other.token, _this.token) || other.token == _this.token)&&(identical(other.fcmToken, _this.fcmToken) || other.fcmToken == _this.fcmToken)&&(identical(other.role, _this.role) || other.role == _this.role));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,token,fcmToken,role);
+int get hashCode {
+  final _this = this as UserData;
+  return Object.hash(runtimeType,_this.token,_this.fcmToken,_this.role);
+}
 
 @override
 String toString() {
-  return 'UserData(token: $token, fcmToken: $fcmToken, role: $role)';
+  final _this = this as UserData;
+  return 'UserData(token: ${_this.token}, fcmToken: ${_this.fcmToken}, role: ${_this.role})';
 }
 
 
@@ -66,7 +72,7 @@ class _$UserDataCopyWithImpl<$Res>
 /// Create a copy of UserData
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? token = freezed,Object? fcmToken = freezed,Object? role = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(UserData(
 token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String?,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String?,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
@@ -231,16 +237,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserData&&(identical(other.token, token) || other.token == token)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.role, role) || other.role == role));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserData&&(identical(other.token, token) || other.token == token)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.role, role) || other.role == role));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,token,fcmToken,role);
+int get hashCode {
+    return Object.hash(runtimeType,token,fcmToken,role);
+}
 
 @override
 String toString() {
-  return 'UserData(token: $token, fcmToken: $fcmToken, role: $role)';
+    return 'UserData(token: $token, fcmToken: $fcmToken, role: $role)';
 }
 
 

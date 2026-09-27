@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'sign_up_req_model.dart';
@@ -9,6 +9,7 @@ part of 'sign_up_req_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $SignUpReqModelCopyWith<SignUpReqModel> get copyWith => _$SignUpReqModelCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpReqModel&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.countryId, countryId) || other.countryId == countryId)&&(identical(other.idToken, idToken) || other.idToken == idToken));
+  final _this = this as SignUpReqModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpReqModel&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.countryId, _this.countryId) || other.countryId == _this.countryId)&&(identical(other.idToken, _this.idToken) || other.idToken == _this.idToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,phone,countryId,idToken);
+int get hashCode {
+  final _this = this as SignUpReqModel;
+  return Object.hash(runtimeType,_this.name,_this.phone,_this.countryId,_this.idToken);
+}
 
 @override
 String toString() {
-  return 'SignUpReqModel(name: $name, phone: $phone, countryId: $countryId, idToken: $idToken)';
+  final _this = this as SignUpReqModel;
+  return 'SignUpReqModel(name: ${_this.name}, phone: ${_this.phone}, countryId: ${_this.countryId}, idToken: ${_this.idToken})';
 }
 
 
@@ -66,7 +72,7 @@ class _$SignUpReqModelCopyWithImpl<$Res>
 /// Create a copy of SignUpReqModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? phone = freezed,Object? countryId = freezed,Object? idToken = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(SignUpReqModel(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,countryId: freezed == countryId ? _self.countryId : countryId // ignore: cast_nullable_to_non_nullable
@@ -233,16 +239,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignUpReqModel&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.countryId, countryId) || other.countryId == countryId)&&(identical(other.idToken, idToken) || other.idToken == idToken));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignUpReqModel&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.countryId, countryId) || other.countryId == countryId)&&(identical(other.idToken, idToken) || other.idToken == idToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,phone,countryId,idToken);
+int get hashCode {
+    return Object.hash(runtimeType,name,phone,countryId,idToken);
+}
 
 @override
 String toString() {
-  return 'SignUpReqModel(name: $name, phone: $phone, countryId: $countryId, idToken: $idToken)';
+    return 'SignUpReqModel(name: $name, phone: $phone, countryId: $countryId, idToken: $idToken)';
 }
 
 

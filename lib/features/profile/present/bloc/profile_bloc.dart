@@ -4,6 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
+
 import '../../domain/entities/profile_res_entity.dart';
 import '../../domain/entities/update_profile_req_entity.dart';
 import '../../domain/use_cases/profile_use_cases.dart';
@@ -12,7 +13,7 @@ part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';
 part 'profile_state.dart';
 
-@singleton
+@lazySingleton
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ProfileUseCases _profileUseCases;
   ProfileBloc(this._profileUseCases) : super(const .loading()) {

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'docs_res_model.dart';
@@ -9,6 +9,7 @@ part of 'docs_res_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $DocsResModelCopyWith<DocsResModel> get copyWith => _$DocsResModelCopyWithImpl<D
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsResModel&&const DeepCollectionEquality().equals(other.docs, docs)&&(identical(other.meta, meta) || other.meta == meta));
+  final _this = this as DocsResModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsResModel&&const DeepCollectionEquality().equals(other.docs, _this.docs)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(docs),meta);
+int get hashCode {
+  final _this = this as DocsResModel;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.docs),_this.meta);
+}
 
 @override
 String toString() {
-  return 'DocsResModel(docs: $docs, meta: $meta)';
+  final _this = this as DocsResModel;
+  return 'DocsResModel(docs: ${_this.docs}, meta: ${_this.meta})';
 }
 
 
@@ -66,7 +72,7 @@ class _$DocsResModelCopyWithImpl<$Res>
 /// Create a copy of DocsResModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? docs = null,Object? meta = null,}) {
-  return _then(_self.copyWith(
+  return _then(DocsResModel(
 docs: null == docs ? _self.docs : docs // ignore: cast_nullable_to_non_nullable
 as List<DocModel>,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as MetaModel,
@@ -219,7 +225,7 @@ return $default(_that.docs,_that.meta);case _:
 @JsonSerializable()
 
 class _DocsResModel implements DocsResModel {
-  const _DocsResModel({@JsonKey(name: 'docs') List<DocModel> docs = const [], @JsonKey(name: 'meta') this.meta = const MetaModel()}): _docs = docs;
+  const _DocsResModel({@JsonKey(name: 'docs')  List<DocModel> docs = const [], @JsonKey(name: 'meta') this.meta = const MetaModel()}): _docs = docs;
   factory _DocsResModel.fromJson(Map<String, dynamic> json) => _$DocsResModelFromJson(json);
 
  final  List<DocModel> _docs;
@@ -244,16 +250,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocsResModel&&const DeepCollectionEquality().equals(other._docs, _docs)&&(identical(other.meta, meta) || other.meta == meta));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocsResModel&&const DeepCollectionEquality().equals(other.docs, _docs)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_docs),meta);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_docs),meta);
+}
 
 @override
 String toString() {
-  return 'DocsResModel(docs: $docs, meta: $meta)';
+    return 'DocsResModel(docs: $docs, meta: $meta)';
 }
 
 
@@ -318,16 +326,21 @@ $DocModelCopyWith<DocModel> get copyWith => _$DocModelCopyWithImpl<DocModel>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocModel&&(identical(other.id, id) || other.id == id)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  final _this = this as DocModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.unitId, _this.unitId) || other.unitId == _this.unitId)&&const DeepCollectionEquality().equals(other.files, _this.files)&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude)&&(identical(other.docStatus, _this.docStatus) || other.docStatus == _this.docStatus)&&(identical(other.copiesCount, _this.copiesCount) || other.copiesCount == _this.copiesCount)&&(identical(other.reviewedBy, _this.reviewedBy) || other.reviewedBy == _this.reviewedBy)&&(identical(other.reviewedAt, _this.reviewedAt) || other.reviewedAt == _this.reviewedAt)&&(identical(other.adminNotes, _this.adminNotes) || other.adminNotes == _this.adminNotes)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,unitId,const DeepCollectionEquality().hash(files),latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode {
+  final _this = this as DocModel;
+  return Object.hash(runtimeType,_this.id,_this.unitId,const DeepCollectionEquality().hash(_this.files),_this.latitude,_this.longitude,_this.docStatus,_this.copiesCount,_this.reviewedBy,_this.reviewedAt,_this.adminNotes,_this.createdAt,_this.updatedAt);
+}
 
 @override
 String toString() {
-  return 'DocModel(id: $id, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+  final _this = this as DocModel;
+  return 'DocModel(id: ${_this.id}, unitId: ${_this.unitId}, files: ${_this.files}, latitude: ${_this.latitude}, longitude: ${_this.longitude}, docStatus: ${_this.docStatus}, copiesCount: ${_this.copiesCount}, reviewedBy: ${_this.reviewedBy}, reviewedAt: ${_this.reviewedAt}, adminNotes: ${_this.adminNotes}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt})';
 }
 
 
@@ -356,7 +369,7 @@ class _$DocModelCopyWithImpl<$Res>
 /// Create a copy of DocModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? unitId = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? docStatus = null,Object? copiesCount = null,Object? reviewedBy = null,Object? reviewedAt = null,Object? adminNotes = null,Object? createdAt = null,Object? updatedAt = null,}) {
-  return _then(_self.copyWith(
+  return _then(DocModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,unitId: null == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
 as int,files: null == files ? _self.files : files // ignore: cast_nullable_to_non_nullable
@@ -519,7 +532,7 @@ return $default(_that.id,_that.unitId,_that.files,_that.latitude,_that.longitude
 @JsonSerializable()
 
 class _DocModel implements DocModel {
-  const _DocModel({@JsonKey(name: 'id') this.id = -1, @JsonKey(name: 'unit_id') this.unitId = -1, @JsonKey(name: 'media') List<DocMediaModel> files = const [], @JsonKey(name: 'latitude') this.latitude = '', @JsonKey(name: 'longitude') this.longitude = '', @JsonKey(name: 'doc_status') this.docStatus = const DocStatusModel(), @JsonKey(name: 'copies_count') this.copiesCount = 0, @JsonKey(name: 'reviewed_by') this.reviewedBy = '', @JsonKey(name: 'reviewed_at') this.reviewedAt = '', @JsonKey(name: 'admin_notes') this.adminNotes = '', @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _files = files;
+  const _DocModel({@JsonKey(name: 'id') this.id = -1, @JsonKey(name: 'unit_id') this.unitId = -1, @JsonKey(name: 'media')  List<DocMediaModel> files = const [], @JsonKey(name: 'latitude') this.latitude = '', @JsonKey(name: 'longitude') this.longitude = '', @JsonKey(name: 'doc_status') this.docStatus = const DocStatusModel(), @JsonKey(name: 'copies_count') this.copiesCount = 0, @JsonKey(name: 'reviewed_by') this.reviewedBy = '', @JsonKey(name: 'reviewed_at') this.reviewedAt = '', @JsonKey(name: 'admin_notes') this.adminNotes = '', @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _files = files;
   factory _DocModel.fromJson(Map<String, dynamic> json) => _$DocModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;
@@ -554,16 +567,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocModel&&(identical(other.id, id) || other.id == id)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocModel&&(identical(other.id, id) || other.id == id)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other.files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,unitId,const DeepCollectionEquality().hash(_files),latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode {
+    return Object.hash(runtimeType,id,unitId,const DeepCollectionEquality().hash(_files),latitude,longitude,docStatus,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+}
 
 @override
 String toString() {
-  return 'DocModel(id: $id, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DocModel(id: $id, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, docStatus: $docStatus, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -638,16 +653,21 @@ $DocStatusModelCopyWith<DocStatusModel> get copyWith => _$DocStatusModelCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocStatusModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.textColor, textColor) || other.textColor == textColor)&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor)&&(identical(other.iconColor, iconColor) || other.iconColor == iconColor)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  final _this = this as DocStatusModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocStatusModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.textColor, _this.textColor) || other.textColor == _this.textColor)&&(identical(other.backgroundColor, _this.backgroundColor) || other.backgroundColor == _this.backgroundColor)&&(identical(other.iconColor, _this.iconColor) || other.iconColor == _this.iconColor)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,textColor,backgroundColor,iconColor,createdAt,updatedAt);
+int get hashCode {
+  final _this = this as DocStatusModel;
+  return Object.hash(runtimeType,_this.id,_this.name,_this.textColor,_this.backgroundColor,_this.iconColor,_this.createdAt,_this.updatedAt);
+}
 
 @override
 String toString() {
-  return 'DocStatusModel(id: $id, name: $name, textColor: $textColor, backgroundColor: $backgroundColor, iconColor: $iconColor, createdAt: $createdAt, updatedAt: $updatedAt)';
+  final _this = this as DocStatusModel;
+  return 'DocStatusModel(id: ${_this.id}, name: ${_this.name}, textColor: ${_this.textColor}, backgroundColor: ${_this.backgroundColor}, iconColor: ${_this.iconColor}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt})';
 }
 
 
@@ -676,7 +696,7 @@ class _$DocStatusModelCopyWithImpl<$Res>
 /// Create a copy of DocStatusModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? textColor = null,Object? backgroundColor = null,Object? iconColor = null,Object? createdAt = null,Object? updatedAt = null,}) {
-  return _then(_self.copyWith(
+  return _then(DocStatusModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,textColor: null == textColor ? _self.textColor : textColor // ignore: cast_nullable_to_non_nullable
@@ -849,16 +869,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocStatusModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.textColor, textColor) || other.textColor == textColor)&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor)&&(identical(other.iconColor, iconColor) || other.iconColor == iconColor)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocStatusModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.textColor, textColor) || other.textColor == textColor)&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor)&&(identical(other.iconColor, iconColor) || other.iconColor == iconColor)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,textColor,backgroundColor,iconColor,createdAt,updatedAt);
+int get hashCode {
+    return Object.hash(runtimeType,id,name,textColor,backgroundColor,iconColor,createdAt,updatedAt);
+}
 
 @override
 String toString() {
-  return 'DocStatusModel(id: $id, name: $name, textColor: $textColor, backgroundColor: $backgroundColor, iconColor: $iconColor, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DocStatusModel(id: $id, name: $name, textColor: $textColor, backgroundColor: $backgroundColor, iconColor: $iconColor, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -919,16 +941,21 @@ $DocMediaModelCopyWith<DocMediaModel> get copyWith => _$DocMediaModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaModel&&(identical(other.id, id) || other.id == id)&&(identical(other.documentationId, documentationId) || other.documentationId == documentationId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.fileType, fileType) || other.fileType == fileType)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  final _this = this as DocMediaModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.documentationId, _this.documentationId) || other.documentationId == _this.documentationId)&&(identical(other.filePath, _this.filePath) || other.filePath == _this.filePath)&&(identical(other.thumbnail, _this.thumbnail) || other.thumbnail == _this.thumbnail)&&(identical(other.fileType, _this.fileType) || other.fileType == _this.fileType)&&(identical(other.sequence, _this.sequence) || other.sequence == _this.sequence)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,documentationId,filePath,thumbnail,fileType,sequence,createdAt,updatedAt);
+int get hashCode {
+  final _this = this as DocMediaModel;
+  return Object.hash(runtimeType,_this.id,_this.documentationId,_this.filePath,_this.thumbnail,_this.fileType,_this.sequence,_this.createdAt,_this.updatedAt);
+}
 
 @override
 String toString() {
-  return 'DocMediaModel(id: $id, documentationId: $documentationId, filePath: $filePath, thumbnail: $thumbnail, fileType: $fileType, sequence: $sequence, createdAt: $createdAt, updatedAt: $updatedAt)';
+  final _this = this as DocMediaModel;
+  return 'DocMediaModel(id: ${_this.id}, documentationId: ${_this.documentationId}, filePath: ${_this.filePath}, thumbnail: ${_this.thumbnail}, fileType: ${_this.fileType}, sequence: ${_this.sequence}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt})';
 }
 
 
@@ -957,7 +984,7 @@ class _$DocMediaModelCopyWithImpl<$Res>
 /// Create a copy of DocMediaModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? documentationId = null,Object? filePath = null,Object? thumbnail = null,Object? fileType = null,Object? sequence = null,Object? createdAt = null,Object? updatedAt = null,}) {
-  return _then(_self.copyWith(
+  return _then(DocMediaModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,documentationId: null == documentationId ? _self.documentationId : documentationId // ignore: cast_nullable_to_non_nullable
 as int,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
@@ -1132,16 +1159,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaModel&&(identical(other.id, id) || other.id == id)&&(identical(other.documentationId, documentationId) || other.documentationId == documentationId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.fileType, fileType) || other.fileType == fileType)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaModel&&(identical(other.id, id) || other.id == id)&&(identical(other.documentationId, documentationId) || other.documentationId == documentationId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.fileType, fileType) || other.fileType == fileType)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,documentationId,filePath,thumbnail,fileType,sequence,createdAt,updatedAt);
+int get hashCode {
+    return Object.hash(runtimeType,id,documentationId,filePath,thumbnail,fileType,sequence,createdAt,updatedAt);
+}
 
 @override
 String toString() {
-  return 'DocMediaModel(id: $id, documentationId: $documentationId, filePath: $filePath, thumbnail: $thumbnail, fileType: $fileType, sequence: $sequence, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DocMediaModel(id: $id, documentationId: $documentationId, filePath: $filePath, thumbnail: $thumbnail, fileType: $fileType, sequence: $sequence, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 

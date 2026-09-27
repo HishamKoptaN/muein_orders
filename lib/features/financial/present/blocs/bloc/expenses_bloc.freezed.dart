@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'expenses_bloc.dart';
@@ -9,6 +9,7 @@ part of 'expenses_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$ExpensesEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ExpensesEvent()';
+    return 'ExpensesEvent()';
 }
 
 
@@ -202,16 +203,18 @@ _$GetCopyWith<_Get> get copyWith => __$GetCopyWithImpl<_Get>(this, _$identity);
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Get&&(identical(other.page, page) || other.page == page));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Get&&(identical(other.page, page) || other.page == page));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,page);
+int get hashCode {
+    return Object.hash(runtimeType,page);
+}
 
 @override
 String toString() {
-  return 'ExpensesEvent.get(page: $page)';
+    return 'ExpensesEvent.get(page: $page)';
 }
 
 
@@ -268,16 +271,18 @@ _$UpdateDataCopyWith<_UpdateData> get copyWith => __$UpdateDataCopyWithImpl<_Upd
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&(identical(other.createExpenseReqEntity, createExpenseReqEntity) || other.createExpenseReqEntity == createExpenseReqEntity));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&(identical(other.createExpenseReqEntity, createExpenseReqEntity) || other.createExpenseReqEntity == createExpenseReqEntity));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,createExpenseReqEntity);
+int get hashCode {
+    return Object.hash(runtimeType,createExpenseReqEntity);
+}
 
 @override
 String toString() {
-  return 'ExpensesEvent.updateData(createExpenseReqEntity: $createExpenseReqEntity)';
+    return 'ExpensesEvent.updateData(createExpenseReqEntity: $createExpenseReqEntity)';
 }
 
 
@@ -329,7 +334,7 @@ class _Create implements ExpensesEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Create);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Create);
 }
 
 
@@ -338,7 +343,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ExpensesEvent.create()';
+    return 'ExpensesEvent.create()';
 }
 
 
@@ -356,7 +361,7 @@ mixin _$ExpensesState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesState);
 }
 
 
@@ -365,7 +370,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ExpensesState()';
+    return 'ExpensesState()';
 }
 
 
@@ -545,7 +550,7 @@ class _Initial implements ExpensesState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
 
@@ -554,7 +559,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ExpensesState.initial()';
+    return 'ExpensesState.initial()';
 }
 
 
@@ -567,7 +572,7 @@ String toString() {
 
 
 class _Loaded implements ExpensesState {
-  const _Loaded({required List<ExpenseEntity>? expenses, required this.meta, required this.createExpenseReqEntity, required this.formzSubmissionStatus, this.loading}): _expenses = expenses;
+  const _Loaded({required  List<ExpenseEntity>? expenses, required this.meta, required this.createExpenseReqEntity, required this.formzSubmissionStatus, this.loading}): _expenses = expenses;
   
 
  final  List<ExpenseEntity>? _expenses;
@@ -594,16 +599,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._expenses, _expenses)&&(identical(other.meta, meta) || other.meta == meta)&&(identical(other.createExpenseReqEntity, createExpenseReqEntity) || other.createExpenseReqEntity == createExpenseReqEntity)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus)&&(identical(other.loading, loading) || other.loading == loading));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other.expenses, _expenses)&&(identical(other.meta, meta) || other.meta == meta)&&(identical(other.createExpenseReqEntity, createExpenseReqEntity) || other.createExpenseReqEntity == createExpenseReqEntity)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus)&&(identical(other.loading, loading) || other.loading == loading));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_expenses),meta,createExpenseReqEntity,formzSubmissionStatus,loading);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_expenses),meta,createExpenseReqEntity,formzSubmissionStatus,loading);
+}
 
 @override
 String toString() {
-  return 'ExpensesState.loaded(expenses: $expenses, meta: $meta, createExpenseReqEntity: $createExpenseReqEntity, formzSubmissionStatus: $formzSubmissionStatus, loading: $loading)';
+    return 'ExpensesState.loaded(expenses: $expenses, meta: $meta, createExpenseReqEntity: $createExpenseReqEntity, formzSubmissionStatus: $formzSubmissionStatus, loading: $loading)';
 }
 
 
@@ -671,7 +678,7 @@ class _Loading implements ExpensesState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -680,7 +687,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ExpensesState.loading()';
+    return 'ExpensesState.loading()';
 }
 
 
@@ -703,7 +710,7 @@ class _Success implements ExpensesState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
 }
 
 
@@ -712,7 +719,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ExpensesState.success()';
+    return 'ExpensesState.success()';
 }
 
 
@@ -740,16 +747,18 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,apiErrorModel);
+int get hashCode {
+    return Object.hash(runtimeType,apiErrorModel);
+}
 
 @override
 String toString() {
-  return 'ExpensesState.failure(apiErrorModel: $apiErrorModel)';
+    return 'ExpensesState.failure(apiErrorModel: $apiErrorModel)';
 }
 
 

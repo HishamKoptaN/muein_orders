@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'orders_res_entity.dart';
@@ -9,6 +9,7 @@ part of 'orders_res_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $OrdersResEntityCopyWith<OrdersResEntity> get copyWith => _$OrdersResEntityCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersResEntity&&const DeepCollectionEquality().equals(other.orders, orders)&&(identical(other.meta, meta) || other.meta == meta));
+  final _this = this as OrdersResEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersResEntity&&const DeepCollectionEquality().equals(other.orders, _this.orders)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(orders),meta);
+int get hashCode {
+  final _this = this as OrdersResEntity;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.orders),_this.meta);
+}
 
 @override
 String toString() {
-  return 'OrdersResEntity(orders: $orders, meta: $meta)';
+  final _this = this as OrdersResEntity;
+  return 'OrdersResEntity(orders: ${_this.orders}, meta: ${_this.meta})';
 }
 
 
@@ -63,7 +69,7 @@ class _$OrdersResEntityCopyWithImpl<$Res>
 /// Create a copy of OrdersResEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? orders = null,Object? meta = null,}) {
-  return _then(_self.copyWith(
+  return _then(OrdersResEntity(
 orders: null == orders ? _self.orders : orders // ignore: cast_nullable_to_non_nullable
 as List<OrderEntity>,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as MetaEntity,
@@ -210,7 +216,7 @@ return $default(_that.orders,_that.meta);case _:
 
 
 class _OrdersEntity extends OrdersResEntity {
-  const _OrdersEntity({required List<OrderEntity> orders, required this.meta}): _orders = orders,super._();
+  const _OrdersEntity({required  List<OrderEntity> orders, required this.meta}): _orders = orders,super._();
   
 
  final  List<OrderEntity> _orders;
@@ -232,16 +238,18 @@ _$OrdersEntityCopyWith<_OrdersEntity> get copyWith => __$OrdersEntityCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrdersEntity&&const DeepCollectionEquality().equals(other._orders, _orders)&&(identical(other.meta, meta) || other.meta == meta));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrdersEntity&&const DeepCollectionEquality().equals(other.orders, _orders)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_orders),meta);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_orders),meta);
+}
 
 @override
 String toString() {
-  return 'OrdersResEntity(orders: $orders, meta: $meta)';
+    return 'OrdersResEntity(orders: $orders, meta: $meta)';
 }
 
 
@@ -303,16 +311,21 @@ $OrderEntityCopyWith<OrderEntity> get copyWith => _$OrderEntityCopyWithImpl<Orde
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaOrderId, sallaOrderId) || other.sallaOrderId == sallaOrderId)&&const DeepCollectionEquality().equals(other.sallaOrderItems, sallaOrderItems));
+  final _this = this as OrderEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.sallaOrderId, _this.sallaOrderId) || other.sallaOrderId == _this.sallaOrderId)&&const DeepCollectionEquality().equals(other.sallaOrderItems, _this.sallaOrderItems));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,sallaOrderId,const DeepCollectionEquality().hash(sallaOrderItems));
+int get hashCode {
+  final _this = this as OrderEntity;
+  return Object.hash(runtimeType,_this.id,_this.sallaOrderId,const DeepCollectionEquality().hash(_this.sallaOrderItems));
+}
 
 @override
 String toString() {
-  return 'OrderEntity(id: $id, sallaOrderId: $sallaOrderId, sallaOrderItems: $sallaOrderItems)';
+  final _this = this as OrderEntity;
+  return 'OrderEntity(id: ${_this.id}, sallaOrderId: ${_this.sallaOrderId}, sallaOrderItems: ${_this.sallaOrderItems})';
 }
 
 
@@ -341,7 +354,7 @@ class _$OrderEntityCopyWithImpl<$Res>
 /// Create a copy of OrderEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? sallaOrderId = null,Object? sallaOrderItems = null,}) {
-  return _then(_self.copyWith(
+  return _then(OrderEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,sallaOrderId: null == sallaOrderId ? _self.sallaOrderId : sallaOrderId // ignore: cast_nullable_to_non_nullable
 as int,sallaOrderItems: null == sallaOrderItems ? _self.sallaOrderItems : sallaOrderItems // ignore: cast_nullable_to_non_nullable
@@ -486,7 +499,7 @@ return $default(_that.id,_that.sallaOrderId,_that.sallaOrderItems);case _:
 
 
 class _OrderEntity extends OrderEntity {
-  const _OrderEntity({required this.id, required this.sallaOrderId, required List<SallaOrderItemEntity> sallaOrderItems}): _sallaOrderItems = sallaOrderItems,super._();
+  const _OrderEntity({required this.id, required this.sallaOrderId, required  List<SallaOrderItemEntity> sallaOrderItems}): _sallaOrderItems = sallaOrderItems,super._();
   
 
 @override final  int id;
@@ -509,16 +522,18 @@ _$OrderEntityCopyWith<_OrderEntity> get copyWith => __$OrderEntityCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaOrderId, sallaOrderId) || other.sallaOrderId == sallaOrderId)&&const DeepCollectionEquality().equals(other._sallaOrderItems, _sallaOrderItems));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaOrderId, sallaOrderId) || other.sallaOrderId == sallaOrderId)&&const DeepCollectionEquality().equals(other.sallaOrderItems, _sallaOrderItems));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,sallaOrderId,const DeepCollectionEquality().hash(_sallaOrderItems));
+int get hashCode {
+    return Object.hash(runtimeType,id,sallaOrderId,const DeepCollectionEquality().hash(_sallaOrderItems));
+}
 
 @override
 String toString() {
-  return 'OrderEntity(id: $id, sallaOrderId: $sallaOrderId, sallaOrderItems: $sallaOrderItems)';
+    return 'OrderEntity(id: $id, sallaOrderId: $sallaOrderId, sallaOrderItems: $sallaOrderItems)';
 }
 
 

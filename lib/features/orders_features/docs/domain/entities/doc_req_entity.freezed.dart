@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'doc_req_entity.dart';
@@ -9,6 +9,7 @@ part of 'doc_req_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $DocReqEntityCopyWith<DocReqEntity> get copyWith => _$DocReqEntityCopyWithImpl<D
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus));
+  final _this = this as DocReqEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocReqEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude)&&(identical(other.locationUploadStatus, _this.locationUploadStatus) || other.locationUploadStatus == _this.locationUploadStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,latitude,longitude,locationUploadStatus);
+int get hashCode {
+  final _this = this as DocReqEntity;
+  return Object.hash(runtimeType,_this.id,_this.latitude,_this.longitude,_this.locationUploadStatus);
+}
 
 @override
 String toString() {
-  return 'DocReqEntity(id: $id, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus)';
+  final _this = this as DocReqEntity;
+  return 'DocReqEntity(id: ${_this.id}, latitude: ${_this.latitude}, longitude: ${_this.longitude}, locationUploadStatus: ${_this.locationUploadStatus})';
 }
 
 
@@ -63,7 +69,7 @@ class _$DocReqEntityCopyWithImpl<$Res>
 /// Create a copy of DocReqEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? latitude = null,Object? longitude = null,Object? locationUploadStatus = null,}) {
-  return _then(_self.copyWith(
+  return _then(DocReqEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
@@ -227,16 +233,18 @@ _$DocReqEntityCopyWith<_DocReqEntity> get copyWith => __$DocReqEntityCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,latitude,longitude,locationUploadStatus);
+int get hashCode {
+    return Object.hash(runtimeType,id,latitude,longitude,locationUploadStatus);
+}
 
 @override
 String toString() {
-  return 'DocReqEntity(id: $id, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus)';
+    return 'DocReqEntity(id: $id, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus)';
 }
 
 
@@ -291,16 +299,21 @@ $DocMediaReqEntityCopyWith<DocMediaReqEntity> get copyWith => _$DocMediaReqEntit
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.fileType, fileType) || other.fileType == fileType));
+  final _this = this as DocMediaReqEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaReqEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.docId, _this.docId) || other.docId == _this.docId)&&(identical(other.filePath, _this.filePath) || other.filePath == _this.filePath)&&(identical(other.thumbnail, _this.thumbnail) || other.thumbnail == _this.thumbnail)&&(identical(other.fileType, _this.fileType) || other.fileType == _this.fileType));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,filePath,thumbnail,fileType);
+int get hashCode {
+  final _this = this as DocMediaReqEntity;
+  return Object.hash(runtimeType,_this.id,_this.docId,_this.filePath,_this.thumbnail,_this.fileType);
+}
 
 @override
 String toString() {
-  return 'DocMediaReqEntity(id: $id, docId: $docId, filePath: $filePath, thumbnail: $thumbnail, fileType: $fileType)';
+  final _this = this as DocMediaReqEntity;
+  return 'DocMediaReqEntity(id: ${_this.id}, docId: ${_this.docId}, filePath: ${_this.filePath}, thumbnail: ${_this.thumbnail}, fileType: ${_this.fileType})';
 }
 
 
@@ -329,7 +342,7 @@ class _$DocMediaReqEntityCopyWithImpl<$Res>
 /// Create a copy of DocMediaReqEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? docId = null,Object? filePath = null,Object? thumbnail = null,Object? fileType = null,}) {
-  return _then(_self.copyWith(
+  return _then(DocMediaReqEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as int,filePath: null == filePath ? _self.filePath : filePath // ignore: cast_nullable_to_non_nullable
@@ -495,16 +508,18 @@ _$DocMediaReqEntityCopyWith<_DocMediaReqEntity> get copyWith => __$DocMediaReqEn
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.fileType, fileType) || other.fileType == fileType));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.fileType, fileType) || other.fileType == fileType));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,filePath,thumbnail,fileType);
+int get hashCode {
+    return Object.hash(runtimeType,id,docId,filePath,thumbnail,fileType);
+}
 
 @override
 String toString() {
-  return 'DocMediaReqEntity(id: $id, docId: $docId, filePath: $filePath, thumbnail: $thumbnail, fileType: $fileType)';
+    return 'DocMediaReqEntity(id: $id, docId: $docId, filePath: $filePath, thumbnail: $thumbnail, fileType: $fileType)';
 }
 
 

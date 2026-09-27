@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'create_expense_req_model.dart';
@@ -9,6 +9,7 @@ part of 'create_expense_req_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $CreateExpenseModelCopyWith<CreateExpenseModel> get copyWith => _$CreateExpenseM
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateExpenseModel&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.notes, notes) || other.notes == notes));
+  final _this = this as CreateExpenseModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateExpenseModel&&(identical(other.amount, _this.amount) || other.amount == _this.amount)&&(identical(other.notes, _this.notes) || other.notes == _this.notes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,amount,notes);
+int get hashCode {
+  final _this = this as CreateExpenseModel;
+  return Object.hash(runtimeType,_this.amount,_this.notes);
+}
 
 @override
 String toString() {
-  return 'CreateExpenseModel(amount: $amount, notes: $notes)';
+  final _this = this as CreateExpenseModel;
+  return 'CreateExpenseModel(amount: ${_this.amount}, notes: ${_this.notes})';
 }
 
 
@@ -66,7 +72,7 @@ class _$CreateExpenseModelCopyWithImpl<$Res>
 /// Create a copy of CreateExpenseModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? amount = freezed,Object? notes = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(CreateExpenseModel(
 amount: freezed == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as double?,notes: freezed == notes ? _self.notes : notes // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -229,16 +235,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateExpenseModel&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.notes, notes) || other.notes == notes));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateExpenseModel&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.notes, notes) || other.notes == notes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,amount,notes);
+int get hashCode {
+    return Object.hash(runtimeType,amount,notes);
+}
 
 @override
 String toString() {
-  return 'CreateExpenseModel(amount: $amount, notes: $notes)';
+    return 'CreateExpenseModel(amount: $amount, notes: $notes)';
 }
 
 

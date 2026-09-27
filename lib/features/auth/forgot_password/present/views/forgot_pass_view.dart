@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
+
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/theme/core/extensions/theme_ext.dart';
 import '../../../../../core/theme/core/themes/auth_light_theme.dart';
@@ -30,8 +30,7 @@ class ForgotPassView extends StatelessWidget {
               success: () {
                 context.showSuccessSnackBar(
                   title: 'نجاح',
-                  message:
-                      'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
+                  message: 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني',
                 );
               },
               failure: (error) {

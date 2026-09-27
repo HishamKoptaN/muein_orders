@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'order_items_res_model.dart';
@@ -9,6 +9,7 @@ part of 'order_items_res_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -27,23 +28,29 @@ $SallaOrderItemsResModelCopyWith<SallaOrderItemsResModel> get copyWith => _$Sall
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as SallaOrderItemsResModel;
   properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemsResModel'))
-    ..add(DiagnosticsProperty('sallaOrderItems', sallaOrderItems))..add(DiagnosticsProperty('meta', meta));
+    ..add(DiagnosticsProperty('sallaOrderItems', _this.sallaOrderItems))..add(DiagnosticsProperty('meta', _this.meta));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemsResModel&&const DeepCollectionEquality().equals(other.sallaOrderItems, sallaOrderItems)&&(identical(other.meta, meta) || other.meta == meta));
+  final _this = this as SallaOrderItemsResModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemsResModel&&const DeepCollectionEquality().equals(other.sallaOrderItems, _this.sallaOrderItems)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(sallaOrderItems),meta);
+int get hashCode {
+  final _this = this as SallaOrderItemsResModel;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.sallaOrderItems),_this.meta);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemsResModel(sallaOrderItems: $sallaOrderItems, meta: $meta)';
+  final _this = this as SallaOrderItemsResModel;
+  return 'SallaOrderItemsResModel(sallaOrderItems: ${_this.sallaOrderItems}, meta: ${_this.meta})';
 }
 
 
@@ -72,7 +79,7 @@ class _$SallaOrderItemsResModelCopyWithImpl<$Res>
 /// Create a copy of SallaOrderItemsResModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? sallaOrderItems = null,Object? meta = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaOrderItemsResModel(
 sallaOrderItems: null == sallaOrderItems ? _self.sallaOrderItems : sallaOrderItems // ignore: cast_nullable_to_non_nullable
 as List<SallaOrderItemModel>,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as MetaModel,
@@ -225,7 +232,7 @@ return $default(_that.sallaOrderItems,_that.meta);case _:
 @JsonSerializable()
 
 class _SallaOrderItemsResModel with DiagnosticableTreeMixin implements SallaOrderItemsResModel {
-  const _SallaOrderItemsResModel({@JsonKey(name: 'data') List<SallaOrderItemModel> sallaOrderItems = const [], @JsonKey(name: 'meta') this.meta = const MetaModel()}): _sallaOrderItems = sallaOrderItems;
+  const _SallaOrderItemsResModel({@JsonKey(name: 'data')  List<SallaOrderItemModel> sallaOrderItems = const [], @JsonKey(name: 'meta') this.meta = const MetaModel()}): _sallaOrderItems = sallaOrderItems;
   factory _SallaOrderItemsResModel.fromJson(Map<String, dynamic> json) => _$SallaOrderItemsResModelFromJson(json);
 
  final  List<SallaOrderItemModel> _sallaOrderItems;
@@ -249,23 +256,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemsResModel'))
     ..add(DiagnosticsProperty('sallaOrderItems', sallaOrderItems))..add(DiagnosticsProperty('meta', meta));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemsResModel&&const DeepCollectionEquality().equals(other._sallaOrderItems, _sallaOrderItems)&&(identical(other.meta, meta) || other.meta == meta));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemsResModel&&const DeepCollectionEquality().equals(other.sallaOrderItems, _sallaOrderItems)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_sallaOrderItems),meta);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_sallaOrderItems),meta);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemsResModel(sallaOrderItems: $sallaOrderItems, meta: $meta)';
+    return 'SallaOrderItemsResModel(sallaOrderItems: $sallaOrderItems, meta: $meta)';
 }
 
 
@@ -329,23 +338,29 @@ $SallaOrderItemModelCopyWith<SallaOrderItemModel> get copyWith => _$SallaOrderIt
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as SallaOrderItemModel;
   properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('printedName', printedName))..add(DiagnosticsProperty('sallaProduct', sallaProduct))..add(DiagnosticsProperty('sallaOrderItemUnits', sallaOrderItemUnits))..add(DiagnosticsProperty('sallaOrderItemStatus', sallaOrderItemStatus))..add(DiagnosticsProperty('created_at', created_at))..add(DiagnosticsProperty('updated_at', updated_at));
+    ..add(DiagnosticsProperty('id', _this.id))..add(DiagnosticsProperty('printedName', _this.printedName))..add(DiagnosticsProperty('sallaProduct', _this.sallaProduct))..add(DiagnosticsProperty('sallaOrderItemUnits', _this.sallaOrderItemUnits))..add(DiagnosticsProperty('sallaOrderItemStatus', _this.sallaOrderItemStatus))..add(DiagnosticsProperty('created_at', _this.created_at))..add(DiagnosticsProperty('updated_at', _this.updated_at));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
+  final _this = this as SallaOrderItemModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.printedName, _this.printedName) || other.printedName == _this.printedName)&&(identical(other.sallaProduct, _this.sallaProduct) || other.sallaProduct == _this.sallaProduct)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, _this.sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, _this.sallaOrderItemStatus) || other.sallaOrderItemStatus == _this.sallaOrderItemStatus)&&(identical(other.created_at, _this.created_at) || other.created_at == _this.created_at)&&(identical(other.updated_at, _this.updated_at) || other.updated_at == _this.updated_at));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,printedName,sallaProduct,const DeepCollectionEquality().hash(sallaOrderItemUnits),sallaOrderItemStatus,created_at,updated_at);
+int get hashCode {
+  final _this = this as SallaOrderItemModel;
+  return Object.hash(runtimeType,_this.id,_this.printedName,_this.sallaProduct,const DeepCollectionEquality().hash(_this.sallaOrderItemUnits),_this.sallaOrderItemStatus,_this.created_at,_this.updated_at);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemModel(id: $id, printedName: $printedName, sallaProduct: $sallaProduct, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus, created_at: $created_at, updated_at: $updated_at)';
+  final _this = this as SallaOrderItemModel;
+  return 'SallaOrderItemModel(id: ${_this.id}, printedName: ${_this.printedName}, sallaProduct: ${_this.sallaProduct}, sallaOrderItemUnits: ${_this.sallaOrderItemUnits}, sallaOrderItemStatus: ${_this.sallaOrderItemStatus}, created_at: ${_this.created_at}, updated_at: ${_this.updated_at})';
 }
 
 
@@ -374,7 +389,7 @@ class _$SallaOrderItemModelCopyWithImpl<$Res>
 /// Create a copy of SallaOrderItemModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? printedName = null,Object? sallaProduct = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,Object? created_at = null,Object? updated_at = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaOrderItemModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,printedName: null == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
 as String,sallaProduct: null == sallaProduct ? _self.sallaProduct : sallaProduct // ignore: cast_nullable_to_non_nullable
@@ -541,7 +556,7 @@ return $default(_that.id,_that.printedName,_that.sallaProduct,_that.sallaOrderIt
 @JsonSerializable()
 
 class _SallaOrderItemModel with DiagnosticableTreeMixin implements SallaOrderItemModel {
-  const _SallaOrderItemModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'printed_name') this.printedName = '', @JsonKey(name: 'salla_product') this.sallaProduct = const SallaProductModel(), @JsonKey(name: 'salla_order_item_units') List<SallaOrderItemUnitModel> sallaOrderItemUnits = const [], @JsonKey(name: 'salla_order_item_status') this.sallaOrderItemStatus = const SallaOrderItemStatusModel(), @JsonKey(name: 'created_at') this.created_at = '', @JsonKey(name: 'updated_at') this.updated_at = ''}): _sallaOrderItemUnits = sallaOrderItemUnits;
+  const _SallaOrderItemModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'printed_name') this.printedName = '', @JsonKey(name: 'salla_product') this.sallaProduct = const SallaProductModel(), @JsonKey(name: 'salla_order_item_units')  List<SallaOrderItemUnitModel> sallaOrderItemUnits = const [], @JsonKey(name: 'salla_order_item_status') this.sallaOrderItemStatus = const SallaOrderItemStatusModel(), @JsonKey(name: 'created_at') this.created_at = '', @JsonKey(name: 'updated_at') this.updated_at = ''}): _sallaOrderItemUnits = sallaOrderItemUnits;
   factory _SallaOrderItemModel.fromJson(Map<String, dynamic> json) => _$SallaOrderItemModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;
@@ -570,23 +585,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemModel'))
     ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('printedName', printedName))..add(DiagnosticsProperty('sallaProduct', sallaProduct))..add(DiagnosticsProperty('sallaOrderItemUnits', sallaOrderItemUnits))..add(DiagnosticsProperty('sallaOrderItemStatus', sallaOrderItemStatus))..add(DiagnosticsProperty('created_at', created_at))..add(DiagnosticsProperty('updated_at', updated_at));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&const DeepCollectionEquality().equals(other._sallaOrderItemUnits, _sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemModel&&(identical(other.id, id) || other.id == id)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, _sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,printedName,sallaProduct,const DeepCollectionEquality().hash(_sallaOrderItemUnits),sallaOrderItemStatus,created_at,updated_at);
+int get hashCode {
+    return Object.hash(runtimeType,id,printedName,sallaProduct,const DeepCollectionEquality().hash(_sallaOrderItemUnits),sallaOrderItemStatus,created_at,updated_at);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemModel(id: $id, printedName: $printedName, sallaProduct: $sallaProduct, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus, created_at: $created_at, updated_at: $updated_at)';
+    return 'SallaOrderItemModel(id: $id, printedName: $printedName, sallaProduct: $sallaProduct, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus, created_at: $created_at, updated_at: $updated_at)';
 }
 
 
@@ -664,23 +681,29 @@ $SallaProductModelCopyWith<SallaProductModel> get copyWith => _$SallaProductMode
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as SallaProductModel;
   properties
     ..add(DiagnosticsProperty('type', 'SallaProductModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('name', name));
+    ..add(DiagnosticsProperty('id', _this.id))..add(DiagnosticsProperty('name', _this.name));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaProductModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+  final _this = this as SallaProductModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaProductModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode {
+  final _this = this as SallaProductModel;
+  return Object.hash(runtimeType,_this.id,_this.name);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaProductModel(id: $id, name: $name)';
+  final _this = this as SallaProductModel;
+  return 'SallaProductModel(id: ${_this.id}, name: ${_this.name})';
 }
 
 
@@ -709,7 +732,7 @@ class _$SallaProductModelCopyWithImpl<$Res>
 /// Create a copy of SallaProductModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaProductModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,
@@ -871,23 +894,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SallaProductModel'))
     ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('name', name));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaProductModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaProductModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode {
+    return Object.hash(runtimeType,id,name);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaProductModel(id: $id, name: $name)';
+    return 'SallaProductModel(id: $id, name: $name)';
 }
 
 
@@ -942,23 +967,29 @@ $SallaOrderItemStatusModelCopyWith<SallaOrderItemStatusModel> get copyWith => _$
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as SallaOrderItemStatusModel;
   properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemStatusModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('created_at', created_at))..add(DiagnosticsProperty('updated_at', updated_at));
+    ..add(DiagnosticsProperty('id', _this.id))..add(DiagnosticsProperty('name', _this.name))..add(DiagnosticsProperty('created_at', _this.created_at))..add(DiagnosticsProperty('updated_at', _this.updated_at));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemStatusModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
+  final _this = this as SallaOrderItemStatusModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemStatusModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.created_at, _this.created_at) || other.created_at == _this.created_at)&&(identical(other.updated_at, _this.updated_at) || other.updated_at == _this.updated_at));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,created_at,updated_at);
+int get hashCode {
+  final _this = this as SallaOrderItemStatusModel;
+  return Object.hash(runtimeType,_this.id,_this.name,_this.created_at,_this.updated_at);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemStatusModel(id: $id, name: $name, created_at: $created_at, updated_at: $updated_at)';
+  final _this = this as SallaOrderItemStatusModel;
+  return 'SallaOrderItemStatusModel(id: ${_this.id}, name: ${_this.name}, created_at: ${_this.created_at}, updated_at: ${_this.updated_at})';
 }
 
 
@@ -987,7 +1018,7 @@ class _$SallaOrderItemStatusModelCopyWithImpl<$Res>
 /// Create a copy of SallaOrderItemStatusModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? created_at = null,Object? updated_at = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaOrderItemStatusModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,created_at: null == created_at ? _self.created_at : created_at // ignore: cast_nullable_to_non_nullable
@@ -1153,23 +1184,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemStatusModel'))
     ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('created_at', created_at))..add(DiagnosticsProperty('updated_at', updated_at));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemStatusModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemStatusModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.created_at, created_at) || other.created_at == created_at)&&(identical(other.updated_at, updated_at) || other.updated_at == updated_at));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,created_at,updated_at);
+int get hashCode {
+    return Object.hash(runtimeType,id,name,created_at,updated_at);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemStatusModel(id: $id, name: $name, created_at: $created_at, updated_at: $updated_at)';
+    return 'SallaOrderItemStatusModel(id: $id, name: $name, created_at: $created_at, updated_at: $updated_at)';
 }
 
 
@@ -1226,23 +1259,29 @@ $SallaOrderItemUnitModelCopyWith<SallaOrderItemUnitModel> get copyWith => _$Sall
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as SallaOrderItemUnitModel;
   properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemUnitModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('unitNumber', unitNumber))..add(DiagnosticsProperty('executionNumber', executionNumber))..add(DiagnosticsProperty('docs', docs))..add(DiagnosticsProperty('createdAt', createdAt))..add(DiagnosticsProperty('updatedAt', updatedAt));
+    ..add(DiagnosticsProperty('id', _this.id))..add(DiagnosticsProperty('unitNumber', _this.unitNumber))..add(DiagnosticsProperty('executionNumber', _this.executionNumber))..add(DiagnosticsProperty('docs', _this.docs))..add(DiagnosticsProperty('createdAt', _this.createdAt))..add(DiagnosticsProperty('updatedAt', _this.updatedAt));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemUnitModel&&(identical(other.id, id) || other.id == id)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&const DeepCollectionEquality().equals(other.docs, docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  final _this = this as SallaOrderItemUnitModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemUnitModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.unitNumber, _this.unitNumber) || other.unitNumber == _this.unitNumber)&&(identical(other.executionNumber, _this.executionNumber) || other.executionNumber == _this.executionNumber)&&const DeepCollectionEquality().equals(other.docs, _this.docs)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,unitNumber,executionNumber,const DeepCollectionEquality().hash(docs),createdAt,updatedAt);
+int get hashCode {
+  final _this = this as SallaOrderItemUnitModel;
+  return Object.hash(runtimeType,_this.id,_this.unitNumber,_this.executionNumber,const DeepCollectionEquality().hash(_this.docs),_this.createdAt,_this.updatedAt);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemUnitModel(id: $id, unitNumber: $unitNumber, executionNumber: $executionNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
+  final _this = this as SallaOrderItemUnitModel;
+  return 'SallaOrderItemUnitModel(id: ${_this.id}, unitNumber: ${_this.unitNumber}, executionNumber: ${_this.executionNumber}, docs: ${_this.docs}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt})';
 }
 
 
@@ -1271,7 +1310,7 @@ class _$SallaOrderItemUnitModelCopyWithImpl<$Res>
 /// Create a copy of SallaOrderItemUnitModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? unitNumber = null,Object? executionNumber = null,Object? docs = null,Object? createdAt = null,Object? updatedAt = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaOrderItemUnitModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,unitNumber: null == unitNumber ? _self.unitNumber : unitNumber // ignore: cast_nullable_to_non_nullable
 as int,executionNumber: null == executionNumber ? _self.executionNumber : executionNumber // ignore: cast_nullable_to_non_nullable
@@ -1419,7 +1458,7 @@ return $default(_that.id,_that.unitNumber,_that.executionNumber,_that.docs,_that
 @JsonSerializable()
 
 class _SallaOrderItemUnitModel with DiagnosticableTreeMixin implements SallaOrderItemUnitModel {
-  const _SallaOrderItemUnitModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'unit_number') this.unitNumber = 0, @JsonKey(name: 'execution_number') this.executionNumber = '', @JsonKey(name: 'documentations') List<DocModel> docs = const [], @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _docs = docs;
+  const _SallaOrderItemUnitModel({@JsonKey(name: 'id') this.id = 0, @JsonKey(name: 'unit_number') this.unitNumber = 0, @JsonKey(name: 'execution_number') this.executionNumber = '', @JsonKey(name: 'documentations')  List<DocModel> docs = const [], @JsonKey(name: 'created_at') this.createdAt = '', @JsonKey(name: 'updated_at') this.updatedAt = ''}): _docs = docs;
   factory _SallaOrderItemUnitModel.fromJson(Map<String, dynamic> json) => _$SallaOrderItemUnitModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int id;
@@ -1447,23 +1486,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SallaOrderItemUnitModel'))
     ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('unitNumber', unitNumber))..add(DiagnosticsProperty('executionNumber', executionNumber))..add(DiagnosticsProperty('docs', docs))..add(DiagnosticsProperty('createdAt', createdAt))..add(DiagnosticsProperty('updatedAt', updatedAt));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemUnitModel&&(identical(other.id, id) || other.id == id)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&const DeepCollectionEquality().equals(other._docs, _docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemUnitModel&&(identical(other.id, id) || other.id == id)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&const DeepCollectionEquality().equals(other.docs, _docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,unitNumber,executionNumber,const DeepCollectionEquality().hash(_docs),createdAt,updatedAt);
+int get hashCode {
+    return Object.hash(runtimeType,id,unitNumber,executionNumber,const DeepCollectionEquality().hash(_docs),createdAt,updatedAt);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SallaOrderItemUnitModel(id: $id, unitNumber: $unitNumber, executionNumber: $executionNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'SallaOrderItemUnitModel(id: $id, unitNumber: $unitNumber, executionNumber: $executionNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 

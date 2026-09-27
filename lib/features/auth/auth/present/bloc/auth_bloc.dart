@@ -1,9 +1,11 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
+
 import '../../domain/usecases/auth_use_casees.dart';
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
@@ -56,5 +58,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         },
       );
     });
+    add(const .check());
   }
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'expenses_res_model.dart';
@@ -9,6 +9,7 @@ part of 'expenses_res_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $ExpensesResModelCopyWith<ExpensesResModel> get copyWith => _$ExpensesResModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesResModel&&const DeepCollectionEquality().equals(other.expenses, expenses)&&(identical(other.meta, meta) || other.meta == meta));
+  final _this = this as ExpensesResModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpensesResModel&&const DeepCollectionEquality().equals(other.expenses, _this.expenses)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(expenses),meta);
+int get hashCode {
+  final _this = this as ExpensesResModel;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.expenses),_this.meta);
+}
 
 @override
 String toString() {
-  return 'ExpensesResModel(expenses: $expenses, meta: $meta)';
+  final _this = this as ExpensesResModel;
+  return 'ExpensesResModel(expenses: ${_this.expenses}, meta: ${_this.meta})';
 }
 
 
@@ -66,7 +72,7 @@ class _$ExpensesResModelCopyWithImpl<$Res>
 /// Create a copy of ExpensesResModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? expenses = freezed,Object? meta = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ExpensesResModel(
 expenses: freezed == expenses ? _self.expenses : expenses // ignore: cast_nullable_to_non_nullable
 as List<ExpenseModel>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as MetaModel?,
@@ -222,7 +228,7 @@ return $default(_that.expenses,_that.meta);case _:
 @JsonSerializable()
 
 class _ExpensesResModel implements ExpensesResModel {
-  const _ExpensesResModel({@JsonKey(name: 'data') List<ExpenseModel>? expenses, @JsonKey(name: 'meta') this.meta}): _expenses = expenses;
+  const _ExpensesResModel({@JsonKey(name: 'data')  List<ExpenseModel>? expenses, @JsonKey(name: 'meta') this.meta}): _expenses = expenses;
   factory _ExpensesResModel.fromJson(Map<String, dynamic> json) => _$ExpensesResModelFromJson(json);
 
  final  List<ExpenseModel>? _expenses;
@@ -249,16 +255,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpensesResModel&&const DeepCollectionEquality().equals(other._expenses, _expenses)&&(identical(other.meta, meta) || other.meta == meta));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpensesResModel&&const DeepCollectionEquality().equals(other.expenses, _expenses)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_expenses),meta);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_expenses),meta);
+}
 
 @override
 String toString() {
-  return 'ExpensesResModel(expenses: $expenses, meta: $meta)';
+    return 'ExpensesResModel(expenses: $expenses, meta: $meta)';
 }
 
 
@@ -326,16 +334,21 @@ $ExpenseModelCopyWith<ExpenseModel> get copyWith => _$ExpenseModelCopyWithImpl<E
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpenseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.notes, notes) || other.notes == notes)&&(identical(other.description, description) || other.description == description)&&(identical(other.receiptPath, receiptPath) || other.receiptPath == receiptPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.expenseType, expenseType) || other.expenseType == expenseType));
+  final _this = this as ExpenseModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpenseModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.amount, _this.amount) || other.amount == _this.amount)&&(identical(other.currency, _this.currency) || other.currency == _this.currency)&&(identical(other.notes, _this.notes) || other.notes == _this.notes)&&(identical(other.description, _this.description) || other.description == _this.description)&&(identical(other.receiptPath, _this.receiptPath) || other.receiptPath == _this.receiptPath)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.adminNotes, _this.adminNotes) || other.adminNotes == _this.adminNotes)&&(identical(other.reviewedAt, _this.reviewedAt) || other.reviewedAt == _this.reviewedAt)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt)&&(identical(other.expenseType, _this.expenseType) || other.expenseType == _this.expenseType));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,amount,currency,notes,description,receiptPath,status,adminNotes,reviewedAt,createdAt,updatedAt,expenseType);
+int get hashCode {
+  final _this = this as ExpenseModel;
+  return Object.hash(runtimeType,_this.id,_this.amount,_this.currency,_this.notes,_this.description,_this.receiptPath,_this.status,_this.adminNotes,_this.reviewedAt,_this.createdAt,_this.updatedAt,_this.expenseType);
+}
 
 @override
 String toString() {
-  return 'ExpenseModel(id: $id, amount: $amount, currency: $currency, notes: $notes, description: $description, receiptPath: $receiptPath, status: $status, adminNotes: $adminNotes, reviewedAt: $reviewedAt, createdAt: $createdAt, updatedAt: $updatedAt, expenseType: $expenseType)';
+  final _this = this as ExpenseModel;
+  return 'ExpenseModel(id: ${_this.id}, amount: ${_this.amount}, currency: ${_this.currency}, notes: ${_this.notes}, description: ${_this.description}, receiptPath: ${_this.receiptPath}, status: ${_this.status}, adminNotes: ${_this.adminNotes}, reviewedAt: ${_this.reviewedAt}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt}, expenseType: ${_this.expenseType})';
 }
 
 
@@ -364,7 +377,7 @@ class _$ExpenseModelCopyWithImpl<$Res>
 /// Create a copy of ExpenseModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? amount = freezed,Object? currency = freezed,Object? notes = freezed,Object? description = freezed,Object? receiptPath = freezed,Object? status = freezed,Object? adminNotes = freezed,Object? reviewedAt = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,Object? expenseType = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ExpenseModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,amount: freezed == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as String?,currency: freezed == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
@@ -559,16 +572,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpenseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.notes, notes) || other.notes == notes)&&(identical(other.description, description) || other.description == description)&&(identical(other.receiptPath, receiptPath) || other.receiptPath == receiptPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.expenseType, expenseType) || other.expenseType == expenseType));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpenseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.notes, notes) || other.notes == notes)&&(identical(other.description, description) || other.description == description)&&(identical(other.receiptPath, receiptPath) || other.receiptPath == receiptPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.expenseType, expenseType) || other.expenseType == expenseType));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,amount,currency,notes,description,receiptPath,status,adminNotes,reviewedAt,createdAt,updatedAt,expenseType);
+int get hashCode {
+    return Object.hash(runtimeType,id,amount,currency,notes,description,receiptPath,status,adminNotes,reviewedAt,createdAt,updatedAt,expenseType);
+}
 
 @override
 String toString() {
-  return 'ExpenseModel(id: $id, amount: $amount, currency: $currency, notes: $notes, description: $description, receiptPath: $receiptPath, status: $status, adminNotes: $adminNotes, reviewedAt: $reviewedAt, createdAt: $createdAt, updatedAt: $updatedAt, expenseType: $expenseType)';
+    return 'ExpenseModel(id: $id, amount: $amount, currency: $currency, notes: $notes, description: $description, receiptPath: $receiptPath, status: $status, adminNotes: $adminNotes, reviewedAt: $reviewedAt, createdAt: $createdAt, updatedAt: $updatedAt, expenseType: $expenseType)';
 }
 
 
@@ -646,16 +661,21 @@ $ExpenseTypeModelCopyWith<ExpenseTypeModel> get copyWith => _$ExpenseTypeModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpenseTypeModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+  final _this = this as ExpenseTypeModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExpenseTypeModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode {
+  final _this = this as ExpenseTypeModel;
+  return Object.hash(runtimeType,_this.id,_this.name);
+}
 
 @override
 String toString() {
-  return 'ExpenseTypeModel(id: $id, name: $name)';
+  final _this = this as ExpenseTypeModel;
+  return 'ExpenseTypeModel(id: ${_this.id}, name: ${_this.name})';
 }
 
 
@@ -684,7 +704,7 @@ class _$ExpenseTypeModelCopyWithImpl<$Res>
 /// Create a copy of ExpenseTypeModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ExpenseTypeModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -847,16 +867,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpenseTypeModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExpenseTypeModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode {
+    return Object.hash(runtimeType,id,name);
+}
 
 @override
 String toString() {
-  return 'ExpenseTypeModel(id: $id, name: $name)';
+    return 'ExpenseTypeModel(id: $id, name: $name)';
 }
 
 

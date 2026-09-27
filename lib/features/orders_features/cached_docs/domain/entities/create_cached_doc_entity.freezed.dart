@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'create_cached_doc_entity.dart';
@@ -9,6 +9,7 @@ part of 'create_cached_doc_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -24,23 +25,29 @@ $CreateCachedDocEntityCopyWith<CreateCachedDocEntity> get copyWith => _$CreateCa
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as CreateCachedDocEntity;
   properties
     ..add(DiagnosticsProperty('type', 'CreateCachedDocEntity'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('itemId', itemId))..add(DiagnosticsProperty('unitId', unitId))..add(DiagnosticsProperty('files', files))..add(DiagnosticsProperty('latitude', latitude))..add(DiagnosticsProperty('longitude', longitude))..add(DiagnosticsProperty('locationUploadStatus', locationUploadStatus))..add(DiagnosticsProperty('original', original));
+    ..add(DiagnosticsProperty('id', _this.id))..add(DiagnosticsProperty('itemId', _this.itemId))..add(DiagnosticsProperty('unitId', _this.unitId))..add(DiagnosticsProperty('files', _this.files))..add(DiagnosticsProperty('latitude', _this.latitude))..add(DiagnosticsProperty('longitude', _this.longitude))..add(DiagnosticsProperty('locationUploadStatus', _this.locationUploadStatus))..add(DiagnosticsProperty('original', _this.original));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateCachedDocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus)&&(identical(other.original, original) || other.original == original));
+  final _this = this as CreateCachedDocEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateCachedDocEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.itemId, _this.itemId) || other.itemId == _this.itemId)&&(identical(other.unitId, _this.unitId) || other.unitId == _this.unitId)&&const DeepCollectionEquality().equals(other.files, _this.files)&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude)&&(identical(other.locationUploadStatus, _this.locationUploadStatus) || other.locationUploadStatus == _this.locationUploadStatus)&&(identical(other.original, _this.original) || other.original == _this.original));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,itemId,unitId,const DeepCollectionEquality().hash(files),latitude,longitude,locationUploadStatus,original);
+int get hashCode {
+  final _this = this as CreateCachedDocEntity;
+  return Object.hash(runtimeType,_this.id,_this.itemId,_this.unitId,const DeepCollectionEquality().hash(_this.files),_this.latitude,_this.longitude,_this.locationUploadStatus,_this.original);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CreateCachedDocEntity(id: $id, itemId: $itemId, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus, original: $original)';
+  final _this = this as CreateCachedDocEntity;
+  return 'CreateCachedDocEntity(id: ${_this.id}, itemId: ${_this.itemId}, unitId: ${_this.unitId}, files: ${_this.files}, latitude: ${_this.latitude}, longitude: ${_this.longitude}, locationUploadStatus: ${_this.locationUploadStatus}, original: ${_this.original})';
 }
 
 
@@ -69,7 +76,7 @@ class _$CreateCachedDocEntityCopyWithImpl<$Res>
 /// Create a copy of CreateCachedDocEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? itemId = freezed,Object? unitId = freezed,Object? files = null,Object? latitude = null,Object? longitude = null,Object? locationUploadStatus = null,Object? original = null,}) {
-  return _then(_self.copyWith(
+  return _then(CreateCachedDocEntity(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,itemId: freezed == itemId ? _self.itemId : itemId // ignore: cast_nullable_to_non_nullable
 as int?,unitId: freezed == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
@@ -228,7 +235,7 @@ return $default(_that.id,_that.itemId,_that.unitId,_that.files,_that.latitude,_t
 
 
 class _CreateCachedDocEntity with DiagnosticableTreeMixin implements CreateCachedDocEntity {
-  const _CreateCachedDocEntity({this.id, this.itemId, this.unitId, List<UpdateDocMediaEntity> files = const [], this.latitude = const GenericFormInput.pure(), this.longitude = const GenericFormInput.pure(), this.locationUploadStatus = UploadStatus.init, this.original = const DocEntity()}): _files = files;
+  const _CreateCachedDocEntity({this.id, this.itemId, this.unitId,  List<UpdateDocMediaEntity> files = const [], this.latitude = const GenericFormInput.pure(), this.longitude = const GenericFormInput.pure(), this.locationUploadStatus = UploadStatus.init, this.original = const DocEntity()}): _files = files;
   
 
 @override final  int? id;
@@ -255,23 +262,25 @@ _$CreateCachedDocEntityCopyWith<_CreateCachedDocEntity> get copyWith => __$Creat
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CreateCachedDocEntity'))
     ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('itemId', itemId))..add(DiagnosticsProperty('unitId', unitId))..add(DiagnosticsProperty('files', files))..add(DiagnosticsProperty('latitude', latitude))..add(DiagnosticsProperty('longitude', longitude))..add(DiagnosticsProperty('locationUploadStatus', locationUploadStatus))..add(DiagnosticsProperty('original', original));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateCachedDocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus)&&(identical(other.original, original) || other.original == original));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateCachedDocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other.files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus)&&(identical(other.original, original) || other.original == original));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,itemId,unitId,const DeepCollectionEquality().hash(_files),latitude,longitude,locationUploadStatus,original);
+int get hashCode {
+    return Object.hash(runtimeType,id,itemId,unitId,const DeepCollectionEquality().hash(_files),latitude,longitude,locationUploadStatus,original);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CreateCachedDocEntity(id: $id, itemId: $itemId, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus, original: $original)';
+    return 'CreateCachedDocEntity(id: $id, itemId: $itemId, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus, original: $original)';
 }
 
 
@@ -338,23 +347,29 @@ $UpdateDocMediaEntityCopyWith<UpdateDocMediaEntity> get copyWith => _$UpdateDocM
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as UpdateDocMediaEntity;
   properties
     ..add(DiagnosticsProperty('type', 'UpdateDocMediaEntity'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('docId', docId))..add(DiagnosticsProperty('localFilePath', localFilePath))..add(DiagnosticsProperty('filePath', filePath))..add(DiagnosticsProperty('thumbnail', thumbnail))..add(DiagnosticsProperty('docMediaType', docMediaType))..add(DiagnosticsProperty('fileUploadStatus', fileUploadStatus))..add(DiagnosticsProperty('isEdited', isEdited));
+    ..add(DiagnosticsProperty('id', _this.id))..add(DiagnosticsProperty('docId', _this.docId))..add(DiagnosticsProperty('localFilePath', _this.localFilePath))..add(DiagnosticsProperty('filePath', _this.filePath))..add(DiagnosticsProperty('thumbnail', _this.thumbnail))..add(DiagnosticsProperty('docMediaType', _this.docMediaType))..add(DiagnosticsProperty('fileUploadStatus', _this.fileUploadStatus))..add(DiagnosticsProperty('isEdited', _this.isEdited));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateDocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.localFilePath, localFilePath) || other.localFilePath == localFilePath)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.isEdited, isEdited) || other.isEdited == isEdited));
+  final _this = this as UpdateDocMediaEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateDocMediaEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.docId, _this.docId) || other.docId == _this.docId)&&(identical(other.localFilePath, _this.localFilePath) || other.localFilePath == _this.localFilePath)&&(identical(other.filePath, _this.filePath) || other.filePath == _this.filePath)&&(identical(other.thumbnail, _this.thumbnail) || other.thumbnail == _this.thumbnail)&&(identical(other.docMediaType, _this.docMediaType) || other.docMediaType == _this.docMediaType)&&(identical(other.fileUploadStatus, _this.fileUploadStatus) || other.fileUploadStatus == _this.fileUploadStatus)&&(identical(other.isEdited, _this.isEdited) || other.isEdited == _this.isEdited));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,localFilePath,filePath,thumbnail,docMediaType,fileUploadStatus,isEdited);
+int get hashCode {
+  final _this = this as UpdateDocMediaEntity;
+  return Object.hash(runtimeType,_this.id,_this.docId,_this.localFilePath,_this.filePath,_this.thumbnail,_this.docMediaType,_this.fileUploadStatus,_this.isEdited);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'UpdateDocMediaEntity(id: $id, docId: $docId, localFilePath: $localFilePath, filePath: $filePath, thumbnail: $thumbnail, docMediaType: $docMediaType, fileUploadStatus: $fileUploadStatus, isEdited: $isEdited)';
+  final _this = this as UpdateDocMediaEntity;
+  return 'UpdateDocMediaEntity(id: ${_this.id}, docId: ${_this.docId}, localFilePath: ${_this.localFilePath}, filePath: ${_this.filePath}, thumbnail: ${_this.thumbnail}, docMediaType: ${_this.docMediaType}, fileUploadStatus: ${_this.fileUploadStatus}, isEdited: ${_this.isEdited})';
 }
 
 
@@ -383,7 +398,7 @@ class _$UpdateDocMediaEntityCopyWithImpl<$Res>
 /// Create a copy of UpdateDocMediaEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? docId = freezed,Object? localFilePath = null,Object? filePath = null,Object? thumbnail = null,Object? docMediaType = null,Object? fileUploadStatus = null,Object? isEdited = null,}) {
-  return _then(_self.copyWith(
+  return _then(UpdateDocMediaEntity(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,docId: freezed == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as int?,localFilePath: null == localFilePath ? _self.localFilePath : localFilePath // ignore: cast_nullable_to_non_nullable
@@ -554,23 +569,25 @@ _$UpdateDocMediaEntityCopyWith<_UpdateDocMediaEntity> get copyWith => __$UpdateD
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'UpdateDocMediaEntity'))
     ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('docId', docId))..add(DiagnosticsProperty('localFilePath', localFilePath))..add(DiagnosticsProperty('filePath', filePath))..add(DiagnosticsProperty('thumbnail', thumbnail))..add(DiagnosticsProperty('docMediaType', docMediaType))..add(DiagnosticsProperty('fileUploadStatus', fileUploadStatus))..add(DiagnosticsProperty('isEdited', isEdited));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateDocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.localFilePath, localFilePath) || other.localFilePath == localFilePath)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.isEdited, isEdited) || other.isEdited == isEdited));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateDocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.localFilePath, localFilePath) || other.localFilePath == localFilePath)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.isEdited, isEdited) || other.isEdited == isEdited));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,localFilePath,filePath,thumbnail,docMediaType,fileUploadStatus,isEdited);
+int get hashCode {
+    return Object.hash(runtimeType,id,docId,localFilePath,filePath,thumbnail,docMediaType,fileUploadStatus,isEdited);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'UpdateDocMediaEntity(id: $id, docId: $docId, localFilePath: $localFilePath, filePath: $filePath, thumbnail: $thumbnail, docMediaType: $docMediaType, fileUploadStatus: $fileUploadStatus, isEdited: $isEdited)';
+    return 'UpdateDocMediaEntity(id: $id, docId: $docId, localFilePath: $localFilePath, filePath: $filePath, thumbnail: $thumbnail, docMediaType: $docMediaType, fileUploadStatus: $fileUploadStatus, isEdited: $isEdited)';
 }
 
 

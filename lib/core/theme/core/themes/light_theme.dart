@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import '../extensions/theme_ext.dart';
 import '../theme_components/app_bar_theme.dart';
 import '../theme_components/input_decoration_theme.dart';
@@ -15,7 +16,7 @@ ThemeData lightTheme({required BuildContext context}) {
     useMaterial3: true,
     colorScheme: colorScheme,
     brightness: .light,
-    extensions: const [SkeletonizerConfigData()],
+    // extensions: const [SkeletonizerConfigData()],
     appBarTheme: appBarTheme(colorScheme: colorScheme),
     inputDecorationTheme: inputDecorationTheme(context: context),
     filledButtonTheme: FilledButtonThemeData(

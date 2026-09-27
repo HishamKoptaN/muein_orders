@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'docs_bloc.dart';
@@ -9,6 +9,7 @@ part of 'docs_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$DocsEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DocsEvent()';
+    return 'DocsEvent()';
 }
 
 
@@ -51,7 +52,7 @@ mixin _$DocsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is DocsState);
 }
 
 
@@ -60,7 +61,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DocsState()';
+    return 'DocsState()';
 }
 
 
@@ -234,7 +235,7 @@ class _LoadInProgress implements DocsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadInProgress);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadInProgress);
 }
 
 
@@ -243,7 +244,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DocsState.loading()';
+    return 'DocsState.loading()';
 }
 
 
@@ -266,7 +267,7 @@ class _Success implements DocsState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
 }
 
 
@@ -275,7 +276,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DocsState.success()';
+    return 'DocsState.success()';
 }
 
 
@@ -288,7 +289,7 @@ String toString() {
 
 
 class _Loaded implements DocsState {
-  const _Loaded({List<SallaOrderItemUnitEntity>? docs = const [], this.hasMore = false}): _docs = docs;
+  const _Loaded({ List<SallaOrderItemUnitEntity>? docs = const [], this.hasMore = false}): _docs = docs;
   
 
  final  List<SallaOrderItemUnitEntity>? _docs;
@@ -312,16 +313,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._docs, _docs)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other.docs, _docs)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_docs),hasMore);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_docs),hasMore);
+}
 
 @override
 String toString() {
-  return 'DocsState.loaded(docs: $docs, hasMore: $hasMore)';
+    return 'DocsState.loaded(docs: $docs, hasMore: $hasMore)';
 }
 
 
@@ -379,16 +382,18 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,apiErrorModel);
+int get hashCode {
+    return Object.hash(runtimeType,apiErrorModel);
+}
 
 @override
 String toString() {
-  return 'DocsState.failure(apiErrorModel: $apiErrorModel)';
+    return 'DocsState.failure(apiErrorModel: $apiErrorModel)';
 }
 
 

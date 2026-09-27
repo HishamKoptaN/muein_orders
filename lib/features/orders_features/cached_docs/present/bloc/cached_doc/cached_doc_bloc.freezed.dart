@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'cached_doc_bloc.dart';
@@ -9,6 +9,7 @@ part of 'cached_doc_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -19,14 +20,14 @@ mixin _$CachedDocEvent implements DiagnosticableTreeMixin {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CachedDocEvent'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CachedDocEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CachedDocEvent);
 }
 
 
@@ -35,7 +36,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocEvent()';
+    return 'CachedDocEvent()';
 }
 
 
@@ -201,23 +202,25 @@ _$UpdateDataCopyWith<_UpdateData> get copyWith => __$UpdateDataCopyWithImpl<_Upd
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CachedDocEvent.updateData'))
     ..add(DiagnosticsProperty('createCachedDoc', createCachedDoc));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateData&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,createCachedDoc);
+int get hashCode {
+    return Object.hash(runtimeType,createCachedDoc);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocEvent.updateData(createCachedDoc: $createCachedDoc)';
+    return 'CachedDocEvent.updateData(createCachedDoc: $createCachedDoc)';
 }
 
 
@@ -277,14 +280,14 @@ class _CachedDoc with DiagnosticableTreeMixin implements CachedDocEvent {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CachedDocEvent.cachedDoc'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CachedDoc);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CachedDoc);
 }
 
 
@@ -293,7 +296,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocEvent.cachedDoc()';
+    return 'CachedDocEvent.cachedDoc()';
 }
 
 
@@ -310,14 +313,14 @@ mixin _$CachedDocState implements DiagnosticableTreeMixin {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CachedDocState'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CachedDocState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CachedDocState);
 }
 
 
@@ -326,7 +329,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocState()';
+    return 'CachedDocState()';
 }
 
 
@@ -499,14 +502,14 @@ class _Loading with DiagnosticableTreeMixin implements CachedDocState {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CachedDocState.loading'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -515,7 +518,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocState.loading()';
+    return 'CachedDocState.loading()';
 }
 
 
@@ -543,23 +546,25 @@ $LoadedCopyWith<Loaded> get copyWith => _$LoadedCopyWithImpl<Loaded>(this, _$ide
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CachedDocState.loaded'))
     ..add(DiagnosticsProperty('createCachedDoc', createCachedDoc))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Loaded&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is Loaded&&(identical(other.createCachedDoc, createCachedDoc) || other.createCachedDoc == createCachedDoc)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,createCachedDoc,formzSubmissionStatus);
+int get hashCode {
+    return Object.hash(runtimeType,createCachedDoc,formzSubmissionStatus);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocState.loaded(createCachedDoc: $createCachedDoc, formzSubmissionStatus: $formzSubmissionStatus)';
+    return 'CachedDocState.loaded(createCachedDoc: $createCachedDoc, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -620,14 +625,14 @@ class _Success with DiagnosticableTreeMixin implements CachedDocState {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CachedDocState.success'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
 }
 
 
@@ -636,7 +641,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocState.success()';
+    return 'CachedDocState.success()';
 }
 
 
@@ -663,23 +668,25 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CachedDocState.failure'))
     ..add(DiagnosticsProperty('error', error));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.error, error) || other.error == error));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,error);
+int get hashCode {
+    return Object.hash(runtimeType,error);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CachedDocState.failure(error: $error)';
+    return 'CachedDocState.failure(error: $error)';
 }
 
 

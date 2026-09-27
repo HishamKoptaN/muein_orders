@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'change_pass_bloc.dart';
@@ -9,6 +9,7 @@ part of 'change_pass_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$ChangePassEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ChangePassEvent()';
+    return 'ChangePassEvent()';
 }
 
 
@@ -196,16 +197,18 @@ _$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.changePasswordReq, changePasswordReq) || other.changePasswordReq == changePasswordReq));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.changePasswordReq, changePasswordReq) || other.changePasswordReq == changePasswordReq));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,changePasswordReq);
+int get hashCode {
+    return Object.hash(runtimeType,changePasswordReq);
+}
 
 @override
 String toString() {
-  return 'ChangePassEvent.dataChanged(changePasswordReq: $changePasswordReq)';
+    return 'ChangePassEvent.dataChanged(changePasswordReq: $changePasswordReq)';
 }
 
 
@@ -266,7 +269,7 @@ class _Update implements ChangePassEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Update);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Update);
 }
 
 
@@ -275,7 +278,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ChangePassEvent.update()';
+    return 'ChangePassEvent.update()';
 }
 
 
@@ -293,7 +296,7 @@ mixin _$ChangePassState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassState);
 }
 
 
@@ -302,7 +305,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ChangePassState()';
+    return 'ChangePassState()';
 }
 
 
@@ -476,7 +479,7 @@ class ChangePassLoading implements ChangePassState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassLoading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassLoading);
 }
 
 
@@ -485,7 +488,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ChangePassState.loading()';
+    return 'ChangePassState.loading()';
 }
 
 
@@ -514,16 +517,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.changePasswordReq, changePasswordReq) || other.changePasswordReq == changePasswordReq)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.changePasswordReq, changePasswordReq) || other.changePasswordReq == changePasswordReq)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,changePasswordReq,formzSubmissionStatus);
+int get hashCode {
+    return Object.hash(runtimeType,changePasswordReq,formzSubmissionStatus);
+}
 
 @override
 String toString() {
-  return 'ChangePassState.loaded(changePasswordReq: $changePasswordReq, formzSubmissionStatus: $formzSubmissionStatus)';
+    return 'ChangePassState.loaded(changePasswordReq: $changePasswordReq, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -585,7 +590,7 @@ class ChangePassSuccess implements ChangePassState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassSuccess);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassSuccess);
 }
 
 
@@ -594,7 +599,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ChangePassState.success()';
+    return 'ChangePassState.success()';
 }
 
 
@@ -622,16 +627,18 @@ $ChangePassFailureCopyWith<ChangePassFailure> get copyWith => _$ChangePassFailur
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassFailure&&(identical(other.error, error) || other.error == error));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePassFailure&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,error);
+int get hashCode {
+    return Object.hash(runtimeType,error);
+}
 
 @override
 String toString() {
-  return 'ChangePassState.failure(error: $error)';
+    return 'ChangePassState.failure(error: $error)';
 }
 
 

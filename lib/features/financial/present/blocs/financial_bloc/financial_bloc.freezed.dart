@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'financial_bloc.dart';
@@ -9,6 +9,7 @@ part of 'financial_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$FinancialEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FinancialEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is FinancialEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialEvent()';
+    return 'FinancialEvent()';
 }
 
 
@@ -185,7 +186,7 @@ class _Get implements FinancialEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Get);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Get);
 }
 
 
@@ -194,7 +195,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialEvent.get()';
+    return 'FinancialEvent.get()';
 }
 
 
@@ -212,7 +213,7 @@ mixin _$FinancialState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FinancialState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is FinancialState);
 }
 
 
@@ -221,7 +222,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialState()';
+    return 'FinancialState()';
 }
 
 
@@ -401,7 +402,7 @@ class _Initial implements FinancialState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
 
@@ -410,7 +411,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialState.initial()';
+    return 'FinancialState.initial()';
 }
 
 
@@ -433,7 +434,7 @@ class _Loading implements FinancialState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -442,7 +443,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialState.loading()';
+    return 'FinancialState.loading()';
 }
 
 
@@ -465,7 +466,7 @@ class _Success implements FinancialState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
 }
 
 
@@ -474,7 +475,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'FinancialState.success()';
+    return 'FinancialState.success()';
 }
 
 
@@ -502,16 +503,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.financialAccount, financialAccount) || other.financialAccount == financialAccount));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.financialAccount, financialAccount) || other.financialAccount == financialAccount));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,financialAccount);
+int get hashCode {
+    return Object.hash(runtimeType,financialAccount);
+}
 
 @override
 String toString() {
-  return 'FinancialState.loaded(financialAccount: $financialAccount)';
+    return 'FinancialState.loaded(financialAccount: $financialAccount)';
 }
 
 
@@ -580,16 +583,18 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.apiErrorModel, apiErrorModel) || other.apiErrorModel == apiErrorModel));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,apiErrorModel);
+int get hashCode {
+    return Object.hash(runtimeType,apiErrorModel);
+}
 
 @override
 String toString() {
-  return 'FinancialState.failure(apiErrorModel: $apiErrorModel)';
+    return 'FinancialState.failure(apiErrorModel: $apiErrorModel)';
 }
 
 

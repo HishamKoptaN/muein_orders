@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'device_model.dart';
@@ -9,6 +9,7 @@ part of 'device_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $DeviceModelCopyWith<DeviceModel> get copyWith => _$DeviceModelCopyWithImpl<Devi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeviceModel&&(identical(other.model, model) || other.model == model)&&(identical(other.os, os) || other.os == os)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken));
+  final _this = this as DeviceModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeviceModel&&(identical(other.model, _this.model) || other.model == _this.model)&&(identical(other.os, _this.os) || other.os == _this.os)&&(identical(other.deviceId, _this.deviceId) || other.deviceId == _this.deviceId)&&(identical(other.fcmToken, _this.fcmToken) || other.fcmToken == _this.fcmToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,model,os,deviceId,fcmToken);
+int get hashCode {
+  final _this = this as DeviceModel;
+  return Object.hash(runtimeType,_this.model,_this.os,_this.deviceId,_this.fcmToken);
+}
 
 @override
 String toString() {
-  return 'DeviceModel(model: $model, os: $os, deviceId: $deviceId, fcmToken: $fcmToken)';
+  final _this = this as DeviceModel;
+  return 'DeviceModel(model: ${_this.model}, os: ${_this.os}, deviceId: ${_this.deviceId}, fcmToken: ${_this.fcmToken})';
 }
 
 
@@ -66,7 +72,7 @@ class _$DeviceModelCopyWithImpl<$Res>
 /// Create a copy of DeviceModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? model = null,Object? os = null,Object? deviceId = null,Object? fcmToken = null,}) {
-  return _then(_self.copyWith(
+  return _then(DeviceModel(
 model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
 as String,os: null == os ? _self.os : os // ignore: cast_nullable_to_non_nullable
 as String,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
@@ -233,16 +239,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeviceModel&&(identical(other.model, model) || other.model == model)&&(identical(other.os, os) || other.os == os)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeviceModel&&(identical(other.model, model) || other.model == model)&&(identical(other.os, os) || other.os == os)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,model,os,deviceId,fcmToken);
+int get hashCode {
+    return Object.hash(runtimeType,model,os,deviceId,fcmToken);
+}
 
 @override
 String toString() {
-  return 'DeviceModel(model: $model, os: $os, deviceId: $deviceId, fcmToken: $fcmToken)';
+    return 'DeviceModel(model: $model, os: $os, deviceId: $deviceId, fcmToken: $fcmToken)';
 }
 
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'language_bloc.dart';
@@ -9,6 +9,7 @@ part of 'language_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$LanguageEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LanguageEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is LanguageEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'LanguageEvent()';
+    return 'LanguageEvent()';
 }
 
 
@@ -197,16 +198,18 @@ _$ChangeLanguageCopyWith<_ChangeLanguage> get copyWith => __$ChangeLanguageCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangeLanguage&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangeLanguage&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.countryCode, countryCode) || other.countryCode == countryCode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,languageCode,countryCode);
+int get hashCode {
+    return Object.hash(runtimeType,languageCode,countryCode);
+}
 
 @override
 String toString() {
-  return 'LanguageEvent.changeLanguage(languageCode: $languageCode, countryCode: $countryCode)';
+    return 'LanguageEvent.changeLanguage(languageCode: $languageCode, countryCode: $countryCode)';
 }
 
 
@@ -259,7 +262,7 @@ class _ResetToSystem implements LanguageEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResetToSystem);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ResetToSystem);
 }
 
 
@@ -268,7 +271,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'LanguageEvent.resetToSystem()';
+    return 'LanguageEvent.resetToSystem()';
 }
 
 
@@ -286,7 +289,7 @@ mixin _$LanguageState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LanguageState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is LanguageState);
 }
 
 
@@ -295,7 +298,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'LanguageState()';
+    return 'LanguageState()';
 }
 
 
@@ -457,7 +460,7 @@ class _Loading extends LanguageState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -466,7 +469,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'LanguageState.loading()';
+    return 'LanguageState.loading()';
 }
 
 
@@ -494,16 +497,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.currentLocale, currentLocale) || other.currentLocale == currentLocale));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.currentLocale, currentLocale) || other.currentLocale == currentLocale));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,currentLocale);
+int get hashCode {
+    return Object.hash(runtimeType,currentLocale);
+}
 
 @override
 String toString() {
-  return 'LanguageState.loaded(currentLocale: $currentLocale)';
+    return 'LanguageState.loaded(currentLocale: $currentLocale)';
 }
 
 

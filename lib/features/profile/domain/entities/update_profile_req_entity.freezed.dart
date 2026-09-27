@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'update_profile_req_entity.dart';
@@ -9,6 +9,7 @@ part of 'update_profile_req_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $UpdateProfileReqEntityCopyWith<UpdateProfileReqEntity> get copyWith => _$Update
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.avatarPath, avatarPath) || other.avatarPath == avatarPath)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
+  final _this = this as UpdateProfileReqEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileReqEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.avatar, _this.avatar) || other.avatar == _this.avatar)&&(identical(other.avatarPath, _this.avatarPath) || other.avatarPath == _this.avatarPath)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,avatar,avatarPath,name,phone);
+int get hashCode {
+  final _this = this as UpdateProfileReqEntity;
+  return Object.hash(runtimeType,_this.id,_this.avatar,_this.avatarPath,_this.name,_this.phone);
+}
 
 @override
 String toString() {
-  return 'UpdateProfileReqEntity(id: $id, avatar: $avatar, avatarPath: $avatarPath, name: $name, phone: $phone)';
+  final _this = this as UpdateProfileReqEntity;
+  return 'UpdateProfileReqEntity(id: ${_this.id}, avatar: ${_this.avatar}, avatarPath: ${_this.avatarPath}, name: ${_this.name}, phone: ${_this.phone})';
 }
 
 
@@ -63,7 +69,7 @@ class _$UpdateProfileReqEntityCopyWithImpl<$Res>
 /// Create a copy of UpdateProfileReqEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? avatar = freezed,Object? avatarPath = freezed,Object? name = freezed,Object? phone = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(UpdateProfileReqEntity(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as GenericFormInput?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as XFileFormInput?,avatarPath: freezed == avatarPath ? _self.avatarPath : avatarPath // ignore: cast_nullable_to_non_nullable
@@ -229,16 +235,18 @@ _$UpdateProfileReqEntityCopyWith<_UpdateProfileReqEntity> get copyWith => __$Upd
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.avatarPath, avatarPath) || other.avatarPath == avatarPath)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileReqEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.avatarPath, avatarPath) || other.avatarPath == avatarPath)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,avatar,avatarPath,name,phone);
+int get hashCode {
+    return Object.hash(runtimeType,id,avatar,avatarPath,name,phone);
+}
 
 @override
 String toString() {
-  return 'UpdateProfileReqEntity(id: $id, avatar: $avatar, avatarPath: $avatarPath, name: $name, phone: $phone)';
+    return 'UpdateProfileReqEntity(id: $id, avatar: $avatar, avatarPath: $avatarPath, name: $name, phone: $phone)';
 }
 
 

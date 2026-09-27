@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'doc_entity.dart';
@@ -9,6 +9,7 @@ part of 'doc_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $DocEntityCopyWith<DocEntity> get copyWith => _$DocEntityCopyWithImpl<DocEntity>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  final _this = this as DocEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.itemId, _this.itemId) || other.itemId == _this.itemId)&&(identical(other.unitId, _this.unitId) || other.unitId == _this.unitId)&&const DeepCollectionEquality().equals(other.files, _this.files)&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude)&&(identical(other.locationUploadStatus, _this.locationUploadStatus) || other.locationUploadStatus == _this.locationUploadStatus)&&(identical(other.docStatus, _this.docStatus) || other.docStatus == _this.docStatus)&&(identical(other.uploadStatus, _this.uploadStatus) || other.uploadStatus == _this.uploadStatus)&&(identical(other.uploadProgress, _this.uploadProgress) || other.uploadProgress == _this.uploadProgress)&&(identical(other.copiesCount, _this.copiesCount) || other.copiesCount == _this.copiesCount)&&(identical(other.reviewedBy, _this.reviewedBy) || other.reviewedBy == _this.reviewedBy)&&(identical(other.reviewedAt, _this.reviewedAt) || other.reviewedAt == _this.reviewedAt)&&(identical(other.adminNotes, _this.adminNotes) || other.adminNotes == _this.adminNotes)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,itemId,unitId,const DeepCollectionEquality().hash(files),latitude,longitude,locationUploadStatus,docStatus,uploadStatus,uploadProgress,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode {
+  final _this = this as DocEntity;
+  return Object.hash(runtimeType,_this.id,_this.itemId,_this.unitId,const DeepCollectionEquality().hash(_this.files),_this.latitude,_this.longitude,_this.locationUploadStatus,_this.docStatus,_this.uploadStatus,_this.uploadProgress,_this.copiesCount,_this.reviewedBy,_this.reviewedAt,_this.adminNotes,_this.createdAt,_this.updatedAt);
+}
 
 @override
 String toString() {
-  return 'DocEntity(id: $id, itemId: $itemId, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus, docStatus: $docStatus, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+  final _this = this as DocEntity;
+  return 'DocEntity(id: ${_this.id}, itemId: ${_this.itemId}, unitId: ${_this.unitId}, files: ${_this.files}, latitude: ${_this.latitude}, longitude: ${_this.longitude}, locationUploadStatus: ${_this.locationUploadStatus}, docStatus: ${_this.docStatus}, uploadStatus: ${_this.uploadStatus}, uploadProgress: ${_this.uploadProgress}, copiesCount: ${_this.copiesCount}, reviewedBy: ${_this.reviewedBy}, reviewedAt: ${_this.reviewedAt}, adminNotes: ${_this.adminNotes}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt})';
 }
 
 
@@ -63,7 +69,7 @@ class _$DocEntityCopyWithImpl<$Res>
 /// Create a copy of DocEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? itemId = null,Object? unitId = null,Object? files = null,Object? latitude = null,Object? longitude = null,Object? locationUploadStatus = null,Object? docStatus = null,Object? uploadStatus = null,Object? uploadProgress = null,Object? copiesCount = freezed,Object? reviewedBy = freezed,Object? reviewedAt = freezed,Object? adminNotes = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(DocEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,itemId: null == itemId ? _self.itemId : itemId // ignore: cast_nullable_to_non_nullable
 as int,unitId: null == unitId ? _self.unitId : unitId // ignore: cast_nullable_to_non_nullable
@@ -230,7 +236,7 @@ return $default(_that.id,_that.itemId,_that.unitId,_that.files,_that.latitude,_t
 
 
 class _DocEntity implements DocEntity {
-  const _DocEntity({this.id = 0, this.itemId = 0, this.unitId = 0, List<DocMediaEntity> files = const [], this.latitude = '', this.longitude = '', this.locationUploadStatus = UploadStatus.init, this.docStatus = const DocStatusEntity(), this.uploadStatus = UploadStatus.init, this.uploadProgress = 0.0, this.copiesCount, this.reviewedBy, this.reviewedAt, this.adminNotes, this.createdAt, this.updatedAt}): _files = files;
+  const _DocEntity({this.id = 0, this.itemId = 0, this.unitId = 0,  List<DocMediaEntity> files = const [], this.latitude = '', this.longitude = '', this.locationUploadStatus = UploadStatus.init, this.docStatus = const DocStatusEntity(), this.uploadStatus = UploadStatus.init, this.uploadProgress = 0.0, this.copiesCount, this.reviewedBy, this.reviewedAt, this.adminNotes, this.createdAt, this.updatedAt}): _files = files;
   
 
 @override@JsonKey() final  int id;
@@ -266,16 +272,18 @@ _$DocEntityCopyWith<_DocEntity> get copyWith => __$DocEntityCopyWithImpl<_DocEnt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.unitId, unitId) || other.unitId == unitId)&&const DeepCollectionEquality().equals(other.files, _files)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.locationUploadStatus, locationUploadStatus) || other.locationUploadStatus == locationUploadStatus)&&(identical(other.docStatus, docStatus) || other.docStatus == docStatus)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress)&&(identical(other.copiesCount, copiesCount) || other.copiesCount == copiesCount)&&(identical(other.reviewedBy, reviewedBy) || other.reviewedBy == reviewedBy)&&(identical(other.reviewedAt, reviewedAt) || other.reviewedAt == reviewedAt)&&(identical(other.adminNotes, adminNotes) || other.adminNotes == adminNotes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,itemId,unitId,const DeepCollectionEquality().hash(_files),latitude,longitude,locationUploadStatus,docStatus,uploadStatus,uploadProgress,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+int get hashCode {
+    return Object.hash(runtimeType,id,itemId,unitId,const DeepCollectionEquality().hash(_files),latitude,longitude,locationUploadStatus,docStatus,uploadStatus,uploadProgress,copiesCount,reviewedBy,reviewedAt,adminNotes,createdAt,updatedAt);
+}
 
 @override
 String toString() {
-  return 'DocEntity(id: $id, itemId: $itemId, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus, docStatus: $docStatus, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DocEntity(id: $id, itemId: $itemId, unitId: $unitId, files: $files, latitude: $latitude, longitude: $longitude, locationUploadStatus: $locationUploadStatus, docStatus: $docStatus, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress, copiesCount: $copiesCount, reviewedBy: $reviewedBy, reviewedAt: $reviewedAt, adminNotes: $adminNotes, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -351,16 +359,21 @@ $DocMediaEntityCopyWith<DocMediaEntity> get copyWith => _$DocMediaEntityCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.localFilePath, localFilePath) || other.localFilePath == localFilePath)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.isEdited, isEdited) || other.isEdited == isEdited));
+  final _this = this as DocMediaEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DocMediaEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.docId, _this.docId) || other.docId == _this.docId)&&(identical(other.localFilePath, _this.localFilePath) || other.localFilePath == _this.localFilePath)&&(identical(other.filePath, _this.filePath) || other.filePath == _this.filePath)&&(identical(other.docMediaType, _this.docMediaType) || other.docMediaType == _this.docMediaType)&&(identical(other.thumbnail, _this.thumbnail) || other.thumbnail == _this.thumbnail)&&(identical(other.sequence, _this.sequence) || other.sequence == _this.sequence)&&(identical(other.fileUploadStatus, _this.fileUploadStatus) || other.fileUploadStatus == _this.fileUploadStatus)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt)&&(identical(other.isEdited, _this.isEdited) || other.isEdited == _this.isEdited));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,localFilePath,filePath,docMediaType,thumbnail,sequence,fileUploadStatus,createdAt,updatedAt,isEdited);
+int get hashCode {
+  final _this = this as DocMediaEntity;
+  return Object.hash(runtimeType,_this.id,_this.docId,_this.localFilePath,_this.filePath,_this.docMediaType,_this.thumbnail,_this.sequence,_this.fileUploadStatus,_this.createdAt,_this.updatedAt,_this.isEdited);
+}
 
 @override
 String toString() {
-  return 'DocMediaEntity(id: $id, docId: $docId, localFilePath: $localFilePath, filePath: $filePath, docMediaType: $docMediaType, thumbnail: $thumbnail, sequence: $sequence, fileUploadStatus: $fileUploadStatus, createdAt: $createdAt, updatedAt: $updatedAt, isEdited: $isEdited)';
+  final _this = this as DocMediaEntity;
+  return 'DocMediaEntity(id: ${_this.id}, docId: ${_this.docId}, localFilePath: ${_this.localFilePath}, filePath: ${_this.filePath}, docMediaType: ${_this.docMediaType}, thumbnail: ${_this.thumbnail}, sequence: ${_this.sequence}, fileUploadStatus: ${_this.fileUploadStatus}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt}, isEdited: ${_this.isEdited})';
 }
 
 
@@ -389,7 +402,7 @@ class _$DocMediaEntityCopyWithImpl<$Res>
 /// Create a copy of DocMediaEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? docId = null,Object? localFilePath = null,Object? filePath = null,Object? docMediaType = null,Object? thumbnail = null,Object? sequence = null,Object? fileUploadStatus = null,Object? createdAt = null,Object? updatedAt = null,Object? isEdited = null,}) {
-  return _then(_self.copyWith(
+  return _then(DocMediaEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as int,localFilePath: null == localFilePath ? _self.localFilePath : localFilePath // ignore: cast_nullable_to_non_nullable
@@ -567,16 +580,18 @@ _$DocMediaEntityCopyWith<_DocMediaEntity> get copyWith => __$DocMediaEntityCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.localFilePath, localFilePath) || other.localFilePath == localFilePath)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.isEdited, isEdited) || other.isEdited == isEdited));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DocMediaEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.localFilePath, localFilePath) || other.localFilePath == localFilePath)&&(identical(other.filePath, filePath) || other.filePath == filePath)&&(identical(other.docMediaType, docMediaType) || other.docMediaType == docMediaType)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.fileUploadStatus, fileUploadStatus) || other.fileUploadStatus == fileUploadStatus)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.isEdited, isEdited) || other.isEdited == isEdited));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,localFilePath,filePath,docMediaType,thumbnail,sequence,fileUploadStatus,createdAt,updatedAt,isEdited);
+int get hashCode {
+    return Object.hash(runtimeType,id,docId,localFilePath,filePath,docMediaType,thumbnail,sequence,fileUploadStatus,createdAt,updatedAt,isEdited);
+}
 
 @override
 String toString() {
-  return 'DocMediaEntity(id: $id, docId: $docId, localFilePath: $localFilePath, filePath: $filePath, docMediaType: $docMediaType, thumbnail: $thumbnail, sequence: $sequence, fileUploadStatus: $fileUploadStatus, createdAt: $createdAt, updatedAt: $updatedAt, isEdited: $isEdited)';
+    return 'DocMediaEntity(id: $id, docId: $docId, localFilePath: $localFilePath, filePath: $filePath, docMediaType: $docMediaType, thumbnail: $thumbnail, sequence: $sequence, fileUploadStatus: $fileUploadStatus, createdAt: $createdAt, updatedAt: $updatedAt, isEdited: $isEdited)';
 }
 
 

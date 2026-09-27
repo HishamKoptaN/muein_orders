@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'salla_order_items_res_entity.dart';
@@ -9,6 +9,7 @@ part of 'salla_order_items_res_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $SallaOrderItemsResEntityCopyWith<SallaOrderItemsResEntity> get copyWith => _$Sa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemsResEntity&&const DeepCollectionEquality().equals(other.sallaOrderItems, sallaOrderItems)&&(identical(other.meta, meta) || other.meta == meta));
+  final _this = this as SallaOrderItemsResEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemsResEntity&&const DeepCollectionEquality().equals(other.sallaOrderItems, _this.sallaOrderItems)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(sallaOrderItems),meta);
+int get hashCode {
+  final _this = this as SallaOrderItemsResEntity;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.sallaOrderItems),_this.meta);
+}
 
 @override
 String toString() {
-  return 'SallaOrderItemsResEntity(sallaOrderItems: $sallaOrderItems, meta: $meta)';
+  final _this = this as SallaOrderItemsResEntity;
+  return 'SallaOrderItemsResEntity(sallaOrderItems: ${_this.sallaOrderItems}, meta: ${_this.meta})';
 }
 
 
@@ -63,7 +69,7 @@ class _$SallaOrderItemsResEntityCopyWithImpl<$Res>
 /// Create a copy of SallaOrderItemsResEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? sallaOrderItems = null,Object? meta = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaOrderItemsResEntity(
 sallaOrderItems: null == sallaOrderItems ? _self.sallaOrderItems : sallaOrderItems // ignore: cast_nullable_to_non_nullable
 as List<SallaOrderItemEntity>,meta: null == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as MetaEntity,
@@ -216,7 +222,7 @@ return $default(_that.sallaOrderItems,_that.meta);case _:
 
 
 class _SallaOrderItemsResEntity implements SallaOrderItemsResEntity {
-  const _SallaOrderItemsResEntity({List<SallaOrderItemEntity> sallaOrderItems = const [], this.meta = const MetaEntity()}): _sallaOrderItems = sallaOrderItems;
+  const _SallaOrderItemsResEntity({ List<SallaOrderItemEntity> sallaOrderItems = const [], this.meta = const MetaEntity()}): _sallaOrderItems = sallaOrderItems;
   
 
  final  List<SallaOrderItemEntity> _sallaOrderItems;
@@ -238,16 +244,18 @@ _$SallaOrderItemsResEntityCopyWith<_SallaOrderItemsResEntity> get copyWith => __
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemsResEntity&&const DeepCollectionEquality().equals(other._sallaOrderItems, _sallaOrderItems)&&(identical(other.meta, meta) || other.meta == meta));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemsResEntity&&const DeepCollectionEquality().equals(other.sallaOrderItems, _sallaOrderItems)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_sallaOrderItems),meta);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_sallaOrderItems),meta);
+}
 
 @override
 String toString() {
-  return 'SallaOrderItemsResEntity(sallaOrderItems: $sallaOrderItems, meta: $meta)';
+    return 'SallaOrderItemsResEntity(sallaOrderItems: $sallaOrderItems, meta: $meta)';
 }
 
 
@@ -309,16 +317,21 @@ $SallaOrderItemEntityCopyWith<SallaOrderItemEntity> get copyWith => _$SallaOrder
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus));
+  final _this = this as SallaOrderItemEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.sallaProduct, _this.sallaProduct) || other.sallaProduct == _this.sallaProduct)&&(identical(other.printedName, _this.printedName) || other.printedName == _this.printedName)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, _this.sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, _this.sallaOrderItemStatus) || other.sallaOrderItemStatus == _this.sallaOrderItemStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,sallaProduct,printedName,const DeepCollectionEquality().hash(sallaOrderItemUnits),sallaOrderItemStatus);
+int get hashCode {
+  final _this = this as SallaOrderItemEntity;
+  return Object.hash(runtimeType,_this.id,_this.sallaProduct,_this.printedName,const DeepCollectionEquality().hash(_this.sallaOrderItemUnits),_this.sallaOrderItemStatus);
+}
 
 @override
 String toString() {
-  return 'SallaOrderItemEntity(id: $id, sallaProduct: $sallaProduct, printedName: $printedName, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus)';
+  final _this = this as SallaOrderItemEntity;
+  return 'SallaOrderItemEntity(id: ${_this.id}, sallaProduct: ${_this.sallaProduct}, printedName: ${_this.printedName}, sallaOrderItemUnits: ${_this.sallaOrderItemUnits}, sallaOrderItemStatus: ${_this.sallaOrderItemStatus})';
 }
 
 
@@ -347,7 +360,7 @@ class _$SallaOrderItemEntityCopyWithImpl<$Res>
 /// Create a copy of SallaOrderItemEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? sallaProduct = null,Object? printedName = null,Object? sallaOrderItemUnits = null,Object? sallaOrderItemStatus = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaOrderItemEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,sallaProduct: null == sallaProduct ? _self.sallaProduct : sallaProduct // ignore: cast_nullable_to_non_nullable
 as SallaProductEntity,printedName: null == printedName ? _self.printedName : printedName // ignore: cast_nullable_to_non_nullable
@@ -512,7 +525,7 @@ return $default(_that.id,_that.sallaProduct,_that.printedName,_that.sallaOrderIt
 
 
 class _SallaOrderItemEntity implements SallaOrderItemEntity {
-  const _SallaOrderItemEntity({this.id = 0, this.sallaProduct = const SallaProductEntity(), this.printedName = '', List<SallaOrderItemUnitEntity> sallaOrderItemUnits = const [], this.sallaOrderItemStatus = const SallaOrderItemStatusEntity()}): _sallaOrderItemUnits = sallaOrderItemUnits;
+  const _SallaOrderItemEntity({this.id = 0, this.sallaProduct = const SallaProductEntity(), this.printedName = '',  List<SallaOrderItemUnitEntity> sallaOrderItemUnits = const [], this.sallaOrderItemStatus = const SallaOrderItemStatusEntity()}): _sallaOrderItemUnits = sallaOrderItemUnits;
   
 
 @override@JsonKey() final  int id;
@@ -537,16 +550,18 @@ _$SallaOrderItemEntityCopyWith<_SallaOrderItemEntity> get copyWith => __$SallaOr
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other._sallaOrderItemUnits, _sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaProduct, sallaProduct) || other.sallaProduct == sallaProduct)&&(identical(other.printedName, printedName) || other.printedName == printedName)&&const DeepCollectionEquality().equals(other.sallaOrderItemUnits, _sallaOrderItemUnits)&&(identical(other.sallaOrderItemStatus, sallaOrderItemStatus) || other.sallaOrderItemStatus == sallaOrderItemStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,sallaProduct,printedName,const DeepCollectionEquality().hash(_sallaOrderItemUnits),sallaOrderItemStatus);
+int get hashCode {
+    return Object.hash(runtimeType,id,sallaProduct,printedName,const DeepCollectionEquality().hash(_sallaOrderItemUnits),sallaOrderItemStatus);
+}
 
 @override
 String toString() {
-  return 'SallaOrderItemEntity(id: $id, sallaProduct: $sallaProduct, printedName: $printedName, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus)';
+    return 'SallaOrderItemEntity(id: $id, sallaProduct: $sallaProduct, printedName: $printedName, sallaOrderItemUnits: $sallaOrderItemUnits, sallaOrderItemStatus: $sallaOrderItemStatus)';
 }
 
 
@@ -620,16 +635,21 @@ $SallaProductEntityCopyWith<SallaProductEntity> get copyWith => _$SallaProductEn
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaProductEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+  final _this = this as SallaProductEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaProductEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode {
+  final _this = this as SallaProductEntity;
+  return Object.hash(runtimeType,_this.id,_this.name);
+}
 
 @override
 String toString() {
-  return 'SallaProductEntity(id: $id, name: $name)';
+  final _this = this as SallaProductEntity;
+  return 'SallaProductEntity(id: ${_this.id}, name: ${_this.name})';
 }
 
 
@@ -658,7 +678,7 @@ class _$SallaProductEntityCopyWithImpl<$Res>
 /// Create a copy of SallaProductEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaProductEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,
@@ -818,16 +838,18 @@ _$SallaProductEntityCopyWith<_SallaProductEntity> get copyWith => __$SallaProduc
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaProductEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaProductEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,name);
+int get hashCode {
+    return Object.hash(runtimeType,id,name);
+}
 
 @override
 String toString() {
-  return 'SallaProductEntity(id: $id, name: $name)';
+    return 'SallaProductEntity(id: $id, name: $name)';
 }
 
 
@@ -880,16 +902,21 @@ $SallaOrderItemStatusEntityCopyWith<SallaOrderItemStatusEntity> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemStatusEntity&&(identical(other.name, name) || other.name == name));
+  final _this = this as SallaOrderItemStatusEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemStatusEntity&&(identical(other.name, _this.name) || other.name == _this.name));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name);
+int get hashCode {
+  final _this = this as SallaOrderItemStatusEntity;
+  return Object.hash(runtimeType,_this.name);
+}
 
 @override
 String toString() {
-  return 'SallaOrderItemStatusEntity(name: $name)';
+  final _this = this as SallaOrderItemStatusEntity;
+  return 'SallaOrderItemStatusEntity(name: ${_this.name})';
 }
 
 
@@ -918,7 +945,7 @@ class _$SallaOrderItemStatusEntityCopyWithImpl<$Res>
 /// Create a copy of SallaOrderItemStatusEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? name = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaOrderItemStatusEntity(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -1076,16 +1103,18 @@ _$SallaOrderItemStatusEntityCopyWith<_SallaOrderItemStatusEntity> get copyWith =
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemStatusEntity&&(identical(other.name, name) || other.name == name));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemStatusEntity&&(identical(other.name, name) || other.name == name));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name);
+int get hashCode {
+    return Object.hash(runtimeType,name);
+}
 
 @override
 String toString() {
-  return 'SallaOrderItemStatusEntity(name: $name)';
+    return 'SallaOrderItemStatusEntity(name: $name)';
 }
 
 
@@ -1137,16 +1166,21 @@ $SallaOrderItemUnitEntityCopyWith<SallaOrderItemUnitEntity> get copyWith => _$Sa
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemUnitEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&const DeepCollectionEquality().equals(other.docs, docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  final _this = this as SallaOrderItemUnitEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SallaOrderItemUnitEntity&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.itemId, _this.itemId) || other.itemId == _this.itemId)&&(identical(other.executionNumber, _this.executionNumber) || other.executionNumber == _this.executionNumber)&&(identical(other.unitNumber, _this.unitNumber) || other.unitNumber == _this.unitNumber)&&const DeepCollectionEquality().equals(other.docs, _this.docs)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,itemId,executionNumber,unitNumber,const DeepCollectionEquality().hash(docs),createdAt,updatedAt);
+int get hashCode {
+  final _this = this as SallaOrderItemUnitEntity;
+  return Object.hash(runtimeType,_this.id,_this.itemId,_this.executionNumber,_this.unitNumber,const DeepCollectionEquality().hash(_this.docs),_this.createdAt,_this.updatedAt);
+}
 
 @override
 String toString() {
-  return 'SallaOrderItemUnitEntity(id: $id, itemId: $itemId, executionNumber: $executionNumber, unitNumber: $unitNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
+  final _this = this as SallaOrderItemUnitEntity;
+  return 'SallaOrderItemUnitEntity(id: ${_this.id}, itemId: ${_this.itemId}, executionNumber: ${_this.executionNumber}, unitNumber: ${_this.unitNumber}, docs: ${_this.docs}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt})';
 }
 
 
@@ -1175,7 +1209,7 @@ class _$SallaOrderItemUnitEntityCopyWithImpl<$Res>
 /// Create a copy of SallaOrderItemUnitEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? itemId = null,Object? executionNumber = null,Object? unitNumber = null,Object? docs = null,Object? createdAt = null,Object? updatedAt = null,}) {
-  return _then(_self.copyWith(
+  return _then(SallaOrderItemUnitEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,itemId: null == itemId ? _self.itemId : itemId // ignore: cast_nullable_to_non_nullable
 as int,executionNumber: null == executionNumber ? _self.executionNumber : executionNumber // ignore: cast_nullable_to_non_nullable
@@ -1324,7 +1358,7 @@ return $default(_that.id,_that.itemId,_that.executionNumber,_that.unitNumber,_th
 
 
 class _SallaOrderItemUnitEntity implements SallaOrderItemUnitEntity {
-  const _SallaOrderItemUnitEntity({this.id = 0, this.itemId = 0, this.executionNumber = '', this.unitNumber = 0, List<DocEntity> docs = const [], this.createdAt = '', this.updatedAt = ''}): _docs = docs;
+  const _SallaOrderItemUnitEntity({this.id = 0, this.itemId = 0, this.executionNumber = '', this.unitNumber = 0,  List<DocEntity> docs = const [], this.createdAt = '', this.updatedAt = ''}): _docs = docs;
   
 
 @override@JsonKey() final  int id;
@@ -1351,16 +1385,18 @@ _$SallaOrderItemUnitEntityCopyWith<_SallaOrderItemUnitEntity> get copyWith => __
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemUnitEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&const DeepCollectionEquality().equals(other._docs, _docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SallaOrderItemUnitEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.itemId, itemId) || other.itemId == itemId)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&(identical(other.unitNumber, unitNumber) || other.unitNumber == unitNumber)&&const DeepCollectionEquality().equals(other.docs, _docs)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,itemId,executionNumber,unitNumber,const DeepCollectionEquality().hash(_docs),createdAt,updatedAt);
+int get hashCode {
+    return Object.hash(runtimeType,id,itemId,executionNumber,unitNumber,const DeepCollectionEquality().hash(_docs),createdAt,updatedAt);
+}
 
 @override
 String toString() {
-  return 'SallaOrderItemUnitEntity(id: $id, itemId: $itemId, executionNumber: $executionNumber, unitNumber: $unitNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'SallaOrderItemUnitEntity(id: $id, itemId: $itemId, executionNumber: $executionNumber, unitNumber: $unitNumber, docs: $docs, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +9,6 @@ import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/feedback/error_content.dart';
 import '../../../../../gen/assets.gen.dart';
-import '../../../../orders_features/salla_orders_items/present/views/salla_order_items_view.dart';
 import '../../../drawer/my_drawer.dart';
 import '../../../../notifications/present/view/notifications_view.dart';
 import '../../domain/entities/order_type_res_entity.dart';
@@ -54,14 +52,14 @@ class StatsView extends StatelessWidget {
         listener: (context, state) async {
           await state.mapOrNull(
             loaded: (st) async {
-              if (kDebugMode) {
-                await Future.microtask(() async {
-                  await context.push(
-                    '/${SallaOrderItemsView.routeName}',
-                    extra: st.stats.first,
-                  );
-                });
-              }
+              // if (kDebugMode) {
+              // await Future.microtask(() async {
+              // await context.push(
+              // '/${SallaOrderItemsView.routeName}',
+              // extra: st.stats.first,
+              // );
+              // });
+              // }
             },
           );
         },

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'forgot_pass_bloc.dart';
@@ -9,6 +9,7 @@ part of 'forgot_pass_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$ForgotPassEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ForgotPassEvent()';
+    return 'ForgotPassEvent()';
 }
 
 
@@ -196,16 +197,18 @@ _$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.email, email) || other.email == email));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.email, email) || other.email == email));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email);
+int get hashCode {
+    return Object.hash(runtimeType,email);
+}
 
 @override
 String toString() {
-  return 'ForgotPassEvent.dataChanged(email: $email)';
+    return 'ForgotPassEvent.dataChanged(email: $email)';
 }
 
 
@@ -257,7 +260,7 @@ class SendPassResetEmail implements ForgotPassEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SendPassResetEmail);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SendPassResetEmail);
 }
 
 
@@ -266,7 +269,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ForgotPassEvent.sendPassResetEmail()';
+    return 'ForgotPassEvent.sendPassResetEmail()';
 }
 
 
@@ -284,7 +287,7 @@ mixin _$ForgotPassState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassState);
 }
 
 
@@ -293,7 +296,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ForgotPassState()';
+    return 'ForgotPassState()';
 }
 
 
@@ -467,7 +470,7 @@ class ForgotPassLoading implements ForgotPassState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassLoading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassLoading);
 }
 
 
@@ -476,7 +479,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ForgotPassState.loading()';
+    return 'ForgotPassState.loading()';
 }
 
 
@@ -505,16 +508,18 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.email, email) || other.email == email)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.email, email) || other.email == email)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,email,formzSubmissionStatus);
+int get hashCode {
+    return Object.hash(runtimeType,email,formzSubmissionStatus);
+}
 
 @override
 String toString() {
-  return 'ForgotPassState.loaded(email: $email, formzSubmissionStatus: $formzSubmissionStatus)';
+    return 'ForgotPassState.loaded(email: $email, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -567,7 +572,7 @@ class ForgotPassSuccess implements ForgotPassState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassSuccess);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassSuccess);
 }
 
 
@@ -576,7 +581,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'ForgotPassState.success()';
+    return 'ForgotPassState.success()';
 }
 
 
@@ -604,16 +609,18 @@ $ForgotPassFailureCopyWith<ForgotPassFailure> get copyWith => _$ForgotPassFailur
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassFailure&&(identical(other.error, error) || other.error == error));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is ForgotPassFailure&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,error);
+int get hashCode {
+    return Object.hash(runtimeType,error);
+}
 
 @override
 String toString() {
-  return 'ForgotPassState.failure(error: $error)';
+    return 'ForgotPassState.failure(error: $error)';
 }
 
 

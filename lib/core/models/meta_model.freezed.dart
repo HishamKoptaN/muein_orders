@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'meta_model.dart';
@@ -9,6 +9,7 @@ part of 'meta_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $MetaModelCopyWith<MetaModel> get copyWith => _$MetaModelCopyWithImpl<MetaModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaModel&&(identical(other.total, total) || other.total == total)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.hasPreviousPage, hasPreviousPage) || other.hasPreviousPage == hasPreviousPage));
+  final _this = this as MetaModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaModel&&(identical(other.total, _this.total) || other.total == _this.total)&&(identical(other.currentPage, _this.currentPage) || other.currentPage == _this.currentPage)&&(identical(other.totalPages, _this.totalPages) || other.totalPages == _this.totalPages)&&(identical(other.perPage, _this.perPage) || other.perPage == _this.perPage)&&(identical(other.hasNextPage, _this.hasNextPage) || other.hasNextPage == _this.hasNextPage)&&(identical(other.hasPreviousPage, _this.hasPreviousPage) || other.hasPreviousPage == _this.hasPreviousPage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,total,currentPage,totalPages,perPage,hasNextPage,hasPreviousPage);
+int get hashCode {
+  final _this = this as MetaModel;
+  return Object.hash(runtimeType,_this.total,_this.currentPage,_this.totalPages,_this.perPage,_this.hasNextPage,_this.hasPreviousPage);
+}
 
 @override
 String toString() {
-  return 'MetaModel(total: $total, currentPage: $currentPage, totalPages: $totalPages, perPage: $perPage, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage)';
+  final _this = this as MetaModel;
+  return 'MetaModel(total: ${_this.total}, currentPage: ${_this.currentPage}, totalPages: ${_this.totalPages}, perPage: ${_this.perPage}, hasNextPage: ${_this.hasNextPage}, hasPreviousPage: ${_this.hasPreviousPage})';
 }
 
 
@@ -66,7 +72,7 @@ class _$MetaModelCopyWithImpl<$Res>
 /// Create a copy of MetaModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? total = freezed,Object? currentPage = freezed,Object? totalPages = freezed,Object? perPage = freezed,Object? hasNextPage = freezed,Object? hasPreviousPage = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(MetaModel(
 total: freezed == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
 as int?,currentPage: freezed == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
 as int?,totalPages: freezed == totalPages ? _self.totalPages : totalPages // ignore: cast_nullable_to_non_nullable
@@ -237,16 +243,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaModel&&(identical(other.total, total) || other.total == total)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.hasPreviousPage, hasPreviousPage) || other.hasPreviousPage == hasPreviousPage));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaModel&&(identical(other.total, total) || other.total == total)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.totalPages, totalPages) || other.totalPages == totalPages)&&(identical(other.perPage, perPage) || other.perPage == perPage)&&(identical(other.hasNextPage, hasNextPage) || other.hasNextPage == hasNextPage)&&(identical(other.hasPreviousPage, hasPreviousPage) || other.hasPreviousPage == hasPreviousPage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,total,currentPage,totalPages,perPage,hasNextPage,hasPreviousPage);
+int get hashCode {
+    return Object.hash(runtimeType,total,currentPage,totalPages,perPage,hasNextPage,hasPreviousPage);
+}
 
 @override
 String toString() {
-  return 'MetaModel(total: $total, currentPage: $currentPage, totalPages: $totalPages, perPage: $perPage, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage)';
+    return 'MetaModel(total: $total, currentPage: $currentPage, totalPages: $totalPages, perPage: $perPage, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage)';
 }
 
 

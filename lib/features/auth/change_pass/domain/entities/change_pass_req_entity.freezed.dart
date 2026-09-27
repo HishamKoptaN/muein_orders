@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'change_pass_req_entity.dart';
@@ -9,6 +9,7 @@ part of 'change_pass_req_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $ChangePasswordReqEntityCopyWith<ChangePasswordReqEntity> get copyWith => _$Chan
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePasswordReqEntity&&(identical(other.oldPassword, oldPassword) || other.oldPassword == oldPassword)&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword));
+  final _this = this as ChangePasswordReqEntity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangePasswordReqEntity&&(identical(other.oldPassword, _this.oldPassword) || other.oldPassword == _this.oldPassword)&&(identical(other.password, _this.password) || other.password == _this.password)&&(identical(other.confirmPassword, _this.confirmPassword) || other.confirmPassword == _this.confirmPassword)&&(identical(other.obscurePassword, _this.obscurePassword) || other.obscurePassword == _this.obscurePassword));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,oldPassword,password,confirmPassword,obscurePassword);
+int get hashCode {
+  final _this = this as ChangePasswordReqEntity;
+  return Object.hash(runtimeType,_this.oldPassword,_this.password,_this.confirmPassword,_this.obscurePassword);
+}
 
 @override
 String toString() {
-  return 'ChangePasswordReqEntity(oldPassword: $oldPassword, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword)';
+  final _this = this as ChangePasswordReqEntity;
+  return 'ChangePasswordReqEntity(oldPassword: ${_this.oldPassword}, password: ${_this.password}, confirmPassword: ${_this.confirmPassword}, obscurePassword: ${_this.obscurePassword})';
 }
 
 
@@ -63,7 +69,7 @@ class _$ChangePasswordReqEntityCopyWithImpl<$Res>
 /// Create a copy of ChangePasswordReqEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? oldPassword = freezed,Object? password = freezed,Object? confirmPassword = freezed,Object? obscurePassword = null,}) {
-  return _then(_self.copyWith(
+  return _then(ChangePasswordReqEntity(
 oldPassword: freezed == oldPassword ? _self.oldPassword : oldPassword // ignore: cast_nullable_to_non_nullable
 as PasswordFormInput?,password: freezed == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
 as PasswordFormInput?,confirmPassword: freezed == confirmPassword ? _self.confirmPassword : confirmPassword // ignore: cast_nullable_to_non_nullable
@@ -227,16 +233,18 @@ _$ChangePasswordReqEntityCopyWith<_ChangePasswordReqEntity> get copyWith => __$C
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangePasswordReqEntity&&(identical(other.oldPassword, oldPassword) || other.oldPassword == oldPassword)&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChangePasswordReqEntity&&(identical(other.oldPassword, oldPassword) || other.oldPassword == oldPassword)&&(identical(other.password, password) || other.password == password)&&(identical(other.confirmPassword, confirmPassword) || other.confirmPassword == confirmPassword)&&(identical(other.obscurePassword, obscurePassword) || other.obscurePassword == obscurePassword));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,oldPassword,password,confirmPassword,obscurePassword);
+int get hashCode {
+    return Object.hash(runtimeType,oldPassword,password,confirmPassword,obscurePassword);
+}
 
 @override
 String toString() {
-  return 'ChangePasswordReqEntity(oldPassword: $oldPassword, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword)';
+    return 'ChangePasswordReqEntity(oldPassword: $oldPassword, password: $password, confirmPassword: $confirmPassword, obscurePassword: $obscurePassword)';
 }
 
 

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -9,9 +10,11 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:intl/intl_standalone.dart';
 import 'package:path_provider/path_provider.dart';
+
 import 'config/env_config.dart';
 import 'core/performance/performance_manager.dart';
 import 'core/utils/background/workmanager_initializer.dart';
+import 'features/auth/auth/present/bloc/auth_bloc.dart';
 import 'muein_orders_app.dart';
 import 'core/widgets/custom_error_widget.dart';
 import 'core/app_observer.dart';
@@ -67,6 +70,18 @@ Future<void> _initializeApp() async {
     Bloc.observer = AppBlocObserver();
     await GetStorage.init('translations_cache');
     await getIt<FirebaseMessagingService>().initialize();
+    await Future.wait<dynamic>([
+      getIt<AuthBloc>().stream.firstWhere((state) {
+        return state.maybeMap(
+          loading: (_) {
+            return false;
+          },
+          orElse: () {
+            return true;
+          },
+        );
+      }),
+    ]);
     runApp(const MueinOrdersApp());
     await _initializeWorkManager();
   } catch (error, stackTrace) {

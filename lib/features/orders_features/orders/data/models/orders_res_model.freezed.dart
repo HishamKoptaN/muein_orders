@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'orders_res_model.dart';
@@ -9,6 +9,7 @@ part of 'orders_res_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 OrdersResModel _$OrdersResModelFromJson(
@@ -34,23 +35,29 @@ $OrdersResModelCopyWith<OrdersResModel> get copyWith => _$OrdersResModelCopyWith
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as OrdersResModel;
   properties
     ..add(DiagnosticsProperty('type', 'OrdersResModel'))
-    ..add(DiagnosticsProperty('orders', orders))..add(DiagnosticsProperty('meta', meta));
+    ..add(DiagnosticsProperty('orders', _this.orders))..add(DiagnosticsProperty('meta', _this.meta));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersResModel&&const DeepCollectionEquality().equals(other.orders, orders)&&(identical(other.meta, meta) || other.meta == meta));
+  final _this = this as OrdersResModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersResModel&&const DeepCollectionEquality().equals(other.orders, _this.orders)&&(identical(other.meta, _this.meta) || other.meta == _this.meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(orders),meta);
+int get hashCode {
+  final _this = this as OrdersResModel;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.orders),_this.meta);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'OrdersResModel(orders: $orders, meta: $meta)';
+  final _this = this as OrdersResModel;
+  return 'OrdersResModel(orders: ${_this.orders}, meta: ${_this.meta})';
 }
 
 
@@ -79,7 +86,7 @@ class _$OrdersResModelCopyWithImpl<$Res>
 /// Create a copy of OrdersResModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? orders = freezed,Object? meta = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(OrdersResModel(
 orders: freezed == orders ? _self.orders : orders // ignore: cast_nullable_to_non_nullable
 as List<OrderModel>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
 as MetaModel?,
@@ -235,7 +242,7 @@ return $default(_that.orders,_that.meta);case _:
 @JsonSerializable()
 
 class OrdersResponse with DiagnosticableTreeMixin implements OrdersResModel {
-  const OrdersResponse({@JsonKey(name: 'orders') List<OrderModel>? orders, @JsonKey(name: 'meta') this.meta}): _orders = orders;
+  const OrdersResponse({@JsonKey(name: 'orders')  List<OrderModel>? orders, @JsonKey(name: 'meta') this.meta}): _orders = orders;
   factory OrdersResponse.fromJson(Map<String, dynamic> json) => _$OrdersResponseFromJson(json);
 
  final  List<OrderModel>? _orders;
@@ -261,23 +268,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'OrdersResModel'))
     ..add(DiagnosticsProperty('orders', orders))..add(DiagnosticsProperty('meta', meta));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersResponse&&const DeepCollectionEquality().equals(other._orders, _orders)&&(identical(other.meta, meta) || other.meta == meta));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is OrdersResponse&&const DeepCollectionEquality().equals(other.orders, _orders)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_orders),meta);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_orders),meta);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'OrdersResModel(orders: $orders, meta: $meta)';
+    return 'OrdersResModel(orders: $orders, meta: $meta)';
 }
 
 
@@ -344,23 +353,29 @@ $OrderModelCopyWith<OrderModel> get copyWith => _$OrderModelCopyWithImpl<OrderMo
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as OrderModel;
   properties
     ..add(DiagnosticsProperty('type', 'OrderModel'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('sallaOrderId', sallaOrderId))..add(DiagnosticsProperty('sallaProductId', sallaProductId))..add(DiagnosticsProperty('sallaOrderItems', sallaOrderItems))..add(DiagnosticsProperty('sallaOrderStatus', sallaOrderStatus))..add(DiagnosticsProperty('executionNumber', executionNumber))..add(DiagnosticsProperty('docs', docs));
+    ..add(DiagnosticsProperty('id', _this.id))..add(DiagnosticsProperty('sallaOrderId', _this.sallaOrderId))..add(DiagnosticsProperty('sallaProductId', _this.sallaProductId))..add(DiagnosticsProperty('sallaOrderItems', _this.sallaOrderItems))..add(DiagnosticsProperty('sallaOrderStatus', _this.sallaOrderStatus))..add(DiagnosticsProperty('executionNumber', _this.executionNumber))..add(DiagnosticsProperty('docs', _this.docs));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderModel&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaOrderId, sallaOrderId) || other.sallaOrderId == sallaOrderId)&&(identical(other.sallaProductId, sallaProductId) || other.sallaProductId == sallaProductId)&&const DeepCollectionEquality().equals(other.sallaOrderItems, sallaOrderItems)&&(identical(other.sallaOrderStatus, sallaOrderStatus) || other.sallaOrderStatus == sallaOrderStatus)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&const DeepCollectionEquality().equals(other.docs, docs));
+  final _this = this as OrderModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.sallaOrderId, _this.sallaOrderId) || other.sallaOrderId == _this.sallaOrderId)&&(identical(other.sallaProductId, _this.sallaProductId) || other.sallaProductId == _this.sallaProductId)&&const DeepCollectionEquality().equals(other.sallaOrderItems, _this.sallaOrderItems)&&(identical(other.sallaOrderStatus, _this.sallaOrderStatus) || other.sallaOrderStatus == _this.sallaOrderStatus)&&(identical(other.executionNumber, _this.executionNumber) || other.executionNumber == _this.executionNumber)&&const DeepCollectionEquality().equals(other.docs, _this.docs));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,sallaOrderId,sallaProductId,const DeepCollectionEquality().hash(sallaOrderItems),sallaOrderStatus,executionNumber,const DeepCollectionEquality().hash(docs));
+int get hashCode {
+  final _this = this as OrderModel;
+  return Object.hash(runtimeType,_this.id,_this.sallaOrderId,_this.sallaProductId,const DeepCollectionEquality().hash(_this.sallaOrderItems),_this.sallaOrderStatus,_this.executionNumber,const DeepCollectionEquality().hash(_this.docs));
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'OrderModel(id: $id, sallaOrderId: $sallaOrderId, sallaProductId: $sallaProductId, sallaOrderItems: $sallaOrderItems, sallaOrderStatus: $sallaOrderStatus, executionNumber: $executionNumber, docs: $docs)';
+  final _this = this as OrderModel;
+  return 'OrderModel(id: ${_this.id}, sallaOrderId: ${_this.sallaOrderId}, sallaProductId: ${_this.sallaProductId}, sallaOrderItems: ${_this.sallaOrderItems}, sallaOrderStatus: ${_this.sallaOrderStatus}, executionNumber: ${_this.executionNumber}, docs: ${_this.docs})';
 }
 
 
@@ -389,7 +404,7 @@ class _$OrderModelCopyWithImpl<$Res>
 /// Create a copy of OrderModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? sallaOrderId = freezed,Object? sallaProductId = freezed,Object? sallaOrderItems = freezed,Object? sallaOrderStatus = freezed,Object? executionNumber = freezed,Object? docs = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(OrderModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,sallaOrderId: freezed == sallaOrderId ? _self.sallaOrderId : sallaOrderId // ignore: cast_nullable_to_non_nullable
 as int?,sallaProductId: freezed == sallaProductId ? _self.sallaProductId : sallaProductId // ignore: cast_nullable_to_non_nullable
@@ -550,7 +565,7 @@ return $default(_that.id,_that.sallaOrderId,_that.sallaProductId,_that.sallaOrde
 @JsonSerializable()
 
 class _OrderModel with DiagnosticableTreeMixin implements OrderModel {
-  const _OrderModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'salla_order_id') this.sallaOrderId, @JsonKey(name: 'salla_product_id') this.sallaProductId, @JsonKey(name: 'salla_order_items') List<SallaOrderItemModel>? sallaOrderItems, @JsonKey(name: 'salla_order_status') this.sallaOrderStatus, @JsonKey(name: 'execution_number') this.executionNumber, @JsonKey(name: 'docs') List<DocModel>? docs}): _sallaOrderItems = sallaOrderItems,_docs = docs;
+  const _OrderModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'salla_order_id') this.sallaOrderId, @JsonKey(name: 'salla_product_id') this.sallaProductId, @JsonKey(name: 'salla_order_items')  List<SallaOrderItemModel>? sallaOrderItems, @JsonKey(name: 'salla_order_status') this.sallaOrderStatus, @JsonKey(name: 'execution_number') this.executionNumber, @JsonKey(name: 'docs')  List<DocModel>? docs}): _sallaOrderItems = sallaOrderItems,_docs = docs;
   factory _OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
 
 @override@JsonKey(name: 'id') final  int? id;
@@ -589,23 +604,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'OrderModel'))
     ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('sallaOrderId', sallaOrderId))..add(DiagnosticsProperty('sallaProductId', sallaProductId))..add(DiagnosticsProperty('sallaOrderItems', sallaOrderItems))..add(DiagnosticsProperty('sallaOrderStatus', sallaOrderStatus))..add(DiagnosticsProperty('executionNumber', executionNumber))..add(DiagnosticsProperty('docs', docs));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderModel&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaOrderId, sallaOrderId) || other.sallaOrderId == sallaOrderId)&&(identical(other.sallaProductId, sallaProductId) || other.sallaProductId == sallaProductId)&&const DeepCollectionEquality().equals(other._sallaOrderItems, _sallaOrderItems)&&(identical(other.sallaOrderStatus, sallaOrderStatus) || other.sallaOrderStatus == sallaOrderStatus)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&const DeepCollectionEquality().equals(other._docs, _docs));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderModel&&(identical(other.id, id) || other.id == id)&&(identical(other.sallaOrderId, sallaOrderId) || other.sallaOrderId == sallaOrderId)&&(identical(other.sallaProductId, sallaProductId) || other.sallaProductId == sallaProductId)&&const DeepCollectionEquality().equals(other.sallaOrderItems, _sallaOrderItems)&&(identical(other.sallaOrderStatus, sallaOrderStatus) || other.sallaOrderStatus == sallaOrderStatus)&&(identical(other.executionNumber, executionNumber) || other.executionNumber == executionNumber)&&const DeepCollectionEquality().equals(other.docs, _docs));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,sallaOrderId,sallaProductId,const DeepCollectionEquality().hash(_sallaOrderItems),sallaOrderStatus,executionNumber,const DeepCollectionEquality().hash(_docs));
+int get hashCode {
+    return Object.hash(runtimeType,id,sallaOrderId,sallaProductId,const DeepCollectionEquality().hash(_sallaOrderItems),sallaOrderStatus,executionNumber,const DeepCollectionEquality().hash(_docs));
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'OrderModel(id: $id, sallaOrderId: $sallaOrderId, sallaProductId: $sallaProductId, sallaOrderItems: $sallaOrderItems, sallaOrderStatus: $sallaOrderStatus, executionNumber: $executionNumber, docs: $docs)';
+    return 'OrderModel(id: $id, sallaOrderId: $sallaOrderId, sallaProductId: $sallaProductId, sallaOrderItems: $sallaOrderItems, sallaOrderStatus: $sallaOrderStatus, executionNumber: $executionNumber, docs: $docs)';
 }
 
 

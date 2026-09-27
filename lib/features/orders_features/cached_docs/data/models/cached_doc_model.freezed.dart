@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'cached_doc_model.dart';
@@ -9,6 +9,7 @@ part of 'cached_doc_model.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $CachedDocModelCopyWith<CachedDocModel> get copyWith => _$CachedDocModelCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CachedDocModel&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.files, files)&&(identical(other.location, location) || other.location == location)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress));
+  final _this = this as CachedDocModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CachedDocModel&&(identical(other.id, _this.id) || other.id == _this.id)&&const DeepCollectionEquality().equals(other.files, _this.files)&&(identical(other.location, _this.location) || other.location == _this.location)&&(identical(other.uploadStatus, _this.uploadStatus) || other.uploadStatus == _this.uploadStatus)&&(identical(other.uploadProgress, _this.uploadProgress) || other.uploadProgress == _this.uploadProgress));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(files),location,uploadStatus,uploadProgress);
+int get hashCode {
+  final _this = this as CachedDocModel;
+  return Object.hash(runtimeType,_this.id,const DeepCollectionEquality().hash(_this.files),_this.location,_this.uploadStatus,_this.uploadProgress);
+}
 
 @override
 String toString() {
-  return 'CachedDocModel(id: $id, files: $files, location: $location, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress)';
+  final _this = this as CachedDocModel;
+  return 'CachedDocModel(id: ${_this.id}, files: ${_this.files}, location: ${_this.location}, uploadStatus: ${_this.uploadStatus}, uploadProgress: ${_this.uploadProgress})';
 }
 
 
@@ -66,7 +72,7 @@ class _$CachedDocModelCopyWithImpl<$Res>
 /// Create a copy of CachedDocModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? files = null,Object? location = freezed,Object? uploadStatus = null,Object? uploadProgress = null,}) {
-  return _then(_self.copyWith(
+  return _then(CachedDocModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,files: null == files ? _self.files : files // ignore: cast_nullable_to_non_nullable
 as List<CachedDocMediaModel>,location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
@@ -225,7 +231,7 @@ return $default(_that.id,_that.files,_that.location,_that.uploadStatus,_that.upl
 @JsonSerializable()
 
 class _CachedDocModel implements CachedDocModel {
-  const _CachedDocModel({this.id = 0, List<CachedDocMediaModel> files = const [], this.location, this.uploadStatus = UploadStatus.pending, this.uploadProgress = 0.0}): _files = files;
+  const _CachedDocModel({this.id = 0,  List<CachedDocMediaModel> files = const [], this.location, this.uploadStatus = UploadStatus.pending, this.uploadProgress = 0.0}): _files = files;
   factory _CachedDocModel.fromJson(Map<String, dynamic> json) => _$CachedDocModelFromJson(json);
 
 @override@JsonKey() final  int id;
@@ -253,16 +259,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CachedDocModel&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other._files, _files)&&(identical(other.location, location) || other.location == location)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CachedDocModel&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.files, _files)&&(identical(other.location, location) || other.location == location)&&(identical(other.uploadStatus, uploadStatus) || other.uploadStatus == uploadStatus)&&(identical(other.uploadProgress, uploadProgress) || other.uploadProgress == uploadProgress));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_files),location,uploadStatus,uploadProgress);
+int get hashCode {
+    return Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_files),location,uploadStatus,uploadProgress);
+}
 
 @override
 String toString() {
-  return 'CachedDocModel(id: $id, files: $files, location: $location, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress)';
+    return 'CachedDocModel(id: $id, files: $files, location: $location, uploadStatus: $uploadStatus, uploadProgress: $uploadProgress)';
 }
 
 
@@ -333,16 +341,21 @@ $LocationDocModelCopyWith<LocationDocModel> get copyWith => _$LocationDocModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationDocModel&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.status, status) || other.status == status));
+  final _this = this as LocationDocModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationDocModel&&(identical(other.latitude, _this.latitude) || other.latitude == _this.latitude)&&(identical(other.longitude, _this.longitude) || other.longitude == _this.longitude)&&(identical(other.status, _this.status) || other.status == _this.status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,latitude,longitude,status);
+int get hashCode {
+  final _this = this as LocationDocModel;
+  return Object.hash(runtimeType,_this.latitude,_this.longitude,_this.status);
+}
 
 @override
 String toString() {
-  return 'LocationDocModel(latitude: $latitude, longitude: $longitude, status: $status)';
+  final _this = this as LocationDocModel;
+  return 'LocationDocModel(latitude: ${_this.latitude}, longitude: ${_this.longitude}, status: ${_this.status})';
 }
 
 
@@ -371,7 +384,7 @@ class _$LocationDocModelCopyWithImpl<$Res>
 /// Create a copy of LocationDocModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? latitude = null,Object? longitude = null,Object? status = null,}) {
-  return _then(_self.copyWith(
+  return _then(LocationDocModel(
 latitude: null == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as double,longitude: null == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
 as double,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
@@ -536,16 +549,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationDocModel&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.status, status) || other.status == status));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationDocModel&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.status, status) || other.status == status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,latitude,longitude,status);
+int get hashCode {
+    return Object.hash(runtimeType,latitude,longitude,status);
+}
 
 @override
 String toString() {
-  return 'LocationDocModel(latitude: $latitude, longitude: $longitude, status: $status)';
+    return 'LocationDocModel(latitude: $latitude, longitude: $longitude, status: $status)';
 }
 
 
@@ -602,16 +617,21 @@ $CachedDocMediaModelCopyWith<CachedDocMediaModel> get copyWith => _$CachedDocMed
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CachedDocMediaModel&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.type, type) || other.type == type)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.path, path) || other.path == path)&&(identical(other.remoteUrl, remoteUrl) || other.remoteUrl == remoteUrl)&&(identical(other.status, status) || other.status == status));
+  final _this = this as CachedDocMediaModel;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CachedDocMediaModel&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.docId, _this.docId) || other.docId == _this.docId)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.sequence, _this.sequence) || other.sequence == _this.sequence)&&(identical(other.path, _this.path) || other.path == _this.path)&&(identical(other.remoteUrl, _this.remoteUrl) || other.remoteUrl == _this.remoteUrl)&&(identical(other.status, _this.status) || other.status == _this.status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,type,sequence,path,remoteUrl,status);
+int get hashCode {
+  final _this = this as CachedDocMediaModel;
+  return Object.hash(runtimeType,_this.id,_this.docId,_this.type,_this.sequence,_this.path,_this.remoteUrl,_this.status);
+}
 
 @override
 String toString() {
-  return 'CachedDocMediaModel(id: $id, docId: $docId, type: $type, sequence: $sequence, path: $path, remoteUrl: $remoteUrl, status: $status)';
+  final _this = this as CachedDocMediaModel;
+  return 'CachedDocMediaModel(id: ${_this.id}, docId: ${_this.docId}, type: ${_this.type}, sequence: ${_this.sequence}, path: ${_this.path}, remoteUrl: ${_this.remoteUrl}, status: ${_this.status})';
 }
 
 
@@ -640,7 +660,7 @@ class _$CachedDocMediaModelCopyWithImpl<$Res>
 /// Create a copy of CachedDocMediaModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? docId = null,Object? type = null,Object? sequence = null,Object? path = null,Object? remoteUrl = null,Object? status = null,}) {
-  return _then(_self.copyWith(
+  return _then(CachedDocMediaModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,docId: null == docId ? _self.docId : docId // ignore: cast_nullable_to_non_nullable
 as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
@@ -813,16 +833,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CachedDocMediaModel&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.type, type) || other.type == type)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.path, path) || other.path == path)&&(identical(other.remoteUrl, remoteUrl) || other.remoteUrl == remoteUrl)&&(identical(other.status, status) || other.status == status));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CachedDocMediaModel&&(identical(other.id, id) || other.id == id)&&(identical(other.docId, docId) || other.docId == docId)&&(identical(other.type, type) || other.type == type)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.path, path) || other.path == path)&&(identical(other.remoteUrl, remoteUrl) || other.remoteUrl == remoteUrl)&&(identical(other.status, status) || other.status == status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,docId,type,sequence,path,remoteUrl,status);
+int get hashCode {
+    return Object.hash(runtimeType,id,docId,type,sequence,path,remoteUrl,status);
+}
 
 @override
 String toString() {
-  return 'CachedDocMediaModel(id: $id, docId: $docId, type: $type, sequence: $sequence, path: $path, remoteUrl: $remoteUrl, status: $status)';
+    return 'CachedDocMediaModel(id: $id, docId: $docId, type: $type, sequence: $sequence, path: $path, remoteUrl: $remoteUrl, status: $status)';
 }
 
 

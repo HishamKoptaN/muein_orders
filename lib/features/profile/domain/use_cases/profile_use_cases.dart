@@ -2,13 +2,14 @@ import 'dart:io';
 
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
+
 import '../../../../gen/assets.gen.dart';
 import '../../../s3/data/repo/s3_repo.dart';
 import '../entities/profile_res_entity.dart';
 import '../entities/update_profile_req_entity.dart';
 import '../repo/profile_repo.dart';
 
-@singleton
+@lazySingleton
 class ProfileUseCases {
   final ProfileRepo _profileRepo;
   final S3Repo s3Repo;

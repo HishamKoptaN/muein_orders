@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'sign_in_bloc.dart';
@@ -9,6 +9,7 @@ part of 'sign_in_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -19,14 +20,14 @@ mixin _$SignInEvent implements DiagnosticableTreeMixin {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInEvent'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInEvent);
 }
 
 
@@ -35,7 +36,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInEvent()';
+    return 'SignInEvent()';
 }
 
 
@@ -201,23 +202,25 @@ _$DataChangedCopyWith<_DataChanged> get copyWith => __$DataChangedCopyWithImpl<_
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInEvent.dataChanged'))
     ..add(DiagnosticsProperty('signInReq', signInReq));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.signInReq, signInReq) || other.signInReq == signInReq));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DataChanged&&(identical(other.signInReq, signInReq) || other.signInReq == signInReq));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,signInReq);
+int get hashCode {
+    return Object.hash(runtimeType,signInReq);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInEvent.dataChanged(signInReq: $signInReq)';
+    return 'SignInEvent.dataChanged(signInReq: $signInReq)';
 }
 
 
@@ -277,14 +280,14 @@ class _SignIn with DiagnosticableTreeMixin implements SignInEvent {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInEvent.signIn'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignIn);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignIn);
 }
 
 
@@ -293,7 +296,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInEvent.signIn()';
+    return 'SignInEvent.signIn()';
 }
 
 
@@ -310,14 +313,14 @@ mixin _$SignInState implements DiagnosticableTreeMixin {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInState'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInState);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SignInState);
 }
 
 
@@ -326,7 +329,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInState()';
+    return 'SignInState()';
 }
 
 
@@ -511,14 +514,14 @@ class _Initial with DiagnosticableTreeMixin implements SignInState {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInState.initial'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
 
@@ -527,7 +530,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInState.initial()';
+    return 'SignInState.initial()';
 }
 
 
@@ -549,14 +552,14 @@ class _Loading with DiagnosticableTreeMixin implements SignInState {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInState.loading'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -565,7 +568,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInState.loading()';
+    return 'SignInState.loading()';
 }
 
 
@@ -593,23 +596,25 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInState.loaded'))
     ..add(DiagnosticsProperty('signInReq', signInReq))..add(DiagnosticsProperty('formzSubmissionStatus', formzSubmissionStatus));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.signInReq, signInReq) || other.signInReq == signInReq)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.signInReq, signInReq) || other.signInReq == signInReq)&&(identical(other.formzSubmissionStatus, formzSubmissionStatus) || other.formzSubmissionStatus == formzSubmissionStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,signInReq,formzSubmissionStatus);
+int get hashCode {
+    return Object.hash(runtimeType,signInReq,formzSubmissionStatus);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInState.loaded(signInReq: $signInReq, formzSubmissionStatus: $formzSubmissionStatus)';
+    return 'SignInState.loaded(signInReq: $signInReq, formzSubmissionStatus: $formzSubmissionStatus)';
 }
 
 
@@ -670,14 +675,14 @@ class _Success with DiagnosticableTreeMixin implements SignInState {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInState.success'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success);
 }
 
 
@@ -686,7 +691,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInState.success()';
+    return 'SignInState.success()';
 }
 
 
@@ -713,23 +718,25 @@ _$FailureCopyWith<_Failure> get copyWith => __$FailureCopyWithImpl<_Failure>(thi
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInState.failure'))
     ..add(DiagnosticsProperty('errorMessage', errorMessage));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Failure&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,errorMessage);
+int get hashCode {
+    return Object.hash(runtimeType,errorMessage);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInState.failure(errorMessage: $errorMessage)';
+    return 'SignInState.failure(errorMessage: $errorMessage)';
 }
 
 
@@ -780,14 +787,14 @@ class _Unauthenticated with DiagnosticableTreeMixin implements SignInState {
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'SignInState.unauthenticated'))
     ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Unauthenticated);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Unauthenticated);
 }
 
 
@@ -796,7 +803,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'SignInState.unauthenticated()';
+    return 'SignInState.unauthenticated()';
 }
 
 
