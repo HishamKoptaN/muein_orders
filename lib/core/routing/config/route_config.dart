@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart' show RouteBase;
+
 import '../../../features/auth/auth/present/views/auth_view.dart';
 import '../../../features/auth/auth_choice/present/views/auth_choice_view.dart';
 import '../../../features/auth/change_pass/present/views/change_pass_view.dart';
@@ -23,10 +24,17 @@ import '../../../features/orders_features/salla_orders_items/present/views/sitck
 import '../../../features/profile/present/views/profile_view.dart';
 import '../../../features/splash/start_view.dart';
 import '../utils/route_builder.dart' show RouteBuilder;
+import '../../../test.dart';
 
 class RouteConfig {
   static List<RouteBase> get routes {
     final routes = [
+      RouteBuilder.goRoute(
+        routeName: TestView.routeName,
+        builder: (context, state) {
+          return const TestView();
+        },
+      ),
       RouteBuilder.goRoute(
         routeName: Material3View.routeName,
         builder: (context, state) {

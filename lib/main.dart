@@ -95,9 +95,7 @@ Future<void> _initializeApp() async {
 
 Future<void> initStorage() async {
   if (kIsWeb) {
-    HydratedBloc.storage = await HydratedStorage.build(
-      storageDirectory: HydratedStorageDirectory.web,
-    );
+    HydratedBloc.storage = await HydratedStorage.build(storageDirectory: .web);
   } else {
     final dir = await getApplicationDocumentsDirectory();
     HydratedBloc.storage = await HydratedStorage.build(

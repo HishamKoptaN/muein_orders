@@ -9,14 +9,12 @@ abstract class QuranStickerPdf {
   }) async {
     final pdf = pw.Document();
     final backgroundImage = pw.MemoryImage(
-      (await rootBundle.load(
-        'assets/images/sticker_mushef.png',
-      )).buffer.asUint8List(),
+      (await rootBundle.load('assets/images/sticker_mushef.png')).buffer
+          .asUint8List(),
     );
-    final logoImage = pw.MemoryImage(
-      (await rootBundle.load(
-        'assets/images/sticker_logo.png',
-      )).buffer.asUint8List(),
+    final stickerLogo = pw.MemoryImage(
+      (await rootBundle.load('assets/images/sticker_logo.png')).buffer
+          .asUint8List(),
     );
     final vector = pw.MemoryImage(
       (await rootBundle.load('assets/images/Vector.png')).buffer.asUint8List(),
@@ -38,107 +36,110 @@ abstract class QuranStickerPdf {
             ),
             pw.Center(
               child: pw.Padding(
-                padding: const pw.EdgeInsets.symmetric(horizontal: 20),
+                padding: const pw.EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 15,
+                ),
                 child: pw.Column(
-                  mainAxisAlignment: pw.MainAxisAlignment.center,
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: pw.CrossAxisAlignment.center,
                   children: [
-                    pw.SizedBox(height: 65),
-                    pw.Container(
-                      height: 30,
-                      child: pw.Directionality(
-                        textDirection: pw.TextDirection.rtl,
-                        child: pw.Text(
-                          printedName,
-                          style: pw.TextStyle(
-                            font: tajawalBold,
-                            fontSize: 18,
-                            color: PdfColor.fromHex('#003A46'),
-                            height: 1.8,
-                          ),
-                          textAlign: pw.TextAlign.center,
+                    pw.SizedBox(height: 50),
+                    pw.Directionality(
+                      textDirection: pw.TextDirection.rtl,
+                      child: pw.Text(
+                        printedName,
+                        style: pw.TextStyle(
+                          font: tajawalBold,
+                          fontSize: 18,
+                          color: PdfColor.fromHex('#003A46'),
                         ),
+                        textAlign: pw.TextAlign.center,
                       ),
                     ),
-                    pw.Container(
-                      height: 90,
-                      child: pw.Image(logoImage, fit: pw.BoxFit.fill),
+                    pw.SizedBox(
+                      height: 120,
+                      width: 150,
+                      child: pw.Image(stickerLogo, fit: pw.BoxFit.contain),
                     ),
-                    pw.Container(
-                      height: 75,
-                      child: pw.Directionality(
-                        textDirection: pw.TextDirection.rtl,
-                        child: pw.Text(
-                          'تم طباعة هذا المصحف الشريف بإشراف من متجر معين للقرآن الكريم',
-                          style: pw.TextStyle(
-                            font: tajawalBold,
-                            fontSize: 16,
-                            color: PdfColor.fromHex('#003A46'),
-                            height: 1.4,
-                          ),
-                          textAlign: pw.TextAlign.center,
+                    pw.Directionality(
+                      textDirection: pw.TextDirection.rtl,
+                      child: pw.Text(
+                        'تم طباعة هذا المصحف الشريف بإشراف من\nمتجر معين للقرآن الكريم',
+                        style: pw.TextStyle(
+                          font: tajawalBold,
+                          fontSize: 13,
+                          color: PdfColor.fromHex('#003A46'),
+                          height: 1.4,
                         ),
+                        textAlign: pw.TextAlign.center,
                       ),
                     ),
-                    pw.Container(
-                      height: 40,
-                      child: pw.Directionality(
-                        textDirection: pw.TextDirection.rtl,
-                        child: pw.Text(
-                          'رقم التنفيذ: $executionNum',
-                          style: pw.TextStyle(
-                            font: tajawalBold,
-                            fontSize: 16,
-                            color: PdfColor.fromHex('#003A46'),
-                            height: 1.4,
-                          ),
-                          textAlign: pw.TextAlign.right,
-                        ),
-                      ),
-                    ),
-                    pw.Container(
-                      height: 15,
-                      child: pw.Directionality(
-                        textDirection: pw.TextDirection.rtl,
-                        child: pw.Text(
-                          'للتواصل أو الطلب',
-                          style: pw.TextStyle(
-                            font: tajawalBold,
-                            fontSize: 14,
-                            color: PdfColor.fromHex('#003A46'),
-                            height: 1.4,
-                          ),
-                          textAlign: pw.TextAlign.center,
-                        ),
-                      ),
-                    ),
-                    pw.Container(
-                      height: 35,
+                    pw.Directionality(
+                      textDirection: pw.TextDirection.rtl,
                       child: pw.Row(
                         mainAxisAlignment: pw.MainAxisAlignment.center,
                         children: [
-                          pw.SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: pw.Image(vector),
+                          pw.Text(
+                            'رقم التنفيذ : ',
+                            style: pw.TextStyle(
+                              font: tajawalBold,
+                              fontSize: 18,
+                              color: PdfColor.fromHex('#003A46'),
+                            ),
                           ),
-                          pw.SizedBox(width: 4),
-                          pw.Directionality(
-                            textDirection: pw.TextDirection.rtl,
-                            child: pw.Text(
-                              '+966 55 492 0333',
-                              style: pw.TextStyle(
-                                font: tajawalBold,
-                                fontSize: 14,
-                                color: PdfColor.fromHex('#003A46'),
-                                height: 1.4,
-                              ),
-                              textAlign: pw.TextAlign.center,
+                          pw.Text(
+                            executionNum,
+                            style: pw.TextStyle(
+                              font: tajawalBold,
+                              fontSize: 14,
+                              color: PdfColor.fromHex('#003A46'),
                             ),
                           ),
                         ],
                       ),
                     ),
+                    pw.Column(
+                      children: [
+                        pw.Directionality(
+                          textDirection: pw.TextDirection.rtl,
+                          child: pw.Text(
+                            'للتواصل أو الطلب',
+                            style: pw.TextStyle(
+                              font: tajawalBold,
+                              fontSize: 12,
+                              color: PdfColor.fromHex('#003A46'),
+                            ),
+                            textAlign: pw.TextAlign.center,
+                          ),
+                        ),
+                        pw.SizedBox(height: 4),
+                        pw.Row(
+                          mainAxisAlignment: pw.MainAxisAlignment.center,
+                          children: [
+                            pw.SizedBox(
+                              height: 16,
+                              width: 16,
+                              child: pw.Image(vector),
+                            ),
+                            pw.SizedBox(width: 4),
+                            pw.Directionality(
+                              textDirection: pw.TextDirection.rtl,
+                              child: pw.Text(
+                                '+966 55 492 0333',
+                                style: pw.TextStyle(
+                                  font: tajawalBold,
+                                  fontSize: 13,
+                                  color: PdfColor.fromHex('#003A46'),
+                                ),
+                                textAlign: pw.TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    pw.SizedBox(height: 5),
                   ],
                 ),
               ),

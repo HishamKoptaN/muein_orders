@@ -38,10 +38,7 @@ class StickerPdfPreviewView extends StatelessWidget {
                   );
               }
             } else {
-              return await DatesStickerPdf.build(
-                isSingle: stickerPdfPreviewArgs.sallaProductId == 224011248
-                    ? true
-                    : false,
+              return await QuranStickerPdf.build(
                 printedName: stickerPdfPreviewArgs.printedName,
                 executionNum: stickerPdfPreviewArgs.executionNum,
               );

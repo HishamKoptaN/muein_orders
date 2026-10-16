@@ -5,7 +5,9 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
+
 import 'dart:io';
+
 import '../../features/auth/auth/present/bloc/auth_bloc.dart';
 import '../../features/auth/auth/present/views/auth_view.dart';
 import '../../features/auth/change_pass/present/views/change_pass_view.dart';
@@ -21,6 +23,7 @@ import '../../features/orders_features/salla_orders_items/present/views/salla_or
 import '../../features/orders_features/salla_orders_items/present/views/sitcker_pdf/sitcker_pdf_preview_view.dart';
 import '../../features/profile/present/views/profile_view.dart';
 import '../../material3.dart';
+import '../../test.dart';
 import '../language/view/select_language.dart';
 import '../utils/global_variable.dart';
 import '../di/dependency_injection.dart';
@@ -45,7 +48,7 @@ class AppRouter {
           if (AppRouterRedirect.public.contains(state.matchedLocation)) {
             return kReleaseMode
                 ? '/${StatsView.routeName}'
-                : '/${StatsView.routeName}';
+                : '/${TestView.routeName}';
           }
           return null;
         },

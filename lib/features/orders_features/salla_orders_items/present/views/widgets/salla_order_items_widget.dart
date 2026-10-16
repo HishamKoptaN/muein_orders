@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/utils.dart';
+
 import '../../../../../../core/di/dependency_injection.dart';
 import '../../../../../../core/widgets/translated_text.dart';
 import '../../../../../home_features/home/domain/entities/order_type_res_entity.dart';
@@ -40,9 +41,8 @@ class _SallaOrderItemsWidgetState extends State<SallaOrderItemsWidget> {
 
   bool get _isBottom {
     if (!_scrollController.hasClients) return false;
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.offset;
-    return currentScroll >= (maxScroll * 0.5);
+    return _scrollController.offset >=
+        (_scrollController.position.maxScrollExtent * 0.5);
   }
 
   @override
