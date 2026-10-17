@@ -1,6 +1,0 @@
-git_url("https://#{ENV['MATCH_GITHUB_TOKEN']}@github.com/HishamKoptaN/muein_orders_certificates.git")
-git_branch("prod")
-app_identifier(["com.muein.orders"])
-type("appstore")
-username(ENV["APPLE_ID"])
-team_id(ENV["TEAM_ID"] || "5493DS73C7")
