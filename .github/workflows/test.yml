@@ -12,11 +12,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Dotnet
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.x'
-
       - name: Read Raw API Key from Repository and Convert
         shell: bash
         run: |
@@ -35,23 +30,17 @@ jobs:
             echo "EOF"
           } >> $GITHUB_ENV
 
-      # 1. إنشاء شهادة التوزيع (إذا لم تكن موجودة)
-      - name: Setup Apple Certificate
-        uses: kebechet/setup-apple-certificate@v1
-        id: cert
+      # 1. استيراد شهادة التوزيع إلى Keychain
+      - name: Import Apple Certificate
+        uses: apple-actions/import-codesign-certs@v2
         with:
-          app-store-connect-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
-          app-store-connect-issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-          app-store-connect-private-key: ${{ env.API_PRIVATE_KEY_FIXED }}
-          distribution-private-key: ${{ secrets.DISTRIBUTION_PRIVATE_KEY_BASE64 }}
-          bundle-identifier: 'com.muein.orders'
+          p12-file-base64: ${{ secrets.DISTRIBUTION_PRIVATE_KEY_BASE64 }}
+          p12-password: ${{ secrets.CERTIFICATE_PASSPHRASE }}
 
       # 2. إنشاء وتنزيل البروفايل تلقائياً (Generate & Download) إذا لم يكن موجوداً
       - name: Generate & Download Provisioning Profile Automatically
         uses: maui-actions/apple-provisioning@v4
         with:
-          certificate: ${{ steps.cert.outputs.p12-certificate-base64 }}
-          certificate-passphrase: ${{ steps.cert.outputs.p12-password }}
           bundle-identifiers: 'com.muein.orders'
           profile-types: IOS_APP_STORE
           app-store-connect-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
