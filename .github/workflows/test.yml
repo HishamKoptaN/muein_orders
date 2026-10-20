@@ -8,6 +8,10 @@ on:
 jobs:
   auto-generate-signing:
     runs-on: macos-latest
+    env:
+      KEYCHAIN_PATH: ${{ runner.temp }}/build.keychain-db
+      KEYCHAIN_PASSWORD: temp_ci_password
+
     steps:
       - uses: actions/checkout@v4
 
@@ -16,44 +20,49 @@ jobs:
         shell: bash
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
-          # كتابة المفتاح الخاص كملف .p8
-          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
-          # إنشاء api_key.json لاستخدامه مع fastlane
-          cat > api_key.json << EOF
-          {
-            "key_id": "${{ secrets.APP_STORE_CONNECT_KEY_ID }}",
-            "issuer_id": "${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}",
-            "key": "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}",
-            "in_house": false
-          }
-          EOF
+          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" \
+            > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
 
-      # 2. توليد Keychain مؤقت لتخزين الشهادة
+          # fastlane api_key.json — المفتاح بدون سطر فارغ في البداية
+          printf '{\n  "key_id": "%s",\n  "issuer_id": "%s",\n  "key": "%s",\n  "in_house": false\n}\n' \
+            "${{ secrets.APP_STORE_CONNECT_KEY_ID }}" \
+            "${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}" \
+            "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" \
+            > api_key.json
+
+      # 2. إنشاء Keychain مؤقت بمسار ثابت ($RUNNER_TEMP)
       - name: Create temporary Keychain
         shell: bash
         run: |
-          security create-keychain -p "temp_password" build.keychain
-          security default-keychain -s build.keychain
-          security unlock-keychain -p "temp_password" build.keychain
-          security set-keychain-settings -t 3600 -l build.keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -t 3600 -l "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          # إضافته لقائمة الـ keychains الافتراضية
+          security list-keychains -d user -s "$KEYCHAIN_PATH" \
+            $(security list-keychains -d user | tr -d '"')
 
-      # 3. توليد الشهادة تلقائياً عبر App Store Connect API (fastlane cert)
-      #    يقوم بإنشاء مفتاح خاص + CSR + رفعه لـ Apple + تنزيل الشهادة
-      - name: Auto-generate Distribution Certificate (fastlane cert)
+      # 3. تثبيت fastlane مرة واحدة
+      - name: Install fastlane
+        shell: bash
+        run: gem install fastlane --no-document
+
+      # 4. توليد شهادة التوزيع تلقائياً عبر App Store Connect API
+      - name: Auto-generate Distribution Certificate
         shell: bash
         run: |
-          gem install fastlane --no-document
+          mkdir -p ./certs
           fastlane run get_certificates \
             api_key_path:"api_key.json" \
-            keychain_path:"build.keychain" \
-            keychain_password:"temp_password" \
+            keychain_path:"$KEYCHAIN_PATH" \
+            keychain_password:"$KEYCHAIN_PASSWORD" \
             output_path:"./certs" \
             generate_apple_certs:true
 
-      # 4. توليد Provisioning Profile تلقائياً عبر App Store Connect API (fastlane sigh)
-      - name: Auto-generate Provisioning Profile (fastlane sigh)
+      # 5. توليد Provisioning Profile تلقائياً
+      - name: Auto-generate Provisioning Profile
         shell: bash
         run: |
+          mkdir -p ./profiles
           fastlane run get_provisioning_profile \
             api_key_path:"api_key.json" \
             app_identifier:"com.muein.orders" \
@@ -61,21 +70,21 @@ jobs:
             output_path:"./profiles" \
             force:true
 
-      # 5. تثبيت الـ Provisioning Profile
+      # 6. تثبيت الـ Provisioning Profile في المكان الصحيح
       - name: Install Provisioning Profile
         shell: bash
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp ./profiles/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
-      # 6. التحقق من نجاح التثبيت
+      # 7. التحقق من نجاح التثبيت
       - name: Verify signing setup
         shell: bash
         run: |
           echo "=== الشهادات في الـ Keychain ==="
-          security find-identity -v -p codesigning build.keychain
+          security find-identity -v -p codesigning "$KEYCHAIN_PATH"
 
           echo "=== Provisioning Profiles ==="
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
 
-          echo "تم توليد الشهادة والبروفايل بالكامل تلقائياً بنجاح!"
+          echo "✅ تم توليد الشهادة والبروفايل بالكامل تلقائياً بنجاح!"
