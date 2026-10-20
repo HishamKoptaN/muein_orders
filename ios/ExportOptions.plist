@@ -7,7 +7,7 @@
 	<key>uploadBitcode</key>
 	<false/>
 	<key>signingStyle</key>
-	<string>manual</string>
+	<string>automatic</string>
     <key>stripSwiftSymbols</key>
     <true/>
 	<key>provisioningProfiles</key>
