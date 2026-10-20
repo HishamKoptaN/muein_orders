@@ -60,4 +60,20 @@ platform :ios do
       export_method: "app-store"
     )
   end
+
+  desc "Generate provisioning profile automatically"
+  lane :generate_profile do
+    app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_filepath: "AuthKey_pkcs8.p8",
+      duration: 1200,
+      in_house: false
+    )
+    sigh(
+      app_identifier: "com.muein.orders",
+      adhoc: false,
+      development: false
+    )
+  end
 end
