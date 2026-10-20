@@ -1,4 +1,4 @@
-name: Test iOS Profile & Certificate Generation
+name: Test iOS Profile & Certificate 
 
 on:
     push:
