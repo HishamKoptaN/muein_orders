@@ -1,8 +1,8 @@
 name: Generate Provisioning Profile Only
 
 on:
-  workflow_dispatch:
-
+    push:
+        branches: [ prod ]
 jobs:
   generate-profile:
     runs-on: macos-latest
