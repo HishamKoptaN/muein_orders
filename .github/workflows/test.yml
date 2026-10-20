@@ -9,19 +9,25 @@ jobs:
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
+      - shell: bash
+        run: |
+          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" > AuthKey.p8
+          openssl pkcs8 -topk8 -nocrypt -in AuthKey.p8 -out AuthKey_pkcs8.p8 2>/dev/null || cp AuthKey.p8 AuthKey_pkcs8.p8
+          echo "API_PRIVATE_KEY_FIXED<<EOF" >> $GITHUB_ENV
+          cat AuthKey_pkcs8.p8 >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
       - uses: apple-actions/download-provisioning-profiles@v1
         with:
           bundle-id: 'com.muein.orders'
           profile-type: 'IOS_APP_STORE'
           issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-          api-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
+          api-private-key: ${{ env.API_PRIVATE_KEY_FIXED }}
       - shell: bash
         run: |
           echo "=== التحقق من البروفايل الذي تم إنشاؤه ==="
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
-          echo "تم إنشاء البروفايل بنجاح!"
+          echo "تم إنشاء البروفايل بنجاح تام!"
