@@ -1,4 +1,4 @@
-name: Generate Provisioning Profile Only
+name: Auto-Create & Download Provisioning Profile
 
 on:
   push:
@@ -21,34 +21,45 @@ jobs:
         shell: bash
         run: |
           KEY_PATH="ios/api_private_key.p8"
-          
           if [ ! -f "$KEY_PATH" ]; then
             echo "Error: Private key file not found at $KEY_PATH"
             exit 1
           fi
           
-          echo "=== تم العثور على الملف بنجاح، جاري التحويل المتوافق مع OpenSSL ==="
-          
-          # 2. تحويل الملف الخام مباشرة إلى تنسيق PKCS#8 لضمان عدم حدوث خطأ DECODER
+          # تحويل المفتاح الخام لصيغة PKCS#8 المتوافقة مع OpenSSL
           openssl pkcs8 -topk8 -nocrypt -in "$KEY_PATH" -out AuthKey_pkcs8.p8
           
-          # 3. تخزين المفتاح المحول في متغير البيئة لتمريره للأكشن
           {
             echo "API_PRIVATE_KEY_FIXED<<EOF"
             cat AuthKey_pkcs8.p8
             echo "EOF"
           } >> $GITHUB_ENV
 
-      - name: Generate Provisioning Profile via Fastlane
-        shell: bash
-        env:
-          APP_STORE_CONNECT_API_KEY_ID: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
-          APP_STORE_CONNECT_ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-        run: |
-          bundle exec fastlane generate_profile
+      # 1. إنشاء شهادة التوزيع (إذا لم تكن موجودة)
+      - name: Setup Apple Certificate
+        uses: kebechet/setup-apple-certificate@v1
+        id: cert
+        with:
+          app-store-connect-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
+          app-store-connect-issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
+          app-store-connect-private-key: ${{ env.API_PRIVATE_KEY_FIXED }}
+          distribution-private-key: ${{ secrets.DISTRIBUTION_PRIVATE_KEY_BASE64 }}
+          bundle-identifier: 'com.muein.orders'
 
-      - name: Verify Provisioning Profile
+      # 2. إنشاء وتنزيل البروفايل تلقائياً (Generate & Download) إذا لم يكن موجوداً
+      - name: Generate & Download Provisioning Profile Automatically
+        uses: maui-actions/apple-provisioning@v4
+        with:
+          certificate: ${{ steps.cert.outputs.p12-certificate-base64 }}
+          certificate-passphrase: ${{ steps.cert.outputs.p12-password }}
+          bundle-identifiers: 'com.muein.orders'
+          profile-types: IOS_APP_STORE
+          app-store-connect-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
+          app-store-connect-issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
+          app-store-connect-private-key: ${{ env.API_PRIVATE_KEY_FIXED }}
+
+      - name: Verify Profile Exists
         shell: bash
         run: |
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
-          echo "تم إنشاء البروفايل بنجاح تام!"
+          echo "تم فحص وإنشاء البروفايل أوتوماتيكياً بنجاح تام!"
