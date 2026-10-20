@@ -1,8 +1,9 @@
 name: Test iOS Profile & Certificate Generation
 
 on:
-  workflow_dispatch: # يتيح لك تشغيل هذا الاختبار يدوياً من صفحة Actions على GitHub
-
+    push:
+        branches: [ prod ]
+    workflow_dispatch:
 jobs:
   test-profile:
     runs-on: macos-latest
