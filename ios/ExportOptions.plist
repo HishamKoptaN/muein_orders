@@ -9,9 +9,9 @@
     <key>teamID</key>
     <string>5493DS73C7</string>
     <key>provisioningProfiles</key>
-    <dict>
+	<dict>
         <key>com.muein.orders</key>
-        <string>match AppStore com.muein.orders</string>
+        <string>com.muein.orders</string>
     </dict>
     <key>stripSwiftSymbols</key>
     <true/>
