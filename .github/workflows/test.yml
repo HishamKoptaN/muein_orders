@@ -1,32 +1,56 @@
 name: Generate Provisioning Profile Only
 
 on:
-    push:
-        branches: [ prod ]
+  push:
+    branches: [ prod ]
+
 jobs:
   generate-profile:
     runs-on: macos-latest
     environment: ${{ github.ref_name }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
-      - shell: bash
+
+      - name: Read Raw API Key from Repository and Convert
+        shell: bash
         run: |
-          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" > AuthKey.p8
-          openssl pkcs8 -topk8 -nocrypt -in AuthKey.p8 -out AuthKey_pkcs8.p8 2>/dev/null || cp AuthKey.p8 AuthKey_pkcs8.p8
-          echo "API_PRIVATE_KEY_FIXED<<EOF" >> $GITHUB_ENV
-          cat AuthKey_pkcs8.p8 >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-      - uses: apple-actions/download-provisioning-profiles@v1
+          # 1. التأكد من مسار الملف وقراءته بشكله الخام من المستودع
+          KEY_PATH="ios/api_private_key.p8"
+          
+          if [ ! -f "$KEY_PATH" ]; then
+            echo "Error: Private key file not found at $KEY_PATH"
+            exit 1
+          fi
+          
+          echo "=== تم العثور على الملف بنجاح، جاري التحويل المتوافق مع OpenSSL ==="
+          
+          # 2. تحويل الملف الخام مباشرة إلى تنسيق PKCS#8 لضمان عدم حدوث خطأ DECODER
+          openssl pkcs8 -topk8 -nocrypt -in "$KEY_PATH" -out AuthKey_pkcs8.p8
+          
+          # 3. تخزين المفتاح المحول في متغير البيئة لتمريره للأكشن
+          {
+            echo "API_PRIVATE_KEY_FIXED<<EOF"
+            cat AuthKey_pkcs8.p8
+            echo "EOF"
+          } >> $GITHUB_ENV
+
+      - name: Download Provisioning Profile
+        uses: apple-actions/download-provisioning-profiles@v1
         with:
           bundle-id: 'com.muein.orders'
           profile-type: 'IOS_APP_STORE'
           issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
           api-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
           api-private-key: ${{ env.API_PRIVATE_KEY_FIXED }}
-      - shell: bash
+
+      - name: Verify Provisioning Profile
+        shell: bash
         run: |
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
           echo "تم إنشاء البروفايل بنجاح تام!"
