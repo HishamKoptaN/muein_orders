@@ -7,15 +7,12 @@ jobs:
   generate-profile:
     runs-on: macos-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Dotnet
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
-      - name: Generate and Download Provisioning Profile
-        uses: apple-actions/download-provisioning-profiles@v1
+      - uses: apple-actions/download-provisioning-profiles@v1
         with:
           bundle-id: 'com.muein.orders'
           profile-type: 'IOS_APP_STORE'
@@ -23,8 +20,7 @@ jobs:
           api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           api-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
 
-      - name: Verify Profile Exists
-        shell: bash
+      - shell: bash
         run: |
           echo "=== التحقق من البروفايل الذي تم إنشاؤه ==="
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
