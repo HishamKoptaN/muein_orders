@@ -1,8 +1,8 @@
 name: Test Automatic Provisioning Profile Generation
 
 on:
-    push:
-        branches: [ prod ]
+  push:
+      branches: [ prod ]
 
 jobs:
   generate-profile:
