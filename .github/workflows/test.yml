@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      # 1. تصحيح تنسيق مفتاح الـ API لضمان عدم حدوث خطأ DECODER في OpenSSL
       - name: Prepare App Store Connect API Key
         shell: bash
         run: |
