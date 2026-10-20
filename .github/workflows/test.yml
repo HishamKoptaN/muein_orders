@@ -19,15 +19,27 @@ jobs:
           echo "KEYCHAIN_PATH=$RUNNER_TEMP/build.keychain-db" >> $GITHUB_ENV
 
           mkdir -p ~/.appstoreconnect/private_keys
-          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" \
-            > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
+          KEY_CONTENT="${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}"
+          KEY_ID="${{ secrets.APP_STORE_CONNECT_KEY_ID }}"
+          ISSUER_ID="${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}"
 
-          # fastlane api_key.json — المفتاح بدون سطر فارغ في البداية
-          printf '{\n  "key_id": "%s",\n  "issuer_id": "%s",\n  "key": "%s",\n  "in_house": false\n}\n' \
-            "${{ secrets.APP_STORE_CONNECT_KEY_ID }}" \
-            "${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}" \
-            "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" \
-            > api_key.json
+          echo "$KEY_CONTENT" > ~/.appstoreconnect/private_keys/AuthKey_$KEY_ID.p8
+
+          # استخدام python لتوليد api_key.json بشكل آمن وصحيح لتجنب أخطاء OpenSSL ECError (invalid curve name)
+          python3 -c "
+import json
+import os
+
+data = {
+    'key_id': os.environ['KEY_ID'],
+    'issuer_id': os.environ['ISSUER_ID'],
+    'key': os.environ['KEY_CONTENT'],
+    'in_house': False
+}
+
+with open('api_key.json', 'w') as f:
+    json.dump(data, f, indent=2)
+"
 
       # 2. إنشاء Keychain مؤقت بمسار ثابت ($RUNNER_TEMP)
       - name: Create temporary Keychain
