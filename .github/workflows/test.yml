@@ -9,16 +9,18 @@ jobs:
   auto-generate-signing:
     runs-on: macos-latest
     env:
-      KEYCHAIN_PATH: ${{ runner.temp }}/build.keychain-db
       KEYCHAIN_PASSWORD: temp_ci_password
 
     steps:
       - uses: actions/checkout@v4
 
-      # 1. كتابة مفتاح App Store Connect API إلى ملف JSON
-      - name: Create App Store Connect API Key file
+      # 1. تعيين مسار الـ Keychain وكتابة مفتاح App Store Connect API
+      - name: Prepare API Key & set Keychain path
         shell: bash
         run: |
+          # $RUNNER_TEMP متاح دائماً كمتغير shell — نصدره لبقية الـ steps
+          echo "KEYCHAIN_PATH=$RUNNER_TEMP/build.keychain-db" >> $GITHUB_ENV
+
           mkdir -p ~/.appstoreconnect/private_keys
           echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" \
             > ~/.appstoreconnect/private_keys/AuthKey_${{ secrets.APP_STORE_CONNECT_KEY_ID }}.p8
