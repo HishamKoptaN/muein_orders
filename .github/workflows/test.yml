@@ -1,4 +1,4 @@
-name: Fully Automated Certificate & Profile Generation
+name: Automated Provisioning Profile Generation
 
 on:
   workflow_dispatch:
@@ -6,18 +6,13 @@ on:
     branches: [ prod ]
 
 jobs:
-  auto-generate-signing:
+  auto-generate-profile:
     runs-on: macos-latest
-    env:
-      KEYCHAIN_PASSWORD: temp_ci_password
 
     steps:
       - uses: actions/checkout@v4
       - shell: bash
         run: |
-          # $RUNNER_TEMP متاح دائماً كمتغير shell — نصدره لبقية الـ steps
-          echo "KEYCHAIN_PATH=$RUNNER_TEMP/build.keychain-db" >> $GITHUB_ENV
-
           mkdir -p ~/.appstoreconnect/private_keys
           KEY_CONTENT="${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}"
           KEY_ID="${{ secrets.APP_STORE_CONNECT_KEY_ID }}"
@@ -31,18 +26,7 @@ jobs:
           export KEY_CONTENT
           python3 -c 'import json, os; data = {"key_id": os.environ["KEY_ID"], "issuer_id": os.environ["ISSUER_ID"], "key": os.environ["KEY_CONTENT"], "in_house": False}; json.dump(data, open("api_key.json", "w"), indent=2)'
 
-      # 2. إنشاء Keychain مؤقت بمسار ثابت ($RUNNER_TEMP)
-      - name: Create temporary Keychain
-        shell: bash
-        run: |
-          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-          security set-keychain-settings -t 3600 -l "$KEYCHAIN_PATH"
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
-          # إضافته لقائمة الـ keychains الافتراضية
-          security list-keychains -d user -s "$KEYCHAIN_PATH" \
-            $(security list-keychains -d user | tr -d '"')
-
-      # 3. تثبيت Ruby وركيزة fastlane
+      # 2. تثبيت Ruby وركيزة fastlane
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -52,19 +36,7 @@ jobs:
         shell: bash
         run: gem install fastlane --no-document
 
-      # 4. توليد شهادة التوزيع تلقائياً عبر App Store Connect API
-      - name: Auto-generate Distribution Certificate
-        shell: bash
-        run: |
-          mkdir -p ./certs
-          fastlane run get_certificates \
-            api_key_path:"api_key.json" \
-            keychain_path:"$KEYCHAIN_PATH" \
-            keychain_password:"$KEYCHAIN_PASSWORD" \
-            output_path:"./certs" \
-            generate_apple_certs:true
-
-      # 5. توليد Provisioning Profile تلقائياً
+      # 3. توليد Provisioning Profile تلقائياً
       - name: Auto-generate Provisioning Profile
         shell: bash
         run: |
@@ -76,21 +48,18 @@ jobs:
             output_path:"./profiles" \
             force:true
 
-      # 6. تثبيت الـ Provisioning Profile في المكان الصحيح
+      # 4. تثبيت الـ Provisioning Profile في المكان الصحيح
       - name: Install Provisioning Profile
         shell: bash
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp ./profiles/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
-      # 7. التحقق من نجاح التثبيت
+      # 5. التحقق من نجاح التثبيت
       - name: Verify signing setup
         shell: bash
         run: |
-          echo "=== الشهادات في الـ Keychain ==="
-          security find-identity -v -p codesigning "$KEYCHAIN_PATH"
-
           echo "=== Provisioning Profiles ==="
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
 
-          echo "✅ تم توليد الشهادة والبروفايل بالكامل تلقائياً بنجاح!"
+          echo "✅ تم توليد البروفايل بالكامل تلقائياً بنجاح!"
