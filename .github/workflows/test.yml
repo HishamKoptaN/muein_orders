@@ -6,6 +6,7 @@ on:
 jobs:
   generate-profile:
     runs-on: macos-latest
+    environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v4
 
@@ -19,7 +20,6 @@ jobs:
           issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           api-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
-
       - shell: bash
         run: |
           echo "=== التحقق من البروفايل الذي تم إنشاؤه ==="
