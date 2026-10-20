@@ -1,80 +1,40 @@
-name: Automated Provisioning Profile Generation
+name: Generate Provisioning Profile Only
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ prod ]
 
 jobs:
-  auto-generate-profile:
+  generate-profile:
     runs-on: macos-latest
-
     steps:
-      - uses: actions/checkout@v4
-      - shell: bash
-        run: |
-          mkdir -p ~/.appstoreconnect/private_keys
-          KEY_CONTENT="${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}"
-          KEY_ID="${{ secrets.APP_STORE_CONNECT_KEY_ID }}"
-          ISSUER_ID="${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}"
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-          # استخدام python لتوليد الـ .p8 و api_key.json باستخدام key_filepath لتجنب أخطاء OpenSSL ECError (invalid curve name)
-          export KEY_ID
-          export ISSUER_ID
-          export KEY_CONTENT
-          python3 -c '
-          import json, os
-          key_content = os.environ["KEY_CONTENT"].replace("\\n", "\n")
-          key_id = os.environ["KEY_ID"]
-          issuer_id = os.environ["ISSUER_ID"]
-          
-          p8_path = os.path.expanduser(f"~/.appstoreconnect/private_keys/AuthKey_{key_id}.p8")
-          with open(p8_path, "w") as f:
-              f.write(key_content)
-          
-          data = {
-              "key_id": key_id,
-              "issuer_id": issuer_id,
-              "key_filepath": p8_path,
-              "in_house": False
-          }
-          json.dump(data, open("api_key.json", "w"), indent=2)
-          '
-
-      # 2. تثبيت Ruby وركيزة fastlane
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v4
         with:
-          ruby-version: '3.2'
+          dotnet-version: '8.x'
 
-      - name: Install fastlane
-        shell: bash
-        run: gem install fastlane --no-document
-
-      # 3. توليد Provisioning Profile تلقائياً
-      - name: Auto-generate Provisioning Profile
+      - name: Prepare App Store Connect API Key
         shell: bash
         run: |
-          mkdir -p ./profiles
-          fastlane run get_provisioning_profile \
-            api_key_path:"api_key.json" \
-            app_identifier:"com.muein.orders" \
-            provisioning_name:"muein_orders_AppStore" \
-            output_path:"./profiles" \
-            force:true
+          echo "API_KEY_FIXED<<EOF" >> $GITHUB_ENV
+          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
-      # 4. تثبيت الـ Provisioning Profile في المكان الصحيح
-      - name: Install Provisioning Profile
+      # الأكشن المسؤول حصرياً عن طلب وإنشاء البروفايل من أبل
+      - name: Generate and Download Provisioning Profile
+        uses: apple-actions/download-provisioning-profiles@v1
+        with:
+          bundle-id: 'com.muein.orders'
+          profile-type: 'IOS_APP_STORE'
+          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          api-private-key: ${{ env.API_KEY_FIXED }}
+
+      - name: Verify Profile Exists
         shell: bash
         run: |
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp ./profiles/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-
-      # 5. التحقق من نجاح التثبيت
-      - name: Verify signing setup
-        shell: bash
-        run: |
-          echo "=== Provisioning Profiles ==="
+          echo "=== التحقق من البروفايل الذي تم إنشاؤه ==="
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
-
-          echo "✅ تم توليد البروفايل بالكامل تلقائياً بنجاح!"
+          echo "تم إنشاء البروفايل بنجاح!"
