@@ -1,7 +1,8 @@
 name: Test Automatic Provisioning Profile Generation
 
 on:
-  workflow_dispatch:
+    push:
+        branches: [ prod ]
 
 jobs:
   generate-profile:
