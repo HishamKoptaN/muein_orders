@@ -13,10 +13,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      # 1. تعيين مسار الـ Keychain وكتابة مفتاح App Store Connect API
-      - name: Prepare API Key & set Keychain path
-        shell: bash
+      - shell: bash
         run: |
           # $RUNNER_TEMP متاح دائماً كمتغير shell — نصدره لبقية الـ steps
           echo "KEYCHAIN_PATH=$RUNNER_TEMP/build.keychain-db" >> $GITHUB_ENV
@@ -43,7 +40,12 @@ jobs:
           security list-keychains -d user -s "$KEYCHAIN_PATH" \
             $(security list-keychains -d user | tr -d '"')
 
-      # 3. تثبيت fastlane مرة واحدة
+      # 3. تثبيت Ruby وركيزة fastlane
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
       - name: Install fastlane
         shell: bash
         run: gem install fastlane --no-document
