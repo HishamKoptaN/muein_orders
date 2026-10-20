@@ -23,11 +23,10 @@ jobs:
         with:
           bundle-id: 'com.muein.orders'
           profile-type: 'IOS_APP_STORE'
-          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
           api-private-key: ${{ env.API_PRIVATE_KEY_FIXED }}
       - shell: bash
         run: |
-          echo "=== التحقق من البروفايل الذي تم إنشاؤه ==="
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
           echo "تم إنشاء البروفايل بنجاح تام!"
