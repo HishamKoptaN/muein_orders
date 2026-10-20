@@ -16,9 +16,12 @@ jobs:
 
       - shell: bash
         run: |
-          echo "API_KEY_FIXED<<EOF" >> $GITHUB_ENV
-          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          {
+            echo 'API_KEY_FIXED<<EOF'
+            echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}"
+            echo 'EOF'
+          } >> $GITHUB_ENV
+          echo "Key length: ${#API_KEY_FIXED}"
 
       - uses: apple-actions/download-provisioning-profiles@v1
         with:
