@@ -26,20 +26,10 @@ jobs:
           echo "$KEY_CONTENT" > ~/.appstoreconnect/private_keys/AuthKey_$KEY_ID.p8
 
           # استخدام python لتوليد api_key.json بشكل آمن وصحيح لتجنب أخطاء OpenSSL ECError (invalid curve name)
-          python3 -c "
-import json
-import os
-
-data = {
-    'key_id': os.environ['KEY_ID'],
-    'issuer_id': os.environ['ISSUER_ID'],
-    'key': os.environ['KEY_CONTENT'],
-    'in_house': False
-}
-
-with open('api_key.json', 'w') as f:
-    json.dump(data, f, indent=2)
-"
+          export KEY_ID
+          export ISSUER_ID
+          export KEY_CONTENT
+          python3 -c 'import json, os; data = {"key_id": os.environ["KEY_ID"], "issuer_id": os.environ["ISSUER_ID"], "key": os.environ["KEY_CONTENT"], "in_house": False}; json.dump(data, open("api_key.json", "w"), indent=2)'
 
       # 2. إنشاء Keychain مؤقت بمسار ثابت ($RUNNER_TEMP)
       - name: Create temporary Keychain
