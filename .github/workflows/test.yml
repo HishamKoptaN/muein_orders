@@ -17,14 +17,21 @@ jobs:
 
       - shell: bash
         run: |
+          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" > raw_key.p8
+          openssl pkcs8 -in raw_key.p8 -topk8 -nocrypt -outform PEM 2>/dev/null > fixed_key.p8 || openssl pkey -in raw_key.p8 -outform PEM 2>/dev/null > fixed_key.p8 || cp raw_key.p8 fixed_key.p8
+          if [ ! -s fixed_key.p8 ]; then
+            cp raw_key.p8 fixed_key.p8
+          fi
           {
             echo 'API_KEY_FIXED<<EOF'
-            echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}"
+            cat fixed_key.p8
             echo 'EOF'
           } >> $GITHUB_ENV
-          echo "Key length: ${#API_KEY_FIXED}"
+          echo "Fixed key length: ${#API_KEY_FIXED}"
 
       - uses: apple-actions/download-provisioning-profiles@v1
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
         with:
           bundle-id: 'com.muein.orders'
           profile-type: 'IOS_APP_STORE'
