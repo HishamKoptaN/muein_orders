@@ -1,44 +1,55 @@
-name: Test iOS Profile & Certificate 
+name: Test Automatic Provisioning Profile Generation
 
 on:
-    push:
-        branches: [ prod ]
-    workflow_dispatch:
+  workflow_dispatch:
+
 jobs:
-  test-profile:
+  generate-profile:
     runs-on: macos-latest
-    environment: ${{ github.ref_name }}
+    environment: prod
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.x'
-
-      - shell: bash
+      # 1. تصحيح تنسيق مفتاح الـ API لضمان عدم حدوث خطأ DECODER في OpenSSL
+      - name: Prepare App Store Connect API Key
+        shell: bash
         run: |
-          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" > raw_key.p8
-          openssl pkcs8 -in raw_key.p8 -topk8 -nocrypt -outform PEM 2>/dev/null > fixed_key.p8 || openssl pkey -in raw_key.p8 -outform PEM 2>/dev/null > fixed_key.p8 || cp raw_key.p8 fixed_key.p8
-          if [ ! -s fixed_key.p8 ]; then
-            cp raw_key.p8 fixed_key.p8
-          fi
-          {
-            echo 'API_KEY_FIXED<<EOF'
-            cat fixed_key.p8
-            echo 'EOF'
-          } >> $GITHUB_ENV
-          echo "Fixed key length: ${#API_KEY_FIXED}"
+          echo "API_KEY_FIXED<<EOF" >> $GITHUB_ENV
+          echo "${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
-      - uses: apple-actions/download-provisioning-profiles@v1
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
+      # 2. إنشاء وتثبيت شهادة التوزيع (Apple Distribution Certificate) تلقائياً
+      - name: Setup Apple Certificate
+        uses: kebechet/setup-apple-certificate@v1
+        id: cert
         with:
-          bundle-id: 'com.muein.orders'
-          profile-type: 'IOS_APP_STORE'
-          issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-          api-private-key: ${{ env.API_KEY_FIXED }}
-      - shell: bash
+          app-store-connect-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          app-store-connect-issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          app-store-connect-private-key: ${{ env.API_KEY_FIXED }}
+          distribution-private-key: ${{ secrets.DISTRIBUTION_PRIVATE_KEY_BASE64 }}
+          bundle-identifier: 'com.muein.orders'
+
+      # 3. إنشاء وتثبيت الـ Provisioning Profile أوتوماتيكياً وتربيطه بالشهادة
+      - name: Generate & Install Provisioning Profile
+        uses: maui-actions/apple-provisioning@v4
+        with:
+          certificate: ${{ steps.cert.outputs.p12-certificate-base64 }}
+          certificate-passphrase: ${{ steps.cert.outputs.p12-password }}
+          bundle-identifiers: 'com.muein.orders'
+          profile-types: IOS_APP_STORE
+          app-store-connect-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          app-store-connect-issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          app-store-connect-private-key: ${{ env.API_KEY_FIXED }}
+
+      # 4. تأكيد النجاح والتحقق من التثبيت داخل نظام ماك
+      - name: Verify Provisioning Profile
+        shell: bash
         run: |
+          echo "=== 1. الشهادات المثبتة في الـ Keychain ==="
+          security find-identity -v -p codesigning
+          
+          echo "=== 2. ملفات الـ Provisioning Profiles المتولدة ==="
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
-          echo "تم فحص وإنشاء البروفايل بنجاح تام دون أخطاء!"
+          
+          echo "تم إنشاء وتثبيت البروفايل بنجاح أوتوماتيكي كامل!"
