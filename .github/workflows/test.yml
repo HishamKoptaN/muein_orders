@@ -10,21 +10,17 @@ jobs:
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version-file: pubspec.yaml
-          channel: "stable"
-          cache: true 
-      - run: flutter pub get
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
           bundler-cache: true
+      - run: |
+          gem install fastlane
       - name: Fastlane iOS Provisioning & Signing
         env:
           APP_STORE_CONNECT_API_KEY_ID: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_API_PRIVATE_KEY_PATH: '${{ github.workspace }}/ios/api_private_key.p8'
         run: |
-          export FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=""
+          cd ios
           fastlane run get_provisioning_profile apple_id:"com.muein.orders"
