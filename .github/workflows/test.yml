@@ -26,5 +26,5 @@ jobs:
           APP_STORE_CONNECT_ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_API_PRIVATE_KEY_PATH: '${{ github.workspace }}/ios/api_private_key.p8'
         run: |
-          cd ios
-          bundle exec fastlane run get_provisioning_profile apple_id:"com.muein.orders"
+          export FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=""
+          fastlane run get_provisioning_profile apple_id:"com.muein.orders"

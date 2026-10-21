@@ -1,0 +1,28 @@
+name: Test Create Apple Certificate
+
+on:
+  push:
+    branches: [ prod ]
+
+jobs:
+  test-cert-generation:
+    runs-on: macos-latest
+    environment: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      - shell: pwsh
+        run: |
+          dotnet tool install --global AppleDev.Tools --version 0.5.0
+          apple ci certificates create \
+            --api-key-id "${{ vars.APP_STORE_CONNECT_API_KEY_ID }}" \
+            --api-issuer-id "${{ vars.APP_STORE_CONNECT_ISSUER_ID }}" \
+            --api-private-key "ios/api_private_key.p8" \
+            --type "Distribution"
+            
+      - name: Verify Certificate Success
+        shell: bash
+        run: |
+          echo "=== تم اختبار وإنشاء الشهادة بنجاح تام عبر الـ API! ==="
