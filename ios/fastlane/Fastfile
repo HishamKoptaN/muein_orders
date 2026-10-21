@@ -10,8 +10,9 @@ platform :ios do
       in_house: false
     )
 sigh(
-      app_identifier: "com.muein.orders",
-      app_store: true, # تفعيل وضع الـ App Store بدلاً من type
+app_identifier: "com.muein.orders",
+      adhoc: false,     
+      development: false, 
       readonly: false
     )
   end
