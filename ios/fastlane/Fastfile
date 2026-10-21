@@ -72,8 +72,6 @@ platform :ios do
     )
     sigh(
       app_identifier: "com.muein.orders",
-      adhoc: false,
-      development: false
     )
   end
 end
