@@ -9,9 +9,9 @@ platform :ios do
       duration: 1200,
       in_house: false
     )
-    get_provisioning_profile(
+sigh(
       app_identifier: "com.muein.orders",
-      type: "appstore",
+      app_store: true, # تفعيل وضع الـ App Store بدلاً من type
       readonly: false
     )
   end
