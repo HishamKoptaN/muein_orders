@@ -10,9 +10,7 @@ platform :ios do
       in_house: false
     )
 sigh(
-app_identifier: "com.muein.orders",
-      adhoc: false,     
-      development: false, 
+      app_identifier: "com.muein.orders",
       readonly: false
     )
   end
