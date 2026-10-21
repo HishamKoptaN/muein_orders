@@ -9,6 +9,10 @@ platform :ios do
       duration: 1200,
       in_house: false
     )
-    match(type: "appstore", app_identifier: "com.muein.orders")
+    get_provisioning_profile(
+      app_identifier: "com.muein.orders",
+      type: "appstore",
+      readonly: false
+    )
   end
 end
