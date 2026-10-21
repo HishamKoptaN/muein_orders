@@ -9,11 +9,8 @@ jobs:
     runs-on: macos-latest
     environment: ${{ github.ref_name }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Read Raw API Key from Repository and Convert
-        shell: bash
+      - uses: actions/checkout@v4
+      - shell: bash
         run: |
           KEY_PATH="ios/api_private_key.p8"
           if [ ! -f "$KEY_PATH" ]; then
@@ -29,17 +26,7 @@ jobs:
             cat AuthKey_pkcs8.p8
             echo "EOF"
           } >> $GITHUB_ENV
-
-      # 1. استيراد شهادة التوزيع إلى Keychain
-      - name: Import Apple Certificate
-        uses: apple-actions/import-codesign-certs@v2
-        with:
-          p12-file-base64: ${{ secrets.DISTRIBUTION_PRIVATE_KEY_BASE64 }}
-          p12-password: 163200
-
-      # 2. إنشاء وتنزيل البروفايل تلقائياً (Generate & Download) إذا لم يكن موجوداً
-      - name: Generate & Download Provisioning Profile Automatically
-        uses: maui-actions/apple-provisioning@v4
+      - uses: maui-actions/apple-provisioning@v4
         with:
           bundle-identifiers: 'com.muein.orders'
           profile-types: IOS_APP_STORE
@@ -47,8 +34,7 @@ jobs:
           app-store-connect-issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
           app-store-connect-private-key: ${{ env.API_PRIVATE_KEY_FIXED }}
 
-      - name: Verify Profile Exists
-        shell: bash
+      - shell: bash
         run: |
           ls -la ~/Library/MobileDevice/Provisioning\ Profiles/
           echo "تم فحص وإنشاء البروفايل أوتوماتيكياً بنجاح تام!"
