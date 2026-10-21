@@ -9,6 +9,7 @@ jobs:
     runs-on: macos-latest
     environment: ${{ github.ref_name }}
     steps:
+
       - uses: actions/checkout@v4
       - shell: bash
         run: |
@@ -26,6 +27,9 @@ jobs:
             cat AuthKey_pkcs8.p8
             echo "EOF"
           } >> $GITHUB_ENV
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
       - uses: maui-actions/apple-provisioning@v4
         with:
           bundle-identifiers: 'com.muein.orders'
