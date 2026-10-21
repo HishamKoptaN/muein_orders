@@ -1,9 +1,6 @@
 git_url("https://github.com/HishamKoptaN/app-certificates.git")
-
 storage_mode("git")
-
 type("appstore")
-
 app_identifier([ENV["APP_BUNDLE_ID"] || "com.muein.orders"])
 
 # For Apple Developer Console
