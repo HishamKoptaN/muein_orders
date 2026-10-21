@@ -1,4 +1,4 @@
-name: Build, Provision, and Sign iOS App
+name: Build and Release iOS App
 
 on:
   push:
@@ -10,27 +10,21 @@ jobs:
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+      - uses: subosito/flutter-action@v2
         with:
-          dotnet-version: '8.x'
-      - uses: maui-actions/apple-provisioning@v4
+          flutter-version-file: pubspec.yaml
+          channel: "stable"
+          cache: true 
+      - run: flutter pub get
+      - uses: ruby/setup-ruby@v1
         with:
-          bundle-identifiers: 'com.muein.orders'
-          profile-types: IOS_APP_STORE
-          app-store-connect-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
-          app-store-connect-issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-          app-store-connect-private-key: 'ios/api_private_key.p8'
-      - uses: indygreg/apple-code-sign-action@v1
-        with:
-          input_path: 'build/ios/iphoneos/Runner.app'
-          output_path: 'build/ios/iphoneos/Runner-Signed.app'
-          p12_file: 'ios/certificate.p12'
-          p12_password: ${{ secrets.IOS_CERTIFICATE_PASSPHRASE }}
-          notarize: true
-          staple: true
-          app_store_connect_api_issuer: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-          app_store_connect_api_key: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
-
-      - name: Verify Success
+          ruby-version: '3.2'
+          bundler-cache: true
+      - name: Fastlane iOS Provisioning & Signing
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_API_PRIVATE_KEY_PATH: '${{ github.workspace }}/ios/api_private_key.p8'
         run: |
-          echo "تم بناء وتوقيع وتوثيق التطبيق بنجاح تام!"
+          cd ios
+          bundle exec fastlane run get_provisioning_profile apple_id:"com.muein.orders"
