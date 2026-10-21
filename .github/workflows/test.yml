@@ -30,8 +30,19 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
+      - uses: kebechet/setup-apple-certificate@v1
+        id: cert
+        with:
+          app-store-connect-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
+          app-store-connect-issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
+          app-store-connect-private-key-path: 'ios/api_private_key.p8'
+          app-store-connect-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
+          distribution-private-key: ${{ secrets.DISTRIBUTION_PRIVATE_KEY_BASE64 }}
+          bundle-identifier: 'com.muein.orders'
       - uses: maui-actions/apple-provisioning@v4
         with:
+          certificate: ${{ steps.cert.outputs.p12-certificate-base64 }}
+          certificate-passphrase: ${{ steps.cert.outputs.p12-password }}
           bundle-identifiers: 'com.muein.orders'
           profile-types: IOS_APP_STORE
           app-store-connect-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
