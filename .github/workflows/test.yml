@@ -10,14 +10,27 @@ jobs:
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+      - shell: bash
+        run: |
+          dotnet tool install --global AppleDev.Tools --version 0.5.0
+          apple ci certificates create \
+            --api-key-id "3ZD59Y97UM" \
+            --api-issuer-id "487919a3-70a5-4992-af37-d75eb388c881" \
+            --api-private-key "ios/api_private_key.p8" \
+            --type "Distribution"
+      - shell: bash
+        run: |
+          echo "=== تم اختبار وإنشاء الشهادة بنجاح تام عبر الـ API! ==="
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
           bundler-cache: true
       - run: |
           gem install fastlane
-      - name: Fastlane iOS Provisioning & Signing
-        env:
+      - env:
           APP_STORE_CONNECT_API_KEY_ID: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
           APP_STORE_CONNECT_ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
           APP_STORE_CONNECT_API_PRIVATE_KEY_PATH: '${{ github.workspace }}/ios/api_private_key.p8'
