@@ -55,10 +55,9 @@ platform :ios do
       duration: 1200,
       in_house: false
     )
-    match(
-      type: "appstore",
+   cert() 
+   sigh(
       app_identifier: "com.muein.orders",
-      readonly: false
     )
   end
 end
