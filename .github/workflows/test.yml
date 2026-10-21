@@ -36,7 +36,7 @@ jobs:
           profile-types: IOS_APP_STORE
           app-store-connect-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
           app-store-connect-issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-          app-store-connect-private-key: ${{ env.API_PRIVATE_KEY_FIXED }}
+          app-store-connect-private-key: 'ios/api_private_key.p8'
 
       - shell: bash
         run: |
