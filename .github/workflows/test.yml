@@ -35,7 +35,7 @@ jobs:
         uses: apple-actions/import-codesign-certs@v2
         with:
           p12-file-base64: ${{ secrets.DISTRIBUTION_PRIVATE_KEY_BASE64 }}
-          p12-password: ${{ secrets.CERTIFICATE_PASSPHRASE }}
+          p12-password: 163200
 
       # 2. إنشاء وتنزيل البروفايل تلقائياً (Generate & Download) إذا لم يكن موجوداً
       - name: Generate & Download Provisioning Profile Automatically
