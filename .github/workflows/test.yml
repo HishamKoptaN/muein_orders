@@ -9,48 +9,30 @@ jobs:
     runs-on: macos-latest
     environment: ${{ github.ref_name }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # 1. إعداد بيئة فلاتر (Flutter SDK) وبناء التطبيق
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.x'
-          channel: 'stable'
-
-      - name: Install Dependencies
-        run: flutter pub get
-
-      # بناء ملف الـ .app الخاص بـ iOS (Release mode)
-      - name: Build iOS App
-        run: flutter build ios --release --no-codesign
-
-      # 2. إنشاء وتنزيل الـ Provisioning Profile تلقائياً عبر مفتاح الـ API (.p8 في المستودع)
-      - name: Setup Dotnet for Provisioning Tool
-        uses: actions/setup-dotnet@v4
+         flutter-version-file: pubspec.yaml
+         channel: "stable"
+         cache: true 
+      - run: flutter pub get
+      - run: flutter build ios --release --no-codesign
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
-
-      - name: Generate & Download Provisioning Profile
-        uses: maui-actions/apple-provisioning@v4
+      - uses: maui-actions/apple-provisioning@v4
         with:
           bundle-identifiers: 'com.muein.orders'
           profile-types: IOS_APP_STORE
           app-store-connect-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
           app-store-connect-issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
           app-store-connect-private-key: 'ios/api_private_key.p8'
-
-      # 3. التوقيع باستخدام الأكشن القوي (indygreg/apple-code-sign-action) دون الحاجة لـ Keychain معقد
-      - name: Sign iOS App Bundle
-        uses: indygreg/apple-code-sign-action@v1
+      - uses: indygreg/apple-code-sign-action@v1
         with:
           input_path: 'build/ios/iphoneos/Runner.app'
           output_path: 'build/ios/iphoneos/Runner-Signed.app'
-          p12_file: 'ios/certificate.p12' # مسار ملف الـ p12 الخاص بك (إذا كان مرفوعاً بالمستودع) أو عبر secrets
+          p12_file: 'ios/certificate.p12'
           p12_password: ${{ secrets.IOS_CERTIFICATE_PASSPHRASE }}
-          
-          # إذا كنت تريد توثيق التطبيق (Notarization) مباشرة عبر الـ API
           notarize: true
           staple: true
           app_store_connect_api_issuer: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
