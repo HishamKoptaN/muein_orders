@@ -58,7 +58,6 @@ platform :ios do
       duration: 1200,
       in_house: false
     )
-    cert()
     sigh(
       app_identifier: "com.muein.orders",
     )
