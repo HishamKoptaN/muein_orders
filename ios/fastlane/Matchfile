@@ -1,3 +1,4 @@
-storage_mode("local")
+storage_mode("git")
+git_url(ENV["MATCH_GIT_URL"])
 type("appstore")
 app_identifier([ENV["APP_BUNDLE_ID"] || "com.muein.orders"])
