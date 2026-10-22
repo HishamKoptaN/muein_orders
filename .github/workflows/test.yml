@@ -25,7 +25,7 @@ jobs:
             gem install fastlane
         - shell: bash
           env:
-            APP_STORE_CONNECT_API_KEY_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
+            APP_STORE_CONNECT_API_KEY_ID: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
             APP_STORE_CONNECT_ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
             APP_STORE_CONNECT_API_PRIVATE_KEY_PATH: '${{ github.workspace }}/ios/api_private_key.p8'
           run: |
@@ -37,7 +37,7 @@ jobs:
             bundle-id: 'com.muein.orders'
             profile-type: 'IOS_APP_STORE'
             issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-            api-key-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
+            api-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
             api-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
         - shell: bash
           env:
