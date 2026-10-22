@@ -9,6 +9,7 @@ platform :ios do
       duration: 1200,
       in_house: false
     )
+    get_certificates(type: "distribution")
     sigh(
       app_identifier: "com.muein.orders",
       readonly: false
