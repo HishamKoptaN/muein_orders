@@ -14,15 +14,12 @@ platform :ios do
     # 2. البحث عن شهادة توزيع صالحة وتحميلها إن وجدت، مع منع توليد واحدة جديدة تلقائياً
     begin
       get_certificates(
-        readonly: true, # البحث في حساب أبل دون محاولة إنشاء شهادة جديدة
         output_path: "./certs"
       )
     rescue => e
       UI.important("لم يتم العثور على شهادة محلية، سيتم محاولة استخدام الشهادة المتاحة على الحساب...")
       get_certificates(
-        readonly: false,
-        generate_apple_certs: false,
-        skip_international: true
+        generate_apple_certs: false
       )
     end
 
