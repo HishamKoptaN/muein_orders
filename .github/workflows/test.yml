@@ -1,4 +1,4 @@
-name: CI/CD Pipeline #1231222232112226252
+name: Test
 on:
  push:
     branches: [ prod ]
