@@ -43,7 +43,7 @@ jobs:
           env:
             PROFILES: ${{ steps.profiles.outputs.profiles }}
           run: |
-            for name in "AppStore com.muein.orders" "DeveloperID com.muein.orders"; do
+            for name in "com.muein.orders AppStore"; do
               jq -e --arg name "$name" 'any(.[]; .name == $name)' <<<"$PROFILES" >/dev/null \
                 || { echo "::error::No ACTIVE provisioning profile \"$name\""; exit 1; }
             done
