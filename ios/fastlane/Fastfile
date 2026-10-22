@@ -13,6 +13,8 @@ platform :ios do
 sigh(
       app_identifier: "com.muein.orders",
       readonly: false
+      adhoc: false,
+      development: false
     )
   end
 end
