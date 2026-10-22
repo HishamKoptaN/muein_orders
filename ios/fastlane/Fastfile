@@ -2,7 +2,6 @@ default_platform(:ios)
 
 platform :ios do
   lane :generate_profile do
-    # 1. الاتصال بحساب أبل عبر الـ API
     app_store_connect_api_key(
       key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
       issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
@@ -10,8 +9,6 @@ platform :ios do
       duration: 1200,
       in_house: false
     )
-
-    # 2. البحث عن شهادة توزيع صالحة وتحميلها إن وجدت، مع منع توليد واحدة جديدة تلقائياً
     begin
       get_certificates(
         output_path: "./certs"
@@ -22,8 +19,6 @@ platform :ios do
         generate_apple_certs: false
       )
     end
-
-    # 3. إنشاء وتنزيل البروفايل
     sigh(
       app_identifier: "com.muein.orders",
       readonly: false,
