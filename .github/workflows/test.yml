@@ -1,0 +1,49 @@
+name: CI/CD Pipeline #1231222232112226252
+on:
+ push:
+    branches: [ prod ]
+ workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  ios:
+      runs-on: macos-latest
+      environment: ${{ github.ref_name }}
+      env:
+        SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+      steps:
+        - uses: actions/checkout@v6
+        - uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: '8.x'
+        - uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: '3.2'
+            bundler-cache: true
+        - shell: bash
+          run: |
+            gem install fastlane
+        - shell: bash
+          env:
+            APP_STORE_CONNECT_API_KEY_ID: ${{ inputs.appstore_api_key_id }}
+            APP_STORE_CONNECT_ISSUER_ID: ${{ inputs.appstore_issuer_id }}
+            APP_STORE_CONNECT_API_PRIVATE_KEY_PATH: '${{ github.workspace }}/ios/api_private_key.p8'
+          run: |
+            cd ios
+            fastlane generate_profile
+        - id: profiles
+          uses: apple-actions/download-provisioning-profiles@v7
+          with:
+            bundle-id: 'com.muein.orders'
+            profile-type: 'IOS_APP_STORE'
+            issuer-id: ${{ inputs.appstore_issuer_id }}
+            api-key-id: ${{ inputs.appstore_api_key_id }}
+            api-private-key: ${{ inputs.appstore_api_private_key }}
+        - shell: bash
+          env:
+            PROFILES: ${{ steps.profiles.outputs.profiles }}
+          run: |
+            for name in "AppStore com.muein.orders" "DeveloperID com.muein.orders"; do
+              jq -e --arg name "$name" 'any(.[]; .name == $name)' <<<"$PROFILES" >/dev/null \
+                || { echo "::error::No ACTIVE provisioning profile \"$name\""; exit 1; }
+            done
