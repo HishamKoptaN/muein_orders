@@ -11,18 +11,21 @@ platform :ios do
     )
     begin
       get_certificates(
-        output_path: "./certs"
+        output_path: "./certs",
+        username: ENV["FASTLANE_USER"] || ENV["APPLE_ID"]
       )
     rescue => e
       UI.important("لم يتم العثور على شهادة محلية، سيتم محاولة استخدام الشهادة المتاحة على الحساب...")
       get_certificates(
-        generate_apple_certs: false
+        generate_apple_certs: false,
+        username: ENV["FASTLANE_USER"] || ENV["APPLE_ID"]
       )
     end
     sigh(
       app_identifier: "com.muein.orders",
       readonly: false,
-      filename: "com.muein.orders AppStore"
+      filename: "com.muein.orders AppStore",
+      username: ENV["FASTLANE_USER"] || ENV["APPLE_ID"]
     )
   end
 end
