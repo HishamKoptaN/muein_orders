@@ -10,6 +10,14 @@ import '../../../features/orders_features/docs/domain/usecases/docs_use_cases.da
 import '../../di/dependency_injection.dart';
 
 Future<void> startUploadDocs() async {
+  try {
+    if (!getIt.isRegistered<AppDatabase>()) {
+      await configureDependencies();
+    }
+  } catch (e) {
+    log('Error configuring dependencies in background isolate: $e');
+  }
+
   final db = getIt<AppDatabase>();
   final docsUseCase = getIt<DocsUseCase>();
   await getIt<CachedDocsUseCases>().getPendings().then((res) async {
