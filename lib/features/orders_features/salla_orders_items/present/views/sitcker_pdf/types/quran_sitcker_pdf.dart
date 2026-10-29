@@ -52,7 +52,7 @@ abstract class QuranStickerPdf {
                         style: pw.TextStyle(
                           font: tajawalBold,
                           fontSize: 18,
-                          color: PdfColor.fromHex('#003A46'),
+                          color: PdfColors.black,
                         ),
                         textAlign: pw.TextAlign.center,
                       ),
@@ -68,9 +68,9 @@ abstract class QuranStickerPdf {
                         'تم طباعة هذا المصحف الشريف بإشراف من\nمتجر معين للقرآن الكريم',
                         style: pw.TextStyle(
                           font: tajawalBold,
-                          fontSize: 13,
+                          fontSize: 11,
                           color: PdfColor.fromHex('#003A46'),
-                          height: 1.4,
+                          height: 2,
                         ),
                         textAlign: pw.TextAlign.center,
                       ),
@@ -84,7 +84,7 @@ abstract class QuranStickerPdf {
                             'رقم التنفيذ : ',
                             style: pw.TextStyle(
                               font: tajawalBold,
-                              fontSize: 18,
+                              fontSize: 14,
                               color: PdfColor.fromHex('#003A46'),
                             ),
                           ),
@@ -93,7 +93,7 @@ abstract class QuranStickerPdf {
                             style: pw.TextStyle(
                               font: tajawalBold,
                               fontSize: 14,
-                              color: PdfColor.fromHex('#003A46'),
+                              color: PdfColors.black,
                             ),
                           ),
                         ],
