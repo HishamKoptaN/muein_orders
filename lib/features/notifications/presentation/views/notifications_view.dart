@@ -35,8 +35,8 @@ class _NotificationsViewState extends State<NotificationsView> {
         elevation: 0,
       ),
       body: Container(
-        width: .infinity,
-        height: .infinity,
+        width: double.infinity,
+        height: double.infinity,
         color: context.colorScheme.surfaceContainerHighest.withOpacity(0.3),
         child: const NotificationListWidget(),
       ),

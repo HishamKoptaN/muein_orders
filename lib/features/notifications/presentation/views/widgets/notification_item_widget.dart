@@ -13,10 +13,10 @@ class NotificationItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: .all(12.r),
+      padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
         color: context.colorScheme.surface,
-        borderRadius: .circular(8.r),
+        borderRadius: BorderRadius.circular(8.r),
         boxShadow: [
           BoxShadow(
             color: context.colorScheme.shadow.withOpacity(0.05),
@@ -26,13 +26,13 @@ class NotificationItemWidget extends StatelessWidget {
         ],
       ),
       child: Row(
-        crossAxisAlignment: .start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: .all(8.r),
+            padding: EdgeInsets.all(8.r),
             decoration: BoxDecoration(
               color: context.colorScheme.primary.withOpacity(0.1),
-              borderRadius: .circular(8.r),
+              borderRadius: BorderRadius.circular(8.r),
             ),
             child: Icon(
               Icons.notifications,
@@ -43,7 +43,7 @@ class NotificationItemWidget extends StatelessWidget {
           Gap(12.w),
           Expanded(
             child: Column(
-              crossAxisAlignment: .start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   item.title,

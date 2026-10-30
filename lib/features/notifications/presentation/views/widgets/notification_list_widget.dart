@@ -35,7 +35,7 @@ class NotificationListWidget extends StatelessWidget {
               );
             }
             return ListView.separated(
-              padding: .all(16.r),
+              padding: EdgeInsets.all(16.r),
               itemCount: notifications.length,
               itemBuilder: (context, i) {
                 final noti = notifications[i];
