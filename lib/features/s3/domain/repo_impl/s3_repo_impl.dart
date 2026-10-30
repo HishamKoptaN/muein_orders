@@ -4,12 +4,14 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:error_handler/error_handler.dart';
-import '../../data/repo/s3_repo.dart';
+import '../repo/s3_repo.dart';
 
 @LazySingleton(as: S3Repo)
 class S3RepoImpl implements S3Repo {
+  const S3RepoImpl(@Named('s3Dio') this._dio);
+
   final Dio _dio;
-  S3RepoImpl(@Named('s3Dio') this._dio);
+
   @override
   Future<ExecuteGuard<void>> uploadFile({
     required File file,
@@ -28,7 +30,7 @@ class S3RepoImpl implements S3Repo {
             'Accept': '*/*',
           },
         ),
-        onSendProgress: (sent, total) {
+        onSendProgress: (int sent, int total) {
           if (total > 0) {
             print(
               'Upload Progress: ${(sent / total * 100).toStringAsFixed(2)}%',
