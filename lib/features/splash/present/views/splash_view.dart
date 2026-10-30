@@ -29,7 +29,7 @@ class SplashView extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.surface,
             body: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: .center,
                 children: [
                   Text(
                     'App Splash',
