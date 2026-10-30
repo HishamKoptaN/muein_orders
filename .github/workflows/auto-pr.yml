@@ -3,8 +3,9 @@ name: Automatic Pull Request
 on:
   push:
     branches:
-      - 'refactor/**'
-      - 'features/**'
+      - 'prods'
+      #- 'refactor/**'
+      #- 'features/**'
 permissions:
   contents: write
   pull-requests: write
