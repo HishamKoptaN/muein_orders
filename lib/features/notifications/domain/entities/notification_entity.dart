@@ -1,19 +1,15 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class NotificationEntity {
+  final String id;
+  final String title;
+  final String message;
+  final bool isRead;
+  final DateTime createdAt;
 
-part 'notification_entity.freezed.dart';
-part 'notification_entity.g.dart';
-
-@freezed
-abstract class NotificationEntity with _$NotificationEntity {
-  const factory NotificationEntity({
-    required String id,
-    required String title,
-    required String body,
-    required String createdAt,
-    String? imageUrl,
-    @Default(false) bool read,
-  }) = _NotificationEntity;
-
-  factory NotificationEntity.fromJson(Map<String, dynamic> json) =>
-      _$NotificationEntityFromJson(json);
+  const NotificationEntity({
+    required this.id,
+    required this.title,
+    required this.message,
+    required this.isRead,
+    required this.createdAt,
+  });
 }

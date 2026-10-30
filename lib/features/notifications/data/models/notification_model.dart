@@ -1,20 +1,31 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../domain/entities/notification_entity.dart';
 
-part 'notification_model.freezed.dart';
-part 'notification_model.g.dart';
+class NotificationModel extends NotificationEntity {
+  const NotificationModel({
+    required super.id,
+    required super.title,
+    required super.message,
+    required super.isRead,
+    required super.createdAt,
+  });
 
-@freezed
-abstract class NotificationModel with _$NotificationModel {
-  const factory NotificationModel({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'title') String? title,
-    @JsonKey(name: 'body') String? body,
-    @JsonKey(name: 'type') String? type,
-    @JsonKey(name: 'read_at') String? readAt,
-    @JsonKey(name: 'created_at') String? createdAt,
-    @JsonKey(name: 'updated_at') String? updatedAt,
-  }) = _NotificationModel;
+  factory NotificationModel.fromJson(Map<String, dynamic> json) {
+    return NotificationModel(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      message: json['message'] as String,
+      isRead: json['is_read'] as bool,
+      createdAt: DateTime.parse(json['created_at'] as String),
+    );
+  }
 
-  factory NotificationModel.fromJson(Map<String, Object?> json) =>
-      _$NotificationModelFromJson(json);
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'message': message,
+      'is_read': isRead,
+      'created_at': createdAt.toIso8601String(),
+    };
+  }
 }
