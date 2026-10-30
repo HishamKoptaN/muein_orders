@@ -1,16 +1,22 @@
-// import 'package:injectable/injectable.dart';
-// import 'package:error_handler/error_handler.dart';
-// import '../../../orders/domain/entities/order_details_entity.dart';
-// import '../../data/repo/s3_repo.dart';
-// import '../entity/s3_entity.dart';
+import 'dart:io';
+import 'package:injectable/injectable.dart';
+import 'package:error_handler/error_handler.dart';
+import '../../data/repo/s3_repo.dart';
 
-// @lazySingleton
-// class NotesUseCase {
-//   final NotesRepo notificationsRepo;
-//   NotesUseCase({required this.notificationsRepo});
-//   Future<ApiResult<NoteEntity>> createNote({
-//     required CreateNoteEntity note,
-//   }) async {
-//     return await notificationsRepo.createNote(note: note);
-//   }
-// }
+@lazySingleton
+class S3UseCases {
+  final S3Repo s3Repo;
+  S3UseCases({required this.s3Repo});
+
+  Future<ExecuteGuard<void>> uploadFile({
+    required File file,
+    required String uploadUrl,
+    required String contentType,
+  }) async {
+    return await s3Repo.uploadFile(
+      file: file,
+      uploadUrl: uploadUrl,
+      contentType: contentType,
+    );
+  }
+}

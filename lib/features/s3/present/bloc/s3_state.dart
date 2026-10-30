@@ -1,23 +1,17 @@
-import '../../domain/entities/s3_item_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:formz/formz.dart';
 
-abstract class S3State {
-  const S3State();
-}
+part 's3_state.freezed.dart';
 
-class S3Initial extends S3State {
-  const S3Initial();
-}
+@freezed
+class S3State with _$S3State {
+  const factory S3State.initial({
+    @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
+  }) = _Initial;
 
-class S3Loading extends S3State {
-  const S3Loading();
-}
+  const factory S3State.loading() = _Loading;
 
-class S3Loaded extends S3State {
-  final List<S3ItemEntity> items;
-  const S3Loaded(this.items);
-}
+  const factory S3State.success() = _Success;
 
-class S3Error extends S3State {
-  final String message;
-  const S3Error(this.message);
+  const factory S3State.failure({required String message}) = _Failure;
 }

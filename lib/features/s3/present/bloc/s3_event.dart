@@ -1,7 +1,13 @@
-abstract class S3Event {
-  const S3Event();
-}
+import 'dart:io';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class FetchS3ItemsEvent extends S3Event {
-  const FetchS3ItemsEvent();
+part 's3_event.freezed.dart';
+
+@freezed
+class S3Event with _$S3Event {
+  const factory S3Event.uploadFile({
+    required File file,
+    required String uploadUrl,
+    required String contentType,
+  }) = _UploadFile;
 }
