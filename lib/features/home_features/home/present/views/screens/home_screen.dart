@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Padding(
-        padding: .all(16.r),
+        padding: EdgeInsets.all(16.r),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
