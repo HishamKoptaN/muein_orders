@@ -56,3 +56,4 @@ fastlane/metadata
 *.ipa
 *.dSYM.zip
 *.dSYM
+.aider*
