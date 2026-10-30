@@ -3,8 +3,8 @@ name: Automatic Pull Request
 on:
   push:
     branches:
-      - 'refactor/**'   # يعمل أوتوماتيكياً مع أي فرع يبدأ بـ refactor/
-      - 'test'          # أو مع فرع test
+      - 'refactor/**'  
+      - 'test'         
 
 jobs:
   pull-request:
