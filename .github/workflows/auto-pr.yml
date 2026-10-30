@@ -10,16 +10,14 @@ jobs:
   pull-request:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
-      - name: Create Pull Request
-        uses: diillson/auto-pull-request@v1.0.1
+      - uses: diillson/auto-pull-request@v1.0.1
         with:
-          source_branch: ""                                 # يترك فارغاً ليأخذ الفرع الذي تم دفع إليه حالياً
-          destination_branch: "dev"                         # الفرع المستهدف (الذي ستذهب إليه التعديلات)
-          pr_title: "Automated PR from ${{ github.ref }}"   # عنوان طلب السحب
+          source_branch: ""                               
+          destination_branch: "dev"                       
+          pr_title: "Automated PR from ${{ github.ref }}"   
           pr_body: |
             :crown: *An automated PR created by AI Agent / GitHub Actions*
             This pull request was automatically generated for branch `${{ github.ref }}`.
-          github_token: ${{ secrets.GITHUB_TOKEN }}         # الرمز التلقائي المدمج في غيت هاب للصلاحيات
+          github_token: ${{ secrets.GITHUB_TOKEN }}         
