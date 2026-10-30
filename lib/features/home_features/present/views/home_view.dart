@@ -14,9 +14,9 @@ class HomeView extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: .all(16.r),
+        padding: EdgeInsets.all(16.r),
         child: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Welcome Back!',
@@ -26,10 +26,10 @@ class HomeView extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             Container(
-              padding: .all(16.r),
+              padding: EdgeInsets.all(16.r),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surface,
-                borderRadius: .circular(12.r),
+                borderRadius: BorderRadius.circular(12.r),
               ),
               child: Text(
                 'Explore your features here.',
