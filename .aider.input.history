@@ -2390,3 +2390,43 @@
 +3. تقليل أطوال الملفات بحيث لا يتجاوز أي ملف 100 سطر وتقسيم الملفات الكبيرة داخل هذه الميزة.
 +4. استخدام CustomPhoneFormField لمدخلات الهاتف وأيقونات Fontawesome/lucide_icons_flutter إن وجدت.
 +
+
+# 2026-10-30 10:45:22.751135
++
++قم بفحص وتحسين الميزة الموجودة في المسار التالي: lib/features/orders_features
++لتتطابق تماماً مع القواعد والشروط التالية:
++1. Clean Architecture وتنسيق المجلدات (data, domain, present).
++2. عدم وجود ألوان أو أنماط صلبة واستخدام Theme.of(context) و ScreenUtil (.r, .w, .h, .sp).
++3. تقليل أطوال الملفات بحيث لا يتجاوز أي ملف 100 سطر وتقسيم الملفات الكبيرة داخل هذه الميزة.
++4. استخدام CustomPhoneFormField لمدخلات الهاتف وأيقونات Fontawesome/lucide_icons_flutter إن وجدت.
++
+
+# 2026-10-30 10:45:22.751264
++
++قم بفحص وتحسين الميزة الموجودة في المسار التالي: lib/features/orders_features
++لتتطابق تماماً مع القواعد والشروط التالية:
++1. Clean Architecture وتنسيق المجلدات (data, domain, present).
++2. عدم وجود ألوان أو أنماط صلبة واستخدام Theme.of(context) و ScreenUtil (.r, .w, .h, .sp).
++3. تقليل أطوال الملفات بحيث لا يتجاوز أي ملف 100 سطر وتقسيم الملفات الكبيرة داخل هذه الميزة.
++4. استخدام CustomPhoneFormField لمدخلات الهاتف وأيقونات Fontawesome/lucide_icons_flutter إن وجدت.
++
+
+# 2026-10-30 13:29:35.481541
++
++قم بفحص وتحسين الميزة الموجودة في المسار التالي: lib/features/orders_features
++لتتطابق تماماً مع القواعد والشروط التالية:
++1. Clean Architecture وتنسيق المجلدات (data, domain, present).
++2. عدم وجود ألوان أو أنماط صلبة واستخدام Theme.of(context) و ScreenUtil (.r, .w, .h, .sp).
++3. تقليل أطوال الملفات بحيث لا يتجاوز أي ملف 100 سطر وتقسيم الملفات الكبيرة داخل هذه الميزة.
++4. استخدام CustomPhoneFormField لمدخلات الهاتف وأيقونات Fontawesome/lucide_icons_flutter إن وجدت.
++
+
+# 2026-10-30 13:29:35.484465
++
++قم بفحص وتحسين الميزة الموجودة في المسار التالي: lib/features/orders_features
++لتتطابق تماماً مع القواعد والشروط التالية:
++1. Clean Architecture وتنسيق المجلدات (data, domain, present).
++2. عدم وجود ألوان أو أنماط صلبة واستخدام Theme.of(context) و ScreenUtil (.r, .w, .h, .sp).
++3. تقليل أطوال الملفات بحيث لا يتجاوز أي ملف 100 سطر وتقسيم الملفات الكبيرة داخل هذه الميزة.
++4. استخدام CustomPhoneFormField لمدخلات الهاتف وأيقونات Fontawesome/lucide_icons_flutter إن وجدت.
++
