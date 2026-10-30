@@ -1,8 +1,7 @@
-// part of 's3_bloc.dart';
+abstract class S3Event {
+  const S3Event();
+}
 
-// @freezed
-// abstract class NotesEvent with _$NotesEvent {
-//   const factory NotesEvent.dataChanged({required GenericFormzInput note}) =
-//       _DataChanged;
-//   const factory NotesEvent.createNote({required int id}) = _CreateNote;
-// }
+class FetchS3ItemsEvent extends S3Event {
+  const FetchS3ItemsEvent();
+}

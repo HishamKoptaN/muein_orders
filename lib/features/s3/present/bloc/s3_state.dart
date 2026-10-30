@@ -1,14 +1,23 @@
-// part of 's3_bloc.dart';
+import '../../domain/entities/s3_item_entity.dart';
 
-// @freezed
-// class NotesState with _$NotesState {
-//   const factory NotesState.initial() = _Initial;
-//   const factory NotesState.loaded({
-//     required GenericFormzInput note,
-//     required FormzSubmissionStatus formzSubmissionStatus,
-//   }) = _Loaded;
-//   const factory NotesState.loading() = _Loading;
-//   const factory NotesState.success() = _Success;
-//   const factory NotesState.failure({required ApiErrorModel apiErrorModel}) =
-//       _Failure;
-// }
+abstract class S3State {
+  const S3State();
+}
+
+class S3Initial extends S3State {
+  const S3Initial();
+}
+
+class S3Loading extends S3State {
+  const S3Loading();
+}
+
+class S3Loaded extends S3State {
+  final List<S3ItemEntity> items;
+  const S3Loaded(this.items);
+}
+
+class S3Error extends S3State {
+  final String message;
+  const S3Error(this.message);
+}
