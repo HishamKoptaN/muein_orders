@@ -5,7 +5,9 @@ on:
     branches:
       - 'refactor/**'  
       - 'test'         
-
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   pull-request:
     runs-on: ubuntu-latest
