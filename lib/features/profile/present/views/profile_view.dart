@@ -16,9 +16,9 @@ class ProfileView extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: .all(16.r),
+        padding: EdgeInsets.all(16.r),
         child: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'User Information',
