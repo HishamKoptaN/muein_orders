@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
       return Scaffold(
         body: Center(
           child: Padding(
-            padding: .all(24.r),
+            padding: EdgeInsets.all(24.r),
             child: Text(
               'Splash Screen',
               style: Theme.of(context).textTheme.headlineMedium,
