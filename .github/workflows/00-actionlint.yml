@@ -2,9 +2,7 @@ name: Lint GitHub Actions
 
 # Validates workflow syntax, expressions and action references on every PR.
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/**'
+  pull_request: {}
   push:
     branches: [dev, prod]
     paths:
