@@ -1,0 +1,26 @@
+name: Lint GitHub Actions
+
+# Validates workflow syntax, expressions and action references on every PR.
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+  push:
+    branches: [dev, prod]
+    paths:
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  actionlint:
+    name: actionlint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Run actionlint
+        uses: raven-actions/actionlint@v2
