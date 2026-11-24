@@ -11,7 +11,16 @@ jobs:
       environment: ${{ github.ref_name }}
       env:
         SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        APP_STORE_CONNECT_API_KEY_ID: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
+        APP_STORE_CONNECT_ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
+        APP_STORE_CONNECT_API_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
+        APPLE_ID: ${{ vars.APPLE_ID || secrets.APPLE_ID }}
       steps:
+        - name: Skip notice — missing secrets or vars
+          if: >-
+            env.APP_STORE_CONNECT_API_KEY_ID == '' || env.APP_STORE_CONNECT_ISSUER_ID == '' ||
+            env.APP_STORE_CONNECT_API_PRIVATE_KEY == '' || env.APPLE_ID == ''
+          run: echo "::notice title=Skipped iOS signing check::A required secret or variable is empty; protected steps were skipped"
         - uses: actions/checkout@v6
         - uses: actions/setup-dotnet@v4
           with:
@@ -23,25 +32,34 @@ jobs:
         - shell: bash
           run: |
             gem install fastlane
-        - shell: bash
+        - if: >-
+            env.APP_STORE_CONNECT_API_KEY_ID != '' && env.APP_STORE_CONNECT_ISSUER_ID != '' &&
+            env.APP_STORE_CONNECT_API_PRIVATE_KEY != '' && env.APPLE_ID != ''
+          shell: bash
           env:
-            APP_STORE_CONNECT_API_KEY_ID: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
-            APP_STORE_CONNECT_ISSUER_ID: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-            APP_STORE_CONNECT_API_PRIVATE_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
-            FASTLANE_USER: ${{ vars.APPLE_ID || secrets.APPLE_ID }}
+            APP_STORE_CONNECT_API_KEY_ID: ${{ env.APP_STORE_CONNECT_API_KEY_ID }}
+            APP_STORE_CONNECT_ISSUER_ID: ${{ env.APP_STORE_CONNECT_ISSUER_ID }}
+            APP_STORE_CONNECT_API_PRIVATE_KEY_CONTENT: ${{ env.APP_STORE_CONNECT_API_PRIVATE_KEY }}
+            FASTLANE_USER: ${{ env.APPLE_ID }}
             APP_STORE_CONNECT_API_PRIVATE_KEY_PATH: '${{ github.workspace }}/ios/api_private_key.p8'
           run: |
             cd ios
             fastlane generate_profile
         - id: profiles
+          if: >-
+            env.APP_STORE_CONNECT_API_KEY_ID != '' && env.APP_STORE_CONNECT_ISSUER_ID != '' &&
+            env.APP_STORE_CONNECT_API_PRIVATE_KEY != ''
           uses: apple-actions/download-provisioning-profiles@v7
           with:
             bundle-id: 'com.muein.orders'
             profile-type: 'IOS_APP_STORE'
-            issuer-id: ${{ vars.APP_STORE_CONNECT_ISSUER_ID }}
-            api-key-id: ${{ vars.APP_STORE_CONNECT_API_KEY_ID }}
-            api-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
-        - shell: bash
+            issuer-id: ${{ env.APP_STORE_CONNECT_ISSUER_ID }}
+            api-key-id: ${{ env.APP_STORE_CONNECT_API_KEY_ID }}
+            api-private-key: ${{ env.APP_STORE_CONNECT_API_PRIVATE_KEY }}
+        - if: >-
+            env.APP_STORE_CONNECT_API_KEY_ID != '' && env.APP_STORE_CONNECT_ISSUER_ID != '' &&
+            env.APP_STORE_CONNECT_API_PRIVATE_KEY != ''
+          shell: bash
           env:
             PROFILES: ${{ steps.profiles.outputs.profiles }}
           run: |
