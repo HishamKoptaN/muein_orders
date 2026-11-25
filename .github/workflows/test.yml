@@ -10,6 +10,7 @@ jobs:
       runs-on: macos-latest
       environment: ${{ github.ref_name }}
       env:
+        PER_FLAVOR: ${{ vars.PER_FLAVOR || github.ref_name }}
         SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
       steps:
         - uses: actions/checkout@v6
