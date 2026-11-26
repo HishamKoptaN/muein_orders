@@ -2371,9 +2371,9 @@
 +4. استخدام CustomPhoneFormField لمدخلات الهاتف وأيقونات Fontawesome/lucide_icons_flutter إن وجدت.
 +
 
-# 2026-10-30 10:20:16.670919
+# 2026-10-30 10:19:01.165051
 +
-+قم بفحص وتحسين الميزة الموجودة في المسار التالي: lib/features/orders_features
++قم بفحص وتحسين الميزة الموجودة في المسار التالي: lib/features/instructions
 +لتتطابق تماماً مع القواعد والشروط التالية:
 +1. Clean Architecture وتنسيق المجلدات (data, domain, present).
 +2. عدم وجود ألوان أو أنماط صلبة واستخدام Theme.of(context) و ScreenUtil (.r, .w, .h, .sp).
@@ -2381,9 +2381,9 @@
 +4. استخدام CustomPhoneFormField لمدخلات الهاتف وأيقونات Fontawesome/lucide_icons_flutter إن وجدت.
 +
 
-# 2026-10-30 10:20:16.671963
+# 2026-10-30 10:19:01.165241
 +
-+قم بفحص وتحسين الميزة الموجودة في المسار التالي: lib/features/orders_features
++قم بفحص وتحسين الميزة الموجودة في المسار التالي: lib/features/instructions
 +لتتطابق تماماً مع القواعد والشروط التالية:
 +1. Clean Architecture وتنسيق المجلدات (data, domain, present).
 +2. عدم وجود ألوان أو أنماط صلبة واستخدام Theme.of(context) و ScreenUtil (.r, .w, .h, .sp).
